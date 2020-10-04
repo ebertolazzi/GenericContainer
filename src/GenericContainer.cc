@@ -33,7 +33,20 @@
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
 
-#include <regex>
+#if __cplusplus >= 201103L &&                             \
+    (!defined(__GLIBCXX__) || (__cplusplus >= 201402L) || \
+        (defined(_GLIBCXX_REGEX_DFS_QUANTIFIERS_LIMIT) || \
+         defined(_GLIBCXX_REGEX_STATE_LIMIT)           || \
+             (defined(_GLIBCXX_RELEASE)                && \
+             _GLIBCXX_RELEASE > 4)))
+#define HAVE_WORKING_REGEX 1
+#endif
+
+#ifdef HAVE_WORKING_REGEX
+  #include <regex>
+#endif
+
+
 #include <fstream>
 
 #define CHECK_RESIZE(pV,I) if ( pV->size() <= (I) ) pV->resize((I)+1)
@@ -265,6 +278,7 @@ namespace GenericContainerNamespace {
   template ostream_type & operator << ( ostream_type & s, mat_type<long_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<real_type> const & m );
 
+  #ifdef HAVE_WORKING_REGEX
   class GENERIC_CONTAINER_API_DLL Pcre_for_GC {
 
   private:
@@ -294,6 +308,8 @@ namespace GenericContainerNamespace {
   };
 
   static Pcre_for_GC pcre_for_GC;
+
+  #endif
 
   static char const *typeName[] = {
 
@@ -4882,6 +4898,10 @@ namespace GenericContainerNamespace {
     case GC_MAP:
       { map_type const & m = this->get_map();
         for ( map_type::const_iterator im = m.begin(); im != m.end(); ++im ) {
+          #ifndef HAVE_WORKING_REGEX
+          stream << prefix.c_str() << im->first << ":\n";
+          im->second.dump(stream,prefix+indent);
+          #else
           // check formatting using pcre
           // num+"@"+"underline character"
           // Try to find the regex in aLineToMatch, and report results.
@@ -4917,6 +4937,7 @@ namespace GenericContainerNamespace {
               im->second.dump(stream,prefix+indent);
             }
           }
+          #endif
         }
       }
       break;
@@ -5022,6 +5043,10 @@ namespace GenericContainerNamespace {
     case GC_MAP:
       { map_type const & m = this->get_map();
         for ( map_type::const_iterator im = m.begin(); im != m.end(); ++im ) {
+          #ifndef HAVE_WORKING_REGEX
+          stream << prefix.c_str() << im->first << ":\n";
+          im->second.print_content_types(stream,prefix+indent,indent);
+          #else
           // check formatting using pcre
           // num+"@"+"underline character"
           // Try to find the regex in aLineToMatch, and report results.
@@ -5057,6 +5082,7 @@ namespace GenericContainerNamespace {
               im->second.print_content_types(stream,prefix+indent,indent);
             }
           }
+          #endif
         }
       }
       break;
