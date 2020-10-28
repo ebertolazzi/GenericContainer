@@ -452,8 +452,20 @@ namespace GenericContainerNamespace {
     case GC_MAT_COMPLEX: delete m_data.m_c; break;
     case GC_VEC_STRING:  delete m_data.v_s; break;
 
-    case GC_VECTOR:      delete m_data.v; break;
-    case GC_MAP:         delete m_data.m; break;
+    case GC_VECTOR:
+      {
+        vector_type::iterator it = m_data.v->begin();
+        for ( ; it != m_data.v->end(); ++it ) it->clear();
+        delete m_data.v;
+      }
+      break;
+    case GC_MAP:
+      {
+        map_type::iterator it = m_data.m->begin();
+        for ( ; it != m_data.m->end(); ++it ) it->second.clear();
+        delete m_data.m;
+      }
+      break;
     }
     m_data_type = GC_NOTYPE;
   }
