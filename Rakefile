@@ -32,7 +32,8 @@ TESTS = [
 "run tests on linux/osx"
 task :run do
   TESTS.each do |cmd|
-    sh "./bin/#{cmd}"
+    exe = "./bin/#{cmd}"
+    sh exe if File.exist?(exe)
   end
 end
 
