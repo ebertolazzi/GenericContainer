@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -32,6 +32,8 @@
 
 /* Begin PBXBuildFile section */
 		D902EC111D74F2F600127551 /* GenericContainerLuaPmain.cc in Sources */ = {isa = PBXBuildFile; fileRef = D902EC101D74F2F600127551 /* GenericContainerLuaPmain.cc */; };
+		D907D8BB25E57AE500C40DA3 /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
+		D907D8E025E57AFF00C40DA3 /* example12.cc in Sources */ = {isa = PBXBuildFile; fileRef = D907D8DF25E57AFF00C40DA3 /* example12.cc */; };
 		D92A20A11C4B146300BDE1D1 /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
 		D92A20A31C4B149F00BDE1D1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92A20A21C4B149F00BDE1D1 /* Accelerate.framework */; };
 		D93669B51D58B61600B2F03B /* GenericContainer.cc in Sources */ = {isa = PBXBuildFile; fileRef = D93669AE1D58B61600B2F03B /* GenericContainer.cc */; };
@@ -75,6 +77,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D907D8B725E57AE500C40DA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9D7FC4D17F01B05002F07F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D9A0E5FE1C258D0F00914760;
+			remoteInfo = GenericContainer;
+		};
 		D92A20A41C4B151700BDE1D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D9D7FC4D17F01B05002F07F8 /* Project object */;
@@ -239,6 +248,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D907D8BC25E57AE500C40DA3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = /Users/enrico/Ricerca/develop/myBitBucketProjetcs/myGenericContainer/bin;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93EC11F19E88EEA00243ACB /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
@@ -361,6 +379,8 @@
 
 /* Begin PBXFileReference section */
 		D902EC101D74F2F600127551 /* GenericContainerLuaPmain.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericContainerLuaPmain.cc; sourceTree = "<group>"; };
+		D907D8C025E57AE500C40DA3 /* example12 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example12; sourceTree = BUILT_PRODUCTS_DIR; };
+		D907D8DF25E57AFF00C40DA3 /* example12.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example12.cc; path = examples/example12.cc; sourceTree = SOURCE_ROOT; };
 		D92A20A21C4B149F00BDE1D1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D93669AE1D58B61600B2F03B /* GenericContainer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericContainer.cc; sourceTree = "<group>"; };
 		D93669AF1D58B61600B2F03B /* GenericContainer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericContainer.hh; sourceTree = "<group>"; };
@@ -408,6 +428,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D907D8BA25E57AE500C40DA3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D907D8BB25E57AE500C40DA3 /* libGenericContainer.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93EC11D19E88EEA00243ACB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -565,6 +593,7 @@
 				D95EEC1218188AA80076087A /* example9.cc */,
 				D94AA8CF188693C000D2C9E8 /* example10.cc */,
 				D93EC11719E88EE200243ACB /* example11.cc */,
+				D907D8DF25E57AFF00C40DA3 /* example12.cc */,
 			);
 			name = examples;
 			path = example1;
@@ -611,6 +640,7 @@
 				D93EC12419E88EEA00243ACB /* example11 */,
 				D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */,
 				D9EB11D31FBC3A7700A58868 /* JSON-test */,
+				D907D8C025E57AE500C40DA3 /* example12 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -635,6 +665,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		D907D8B525E57AE500C40DA3 /* example12 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D907D8BD25E57AE500C40DA3 /* Build configuration list for PBXNativeTarget "example12" */;
+			buildPhases = (
+				D907D8B825E57AE500C40DA3 /* Sources */,
+				D907D8BA25E57AE500C40DA3 /* Frameworks */,
+				D907D8BC25E57AE500C40DA3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D907D8B625E57AE500C40DA3 /* PBXTargetDependency */,
+			);
+			name = example12;
+			productName = example1;
+			productReference = D907D8C025E57AE500C40DA3 /* example12 */;
+			productType = "com.apple.product-type.tool";
+		};
 		D93EC11819E88EEA00243ACB /* example11 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D93EC12119E88EEA00243ACB /* Build configuration list for PBXNativeTarget "example11" */;
@@ -884,7 +932,7 @@
 				};
 			};
 			buildConfigurationList = D9D7FC5017F01B05002F07F8 /* Build configuration list for PBXProject "GenericContainer" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -908,6 +956,7 @@
 				D95EEC1318188AAE0076087A /* example9 */,
 				D94AA8C21886937200D2C9E8 /* example10 */,
 				D93EC11819E88EEA00243ACB /* example11 */,
+				D907D8B525E57AE500C40DA3 /* example12 */,
 				D96BCBF6182AEDA100E31059 /* compile all */,
 				D9EB11C81FBC3A7700A58868 /* JSON-test */,
 			);
@@ -915,6 +964,14 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D907D8B825E57AE500C40DA3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D907D8E025E57AFF00C40DA3 /* example12.cc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D93EC11B19E88EEA00243ACB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1029,6 +1086,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D907D8B625E57AE500C40DA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D9A0E5FE1C258D0F00914760 /* GenericContainer */;
+			targetProxy = D907D8B725E57AE500C40DA3 /* PBXContainerItemProxy */;
+		};
 		D92A20A51C4B151700BDE1D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D9A0E5FE1C258D0F00914760 /* GenericContainer */;
@@ -1147,6 +1209,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		D907D8BE25E57AE500C40DA3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D95EB3811D6BA7CA005772D0 /* Debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "example11 copy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D907D8BF25E57AE500C40DA3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D95EB3831D6BA7CA005772D0 /* Release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				INFOPLIST_FILE = "example11 copy-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D93EC12219E88EEA00243ACB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D95EB3811D6BA7CA005772D0 /* Debug.xcconfig */;
@@ -1505,7 +1591,6 @@
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
@@ -1521,6 +1606,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $PROJECT_DIR/lib3rd/include;
 				LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib3rd;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				USER_HEADER_SEARCH_PATHS = $PROJECT_DIR/lib3rd/include;
@@ -1575,7 +1661,6 @@
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
@@ -1591,6 +1676,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = $PROJECT_DIR/lib3rd/include;
 				LIBRARY_SEARCH_PATHS = $PROJECT_DIR/lib3rd;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				USER_HEADER_SEARCH_PATHS = $PROJECT_DIR/lib3rd/include;
 				WARNING_CFLAGS = (
@@ -1630,6 +1717,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D907D8BD25E57AE500C40DA3 /* Build configuration list for PBXNativeTarget "example12" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D907D8BE25E57AE500C40DA3 /* Debug */,
+				D907D8BF25E57AE500C40DA3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D93EC12119E88EEA00243ACB /* Build configuration list for PBXNativeTarget "example11" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

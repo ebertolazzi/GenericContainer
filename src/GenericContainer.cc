@@ -623,8 +623,9 @@ namespace GenericContainerNamespace {
     char const * msg = msg_in == nullptr ? "" : msg_in;
     GC_ASSERT(
       tp == m_data_type,
-      msg << "bad data type, expect: " << typeName[tp] <<
-      " but data stored is of type: " << typeName[m_data_type]
+      msg
+        << "bad data type, expect: " << typeName[tp]
+        << " but data stored is of type: " << typeName[m_data_type]
     )
   }
 
@@ -1467,24 +1468,21 @@ namespace GenericContainerNamespace {
     case GC_INTEGER:
       GC_ASSERT(
         m_data.i >= 0,
-        msg << "value '" << m_data.i <<
-        "' cannot be converted in `unsigned'"
+        msg << "value '" << m_data.i << "' cannot be converted in `unsigned'"
       )
       v = unsigned(m_data.i);
       break;
     case GC_LONG:
       GC_ASSERT(
         m_data.l >= 0,
-        msg << "value '" << m_data.l <<
-        "' cannot be converted in `unsigned'"
+        msg << "value '" << m_data.l << "' cannot be converted in `unsigned'"
       )
       v = unsigned(m_data.l);
       break;
     case GC_REAL:
       GC_ASSERT(
         m_data.r >= 0 && isUnsigned32(m_data.r),
-        msg << "value '" << m_data.r <<
-        "' cannot be converted in `unsigned'"
+        msg << "value '" << m_data.r << "' cannot be converted in `unsigned'"
       )
       v = unsigned(m_data.r);
       break;
@@ -1585,24 +1583,21 @@ namespace GenericContainerNamespace {
     case GC_INTEGER:
       GC_ASSERT(
         m_data.i >= 0,
-        msg << "value '" << m_data.i <<
-        "' cannot be converted in `unsigned long'"
+        msg << "value '" << m_data.i << "' cannot be converted in `unsigned long'"
       )
       v = ul(m_data.i);
       break;
     case GC_LONG:
       GC_ASSERT(
         m_data.l >= 0,
-        msg << "value '" << m_data.l <<
-        "' cannot be converted in `unsigned long'"
+        msg << "value '" << m_data.l << "' cannot be converted in `unsigned long'"
       )
       v = ul(m_data.l);
       break;
     case GC_REAL:
       GC_ASSERT(
         m_data.r >= 0 && isUnsigned64(m_data.r),
-        msg << "value '" << m_data.r <<
-        "' cannot be converted in `unsigned long'"
+        msg << "value '" << m_data.r << "' cannot be converted in `unsigned long'"
       )
       v = ul(m_data.r);
       break;
@@ -1653,8 +1648,7 @@ namespace GenericContainerNamespace {
     case GC_REAL:
       GC_ASSERT(
         isInteger64(m_data.r),
-        msg << "value '" << m_data.r <<
-        "' cannot be converted in `long'"
+        msg << "value '" << m_data.r << "' cannot be converted in `long'"
       )
       v = long(m_data.r);
       break;
@@ -3860,24 +3854,34 @@ namespace GenericContainerNamespace {
 
   GenericContainer &
   GenericContainer::operator () ( std::string const & s, char const msg_in[] ) {
-    ck(msg_in,GC_MAP);
-    map_type::iterator iv = (*m_data.m) . find(s);
     char const * msg = msg_in == nullptr ? "" : msg_in;
     GC_ASSERT(
+      GC_MAP == m_data_type,
+      "operator (), with string argument ``" << s.c_str() << "''"
+      "\nexpect: " << typeName[GC_MAP] <<
+      "\nbut data stored is of type: " << typeName[m_data_type]
+    )
+    map_type::iterator iv = m_data.m->find(s);
+    GC_ASSERT(
       iv != m_data.m->end(),
-      msg << "\noperator(): Cannot find key '" << s.c_str() << "'!"
+      msg << "\nGenericContainer::operator(): Cannot find key '" << s.c_str() << "'!"
     )
     return iv->second;
   }
 
   GenericContainer const &
   GenericContainer::operator () ( std::string const & s, char const msg_in[] ) const {
-    ck(msg_in,GC_MAP);
-    map_type::const_iterator iv = (*m_data.m) . find(s);
     char const * msg = msg_in == nullptr ? "" : msg_in;
     GC_ASSERT(
+      GC_MAP == m_data_type,
+      "operator () const, with string argument ``" << s.c_str() << "''"
+      "\nexpect: " << typeName[GC_MAP] <<
+      "\nbut data stored is of type: " << typeName[m_data_type]
+    )
+    map_type::const_iterator iv = m_data.m->find(s);
+    GC_ASSERT(
       iv != m_data.m->end(),
-      msg << "\noperator(): Cannot find key '" << s.c_str() << "'!"
+      msg << "\nGenericContainer::operator() const: Cannot find key '" << s.c_str() << "'!"
     )
     return iv->second;
   }
