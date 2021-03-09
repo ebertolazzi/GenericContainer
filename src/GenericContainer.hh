@@ -731,19 +731,19 @@ namespace GenericContainerNamespace {
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     template <typename T>
     T& get_pointer()
-    { ck("get_pointer",GC_POINTER); return *static_cast<T*>(get_ppvoid()); }
+    { ck("get_pointer",GC_POINTER); return *reinterpret_cast<T*>(get_ppvoid()); }
 
     template <typename T>
     T get_pointer() const
-    { ck("get_pointer",GC_POINTER); return static_cast<T>(get_pvoid()); }
+    { ck("get_pointer",GC_POINTER); return reinterpret_cast<T>(get_pvoid()); }
     #else
     template <typename T>
     T& get_pointer()
-    { ck("get_pointer",GC_POINTER); return *static_cast<T*>(&(m_data.p)); }
+    { ck("get_pointer",GC_POINTER); return *reinterpret_cast<T*>(&(m_data.p)); }
 
     template <typename T>
     T get_pointer() const
-    { ck("get_pointer",GC_POINTER); return static_cast<T>(m_data.p); }
+    { ck("get_pointer",GC_POINTER); return reinterpret_cast<T>(m_data.p); }
     #endif
 
     GENERIC_CONTAINER_API_DLL
