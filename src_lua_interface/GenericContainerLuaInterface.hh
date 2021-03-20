@@ -28,7 +28,7 @@
 
 namespace GenericContainerNamespace {
 
-  class GENERIC_CONTAINER_API_DLL LuaInterpreter {
+  class LuaInterpreter {
     /* lua_State * */ void * void_L; //!< interpreter status
   public:
     LuaInterpreter();

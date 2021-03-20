@@ -18,6 +18,8 @@
 
 #include "GenericContainerLuaInterface.hh"
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
 #pragma GCC diagnostic ignored "-Wold-style-cast"
@@ -69,17 +71,22 @@
 
 using namespace std;
 
+using std::fpclassify;
+using GenericContainerNamespace::real_type;
+
+static
+inline
+bool isZero( real_type x )
+{ return FP_ZERO == fpclassify(x); }
+
+static
+inline
+bool isInteger64( real_type x )
+{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
+
+#endif
+
 namespace GenericContainerNamespace {
-
-  static
-  inline
-  bool isZero( real_type x )
-  { return FP_ZERO == fpclassify(x); }
-
-  static
-  inline
-  bool isInteger( real_type x )
-  { return isZero( x-static_cast<long>(floor(x)) ); }
 
   /*
   //   _                _           ____  ____
@@ -114,7 +121,7 @@ namespace GenericContainerNamespace {
         real_type val = lua_tonumber(L, -1);
         if ( gc.get_type() == GC_VEC_REAL || gc.get_type() == GC_MAT_REAL ) {
           gc.get_real_at(idx) = val;
-        } else if ( isInteger(val) ) {
+        } else if ( isInteger64(val) ) {
           gc.get_long_at(idx) = long_type(val);
         } else {
           gc.get_real_at(idx) = val;
@@ -145,8 +152,8 @@ namespace GenericContainerNamespace {
       case LUA_TNUMBER:
         {
           real_type val = lua_tonumber(L, -1);
-          if ( isInteger(val) ) gc[key].set_long(long_type(val));
-          else                  gc[key].set_real(val);
+          if ( isInteger64(val) ) gc[key].set_long(long_type(val));
+          else                    gc[key].set_real(val);
         }
         break;
       case LUA_TSTRING:
@@ -190,8 +197,8 @@ namespace GenericContainerNamespace {
       case LUA_TNUMBER:
         {
         real_type val = lua_tonumber(L, -1);
-        if ( isInteger(val) ) gc.set_long(long_type(val));
-        else                  gc.set_real(val);
+        if ( isInteger64(val) ) gc.set_long(long_type(val));
+        else                    gc.set_real(val);
         }
         break;
       case LUA_TSTRING:
@@ -429,8 +436,8 @@ namespace GenericContainerNamespace {
     case LUA_TNUMBER:
       {
         real_type val = lua_tonumber(L, -1);
-        if ( isInteger(val) ) gc.set_long(long_type(val));
-        else                  gc.set_real(val);
+        if ( isInteger64(val) ) gc.set_long(long_type(val));
+        else                    gc.set_real(val);
       }
       break;
     case LUA_TSTRING:

@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_generic_container_namespace_1a7fbb0c8e56ad2c03c036557f518b91a7:
+
+Typedef GenericContainerNamespace::vec_string_type
+==================================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GenericContainerNamespace::vec_string_type

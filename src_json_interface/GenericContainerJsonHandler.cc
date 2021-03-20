@@ -6,6 +6,8 @@
 //  Copyright © 2017 Nicola Dal Bianco. All rights reserved.
 //
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #include "GenericContainerJsonHandler.hh"
 #include <iostream>
 #include <iomanip>
@@ -41,6 +43,34 @@ using namespace GC;
 using namespace rapidjson;
 using namespace std;
 
+using std::fpclassify;
+using GenericContainerNamespace::real_type;
+
+static
+inline
+bool isZero( real_type x )
+{ return FP_ZERO == fpclassify(x); }
+
+static
+inline
+bool isInteger32( real_type x )
+{ return isZero( x-static_cast<int32_t>(floor(x)) ); }
+
+static
+inline
+bool isUnsigned32( real_type x )
+{ return isInteger32(x) && x >= 0; }
+
+static
+inline
+bool isInteger64( real_type x )
+{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
+
+static
+inline
+bool isUnsigned64( real_type x )
+{ return isInteger64(x) && x >= 0; }
+
 /*\
   Json objects are quite general objects that here we want to convert
   into a GenericContainer.
@@ -48,21 +78,6 @@ using namespace std;
   are required for parsing: these functions are written below.
   After such functions, the implementation of the GenericContainerJsonHandler class follows.
 \*/
-
-static
-inline
-bool isZero ( real_type x )
-{ return FP_ZERO == fpclassify( x ); }
-
-static
-inline
-bool isInteger32 ( real_type x )
-{ return isZero ( x - static_cast<int_type> ( floor ( x ) ) ); }
-
-static
-inline
-bool isInteger64 ( real_type x )
-{ return isZero ( x - static_cast<long_type> ( floor ( x ) ) ); }
 
 static
 vector<string>
@@ -673,6 +688,8 @@ convertGenericVectorToComplexMat(
   }
   root.set_mat_complex ( mat );
 }
+
+#endif
 
 // GenericContainerJsonHandler Class Implementation
 

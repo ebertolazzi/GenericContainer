@@ -103,3 +103,7 @@ lib/include
 build
 lib3rd
 third_parties/Lua/lua
+docs_build/sphinx/_build
+docs_build/sphinx/api
+docs_build/xml
+src/.vscode
