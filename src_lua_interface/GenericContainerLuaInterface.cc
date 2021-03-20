@@ -69,17 +69,40 @@
 
 using namespace std;
 
+
+using std::fpclassify;
+using GenericContainerNamespace::real_type;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
+static
+inline
+bool isZero( real_type x )
+{ return FP_ZERO == fpclassify(x); }
+
+static
+inline
+bool isInteger32( real_type x )
+{ return isZero( x-static_cast<int32_t>(floor(x)) ); }
+
+static
+inline
+bool isUnsigned32( real_type x )
+{ return isInteger32(x) && x >= 0; }
+
+static
+inline
+bool isInteger64( real_type x )
+{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
+
+static
+inline
+bool isUnsigned64( real_type x )
+{ return isInteger64(x) && x >= 0; }
+
+#endif
+
 namespace GenericContainerNamespace {
-
-  static
-  inline
-  bool isZero( real_type x )
-  { return FP_ZERO == fpclassify(x); }
-
-  static
-  inline
-  bool isInteger( real_type x )
-  { return isZero( x-static_cast<long>(floor(x)) ); }
 
   /*
   //   _                _           ____  ____

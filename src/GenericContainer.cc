@@ -24,7 +24,6 @@
 #include "GenericContainer.hh"
 #include <iomanip>
 #include <cmath>
-
 #include <ctgmath>
 
 #ifdef __clang__
@@ -50,6 +49,38 @@
 #include <fstream>
 
 #define CHECK_RESIZE(pV,I) if ( pV->size() <= (I) ) pV->resize((I)+1)
+
+using std::fpclassify;
+using GenericContainerNamespace::real_type;
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
+static
+inline
+bool isZero( real_type x )
+{ return FP_ZERO == fpclassify(x); }
+
+static
+inline
+bool isInteger32( real_type x )
+{ return isZero( x-static_cast<int32_t>(floor(x)) ); }
+
+static
+inline
+bool isUnsigned32( real_type x )
+{ return isInteger32(x) && x >= 0; }
+
+static
+inline
+bool isInteger64( real_type x )
+{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
+
+static
+inline
+bool isUnsigned64( real_type x )
+{ return isInteger64(x) && x >= 0; }
+
+#endif
 
 namespace GenericContainerNamespace {
 
@@ -94,39 +125,12 @@ namespace GenericContainerNamespace {
   }
   #endif
 
-  using std::fpclassify;
-
-  static
-  inline
-  bool isZero( real_type x )
-  { return FP_ZERO == fpclassify(x); }
-
-  static
-  inline
-  bool isInteger32( real_type x )
-  { return isZero( x-static_cast<int_type>(floor(x)) ); }
-
-  static
-  inline
-  bool isUnsigned32( real_type x )
-  { return isInteger32(x) && x >= 0; }
-
-  static
-  inline
-  bool isInteger64( real_type x )
-  { return isZero( x-static_cast<long_type>(floor(x)) ); }
-
-  static
-  inline
-  bool isUnsigned64( real_type x )
-  { return isInteger64(x) && x >= 0; }
-
+  template <typename TYPE>
   ostream_type &
-  operator << ( ostream_type & s, vec_bool_type const & v ) {
+  operator << ( ostream_type & s, std::vector<TYPE> const & v ) {
     if ( v.size() > 0 ) {
-      s << (v[0]?"[ true":"[ false");
-      for ( unsigned i = 1; i < v.size(); ++i )
-        s << (v[i]?" true":" false");
+      s << "[ " << v[0];
+      for ( unsigned i = 1; i < v.size(); ++i ) s << " " << v[i];
       s << " ]";
     } else {
       s << "[]";
@@ -134,12 +138,13 @@ namespace GenericContainerNamespace {
     return s;
   }
 
-  template <typename TYPE>
+  template <>
   ostream_type &
-  operator << ( ostream_type & s, std::vector<TYPE> const & v ) {
+  operator << ( ostream_type & s, vec_bool_type const & v ) {
     if ( v.size() > 0 ) {
-      s << "[ " << v[0];
-      for ( unsigned i = 1; i < v.size(); ++i ) s << " " << v[i];
+      s << (v[0]?"[ true":"[ false");
+      for ( unsigned i = 1; i < v.size(); ++i )
+        s << (v[i]?" true":" false");
       s << " ]";
     } else {
       s << "[]";
@@ -161,9 +166,11 @@ namespace GenericContainerNamespace {
     return s;
   }
 
-  template ostream_type & operator << ( ostream_type & s, std::vector<int_type> const & v );
-  template ostream_type & operator << ( ostream_type & s, std::vector<long_type> const & v );
-  template ostream_type & operator << ( ostream_type & s, std::vector<real_type> const & v );
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+  template ostream_type & operator << ( ostream_type & s, vec_int_type const & v );
+  template ostream_type & operator << ( ostream_type & s, vec_long_type const & v );
+  template ostream_type & operator << ( ostream_type & s, vec_real_type const & v );
+  #endif
 
   template <typename TYPE>
   TYPE const &
@@ -274,12 +281,14 @@ namespace GenericContainerNamespace {
     return s;
   }
 
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template ostream_type & operator << ( ostream_type & s, mat_type<int_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<long_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<real_type> const & m );
+  #endif
 
   #ifdef HAVE_WORKING_REGEX
-  class GENERIC_CONTAINER_API_DLL Pcre_for_GC {
+  class Pcre_for_GC {
 
   private:
 
@@ -470,7 +479,6 @@ namespace GenericContainerNamespace {
     m_data_type = GC_NOTYPE;
   }
 
-  //! Return a string representing the type of data stored
   char const *
   GenericContainer::get_type_name() const {
     return typeName[m_data_type];
@@ -565,7 +573,6 @@ namespace GenericContainerNamespace {
     return 0;
   }
 
-  //! Assign a generic container `a` to the generic container.
   void
   GenericContainer::load( GenericContainer const & gc ) {
     this->clear();
@@ -1777,7 +1784,6 @@ namespace GenericContainerNamespace {
     }
   }
 
-  //! If data is boolean, integer or floating point return number, otherwise return `0`.
   real_type
   GenericContainer::get_number() const {
     switch (m_data_type) {
@@ -1807,7 +1813,6 @@ namespace GenericContainerNamespace {
     return 0;
   }
 
-  //! If data is boolean, integer or floating point return number, otherwise return `0`.
   complex_type
   GenericContainer::get_complex_number() const {
     switch (m_data_type) {
@@ -3713,7 +3718,6 @@ namespace GenericContainerNamespace {
   //  |_|_| |_|_|  \___/
   */
 
-  //! Print to stream the kind of data stored
   GenericContainer const &
   GenericContainer::info( ostream_type & stream ) const {
     switch ( m_data_type ) {
@@ -4194,7 +4198,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of booleans or integer it is promoted to a vector of real.
   GenericContainer const &
   GenericContainer::promote_to_vec_real() {
     switch (m_data_type) {
@@ -4270,7 +4273,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of booleans or integer it is promoted to a vector of real.
   GenericContainer const &
   GenericContainer::promote_to_vec_complex() {
     switch (m_data_type) {
@@ -4358,7 +4360,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of booleans, integer or real it is promoted to a vector of integers.
   GenericContainer const &
   GenericContainer::promote_to_mat_int() {
     switch (m_data_type) {
@@ -4418,7 +4419,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of booleans, integer or real it is promoted to a vector of long.
   GenericContainer const &
   GenericContainer::promote_to_mat_long() {
     switch (m_data_type) {
@@ -4494,7 +4494,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of booleans, integer or real it is promoted to a vector of real.
   GenericContainer const &
   GenericContainer::promote_to_mat_real() {
     switch (m_data_type) {
@@ -4590,7 +4589,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of booleans, integer or real it is promoted to a vector of real.
   GenericContainer const &
   GenericContainer::promote_to_mat_complex() {
     switch (m_data_type) {
@@ -4698,7 +4696,6 @@ namespace GenericContainerNamespace {
     return *this;
   }
 
-  //! If data contains vector of someting it is promoted to a vector of `GenericContainer`.
   GenericContainer const &
   GenericContainer::promote_to_vector() {
     switch (m_data_type) {
