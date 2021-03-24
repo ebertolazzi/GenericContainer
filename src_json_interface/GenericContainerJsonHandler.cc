@@ -6,6 +6,8 @@
 //  Copyright © 2017 Nicola Dal Bianco. All rights reserved.
 //
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #include "GenericContainerJsonHandler.hh"
 #include <iostream>
 #include <iomanip>
@@ -41,11 +43,8 @@ using namespace GC;
 using namespace rapidjson;
 using namespace std;
 
-
 using std::fpclassify;
 using GenericContainerNamespace::real_type;
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 static
 inline
@@ -59,21 +58,8 @@ bool isInteger32( real_type x )
 
 static
 inline
-bool isUnsigned32( real_type x )
-{ return isInteger32(x) && x >= 0; }
-
-static
-inline
 bool isInteger64( real_type x )
 { return isZero( x-static_cast<int64_t>(floor(x)) ); }
-
-static
-inline
-bool isUnsigned64( real_type x )
-{ return isInteger64(x) && x >= 0; }
-
-#endif
-
 
 /*\
   Json objects are quite general objects that here we want to convert
@@ -692,6 +678,8 @@ convertGenericVectorToComplexMat(
   }
   root.set_mat_complex ( mat );
 }
+
+#endif
 
 // GenericContainerJsonHandler Class Implementation
 

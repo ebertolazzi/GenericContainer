@@ -30,6 +30,11 @@ Program Listing for File GenericContainerLuaInterface.cc
    
    #include "GenericContainerLuaInterface.hh"
    
+<<<<<<< HEAD
+=======
+   #ifndef DOXYGEN_SHOULD_SKIP_THIS
+   
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    #ifdef __GNUC__
    #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
    #pragma GCC diagnostic ignored "-Wold-style-cast"
@@ -81,12 +86,18 @@ Program Listing for File GenericContainerLuaInterface.cc
    
    using namespace std;
    
+<<<<<<< HEAD
    
    using std::fpclassify;
    using GenericContainerNamespace::real_type;
    
    #ifndef DOXYGEN_SHOULD_SKIP_THIS
    
+=======
+   using std::fpclassify;
+   using GenericContainerNamespace::real_type;
+   
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    static
    inline
    bool isZero( real_type x )
@@ -94,6 +105,7 @@ Program Listing for File GenericContainerLuaInterface.cc
    
    static
    inline
+<<<<<<< HEAD
    bool isInteger32( real_type x )
    { return isZero( x-static_cast<int32_t>(floor(x)) ); }
    
@@ -112,6 +124,11 @@ Program Listing for File GenericContainerLuaInterface.cc
    bool isUnsigned64( real_type x )
    { return isInteger64(x) && x >= 0; }
    
+=======
+   bool isInteger64( real_type x )
+   { return isZero( x-static_cast<int64_t>(floor(x)) ); }
+   
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    #endif
    
    namespace GenericContainerNamespace {
@@ -149,7 +166,11 @@ Program Listing for File GenericContainerLuaInterface.cc
            real_type val = lua_tonumber(L, -1);
            if ( gc.get_type() == GC_VEC_REAL || gc.get_type() == GC_MAT_REAL ) {
              gc.get_real_at(idx) = val;
+<<<<<<< HEAD
            } else if ( isInteger(val) ) {
+=======
+           } else if ( isInteger64(val) ) {
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
              gc.get_long_at(idx) = long_type(val);
            } else {
              gc.get_real_at(idx) = val;
@@ -180,8 +201,13 @@ Program Listing for File GenericContainerLuaInterface.cc
          case LUA_TNUMBER:
            {
              real_type val = lua_tonumber(L, -1);
+<<<<<<< HEAD
              if ( isInteger(val) ) gc[key].set_long(long_type(val));
              else                  gc[key].set_real(val);
+=======
+             if ( isInteger64(val) ) gc[key].set_long(long_type(val));
+             else                    gc[key].set_real(val);
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
            }
            break;
          case LUA_TSTRING:
@@ -225,8 +251,13 @@ Program Listing for File GenericContainerLuaInterface.cc
          case LUA_TNUMBER:
            {
            real_type val = lua_tonumber(L, -1);
+<<<<<<< HEAD
            if ( isInteger(val) ) gc.set_long(long_type(val));
            else                  gc.set_real(val);
+=======
+           if ( isInteger64(val) ) gc.set_long(long_type(val));
+           else                    gc.set_real(val);
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
            }
            break;
          case LUA_TSTRING:
@@ -464,8 +495,13 @@ Program Listing for File GenericContainerLuaInterface.cc
        case LUA_TNUMBER:
          {
            real_type val = lua_tonumber(L, -1);
+<<<<<<< HEAD
            if ( isInteger(val) ) gc.set_long(long_type(val));
            else                  gc.set_real(val);
+=======
+           if ( isInteger64(val) ) gc.set_long(long_type(val));
+           else                    gc.set_real(val);
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
          }
          break;
        case LUA_TSTRING:

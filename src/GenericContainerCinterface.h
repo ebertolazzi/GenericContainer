@@ -53,7 +53,7 @@ typedef struct {
  * \param[in] id string `id` of the new `GenericContainer`
  * \return error code, 0 = OK
  */
-int GC_new( char const id[] );
+int GC_new( char const * id );
 
 /*!
  * Select an old `GenericContainer` object 'id'
@@ -61,7 +61,7 @@ int GC_new( char const id[] );
  * \param[in] id string `id` of the `GenericContainer`
  * \return error code, 0 = OK
  */
-int GC_select( char const id[] );
+int GC_select( char const * id );
 
 /*!
  * Delete the `GenericContainer` object 'id'
@@ -69,7 +69,7 @@ int GC_select( char const id[] );
  * \param[in] id string `id` of the `GenericContainer`
  * \return error code, 0 = OK
  */
-int GC_delete( char const id[] );
+int GC_delete( char const * id );
 
 /*!
  * Fill the `GenericContainer` object 'id' with data for test purposes
@@ -77,49 +77,49 @@ int GC_delete( char const id[] );
  * \param[in] id string `id` of the `GenericContainer`
  * \return error code, 0 = OK
  */
-int GC_fill_for_test( char const id[] );
+int GC_fill_for_test( char const * id );
 
 /*!
  * Move `head` up to a level
  * 
  * \return error code, 0 = OK
  */
-int GC_pop_head();
+int GC_pop_head(void);
 
 /*!
  * Move `head` to the first level
  * 
  * \return error code, 0 = OK
  */
-int GC_reset_head();
+int GC_reset_head(void);
 
 /*!
  * Print the actual `GenericContainer`
  *
  * \return error code, 0 = OK
  */
-int GC_dump();
+int GC_dump(void);
 
 /*!
  * Print the actual `GenericContainer`
  * 
  * \return error code, 0 = OK
  */
-int GC_print_content_types();
+int GC_print_content_types(void);
 
 /*!
  * Get type of actual pointed element of `GenericContainer`
  * 
  * \return error code, 0 = OK
  */
-int GC_get_type();
+int GC_get_type(void);
 
 /*!
  * Get type of actual pointed element of `GenericContainer`
  * 
  * \return id name of the `GenericContainer`
  */
-char const * GC_get_type_name( void );
+char const * GC_get_type_name(void);
 
 /*!
  * Get pointer to the internal `GenericContainer` object 'id'
@@ -127,7 +127,7 @@ char const * GC_get_type_name( void );
  * \param[in] id string `id` of the `GenericContainer`
  * \return pointer to the internal object
  */
-void * GC_mem_ptr( char const id[] );
+void * GC_mem_ptr( char const * id );
 
 // -----------------------------------------------------------------------------
 
@@ -187,56 +187,56 @@ int GC_set_string( char const a[] );
  * 
  * \return the value
  */
-int GC_get_bool();
+int GC_get_bool(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `int`
  * 
  * \return the value
  */
-int GC_get_int();
+int GC_get_int(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `int`
  * 
  * \return the value
  */
-long GC_get_long();
+long GC_get_long(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `real_type`
  * 
  * \return the value
  */
-double GC_get_real();
+double GC_get_real(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `complex`
  * 
  * \return the value
  */
-c_complex_type GC_get_complex();
+c_complex_type GC_get_complex(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `complex`
  * 
  * \return the value 
  */
-double GC_get_complex_re();
+double GC_get_complex_re(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `complex`
  * 
  * \return the value
  */
-double GC_get_complex_im();
+double GC_get_complex_im(void);
 
 /*!
  * Get actual pointed element of `GenericContainer` of type `string`
  *
  * \return the value
  */
-char const * GC_get_string();
+char const * GC_get_string(void);
 
 // -----------------------------------------------------------------------------
 
@@ -392,35 +392,35 @@ double GC_get_complex_imag_at_coor( int i, int j );
  * 
  * \return error code, 0 = OK
  */
-int GC_set_empty_vector_of_bool();
+int GC_set_empty_vector_of_bool(void);
 
 /*!
  * Set actual pointed element of `GenericContainer` to a vector of `integer` of size `0`. 
  * 
  * \return error code, 0 = OK
  */
-int GC_set_empty_vector_of_int();
+int GC_set_empty_vector_of_int(void);
 
 /*!
  * Set actual pointed element of `GenericContainer` to a vector of `real_type` of size `0`.
  * 
  * \return error code, 0 = OK
  */
-int GC_set_empty_vector_of_real();
+int GC_set_empty_vector_of_real(void);
 
 /*!
  * Set actual pointed element of `GenericContainer` to a vector of `complex` of size `0`.
  * 
  * \return error code, 0 = OK
  */
-int GC_set_empty_vector_of_complex();
+int GC_set_empty_vector_of_complex(void);
 
 /*!
  * Set actual pointed element of `GenericContainer` to a vector of string of size `0`.
  * 
  * \return error code, 0 = OK
  */
-int GC_set_empty_vector_of_string();
+int GC_set_empty_vector_of_string(void);
 
 // -----------------------------------------------------------------------------
 
@@ -504,7 +504,7 @@ int GC_set_vector( int nelem );
  *
  *  \return error code, 0 = OK
  */
-int GC_set_empty_vector( );
+int GC_set_empty_vector(void);
 
 /*!
  *  \brief
@@ -512,7 +512,7 @@ int GC_set_empty_vector( );
  * 
  *  \return error code, 0 = OK
  */
-int GC_get_vector_size( );
+int GC_get_vector_size(void);
 
 /*!
  *  \brief
@@ -520,7 +520,7 @@ int GC_get_vector_size( );
  * 
  *  \return error code, 0 = OK
  */
-int GC_get_matrix_num_rows( );
+int GC_get_matrix_num_rows(void);
 
 /*!
  *  \brief
@@ -528,7 +528,7 @@ int GC_get_matrix_num_rows( );
  * 
  *  \return error code, 0 = OK
  */
-int GC_get_matrix_num_cols( );
+int GC_get_matrix_num_cols(void);
 
 /*!
  *  \brief
@@ -549,7 +549,7 @@ int GC_push_vector_position( int pos );
  * 
  *  \return error code, 0 = OK
  */
-int GC_set_map( );
+int GC_set_map(void);
 
 /*!
  *  \brief
@@ -558,7 +558,7 @@ int GC_set_map( );
  * 
  *  \return error code, 0 = OK
  */
-int GC_init_map_key( );
+int GC_init_map_key(void);
 
 /*!
  *  \brief
@@ -566,7 +566,7 @@ int GC_init_map_key( );
  * 
  *  \return error code, 0 = OK
  */
-char const * GC_get_next_key( );
+char const * GC_get_next_key(void);
 
 /*!
  *  \brief

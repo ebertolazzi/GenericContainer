@@ -9,6 +9,8 @@
 #ifndef GC_JSON_HANDLER_HH
 #define GC_JSON_HANDLER_HH
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wc++98-compat"
 #pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
@@ -24,6 +26,8 @@
   #include <rapidjson/reader.h>
 #else
   #include "rapidjson/reader.h"
+#endif
+
 #endif
 
 namespace GenericContainerNamespace {
@@ -63,9 +67,9 @@ namespace GenericContainerNamespace {
 
     std::string _im_unit;
 
-    void setCurrentGCPointerArrayType ( bool is_array );
+    void setCurrentGCPointerArrayType( bool is_array );
     bool isCurrentGCPointerArrayType() const;
-    void parseStringObjectToCurrentGc ( std::string const & str );
+    void parseStringObjectToCurrentGc( std::string const & str );
     void advanceCurrentGCPointer();
     void finalizeArrayProcess();
 

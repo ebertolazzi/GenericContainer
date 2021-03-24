@@ -33,12 +33,10 @@
 /* Begin PBXBuildFile section */
 		D902EC111D74F2F600127551 /* GenericContainerLuaPmain.cc in Sources */ = {isa = PBXBuildFile; fileRef = D902EC101D74F2F600127551 /* GenericContainerLuaPmain.cc */; };
 		D907D8BB25E57AE500C40DA3 /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
-		D907D8E025E57AFF00C40DA3 /* example12.cc in Sources */ = {isa = PBXBuildFile; fileRef = D907D8DF25E57AFF00C40DA3 /* example12.cc */; };
 		D92A20A11C4B146300BDE1D1 /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
 		D92A20A31C4B149F00BDE1D1 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92A20A21C4B149F00BDE1D1 /* Accelerate.framework */; };
 		D93669B51D58B61600B2F03B /* GenericContainer.cc in Sources */ = {isa = PBXBuildFile; fileRef = D93669AE1D58B61600B2F03B /* GenericContainer.cc */; };
 		D93669B61D58B61600B2F03B /* GenericContainer.hh in Headers */ = {isa = PBXBuildFile; fileRef = D93669AF1D58B61600B2F03B /* GenericContainer.hh */; };
-		D93669B71D58B61600B2F03B /* GenericContainer_doc.hh in Headers */ = {isa = PBXBuildFile; fileRef = D93669B01D58B61600B2F03B /* GenericContainer_doc.hh */; };
 		D93669B81D58B61600B2F03B /* GenericContainerCinterface.cc in Sources */ = {isa = PBXBuildFile; fileRef = D93669B11D58B61600B2F03B /* GenericContainerCinterface.cc */; };
 		D93669B91D58B61600B2F03B /* GenericContainerCinterface.h in Headers */ = {isa = PBXBuildFile; fileRef = D93669B21D58B61600B2F03B /* GenericContainerCinterface.h */; };
 		D93669BA1D58B61600B2F03B /* GenericContainerSupport.cc in Sources */ = {isa = PBXBuildFile; fileRef = D93669B31D58B61600B2F03B /* GenericContainerSupport.cc */; };
@@ -380,11 +378,9 @@
 /* Begin PBXFileReference section */
 		D902EC101D74F2F600127551 /* GenericContainerLuaPmain.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericContainerLuaPmain.cc; sourceTree = "<group>"; };
 		D907D8C025E57AE500C40DA3 /* example12 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example12; sourceTree = BUILT_PRODUCTS_DIR; };
-		D907D8DF25E57AFF00C40DA3 /* example12.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example12.cc; path = examples/example12.cc; sourceTree = SOURCE_ROOT; };
 		D92A20A21C4B149F00BDE1D1 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D93669AE1D58B61600B2F03B /* GenericContainer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericContainer.cc; sourceTree = "<group>"; };
 		D93669AF1D58B61600B2F03B /* GenericContainer.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericContainer.hh; sourceTree = "<group>"; };
-		D93669B01D58B61600B2F03B /* GenericContainer_doc.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericContainer_doc.hh; sourceTree = "<group>"; };
 		D93669B11D58B61600B2F03B /* GenericContainerCinterface.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericContainerCinterface.cc; sourceTree = "<group>"; };
 		D93669B21D58B61600B2F03B /* GenericContainerCinterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericContainerCinterface.h; sourceTree = "<group>"; };
 		D93669B31D58B61600B2F03B /* GenericContainerSupport.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenericContainerSupport.cc; sourceTree = "<group>"; };
@@ -549,7 +545,6 @@
 				D93669AE1D58B61600B2F03B /* GenericContainer.cc */,
 				D93669AF1D58B61600B2F03B /* GenericContainer.hh */,
 				D97341E01D79F39F00993DF7 /* GenericContainerConfig.hh */,
-				D93669B01D58B61600B2F03B /* GenericContainer_doc.hh */,
 				D93669B11D58B61600B2F03B /* GenericContainerCinterface.cc */,
 				D93669B21D58B61600B2F03B /* GenericContainerCinterface.h */,
 				D93669B31D58B61600B2F03B /* GenericContainerSupport.cc */,
@@ -593,7 +588,6 @@
 				D95EEC1218188AA80076087A /* example9.cc */,
 				D94AA8CF188693C000D2C9E8 /* example10.cc */,
 				D93EC11719E88EE200243ACB /* example11.cc */,
-				D907D8DF25E57AFF00C40DA3 /* example12.cc */,
 			);
 			name = examples;
 			path = example1;
@@ -654,7 +648,6 @@
 			files = (
 				D93669C01D58B62B00B2F03B /* GenericContainerLuaInterface.hh in Headers */,
 				D9382E231FBAFE93009C9A87 /* GenericContainerJsonHandler.hh in Headers */,
-				D93669B71D58B61600B2F03B /* GenericContainer_doc.hh in Headers */,
 				D97341E11D79F39F00993DF7 /* GenericContainerConfig.hh in Headers */,
 				D9382E211FBAFE93009C9A87 /* GenericContainerJson.hh in Headers */,
 				D93669B61D58B61600B2F03B /* GenericContainer.hh in Headers */,
@@ -923,7 +916,7 @@
 		D9D7FC4D17F01B05002F07F8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Enrico Bertolazzi";
 				TargetAttributes = {
 					D9A0E5FE1C258D0F00914760 = {
@@ -968,7 +961,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D907D8E025E57AFF00C40DA3 /* example12.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1591,6 +1583,7 @@
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
@@ -1661,6 +1654,7 @@
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;

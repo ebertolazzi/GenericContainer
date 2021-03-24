@@ -21,6 +21,11 @@ Program Listing for File GenericContainerJsonHandler.hh
    #ifndef GC_JSON_HANDLER_HH
    #define GC_JSON_HANDLER_HH
    
+<<<<<<< HEAD
+=======
+   #ifndef DOXYGEN_SHOULD_SKIP_THIS
+   
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    #ifdef __GNUC__
    #pragma GCC diagnostic ignored "-Wc++98-compat"
    #pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
@@ -38,6 +43,11 @@ Program Listing for File GenericContainerJsonHandler.hh
      #include "rapidjson/reader.h"
    #endif
    
+<<<<<<< HEAD
+=======
+   #endif
+   
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    namespace GenericContainerNamespace {
    
      class GenericContainerJsonHandler : public rapidjson::BaseReaderHandler< rapidjson::UTF8<>, GenericContainerJsonHandler > {

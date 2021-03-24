@@ -14,11 +14,14 @@ Namespaces
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    namespace_rapidjson.rst
 
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    namespace_std.rst
 
 Classes and Structs
@@ -43,6 +46,7 @@ Classes and Structs
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    class_generic_container_namespace_1_1_generic_container_json_handler.rst
 
 .. toctree::
@@ -53,6 +57,8 @@ Classes and Structs
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    class_generic_container_namespace_1_1mat__type.rst
 
 Enums
@@ -67,12 +73,16 @@ Enums
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    enum_namespace_generic_container_namespace_1ace9490dce38528a940e09acc53a9771a.rst
 
 .. toctree::
    :maxdepth: 5
 
    enum_namespace_generic_container_namespace_1ab116aaf502419402dd33645b16f95398.rst
+=======
+   enum_namespace_generic_container_namespace_1ac8a288b0483849669ca988e1d9e9fc9a.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 Unions
 ******
@@ -90,6 +100,7 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_lua_pmain_8cc_1abe2d2b9101fdac08fba2d071fde373f7.rst
 
 .. toctree::
@@ -191,6 +202,9 @@ Functions
    :maxdepth: 5
 
    function__generic_container_cinterface_8h_1a9ab1bd1155b5508ec3a00212ae354e2e.rst
+=======
+   function__generic_container_cinterface_8h_1a7ccefa84e1ebb6492473ac5bd96dd5f9.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -200,7 +214,11 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_cinterface_8h_1a6f5d49dd5f593cb0ef29f3fc292a6ded.rst
+=======
+   function__generic_container_cinterface_8h_1ad53f08b8d2e092f12b0885fed1c9c878.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -320,7 +338,11 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_cinterface_8h_1ab6e0d39bec8c79d72d31cf8afeaabf65.rst
+=======
+   function__generic_container_cinterface_8h_1af364b2913a809082f381939a90a63fea.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -335,12 +357,20 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_cinterface_8h_1a9c4d1638edae5cd0cd952eadc9d16670.rst
+=======
+   function__generic_container_cinterface_8h_1af4189a1a7afc73dd8e41ee27838bd403.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_cinterface_8h_1abc5be84dd048a37ae7b391f1a5a2f798.rst
+=======
+   function__generic_container_cinterface_8h_1a52c72fb4c658b564ab85b186b7589280.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -400,7 +430,11 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_cinterface_8h_1a58e721f53614a628c86aa3192a10bda5.rst
+=======
+   function__generic_container_cinterface_8h_1a498f11e73a6744d1361918c756ad2cdd.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -500,6 +534,7 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function_namespace_generic_container_namespace_1a4233664ba2e5409ba35d77791f9a132f.rst
 
 .. toctree::
@@ -526,6 +561,9 @@ Functions
    :maxdepth: 5
 
    function_namespace_generic_container_namespace_1a19df1599db99d5772551ca5791cad0e1.rst
+=======
+   function_namespace_generic_container_namespace_1a96797ea09772b987af58d24dfdc2bc2b.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -535,6 +573,7 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function_namespace_generic_container_namespace_1a0d778af2aa29dc0ba68f41aa78103167.rst
 
 .. toctree::
@@ -551,6 +590,9 @@ Functions
    :maxdepth: 5
 
    function_namespace_generic_container_namespace_1ad88c4bbd22265590d4be475bb1d816ba.rst
+=======
+   function_namespace_generic_container_namespace_1a58774a26395374cd6b0f0a383c641cc8.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -565,7 +607,11 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function_namespace_generic_container_namespace_1a09587370e563bc12afe27b0d501ce091.rst
+=======
+   function_namespace_generic_container_namespace_1ad6f5d2a06fd2d1241a87afcd5afbcc17.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
@@ -575,6 +621,7 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function_namespace_generic_container_namespace_1aa17e294a1319d01484a51544680ef5bd.rst
 
 .. toctree::
@@ -600,11 +647,14 @@ Functions
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    function_namespace_generic_container_namespace_1a499dfaea116c154cb94cd6e035a89ac0.rst
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function_namespace_generic_container_namespace_1a2d796dec6a2013705a7363525890096d.rst
 
 .. toctree::
@@ -646,20 +696,32 @@ Functions
    :maxdepth: 5
 
    function__generic_container_json_handler_8cc_1a8ad15573a72a0bc28725d9a45d4654fc.rst
+=======
+   function_namespace_generic_container_namespace_1a7df860e48b9ce8965fffab5042de7c13.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_json_handler_8cc_1ade0ad335354ee6e556f4ead4b40e4de6.rst
+=======
+   function_namespace_generic_container_namespace_1aa71d2a830c98f1af9bc01847a6a99c9f.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_json_handler_8cc_1a5be0718470d6cffaae34a2f6a05ececd.rst
+=======
+   function_namespace_generic_container_namespace_1ad05811d5772173774eed3d0410923be9.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    function__generic_container_lua_pmain_8cc_1ad0f0975de65acf5a5edf0953299b3747.rst
 
 .. toctree::
@@ -736,6 +798,9 @@ Functions
    :maxdepth: 5
 
    function__generic_container_json_handler_8cc_1a7abd005a7e5c82afe3943753a1052447.rst
+=======
+   function_namespace_generic_container_namespace_1ae39f5ed933e34fa168896dee446b84dd.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 Variables
 *********
@@ -744,6 +809,7 @@ Variables
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    variable_namespace_generic_container_namespace_1a3e5f92bb260289434d463fccb610ad4e.rst
 
 .. toctree::
@@ -755,6 +821,9 @@ Variables
    :maxdepth: 5
 
    variable__generic_container_lua_pmain_8cc_1ad785d8a8f8ff378aa21eb1fa7a6085df.rst
+=======
+   variable_namespace_generic_container_namespace_1a6349abaa53df5e7fdeb5a3fb3eb15027.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 Defines
 *******
@@ -763,26 +832,33 @@ Defines
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    define__generic_container_json_handler_8cc_1a4a9e8bc3729d3aab611091a0f04730e2.rst
 
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    define__generic_container_8cc_1aaaaee0a033f3612b53ab33540f01c88b.rst
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    define__generic_container_lua_pmain_8cc_1a0972b8ff1b2e2d2abdd184890b79ad90.rst
 
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    define__generic_container_8hh_1adeb473198c345f5e2fffbe4917dfd842.rst
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    define__generic_container_lua_interface_8cc_1adeb473198c345f5e2fffbe4917dfd842.rst
 
 .. toctree::
@@ -793,11 +869,14 @@ Defines
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    define__generic_container_8hh_1aae129e41a45daea753428f06ea60e85a.rst
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    define__generic_container_json_8hh_1afde9e5a6d77ca3ccb91aef4cff9e91b8.rst
 
 .. toctree::
@@ -823,6 +902,8 @@ Defines
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    define__generic_container_8hh_1a8dc0216e4b1676666f0dfab4a71f5865.rst
 
 .. toctree::
@@ -835,6 +916,7 @@ Defines
 
    define__generic_container_config_8hh_1a4db100b6a21db550ede804541dc4fb3f.rst
 
+<<<<<<< HEAD
 .. toctree::
    :maxdepth: 5
 
@@ -930,6 +1012,8 @@ Defines
 
    define__generic_container_lua_pmain_8cc_1af4095ba5ce624b3061385b49e5863c90.rst
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 Typedefs
 ********
 
@@ -937,124 +1021,224 @@ Typedefs
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a4e99e41c6f73a16c9a0e79f60f05019e.rst
+=======
+   typedef_namespace_generic_container_namespace_1a9f7faaa4990a12fb0a7001773a84c0c3.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1af7c7ec8711f87ccd3446091044017d39.rst
+=======
+   typedef_namespace_generic_container_namespace_1a92445a76664fdb60297303916aad4055.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a9031db120df7c208ba186d993d52f71f.rst
+=======
+   typedef_namespace_generic_container_namespace_1af2ee2b36a1316f8261b41bf8f08e5eee.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a9f241323f6766df029db7747adec53ce.rst
+=======
+   typedef_namespace_generic_container_namespace_1a97a458b2de3064b528c38c5c03e3d730.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a13f1bd5529f3b5f0141104960894bafe.rst
+=======
+   typedef_namespace_generic_container_namespace_1ae5f2a7882b396a9bc5a0fd127652c9c3.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1af634cb7e1f78a78ceb363eb78207629d.rst
+=======
+   typedef_namespace_generic_container_namespace_1a3107a262e6552da0b10334044b2fe7cc.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a2056e277d8661916a444f119689cb66a.rst
+=======
+   typedef_namespace_generic_container_namespace_1a3b0ac36050c397d09a1879d5db98f4d8.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1ae42c5f4031176c71245b8184a0fe9f4a.rst
+=======
+   typedef_namespace_generic_container_namespace_1afa07cf5c8b4447a19bf731cf14e18546.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1af3ca7bd6895e52a224a6e81b214c452c.rst
+=======
+   typedef_namespace_generic_container_namespace_1a744d83d899e69134ed937b1a503b45ea.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a49e3e5bd9229de6b3203d3b72eee2ef4.rst
+=======
+   typedef_namespace_generic_container_namespace_1a46e302cd40002b1dde4262c88a565776.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a6fd6b7e784cac6dc55f1bd2c0859f507.rst
+=======
+   typedef_namespace_generic_container_namespace_1a6511a813bc405a12d6714a31e4864a10.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1ac0b09ba58a37f5f3ca415be4a02ec7aa.rst
+=======
+   typedef_namespace_generic_container_namespace_1a689abf85f22ebfea047161f01be03e70.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a0ea13cef03b682f109fc42225a8751e6.rst
+=======
+   typedef_namespace_generic_container_namespace_1a2fdfd7772016e828a85e9432c4d8accc.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a033d842f4e01994b8b31b97be56f3b9f.rst
+=======
+   typedef_namespace_generic_container_namespace_1a114949c677032ee697ea13dd40e04b6e.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a992e31427cde5cd2157ba6612ae61c7a.rst
+=======
+   typedef_namespace_generic_container_namespace_1a72b73bd9be847646e9ca6681e6633a15.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1ad7e0f81d31a4206d76a823c50819d6e8.rst
+=======
+   typedef_namespace_generic_container_namespace_1a306a5958fff42bb29f920850e097da48.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1abb7ebefb90b56e10d053c88a8f09a326.rst
+=======
+   typedef_namespace_generic_container_namespace_1ad50ea03f557da7d5841b99fd6257b615.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1ad789e891949350a5297fc512aaf23b5e.rst
+=======
+   typedef_namespace_generic_container_namespace_1a72b50ea3def4786fba79d30c8e3da8d6.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1af597a067bcddb0d974f0b1c556d5c73c.rst
+=======
+   typedef_namespace_generic_container_namespace_1ae028ccba401192fc4d5572e75a1b5260.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1ae63e26b1a2de85c3d18a6da2973d0925.rst
+=======
+   typedef_namespace_generic_container_namespace_1a64c42fe68ce295cbf13215c091c4fd0c.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a26504af67033dbba39bf311870b90f50.rst
+=======
+   typedef_namespace_generic_container_namespace_1a536533b87748424e1e326de4a971ff8d.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a87c0edf71c4d853b31b9c5689d3572a7.rst
+=======
+   typedef_namespace_generic_container_namespace_1a7fbb0c8e56ad2c03c036557f518b91a7.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a540d37ef823612346a44852cd0103a3f.rst
+=======
+   typedef_namespace_generic_container_namespace_1a1be7c2dbabb6a24a174fbc700cb56d61.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a8160e26547b618e76771ea01e5b740ec.rst
+=======
+   typedef_namespace_generic_container_namespace_1aa3c445a4a9c272c1b61bfbf21333ed90.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    typedef_namespace_generic_container_namespace_1a2cf1e9c5407fd7711f474bbf93021ecd.rst
+=======
+   typedef_namespace_generic_container_namespace_1a7291aa8dbd8d7078f5b4ff5e82880694.rst
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0

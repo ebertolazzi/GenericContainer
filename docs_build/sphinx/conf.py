@@ -33,6 +33,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 extensions = [
   'breathe',
   'exhale',
+<<<<<<< HEAD
   #'recommonmark', # non funziona
   'm2r2',          # funziona!
   'sphinx.ext.autodoc',
@@ -42,6 +43,16 @@ extensions = [
   'sphinx.ext.ifconfig',
   'sphinx.ext.githubpages',
   'sphinx.ext.intersphinx',
+=======
+  'm2r2',          # funziona!
+  'sphinx.ext.autodoc',
+  #'sphinx.ext.doctest',
+  #'sphinx.ext.coverage',
+  'sphinx.ext.mathjax',
+  #'sphinx.ext.ifconfig',
+  #'sphinx.ext.githubpages',
+  #'sphinx.ext.intersphinx',
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
   'sphinxcontrib.email'
 ]
 
@@ -68,6 +79,7 @@ exhale_args = {
   #"exhaleDoxygenStdin":    "INPUT = ../../src"
   "exhaleDoxygenStdin":
 '''
+<<<<<<< HEAD
         EXTRACT_ALL       = YES
         SOURCE_BROWSER    = YES
         EXTRACT_STATIC    = YES
@@ -80,6 +92,32 @@ exhale_args = {
         EXAMPLE_RECURSIVE = NO
         GENERATE_TREEVIEW = YES
 '''
+=======
+        EXTRACT_ALL         = YES
+        SOURCE_BROWSER      = NO
+        EXTRACT_STATIC      = YES
+        HIDE_SCOPE_NAMES    = NO
+        CALLER_GRAPH        = NO
+        GRAPHICAL_HIERARCHY = NO
+        HAVE_DOT            = NO
+        QUIET               = NO
+        INPUT               = ../../src
+        GENERATE_TREEVIEW   = YES
+
+        XML_PROGRAMLISTING    = YES
+        RECURSIVE             = NO
+        FULL_PATH_NAMES       = YES
+        ENABLE_PREPROCESSING  = YES
+        MACRO_EXPANSION       = YES
+        SKIP_FUNCTION_MACROS  = NO
+        EXPAND_ONLY_PREDEF    = NO
+        INHERIT_DOCS          = YES
+        INLINE_INHERITED_MEMB = YES
+        EXTRACT_PRIVATE       = NO
+        PREDEFINED           += protected=private
+''',
+  'kindsWithContentsDirectives': [] # tolgo contents a tutte! (serve per Furo)
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 }
 
 # Tell sphinx what the primary language being documented is.

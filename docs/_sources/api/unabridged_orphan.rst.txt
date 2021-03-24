@@ -13,6 +13,7 @@ Directories
 
    dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src.rst
 
+<<<<<<< HEAD
 .. toctree::
    :maxdepth: 5
 
@@ -23,6 +24,8 @@ Directories
 
    dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_lua_interface.rst
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 Files
 *****
 
@@ -55,6 +58,7 @@ Files
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJson.cc.rst
 
 .. toctree::
@@ -75,11 +79,14 @@ Files
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerLibs.hh.rst
 
 .. toctree::
    :maxdepth: 5
 
+<<<<<<< HEAD
    file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_lua_interface_GenericContainerLuaInterface.cc.rst
 
 .. toctree::
@@ -95,14 +102,19 @@ Files
 .. toctree::
    :maxdepth: 5
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerSupport.cc.rst
 
 .. toctree::
    :maxdepth: 5
 
    file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerTables.cc.rst
+<<<<<<< HEAD
 
 .. toctree::
    :maxdepth: 5
 
    file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_JSON-test.cc.rst
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0

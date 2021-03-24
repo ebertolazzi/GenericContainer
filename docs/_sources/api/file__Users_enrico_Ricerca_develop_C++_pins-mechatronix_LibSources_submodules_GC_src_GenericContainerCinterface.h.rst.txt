@@ -7,11 +7,14 @@ File GenericContainerCinterface.h
 |exhale_lsh| :ref:`Parent directory <dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src>` (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src``)
 
 .. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+<<<<<<< HEAD
 
 .. contents:: Contents
    :local:
    :backlinks: none
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 Definition (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src/GenericContainerCinterface.h``)
 -----------------------------------------------------------------------------------------------------------------------------
 
@@ -48,11 +51,19 @@ Functions
 ---------
 
 
+<<<<<<< HEAD
 - :ref:`exhale_function__generic_container_cinterface_8h_1a9ab1bd1155b5508ec3a00212ae354e2e`
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1ab655420d208fed344ad592058e099e96`
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a6f5d49dd5f593cb0ef29f3fc292a6ded`
+=======
+- :ref:`exhale_function__generic_container_cinterface_8h_1a7ccefa84e1ebb6492473ac5bd96dd5f9`
+
+- :ref:`exhale_function__generic_container_cinterface_8h_1ab655420d208fed344ad592058e099e96`
+
+- :ref:`exhale_function__generic_container_cinterface_8h_1ad53f08b8d2e092f12b0885fed1c9c878`
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a0d8384363f714f4778d1feaf6dfe70d4`
 
@@ -100,15 +111,25 @@ Functions
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a85f3102cc4c8212ca7b4602505bb8086`
 
+<<<<<<< HEAD
 - :ref:`exhale_function__generic_container_cinterface_8h_1ab6e0d39bec8c79d72d31cf8afeaabf65`
+=======
+- :ref:`exhale_function__generic_container_cinterface_8h_1af364b2913a809082f381939a90a63fea`
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a654c04d499921f0065bebcdf16ced97d`
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a05342ee80f13edc85aafe12ef9b841b3`
 
+<<<<<<< HEAD
 - :ref:`exhale_function__generic_container_cinterface_8h_1a9c4d1638edae5cd0cd952eadc9d16670`
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1abc5be84dd048a37ae7b391f1a5a2f798`
+=======
+- :ref:`exhale_function__generic_container_cinterface_8h_1af4189a1a7afc73dd8e41ee27838bd403`
+
+- :ref:`exhale_function__generic_container_cinterface_8h_1a52c72fb4c658b564ab85b186b7589280`
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a04506ce2900be0d3122e67e1c0e65b39`
 
@@ -132,7 +153,11 @@ Functions
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1a96a0b00683696835357069a9b252cc77`
 
+<<<<<<< HEAD
 - :ref:`exhale_function__generic_container_cinterface_8h_1a58e721f53614a628c86aa3192a10bda5`
+=======
+- :ref:`exhale_function__generic_container_cinterface_8h_1a498f11e73a6744d1361918c756ad2cdd`
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 - :ref:`exhale_function__generic_container_cinterface_8h_1afd9bcdaffc85561a02377aef94eb9b60`
 

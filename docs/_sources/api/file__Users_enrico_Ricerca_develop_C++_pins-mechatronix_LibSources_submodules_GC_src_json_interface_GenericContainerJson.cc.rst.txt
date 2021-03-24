@@ -7,11 +7,14 @@ File GenericContainerJson.cc
 |exhale_lsh| :ref:`Parent directory <dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface>` (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface``)
 
 .. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+<<<<<<< HEAD
 
 .. contents:: Contents
    :local:
    :backlinks: none
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 Definition (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/GenericContainerJson.cc``)
 ---------------------------------------------------------------------------------------------------------------------------------------
 
@@ -37,12 +40,15 @@ Includes
 
 - ``iostream``
 
+<<<<<<< HEAD
 - ``rapidjson/prettywriter.h``
 
 - ``rapidjson/reader.h``
 
 - ``rapidjson/writer.h``
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 - ``string``
 
 
@@ -56,8 +62,11 @@ Namespaces
 
 - :ref:`namespace_GenericContainerNamespace`
 
+<<<<<<< HEAD
 - :ref:`namespace_rapidjson`
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 Functions
 ---------
@@ -67,9 +76,17 @@ Functions
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a14d953c3cf283985c7980da86851fb23`
 
+<<<<<<< HEAD
 - :ref:`exhale_function_namespace_generic_container_namespace_1a19df1599db99d5772551ca5791cad0e1`
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a0d778af2aa29dc0ba68f41aa78103167`
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a98eac52fb4c7bd31567ae133312a6cdd`
+=======
+- :ref:`exhale_function_namespace_generic_container_namespace_1a3821060686451b452c063be2b92040a9`
+
+- :ref:`exhale_function_namespace_generic_container_namespace_1a61580ccd3810201674082df15506e698`
+
+- :ref:`exhale_function_namespace_generic_container_namespace_1a2570e1bbeb00ce359568e6ee96b25463`
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 

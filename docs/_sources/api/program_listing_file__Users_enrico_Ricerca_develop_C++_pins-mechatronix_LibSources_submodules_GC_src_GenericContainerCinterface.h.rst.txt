@@ -55,6 +55,7 @@ Program Listing for File GenericContainerCinterface.h
      double imag;
    } c_complex_type;
    
+<<<<<<< HEAD
    int GC_new( char const id[] );
    
    int GC_select( char const id[] );
@@ -62,6 +63,15 @@ Program Listing for File GenericContainerCinterface.h
    int GC_delete( char const id[] );
    
    int GC_fill_for_test( char const id[] );
+=======
+   int GC_new( char const * id );
+   
+   int GC_select( char const * id );
+   
+   int GC_delete( char const * id );
+   
+   int GC_fill_for_test( char const * id );
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    
    int GC_pop_head();
    
@@ -73,9 +83,15 @@ Program Listing for File GenericContainerCinterface.h
    
    int GC_get_type();
    
+<<<<<<< HEAD
    char const * GC_get_type_name( void );
    
    void * GC_mem_ptr( char const id[] );
+=======
+   char const * GC_get_type_name( );
+   
+   void * GC_mem_ptr( char const * id );
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    
    // -----------------------------------------------------------------------------
    

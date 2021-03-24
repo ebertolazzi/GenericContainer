@@ -10,11 +10,13 @@
 #include <iostream>
 #include <string>
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 using namespace GC;
 using namespace std;
 
-int main( int argc, const char * argv[] )
-{
+int
+main( int argc, const char * argv[] ) {
 
   GenericContainer gc;
 
@@ -123,3 +125,5 @@ int main( int argc, const char * argv[] )
   cout << "\n\nAll done Folks!!!\n\n";
   return 0;
 }
+
+#endif

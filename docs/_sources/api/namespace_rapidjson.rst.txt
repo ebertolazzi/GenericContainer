@@ -4,6 +4,7 @@
 Namespace rapidjson
 ===================
 
+<<<<<<< HEAD
 
 .. contents:: Contents
    :local:
@@ -11,3 +12,5 @@ Namespace rapidjson
 
 
 
+=======
+>>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
