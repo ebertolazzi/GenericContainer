@@ -34,15 +34,15 @@ namespace GenericContainerNamespace {
     LuaInterpreter();
     ~LuaInterpreter();
     void dump( ostream_type & stream );
-    void execute( char const cmd[] );
+    void execute( char const * cmd );
     void call( GenericContainer const & args, GenericContainer & res );
-    void do_file( char const fname[] );
-    void GC_to_global( GenericContainer const & gc, char const [] ); // not yet implemented
-    void global_to_GC( char const var[], GenericContainer & gc );
+    void do_file( char const * fname );
+    void GC_to_global( GenericContainer const & gc, char const * ); // not yet implemented
+    void global_to_GC( char const * var, GenericContainer & gc );
     int  interactive( int argc,
-                      char const * argv[],
-                      char const * messages[],
-                      char const * prompt ); // launch interpret mode
+                      char const ** argv,
+                      char const ** messages,
+                      char const *  prompt ); // launch interpret mode
   };
 }
 

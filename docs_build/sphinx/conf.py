@@ -33,17 +33,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 extensions = [
   'breathe',
   'exhale',
-<<<<<<< HEAD
-  #'recommonmark', # non funziona
-  'm2r2',          # funziona!
-  'sphinx.ext.autodoc',
-  'sphinx.ext.doctest',
-  'sphinx.ext.coverage',
-  'sphinx.ext.mathjax',
-  'sphinx.ext.ifconfig',
-  'sphinx.ext.githubpages',
-  'sphinx.ext.intersphinx',
-=======
   'm2r2',          # funziona!
   'sphinx.ext.autodoc',
   #'sphinx.ext.doctest',
@@ -52,7 +41,7 @@ extensions = [
   #'sphinx.ext.ifconfig',
   #'sphinx.ext.githubpages',
   #'sphinx.ext.intersphinx',
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
+  #'sphinx_typo3_theme',
   'sphinxcontrib.email'
 ]
 
@@ -72,27 +61,13 @@ exhale_args = {
   "rootFileTitle":         "C/C++ API",
   "doxygenStripFromPath":  "..",
   # Suggested optional arguments
-  "createTreeView":        True,
+  "createTreeView":        False,
   # TIP: if using the sphinx-bootstrap-theme, you need
   # "treeViewIsBootstrap": True,
   "exhaleExecutesDoxygen": True,
   #"exhaleDoxygenStdin":    "INPUT = ../../src"
   "exhaleDoxygenStdin":
 '''
-<<<<<<< HEAD
-        EXTRACT_ALL       = YES
-        SOURCE_BROWSER    = YES
-        EXTRACT_STATIC    = YES
-        HIDE_SCOPE_NAMES  = YES
-        CALLER_GRAPH      = YES
-        GRAPHICAL_HIERARCHY = YES
-        HAVE_DOT          = YES
-        QUIET             = YES
-        INPUT             = ../../src ../../src_lua_interface ../../src_json_interface
-        EXAMPLE_RECURSIVE = NO
-        GENERATE_TREEVIEW = YES
-'''
-=======
         EXTRACT_ALL         = YES
         SOURCE_BROWSER      = NO
         EXTRACT_STATIC      = YES
@@ -117,7 +92,6 @@ exhale_args = {
         PREDEFINED           += protected=private
 ''',
   'kindsWithContentsDirectives': [] # tolgo contents a tutte! (serve per Furo)
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 }
 
 # Tell sphinx what the primary language being documented is.
@@ -131,6 +105,7 @@ pygments_dark_style = "monokai"
 
 #html_theme = 'pydata_sphinx_theme'
 html_theme = 'furo'
+#html_theme = 'sphinx_typo3_theme'
 html_logo  = '../logo.png'
 
 email_automode = True

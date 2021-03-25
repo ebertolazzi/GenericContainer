@@ -313,9 +313,9 @@ namespace GenericContainerNamespace {
     void allocate_vector( unsigned sz );
     void allocate_map();
 
-    void ck(char const [],TypeAllowed) const;
-    int  ck(TypeAllowed) const;
-    void ck_or_set(char const [], TypeAllowed);
+    void ck( char const *, TypeAllowed ) const;
+    int  ck( TypeAllowed ) const;
+    void ck_or_set( char const *, TypeAllowed );
 
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     bool simple_data()     const;
@@ -713,10 +713,10 @@ namespace GenericContainerNamespace {
     void get_complex_number( real_type & re, real_type & im ) const;
 
     //! return the stored data as a pointer
-    void * get_pvoid( char const msg[] = nullptr ) const;
+    void * get_pvoid( char const * msg = nullptr ) const;
 
     //! return the stored data as a double pointer
-    void ** get_ppvoid( char const msg[] = nullptr ) const;
+    void ** get_ppvoid( char const * msg = nullptr ) const;
 
     //! return the stored data as a pointer to const integer
     int_type const * get_int_pointer() const;
@@ -750,7 +750,7 @@ namespace GenericContainerNamespace {
      */
     template <typename T>
     void
-    get_value( T & v, char const msg[] = "" ) const;
+    get_value( T & v, char const * msg = "" ) const;
 
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     template <typename T>
@@ -777,7 +777,7 @@ namespace GenericContainerNamespace {
      *  \return the boolean stored in the container
      */
     bool_type
-    get_map_bool( char const key[] ) const {
+    get_map_bool( char const * key ) const {
       bool_type ret = false;
       if ( exists(key) ) ret = (*this)(key).get_bool();
       return ret;
@@ -789,7 +789,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the boolean stored in the container
      */
-    bool_type & get_bool( char const msg[] = nullptr );
+    bool_type & get_bool( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const boolean
@@ -797,7 +797,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the boolean stored in the container
      */
-    bool_type const & get_bool( char const msg[] = nullptr ) const;
+    bool_type const & get_bool( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as an integer
@@ -805,7 +805,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the boolean stored in the container
      */
-    int_type & get_int( char const msg[] = nullptr );
+    int_type & get_int( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const integer
@@ -813,7 +813,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the integer stored in the container
      */
-    int_type const & get_int( char const msg[] = nullptr ) const;
+    int_type const & get_int( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a long integer
@@ -821,7 +821,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the long integer stored in the container
      */
-    long_type & get_long( char const msg[] = nullptr );
+    long_type & get_long( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a long integer
@@ -829,7 +829,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the long integer stored in the container
      */
-    long_type const & get_long( char const msg[] = nullptr ) const;
+    long_type const & get_long( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as an integer
@@ -837,7 +837,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as an integer
      */
-    int_type get_as_int( char const msg[] = nullptr ) const;
+    int_type get_as_int( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as an unsigned
@@ -845,7 +845,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as an unsigned
      */
-    uint_type get_as_uint( char const msg[] = nullptr ) const;
+    uint_type get_as_uint( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a long integer
@@ -853,7 +853,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a long integer
      */
-    long_type get_as_long( char const msg[] = nullptr ) const;
+    long_type get_as_long( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as an unsigned long
@@ -861,7 +861,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as an unsigned long
      */
-    ulong_type get_as_ulong( char const msg[] = nullptr ) const;
+    ulong_type get_as_ulong( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as `real_type`
@@ -869,7 +869,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as `real_type`
      */
-    real_type & get_real( char const msg[] = nullptr );
+    real_type & get_real( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const `real_type`
@@ -877,7 +877,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const `real_type`
      */
-    real_type const & get_real( char const msg[] = nullptr ) const;
+    real_type const & get_real( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a `complex_type`
@@ -885,7 +885,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a `complex_type`
      */
-    complex_type & get_complex( char const msg[] = nullptr );
+    complex_type & get_complex( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const `complex_type`
@@ -893,7 +893,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const `complex_type`
      */
-    complex_type const & get_complex( char const msg[] = nullptr ) const;
+    complex_type const & get_complex( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a string
@@ -901,7 +901,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a string
      */
-    string_type & get_string( char const msg[] = nullptr );
+    string_type & get_string( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const string
@@ -909,7 +909,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const string
      */
-    string_type const & get_string( char const msg[] = nullptr ) const;
+    string_type const & get_string( char const * msg = nullptr ) const;
     //@}
 
     //! \name Access to vector type data
@@ -920,7 +920,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of `GenericoContainer`
      */
-    vector_type & get_vector( char const msg[] = nullptr );
+    vector_type & get_vector( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of `GenericoContainer`
@@ -928,7 +928,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of `GenericoContainer`
      */
-    vector_type const & get_vector( char const msg[] = nullptr ) const;
+    vector_type const & get_vector( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of pointers
@@ -936,7 +936,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of pointers
      */
-    vec_pointer_type & get_vec_pointer( char const msg[] = nullptr );
+    vec_pointer_type & get_vec_pointer( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of pointers
@@ -944,7 +944,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of pointers
      */
-    vec_pointer_type const & get_vec_pointer( char const msg[] = nullptr ) const;
+    vec_pointer_type const & get_vec_pointer( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of booleans
@@ -952,7 +952,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of booleans
      */
-    vec_bool_type & get_vec_bool( char const msg[] = nullptr );
+    vec_bool_type & get_vec_bool( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of booleans
@@ -960,7 +960,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of booleans
      */
-    vec_bool_type const & get_vec_bool( char const msg[] = nullptr ) const;
+    vec_bool_type const & get_vec_bool( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of integers
@@ -968,7 +968,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of integers
      */
-    vec_int_type & get_vec_int( char const msg[] = nullptr );
+    vec_int_type & get_vec_int( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of integers
@@ -976,7 +976,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of integers
      */
-    vec_int_type const & get_vec_int( char const msg[] = nullptr ) const;
+    vec_int_type const & get_vec_int( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of long integers
@@ -984,7 +984,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of long integers
      */
-    vec_long_type & get_vec_long( char const msg[] = nullptr );
+    vec_long_type & get_vec_long( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of long integers
@@ -992,7 +992,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of long integers
      */
-    vec_long_type const & get_vec_long( char const msg[] = nullptr ) const;
+    vec_long_type const & get_vec_long( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of `real_type`
@@ -1000,7 +1000,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of `real_type`
      */
-    vec_real_type & get_vec_real( char const msg[] = nullptr );
+    vec_real_type & get_vec_real( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of `real_type`
@@ -1008,7 +1008,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of `real_type`
      */
-    vec_real_type const & get_vec_real( char const msg[] = nullptr ) const;
+    vec_real_type const & get_vec_real( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of `complex_type`
@@ -1016,7 +1016,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of `complex_type`
      */
-    vec_complex_type & get_vec_complex( char const msg[] = nullptr );
+    vec_complex_type & get_vec_complex( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of `complex_type`
@@ -1024,7 +1024,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of `complex_type`
      */
-    vec_complex_type const & get_vec_complex( char const msg[] = nullptr ) const;
+    vec_complex_type const & get_vec_complex( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a matrix of integers
@@ -1032,7 +1032,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a matrix of integers
      */
-    mat_int_type & get_mat_int( char const msg[] = nullptr );
+    mat_int_type & get_mat_int( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const matrix of integers
@@ -1040,7 +1040,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const matrix of integers
      */
-    mat_int_type const & get_mat_int( char const msg[] = nullptr ) const;
+    mat_int_type const & get_mat_int( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a matrix of long integers
@@ -1048,7 +1048,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a matrix of long integers
      */
-    mat_long_type & get_mat_long( char const msg[] = nullptr );
+    mat_long_type & get_mat_long( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const matrix of long integers
@@ -1056,7 +1056,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const matrix of long integers
      */
-    mat_long_type const & get_mat_long( char const msg[] = nullptr ) const;
+    mat_long_type const & get_mat_long( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a matrix of `real_type`
@@ -1064,7 +1064,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a matrix of `real_type`
      */
-    mat_real_type & get_mat_real( char const msg[] = nullptr );
+    mat_real_type & get_mat_real( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const matrix of `real_type`
@@ -1072,7 +1072,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const matrix of `real_type`
      */
-    mat_real_type const & get_mat_real( char const msg[] = nullptr ) const;
+    mat_real_type const & get_mat_real( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a matrix of `complex_type`
@@ -1080,7 +1080,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a matrix of `complex_type`
      */
-    mat_complex_type & get_mat_complex( char const msg[] = nullptr );
+    mat_complex_type & get_mat_complex( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const matrix of `complex_type`
@@ -1088,7 +1088,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const matrix of `complex_type`
      */
-    mat_complex_type const & get_mat_complex( char const msg[] = nullptr ) const;
+    mat_complex_type const & get_mat_complex( char const * msg = nullptr ) const;
 
     /*!
      *  \brief get the stored value as a vector of string
@@ -1096,7 +1096,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a vector of string
      */
-    vec_string_type & get_vec_string( char const msg[] = nullptr );
+    vec_string_type & get_vec_string( char const * msg = nullptr );
 
     /*!
      *  \brief get the stored value as a const vector of string
@@ -1104,7 +1104,7 @@ namespace GenericContainerNamespace {
      *  \param[in] msg message of error in case of failure
      *  \return the data stored in the container as a const vector of string
      */
-    vec_string_type const & get_vec_string( char const msg[] = nullptr ) const;
+    vec_string_type const & get_vec_string( char const * msg = nullptr ) const;
 
     //@}
 
@@ -1116,7 +1116,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_int( vec_int_type & v, char const msg[] = "" ) const;
+    void copyto_vec_int( vec_int_type & v, char const * msg = "" ) const;
 
     /*!
      *  \brief Copy internal data a vector of unsigned integer
@@ -1124,7 +1124,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_uint( vec_uint_type & v, char const msg[] = "" ) const;
+    void copyto_vec_uint( vec_uint_type & v, char const * msg = "" ) const;
 
     /*!
      *  \brief Copy internal data a vector of long integer
@@ -1132,7 +1132,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_long( vec_long_type & v, char const msg[] = "" ) const;
+    void copyto_vec_long( vec_long_type & v, char const * msg = "" ) const;
 
     /*!
      *  \brief Copy internal data a vector of unsigned long integer
@@ -1140,7 +1140,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_ulong( vec_ulong_type & v, char const msg[] = "" ) const;
+    void copyto_vec_ulong( vec_ulong_type & v, char const * msg = "" ) const;
 
     /*!
      *  \brief Copy internal data a vector of `real_type`
@@ -1148,7 +1148,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_real( vec_real_type & v, char const msg[] = "" ) const;
+    void copyto_vec_real( vec_real_type & v, char const * msg = "" ) const;
 
     /*!
      *  \brief Copy internal data a vector of `complex_type`
@@ -1156,7 +1156,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_complex( vec_complex_type & v, char const msg[] = "" ) const;
+    void copyto_vec_complex( vec_complex_type & v, char const * msg = "" ) const;
 
     /*!
      *  \brief Copy internal data a vector of strings
@@ -1164,7 +1164,7 @@ namespace GenericContainerNamespace {
      *  \param[out] v   vector to store the data
      *  \param[in]  msg message of error in case of failure
      */
-    void copyto_vec_string( vec_string_type & v, char const msg[] = "" ) const;
+    void copyto_vec_string( vec_string_type & v, char const * msg = "" ) const;
 
     //@}
 
@@ -1225,7 +1225,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    bool_type get_bool_at( unsigned i, char const msg[] ) const;
+    bool_type get_bool_at( unsigned i, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th integer of the stored data.
@@ -1240,7 +1240,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    int_type const & get_int_at( unsigned i, char const msg[] ) const;
+    int_type const & get_int_at( unsigned i, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th long integer of the stored data.
@@ -1255,7 +1255,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    long_type const & get_long_at( unsigned i, char const msg[] ) const;
+    long_type const & get_long_at( unsigned i, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th `real_type` of the stored data.
@@ -1270,7 +1270,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    real_type const & get_real_at( unsigned i, char const msg[] ) const;
+    real_type const & get_real_at( unsigned i, char const * msg ) const;
  
     /*!
      *  \brief Get the `i`-th `complex_type` of the stored data.
@@ -1285,7 +1285,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    complex_type const & get_complex_at( unsigned i, char const msg[] ) const;
+    complex_type const & get_complex_at( unsigned i, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th integer of the stored data.
@@ -1302,7 +1302,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    int_type const & get_int_at( unsigned i, unsigned j, char const msg[] ) const;
+    int_type const & get_int_at( unsigned i, unsigned j, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th long integer of the stored data.
@@ -1319,7 +1319,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    long_type const & get_long_at( unsigned i, unsigned j, char const msg[] ) const;
+    long_type const & get_long_at( unsigned i, unsigned j, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th `real_type` of the stored data.
@@ -1336,7 +1336,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    real_type const & get_real_at( unsigned i, unsigned j, char const msg[] ) const;
+    real_type const & get_real_at( unsigned i, unsigned j, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th `complex_type` of the stored data.
@@ -1353,7 +1353,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    complex_type const & get_complex_at( unsigned i, unsigned j, char const msg[] ) const;
+    complex_type const & get_complex_at( unsigned i, unsigned j, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th string of the stored data.
@@ -1368,7 +1368,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    string_type const & get_string_at( unsigned i, char const msg[] ) const;
+    string_type const & get_string_at( unsigned i, char const * msg ) const;
 
     /*!
      *  \brief Get the `i`-th const `GenericContainer` of the stored data.
@@ -1383,7 +1383,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    GenericContainer const & get_gc_at( unsigned i, char const msg[] ) const;
+    GenericContainer const & get_gc_at( unsigned i, char const * msg ) const;
 
     //@}
 
@@ -1395,14 +1395,14 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    map_type & get_map( char const msg[] = nullptr );
+    map_type & get_map( char const * msg = nullptr );
 
     /*!
      *  \brief Get the stored data as a const map of `GenericContainer`.
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    map_type const & get_map( char const msg[] = nullptr ) const;
+    map_type const & get_map( char const * msg = nullptr ) const;
 
     //@}
 
@@ -1443,7 +1443,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    GenericContainer & operator () ( unsigned i, char const msg[] = nullptr );
+    GenericContainer & operator () ( unsigned i, char const * msg = nullptr );
 
     /*!
      *  \brief Get the `i`-th `GenericContainer` of the stored data.
@@ -1451,7 +1451,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    GenericContainer const & operator () ( unsigned i, char const msg[] = nullptr ) const;
+    GenericContainer const & operator () ( unsigned i, char const * msg = nullptr ) const;
 
     /*!
      *  \brief Get a `GenericContainer` in the stored data.
@@ -1459,7 +1459,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    GenericContainer & operator () ( std::string const & s, char const msg[] = nullptr );
+    GenericContainer & operator () ( std::string const & s, char const * msg = nullptr );
 
     /*!
      *  \brief Get a const `GenericContainer` in the stored data.
@@ -1467,7 +1467,7 @@ namespace GenericContainerNamespace {
      *  \param[in]  msg message of error in case of failure
      *  \return the stored value
      */
-    GenericContainer const & operator () ( std::string const & s, char const msg[] = nullptr ) const;
+    GenericContainer const & operator () ( std::string const & s, char const * msg = nullptr ) const;
     //@}
 
     //! \name Initialize data using set command
@@ -1543,7 +1543,7 @@ namespace GenericContainerNamespace {
      * 
      * \param[in] a string to be stored
      */
-    void set( char const a[] ) { this->set_string(a); }
+    void set( char const * a ) { this->set_string(a); }
 
     /*!
      * \brief Assign a string to the generic container.
@@ -1712,7 +1712,7 @@ namespace GenericContainerNamespace {
      * 
      * \param[in] a string to be stored
      */
-    GenericContainer & operator = ( char const a[] )
+    GenericContainer & operator = ( char const * a )
     { this->set_string(a); return * this; }
 
     /*!
@@ -1860,7 +1860,7 @@ namespace GenericContainerNamespace {
      * \brief Construct a generic container storing a string
      * \param[in] a initializer data
      */
-    GenericContainer( char const a[] )
+    GenericContainer( char const * a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
     /*!
@@ -1899,56 +1899,56 @@ namespace GenericContainerNamespace {
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], bool & value ) const;
+    bool get_if_exists( char const * field, bool & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], int_type & value ) const;
+    bool get_if_exists( char const * field, int_type & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], uint_type & value ) const;
+    bool get_if_exists( char const * field, uint_type & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], long_type & value ) const;
+    bool get_if_exists( char const * field, long_type & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], ulong_type & value ) const;
+    bool get_if_exists( char const * field, ulong_type & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], real_type & value ) const;
+    bool get_if_exists( char const * field, real_type & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], complex_type & value ) const;
+    bool get_if_exists( char const * field, complex_type & value ) const;
 
     /*!
      *  \brief Check if string `field` is a key of the stored map and extract value if exists
      *  \param[in] field key to be checked
      *  \param[in] value value to be extracted
      */
-    bool get_if_exists( char const field[], string_type & value ) const;
+    bool get_if_exists( char const * field, string_type & value ) const;
 
     //@}
 
@@ -2052,8 +2052,8 @@ namespace GenericContainerNamespace {
     GenericContainer &
     readFormattedData(
       std::istream & stream,
-      char const commentChars[] = "#%",
-      char const delimiters[] = " \t"
+      char const * commentChars = "#%",
+      char const * delimiters = " \t"
     );
 
     /*!
@@ -2074,9 +2074,9 @@ namespace GenericContainerNamespace {
      */
     GenericContainer &
     readFormattedData(
-      char const fname[],
-      char const commentChars[] = "#%",
-      char const delimiters[] = " \t"
+      char const * fname,
+      char const * commentChars = "#%",
+      char const * delimiters   = " \t"
     );
 
     /*!
@@ -2086,7 +2086,7 @@ namespace GenericContainerNamespace {
      */
     static
     void
-    exception( char const msg[] ) GC_NO_RETURN;
+    exception( char const * msg ) GC_NO_RETURN;
 
   };
 
@@ -2155,6 +2155,8 @@ namespace GenericContainerNamespace {
   // -------------------------------------------------------
   class GenericContainerExplorer {
   private:
+
+    #ifndef DOXYGEN_SHOULD_SKIP_THIS
     enum {
       GENERIC_CONTAINER_OK        = 0,
       GENERIC_CONTAINER_BAD_TYPE  = 1,
@@ -2162,6 +2164,7 @@ namespace GenericContainerNamespace {
       GENERIC_CONTAINER_NOT_EMPTY = 3,
       GENERIC_CONTAINER_BAD_HEAD  = 4
     };
+    #endif
 
     GenericContainer              data;
     std::deque<GenericContainer*> head;
@@ -2246,7 +2249,7 @@ namespace GenericContainerNamespace {
     }
 
     int
-    push_map_position( char const pos[] ) {
+    push_map_position( char const * pos ) {
       int ok = check( GC_MAP );
       if ( ok == GENERIC_CONTAINER_OK  ) {
         GenericContainer * gc = &((*head.back())[pos]);

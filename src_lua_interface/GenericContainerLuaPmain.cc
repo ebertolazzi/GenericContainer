@@ -259,7 +259,7 @@ docall (lua_State *L, int narg, int nres) {
 
 static
 void
-print_version( char const *messages[] ) {
+print_version( char const ** messages ) {
   lua_writestring(LUA_COPYRIGHT, strlen(LUA_COPYRIGHT));
   lua_writeline();
   lua_writeline();
@@ -687,9 +687,9 @@ namespace GenericContainerNamespace {
   int
   LuaInterpreter::interactive(
     int argc,
-    char const * argv[],
-    char const * messages[],
-    char const * prompt
+    char const ** argv,
+    char const ** messages,
+    char const *  prompt
   ) {
     lua_State *L = luaL_newstate();  /* create state */
     GC_ASSERT( L != nullptr, "LuaInterpreter::interactive, cannot create state: not enough memory" );

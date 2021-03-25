@@ -34,6 +34,7 @@
 extern "C" {
 #endif
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 enum {
   GENERIC_CONTAINER_OK = 0,
   GENERIC_CONTAINER_BAD_TYPE,
@@ -41,6 +42,7 @@ enum {
   GENERIC_CONTAINER_NOT_EMPTY,
   GENERIC_CONTAINER_BAD_HEAD
 };
+#endif
 
 typedef struct {
   double real;
@@ -178,7 +180,7 @@ int GC_set_complex2( double const re, double const im );
  * \param[in] a string to be stored
  * \return error code, 0 = OK
  */
-int GC_set_string( char const a[] );
+int GC_set_string( char const * a );
 
 // -----------------------------------------------------------------------------
 
@@ -287,7 +289,7 @@ int GC_push_complex2( double const re, double const im );
  * \param[in] a the value to be stored
  * \return error code, 0 = OK
  */
-int GC_push_string( char const a[] );
+int GC_push_string( char const * a );
 
 // -----------------------------------------------------------------------------
 
@@ -433,7 +435,7 @@ int GC_set_empty_vector_of_string(void);
  *  \param nelem number of element of the vector
  *  \return error code, 0 = OK
  */
-int GC_set_vector_of_bool( int const a[], int nelem );
+int GC_set_vector_of_bool( int const * a, int nelem );
 
 /*!
  *  \brief
@@ -445,7 +447,7 @@ int GC_set_vector_of_bool( int const a[], int nelem );
  *  \param nelem number of element of the vector
  *  \return error code, 0 = OK
  */
-int GC_set_vector_of_int( int const a[], int nelem );
+int GC_set_vector_of_int( int const * a, int nelem );
 
 /*!
  *  \brief
@@ -457,7 +459,7 @@ int GC_set_vector_of_int( int const a[], int nelem );
  *  \param nelem number of element of the vector
  *  \return error code, 0 = OK
  */
-int GC_set_vector_of_real( double const a[], int nelem );
+int GC_set_vector_of_real( double const * a, int nelem );
 
 /*!
  *  \brief
@@ -470,7 +472,7 @@ int GC_set_vector_of_real( double const a[], int nelem );
  *  \param nelem number of element of the vector
  *  \return error code, 0 = OK
  */
-int GC_set_vector_of_complex( double const re[], double const im[], int nelem );
+int GC_set_vector_of_complex( double const * re, double const * im, int nelem );
 
 /*!
  *  \brief
@@ -482,7 +484,7 @@ int GC_set_vector_of_complex( double const re[], double const im[], int nelem );
  *  \param nelem number of element of the vector
  *  \return error code, 0 = OK
  */
-int GC_set_vector_of_string( char const *a[], int nelem );
+int GC_set_vector_of_string( char const ** a, int nelem );
 
 // -----------------------------------------------------------------------------
 
@@ -576,7 +578,7 @@ char const * GC_get_next_key(void);
  *  \param[in] pos key of the map
  *  \return error code, 0 = OK
  */
-int GC_push_map_position( char const pos[] );
+int GC_push_map_position( char const * pos );
 
 #ifdef __cplusplus
 }

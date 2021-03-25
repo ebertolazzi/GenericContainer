@@ -42,6 +42,7 @@ Program Listing for File GenericContainerCinterface.h
    extern "C" {
    #endif
    
+   #ifndef DOXYGEN_SHOULD_SKIP_THIS
    enum {
      GENERIC_CONTAINER_OK = 0,
      GENERIC_CONTAINER_BAD_TYPE,
@@ -49,21 +50,13 @@ Program Listing for File GenericContainerCinterface.h
      GENERIC_CONTAINER_NOT_EMPTY,
      GENERIC_CONTAINER_BAD_HEAD
    };
+   #endif
    
    typedef struct {
      double real;
      double imag;
    } c_complex_type;
    
-<<<<<<< HEAD
-   int GC_new( char const id[] );
-   
-   int GC_select( char const id[] );
-   
-   int GC_delete( char const id[] );
-   
-   int GC_fill_for_test( char const id[] );
-=======
    int GC_new( char const * id );
    
    int GC_select( char const * id );
@@ -71,27 +64,20 @@ Program Listing for File GenericContainerCinterface.h
    int GC_delete( char const * id );
    
    int GC_fill_for_test( char const * id );
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    
-   int GC_pop_head();
+   int GC_pop_head(void);
    
-   int GC_reset_head();
+   int GC_reset_head(void);
    
-   int GC_dump();
+   int GC_dump(void);
    
-   int GC_print_content_types();
+   int GC_print_content_types(void);
    
-   int GC_get_type();
+   int GC_get_type(void);
    
-<<<<<<< HEAD
-   char const * GC_get_type_name( void );
-   
-   void * GC_mem_ptr( char const id[] );
-=======
-   char const * GC_get_type_name( );
+   char const * GC_get_type_name(void);
    
    void * GC_mem_ptr( char const * id );
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    
    // -----------------------------------------------------------------------------
    
@@ -105,25 +91,25 @@ Program Listing for File GenericContainerCinterface.h
    
    int GC_set_complex2( double const re, double const im );
    
-   int GC_set_string( char const a[] );
+   int GC_set_string( char const * a );
    
    // -----------------------------------------------------------------------------
    
-   int GC_get_bool();
+   int GC_get_bool(void);
    
-   int GC_get_int();
+   int GC_get_int(void);
    
-   long GC_get_long();
+   long GC_get_long(void);
    
-   double GC_get_real();
+   double GC_get_real(void);
    
-   c_complex_type GC_get_complex();
+   c_complex_type GC_get_complex(void);
    
-   double GC_get_complex_re();
+   double GC_get_complex_re(void);
    
-   double GC_get_complex_im();
+   double GC_get_complex_im(void);
    
-   char const * GC_get_string();
+   char const * GC_get_string(void);
    
    // -----------------------------------------------------------------------------
    
@@ -137,7 +123,7 @@ Program Listing for File GenericContainerCinterface.h
    
    int GC_push_complex2( double const re, double const im );
    
-   int GC_push_string( char const a[] );
+   int GC_push_string( char const * a );
    
    // -----------------------------------------------------------------------------
    
@@ -167,51 +153,51 @@ Program Listing for File GenericContainerCinterface.h
    
    // -----------------------------------------------------------------------------
    
-   int GC_set_empty_vector_of_bool();
+   int GC_set_empty_vector_of_bool(void);
    
-   int GC_set_empty_vector_of_int();
+   int GC_set_empty_vector_of_int(void);
    
-   int GC_set_empty_vector_of_real();
+   int GC_set_empty_vector_of_real(void);
    
-   int GC_set_empty_vector_of_complex();
+   int GC_set_empty_vector_of_complex(void);
    
-   int GC_set_empty_vector_of_string();
+   int GC_set_empty_vector_of_string(void);
    
    // -----------------------------------------------------------------------------
    
-   int GC_set_vector_of_bool( int const a[], int nelem );
+   int GC_set_vector_of_bool( int const * a, int nelem );
    
-   int GC_set_vector_of_int( int const a[], int nelem );
+   int GC_set_vector_of_int( int const * a, int nelem );
    
-   int GC_set_vector_of_real( double const a[], int nelem );
+   int GC_set_vector_of_real( double const * a, int nelem );
    
-   int GC_set_vector_of_complex( double const re[], double const im[], int nelem );
+   int GC_set_vector_of_complex( double const * re, double const * im, int nelem );
    
-   int GC_set_vector_of_string( char const *a[], int nelem );
+   int GC_set_vector_of_string( char const ** a, int nelem );
    
    // -----------------------------------------------------------------------------
    
    int GC_set_vector( int nelem );
    
-   int GC_set_empty_vector( );
+   int GC_set_empty_vector(void);
    
-   int GC_get_vector_size( );
+   int GC_get_vector_size(void);
    
-   int GC_get_matrix_num_rows( );
+   int GC_get_matrix_num_rows(void);
    
-   int GC_get_matrix_num_cols( );
+   int GC_get_matrix_num_cols(void);
    
    int GC_push_vector_position( int pos );
    
    // -----------------------------------------------------------------------------
    
-   int GC_set_map( );
+   int GC_set_map(void);
    
-   int GC_init_map_key( );
+   int GC_init_map_key(void);
    
-   char const * GC_get_next_key( );
+   char const * GC_get_next_key(void);
    
-   int GC_push_map_position( char const pos[] );
+   int GC_push_map_position( char const * pos );
    
    #ifdef __cplusplus
    }

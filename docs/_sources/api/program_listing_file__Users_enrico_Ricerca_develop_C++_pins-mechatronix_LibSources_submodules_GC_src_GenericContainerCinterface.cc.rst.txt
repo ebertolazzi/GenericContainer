@@ -35,14 +35,11 @@ Program Listing for File GenericContainerCinterface.cc
    
    #ifndef DOXYGEN_SHOULD_SKIP_THIS
    
-<<<<<<< HEAD
    /*
     \file GenericContainerCinterface.cc
     This file contains the sources for the C interface to `GenericContainer`
     */
    
-=======
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    #include "GenericContainer.hh"
    #include "GenericContainerCinterface.h"
    
@@ -79,11 +76,7 @@ Program Listing for File GenericContainerCinterface.cc
    extern "C" {
    
    int
-<<<<<<< HEAD
-   GC_new( char const id[] ) {
-=======
    GC_new( char const * id ) {
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
      // ckeck if exists
      MAP::iterator pos = gc_explorer.find(id);
      if ( pos == gc_explorer.end() ) {
@@ -95,11 +88,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-<<<<<<< HEAD
-   GC_select( char const id[] ) {
-=======
    GC_select( char const * id ) {
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
      // ckeck if exists
      MAP::iterator pos = gc_explorer.find(id);
      if ( pos == gc_explorer.end() ) {
@@ -111,32 +100,20 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    void *
-<<<<<<< HEAD
-   GC_mem_ptr( char const id[] ) {
-=======
    GC_mem_ptr( char const * id ) {
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
      GC_select( id );
      if ( gc_active == nullptr ) return nullptr;
      return gc_active->mem_ptr();
    }
    
    int
-<<<<<<< HEAD
-   GC_delete( char const id[] ) {
-=======
    GC_delete( char const * id ) {
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
      gc_explorer.erase(id);
      return GENERIC_CONTAINER_OK;
    }
    
    int
-<<<<<<< HEAD
-   GC_fill_for_test( char const id[] ) {
-=======
    GC_fill_for_test( char const * id ) {
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
      // ckeck if exists
      GC_select( id );
      GenericContainer & gc =
@@ -278,7 +255,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-   GC_set_string( char const a[] ) {
+   GC_set_string( char const * a ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      GC_TRY( gc_active->top()->set_string(a) );
      return GENERIC_CONTAINER_OK;
@@ -377,7 +354,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-   GC_push_string( char const a[] ) {
+   GC_push_string( char const * a ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      GC_TRY( gc_active->top()->push_string( a ) );
      return GENERIC_CONTAINER_OK;
@@ -510,7 +487,7 @@ Program Listing for File GenericContainerCinterface.cc
    //..............................................................................
    
    int
-   GC_set_vector_of_bool( int const a[], int nelem ) {
+   GC_set_vector_of_bool( int const * a, int nelem ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      vec_bool_type & v = gc_active->top()->set_vec_bool( unsigned(nelem) );
      for ( unsigned i = 0; i < unsigned(nelem); ++i ) v[i] = a[i] != 0;
@@ -520,7 +497,7 @@ Program Listing for File GenericContainerCinterface.cc
    //..............................................................................
    
    int
-   GC_set_vector_of_int( int const a[], int nelem ) {
+   GC_set_vector_of_int( int const * a, int nelem ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      vec_int_type & v = gc_active->top()->set_vec_int( unsigned(nelem) );
      std::copy( a, a + nelem, v.begin() );
@@ -528,7 +505,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-   GC_set_vector_of_real( double const a[], int nelem ) {
+   GC_set_vector_of_real( double const * a, int nelem ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      vec_real_type & v = gc_active->top()->set_vec_real( unsigned(nelem) );
      std::copy( a, a + nelem, v.begin() );
@@ -536,7 +513,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-   GC_set_vector_of_complex( double const re[], double const im[], int nelem ) {
+   GC_set_vector_of_complex( double const * re, double const * im, int nelem ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      vec_complex_type & v = gc_active->top()->set_vec_complex( unsigned(nelem) );
      for ( unsigned i = 0; i < unsigned(nelem); ++i ) v[i] = complex_type(re[i],im[i]);
@@ -544,7 +521,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-   GC_set_vector_of_string( char const *a[], int nelem ) {
+   GC_set_vector_of_string( char const ** a, int nelem ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      vec_string_type & v = gc_active->top()->set_vec_string( unsigned(nelem) );
      for ( unsigned i = 0; i < unsigned(nelem); ++i ) v[i] = a[i];
@@ -601,7 +578,7 @@ Program Listing for File GenericContainerCinterface.cc
    }
    
    int
-   GC_push_map_position( char const pos[] ) {
+   GC_push_map_position( char const * pos ) {
      if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
      return gc_active->push_map_position( pos );
    }

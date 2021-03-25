@@ -298,9 +298,9 @@ Program Listing for File GenericContainer.hh
        void allocate_vector( unsigned sz );
        void allocate_map();
    
-       void ck(char const [],TypeAllowed) const;
-       int  ck(TypeAllowed) const;
-       void ck_or_set(char const [], TypeAllowed);
+       void ck( char const *, TypeAllowed ) const;
+       int  ck( TypeAllowed ) const;
+       void ck_or_set( char const *, TypeAllowed );
    
        #ifdef GENERIC_CONTAINER_ON_WINDOWS
        bool simple_data()     const;
@@ -425,9 +425,9 @@ Program Listing for File GenericContainer.hh
    
        void get_complex_number( real_type & re, real_type & im ) const;
    
-       void * get_pvoid( char const msg[] = nullptr ) const;
+       void * get_pvoid( char const * msg = nullptr ) const;
    
-       void ** get_ppvoid( char const msg[] = nullptr ) const;
+       void ** get_ppvoid( char const * msg = nullptr ) const;
    
        int_type const * get_int_pointer() const;
    
@@ -448,7 +448,7 @@ Program Listing for File GenericContainer.hh
    
        template <typename T>
        void
-       get_value( T & v, char const msg[] = "" ) const;
+       get_value( T & v, char const * msg = "" ) const;
    
        #ifdef GENERIC_CONTAINER_ON_WINDOWS
        template <typename T>
@@ -469,109 +469,109 @@ Program Listing for File GenericContainer.hh
        #endif
    
        bool_type
-       get_map_bool( char const key[] ) const {
+       get_map_bool( char const * key ) const {
          bool_type ret = false;
          if ( exists(key) ) ret = (*this)(key).get_bool();
          return ret;
        }
    
-       bool_type & get_bool( char const msg[] = nullptr );
+       bool_type & get_bool( char const * msg = nullptr );
    
-       bool_type const & get_bool( char const msg[] = nullptr ) const;
+       bool_type const & get_bool( char const * msg = nullptr ) const;
    
-       int_type & get_int( char const msg[] = nullptr );
+       int_type & get_int( char const * msg = nullptr );
    
-       int_type const & get_int( char const msg[] = nullptr ) const;
+       int_type const & get_int( char const * msg = nullptr ) const;
    
-       long_type & get_long( char const msg[] = nullptr );
+       long_type & get_long( char const * msg = nullptr );
    
-       long_type const & get_long( char const msg[] = nullptr ) const;
+       long_type const & get_long( char const * msg = nullptr ) const;
    
-       int_type get_as_int( char const msg[] = nullptr ) const;
+       int_type get_as_int( char const * msg = nullptr ) const;
    
-       uint_type get_as_uint( char const msg[] = nullptr ) const;
+       uint_type get_as_uint( char const * msg = nullptr ) const;
    
-       long_type get_as_long( char const msg[] = nullptr ) const;
+       long_type get_as_long( char const * msg = nullptr ) const;
    
-       ulong_type get_as_ulong( char const msg[] = nullptr ) const;
+       ulong_type get_as_ulong( char const * msg = nullptr ) const;
    
-       real_type & get_real( char const msg[] = nullptr );
+       real_type & get_real( char const * msg = nullptr );
    
-       real_type const & get_real( char const msg[] = nullptr ) const;
+       real_type const & get_real( char const * msg = nullptr ) const;
    
-       complex_type & get_complex( char const msg[] = nullptr );
+       complex_type & get_complex( char const * msg = nullptr );
    
-       complex_type const & get_complex( char const msg[] = nullptr ) const;
+       complex_type const & get_complex( char const * msg = nullptr ) const;
    
-       string_type & get_string( char const msg[] = nullptr );
+       string_type & get_string( char const * msg = nullptr );
    
-       string_type const & get_string( char const msg[] = nullptr ) const;
-   
-   
-   
-       vector_type & get_vector( char const msg[] = nullptr );
-   
-       vector_type const & get_vector( char const msg[] = nullptr ) const;
-   
-       vec_pointer_type & get_vec_pointer( char const msg[] = nullptr );
-   
-       vec_pointer_type const & get_vec_pointer( char const msg[] = nullptr ) const;
-   
-       vec_bool_type & get_vec_bool( char const msg[] = nullptr );
-   
-       vec_bool_type const & get_vec_bool( char const msg[] = nullptr ) const;
-   
-       vec_int_type & get_vec_int( char const msg[] = nullptr );
-   
-       vec_int_type const & get_vec_int( char const msg[] = nullptr ) const;
-   
-       vec_long_type & get_vec_long( char const msg[] = nullptr );
-   
-       vec_long_type const & get_vec_long( char const msg[] = nullptr ) const;
-   
-       vec_real_type & get_vec_real( char const msg[] = nullptr );
-   
-       vec_real_type const & get_vec_real( char const msg[] = nullptr ) const;
-   
-       vec_complex_type & get_vec_complex( char const msg[] = nullptr );
-   
-       vec_complex_type const & get_vec_complex( char const msg[] = nullptr ) const;
-   
-       mat_int_type & get_mat_int( char const msg[] = nullptr );
-   
-       mat_int_type const & get_mat_int( char const msg[] = nullptr ) const;
-   
-       mat_long_type & get_mat_long( char const msg[] = nullptr );
-   
-       mat_long_type const & get_mat_long( char const msg[] = nullptr ) const;
-   
-       mat_real_type & get_mat_real( char const msg[] = nullptr );
-   
-       mat_real_type const & get_mat_real( char const msg[] = nullptr ) const;
-   
-       mat_complex_type & get_mat_complex( char const msg[] = nullptr );
-   
-       mat_complex_type const & get_mat_complex( char const msg[] = nullptr ) const;
-   
-       vec_string_type & get_vec_string( char const msg[] = nullptr );
-   
-       vec_string_type const & get_vec_string( char const msg[] = nullptr ) const;
+       string_type const & get_string( char const * msg = nullptr ) const;
    
    
    
-       void copyto_vec_int( vec_int_type & v, char const msg[] = "" ) const;
+       vector_type & get_vector( char const * msg = nullptr );
    
-       void copyto_vec_uint( vec_uint_type & v, char const msg[] = "" ) const;
+       vector_type const & get_vector( char const * msg = nullptr ) const;
    
-       void copyto_vec_long( vec_long_type & v, char const msg[] = "" ) const;
+       vec_pointer_type & get_vec_pointer( char const * msg = nullptr );
    
-       void copyto_vec_ulong( vec_ulong_type & v, char const msg[] = "" ) const;
+       vec_pointer_type const & get_vec_pointer( char const * msg = nullptr ) const;
    
-       void copyto_vec_real( vec_real_type & v, char const msg[] = "" ) const;
+       vec_bool_type & get_vec_bool( char const * msg = nullptr );
    
-       void copyto_vec_complex( vec_complex_type & v, char const msg[] = "" ) const;
+       vec_bool_type const & get_vec_bool( char const * msg = nullptr ) const;
    
-       void copyto_vec_string( vec_string_type & v, char const msg[] = "" ) const;
+       vec_int_type & get_vec_int( char const * msg = nullptr );
+   
+       vec_int_type const & get_vec_int( char const * msg = nullptr ) const;
+   
+       vec_long_type & get_vec_long( char const * msg = nullptr );
+   
+       vec_long_type const & get_vec_long( char const * msg = nullptr ) const;
+   
+       vec_real_type & get_vec_real( char const * msg = nullptr );
+   
+       vec_real_type const & get_vec_real( char const * msg = nullptr ) const;
+   
+       vec_complex_type & get_vec_complex( char const * msg = nullptr );
+   
+       vec_complex_type const & get_vec_complex( char const * msg = nullptr ) const;
+   
+       mat_int_type & get_mat_int( char const * msg = nullptr );
+   
+       mat_int_type const & get_mat_int( char const * msg = nullptr ) const;
+   
+       mat_long_type & get_mat_long( char const * msg = nullptr );
+   
+       mat_long_type const & get_mat_long( char const * msg = nullptr ) const;
+   
+       mat_real_type & get_mat_real( char const * msg = nullptr );
+   
+       mat_real_type const & get_mat_real( char const * msg = nullptr ) const;
+   
+       mat_complex_type & get_mat_complex( char const * msg = nullptr );
+   
+       mat_complex_type const & get_mat_complex( char const * msg = nullptr ) const;
+   
+       vec_string_type & get_vec_string( char const * msg = nullptr );
+   
+       vec_string_type const & get_vec_string( char const * msg = nullptr ) const;
+   
+   
+   
+       void copyto_vec_int( vec_int_type & v, char const * msg = "" ) const;
+   
+       void copyto_vec_uint( vec_uint_type & v, char const * msg = "" ) const;
+   
+       void copyto_vec_long( vec_long_type & v, char const * msg = "" ) const;
+   
+       void copyto_vec_ulong( vec_ulong_type & v, char const * msg = "" ) const;
+   
+       void copyto_vec_real( vec_real_type & v, char const * msg = "" ) const;
+   
+       void copyto_vec_complex( vec_complex_type & v, char const * msg = "" ) const;
+   
+       void copyto_vec_string( vec_string_type & v, char const * msg = "" ) const;
    
    
    
@@ -592,54 +592,54 @@ Program Listing for File GenericContainer.hh
    
        bool_type get_bool_at( unsigned i );
    
-       bool_type get_bool_at( unsigned i, char const msg[] ) const;
+       bool_type get_bool_at( unsigned i, char const * msg ) const;
    
        int_type & get_int_at( unsigned i );
    
-       int_type const & get_int_at( unsigned i, char const msg[] ) const;
+       int_type const & get_int_at( unsigned i, char const * msg ) const;
    
        long_type & get_long_at( unsigned i );
    
-       long_type const & get_long_at( unsigned i, char const msg[] ) const;
+       long_type const & get_long_at( unsigned i, char const * msg ) const;
    
        real_type & get_real_at( unsigned i );
    
-       real_type const & get_real_at( unsigned i, char const msg[] ) const;
+       real_type const & get_real_at( unsigned i, char const * msg ) const;
     
        complex_type & get_complex_at( unsigned i );
    
-       complex_type const & get_complex_at( unsigned i, char const msg[] ) const;
+       complex_type const & get_complex_at( unsigned i, char const * msg ) const;
    
        int_type & get_int_at( unsigned i, unsigned j );
    
-       int_type const & get_int_at( unsigned i, unsigned j, char const msg[] ) const;
+       int_type const & get_int_at( unsigned i, unsigned j, char const * msg ) const;
    
        long_type & get_long_at( unsigned i, unsigned j );
    
-       long_type const & get_long_at( unsigned i, unsigned j, char const msg[] ) const;
+       long_type const & get_long_at( unsigned i, unsigned j, char const * msg ) const;
    
        real_type & get_real_at( unsigned i, unsigned j );
    
-       real_type const & get_real_at( unsigned i, unsigned j, char const msg[] ) const;
+       real_type const & get_real_at( unsigned i, unsigned j, char const * msg ) const;
    
        complex_type & get_complex_at( unsigned i, unsigned j );
    
-       complex_type const & get_complex_at( unsigned i, unsigned j, char const msg[] ) const;
+       complex_type const & get_complex_at( unsigned i, unsigned j, char const * msg ) const;
    
        string_type & get_string_at( unsigned i );
    
-       string_type const & get_string_at( unsigned i, char const msg[] ) const;
+       string_type const & get_string_at( unsigned i, char const * msg ) const;
    
        GenericContainer & get_gc_at( unsigned i );
    
-       GenericContainer const & get_gc_at( unsigned i, char const msg[] ) const;
+       GenericContainer const & get_gc_at( unsigned i, char const * msg ) const;
    
    
    
    
-       map_type & get_map( char const msg[] = nullptr );
+       map_type & get_map( char const * msg = nullptr );
    
-       map_type const & get_map( char const msg[] = nullptr ) const;
+       map_type const & get_map( char const * msg = nullptr ) const;
    
    
    
@@ -652,13 +652,13 @@ Program Listing for File GenericContainer.hh
    
        GenericContainer const & operator [] ( std::string const & s ) const;
    
-       GenericContainer & operator () ( unsigned i, char const msg[] = nullptr );
+       GenericContainer & operator () ( unsigned i, char const * msg = nullptr );
    
-       GenericContainer const & operator () ( unsigned i, char const msg[] = nullptr ) const;
+       GenericContainer const & operator () ( unsigned i, char const * msg = nullptr ) const;
    
-       GenericContainer & operator () ( std::string const & s, char const msg[] = nullptr );
+       GenericContainer & operator () ( std::string const & s, char const * msg = nullptr );
    
-       GenericContainer const & operator () ( std::string const & s, char const msg[] = nullptr ) const;
+       GenericContainer const & operator () ( std::string const & s, char const * msg = nullptr ) const;
    
    
    
@@ -682,7 +682,7 @@ Program Listing for File GenericContainer.hh
        void set( std::complex<double> const & a )
        { this->set_complex(real_type(a.real()),real_type(a.imag())); }
    
-       void set( char const a[] ) { this->set_string(a); }
+       void set( char const * a ) { this->set_string(a); }
    
        void set( std::string const & a ) { this->set_string(a); }
    
@@ -738,7 +738,7 @@ Program Listing for File GenericContainer.hh
    
        GenericContainer & operator = ( mat_complex_type const & a );
    
-       GenericContainer & operator = ( char const a[] )
+       GenericContainer & operator = ( char const * a )
        { this->set_string(a); return * this; }
    
        GenericContainer & operator = ( std::string const & a )
@@ -809,7 +809,7 @@ Program Listing for File GenericContainer.hh
        GenericContainer( std::complex<double> const & a )
        : m_data_type(GC_NOTYPE) { this->operator=(a); }
    
-       GenericContainer( char const a[] )
+       GenericContainer( char const * a )
        : m_data_type(GC_NOTYPE) { this->operator=(a); }
    
        GenericContainer( std::string const & a )
@@ -825,21 +825,21 @@ Program Listing for File GenericContainer.hh
    
        bool exists( std::string const & s ) const;
    
-       bool get_if_exists( char const field[], bool & value ) const;
+       bool get_if_exists( char const * field, bool & value ) const;
    
-       bool get_if_exists( char const field[], int_type & value ) const;
+       bool get_if_exists( char const * field, int_type & value ) const;
    
-       bool get_if_exists( char const field[], uint_type & value ) const;
+       bool get_if_exists( char const * field, uint_type & value ) const;
    
-       bool get_if_exists( char const field[], long_type & value ) const;
+       bool get_if_exists( char const * field, long_type & value ) const;
    
-       bool get_if_exists( char const field[], ulong_type & value ) const;
+       bool get_if_exists( char const * field, ulong_type & value ) const;
    
-       bool get_if_exists( char const field[], real_type & value ) const;
+       bool get_if_exists( char const * field, real_type & value ) const;
    
-       bool get_if_exists( char const field[], complex_type & value ) const;
+       bool get_if_exists( char const * field, complex_type & value ) const;
    
-       bool get_if_exists( char const field[], string_type & value ) const;
+       bool get_if_exists( char const * field, string_type & value ) const;
    
    
    
@@ -875,20 +875,20 @@ Program Listing for File GenericContainer.hh
        GenericContainer &
        readFormattedData(
          std::istream & stream,
-         char const commentChars[] = "#%",
-         char const delimiters[] = " \t"
+         char const * commentChars = "#%",
+         char const * delimiters = " \t"
        );
    
        GenericContainer &
        readFormattedData(
-         char const fname[],
-         char const commentChars[] = "#%",
-         char const delimiters[] = " \t"
+         char const * fname,
+         char const * commentChars = "#%",
+         char const * delimiters   = " \t"
        );
    
        static
        void
-       exception( char const msg[] ) GC_NO_RETURN;
+       exception( char const * msg ) GC_NO_RETURN;
    
      };
    
@@ -927,6 +927,8 @@ Program Listing for File GenericContainer.hh
      // -------------------------------------------------------
      class GenericContainerExplorer {
      private:
+   
+       #ifndef DOXYGEN_SHOULD_SKIP_THIS
        enum {
          GENERIC_CONTAINER_OK        = 0,
          GENERIC_CONTAINER_BAD_TYPE  = 1,
@@ -934,6 +936,7 @@ Program Listing for File GenericContainer.hh
          GENERIC_CONTAINER_NOT_EMPTY = 3,
          GENERIC_CONTAINER_BAD_HEAD  = 4
        };
+       #endif
    
        GenericContainer              data;
        std::deque<GenericContainer*> head;
@@ -1018,7 +1021,7 @@ Program Listing for File GenericContainer.hh
        }
    
        int
-       push_map_position( char const pos[] ) {
+       push_map_position( char const * pos ) {
          int ok = check( GC_MAP );
          if ( ok == GENERIC_CONTAINER_OK  ) {
            GenericContainer * gc = &((*head.back())[pos]);

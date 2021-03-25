@@ -18,11 +18,8 @@ Program Listing for File GenericContainerJsonHandler.cc
    //  Copyright © 2017 Nicola Dal Bianco. All rights reserved.
    //
    
-<<<<<<< HEAD
-=======
    #ifndef DOXYGEN_SHOULD_SKIP_THIS
    
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    #include "GenericContainerJsonHandler.hh"
    #include <iostream>
    #include <iomanip>
@@ -58,18 +55,9 @@ Program Listing for File GenericContainerJsonHandler.cc
    using namespace rapidjson;
    using namespace std;
    
-<<<<<<< HEAD
-   
    using std::fpclassify;
    using GenericContainerNamespace::real_type;
    
-   #ifndef DOXYGEN_SHOULD_SKIP_THIS
-   
-=======
-   using std::fpclassify;
-   using GenericContainerNamespace::real_type;
-   
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    static
    inline
    bool isZero( real_type x )
@@ -95,12 +83,6 @@ Program Listing for File GenericContainerJsonHandler.cc
    bool isUnsigned64( real_type x )
    { return isInteger64(x) && x >= 0; }
    
-<<<<<<< HEAD
-   #endif
-   
-   
-=======
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    /*\
      Json objects are quite general objects that here we want to convert
      into a GenericContainer.
@@ -719,11 +701,8 @@ Program Listing for File GenericContainerJsonHandler.cc
      root.set_mat_complex ( mat );
    }
    
-<<<<<<< HEAD
-=======
    #endif
    
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
    // GenericContainerJsonHandler Class Implementation
    
    GenericContainerJsonHandler::GenericContainerJsonHandler(

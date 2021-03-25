@@ -52,8 +52,6 @@ Functions
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a96797ea09772b987af58d24dfdc2bc2b`
 
-- :ref:`exhale_function_namespace_generic_container_namespace_1a4f054fb28ccdea5e58ff071c496bd33f`
-
 - :ref:`exhale_function_namespace_generic_container_namespace_1a58774a26395374cd6b0f0a383c641cc8`
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1aad5e11be05aa42cd010afc0879aa6a88`
@@ -61,6 +59,8 @@ Functions
 - :ref:`exhale_function_namespace_generic_container_namespace_1a697f65d09d9b12f5809ad7c670873ac7`
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1ad6f5d2a06fd2d1241a87afcd5afbcc17`
+
+- :ref:`exhale_function_namespace_generic_container_namespace_1a4f054fb28ccdea5e58ff071c496bd33f`
 
 
 Defines

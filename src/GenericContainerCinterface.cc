@@ -243,7 +243,7 @@ GC_set_complex2( double const re, real_type const im ) {
 }
 
 int
-GC_set_string( char const a[] ) {
+GC_set_string( char const * a ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   GC_TRY( gc_active->top()->set_string(a) );
   return GENERIC_CONTAINER_OK;
@@ -342,7 +342,7 @@ GC_push_complex2( double const re, double const im ) {
 }
 
 int
-GC_push_string( char const a[] ) {
+GC_push_string( char const * a ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   GC_TRY( gc_active->top()->push_string( a ) );
   return GENERIC_CONTAINER_OK;
@@ -475,7 +475,7 @@ GC_set_empty_vector_of_string() {
 //..............................................................................
 
 int
-GC_set_vector_of_bool( int const a[], int nelem ) {
+GC_set_vector_of_bool( int const * a, int nelem ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   vec_bool_type & v = gc_active->top()->set_vec_bool( unsigned(nelem) );
   for ( unsigned i = 0; i < unsigned(nelem); ++i ) v[i] = a[i] != 0;
@@ -485,7 +485,7 @@ GC_set_vector_of_bool( int const a[], int nelem ) {
 //..............................................................................
 
 int
-GC_set_vector_of_int( int const a[], int nelem ) {
+GC_set_vector_of_int( int const * a, int nelem ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   vec_int_type & v = gc_active->top()->set_vec_int( unsigned(nelem) );
   std::copy( a, a + nelem, v.begin() );
@@ -493,7 +493,7 @@ GC_set_vector_of_int( int const a[], int nelem ) {
 }
 
 int
-GC_set_vector_of_real( double const a[], int nelem ) {
+GC_set_vector_of_real( double const * a, int nelem ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   vec_real_type & v = gc_active->top()->set_vec_real( unsigned(nelem) );
   std::copy( a, a + nelem, v.begin() );
@@ -501,7 +501,7 @@ GC_set_vector_of_real( double const a[], int nelem ) {
 }
 
 int
-GC_set_vector_of_complex( double const re[], double const im[], int nelem ) {
+GC_set_vector_of_complex( double const * re, double const * im, int nelem ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   vec_complex_type & v = gc_active->top()->set_vec_complex( unsigned(nelem) );
   for ( unsigned i = 0; i < unsigned(nelem); ++i ) v[i] = complex_type(re[i],im[i]);
@@ -509,7 +509,7 @@ GC_set_vector_of_complex( double const re[], double const im[], int nelem ) {
 }
 
 int
-GC_set_vector_of_string( char const *a[], int nelem ) {
+GC_set_vector_of_string( char const ** a, int nelem ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   vec_string_type & v = gc_active->top()->set_vec_string( unsigned(nelem) );
   for ( unsigned i = 0; i < unsigned(nelem); ++i ) v[i] = a[i];
@@ -572,7 +572,7 @@ GC_set_map() {
  */
 
 int
-GC_push_map_position( char const pos[] ) {
+GC_push_map_position( char const * pos ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   return gc_active->push_map_position( pos );
 }

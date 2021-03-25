@@ -7,14 +7,6 @@ File GenericContainerLuaInterface.cc
 |exhale_lsh| :ref:`Parent directory <dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_lua_interface>` (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_lua_interface``)
 
 .. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
-<<<<<<< HEAD
-
-.. contents:: Contents
-   :local:
-   :backlinks: none
-
-=======
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 Definition (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_lua_interface/GenericContainerLuaInterface.cc``)
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -34,23 +26,6 @@ Includes
 
 - ``GenericContainerLuaInterface.hh`` (:ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_lua_interface_GenericContainerLuaInterface.hh`)
 
-<<<<<<< HEAD
-- ``lua/lua.hpp``
-
-- ``signal.h``
-
-- ``sstream``
-
-- ``stdexcept``
-
-- ``stdio.h``
-
-- ``stdlib.h``
-
-- ``string.h``
-
-=======
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 
 
@@ -69,11 +44,7 @@ Functions
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a59f54eebccfc9c91a46862a413d6c6eb`
 
-<<<<<<< HEAD
-- :ref:`exhale_function_namespace_generic_container_namespace_1a3420f1d6274c378ead032d17eb2beb10`
-=======
 - :ref:`exhale_function_namespace_generic_container_namespace_1a60dd59cd12fe64ec383d28c9cc52e5ac`
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a9c144fbcb3ab00999aa8312a56766405`
 
@@ -85,15 +56,3 @@ Functions
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a0dd627407a16164930a94ca1b2487397`
 
-<<<<<<< HEAD
-
-Defines
--------
-
-
-- :ref:`exhale_define__generic_container_lua_interface_8cc_1adeb473198c345f5e2fffbe4917dfd842`
-
-- :ref:`exhale_define__generic_container_lua_interface_8cc_1a9c678108e29d9a79fb18fd3358729648`
-
-=======
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0

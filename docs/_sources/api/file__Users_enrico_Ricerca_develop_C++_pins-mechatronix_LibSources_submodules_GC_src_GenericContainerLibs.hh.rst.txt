@@ -7,14 +7,6 @@ File GenericContainerLibs.hh
 |exhale_lsh| :ref:`Parent directory <dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src>` (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src``)
 
 .. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
-<<<<<<< HEAD
-
-.. contents:: Contents
-   :local:
-   :backlinks: none
-
-=======
->>>>>>> 5ea08f6bb2a5b6e75688d4c6ed5cac04ba29bea0
 Definition (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src/GenericContainerLibs.hh``)
 ------------------------------------------------------------------------------------------------------------------------
 

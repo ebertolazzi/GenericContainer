@@ -1,7 +1,7 @@
 .. _exhale_function__generic_container_cinterface_8h_1a241ff5bd60ecb3a6df4d3317aafa027b:
 
-Function GC_set_empty_vector_of_complex(void)
-=============================================
+Function GC_set_empty_vector_of_complex
+=======================================
 
 - Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerCinterface.h`
 
