@@ -31,9 +31,9 @@ Functions
 ---------
 
 
-- :ref:`exhale_function_namespace_generic_container_namespace_1aa1bdbc3917730a9ba0ff7ab36ece9374`
-
 - :ref:`exhale_function_namespace_generic_container_namespace_1a1320f92dc3005ce706ac423f28063e80`
+
+- :ref:`exhale_function_namespace_generic_container_namespace_1aa1bdbc3917730a9ba0ff7ab36ece9374`
 
 - :ref:`exhale_function_namespace_generic_container_namespace_1a14d953c3cf283985c7980da86851fb23`
 
