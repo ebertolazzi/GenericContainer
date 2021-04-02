@@ -1,0 +1,780 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>C++ API &#8212; Generic Container  documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Namespace GenericContainerNamespace" href="namespace_GenericContainerNamespace.html" />
+    <link rel="prev" title="Manual" href="../manual.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="namespace_GenericContainerNamespace.html" title="Namespace GenericContainerNamespace"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../manual.html" title="Manual"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container  documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">C++ API</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="c-api">
+<h1>C++ API<a class="headerlink" href="#c-api" title="Permalink to this headline">¶</a>
+</h1>
+<div class="section" id="class-hierarchy">
+<h2>Class Hierarchy<a class="headerlink" href="#class-hierarchy" title="Permalink to this headline">¶</a>
+</h2>
+<div id="class-treeView"></div>
+<script type="text/javascript">
+  function getClassHierarchyTree() {
+     return [
+      {text:"<span class=\"text-muted\">Namespace</span> GenericContainerNamespace",href:"namespace_GenericContainerNamespace.html#namespace-GenericContainerNamespace",selectable:false,tags:['4'],nodes:[{text:"<span class=\"text-muted\">Class</span> GenericContainer",href:"class_generic_container_namespace_1_1_generic_container.html#exhale-class-class-generic-container-namespace-1-1-generic-container",selectable:false,tags:['1'],nodes:[{text:"<span class=\"text-muted\">Union</span> GenericContainer::DataStorage",href:"union_generic_container_namespace_1_1_generic_container_1_1_data_storage.html#exhale-union-union-generic-container-namespace-1-1-generic-container-1-1-data-storage",selectable:false}]},{text:"<span class=\"text-muted\">Class</span> GenericContainerExplorer",href:"class_generic_container_namespace_1_1_generic_container_explorer.html#exhale-class-class-generic-container-namespace-1-1-generic-container-explorer",selectable:false},{text:"<span class=\"text-muted\">Template Class</span> mat_type",href:"class_generic_container_namespace_1_1mat__type.html#exhale-class-class-generic-container-namespace-1-1mat-type",selectable:false},{text:"<span class=\"text-muted\">Enum</span> TypeAllowed",href:"enum_namespace_generic_container_namespace_1ac8a288b0483849669ca988e1d9e9fc9a.html#exhale-enum-namespace-generic-container-namespace-1ac8a288b0483849669ca988e1d9e9fc9a",selectable:false}]},
+     ]
+  }
+</script><!-- end getClassHierarchyTree() function -->
+</div>
+<div class="section" id="file-hierarchy">
+<h2>File Hierarchy<a class="headerlink" href="#file-hierarchy" title="Permalink to this headline">¶</a>
+</h2>
+<div id="file-treeView"></div>
+<script type="text/javascript">
+  function getFileHierarchyTree() {
+     return [
+      {text:"<span class=\"text-muted\">Directory</span> src",href:"dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src.html#dir-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src",selectable:false,tags:['6'],nodes:[{text:"<span class=\"text-muted\">File</span> GenericContainer.cc",href:"file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.cc.html#file-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src-GenericContainer.cc",selectable:false},{text:"<span class=\"text-muted\">File</span> GenericContainer.hh",href:"file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh.html#file-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src-GenericContainer.hh",selectable:false},{text:"<span class=\"text-muted\">File</span> GenericContainerConfig.hh",href:"file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerConfig.hh.html#file-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src-GenericContainerConfig.hh",selectable:false},{text:"<span class=\"text-muted\">File</span> GenericContainerLibs.hh",href:"file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerLibs.hh.html#file-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src-GenericContainerLibs.hh",selectable:false},{text:"<span class=\"text-muted\">File</span> GenericContainerSupport.cc",href:"file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerSupport.cc.html#file-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src-GenericContainerSupport.cc",selectable:false},{text:"<span class=\"text-muted\">File</span> GenericContainerTables.cc",href:"file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerTables.cc.html#file-Users-enrico-Ricerca-develop-C++-pins-mechatronix-LibSources-submodules-GC-src-GenericContainerTables.cc",selectable:false}]},
+     ]
+  }
+</script><!-- end getFileHierarchyTree() function -->
+</div>
+<div class="section" id="full-api">
+<h2>Full API<a class="headerlink" href="#full-api" title="Permalink to this headline">¶</a>
+</h2>
+<div class="section" id="namespaces">
+<h3>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="namespace_GenericContainerNamespace.html">Namespace GenericContainerNamespace</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_GenericContainerNamespace.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_GenericContainerNamespace.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_GenericContainerNamespace.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_GenericContainerNamespace.html#typedefs">Typedefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_GenericContainerNamespace.html#unions">Unions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_GenericContainerNamespace.html#variables">Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_std.html">Namespace std</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="classes-and-structs">
+<h3>Classes and Structs<a class="headerlink" href="#classes-and-structs" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="class_generic_container_namespace_1_1_generic_container.html">Class GenericContainer</a><ul>
+<li class="toctree-l2">
+<a class="reference internal" href="class_generic_container_namespace_1_1_generic_container.html#nested-relationships">Nested Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="class_generic_container_namespace_1_1_generic_container.html#nested-types">Nested Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="class_generic_container_namespace_1_1_generic_container.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="class_generic_container_namespace_1_1_generic_container_explorer.html">Class GenericContainerExplorer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="class_generic_container_namespace_1_1_generic_container_explorer.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="class_generic_container_namespace_1_1mat__type.html">Template Class mat_type</a><ul>
+<li class="toctree-l2">
+<a class="reference internal" href="class_generic_container_namespace_1_1mat__type.html#inheritance-relationships">Inheritance Relationships</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="class_generic_container_namespace_1_1mat__type.html#base-type">Base Type</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="class_generic_container_namespace_1_1mat__type.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="enums">
+<h3>Enums<a class="headerlink" href="#enums" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="enum_namespace_generic_container_namespace_1ac8a288b0483849669ca988e1d9e9fc9a.html">Enum TypeAllowed</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_namespace_generic_container_namespace_1ac8a288b0483849669ca988e1d9e9fc9a.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="unions">
+<h3>Unions<a class="headerlink" href="#unions" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="union_generic_container_namespace_1_1_generic_container_1_1_data_storage.html">Union GenericContainer::DataStorage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="union_generic_container_namespace_1_1_generic_container_1_1_data_storage.html#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l2"><a class="reference internal" href="union_generic_container_namespace_1_1_generic_container_1_1_data_storage.html#union-documentation">Union Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1a8aeb97d96ed64bec0c77ef4b7078b8b6.html">Function GenericContainerNamespace::getLineAndSkipComments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1a8aeb97d96ed64bec0c77ef4b7078b8b6.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1a58774a26395374cd6b0f0a383c641cc8.html">Template Function GenericContainerNamespace::operator&lt;&lt;(ostream_type&amp;, std::vector&lt;TYPE&gt; const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1a58774a26395374cd6b0f0a383c641cc8.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1aad5e11be05aa42cd010afc0879aa6a88.html">Function GenericContainerNamespace::operator&lt;&lt;(ostream_type&amp;, vec_bool_type const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1aad5e11be05aa42cd010afc0879aa6a88.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1a697f65d09d9b12f5809ad7c670873ac7.html">Function GenericContainerNamespace::operator&lt;&lt;(ostream_type&amp;, vec_complex_type const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1a697f65d09d9b12f5809ad7c670873ac7.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1ad6f5d2a06fd2d1241a87afcd5afbcc17.html">Template Function GenericContainerNamespace::operator&lt;&lt;(ostream_type&amp;, mat_type&lt;TYPE&gt; const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1ad6f5d2a06fd2d1241a87afcd5afbcc17.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1a4f054fb28ccdea5e58ff071c496bd33f.html">Function GenericContainerNamespace::operator&lt;&lt;(ostream_type&amp;, mat_complex_type const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1a4f054fb28ccdea5e58ff071c496bd33f.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1a499dfaea116c154cb94cd6e035a89ac0.html">Function GenericContainerNamespace::tokenizeString</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1a499dfaea116c154cb94cd6e035a89ac0.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1a7df860e48b9ce8965fffab5042de7c13.html">Function GenericContainerNamespace::writeTable(vec_string_type const&amp;, vector_type const&amp;, ostream_type&amp;, char const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1a7df860e48b9ce8965fffab5042de7c13.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1aa71d2a830c98f1af9bc01847a6a99c9f.html">Function GenericContainerNamespace::writeTable(vec_string_type const&amp;, mat_real_type const&amp;, ostream_type&amp;, char const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1aa71d2a830c98f1af9bc01847a6a99c9f.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1ad05811d5772173774eed3d0410923be9.html">Function GenericContainerNamespace::writeTableFormatted(vec_string_type const&amp;, vector_type const&amp;, ostream_type&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1ad05811d5772173774eed3d0410923be9.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="function_namespace_generic_container_namespace_1ae39f5ed933e34fa168896dee446b84dd.html">Function GenericContainerNamespace::writeTableFormatted(vec_string_type const&amp;, mat_real_type const&amp;, ostream_type&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_namespace_generic_container_namespace_1ae39f5ed933e34fa168896dee446b84dd.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="variable_namespace_generic_container_namespace_1a6349abaa53df5e7fdeb5a3fb3eb15027.html">Variable GenericContainerNamespace::typeName</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_namespace_generic_container_namespace_1a6349abaa53df5e7fdeb5a3fb3eb15027.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="defines">
+<h3>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="define__generic_container_8cc_1aaaaee0a033f3612b53ab33540f01c88b.html">Define CHECK_RESIZE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define__generic_container_8cc_1aaaaee0a033f3612b53ab33540f01c88b.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="define__generic_container_8hh_1adeb473198c345f5e2fffbe4917dfd842.html">Define GC_ASSERT</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define__generic_container_8hh_1adeb473198c345f5e2fffbe4917dfd842.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="define__generic_container_8hh_1aae129e41a45daea753428f06ea60e85a.html">Define GC_DO_ERROR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define__generic_container_8hh_1aae129e41a45daea753428f06ea60e85a.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="define__generic_container_8hh_1a8dc0216e4b1676666f0dfab4a71f5865.html">Define GC_NO_RETURN</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define__generic_container_8hh_1a8dc0216e4b1676666f0dfab4a71f5865.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="define__generic_container_8hh_1a9d628c1d085b17ba563cea534312adc4.html">Define GC_WARNING</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define__generic_container_8hh_1a9d628c1d085b17ba563cea534312adc4.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="define__generic_container_config_8hh_1a4db100b6a21db550ede804541dc4fb3f.html">Define GENERIC_CONTAINER_CONFIG_HH</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="define__generic_container_config_8hh_1a4db100b6a21db550ede804541dc4fb3f.html#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a>
+</h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a9f7faaa4990a12fb0a7001773a84c0c3.html">Typedef GenericContainerNamespace::bool_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a9f7faaa4990a12fb0a7001773a84c0c3.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a92445a76664fdb60297303916aad4055.html">Typedef GenericContainerNamespace::complex_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a92445a76664fdb60297303916aad4055.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1af2ee2b36a1316f8261b41bf8f08e5eee.html">Typedef GenericContainerNamespace::int_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1af2ee2b36a1316f8261b41bf8f08e5eee.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a97a458b2de3064b528c38c5c03e3d730.html">Typedef GenericContainerNamespace::long_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a97a458b2de3064b528c38c5c03e3d730.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1ae5f2a7882b396a9bc5a0fd127652c9c3.html">Typedef GenericContainerNamespace::map_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1ae5f2a7882b396a9bc5a0fd127652c9c3.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a3107a262e6552da0b10334044b2fe7cc.html">Typedef GenericContainerNamespace::mat_complex_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a3107a262e6552da0b10334044b2fe7cc.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a3b0ac36050c397d09a1879d5db98f4d8.html">Typedef GenericContainerNamespace::mat_int_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a3b0ac36050c397d09a1879d5db98f4d8.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1afa07cf5c8b4447a19bf731cf14e18546.html">Typedef GenericContainerNamespace::mat_long_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1afa07cf5c8b4447a19bf731cf14e18546.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a744d83d899e69134ed937b1a503b45ea.html">Typedef GenericContainerNamespace::mat_real_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a744d83d899e69134ed937b1a503b45ea.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a46e302cd40002b1dde4262c88a565776.html">Typedef GenericContainerNamespace::ostream_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a46e302cd40002b1dde4262c88a565776.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a6511a813bc405a12d6714a31e4864a10.html">Typedef GenericContainerNamespace::pointer_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a6511a813bc405a12d6714a31e4864a10.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a689abf85f22ebfea047161f01be03e70.html">Typedef GenericContainerNamespace::real_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a689abf85f22ebfea047161f01be03e70.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a2fdfd7772016e828a85e9432c4d8accc.html">Typedef GenericContainerNamespace::string_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a2fdfd7772016e828a85e9432c4d8accc.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a114949c677032ee697ea13dd40e04b6e.html">Typedef GenericContainerNamespace::uint_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a114949c677032ee697ea13dd40e04b6e.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a72b73bd9be847646e9ca6681e6633a15.html">Typedef GenericContainerNamespace::ulong_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a72b73bd9be847646e9ca6681e6633a15.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a306a5958fff42bb29f920850e097da48.html">Typedef GenericContainerNamespace::vec_bool_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a306a5958fff42bb29f920850e097da48.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1ad50ea03f557da7d5841b99fd6257b615.html">Typedef GenericContainerNamespace::vec_complex_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1ad50ea03f557da7d5841b99fd6257b615.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a72b50ea3def4786fba79d30c8e3da8d6.html">Typedef GenericContainerNamespace::vec_int_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a72b50ea3def4786fba79d30c8e3da8d6.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1ae028ccba401192fc4d5572e75a1b5260.html">Typedef GenericContainerNamespace::vec_long_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1ae028ccba401192fc4d5572e75a1b5260.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a64c42fe68ce295cbf13215c091c4fd0c.html">Typedef GenericContainerNamespace::vec_pointer_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a64c42fe68ce295cbf13215c091c4fd0c.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a536533b87748424e1e326de4a971ff8d.html">Typedef GenericContainerNamespace::vec_real_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a536533b87748424e1e326de4a971ff8d.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a7fbb0c8e56ad2c03c036557f518b91a7.html">Typedef GenericContainerNamespace::vec_string_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a7fbb0c8e56ad2c03c036557f518b91a7.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a1be7c2dbabb6a24a174fbc700cb56d61.html">Typedef GenericContainerNamespace::vec_uint_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a1be7c2dbabb6a24a174fbc700cb56d61.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1aa3c445a4a9c272c1b61bfbf21333ed90.html">Typedef GenericContainerNamespace::vec_ulong_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1aa3c445a4a9c272c1b61bfbf21333ed90.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="typedef_namespace_generic_container_namespace_1a7291aa8dbd8d7078f5b4ff5e82880694.html">Typedef GenericContainerNamespace::vector_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_namespace_generic_container_namespace_1a7291aa8dbd8d7078f5b4ff5e82880694.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<script type="text/javascript">
+    /* NOTE: if you are reading this, Exhale generated this directly. */
+    $(document).ready(function() {
+        /* Inspired by very informative answer to get color of links:
+           https://stackoverflow.com/a/2707837/3814202 */
+        var $fake_link = $('<a href="#"></a>').hide().appendTo("body");
+        var linkColor = $fake_link.css("color");
+        $fake_link.remove();
+
+        var $fake_p = $('<p class="text-muted"></p>').hide().appendTo("body");
+        var iconColor = $fake_p.css("color");
+        $fake_p.remove();
+
+        /* After much deliberation, using JavaScript directly to enforce that the
+         * link and glyphicon receive different colors is fruitless, because the
+         * bootstrap treeview library will overwrite the style every time.  Instead,
+         * leaning on the library code itself to append some styling to the head,
+         * I choose to mix a couple of things:
+         *
+         * 1. Set the `color` property of bootstrap treeview globally, this would
+         *    normally affect the color of both the link text and the icon.
+         * 2. Apply custom forced styling of the glyphicon itself in order to make
+         *    it a little more clear to the user (via different colors) that the
+         *    act of clicking the icon and the act of clicking the link text perform
+         *    different actions.  The icon expands, the text navigates to the page.
+         */
+         // Part 1: use linkColor as a parameter to bootstrap treeview
+
+         // apply the class view hierarchy
+         $("#class-treeView").treeview({
+             data: getClassHierarchyTree(),
+             enableLinks: true,
+             color: linkColor,
+             showTags: true,
+             collapseIcon: "glyphicon glyphicon-minus",
+             expandIcon: "glyphicon glyphicon-plus",
+             levels: 1,
+             onhoverColor: "#F5F5F5"
+         });
+
+         // apply the file view hierarchy
+         $("#file-treeView").treeview({
+             data: getFileHierarchyTree(),
+             enableLinks: true,
+             color: linkColor,
+             showTags: true,
+             collapseIcon: "glyphicon glyphicon-minus",
+             expandIcon: "glyphicon glyphicon-plus",
+             levels: 1,
+             onhoverColor: "#F5F5F5"
+         });
+
+         // Part 2: override the style of the glyphicons by injecting some CSS
+         $('<style type="text/css" id="exhaleTreeviewOverride">' +
+           '    .treeview span[class~=icon] { '                 +
+           '        color: ' + iconColor + ' ! important;'       +
+           '    }'                                              +
+           '</style>').appendTo('head');
+    });
+</script>
+</div>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/logo.png" alt="Logo"/>
+        </a></p><div class="sphinx-toc sphinxlocaltoc">
+    <h3><a href="../index.html">Page contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">C++ API</a><ul>
+<li><a class="reference internal" href="#class-hierarchy">Class Hierarchy</a></li>
+<li><a class="reference internal" href="#file-hierarchy">File Hierarchy</a></li>
+<li><a class="reference internal" href="#full-api">Full API</a><ul>
+<li><a class="reference internal" href="#namespaces">Namespaces</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#classes-and-structs">Classes and Structs</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#enums">Enums</a></li>
+<li><a class="reference internal" href="#unions">Unions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#variables">Variables</a></li>
+<li><a class="reference internal" href="#defines">Defines</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#typedefs">Typedefs</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div class="sphinxprev">
+    <h4>Previous page</h4>
+    <p class="topless"><a href="../manual.html"
+                          title="Previous page">&larr; Manual</a></p>
+  </div>
+  <div class="sphinxnext">
+    <h4>Next page</h4>
+    <p class="topless"><a href="namespace_GenericContainerNamespace.html"
+                          title="Next page">&rarr; Namespace GenericContainerNamespace</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api-cpp/library_root.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="namespace_GenericContainerNamespace.html" title="Namespace GenericContainerNamespace"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="../manual.html" title="Manual"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container  documentation</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">C++ API</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.2.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

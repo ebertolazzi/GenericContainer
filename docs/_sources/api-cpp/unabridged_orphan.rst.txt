@@ -1,0 +1,48 @@
+:orphan:
+
+
+Full API
+========
+
+Directories
+***********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src.rst
+
+Files
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.cc.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerConfig.hh.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerLibs.hh.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerSupport.cc.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerTables.cc.rst

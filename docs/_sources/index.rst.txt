@@ -11,14 +11,13 @@ Generic Container
 
    readme.rst
    manual.rst
-   api/library_root.rst
+   api-cpp/library_root.rst
+   api-c/library_root.rst
+   api-json/library_root.rst
 
-Indices and tables
-------------------
+.. note::
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   JSON interface done by Nicola Dal Bianco
 
 License
 -------

@@ -107,3 +107,15 @@ docs_build/sphinx/_build
 docs_build/sphinx/api
 docs_build/xml
 src/.vscode
+docs_build/sphinx/api-c
+docs_build/sphinx/api-cpp
+docs_build/sphinx/api-json
+docs_build/sphinx_c/_build
+docs_build/sphinx_c/api-c
+docs_build/sphinx_cpp/_build
+docs_build/sphinx_cpp/api-cpp
+docs_build/sphinx_json/api-json
+docs_build/sphinx_json/_build
+docs_build/xml-cpp
+docs_build/xml-json
+docs_build/xml-c
