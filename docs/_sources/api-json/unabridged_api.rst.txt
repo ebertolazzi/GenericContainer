@@ -1,0 +1,98 @@
+
+Full API
+--------
+
+Namespaces
+**********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_GenericContainerNamespace.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_rapidjson.rst
+
+Classes and Structs
+*******************
+
+
+.. toctree::
+   :maxdepth: 5
+
+   class_generic_container_namespace_1_1_generic_container_json_handler.rst
+
+Enums
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_namespace_generic_container_namespace_1a5038e4895bf0a89a0c5095253132b009.rst
+
+Functions
+*********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_generic_container_namespace_1aa1bdbc3917730a9ba0ff7ab36ece9374.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_generic_container_namespace_1a1320f92dc3005ce706ac423f28063e80.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_generic_container_namespace_1a14d953c3cf283985c7980da86851fb23.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_generic_container_namespace_1a3821060686451b452c063be2b92040a9.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_generic_container_namespace_1a61580ccd3810201674082df15506e698.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_generic_container_namespace_1a2570e1bbeb00ce359568e6ee96b25463.rst
+
+Defines
+*******
+
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_json_8hh_1afde9e5a6d77ca3ccb91aef4cff9e91b8.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_json_8hh_1ac764b84e299eb34ec27ee2010e0e7553.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_json_8hh_1a44ba0558182e04760a1021bf769f2600.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_json_8hh_1a0159b3d42a5eaa7ba2df68ae69942014.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_json_8hh_1a9e507ede41dd82ae2d97c730ce624cf3.rst
