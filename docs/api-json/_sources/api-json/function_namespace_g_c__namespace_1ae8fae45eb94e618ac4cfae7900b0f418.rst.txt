@@ -1,0 +1,13 @@
+.. _exhale_function_namespace_g_c__namespace_1ae8fae45eb94e618ac4cfae7900b0f418:
+
+Function GC_namespace::complex_to_stream(complex_type const&, ostream_type&, string const&)
+===========================================================================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJson.cc`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GC_namespace::complex_to_stream(complex_type const&, ostream_type&, string const&)

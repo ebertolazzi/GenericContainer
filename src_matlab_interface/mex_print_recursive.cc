@@ -9,7 +9,7 @@
 
 #include <sstream>
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
 extern "C"
 void

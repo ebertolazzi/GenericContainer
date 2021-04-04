@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1af9fcfc59d371b02a5a7837a20e2a3e24:
+
+Typedef GC_namespace::uint_type
+===============================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::uint_type

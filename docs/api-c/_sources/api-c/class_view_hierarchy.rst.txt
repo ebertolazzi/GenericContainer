@@ -1,0 +1,19 @@
+
+Class Hierarchy
+---------------
+
+
+.. raw:: html
+
+   <div id="class-treeView"></div>
+   <script type="text/javascript">
+     function getClassHierarchyTree() {
+        return [
+         {text:"<span class=\"text-muted\">Struct</span> c_complex_type",href:"struct_a00009.html#exhale-struct-a00009",selectable:false},
+        ]
+     }
+   </script><!-- end getClassHierarchyTree() function -->
+
+.. end raw html for treeView
+
+

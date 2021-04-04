@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1a7a42f28df2e1995b2095edf5d2edb954:
+
+Typedef GC_namespace::mat_real_type
+===================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::mat_real_type

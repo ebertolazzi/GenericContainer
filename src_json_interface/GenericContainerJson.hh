@@ -17,7 +17,7 @@
 #define GC_JSON_INDENT_CHAR  "indent_char"
 #define GC_JSON_INDENT_NUM   "indent_num"
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   enum GCJsonMatrixOrder {
     column_major = 0,   // a matrix is written in Json as vector of vectors

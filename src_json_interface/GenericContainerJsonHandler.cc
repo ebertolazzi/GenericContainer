@@ -44,7 +44,7 @@ using namespace rapidjson;
 using namespace std;
 
 using std::fpclassify;
-using GenericContainerNamespace::real_type;
+using GC_namespace::real_type;
 
 static
 inline

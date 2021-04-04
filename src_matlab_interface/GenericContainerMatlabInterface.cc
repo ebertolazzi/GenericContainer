@@ -12,7 +12,7 @@
 using namespace std;
 #endif
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   // ===========================================================================
   void

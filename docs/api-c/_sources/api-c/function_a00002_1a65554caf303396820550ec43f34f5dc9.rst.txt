@@ -1,0 +1,13 @@
+.. _exhale_function_a00002_1a65554caf303396820550ec43f34f5dc9:
+
+Function GC_push_int
+====================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerCinterface.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GC_push_int(int)

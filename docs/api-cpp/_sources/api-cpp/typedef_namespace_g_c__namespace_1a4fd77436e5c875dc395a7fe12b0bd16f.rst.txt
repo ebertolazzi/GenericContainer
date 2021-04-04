@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1a4fd77436e5c875dc395a7fe12b0bd16f:
+
+Typedef GC_namespace::vec_bool_type
+===================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::vec_bool_type

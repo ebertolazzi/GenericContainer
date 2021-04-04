@@ -1,0 +1,67 @@
+
+.. _file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJson.cc:
+
+File GenericContainerJson.cc
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface>` (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/GenericContainerJson.cc``)
+---------------------------------------------------------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJson.cc.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``GenericContainerJson.hh`` (:ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJson.hh`)
+
+- ``GenericContainerJsonHandler.hh`` (:ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJsonHandler.hh`)
+
+- ``iomanip``
+
+- ``iostream``
+
+- ``string``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_GC_namespace`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespace_g_c__namespace_1ae8fae45eb94e618ac4cfae7900b0f418`
+
+- :ref:`exhale_function_namespace_g_c__namespace_1a0dbe2ff3ca7025007dc73cc52b0827db`
+
+- :ref:`exhale_function_namespace_g_c__namespace_1a75940cf53bdebc4996268a4713ac54fb`
+
+- :ref:`exhale_function_namespace_g_c__namespace_1a6cc105845df316bbe49b720a2529ee12`
+
+- :ref:`exhale_function_namespace_g_c__namespace_1ae7a9f7c5d6102731524b11948fbf3bf1`
+

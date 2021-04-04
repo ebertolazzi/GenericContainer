@@ -682,7 +682,7 @@ pmain (lua_State *L) {
   return 1;
 }
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   int
   LuaInterpreter::interactive(

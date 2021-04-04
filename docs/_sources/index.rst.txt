@@ -11,9 +11,9 @@ Generic Container
 
    readme.rst
    manual.rst
-   api-cpp/library_root.rst
-   api-c/library_root.rst
-   api-json/library_root.rst
+   api_c.rst
+   api_cpp.rst
+   api_json.rst
 
 .. note::
 

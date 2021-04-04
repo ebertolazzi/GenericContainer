@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1a63db0334b9bf6c29d3c5ef8c5fd3cf0b:
+
+Typedef GC_namespace::vec_pointer_type
+======================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::vec_pointer_type

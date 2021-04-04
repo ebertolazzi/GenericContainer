@@ -8,7 +8,7 @@
 #endif
 #include "mex.h"
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   void mxArray_to_GenericContainer( mxArray const * mx, GenericContainer & gc );
   void mxSparse_to_GenericContainer( mxArray const * mx, GenericContainer & gc );

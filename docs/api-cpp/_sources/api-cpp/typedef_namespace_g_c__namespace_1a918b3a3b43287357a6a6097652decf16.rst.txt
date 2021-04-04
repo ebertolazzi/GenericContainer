@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1a918b3a3b43287357a6a6097652decf16:
+
+Typedef GC_namespace::real_type
+===============================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::real_type

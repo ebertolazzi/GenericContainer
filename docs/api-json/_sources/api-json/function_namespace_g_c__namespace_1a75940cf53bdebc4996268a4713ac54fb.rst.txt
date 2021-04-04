@@ -1,0 +1,13 @@
+.. _exhale_function_namespace_g_c__namespace_1a75940cf53bdebc4996268a4713ac54fb:
+
+Function GC_namespace::genericContainerToJsonString
+===================================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_json_interface_GenericContainerJson.cc`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GC_namespace::genericContainerToJsonString(GenericContainer const&, GenericContainer const&)

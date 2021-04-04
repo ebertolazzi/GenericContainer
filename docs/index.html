@@ -7,9 +7,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Generic Container &#8212; Generic Container  documentation</title>
+    <title>Generic Container &#8212; Generic Container v1.0.0
+</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
@@ -34,7 +36,6 @@
         <script src="_static/cloud.js"></script>
     
 
-    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Generic Container" href="readme.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,15 +46,12 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
           <a href="#" title="Table Of Contents"
-             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+             accesskey="C">toc</a></li>
         <li class="right" >
           <a href="readme.html" title="Generic Container"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
-    <li><a href="#">Generic Container  documentation</a> &#187;</li>
+    <li><a href="#">Generic Container</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href="">Generic Container</a></li> 
       </ul>
@@ -91,24 +89,24 @@
 </ul>
 </li>
 <li class="toctree-l1">
-<a class="reference internal" href="api-cpp/library_root.html">C++ API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-cpp/library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-cpp/library_root.html#file-hierarchy">File Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-cpp/library_root.html#full-api">Full API</a></li>
+<a class="reference internal" href="api_c.html">C Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_c.html#id2">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_c.html#id3">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_c.html#id4">Full API</a></li>
 </ul>
 </li>
 <li class="toctree-l1">
-<a class="reference internal" href="api-c/library_root.html">C API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-c/library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-c/library_root.html#file-hierarchy">File Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-c/library_root.html#full-api">Full API</a></li>
+<a class="reference internal" href="api_cpp.html">C++ Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_cpp.html#id2">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_cpp.html#id3">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_cpp.html#id4">Full API</a></li>
 </ul>
 </li>
 <li class="toctree-l1">
-<a class="reference internal" href="api-json/library_root.html">JSON API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-json/library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-json/library_root.html#file-hierarchy">File Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-json/library_root.html#full-api">Full API</a></li>
+<a class="reference internal" href="api_json.html">JSON Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_json.html#id2">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_json.html#id3">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_json.html#id4">Full API</a></li>
 </ul>
 </li>
 </ul>
@@ -162,28 +160,7 @@
         <div class="sphinxsidebarwrapper">
         <p class="logo"><a href="#" title="index">
           <img class="logo" src="_static/logo.png" alt="Logo"/>
-        </a></p><div class="sphinx-toc sphinxlocaltoc">
-    <h3><a href="#">Page contents</a></h3>
-    <ul>
-<li><a class="reference internal" href="#">Generic Container</a><ul>
-<li><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
-</ul>
-
-  </div>
-  <div class="sphinxnext">
-    <h4>Next page</h4>
-    <p class="topless"><a href="readme.html"
-                          title="Next page">&rarr; Generic Container</a></p>
-  </div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/index.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
+        </a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -194,6 +171,16 @@
     </div>
 </div>
 <script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="#">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Generic Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual.html">Manual</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_c.html">C Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_cpp.html">C++ Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_json.html">JSON Interface</a></li>
+</ul>
+</div>
         </div>
       </div>
     
@@ -221,15 +208,12 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
           <a href="#" title="Table Of Contents"
-             >toc</a> &nbsp; &nbsp;</li>
+             >toc</a></li>
         <li class="right" >
           <a href="readme.html" title="Generic Container"
              >next</a> &nbsp; &nbsp;</li>
-    <li><a href="#">Generic Container  documentation</a> &#187;</li>
+    <li><a href="#">Generic Container</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href="">Generic Container</a></li> 
       </ul>

@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1ab95e41b625f6532dc5b73638874952af:
+
+Typedef GC_namespace::long_type
+===============================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::long_type

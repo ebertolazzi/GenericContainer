@@ -72,7 +72,7 @@
 using namespace std;
 
 using std::fpclassify;
-using GenericContainerNamespace::real_type;
+using GC_namespace::real_type;
 
 static
 inline
@@ -86,7 +86,7 @@ bool isInteger64( real_type x )
 
 #endif
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   /*
   //   _                _           ____  ____

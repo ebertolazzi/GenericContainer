@@ -27,17 +27,17 @@ exhale_args = {
   #"exhaleDoxygenStdin":    "INPUT = ../../src"
   "exhaleDoxygenStdin":
 '''
-        EXTRACT_ALL         = YES
-        SOURCE_BROWSER      = YES
-        EXTRACT_STATIC      = YES
-        HIDE_SCOPE_NAMES    = NO
-        CALLER_GRAPH        = YES
-        GRAPHICAL_HIERARCHY = YES
-        HAVE_DOT            = YES
-        QUIET               = NO
-        INPUT               = ../../src_json_interface
-        GENERATE_TREEVIEW   = YES
-        XML_OUTPUT          = xml-json
+        EXTRACT_ALL           = YES
+        SOURCE_BROWSER        = YES
+        EXTRACT_STATIC        = YES
+        HIDE_SCOPE_NAMES      = NO
+        CALLER_GRAPH          = YES
+        GRAPHICAL_HIERARCHY   = YES
+        HAVE_DOT              = YES
+        QUIET                 = NO
+        INPUT                 = ../../src_json_interface
+        GENERATE_TREEVIEW     = YES
+        XML_OUTPUT            = xml-json
 
         XML_PROGRAMLISTING    = YES
         RECURSIVE             = NO
@@ -55,3 +55,8 @@ exhale_args = {
 ''',
   "lexerMapping": { r".*\.m": "MATLAB" }
 }
+
+cpp_index_common_prefix = ['GC_namespace::']
+
+html_theme_options['logotarget'] = "../index"
+html_theme_options['roottarget'] = "../index"

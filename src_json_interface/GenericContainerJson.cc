@@ -46,7 +46,7 @@ using namespace rapidjson;
 using namespace std;
 
 using std::fpclassify;
-using GenericContainerNamespace::real_type;
+using GC_namespace::real_type;
 
 static
 inline
@@ -61,7 +61,7 @@ bool isZero( real_type x )
  The implementation of the header GenericContainerJson.hh then follows.
  */
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   void
   real_to_stream ( real_type number, ostream_type & out ) {

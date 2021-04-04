@@ -1,0 +1,13 @@
+.. _exhale_function_a00002_1a02e8daa89960a53e8d19d67e5595a3c0:
+
+Function GC_set_real
+====================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainerCinterface.h`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: GC_set_real(double)

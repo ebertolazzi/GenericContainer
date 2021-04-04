@@ -55,3 +55,8 @@ exhale_args = {
 ''',
   "lexerMapping": { r".*\.m": "MATLAB" }
 }
+
+cpp_index_common_prefix = ['GC_namespace::']
+
+html_theme_options['logotarget'] = "../index"
+html_theme_options['roottarget'] = "../index"

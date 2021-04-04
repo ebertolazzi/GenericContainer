@@ -1,0 +1,13 @@
+.. _exhale_enum_namespace_g_c__namespace_1abba427948a0ed53e771c68a22c3e0202:
+
+Enum TypeAllowed
+================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: GC_namespace::TypeAllowed

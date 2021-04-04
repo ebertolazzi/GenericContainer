@@ -26,7 +26,7 @@
 
 #include "GenericContainer.hh"
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   class LuaInterpreter {
     /* lua_State * */ void * void_L; //!< interpreter status

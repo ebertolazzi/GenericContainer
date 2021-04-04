@@ -48,12 +48,11 @@
 
 #include <fstream>
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 #define CHECK_RESIZE(pV,I) if ( pV->size() <= (I) ) pV->resize((I)+1)
 
 using std::fpclassify;
-using GenericContainerNamespace::real_type;
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
+using GC_namespace::real_type;
 
 static
 inline
@@ -82,7 +81,9 @@ bool isUnsigned64( real_type x )
 
 #endif
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   template <typename TYPE>
   ostream_type &
@@ -125,7 +126,6 @@ namespace GenericContainerNamespace {
     return s;
   }
 
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template ostream_type & operator << ( ostream_type & s, vec_int_type const & v );
   template ostream_type & operator << ( ostream_type & s, vec_long_type const & v );
   template ostream_type & operator << ( ostream_type & s, vec_real_type const & v );
@@ -216,6 +216,7 @@ namespace GenericContainerNamespace {
       << '\n';
   }
 
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <typename TYPE>
   ostream_type &
   operator << ( ostream_type & s, mat_type<TYPE> const & m ) {
@@ -240,7 +241,6 @@ namespace GenericContainerNamespace {
     return s;
   }
 
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template ostream_type & operator << ( ostream_type & s, mat_type<int_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<long_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<real_type> const & m );

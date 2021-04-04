@@ -30,7 +30,7 @@
 
 #endif
 
-namespace GenericContainerNamespace {
+namespace GC_namespace {
 
   class GenericContainerJsonHandler : public rapidjson::BaseReaderHandler< rapidjson::UTF8<>, GenericContainerJsonHandler > {
 

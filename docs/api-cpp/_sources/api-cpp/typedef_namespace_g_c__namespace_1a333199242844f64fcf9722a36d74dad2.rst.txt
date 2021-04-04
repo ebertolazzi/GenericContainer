@@ -1,0 +1,13 @@
+.. _exhale_typedef_namespace_g_c__namespace_1a333199242844f64fcf9722a36d74dad2:
+
+Typedef GC_namespace::ulong_type
+================================
+
+- Defined in :ref:`file__Users_enrico_Ricerca_develop_C++_pins-mechatronix_LibSources_submodules_GC_src_GenericContainer.hh`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: GC_namespace::ulong_type

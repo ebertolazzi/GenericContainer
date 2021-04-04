@@ -1,0 +1,245 @@
+
+Full API
+--------
+
+Namespaces
+**********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_GC_namespace.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   namespace_std.rst
+
+Classes and Structs
+*******************
+
+
+.. toctree::
+   :maxdepth: 5
+
+   class_g_c__namespace_1_1_generic_container.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   class_g_c__namespace_1_1_generic_container_explorer.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   class_g_c__namespace_1_1mat__type.rst
+
+Enums
+*****
+
+
+.. toctree::
+   :maxdepth: 5
+
+   enum_namespace_g_c__namespace_1abba427948a0ed53e771c68a22c3e0202.rst
+
+Unions
+******
+
+
+.. toctree::
+   :maxdepth: 5
+
+   union_g_c__namespace_1_1_generic_container_1_1_data_storage.rst
+
+Functions
+*********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_g_c__namespace_1a785fc031ffe7df58e202320a1df062d0.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_g_c__namespace_1a42e8f5a719b11d5289a8b4102cc92741.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_g_c__namespace_1ad7555973321ded648b809576e2eb5128.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   function_namespace_g_c__namespace_1a14b4cdaae994249f488dba2b2181a5ef.rst
+
+Variables
+*********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   variable_namespace_g_c__namespace_1ab75a7fefd40d6d1d85af6dae80212701.rst
+
+Defines
+*******
+
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_8hh_1adeb473198c345f5e2fffbe4917dfd842.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_8hh_1aae129e41a45daea753428f06ea60e85a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_8hh_1a8dc0216e4b1676666f0dfab4a71f5865.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_8hh_1a9d628c1d085b17ba563cea534312adc4.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   define__generic_container_config_8hh_1a4db100b6a21db550ede804541dc4fb3f.rst
+
+Typedefs
+********
+
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a58e0e30d41e81d27133c8e72cc3bb3e8.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a8fd48091460e5bbdad3d08cb50a2eab1.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a4ad5240416b67bf3808b8143c958e4ba.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1ab95e41b625f6532dc5b73638874952af.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a228628b01634a1610091b40062f0f727.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1ac84a8d0aaf78295022925d17fd30a94c.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1ab00d0c404e64a17214ea09344e29d242.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a05da29f2fac4b69eddcc9b6bc7888805.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a7a42f28df2e1995b2095edf5d2edb954.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a50ae3b7e2a0dd467c857f0ceaa86fb33.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a0ab5ecd4dce2016b81c0b9b8b97ac086.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a918b3a3b43287357a6a6097652decf16.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a9b19a982cc7c71605db7ea157e7aac6a.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1af9fcfc59d371b02a5a7837a20e2a3e24.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a333199242844f64fcf9722a36d74dad2.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a4fd77436e5c875dc395a7fe12b0bd16f.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1aa35c7d347e472e2266f6c51002001c37.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a3941a4a098d4f2267ea7bf50ca04554b.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1ac213dd8b8f3de270fdce3b3a7f88e2ac.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a63db0334b9bf6c29d3c5ef8c5fd3cf0b.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1af5e764e0677dd6a6ca76cfdb15c393b2.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a41c5f6d7c5b9b14943b1c12ed9019302.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1ac55778cc6ac276d6a5d1be8e1a9d4ccc.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a6cae3d1434248cf0fb9621b8fabbfdf1.rst
+
+.. toctree::
+   :maxdepth: 5
+
+   typedef_namespace_g_c__namespace_1a477c30f9488aa68dbbe3a0709985a809.rst
