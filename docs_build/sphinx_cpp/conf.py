@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-from past.builtins import execfile
+from pathlib import Path
 
 # -- Project information -----------------------------------------------------
-execfile('../project_common.py')
+exec(open("../project_common.py").read())
+
 
 # Setup the breathe extension
 breathe_projects = { project+"_cpp": "../xml-cpp" }
@@ -12,17 +13,20 @@ breathe_default_project = project+"_cpp"
 extensions.append('exhale');
 extensions.append('breathe');
 
+dir_path = os.path.dirname(os.path.realpath(__file__))+"../../../src"
+dir_path = Path(dir_path).resolve()
+
 # Setup the exhale extension
 exhale_args = {
   # These arguments are required
   "containmentFolder":     "./api-cpp",
   "rootFileName":          "library_root.rst",
   "rootFileTitle":         "C++ API",
-  "doxygenStripFromPath":  "..",
+  "doxygenStripFromPath":  str(dir_path),
   # Suggested optional arguments
   "createTreeView":        True,
   # TIP: if using the sphinx-bootstrap-theme, you need
-  "treeViewIsBootstrap": True,
+  "treeViewIsBootstrap":   False,
   "exhaleExecutesDoxygen": True,
   #"exhaleDoxygenStdin":    "INPUT = ../../src"
   "exhaleDoxygenStdin":
@@ -56,7 +60,7 @@ exhale_args = {
   "lexerMapping": { r".*\.m": "MATLAB" }
 }
 
-cpp_index_common_prefix = ['GC_namespace::']
+cpp_index_common_prefix = ['GC_namespace::','GC::']
 
 html_theme_options['logotarget'] = "../index"
 html_theme_options['roottarget'] = "../index"

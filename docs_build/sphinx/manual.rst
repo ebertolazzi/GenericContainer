@@ -303,8 +303,8 @@ from a generic vector
    c.set_bool(true);    // equivalent way
    c = true;            // equivalent way
 
-Accessing directly the i-th element using operator [] and ()
-------------------------------------------------------------
+Accessing using operator [] and ()
+----------------------------------
 
 .. code:: cpp
 

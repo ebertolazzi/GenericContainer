@@ -11,9 +11,7 @@ Generic Container
 
    readme.rst
    manual.rst
-   api_c.rst
-   api_cpp.rst
-   api_json.rst
+   interfaces.rst
 
 .. note::
 

@@ -7,11 +7,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manual &#8212; Generic Container v1.0.0
+    <title>Manual &#8212; Clothoids v1.0.0
 </title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css" />
     <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
@@ -37,7 +36,7 @@
     
 
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="C Interface" href="api_c.html" />
+    <link rel="next" title="Interfaces" href="interfaces.html" />
     <link rel="prev" title="Generic Container" href="readme.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
@@ -50,12 +49,12 @@
           <a href="index.html" title="Table Of Contents"
              accesskey="C">toc</a></li>
         <li class="right" >
-          <a href="api_c.html" title="C Interface"
+          <a href="interfaces.html" title="Interfaces"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="readme.html" title="Generic Container"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">Generic Container</a> &#187;</li>
+    <li><a href="index.html">Clothoids</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href="">Manual</a></li> 
       </ul>
@@ -356,8 +355,8 @@ issued.</p>
 </div>
 </div>
 </div>
-<div class="section" id="accessing-directly-the-i-th-element-using-operator-and">
-<h2>Accessing directly the i-th element using operator [] and ()<a class="headerlink" href="#accessing-directly-the-i-th-element-using-operator-and" title="Permalink to this headline">¶</a>
+<div class="section" id="accessing-using-operator-and">
+<h2>Accessing using operator [] and ()<a class="headerlink" href="#accessing-using-operator-and" title="Permalink to this headline">¶</a>
 </h2>
 <div class="highlight-cpp notranslate">
 <div class="highlight"><pre><span></span><span class="n">gc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>    <span class="c1">// Access the i-th element of vector of booleans</span>
@@ -448,23 +447,13 @@ distribution.</p>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Generic Container</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Manual</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#github-repository">Github repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#initialization">Initialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#implicit-type-initialization">Implicit type initialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#initialization-with-operator">Initialization with operator =</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#accessing-data-stored-in-vector">Accessing data stored in vector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#accessing-by-using-references-alias">accessing by using references (alias)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#accessing-directly-the-i-th-element">Accessing directly the i-th element</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#accessing-directly-the-i-th-element-using-operator-and">Accessing directly the i-th element using operator [] and ()</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-using-operator-and">Accessing using operator [] and ()</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#accessing-data-stored-in-map">Accessing data stored in map</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#build-complex-data-structures">Build complex data structures</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api_c.html">C Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_cpp.html">C++ Interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api_json.html">JSON Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">Interfaces</a></li>
 </ul>
 </div>
         </div>
@@ -497,12 +486,12 @@ distribution.</p>
           <a href="index.html" title="Table Of Contents"
              >toc</a></li>
         <li class="right" >
-          <a href="api_c.html" title="C Interface"
+          <a href="interfaces.html" title="Interfaces"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
           <a href="readme.html" title="Generic Container"
              >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="index.html">Generic Container</a> &#187;</li>
+    <li><a href="index.html">Clothoids</a> &#187;</li>
 
         <li class="nav-item nav-item-this"><a href="">Manual</a></li> 
       </ul>
@@ -510,8 +499,8 @@ distribution.</p>
     </div>
 
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2021, Enrico Bertolazzi.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.2.
+        &#169; Copyright 2021, Enrico Bertolazzi and Marco Frego.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

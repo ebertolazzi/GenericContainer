@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
-from past.builtins import execfile
+from pathlib import Path
 
 # -- Project information -----------------------------------------------------
-execfile('../project_common.py')
+exec(open("../project_common.py").read())
+
 
 intersphinx_mapping = {
   'api-c': ('../sphinx_c/_build/html/objects.inv', None),
