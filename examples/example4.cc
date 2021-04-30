@@ -67,6 +67,8 @@ main() {
     gc["h"] = "pippo";
     gc["pointer"] = &gc;
 
+    gc.erase("h");
+
     GC::vec_real_type v;
     v.push_back(1);
     v.push_back(2);

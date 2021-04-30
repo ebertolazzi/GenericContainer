@@ -352,6 +352,12 @@ namespace GC_namespace {
     //!
     void clear();
 
+    //!
+    //! free memory of the data stored in `GenericContainer`,
+    //! data type must be 'MAP'
+    //!
+    void erase( char const * name );
+
     //! \name Initialize simple data
     ///@{
     //!
