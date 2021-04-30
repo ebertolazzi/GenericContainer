@@ -11,9 +11,6 @@
 /libs/*.dll
 /DerivedData
 /CMakeFiles
-/vs_2010
-/vs_2013
-/vs_2015
 
 # Compiled source #
 ###################
@@ -119,3 +116,4 @@ docs_build/sphinx_json/_build
 docs_build/xml-cpp
 docs_build/xml-json
 docs_build/xml-c
+/vs_201?_*
