@@ -1,10 +1,69 @@
-import os
+# pip install sphinxcontrib-email
+# pip install importlib_metadata
+# pip install cloud_sptheme
+# pip install exhale
+# pip install sphinxcontrib-pyexec
 
-project   = 'Clothoids'
-copyright = '2021, Enrico Bertolazzi and Marco Frego'
-author    = ':email:`Enrico Bertolazzi <enrico.bertolazzi@unitn.it>` and :email:`Marco Frego <marco.frego@unibz.it>`'
+import exhale
+import os
+import re
+import glob
+import os.path
+from pprint import pprint
+
+def do_filter(project, dir, filter = "/**/*.rst", regex=None):
+  if regex is None:
+    regex = re.compile(r"^(\s*\.\.\s*doxygen.*::.*)$", flags=re.IGNORECASE)
+  for fl in glob.glob(dir+filter,recursive=True):
+    #print(fl)
+    with open(fl) as fp:
+      file_data = fp.read()
+    with open(fl, "w") as fp:
+      for line in file_data.splitlines():
+        match = regex.match(line)
+        if match:
+          fp.write(f"{match.group(1)}\n   :project: {project}\n")
+        else:
+          fp.write(line+'\n')
+
+saved_exhale_environment_ready = exhale.environment_ready
+
+def exhale_environment_ready(app):
+  exhale_projects_args    = dict(app.config._raw_config['exhale_projects_args'])
+  breathe_projects        = dict(app.config._raw_config['breathe_projects'])
+  breathe_default_project = app.config._raw_config['breathe_default_project']
+
+  for project in breathe_projects:
+    app.config.breathe_default_project = project
+    app.config._raw_config['rst_prolog'] = ".. |xml| replace:: %s\n" % (project)
+    os.makedirs(breathe_projects[project], exist_ok=True)
+
+    project_exhale_args    = exhale_projects_args.get(project, {})
+    app.config.exhale_args = dict(project_exhale_args)
+    #app.config.exhale_args["containmentFolder"] = os.path.realpath(app.config.exhale_args["containmentFolder"])
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    print("="*75)
+    print(project)
+    print("-"*50)
+    pprint(app.config.exhale_args)
+    print("="*75)
+
+    saved_exhale_environment_ready( app )
+
+    dir = app.config.exhale_args["containmentFolder"];
+    ##os.system("ruby ../filter_exhale_breathe.rb %s %s" % (dir, project));
+    do_filter(project,dir)
+
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+
+  app.config.breathe_default_project = breathe_default_project
+
+exhale.environment_ready = exhale_environment_ready
+
+project   = 'Generic Container'
+copyright = '2021, Enrico Bertolazzi'
+author    = ':email:`Enrico Bertolazzi <enrico.bertolazzi@unitn.it>`'
 version   = os.popen('git describe --tags --abbrev=0').read()
-##release   = '1.0'
 
 # The master toctree document.
 master_doc = 'index'
@@ -71,6 +130,8 @@ html_use_smartypants = True
 # Custom sidebar templates, maps document names to template names.
 ##html_sidebars = {'**': ['searchbox.html', 'globaltoc.html']}
 html_sidebars = { '**': ['searchbox.html', 'globaltoc.html'] }
+
+# relbar_links = [("genindex2","MATLAB index")]
 
 # If false, no module index is generated.
 # html_domain_indices = False

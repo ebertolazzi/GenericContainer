@@ -1,23 +1,20 @@
-Generic Container
-=================
+OPoly
+=====
 
 **by Enrico Bertolazzi**
 
-`Github repository <https://github.com/ebertolazzi/GenericContainer>`__
-
+OPoly is a set of C++ classes (with MATLAB mex interface)
+which implements various Orthogonal polynomials.
 
 .. toctree::
    :maxdepth: 2
 
    readme.rst
-   manual.rst
-   interfaces.rst
-
-.. note::
-
-   JSON interface done by Nicola Dal Bianco
+   api-cpp/root.rst
+   api-c/root.rst
+   api-json/root.rst
 
 License
 -------
 
-.. literalinclude:: ../../License.txt
+.. literalinclude:: ../../license.txt

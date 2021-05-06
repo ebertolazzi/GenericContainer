@@ -117,3 +117,4 @@ docs_build/xml-cpp
 docs_build/xml-json
 docs_build/xml-c
 /vs_201?_*
+docs_build/sphinx/_doxygen

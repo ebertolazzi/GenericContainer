@@ -1,0 +1,753 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Listing for File GenericContainerCinterface.cc &#8212; Generic Container v1.0.0
+</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File GenericContainerCinterface.cc</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="program-listing-for-file-genericcontainercinterface-cc">
+<span id="program-listing-file-genericcontainercinterface-cc"></span><h1>Program Listing for File GenericContainerCinterface.cc<a class="headerlink" href="#program-listing-for-file-genericcontainercinterface-cc" title="Permalink to this headline">¶</a>
+</h1>
+<p>↰ <a class="reference internal" href="file_GenericContainerCinterface.cc.html#file-genericcontainercinterface-cc"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">GenericContainerCinterface.cc</span></code>)</p>
+<div class="highlight-cpp notranslate">
+<div class="highlight"><pre><span></span><span class="cm">/*--------------------------------------------------------------------------*\</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |  Copyright (C) 2013                                                      |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |         , __                 , __                                        |</span>
+<span class="cm"> |        /|/  \               /|/  \                                       |</span>
+<span class="cm"> |         | __/ _   ,_         | __/ _   ,_                                |</span>
+<span class="cm"> |         |   \|/  /  |  |   | |   \|/  /  |  |   |                        |</span>
+<span class="cm"> |         |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/                       |</span>
+<span class="cm"> |                           /|                   /|                        |</span>
+<span class="cm"> |                           \|                   \|                        |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |      Enrico Bertolazzi                                                   |</span>
+<span class="cm"> |      Dipartimento di Ingegneria Industriale                              |</span>
+<span class="cm"> |      Universita` degli Studi di Trento                                   |</span>
+<span class="cm"> |      email: enrico.bertolazzi@unitn.it                                   |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm">\*--------------------------------------------------------------------------*/</span>
+
+<span class="c1">//</span>
+<span class="c1">// file: GenericContainerCinterface.cc</span>
+<span class="c1">//</span>
+
+<span class="cp">#ifndef DOXYGEN_SHOULD_SKIP_THIS</span>
+
+<span class="cm">/*</span>
+<span class="cm"> \file GenericContainerCinterface.cc</span>
+<span class="cm"> This file contains the sources for the C interface to `GenericContainer`</span>
+<span class="cm"> */</span>
+
+<span class="cp">#include</span> <span class="cpf">"GenericContainer.hh"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"GenericContainerCinterface.h"</span><span class="cp"></span>
+
+<span class="cp">#ifdef __clang__</span>
+<span class="cp">#pragma clang diagnostic ignored "-Wc++98-compat"</span>
+<span class="cp">#pragma clang diagnostic ignored "-Wexit-time-destructors"</span>
+<span class="cp">#pragma clang diagnostic ignored "-Wglobal-constructors"</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="cp">#define GC_TRY(A) \</span>
+<span class="cp">try { A; } \</span>
+<span class="cp">catch(std::runtime_error &amp; err) { \</span>
+<span class="cp">  cerr &lt;&lt; "Error: " &lt;&lt; err.what() &lt;&lt; "\n"; \</span>
+<span class="cp">  return GENERIC_CONTAINER_NO_DATA; \</span>
+<span class="cp">} catch (...) { \</span>
+<span class="cp">  return GENERIC_CONTAINER_NO_DATA; \</span>
+<span class="cp">}</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="n">GC_namespace</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">GenericContainerExplorer</span><span class="o">*&gt;</span>  <span class="n">MAP</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="n">GenericContainerExplorer</span><span class="o">*&gt;</span> <span class="n">MAP_DATA</span><span class="p">;</span>
+
+<span class="k">static</span> <span class="n">MAP</span>                        <span class="n">gc_explorer</span><span class="p">;</span>
+<span class="k">static</span> <span class="n">GenericContainerExplorer</span> <span class="o">*</span> <span class="n">gc_active</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+
+<span class="k">extern</span> <span class="s">"C"</span> <span class="p">{</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_new</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">id</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ckeck if exists</span>
+  <span class="n">MAP</span><span class="o">::</span><span class="n">iterator</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">gc_explorer</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">==</span> <span class="n">gc_explorer</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc_explorer</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">MAP_DATA</span><span class="p">(</span> <span class="n">id</span><span class="p">,</span> <span class="k">new</span> <span class="n">GenericContainerExplorer</span><span class="p">()</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">gc_explorer</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">gc_active</span> <span class="o">=</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_select</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">id</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ckeck if exists</span>
+  <span class="n">MAP</span><span class="o">::</span><span class="n">iterator</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">gc_explorer</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">pos</span> <span class="o">==</span> <span class="n">gc_explorer</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">gc_explorer</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span> <span class="n">MAP_DATA</span><span class="p">(</span> <span class="n">id</span><span class="p">,</span> <span class="k">new</span> <span class="n">GenericContainerExplorer</span><span class="p">()</span> <span class="p">)</span> <span class="p">);</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="n">gc_explorer</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">gc_active</span> <span class="o">=</span> <span class="n">pos</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="o">*</span>
+<span class="nf">GC_mem_ptr</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">id</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">GC_select</span><span class="p">(</span> <span class="n">id</span> <span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">mem_ptr</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_delete</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">id</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">gc_explorer</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_fill_for_test</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">id</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ckeck if exists</span>
+  <span class="n">GC_select</span><span class="p">(</span> <span class="n">id</span> <span class="p">);</span>
+  <span class="n">GenericContainer</span> <span class="o">&amp;</span> <span class="n">gc</span> <span class="o">=</span>
+     <span class="o">*</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">GenericContainer</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">mem_ptr</span><span class="p">());</span>
+
+  <span class="n">vector_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc</span><span class="p">.</span><span class="n">set_vector</span><span class="p">();</span>
+  <span class="n">v</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_vec_real</span><span class="p">();</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">set_map</span><span class="p">();</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">set_vec_string</span><span class="p">();</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.3</span><span class="p">;</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s">"pippo"</span><span class="p">;</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">6</span><span class="p">].</span><span class="n">set_map</span><span class="p">();</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">7</span><span class="p">].</span><span class="n">set_vector</span><span class="p">();</span>
+  <span class="n">v</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+  <span class="n">vec_real_type</span> <span class="o">&amp;</span> <span class="n">vv</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">get_vec_real</span><span class="p">();</span>
+  <span class="n">vv</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="n">vv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+  <span class="n">map_type</span> <span class="o">&amp;</span> <span class="n">mm</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">get_map</span><span class="p">();</span>
+  <span class="n">mm</span><span class="p">[</span><span class="s">"pippo"</span><span class="p">]</span>    <span class="o">=</span> <span class="mi">13</span><span class="p">;</span>
+  <span class="n">mm</span><span class="p">[</span><span class="s">"pluto"</span><span class="p">]</span>    <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="n">mm</span><span class="p">[</span><span class="s">"paperino"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="n">GenericContainer</span> <span class="o">&amp;</span> <span class="n">gmm</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// access element 2 as GenericContainer</span>
+  <span class="n">gmm</span><span class="p">[</span><span class="s">"aaa"</span><span class="p">]</span>     <span class="o">=</span> <span class="s">"stringa1"</span><span class="p">;</span>   <span class="c1">// is the same as mm["aaa"] = "stringa"</span>
+  <span class="n">gmm</span><span class="p">[</span><span class="s">"bbb"</span><span class="p">]</span>     <span class="o">=</span> <span class="s">"stringa2"</span><span class="p">;</span>   <span class="c1">// is the same as mm["aaa"] = "stringa"</span>
+  <span class="n">vec_string_type</span> <span class="o">&amp;</span> <span class="n">vs</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">get_vec_string</span><span class="p">();</span>
+  <span class="n">vs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"string1"</span><span class="p">);</span>
+  <span class="n">vs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"string2"</span><span class="p">);</span>
+  <span class="n">vs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"string3"</span><span class="p">);</span>
+  <span class="n">vs</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"string4"</span><span class="p">);</span>
+  <span class="n">map_type</span> <span class="o">&amp;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">6</span><span class="p">].</span><span class="n">get_map</span><span class="p">();</span>
+  <span class="n">m</span><span class="p">[</span><span class="s">"aaa"</span><span class="p">]</span>    <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+  <span class="n">m</span><span class="p">[</span><span class="s">"bbb"</span><span class="p">]</span>    <span class="o">=</span> <span class="mf">3.4</span><span class="p">;</span>
+  <span class="n">m</span><span class="p">[</span><span class="s">"vector"</span><span class="p">].</span><span class="n">set_vec_int</span><span class="p">();</span>
+  <span class="n">vec_int_type</span> <span class="o">&amp;</span> <span class="n">vi</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="s">"vector"</span><span class="p">].</span><span class="n">get_vec_int</span><span class="p">();</span>
+  <span class="n">vi</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+  <span class="n">vi</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="n">vi</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+  <span class="n">vector_type</span> <span class="o">&amp;</span> <span class="n">vg</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">7</span><span class="p">].</span><span class="n">get_vector</span><span class="p">();</span>
+  <span class="n">vg</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+  <span class="n">vg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">123</span><span class="p">;</span>
+  <span class="n">vg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+  <span class="n">vg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="s">"nonna papera"</span><span class="p">;</span>
+  <span class="n">vec_complex_type</span> <span class="o">&amp;</span> <span class="n">vg1</span> <span class="o">=</span> <span class="n">vg</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">set_vec_complex</span><span class="p">();</span>
+  <span class="n">vg1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="n">vg1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">vg1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+  <span class="n">vg1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">-12</span><span class="p">,</span><span class="mi">2</span><span class="p">));</span>
+
+  <span class="n">GenericContainer</span> <span class="o">&amp;</span> <span class="n">gm</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+  <span class="n">gm</span><span class="p">.</span><span class="n">set_mat_real</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">gm</span><span class="p">.</span><span class="n">get_real_at</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="n">gm</span><span class="p">.</span><span class="n">get_real_at</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+  <span class="n">GenericContainer</span> <span class="o">&amp;</span> <span class="n">gm1</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">9</span><span class="p">];</span>
+  <span class="n">gm1</span><span class="p">.</span><span class="n">set_mat_complex</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">gm1</span><span class="p">.</span><span class="n">get_complex_at</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+  <span class="n">gm1</span><span class="p">.</span><span class="n">get_complex_at</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">-1</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_pop_head</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">pop</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_reset_head</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">reset</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_print_content_types</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">print_content_types</span><span class="p">(</span><span class="n">cout</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_dump</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">dump</span><span class="p">(</span><span class="n">cout</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="nf">GC_get_type</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">-1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_type</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="k">const</span> <span class="o">*</span>
+<span class="n">GC_get_type_name</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">static</span> <span class="kt">char</span> <span class="k">const</span> <span class="n">empty</span><span class="p">[]</span> <span class="o">=</span> <span class="s">""</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">empty</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_type_name</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_bool</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_bool</span><span class="p">(</span><span class="n">a</span><span class="o">?</span><span class="nb">true</span><span class="o">:</span><span class="nb">false</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_int</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_int</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_real</span><span class="p">(</span> <span class="kt">double</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_real</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_complex</span><span class="p">(</span> <span class="n">c_complex_type</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_complex</span><span class="p">(</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">real</span><span class="p">,</span><span class="n">a</span><span class="o">-&gt;</span><span class="n">imag</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_complex2</span><span class="p">(</span> <span class="kt">double</span> <span class="n">re</span><span class="p">,</span> <span class="kt">double</span> <span class="n">im</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_complex</span><span class="p">(</span><span class="n">re</span><span class="p">,</span><span class="n">im</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_string</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_string</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_bool</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_bool</span><span class="p">()</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_int</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_int</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">long</span>
+<span class="n">GC_get_long</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">long</span><span class="p">(</span><span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_long</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_real</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_real</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">c_complex_type</span>
+<span class="n">GC_get_complex</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">c_complex_type</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">complex_type</span> <span class="n">t</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex</span><span class="p">();</span>
+    <span class="n">tmp</span><span class="p">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">real</span><span class="p">();</span>
+    <span class="n">tmp</span><span class="p">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">t</span><span class="p">.</span><span class="n">imag</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_complex_re</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex</span><span class="p">()</span> <span class="p">.</span> <span class="n">real</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_complex_im</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex</span><span class="p">()</span> <span class="p">.</span> <span class="n">imag</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="k">const</span> <span class="o">*</span>
+<span class="n">GC_get_string</span><span class="p">(</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_string</span><span class="p">()</span> <span class="p">.</span> <span class="n">c_str</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_bool</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">push_bool</span><span class="p">(</span> <span class="n">a</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_int</span><span class="p">(</span> <span class="kt">int</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">push_int</span><span class="p">(</span> <span class="n">a</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_real</span><span class="p">(</span> <span class="kt">double</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">push_real</span><span class="p">(</span> <span class="n">a</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_complex</span><span class="p">(</span> <span class="n">c_complex_type</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">push_complex</span><span class="p">(</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">real</span><span class="p">,</span> <span class="n">a</span><span class="o">-&gt;</span><span class="n">imag</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_complex2</span><span class="p">(</span> <span class="kt">double</span> <span class="n">re</span><span class="p">,</span> <span class="kt">double</span> <span class="n">im</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">push_complex</span><span class="p">(</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_string</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">push_string</span><span class="p">(</span> <span class="n">a</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_bool_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">val</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_bool_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">val</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_int_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_int_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_real_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_number_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">c_complex_type</span>
+<span class="n">GC_get_complex_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">c_complex_type</span> <span class="n">tmp</span><span class="p">;</span>
+  <span class="n">tmp</span><span class="p">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">.</span><span class="n">imag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex_number_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="n">tmp</span><span class="p">.</span><span class="n">real</span><span class="p">,</span> <span class="n">tmp</span><span class="p">.</span><span class="n">imag</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_complex_real_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">real_type</span> <span class="n">re</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">im</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex_number_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">re</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_complex_imag_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">real_type</span> <span class="n">re</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">im</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex_number_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span> <span class="n">re</span><span class="p">,</span> <span class="n">im</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">im</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="k">const</span> <span class="o">*</span>
+<span class="n">GC_get_string_at_pos</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_string_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="p">).</span><span class="n">c_str</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_real_at_coor</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_real_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">c_complex_type</span>
+<span class="n">GC_get_complex_at_coor</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">c_complex_type</span> <span class="n">tmp</span><span class="p">;</span>
+  <span class="n">tmp</span><span class="p">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">.</span><span class="n">imag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">complex_type</span> <span class="n">res</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">tmp</span><span class="p">.</span><span class="n">real</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">real</span><span class="p">();</span>
+    <span class="n">tmp</span><span class="p">.</span><span class="n">imag</span> <span class="o">=</span> <span class="n">res</span><span class="p">.</span><span class="n">imag</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_complex_real_at_coor</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">complex_type</span> <span class="n">res</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">real</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">double</span>
+<span class="n">GC_get_complex_imag_at_coor</span><span class="p">(</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">!=</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">complex_type</span> <span class="n">res</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_complex_at</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">.</span><span class="n">imag</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_empty_vector_of_bool</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_bool</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_empty_vector_of_int</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_int</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_empty_vector_of_real</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_real</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_empty_vector_of_complex</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_complex</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_empty_vector_of_string</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_string</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_vector_of_bool</span><span class="p">(</span> <span class="kt">int</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nelem</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">vec_bool_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_bool</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_vector_of_int</span><span class="p">(</span> <span class="kt">int</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nelem</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">vec_int_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_int</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">nelem</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_vector_of_real</span><span class="p">(</span> <span class="kt">double</span> <span class="k">const</span> <span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nelem</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">vec_real_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_real</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">nelem</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_vector_of_complex</span><span class="p">(</span> <span class="kt">double</span> <span class="k">const</span> <span class="o">*</span> <span class="n">re</span><span class="p">,</span> <span class="kt">double</span> <span class="k">const</span> <span class="o">*</span> <span class="n">im</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nelem</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">vec_complex_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_complex</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">complex_type</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">im</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_vector_of_string</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">**</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nelem</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">vec_string_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vec_string</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="kt">unsigned</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">);</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_vector</span><span class="p">(</span> <span class="kt">int</span> <span class="n">nelem</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vector</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">nelem</span><span class="p">)</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_empty_vector</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_vector</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_vector_size</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_num_elements</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_matrix_num_rows</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_numRows</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_get_matrix_num_cols</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">get_numCols</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_push_vector_position</span><span class="p">(</span> <span class="kt">int</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">push_vector_position</span><span class="p">(</span> <span class="kt">unsigned</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//..............................................................................</span>
+
+<span class="kt">int</span>
+<span class="n">GC_set_map</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="n">GC_TRY</span><span class="p">(</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">top</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">set_map</span><span class="p">()</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">GENERIC_CONTAINER_OK</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span>
+<span class="n">GC_push_map_position</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">pos</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">push_map_position</span><span class="p">(</span> <span class="n">pos</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span>
+<span class="n">GC_init_map_key</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="n">GENERIC_CONTAINER_BAD_HEAD</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">ok</span> <span class="o">=</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">init_map_key</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">ok</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">char</span> <span class="k">const</span> <span class="o">*</span>
+<span class="n">GC_get_next_key</span><span class="p">(</span> <span class="kt">void</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">gc_active</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="p">)</span> <span class="k">return</span> <span class="k">nullptr</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">gc_active</span><span class="o">-&gt;</span><span class="n">next_map_key</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="p">}</span> <span class="c1">// close extern "C"</span>
+
+<span class="cp">#endif </span><span class="c1">// DOXYGEN_SHOULD_SKIP_THIS</span>
+
+<span class="c1">//</span>
+<span class="c1">// eof: GenericContainerCinterface.cc</span>
+<span class="c1">//</span>
+</pre></div>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Generic Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-cpp/root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-json/root.html">C++ API</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File GenericContainerCinterface.cc</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
