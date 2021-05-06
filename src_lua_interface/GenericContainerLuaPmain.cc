@@ -16,6 +16,8 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #include "GenericContainerLuaInterface.hh"
 
 #ifdef __GNUC__
@@ -708,6 +710,8 @@ namespace GC_namespace {
   }
 
 }
+
+#endif
 
 //
 // EOF: GenericContainerLuaPmain.cc

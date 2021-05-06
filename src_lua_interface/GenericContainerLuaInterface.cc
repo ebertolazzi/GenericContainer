@@ -84,8 +84,6 @@ inline
 bool isInteger64( real_type x )
 { return isZero( x-static_cast<int64_t>(floor(x)) ); }
 
-#endif
-
 namespace GC_namespace {
 
   /*
@@ -415,7 +413,12 @@ namespace GC_namespace {
   // -----------------------------------------------------------------------------
 
   void
-  LuaInterpreter::global_to_GC( char const * global_var, GenericContainer & gc ) {
+  Lua_global_to_GC(
+    void             * void_L,
+    char const       * global_var,
+    GenericContainer & gc
+  ) {
+
     lua_State *& L = *(reinterpret_cast<lua_State**>(&void_L));
     GC_ASSERT_DEBUG(
       L != nullptr, "LuaInterpreter::global_to_GC(...) lua_State invalid!"
@@ -461,7 +464,8 @@ namespace GC_namespace {
   // -----------------------------------------------------------------------------
 
   void
-  LuaInterpreter::GC_to_global(
+  Lua_GC_to_global(
+    void                   * void_L,
     GenericContainer const & gc,
     char             const * global_var
   ) {
@@ -473,13 +477,15 @@ namespace GC_namespace {
   // -----------------------------------------------------------------------------
   extern "C"
   int
-  pmain ( lua_State *L );
+  pmain( lua_State *L );
 
   extern
   int
-  report (lua_State *L, int status);
+  report( lua_State *L, int status );
 
 }
+
+#endif
 
 //
 // EOF: GenericContainerLuaInterface.cc

@@ -1,0 +1,236 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lua Support &#8212; Generic Container v1.0.0
+</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="LUA API" href="api-lua/root.html" />
+    <link rel="prev" title="Function GC_namespace::to_mxArray(mat_complex_type const&amp;, mxArray *&amp;)" href="api-matlab/function_a00008_1a6270ec33fe7f69b938bfadf26f98186b.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api-lua/root.html" title="LUA API"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api-matlab/function_a00008_1a6270ec33fe7f69b938bfadf26f98186b.html" title="Function GC_namespace::to_mxArray(mat_complex_type const&amp;, mxArray *&amp;)"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">Generic Container</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Lua Support</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lua-support">
+<h1>Lua Support<a class="headerlink" href="#lua-support" title="Permalink to this headline">¶</a>
+</h1>
+<p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> has an interfacing to exchange data with Lua.
+Ti use the interface include</p>
+<div class="highlight-cpp notranslate">
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"GenericContainerLuaInterface.hh"</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>compile and link with <code class="docutils literal notranslate"><span class="pre">GenericContainerLuaInterface.cc</span></code>.
+The interface contains a set of functions to convert from <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code>
+to Lua global variables and the other way around.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1">
+<a class="reference internal" href="api-lua/root.html">LUA API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-lua/root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-lua/root.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2">
+<a class="reference internal" href="api-lua/root.html#full-api">Full API</a><ul>
+<li class="toctree-l3">
+<a class="reference internal" href="api-lua/root.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4">
+<a class="reference internal" href="api-lua/namespace_GC_namespace.html">Namespace GC_namespace</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api-lua/namespace_GC_namespace.html#classes">Classes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api-lua/namespace_GC_namespace.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="api-lua/root.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4">
+<a class="reference internal" href="api-lua/class_a00015.html">Class LuaInterpreter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api-lua/class_a00015.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3">
+<a class="reference internal" href="api-lua/root.html#functions">Functions</a><ul>
+<li class="toctree-l4">
+<a class="reference internal" href="api-lua/function_a00011_1ace50bbb9d1173c77e0c40a1c5e3fb5db.html">Function GC_namespace::Lua_GC_to_global</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api-lua/function_a00011_1ace50bbb9d1173c77e0c40a1c5e3fb5db.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l4">
+<a class="reference internal" href="api-lua/function_a00011_1a4d12752607c583a39860c5d23caf68e4.html">Function GC_namespace::Lua_global_to_GC</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="api-lua/function_a00011_1a4d12752607c583a39860c5d23caf68e4.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="index.html" title="index">
+          <img class="logo" src="_static/logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="index.html">Table of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Generic Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-cpp/root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-c/root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-json/root.html">JSON API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">Matlab Support</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lua Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-lua/root.html">LUA API</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api-lua/root.html" title="LUA API"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="api-matlab/function_a00008_1a6270ec33fe7f69b938bfadf26f98186b.html" title="Function GC_namespace::to_mxArray(mat_complex_type const&amp;, mxArray *&amp;)"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="index.html">Generic Container</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Lua Support</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

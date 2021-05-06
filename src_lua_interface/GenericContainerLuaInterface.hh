@@ -28,21 +28,85 @@
 
 namespace GC_namespace {
 
+  //!
+  //! Convert a global variable in `Lua` to a `GenericContainer`
+  //!
+  //! \param void_L pointer to a Lua interpreter
+  //! \param[in]    global_var string containing the name of the Lua global variable to be converted
+  //! \param[out]   gc resulting `GenericContainer`
+  //!
+  void
+  Lua_global_to_GC(
+    void             * void_L,
+    char const       * global_var,
+    GenericContainer & gc
+  );
+
+  //!
+  //! Convert a `GenericContainer` to a global variable in the `Lua` interpreter
+  //!
+  //! \param void_L pointer to a Lua interpreter
+  //! \param[in]    gc input `GenericContainer`
+  //! \param[in]    global_var string containing the name of the Lua global variable storing the result of conversion
+  //!
+  void
+  Lua_GC_to_global(
+    void                   * void_L,
+    GenericContainer const & gc,
+    char const             * global_var
+  );
+
+  //!
+  //! C++ class imnplementing a simple Lua interpreter that can be used
+  //! to read and interpret data file.
+  //!
   class LuaInterpreter {
     /* lua_State * */ void * void_L; //!< interpreter status
   public:
     LuaInterpreter();
     ~LuaInterpreter();
-    void dump( ostream_type & stream );
+
+    //!
+    //! Interpret the string `cmd` as a Lua statement
+    //!
     void execute( char const * cmd );
-    void call( GenericContainer const & args, GenericContainer & res );
+
+    //!
+    //! Execute a function in Lua with arguments passed by the `GenericContainer`
+    //!
+    //! - `arguments` must contain the field
+    //!   - "function" of type string with the name of the Lua function to be called
+    //!   - "args"     a generic container storing the arguments of the function
+    //!
+    //! The result of computation is returned in `res`
+    //!
+    void call( GenericContainer const & arguments, GenericContainer & res );
+
+    //!
+    //! Interpret the file `fname` as a Lua script
+    //!
     void do_file( char const * fname );
-    void GC_to_global( GenericContainer const & gc, char const * ); // not yet implemented
-    void global_to_GC( char const * var, GenericContainer & gc );
-    int  interactive( int argc,
-                      char const ** argv,
-                      char const ** messages,
-                      char const *  prompt ); // launch interpret mode
+
+    void
+    GC_to_global( GenericContainer const & gc, char const * global_var ) {
+      Lua_GC_to_global( void_L, gc, global_var );
+    }
+
+    void
+    global_to_GC( char const * var, GenericContainer & gc ) {
+      Lua_global_to_GC( void_L, var, gc );
+    }
+
+    //!
+    //! execute the Lua interpreter interatovely.
+    //!
+    int
+    interactive(
+      int argc,
+      char const ** argv,
+      char const ** messages,
+      char const *  prompt
+    ); // launch interpret mode
   };
 }
 

@@ -118,3 +118,11 @@ docs_build/xml-json
 docs_build/xml-c
 /vs_201?_*
 docs_build/sphinx/_doxygen
+docs_build/sphinx/api-lua
+docs_build/sphinx/api-matlab
+src_lua_interface/example1.dSYM
+src_lua_interface/example2.dSYM
+src_lua_interface/example3.dSYM
+example1
+example2
+example3

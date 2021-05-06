@@ -17,13 +17,12 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 /*!
- \example example8.cc
 
- Example of use of Lua interface. `GenericContainer` is used
- to read a lua table initialied in a lua script.
+ \example example9.cc
+
  */
 
-#include "GenericContainerLuaInterface.hh"
+#include "GenericContainer.hh"
 #include <iostream>
 #include <fstream>
 
@@ -36,16 +35,17 @@ main() {
   cout
     << "\n\n\n"
     << "***********************\n"
-    << "      example N.8      \n"
+    << "      example N.9      \n"
     << "***********************\n\n";
 
   try {
-    GenericContainer gc;
-    LuaInterpreter   lua;
-    lua.do_file("test.lua");
-    lua.global_to_GC("DATA",gc);
-    cout << "\n\n\n\nConverted in GenericContainer\n\n";
+    GC::GenericContainer gc, gc_res;
+    gc.set_mat_real(2,2);
+    gc.get_real_at(1,1) = 2;
+    gc.get_real_at(0,1) = 3;
+    cout << "Result:\n";
     gc.dump(cout);
+    gc.info(cout);
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';

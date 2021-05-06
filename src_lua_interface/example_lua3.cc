@@ -17,7 +17,7 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 /*!
- \example example10.cc
+ \example example8.cc
 
  Example of use of Lua interface. `GenericContainer` is used
  to call a lua function and read the results.
@@ -37,7 +37,7 @@ main() {
   cout
     << "\n\n\n"
     << "***********************\n"
-    << "      example N.10     \n"
+    << "   lua example N.3     \n"
     << "***********************\n\n";
 
   try {

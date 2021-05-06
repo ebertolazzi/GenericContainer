@@ -1,0 +1,204 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Function GC_namespace::mxSparse_to_GenericContainer &#8212; Generic Container v1.0.0
+</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function GC_namespace::to_mxArray(bool const&amp;, mxArray *&amp;)" href="function_a00008_1adc2d6ecf900c9dde7ef77676115f2c73.html" />
+    <link rel="prev" title="Function GC_namespace::mxArray_to_GenericContainer" href="function_a00008_1aa3f27a745bb26fc6841419833d940188.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="function_a00008_1adc2d6ecf900c9dde7ef77676115f2c73.html" title="Function GC_namespace::to_mxArray(bool const&amp;, mxArray *&amp;)"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="function_a00008_1aa3f27a745bb26fc6841419833d940188.html" title="Function GC_namespace::mxArray_to_GenericContainer"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../matlab.html" >Matlab Support</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="root.html" accesskey="U">MATLAB API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Function GC_namespace::mxSparse_to_GenericContainer</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="function-gc-namespace-mxsparse-to-genericcontainer">
+<span id="exhale-function-a00008-1a00be118805d71d19687ae48bb30e03ea"></span><h1>Function GC_namespace::mxSparse_to_GenericContainer<a class="headerlink" href="#function-gc-namespace-mxsparse-to-genericcontainer" title="Permalink to this headline">¶</a>
+</h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file__Users_enrico_Ricerca_develop_C%2B%2B_pins-mechatronix_LibSources_submodules_GC_src_matlab_interface_GenericContainerMatlabInterface.cc.html#file-users-enrico-ricerca-develop-c-pins-mechatronix-libsources-submodules-gc-src-matlab-interface-genericcontainermatlabinterface-cc"><span class="std std-ref">File GenericContainerMatlabInterface.cc</span></a></p></li>
+</ul>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a>
+</h2>
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace28mxSparse_to_GenericContainerEPK7mxArrayR16GenericContainer">
+<span id="_CPPv3N12GC_namespace28mxSparse_to_GenericContainerEPK7mxArrayR16GenericContainer"></span><span id="_CPPv2N12GC_namespace28mxSparse_to_GenericContainerEPK7mxArrayR16GenericContainer"></span><span id="GC_namespace::mxSparse_to_GenericContainer__mxArrayCP.GenericContainerR"></span><span class="target" id="a00008_1a00be118805d71d19687ae48bb30e03ea"></span><span class="pre">void</span> <code class="sig-prename descclassname"><span class="pre">GC_namespace</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">mxSparse_to_GenericContainer</span></code><span class="sig-paren">(</span><span class="pre">mxArray</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">mx</span></em>, <a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <span class="pre">&amp;</span><em><span class="pre">gc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace28mxSparse_to_GenericContainerEPK7mxArrayR16GenericContainer" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd>
+<p>Convert an <code class="docutils literal notranslate"><span class="pre">mxArray</span></code> containing a sparse matrix to a <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code>. The <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> will constain a map with the sparse matrix in compressed column format (<a class="reference external" href="https://en.wikipedia.org/wiki/Sparse_matrix">https://en.wikipedia.org/wiki/Sparse_matrix</a>)</p>
+<p></p>
+<ul class="simple">
+<li><p>“jc” pointer to the columns</p></li>
+<li><p>”ir” index of the rows</p></li>
+<li><p>”values” vector of real numbers with nonzeros of the matrix </p></li>
+</ul>
+
+</dd>
+</dl>
+
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Generic Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-cpp/root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-c/root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-json/root.html">JSON API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matlab.html">Matlab Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua Support</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="function_a00008_1adc2d6ecf900c9dde7ef77676115f2c73.html" title="Function GC_namespace::to_mxArray(bool const&amp;, mxArray *&amp;)"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="function_a00008_1aa3f27a745bb26fc6841419833d940188.html" title="Function GC_namespace::mxArray_to_GenericContainer"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../matlab.html" >Matlab Support</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="root.html" >MATLAB API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Function GC_namespace::mxSparse_to_GenericContainer</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -12,4 +12,5 @@ clean:
 	@rm -rf xml-matlab
 	@rm -rf sphinx*/api-*
 	@rm -rf sphinx*/_build
+	@rm -rf sphinx*/_doxygen
 	@cd sphinx; make clean; cd ..

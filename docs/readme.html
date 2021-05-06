@@ -15,12 +15,18 @@
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
     <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
     <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
     <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -47,7 +53,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="C++ API" href="api-cpp/root.html" />
-    <link rel="prev" title="OPoly" href="index.html" /> 
+    <link rel="prev" title="Generic Container" href="index.html" /> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
   </head><body>
     <div class="relbar-top">
@@ -65,7 +71,7 @@
           <a href="api-cpp/root.html" title="C++ API"
              accesskey="N">next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="index.html" title="OPoly"
+          <a href="index.html" title="Generic Container"
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">Generic Container</a> &#187;</li>
 
@@ -84,25 +90,57 @@
 <h1>Generic Container<a class="headerlink" href="#generic-container" title="Permalink to this headline">¶</a>
 </h1>
 <p><a class="reference external" href="https://travis-ci.org/ebertolazzi/GenericContainer"><img alt="Build Status" src="https://travis-ci.org/ebertolazzi/GenericContainer.svg?branch=master"></a></p>
+<div class="section" id="repository-and-online-documentation">
+<h2>Repository and online documentation<a class="headerlink" href="#repository-and-online-documentation" title="Permalink to this headline">¶</a>
+</h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ebertolazzi/GenericContainer">https://github.com/ebertolazzi/GenericContainer</a></p></li>
+<li><p><a class="reference external" href="http://ebertolazzi.github.io/GenericContainer">http://ebertolazzi.github.io/GenericContainer</a></p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a>
+</h2>
 <p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> is a C++ class with permit to store eterogeneous
 data:</p>
-<ul class="simple">
-<li><p>pointer</p></li>
-<li><p>boolean</p></li>
-<li><p>integer</p></li>
-<li><p>long integer</p></li>
-<li><p>floating point</p></li>
-<li><p>complex floating point</p></li>
-<li><p>string</p></li>
-<li><p>vector of pointer</p></li>
-<li><p>vector of boolean</p></li>
-<li><p>vector of integer</p></li>
-<li><p>vector of floating point</p></li>
-<li><p>vector of complex floating point</p></li>
-<li><p>vector of string</p></li>
-<li><p>matrix of floating point</p></li>
-<li><p>matrix of complex floating point</p></li>
-</ul>
+<table class="docutils align-default" id="id1">
+<caption>
+<span class="caption-text">Supported types
+ :widths: 10 10 10</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a>
+</caption>
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<tbody>
+<tr class="row-odd">
+<td><p>pointer</p></td>
+<td><p>boolean</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even">
+<td><p>long integer</p></td>
+<td><p>floating point</p></td>
+<td><p>complex floating point</p></td>
+</tr>
+<tr class="row-odd">
+<td><p>string</p></td>
+<td><p>vector of pointer</p></td>
+<td><p>vector of boolean</p></td>
+</tr>
+<tr class="row-even">
+<td><p>vector of integer</p></td>
+<td><p>vector of floating point</p></td>
+<td><p>vector of complex floating point</p></td>
+</tr>
+<tr class="row-odd">
+<td><p>vector of string</p></td>
+<td><p>matrix of floating point</p></td>
+<td><p>matrix of complex floating point</p></td>
+</tr>
+</tbody>
+</table>
 <p>in addition to this data type the following two container are added</p>
 <ul class="simple">
 <li><p>vector of <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code></p></li>
@@ -111,6 +149,7 @@ data:</p>
 <p>this permits to build complex recursive data. The main usage of the
 class is in interchange data with scripting language like <code class="docutils literal notranslate"><span class="pre">Ruby</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Lua</span></code>, <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>.</p>
+</div>
 <div class="section" id="simple-usage">
 <h2>Simple Usage<a class="headerlink" href="#simple-usage" title="Permalink to this headline">¶</a>
 </h2>
@@ -159,14 +198,6 @@ rake run_win   <span class="c1"># for windows</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="repository-and-online-documentation">
-<h2>Repository and online documentation<a class="headerlink" href="#repository-and-online-documentation" title="Permalink to this headline">¶</a>
-</h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/ebertolazzi/GenericContainer">https://github.com/ebertolazzi/GenericContainer</a></p></li>
-<li><p><a class="reference external" href="http://ebertolazzi.github.io/GenericContainer">http://ebertolazzi.github.io/GenericContainer</a></p></li>
-</ul>
-</div>
 <div class="section" id="author">
 <h2>Author<a class="headerlink" href="#author" title="Permalink to this headline">¶</a>
 </h2>
@@ -183,6 +214,8 @@ rake run_win   <span class="c1"># for windows</span>
         }
     )
 );</script>
+</div>
+<div class="line">homepage: <a class="reference external" href="https://e.bertolazzi.dii.unitn.it">https://e.bertolazzi.dii.unitn.it</a>
 </div>
 </div>
 </div>
@@ -213,15 +246,18 @@ rake run_win   <span class="c1"># for windows</span>
 <h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Generic Container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#repository-and-online-documentation">Repository and online documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simple-usage">Simple Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compile-and-tests">Compile and tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#repository-and-online-documentation">Repository and online documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#author">Author</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api-cpp/root.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api-c/root.html">C API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api-json/root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-json/root.html">JSON API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">Matlab Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lua.html">Lua Support</a></li>
 </ul>
 </div>
         </div>
@@ -260,7 +296,7 @@ rake run_win   <span class="c1"># for windows</span>
           <a href="api-cpp/root.html" title="C++ API"
              >next</a> &nbsp; &nbsp;</li>
         <li class="right" >
-          <a href="index.html" title="OPoly"
+          <a href="index.html" title="Generic Container"
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="index.html">Generic Container</a> &#187;</li>
 

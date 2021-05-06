@@ -3,24 +3,36 @@ Generic Container
 
 |Build Status|
 
+Repository and online documentation
+-----------------------------------
+
+- https://github.com/ebertolazzi/GenericContainer
+- http://ebertolazzi.github.io/GenericContainer
+
+Introduction
+------------
+
 ``GenericContainer`` is a C++ class with permit to store eterogeneous
 data:
 
--  pointer
--  boolean
--  integer
--  long integer
--  floating point
--  complex floating point
--  string
--  vector of pointer
--  vector of boolean
--  vector of integer
--  vector of floating point
--  vector of complex floating point
--  vector of string
--  matrix of floating point
--  matrix of complex floating point
+.. list-table:: Supported types
+   :widths: 10 10 10
+
+  * -  pointer
+    -  boolean
+    -  integer
+  * -  long integer
+    -  floating point
+    -  complex floating point
+  * -  string
+    -  vector of pointer
+    -  vector of boolean
+  * -  vector of integer
+    -  vector of floating point
+    -  vector of complex floating point
+  * -  vector of string
+    -  matrix of floating point
+    -  matrix of complex floating point
 
 in addition to this data type the following two container are added
 
@@ -82,12 +94,6 @@ To run the test
      rake run       # for linux/OSX
      rake run_win   # for windows
 
-Repository and online documentation
------------------------------------
-
-- https://github.com/ebertolazzi/GenericContainer
-- http://ebertolazzi.github.io/GenericContainer
-
 Author
 ------
 
@@ -95,7 +101,7 @@ Author
 | Dipartimento di Ingegneria Industriale
 | Università degli Studi di Trento
 | email: enrico.bertolazzi@unitn.it
-
+| homepage: https://e.bertolazzi.dii.unitn.it
 
 .. |Build Status| image:: https://travis-ci.org/ebertolazzi/GenericContainer.svg?branch=master
    :target: https://travis-ci.org/ebertolazzi/GenericContainer

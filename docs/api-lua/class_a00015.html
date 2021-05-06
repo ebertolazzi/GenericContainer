@@ -1,0 +1,276 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class LuaInterpreter &#8212; Generic Container v1.0.0
+</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Function GC_namespace::Lua_GC_to_global" href="function_a00011_1ace50bbb9d1173c77e0c40a1c5e3fb5db.html" />
+    <link rel="prev" title="Namespace GC_namespace" href="namespace_GC_namespace.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="function_a00011_1ace50bbb9d1173c77e0c40a1c5e3fb5db.html" title="Function GC_namespace::Lua_GC_to_global"
+             accesskey="N">next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="namespace_GC_namespace.html" title="Namespace GC_namespace"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lua.html" >Lua Support</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="root.html" accesskey="U">LUA API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class LuaInterpreter</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="class-luainterpreter">
+<span id="exhale-class-a00015"></span><h1>Class LuaInterpreter<a class="headerlink" href="#class-luainterpreter" title="Permalink to this headline">¶</a>
+</h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_GenericContainerLuaInterface.hh.html#file-genericcontainerluainterface-hh"><span class="std std-ref">File GenericContainerLuaInterface.hh</span></a></p></li>
+</ul>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a>
+</h2>
+<dl class="cpp class">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreterE">
+<span id="_CPPv3N12GC_namespace14LuaInterpreterE"></span><span id="_CPPv2N12GC_namespace14LuaInterpreterE"></span><span id="GC_namespace::LuaInterpreter"></span><span class="target" id="a00015"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">GC_namespace</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">LuaInterpreter</span></code><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreterE" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd>
+<p>C++ class imnplementing a simple Lua interpreter that can be used to read and interpret data file. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter14LuaInterpreterEv">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter14LuaInterpreterEv"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter14LuaInterpreterEv"></span><span id="GC_namespace::LuaInterpreter::LuaInterpreter"></span><span class="target" id="a00015_1a2c67dc333eb7557ae31c0548072d9215"></span><code class="sig-name descname"><span class="pre">LuaInterpreter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter14LuaInterpreterEv" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd></dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreterD0Ev">
+<span id="_CPPv3N12GC_namespace14LuaInterpreterD0Ev"></span><span id="_CPPv2N12GC_namespace14LuaInterpreterD0Ev"></span><span id="GC_namespace::LuaInterpreter::~LuaInterpreter"></span><span class="target" id="a00015_1a84401a9f69469a3888fdd80bf8c2f41e"></span><code class="sig-name descname"><span class="pre">~LuaInterpreter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreterD0Ev" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd></dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter7executeEPKc">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter7executeEPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter7executeEPKc"></span><span id="GC_namespace::LuaInterpreter::execute__cCP"></span><span class="target" id="a00015_1a5fcb1fb31f6cdfe0c1103f81ed635deb"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">execute</span></code><span class="sig-paren">(</span><span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">cmd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter7executeEPKc" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd>
+<p>Interpret the string <code class="docutils literal notranslate"><span class="pre">cmd</span></code> as a Lua statement </p>
+</dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter4callERK16GenericContainerR16GenericContainer">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter4callERK16GenericContainerR16GenericContainer"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter4callERK16GenericContainerR16GenericContainer"></span><span id="GC_namespace::LuaInterpreter::call__GenericContainerCR.GenericContainerR"></span><span class="target" id="a00015_1a186148c0e5ade70406e0b8d598c3f25e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">call</span></code><span class="sig-paren">(</span><a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">arguments</span></em>, <a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <span class="pre">&amp;</span><em><span class="pre">res</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter4callERK16GenericContainerR16GenericContainer" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd>
+<p>Execute a function in Lua with arguments passed by the <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code></p>
+<p></p>
+<ul class="simple">
+<li>
+<p><code class="docutils literal notranslate"><span class="pre">arguments</span></code> must contain the field</p>
+<ul>
+<li><p>”function” of type string with the name of the Lua function to be called</p></li>
+<li><p>”args” a generic container storing the arguments of the function</p></li>
+</ul>
+</li>
+</ul>
+
+<p>The result of computation is returned in <code class="docutils literal notranslate"><span class="pre">res</span></code> </p>
+</dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter7do_fileEPKc">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter7do_fileEPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter7do_fileEPKc"></span><span id="GC_namespace::LuaInterpreter::do_file__cCP"></span><span class="target" id="a00015_1a6b6c0a83aba3e358c106e51db007ad56"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">do_file</span></code><span class="sig-paren">(</span><span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">fname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter7do_fileEPKc" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd>
+<p>Interpret the file <code class="docutils literal notranslate"><span class="pre">fname</span></code> as a Lua script </p>
+</dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc"></span><span id="GC_namespace::LuaInterpreter::GC_to_global__GenericContainerCR.cCP"></span><span class="target" id="a00015_1ac8ffce6fe809d51b9051d523c0fc4fb6"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">GC_to_global</span></code><span class="sig-paren">(</span><a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">gc</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">global_var</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd></dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer"></span><span id="GC_namespace::LuaInterpreter::global_to_GC__cCP.GenericContainerR"></span><span class="target" id="a00015_1acbfe7a95ec30be517eb0a48841559ffd"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">global_to_GC</span></code><span class="sig-paren">(</span><span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">var</span></em>, <a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <span class="pre">&amp;</span><em><span class="pre">gc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd></dd>
+</dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc">
+<span id="_CPPv3N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc"></span><span id="GC_namespace::LuaInterpreter::interactive__i.cCPP.cCPP.cCP"></span><span class="target" id="a00015_1a49a8963a83b5e9f75826007c6eba7b91"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">interactive</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">argc</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">argv</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">messages</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">prompt</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc" title="Permalink to this definition">¶</a><br>
+</dt>
+<dd>
+<p>execute the Lua interpreter interatovely. </p>
+</dd>
+</dl>
+
+</div>
+</dd>
+</dl>
+
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Generic Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-cpp/root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-c/root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-json/root.html">JSON API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matlab.html">Matlab Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua Support</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="function_a00011_1ace50bbb9d1173c77e0c40a1c5e3fb5db.html" title="Function GC_namespace::Lua_GC_to_global"
+             >next</a> &nbsp; &nbsp;</li>
+        <li class="right" >
+          <a href="namespace_GC_namespace.html" title="Namespace GC_namespace"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+          <li class="nav-item nav-item-1"><a href="../lua.html" >Lua Support</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="root.html" >LUA API</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Class LuaInterpreter</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

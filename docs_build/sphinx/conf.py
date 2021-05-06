@@ -12,9 +12,11 @@ extensions.append('breathe');
 extensions.append('exhale');
 
 breathe_projects = {
-  "doc_c":    "_doxygen/"+"doc_c/xml-c",
-  "doc_cpp":  "_doxygen/"+"doc_cpp/xml-cpp",
-  "doc_json": "_doxygen/"+"doc_json/xml-json",
+  "doc_c":      "_doxygen/"+"doc_c/xml-c",
+  "doc_cpp":    "_doxygen/"+"doc_cpp/xml-cpp",
+  "doc_json":   "_doxygen/"+"doc_json/xml-json",
+  "doc_matlab": "_doxygen/"+"doc_matlab/xml-matlab",
+  "doc_lua":    "_doxygen/"+"doc_lua/xml-lua",
 }
 
 breathe_default_project = "doc_cpp"
@@ -27,6 +29,12 @@ dir_path_cpp = Path(dir_path_cpp).resolve()
 
 dir_path_json = os.path.dirname(os.path.realpath(__file__))+"../../../src_json_interface"
 dir_path_json = Path(dir_path_json).resolve()
+
+dir_path_matlab = os.path.dirname(os.path.realpath(__file__))+"../../../src_matlab_interface"
+dir_path_matlab = Path(dir_path_matlab).resolve()
+
+dir_path_lua = os.path.dirname(os.path.realpath(__file__))+"../../../src_lua_interface"
+dir_path_lua = Path(dir_path_lua).resolve()
 
 doxygen_common_stdin = """
         EXTRACT_ALL         = YES
@@ -101,7 +109,39 @@ exhale_projects_args = {
         XML_OUTPUT          = xml-json
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-json'),
-    "rootFileTitle":        "C++ API",
+    "rootFileTitle":        "JSON API",
+  },
+
+  "doc_matlab": {
+    'verboseBuild':          True,
+    "rootFileName":          "root.rst",
+    "createTreeView":        True,
+    "exhaleExecutesDoxygen": True,
+    "doxygenStripFromPath":  str(dir_path_json),
+    "exhaleDoxygenStdin":   '''
+        INPUT               = ../../src_matlab_interface
+        PREDEFINED         += protected=private
+        XML_OUTPUT          = xml-matlab
+        FILE_PATTERNS       = GenericContainerMatlabInterface.*
+'''+doxygen_common_stdin,
+    "containmentFolder":    os.path.realpath('./api-matlab'),
+    "rootFileTitle":        "MATLAB API",
+  },
+
+  "doc_lua": {
+    'verboseBuild':          True,
+    "rootFileName":          "root.rst",
+    "createTreeView":        True,
+    "exhaleExecutesDoxygen": True,
+    "doxygenStripFromPath":  str(dir_path_lua),
+    "exhaleDoxygenStdin":   '''
+        INPUT               = ../../src_lua_interface
+        PREDEFINED         += protected=private
+        XML_OUTPUT          = xml-lua
+        FILE_PATTERNS       = GenericContainerLua*.hh GenericContainerLua*.cc
+'''+doxygen_common_stdin,
+    "containmentFolder":    os.path.realpath('./api-lua'),
+    "rootFileTitle":        "LUA API",
   }
 }
 

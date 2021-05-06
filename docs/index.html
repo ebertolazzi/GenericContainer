@@ -7,11 +7,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OPoly &#8212; Generic Container v1.0.0
+    <title>Generic Container &#8212; Generic Container v1.0.0
 </title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
@@ -21,6 +23,10 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
     <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
     <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
     <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -65,7 +71,7 @@
              accesskey="N">next</a> &nbsp; &nbsp;</li>
     <li><a href="#">Generic Container</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">OPoly</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Generic Container</a></li> 
       </ul>
     </div>
     </div>
@@ -76,19 +82,19 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="opoly">
-<h1>OPoly<a class="headerlink" href="#opoly" title="Permalink to this headline">¶</a>
+  <div class="section" id="generic-container">
+<h1>Generic Container<a class="headerlink" href="#generic-container" title="Permalink to this headline">¶</a>
 </h1>
 <p><strong>by Enrico Bertolazzi</strong></p>
-<p>OPoly is a set of C++ classes (with MATLAB mex interface)
-which implements various Orthogonal polynomials.</p>
+<p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> is a C++ class with permit to store eterogeneous data.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1">
 <a class="reference internal" href="readme.html">Generic Container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#repository-and-online-documentation">Repository and online documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#simple-usage">Simple Usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#compile-and-tests">Compile and tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="readme.html#repository-and-online-documentation">Repository and online documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#author">Author</a></li>
 </ul>
 </li>
@@ -107,10 +113,20 @@ which implements various Orthogonal polynomials.</p>
 </ul>
 </li>
 <li class="toctree-l1">
-<a class="reference internal" href="api-json/root.html">C++ API</a><ul>
+<a class="reference internal" href="api-json/root.html">JSON API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="api-json/root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api-json/root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api-json/root.html#full-api">Full API</a></li>
+</ul>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="matlab.html">Matlab Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-matlab/root.html">MATLAB API</a></li>
+</ul>
+</li>
+<li class="toctree-l1">
+<a class="reference internal" href="lua.html">Lua Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-lua/root.html">LUA API</a></li>
 </ul>
 </li>
 </ul>
@@ -177,7 +193,9 @@ which implements various Orthogonal polynomials.</p>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Generic Container</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api-cpp/root.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api-c/root.html">C API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api-json/root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-json/root.html">JSON API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">Matlab Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lua.html">Lua Support</a></li>
 </ul>
 </div>
         </div>
@@ -217,7 +235,7 @@ which implements various Orthogonal polynomials.</p>
              >next</a> &nbsp; &nbsp;</li>
     <li><a href="#">Generic Container</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">OPoly</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Generic Container</a></li> 
       </ul>
     </div>
     </div>

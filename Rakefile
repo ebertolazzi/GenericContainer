@@ -24,9 +24,7 @@ TESTS = [
   "example6",
   "example7",
   "example8",
-  "example9",
-  "example10",
-  "example11"
+  "example9"
 ]
 
 "run tests on linux/osx"
