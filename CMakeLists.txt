@@ -94,33 +94,31 @@ INSTALL( FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include )
 IF( BUILD_EXECUTABLE )
 
   SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+  INCLUDE_DIRECTORIES( src )
 
-  ADD_EXECUTABLE( example1 examples/example1.cc ${HEADERS} )
+  ADD_EXECUTABLE( example1 examples/example1.cc )
   TARGET_LINK_LIBRARIES( example1 ${TARGETS} )
 
-  ADD_EXECUTABLE( example2 examples/example2.cc ${HEADERS} )
+  ADD_EXECUTABLE( example2 examples/example2.cc )
   TARGET_LINK_LIBRARIES( example2 ${TARGETS} )
 
-  ADD_EXECUTABLE( example3 examples/example3.cc ${HEADERS} )
+  ADD_EXECUTABLE( example3 examples/example3.cc )
   TARGET_LINK_LIBRARIES( example3 ${TARGETS} )
 
-  ADD_EXECUTABLE( example4 examples/example4.cc ${HEADERS} )
+  ADD_EXECUTABLE( example4 examples/example4.cc )
   TARGET_LINK_LIBRARIES( example4 ${TARGETS} )
 
-  ADD_EXECUTABLE( example5 examples/example5.cc ${HEADERS} )
+  ADD_EXECUTABLE( example5 examples/example5.cc )
   TARGET_LINK_LIBRARIES( example5 ${TARGETS} )
 
-  ADD_EXECUTABLE( example6 examples/example6.c  ${HEADERS} ) # IT'S C!
+  ADD_EXECUTABLE( example6 examples/example6.c ) # IT'S C!
   TARGET_LINK_LIBRARIES( example6 ${TARGETS} )
 
-  ADD_EXECUTABLE( example7 examples/example7.cc ${HEADERS} )
+  ADD_EXECUTABLE( example7 examples/example7.cc )
   TARGET_LINK_LIBRARIES( example7 ${TARGETS} )
 
-  ADD_EXECUTABLE( example8 examples/example8.cc ${HEADERS} )
+  ADD_EXECUTABLE( example8 examples/example8.cc )
   TARGET_LINK_LIBRARIES( example8 ${TARGETS} )
-
-  ADD_EXECUTABLE( example9 examples/example9.cc ${HEADERS} )
-  TARGET_LINK_LIBRARIES( example9 ${TARGETS} )
 
 ENDIF()
 
