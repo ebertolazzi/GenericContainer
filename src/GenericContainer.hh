@@ -2145,7 +2145,7 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name I/O for `GenericContainer` objects
+    //! \name I/O for GenericContainer objects
     ///@{
 
     //!
