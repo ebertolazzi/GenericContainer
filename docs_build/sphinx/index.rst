@@ -1,7 +1,7 @@
 Generic Container
 =================
 
-``GenericContainer`` is a C++ class with permit to store eterogeneous
+``GenericContainer`` is a C++ class that permit to store eterogeneous
 data:
 
 .. list-table:: Supported types
@@ -23,7 +23,7 @@ data:
     -  matrix of floating point
     -  matrix of complex floating point
 
-in addition to this data type the following two container are added
+in addition to this data type the following two container data are avaiable
 
 -  vector of ``GenericContainer``
 -  map of ``GenericContainer``

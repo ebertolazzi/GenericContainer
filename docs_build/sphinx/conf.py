@@ -117,7 +117,7 @@ exhale_projects_args = {
     "rootFileName":          "root.rst",
     "createTreeView":        True,
     "exhaleExecutesDoxygen": True,
-    "doxygenStripFromPath":  str(dir_path_json),
+    "doxygenStripFromPath":  str(dir_path_matlab),
     "exhaleDoxygenStdin":   '''
         INPUT               = ../../src_matlab_interface
         PREDEFINED         += protected=private

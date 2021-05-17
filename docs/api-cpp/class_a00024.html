@@ -125,70 +125,90 @@
 <dt id="_CPPv4N12GC_namespace8mat_type8mat_typeEjj">
 <span id="_CPPv3N12GC_namespace8mat_type8mat_typeEjj"></span><span id="_CPPv2N12GC_namespace8mat_type8mat_typeEjj"></span><span id="GC_namespace::mat_type::mat_type__unsigned.unsigned"></span><span class="target" id="a00024_1a938990c1db1f67c9a8c3f82422efd2cf"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">mat_type</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">nr</span></em>, <span class="pre">unsigned</span> <em><span class="pre">nc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace8mat_type8mat_typeEjj" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Create a matrix of size <code class="docutils literal notranslate"><span class="pre">nr</span> <span class="pre">x</span> <span class="pre">nc</span></code> </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N12GC_namespace8mat_type6resizeEjj">
 <span id="_CPPv3N12GC_namespace8mat_type6resizeEjj"></span><span id="_CPPv2N12GC_namespace8mat_type6resizeEjj"></span><span id="GC_namespace::mat_type::resize__unsigned.unsigned"></span><span class="target" id="a00024_1a0910662873d43456a100bebfa80637ca"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">resize</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">nr</span></em>, <span class="pre">unsigned</span> <em><span class="pre">nc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace8mat_type6resizeEjj" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Resize the matrix to size <code class="docutils literal notranslate"><span class="pre">nr</span> <span class="pre">x</span> <span class="pre">nc</span></code> </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type9getColumnEjRNSt6vectorI4TYPEEE">
 <span id="_CPPv3NK12GC_namespace8mat_type9getColumnEjRNSt6vectorI4TYPEEE"></span><span id="_CPPv2NK12GC_namespace8mat_type9getColumnEjRNSt6vectorI4TYPEEE"></span><span id="GC_namespace::mat_type::getColumn__unsigned.std::vector:TYPE:RC"></span><span class="target" id="a00024_1a621275cfa84c7e509a6c00207de7f7f2"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">getColumn</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">nc</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">C</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type9getColumnEjRNSt6vectorI4TYPEEE" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get the <code class="docutils literal notranslate"><span class="pre">nc</span></code>-th column of the matrix and store to vector <code class="docutils literal notranslate"><span class="pre">C</span></code>. </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type6getRowEjRNSt6vectorI4TYPEEE">
 <span id="_CPPv3NK12GC_namespace8mat_type6getRowEjRNSt6vectorI4TYPEEE"></span><span id="_CPPv2NK12GC_namespace8mat_type6getRowEjRNSt6vectorI4TYPEEE"></span><span id="GC_namespace::mat_type::getRow__unsigned.std::vector:TYPE:RC"></span><span class="target" id="a00024_1ae3e46c476bda31f77c47c6871082fff6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">getRow</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">nr</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">R</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type6getRowEjRNSt6vectorI4TYPEEE" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get the <code class="docutils literal notranslate"><span class="pre">nr</span></code>-th row of the matrix and store to vector <code class="docutils literal notranslate"><span class="pre">R</span></code>. </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type9getColumnEjP4TYPE">
 <span id="_CPPv3NK12GC_namespace8mat_type9getColumnEjP4TYPE"></span><span id="_CPPv2NK12GC_namespace8mat_type9getColumnEjP4TYPE"></span><span id="GC_namespace::mat_type::getColumn__unsigned.TYPEPC"></span><span class="target" id="a00024_1a9e723c6584ee78777777a039b8abf752"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">getColumn</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">nc</span></em>, <a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a> <span class="pre">*</span><em><span class="pre">C</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type9getColumnEjP4TYPE" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get the <code class="docutils literal notranslate"><span class="pre">nc</span></code>-th column of the matrix and store to memory pointed by <code class="docutils literal notranslate"><span class="pre">C</span></code>. </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type6getRowEjP4TYPE">
 <span id="_CPPv3NK12GC_namespace8mat_type6getRowEjP4TYPE"></span><span id="_CPPv2NK12GC_namespace8mat_type6getRowEjP4TYPE"></span><span id="GC_namespace::mat_type::getRow__unsigned.TYPEPC"></span><span class="target" id="a00024_1a4eabb4d41cfdd2edb604c4172be3ed06"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">getRow</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">nr</span></em>, <a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a> <span class="pre">*</span><em><span class="pre">R</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type6getRowEjP4TYPE" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get the <code class="docutils literal notranslate"><span class="pre">nr</span></code>-th row of the matrix and store to memory pointed by <code class="docutils literal notranslate"><span class="pre">R</span></code>. </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type7numRowsEv">
 <span id="_CPPv3NK12GC_namespace8mat_type7numRowsEv"></span><span id="_CPPv2NK12GC_namespace8mat_type7numRowsEv"></span><span id="GC_namespace::mat_type::numRowsC"></span><span class="target" id="a00024_1a06bddd449d06fe56ca2248f036aaf6db"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <code class="sig-name descname"><span class="pre">numRows</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type7numRowsEv" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get the number of rows of the matrix </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type7numColsEv">
 <span id="_CPPv3NK12GC_namespace8mat_type7numColsEv"></span><span id="_CPPv2NK12GC_namespace8mat_type7numColsEv"></span><span id="GC_namespace::mat_type::numColsC"></span><span class="target" id="a00024_1af6a476d14f5a4ab06d9e3f7fa2e166c0"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <code class="sig-name descname"><span class="pre">numCols</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type7numColsEv" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get the number of columns of the matrix </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_typeclEjj">
 <span id="_CPPv3NK12GC_namespace8mat_typeclEjj"></span><span id="_CPPv2NK12GC_namespace8mat_typeclEjj"></span><span id="GC_namespace::mat_type::call-operator__unsigned.unsignedC"></span><span class="target" id="a00024_1afb33a80ca9949f3b0fcc7b21e1815082"></span><a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator()</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">i</span></em>, <span class="pre">unsigned</span> <em><span class="pre">j</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_typeclEjj" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Access to the element <code class="docutils literal notranslate"><span class="pre">A(i,j)</span></code> og the matrix </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N12GC_namespace8mat_typeclEjj">
 <span id="_CPPv3N12GC_namespace8mat_typeclEjj"></span><span id="_CPPv2N12GC_namespace8mat_typeclEjj"></span><span id="GC_namespace::mat_type::call-operator__unsigned.unsigned"></span><span class="target" id="a00024_1af31831450d406083c31ef31a84ea50cf"></span><a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator()</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <em><span class="pre">i</span></em>, <span class="pre">unsigned</span> <em><span class="pre">j</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace8mat_typeclEjj" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Access to the element <code class="docutils literal notranslate"><span class="pre">A(i,j)</span></code> og the matrix </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
@@ -209,14 +229,18 @@
 <dt id="_CPPv4N12GC_namespace8mat_type4dataEv">
 <span id="_CPPv3N12GC_namespace8mat_type4dataEv"></span><span id="_CPPv2N12GC_namespace8mat_type4dataEv"></span><span id="GC_namespace::mat_type::data"></span><span class="target" id="a00024_1ab4e9e60fdb163161fb280e9d7c8b24af"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace8mat_type4dataEv" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Access the memory block used by the matrix object </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4NK12GC_namespace8mat_type4dataEv">
 <span id="_CPPv3NK12GC_namespace8mat_type4dataEv"></span><span id="_CPPv2NK12GC_namespace8mat_type4dataEv"></span><span id="GC_namespace::mat_type::dataC"></span><span class="target" id="a00024_1af7cf1f153944f8312bab67051cdc484f"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4I0EN12GC_namespace8mat_typeE" title="GC_namespace::mat_type::TYPE"><span class="pre">TYPE</span></a> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK12GC_namespace8mat_type4dataEv" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Access the memory block used by the matrix object </p>
+</dd>
 </dl>
 
 </div>
