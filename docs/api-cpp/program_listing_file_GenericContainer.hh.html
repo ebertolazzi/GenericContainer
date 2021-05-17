@@ -221,14 +221,19 @@
     <span class="p">}</span>
 
     <span class="kt">void</span> <span class="n">getColumn</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="n">nc</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TYPE</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">C</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
     <span class="kt">void</span> <span class="nf">getRow</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="n">nr</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TYPE</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">R</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
     <span class="kt">void</span> <span class="nf">getColumn</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="n">nc</span><span class="p">,</span> <span class="n">TYPE</span> <span class="o">*</span> <span class="n">C</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
     <span class="kt">void</span> <span class="nf">getRow</span><span class="p">(</span> <span class="kt">unsigned</span> <span class="n">nr</span><span class="p">,</span> <span class="n">TYPE</span> <span class="o">*</span> <span class="n">R</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
 
     <span class="kt">unsigned</span> <span class="nf">numRows</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_numRows</span><span class="p">;</span> <span class="p">}</span>
+
     <span class="kt">unsigned</span> <span class="nf">numCols</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_numCols</span><span class="p">;</span> <span class="p">}</span>
 
     <span class="n">TYPE</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="k">operator</span> <span class="p">()</span> <span class="p">(</span> <span class="kt">unsigned</span> <span class="n">i</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">j</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
     <span class="n">TYPE</span>       <span class="o">&amp;</span> <span class="nf">operator</span> <span class="p">()</span> <span class="p">(</span> <span class="kt">unsigned</span> <span class="n">i</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">j</span> <span class="p">);</span>
 
     <span class="kt">void</span> <span class="nf">info</span><span class="p">(</span> <span class="n">ostream_type</span> <span class="o">&amp;</span> <span class="n">stream</span> <span class="p">)</span> <span class="k">const</span><span class="p">;</span>
@@ -241,6 +246,7 @@
     <span class="p">}</span>
 
     <span class="n">TYPE</span>       <span class="o">*</span> <span class="n">data</span><span class="p">()</span>       <span class="p">{</span> <span class="k">return</span> <span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TYPE</span><span class="o">&gt;::</span><span class="n">front</span><span class="p">();</span> <span class="p">}</span>
+
     <span class="n">TYPE</span> <span class="k">const</span> <span class="o">*</span> <span class="n">data</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">&amp;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TYPE</span><span class="o">&gt;::</span><span class="n">front</span><span class="p">();</span> <span class="p">}</span>
   <span class="p">};</span>
 

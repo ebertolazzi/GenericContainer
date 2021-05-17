@@ -18,7 +18,7 @@ div.sphinxsidebar {
   margin-top: 16px;
   width:      3in;
 
-  font-size:     90%; /* dimsnione testo barra laterale */
+  font-size:     90%; /* dimensione testo barra laterale */
   line-height:   1.25em;
   margin-bottom: 16px;
 
@@ -118,7 +118,7 @@ div.sphinxsidebar a:active {
 
 div.sphinxsidebar p.logo {
   display:    block;
-  margin:     20px auto 10px auto; /* centratura logo */
+  margin:     30px auto 10px auto; /* centratura logo */
   align:      center;
   text-align: center;
   max-width:  90%;
