@@ -14,6 +14,7 @@
 #include <regex>
 #include <string>
 #include <algorithm>
+#include <cctype>
 
 #ifdef USE_SYSTEM_JSON
   #include <rapidjson/reader.h>
