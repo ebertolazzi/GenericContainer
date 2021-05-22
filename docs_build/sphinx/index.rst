@@ -7,21 +7,21 @@ data:
 .. list-table:: Supported types
   :widths: 10 10 10
 
-  * -  pointer
-    -  boolean
-    -  integer
-  * -  long integer
-    -  floating point
-    -  complex floating point
-  * -  string
-    -  vector of pointer
-    -  vector of boolean
-  * -  vector of integer
-    -  vector of floating point
-    -  vector of complex floating point
-  * -  vector of string
-    -  matrix of floating point
-    -  matrix of complex floating point
+  * - pointer
+    - boolean
+    - integer
+  * - long integer
+    - floating point
+    - complex floating point
+  * - string
+    - vector of pointer
+    - vector of boolean
+  * - vector of integer
+    - vector of floating point
+    - vector of complex floating point
+  * - vector of string
+    - matrix of floating point
+    - matrix of complex floating point
 
 in addition to this data type the following two container data are avaiable
 
@@ -83,17 +83,21 @@ To run the test
      rake run       # for linux/OSX
      rake run_win   # for windows
 
-Contents
---------
+.. include:: lua.rst
+
+.. include:: matlab.rst
+
+Interfaces
+----------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    api-cpp/root.rst
    api-c/root.rst
+   api-lua/root.rst
    api-json/root.rst
-   matlab.rst
-   lua.rst
+   api-matlab/root.rst
 
 .. include:: author.rst
 

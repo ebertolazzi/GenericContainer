@@ -75,8 +75,7 @@
              accesskey="P">previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Generic Container</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="../lua.html" >Lua Support</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="root.html" accesskey="U">LUA API</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="root.html" accesskey="U">LUA API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Class LuaInterpreter</a></li> 
       </ul>
     </div>
@@ -136,16 +135,12 @@
 <p>Execute a function in Lua with arguments passed by the <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code></p>
 <p></p>
 <ul class="simple">
-<li>
-<p><code class="docutils literal notranslate"><span class="pre">arguments</span></code> must contain the field</p>
-<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">arguments</span></code> must contain the field</p></li>
 <li><p>”function” of type string with the name of the Lua function to be called</p></li>
 <li><p>”args” a generic container storing the arguments of the function</p></li>
 </ul>
-</li>
-</ul>
 
-<p>The result of computation is returned in <code class="docutils literal notranslate"><span class="pre">res</span></code> </p>
+<p>The result of computation is returned in <code class="docutils literal notranslate"><span class="pre">res</span></code>. </p>
 </dd>
 </dl>
 
@@ -154,7 +149,7 @@
 <span id="_CPPv3N12GC_namespace14LuaInterpreter7do_fileEPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter7do_fileEPKc"></span><span id="GC_namespace::LuaInterpreter::do_file__cCP"></span><span class="target" id="a00015_1a6b6c0a83aba3e358c106e51db007ad56"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">do_file</span></code><span class="sig-paren">(</span><span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">fname</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter7do_fileEPKc" title="Permalink to this definition">¶</a><br>
 </dt>
 <dd>
-<p>Interpret the file <code class="docutils literal notranslate"><span class="pre">fname</span></code> as a Lua script </p>
+<p>Interpret the file <code class="docutils literal notranslate"><span class="pre">fname</span></code> as a Lua script. </p>
 </dd>
 </dl>
 
@@ -162,14 +157,18 @@
 <dt id="_CPPv4N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc">
 <span id="_CPPv3N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc"></span><span id="GC_namespace::LuaInterpreter::GC_to_global__GenericContainerCR.cCP"></span><span class="target" id="a00015_1ac8ffce6fe809d51b9051d523c0fc4fb6"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">GC_to_global</span></code><span class="sig-paren">(</span><a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <em class="property"><span class="pre">const</span></em> <span class="pre">&amp;</span><em><span class="pre">gc</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">global_var</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter12GC_to_globalERK16GenericContainerPKc" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get <code class="docutils literal notranslate"><span class="pre">gc</span></code> and store in the Lua global variable <code class="docutils literal notranslate"><span class="pre">global_var</span></code>. </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
 <dt id="_CPPv4N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer">
 <span id="_CPPv3N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer"></span><span id="GC_namespace::LuaInterpreter::global_to_GC__cCP.GenericContainerR"></span><span class="target" id="a00015_1acbfe7a95ec30be517eb0a48841559ffd"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">global_to_GC</span></code><span class="sig-paren">(</span><span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">var</span></em>, <a class="reference internal" href="../api-cpp/class_a00028.html#_CPPv4N12GC_namespace16GenericContainerE" title="GC_namespace::GenericContainer"><span class="pre">GenericContainer</span></a> <span class="pre">&amp;</span><em><span class="pre">gc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter12global_to_GCEPKcR16GenericContainer" title="Permalink to this definition">¶</a><br>
 </dt>
-<dd></dd>
+<dd>
+<p>Get a Lua global variable <code class="docutils literal notranslate"><span class="pre">global_var</span></code> and store in <code class="docutils literal notranslate"><span class="pre">gc</span></code>. </p>
+</dd>
 </dl>
 
 <dl class="cpp function">
@@ -177,7 +176,7 @@
 <span id="_CPPv3N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc"></span><span id="_CPPv2N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc"></span><span id="GC_namespace::LuaInterpreter::interactive__i.cCPP.cCPP.cCP"></span><span class="target" id="a00015_1a49a8963a83b5e9f75826007c6eba7b91"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">interactive</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">argc</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">argv</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">messages</span></em>, <span class="pre">char</span> <em class="property"><span class="pre">const</span></em> <span class="pre">*</span><em><span class="pre">prompt</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N12GC_namespace14LuaInterpreter11interactiveEiPPKcPPKcPKc" title="Permalink to this definition">¶</a><br>
 </dt>
 <dd>
-<p>execute the Lua interpreter interatovely. </p>
+<p>Execute the Lua interpreter interatively. </p>
 </dd>
 </dl>
 
@@ -214,9 +213,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api-cpp/root.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api-c/root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="root.html">LUA API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api-json/root.html">JSON API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../matlab.html">Matlab Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-matlab/root.html">MATLAB API</a></li>
 </ul>
 </div>
         </div>
@@ -259,8 +258,7 @@
              >previous</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Generic Container</a> &#187;</li>
 
-          <li class="nav-item nav-item-1"><a href="../lua.html" >Lua Support</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="root.html" >LUA API</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="root.html" >LUA API</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Class LuaInterpreter</a></li> 
       </ul>
     </div>

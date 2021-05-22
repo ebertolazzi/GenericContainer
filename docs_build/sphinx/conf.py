@@ -63,9 +63,7 @@ doxygen_common_stdin = """
         GENERATE_HTML         = NO
 """
 
-exhale_projects_args = {
-  # Third Party Project Includes
-  "doc_c": {
+doc_c = {
     'verboseBuild':          True,
     "rootFileName":          "root.rst",
     "createTreeView":        True,
@@ -75,13 +73,13 @@ exhale_projects_args = {
         INPUT               = ../../src
         PREDEFINED         += protected=private
         XML_OUTPUT          = xml-c
-        FILE_PATTERNS       = GenericContainerCinterface.*
+        FILE_PATTERNS       = GenericContainerCinterface.h
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-c'),
     "rootFileTitle":        "C API",
-  },
+}
 
-  "doc_cpp": {
+doc_cpp = {
     'verboseBuild':          True,
     "rootFileName":          "root.rst",
     "createTreeView":        True,
@@ -95,9 +93,9 @@ exhale_projects_args = {
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-cpp'),
     "rootFileTitle":        "C++ API",
-  },
+}
 
-  "doc_json": {
+doc_json = {
     'verboseBuild':          True,
     "rootFileName":          "root.rst",
     "createTreeView":        True,
@@ -110,9 +108,9 @@ exhale_projects_args = {
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-json'),
     "rootFileTitle":        "JSON API",
-  },
+}
 
-  "doc_matlab": {
+doc_matlab = {
     'verboseBuild':          True,
     "rootFileName":          "root.rst",
     "createTreeView":        True,
@@ -126,9 +124,9 @@ exhale_projects_args = {
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-matlab'),
     "rootFileTitle":        "MATLAB API",
-  },
+}
 
-  "doc_lua": {
+doc_lua = {
     'verboseBuild':          True,
     "rootFileName":          "root.rst",
     "createTreeView":        True,
@@ -142,7 +140,15 @@ exhale_projects_args = {
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-lua'),
     "rootFileTitle":        "LUA API",
-  }
+}
+
+exhale_projects_args = {
+  # Third Party Project Includes
+  "doc_c":      doc_c,
+  "doc_cpp":    doc_cpp,
+  "doc_json":   doc_json,
+  "doc_matlab": doc_matlab,
+  "doc_lua":    doc_lua
 }
 
 cpp_index_common_prefix = ['GC_namespace::']

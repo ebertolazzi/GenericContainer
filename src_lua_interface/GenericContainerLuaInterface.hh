@@ -61,7 +61,10 @@ namespace GC_namespace {
   //! to read and interpret data file.
   //!
   class LuaInterpreter {
-    /* lua_State * */ void * void_L; //!< interpreter status
+    //!
+    //! Interpreter status
+    //!
+    /* lua_State * */ void * void_L;
   public:
     LuaInterpreter();
     ~LuaInterpreter();
@@ -75,30 +78,36 @@ namespace GC_namespace {
     //! Execute a function in Lua with arguments passed by the `GenericContainer`
     //!
     //! - `arguments` must contain the field
-    //!   - "function" of type string with the name of the Lua function to be called
-    //!   - "args"     a generic container storing the arguments of the function
+    //! - "function" of type string with the name of the Lua function to be called
+    //! - "args"     a generic container storing the arguments of the function
     //!
-    //! The result of computation is returned in `res`
+    //! The result of computation is returned in `res`.
     //!
     void call( GenericContainer const & arguments, GenericContainer & res );
 
     //!
-    //! Interpret the file `fname` as a Lua script
+    //! Interpret the file `fname` as a Lua script.
     //!
     void do_file( char const * fname );
 
+    //!
+    //! Get `gc` and store in the Lua global variable `global_var`.
+    //!
     void
     GC_to_global( GenericContainer const & gc, char const * global_var ) {
       Lua_GC_to_global( void_L, gc, global_var );
     }
 
+    //!
+    //! Get a Lua global variable `global_var` and store in `gc`.
+    //!
     void
     global_to_GC( char const * var, GenericContainer & gc ) {
       Lua_global_to_GC( void_L, var, gc );
     }
 
     //!
-    //! execute the Lua interpreter interatovely.
+    //! Execute the Lua interpreter interatively.
     //!
     int
     interactive(

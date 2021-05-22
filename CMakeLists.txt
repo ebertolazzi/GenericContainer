@@ -10,8 +10,8 @@
 ############################################################################
 
 cmake_minimum_required( VERSION 2.8.12 )
-SET( CMAKE_VERBOSE_MAKEFILE OFF )
-SET( CMAKE_INSTALL_MESSAGE NEVER )
+SET( CMAKE_VERBOSE_MAKEFILE ON )
+SET( CMAKE_INSTALL_MESSAGE ALWAYS )
 
 IF ( CMAKE_BUILD_TYPE STREQUAL "Debug" )
   SET( DEBUG_SUFFIX "_debug" )
@@ -44,26 +44,41 @@ INCLUDE( "CMakeLists-cflags.txt" )
 
 MESSAGE( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}" )
 
-SET( CMAKE_C_FLAGS_RELEASE ${CMAKE_CXX_FLAGS_RELEASE} )
-SET( CMAKE_C_FLAGS_DEBUG   ${CMAKE_CXX_FLAGS_DEBUG} )
+IF ( APPLE )
+  SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLUA_USE_MACOSX -DLUA_USE_READLINE" )
+ELSEIF( LINUX OR UNIX )
+  SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLUA_USE_LINUX -DLUA_USE_READLINE" )
+ELSE()
+  SET( CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" )
+ENDIF()
 
 SET( SOURCES )
-FILE( GLOB S ./src/*.cc )
+FILE( GLOB S  ./src/*.cc )
+FILE( GLOB S1 ./src_json_interface/*.cc )
+LIST( APPEND S ${S1} )
+FILE( GLOB S1 ./src_lua_interface/*.cc )
+LIST( APPEND S ${S1} )
+FILE( GLOB S1 ./src_lua_interface/lua-5.4.3/src/*.c )
+LIST( APPEND S ${S1} )
 FOREACH (F ${S})
   FILE( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
   LIST( APPEND SOURCES ${RF} )
 ENDFOREACH (F ${S})
+
 SET( HEADERS )
 FILE( GLOB S ./src/*.hh)
+FILE( GLOB S1 ./src/*.h)
+LIST( APPEND S ${S1} )
+FILE( GLOB S1 ./src_json_interface/*.hh)
+LIST( APPEND S ${S1} )
+FILE( GLOB S1 ./src_lua_interface/*.hh)
+LIST( APPEND S ${S1} )
 FOREACH (F ${S})
   FILE( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
   LIST( APPEND HEADERS ${RF} )
 ENDFOREACH (F ${S})
-FILE( GLOB S ./src/*.h)
-FOREACH (F ${S})
-  FILE( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
-  LIST( APPEND HEADERS ${RF} )
-ENDFOREACH (F ${S})
+
+INCLUDE_DIRECTORIES( src src_json_interface src_lua_interface )
 
 SET( CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/lib )
 
@@ -94,7 +109,6 @@ INSTALL( FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include )
 IF( BUILD_EXECUTABLE )
 
   SET(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-  INCLUDE_DIRECTORIES( src )
 
   ADD_EXECUTABLE( example1 examples/example1.cc )
   TARGET_LINK_LIBRARIES( example1 ${TARGETS} )
@@ -120,6 +134,18 @@ IF( BUILD_EXECUTABLE )
   ADD_EXECUTABLE( example8 examples/example8.cc )
   TARGET_LINK_LIBRARIES( example8 ${TARGETS} )
 
+  ADD_EXECUTABLE( JSON_test_1 src_json_interface/tests/JSON_test_1.cc )
+  TARGET_LINK_LIBRARIES( JSON_test_1 ${TARGETS} )
+
+  ADD_EXECUTABLE( example_lua1 src_lua_interface/tests/example_lua1.cc )
+  TARGET_LINK_LIBRARIES( example_lua1 ${TARGETS} )
+
+  ADD_EXECUTABLE( example_lua2 src_lua_interface/tests/example_lua2.cc )
+  TARGET_LINK_LIBRARIES( example_lua2 ${TARGETS} )
+
+  ADD_EXECUTABLE( example_lua3 src_lua_interface/tests/example_lua3.cc )
+  TARGET_LINK_LIBRARIES( example_lua3 ${TARGETS} )
+
 ENDIF()
 
 MESSAGE( STATUS "C compiler                  = ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER}" )
@@ -135,3 +161,5 @@ IF(APPLE)
   MESSAGE( STATUS "CMAKE_OSX_ARCHITECTURES     = ${CMAKE_OSX_ARCHITECTURES}" )
   MESSAGE( STATUS "CMAKE_OSX_DEPLOYMENT_TARGET = ${CMAKE_OSX_DEPLOYMENT_TARGET}" )
 ENDIF()
+MESSAGE( STATUS "SOURCES = ${SOURCES}" )
+MESSAGE( STATUS "HEADERS = ${HEADERS}" )

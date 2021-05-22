@@ -40,7 +40,7 @@
 #ifdef USE_SYSTEM_LUA
   #include <lua.hpp>
 #else
-  #include "lua/lua.hpp"
+  #include "lua-5.4.3/src/lua.hpp"
 #endif
 
 /* print a string */

@@ -26,12 +26,33 @@ TESTS = [
   "example8"
 ]
 
+TESTS_LUA = [
+  "example_lua1",
+  "example_lua2",
+  "example_lua3"
+]
+
+TESTS_JSON = [
+  "JSON-test-1"
+]
+
 "run tests on linux/osx"
 task :run do
   TESTS.each do |cmd|
     exe = "./bin/#{cmd}"
     sh exe if File.exist?(exe)
   end
+  FileUtils.cd "src_lua_interface/tests"
+  TESTS_LUA.each do |cmd|
+    exe = "../../bin/#{cmd}"
+    sh exe if File.exist?(exe)
+  end
+  FileUtils.cd "../../src_json_interface/tests"
+  TESTS_JSON.each do |cmd|
+    exe = "../../bin/#{cmd}"
+    sh exe if File.exist?(exe)
+  end
+  FileUtils.cd "../.."
 end
 
 desc "run tests (Release) on windows"
@@ -39,6 +60,17 @@ task :run_win do
   TESTS.each do |cmd|
     sh "bin\\Release\\#{cmd}.exe"
   end
+  FileUtils.cd "src_lua_interface/tests"
+  TESTS_LUA.each do |cmd|
+    exe = "..\\..\\bin\\Release\\#{cmd}.exe"
+    sh exe if File.exist?(exe)
+  end
+  FileUtils.cd "../../src_lua_interface/tests"
+  TESTS_JSON.each do |cmd|
+    exe = "..\\..\\bin\\Release\\#{cmd}.exe"
+    sh exe if File.exist?(exe)
+  end
+  FileUtils.cd "../.."
 end
 
 desc "run tests (Debug) on windows"
@@ -46,6 +78,17 @@ task :run_win_debug do
   TESTS.each do |cmd|
     sh "bin\\Debug\\#{cmd}.exe"
   end
+  FileUtils.cd "src_lua_interface/tests"
+  TESTS_LUA.each do |cmd|
+    exe = "..\\..\\bin\\Debug\\#{cmd}.exe"
+    sh exe if File.exist?(exe)
+  end
+  FileUtils.cd "../../src_lua_interface/tests"
+  TESTS_JSON.each do |cmd|
+    exe = "..\\..\\bin\\Debug\\#{cmd}.exe"
+    sh exe if File.exist?(exe)
+  end
+  FileUtils.cd "../.."
 end
 
 desc "compile for Visual Studio [default year=2017, bits=x64]"

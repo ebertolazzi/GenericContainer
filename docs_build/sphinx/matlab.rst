@@ -107,8 +107,3 @@ has the following output:
               [ (1, 0 ) (2, 1 ) (1, 0 ) (2, 0 ) (2, 0 ) (-2, 0 ) (9, 0 ) (3, 0 ) (-2, 0 ) ]
   vector:
       [ 1 2 3 4 ]
-
-
-.. toctree::
-
-  api-matlab/root.rst

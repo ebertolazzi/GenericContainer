@@ -63,28 +63,29 @@
 #ifdef USE_SYSTEM_LUA
   #include <lua.hpp>
 #else
-  #include "lua/lua.hpp"
+  #include "lua-5.4.3/src/lua.hpp"
 #endif
 
 // load string.h for strlen
 #include <string.h>
 
-using namespace std;
-
-using std::fpclassify;
-using GC_namespace::real_type;
-
-static
-inline
-bool isZero( real_type x )
-{ return FP_ZERO == fpclassify(x); }
-
-static
-inline
-bool isInteger64( real_type x )
-{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
-
 namespace GC_namespace {
+
+  using std::fpclassify;
+  using std::floor;
+  using std::string;
+
+  static
+  inline
+  bool
+  isZero( real_type x )
+  { return FP_ZERO == fpclassify(x); }
+
+  static
+  inline
+  bool
+  isInteger64( real_type x )
+  { return isZero( x-static_cast<int64_t>(floor(x)) ); }
 
   /*
   //   _                _           ____  ____

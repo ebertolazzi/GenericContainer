@@ -2,7 +2,7 @@ Lua Support
 ===========
 
 ``GenericContainer`` has an interfacing to exchange data with Lua.
-Ti use the interface include
+To use the interface include
 
 .. code-block:: cpp
 
@@ -11,7 +11,3 @@ Ti use the interface include
 compile and link with ``GenericContainerLuaInterface.cc``.
 The interface contains a set of functions to convert from ``GenericContainer``
 to Lua global variables and the other way around.
-
-.. toctree::
-
-  api-lua/root.rst

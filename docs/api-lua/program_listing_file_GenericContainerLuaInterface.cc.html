@@ -148,28 +148,29 @@
 <span class="cp">#ifdef USE_SYSTEM_LUA</span>
   <span class="cp">#include</span> <span class="cpf">&lt;lua.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#else</span>
-  <span class="cp">#include</span> <span class="cpf">"lua/lua.hpp"</span><span class="cp"></span>
+  <span class="cp">#include</span> <span class="cpf">"lua-5.4.3/src/lua.hpp"</span><span class="cp"></span>
 <span class="cp">#endif</span>
 
 <span class="c1">// load string.h for strlen</span>
 <span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
 
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">fpclassify</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">GC_namespace</span><span class="o">::</span><span class="n">real_type</span><span class="p">;</span>
-
-<span class="k">static</span>
-<span class="kr">inline</span>
-<span class="kt">bool</span> <span class="n">isZero</span><span class="p">(</span> <span class="n">real_type</span> <span class="n">x</span> <span class="p">)</span>
-<span class="p">{</span> <span class="k">return</span> <span class="n">FP_ZERO</span> <span class="o">==</span> <span class="n">fpclassify</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="p">}</span>
-
-<span class="k">static</span>
-<span class="kr">inline</span>
-<span class="kt">bool</span> <span class="n">isInteger64</span><span class="p">(</span> <span class="n">real_type</span> <span class="n">x</span> <span class="p">)</span>
-<span class="p">{</span> <span class="k">return</span> <span class="nf">isZero</span><span class="p">(</span> <span class="n">x</span><span class="o">-</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">);</span> <span class="p">}</span>
-
 <span class="k">namespace</span> <span class="n">GC_namespace</span> <span class="p">{</span>
+
+  <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">fpclassify</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">floor</span><span class="p">;</span>
+  <span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
+
+  <span class="k">static</span>
+  <span class="kr">inline</span>
+  <span class="kt">bool</span>
+  <span class="n">isZero</span><span class="p">(</span> <span class="n">real_type</span> <span class="n">x</span> <span class="p">)</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="n">FP_ZERO</span> <span class="o">==</span> <span class="n">fpclassify</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="k">static</span>
+  <span class="kr">inline</span>
+  <span class="kt">bool</span>
+  <span class="n">isInteger64</span><span class="p">(</span> <span class="n">real_type</span> <span class="n">x</span> <span class="p">)</span>
+  <span class="p">{</span> <span class="k">return</span> <span class="nf">isZero</span><span class="p">(</span> <span class="n">x</span><span class="o">-</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="p">);</span> <span class="p">}</span>
 
   <span class="cm">/*</span>
 <span class="cm">  //   _                _           ____  ____</span>
@@ -605,9 +606,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../api-cpp/root.html">C++ API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api-c/root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="root.html">LUA API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api-json/root.html">JSON API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../matlab.html">Matlab Support</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../lua.html">Lua Support</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-matlab/root.html">MATLAB API</a></li>
 </ul>
 </div>
         </div>

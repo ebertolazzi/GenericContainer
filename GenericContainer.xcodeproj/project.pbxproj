@@ -56,12 +56,12 @@
 		D9518FBE1C52D16500EA9A0C /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
 		D9518FBF1C52D16900EA9A0C /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
 		D9518FC01C52D16C00EA9A0C /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
+		D956221726596F3E008C3423 /* JSON-test.cc in Sources */ = {isa = PBXBuildFile; fileRef = D956221626596F3E008C3423 /* JSON-test.cc */; };
 		D95D1F921816E7660010C608 /* example8.cc in Sources */ = {isa = PBXBuildFile; fileRef = D95D1F911816E7660010C608 /* example8.cc */; };
 		D97341E11D79F39F00993DF7 /* GenericContainerConfig.hh in Headers */ = {isa = PBXBuildFile; fileRef = D97341E01D79F39F00993DF7 /* GenericContainerConfig.hh */; };
 		D9A0E6101C258DA700914760 /* libGenericContainer.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
 		D9E768521C52CF2100C0F9B5 /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
 		D9EB11CE1FBC3A7700A58868 /* libGenericContainer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */; };
-		D9EB11D51FBC3AB200A58868 /* JSON-test.cc in Sources */ = {isa = PBXBuildFile; fileRef = D9EB11D41FBC3AB200A58868 /* JSON-test.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +309,7 @@
 		D9420C9417F01E73009C2E81 /* example4.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = example4.cc; path = examples/example4.cc; sourceTree = SOURCE_ROOT; };
 		D9420C9517F01E73009C2E81 /* example3.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = example3.cc; path = examples/example3.cc; sourceTree = SOURCE_ROOT; };
 		D9420C9617F01E73009C2E81 /* example2.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = example2.cc; path = examples/example2.cc; sourceTree = SOURCE_ROOT; };
+		D956221626596F3E008C3423 /* JSON-test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "JSON-test.cc"; path = "src_json_interface/tests/JSON-test.cc"; sourceTree = "<group>"; };
 		D95D1F901816E7440010C608 /* example8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = example8; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95D1F911816E7660010C608 /* example8.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example8.cc; path = examples/example8.cc; sourceTree = SOURCE_ROOT; };
 		D95EB3801D6BA7CA005772D0 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
@@ -318,7 +319,6 @@
 		D97341E01D79F39F00993DF7 /* GenericContainerConfig.hh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GenericContainerConfig.hh; sourceTree = "<group>"; };
 		D9A0E5FF1C258D0F00914760 /* libGenericContainer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGenericContainer.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EB11D31FBC3A7700A58868 /* JSON-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "JSON-test"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9EB11D41FBC3AB200A58868 /* JSON-test.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "JSON-test.cc"; path = "src_json_interface/JSON-test.cc"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,9 +470,9 @@
 		D9D7FC4C17F01B05002F07F8 = {
 			isa = PBXGroup;
 			children = (
+				D956221626596F3E008C3423 /* JSON-test.cc */,
 				D95EB37F1D6BA7CA005772D0 /* GenericContainer_xcode_config */,
 				D92A20A21C4B149F00BDE1D1 /* Accelerate.framework */,
-				D9EB11D41FBC3AB200A58868 /* JSON-test.cc */,
 				D93669AD1D58B61600B2F03B /* src */,
 				D93669BC1D58B62B00B2F03B /* src_lua_interface */,
 				D9382DF41FBAFE93009C9A87 /* src_json_interface */,
@@ -823,7 +823,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9EB11D51FBC3AB200A58868 /* JSON-test.cc in Sources */,
+				D956221726596F3E008C3423 /* JSON-test.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
