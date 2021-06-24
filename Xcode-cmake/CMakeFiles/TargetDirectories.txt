@@ -1,0 +1,17 @@
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/install.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example_lua1.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example3.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example6.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example9.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/JSON_test_1.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example7.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example5.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example_lua3.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example2.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example1.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example4.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example8.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/example_lua2.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/GenericContainer_osx_static.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/ALL_BUILD.dir
+/Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/Xcode-cmake/CMakeFiles/ZERO_CHECK.dir

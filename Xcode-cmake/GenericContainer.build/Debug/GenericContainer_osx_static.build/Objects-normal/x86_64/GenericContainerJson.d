@@ -1,0 +1,33 @@
+dependencies: \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/GenericContainerJson.cc \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/GenericContainerJson.hh \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src/GenericContainer.hh \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src/GenericContainerConfig.hh \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/GenericContainerJsonHandler.hh \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/reader.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/allocators.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/rapidjson.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/meta.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/../rapidjson.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/stream.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/encodings.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/encodedstream.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/memorystream.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/clzll.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/stack.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/../allocators.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/swap.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/strtod.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/ieee754.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/biginteger.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/diyfp.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/pow10.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/error/error.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/error/../rapidjson.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/prettywriter.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/writer.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/strfunc.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/../stream.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/dtoa.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/internal/itoa.h \
+  /Users/enrico/Ricerca/develop/C++/pins-mechatronix/LibSources/submodules/GC/src_json_interface/rapidjson/stringbuffer.h
