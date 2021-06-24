@@ -134,6 +134,9 @@ IF( BUILD_EXECUTABLE )
   ADD_EXECUTABLE( example8 examples/example8.cc )
   TARGET_LINK_LIBRARIES( example8 ${TARGETS} )
 
+  ADD_EXECUTABLE( example9 examples/example9.cc )
+  TARGET_LINK_LIBRARIES( example9 ${TARGETS} )
+
   ADD_EXECUTABLE( JSON_test_1 src_json_interface/tests/JSON_test_1.cc )
   TARGET_LINK_LIBRARIES( JSON_test_1 ${TARGETS} )
 
