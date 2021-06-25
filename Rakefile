@@ -23,7 +23,8 @@ TESTS = [
   "example5",
   "example6",
   "example7",
-  "example8"
+  "example8",
+  "example9"
 ]
 
 TESTS_LUA = [
