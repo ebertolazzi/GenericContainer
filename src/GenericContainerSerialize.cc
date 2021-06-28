@@ -32,23 +32,23 @@
 
 namespace GC_namespace {
 
-  static
-  uint64_t
-  htonll_local( uint64_t n ) {
-    uint64_t lo, hi;
-    if ( 1 == htonl(1) ) return n;
-    hi = (uint64_t)htonl( *((uint32_t*)&n) );
-    n = n>>32;
-    lo = (uint64_t)htonl( *((uint32_t*)&n) );
-    return (hi << 32) + lo;
-  }
+  //static
+  //uint64_t
+  //htonll_local( uint64_t n ) {
+  //  uint64_t lo, hi;
+  //  if ( 1 == htonl(1) ) return n;
+  //  hi = uint64_t( htonl( *(static_cast<uint32_t*>(&n) ) ) );
+  //  n = n>>32;
+  //  lo = uint64_t( htonl( *(static_cast<uint32_t*>(&n) ) ) );
+  //  return (hi << 32) + lo;
+  //}
 
   /* -------------------------------------------------- */
 
   static
   uint32_t
   int8_to_buffer( int8_t in, uint8_t * buffer ) {
-    buffer[0] = (uint8_t)in;
+    buffer[0] = *reinterpret_cast<uint8_t*>(&in);
     return sizeof(int8_t);
   }
 
@@ -78,7 +78,7 @@ namespace GC_namespace {
   static
   uint32_t
   int32_to_buffer( int32_t in, uint8_t * buffer ) {
-    uint32_t tmp = htonl( (uint32_t) in );
+    uint32_t tmp = htonl( *reinterpret_cast<uint32_t*>(&in) );
     memcpy( buffer, &tmp, sizeof(int32_t) );
     return sizeof(int32_t);
   }
@@ -94,7 +94,7 @@ namespace GC_namespace {
   static
   uint32_t
   int64_to_buffer( int64_t in, uint8_t * buffer ) {
-    uint64_t tmp = htonll_local( (uint64_t) in );
+    uint64_t tmp = htonll( *reinterpret_cast<uint64_t*>(&in) );
     memcpy( buffer, &tmp, sizeof(int64_t) );
     return sizeof(int64_t);
   }
@@ -102,7 +102,7 @@ namespace GC_namespace {
   static
   uint32_t
   uint64_to_buffer( uint64_t in, uint8_t * buffer ) {
-    uint64_t tmp = htonll_local( in );
+    uint64_t tmp = htonll( in );
     memcpy( buffer, &tmp, sizeof(uint64_t)  );
     return sizeof(uint64_t);
   }
@@ -131,16 +131,16 @@ namespace GC_namespace {
     return sizeof(double);
   }
 
-  static
-  uint64_t
-  ntohll_local( uint64_t n ) {
-    uint64_t lo, hi;
-    if ( 1 == ntohl(1) ) return n;
-    hi = (uint64_t)ntohl( *((uint32_t*)&n) );
-    n = n>>32;
-    lo = (uint64_t)ntohl( *((uint32_t*)&n) );
-    return (hi << 32) + lo;
-  }
+  //static
+  //uint64_t
+  //ntohll_local( uint64_t n ) {
+  //  uint64_t lo, hi;
+  //  if ( 1 == ntohl(1) ) return n;
+  //  hi = (uint64_t)ntohl( *((uint32_t*)&n) );
+  //  n = n>>32;
+  //  lo = (uint64_t)ntohl( *((uint32_t*)&n) );
+  //  return (hi << 32) + lo;
+  //}
 
   /* ---------------------------------------------------------------------------- */
 
@@ -190,7 +190,7 @@ namespace GC_namespace {
   buffer_to_int32( uint8_t const * buffer, int32_t * out ) {
     uint32_t tmp;
     memcpy( &tmp, buffer, sizeof(int32_t) );
-    *((uint32_t*)out) = ntohl( tmp );
+    *reinterpret_cast<uint32_t*>(out) = ntohl( tmp );
     return sizeof(int32_t);
   }
 
@@ -199,7 +199,7 @@ namespace GC_namespace {
   buffer_to_uint64( uint8_t const * buffer, uint64_t * out ) {
     uint64_t tmp;
     memcpy( &tmp, buffer, sizeof(uint64_t) );
-    *out = ntohll_local( tmp );
+    *out = ntohll( tmp );
     return sizeof(uint64_t);
   }
 
@@ -208,7 +208,7 @@ namespace GC_namespace {
   buffer_to_int64( uint8_t const * buffer, int64_t * out ) {
     uint64_t tmp;
     memcpy( &tmp, buffer, sizeof(int64_t) );
-    *((uint64_t*)out) = ntohll_local( tmp );
+    *reinterpret_cast<uint64_t*>(out) = ntohll( tmp );
     return sizeof(int64_t);
   }
 
