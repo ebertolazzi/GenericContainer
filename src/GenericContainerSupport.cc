@@ -42,19 +42,19 @@ namespace GC_namespace {
   static
   void
   tokenizeString(
-    std::string const & str,
+    string_type const & str,
     vec_string_type   & tokens,
-    std::string const & delimiters
+    string_type const & delimiters
   ) {
 
     tokens.clear();
 
     // Skip delimiters at beginning.
-    std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+    string_type::size_type lastPos = str.find_first_not_of(delimiters, 0);
     // Find first "non-delimiter".
-    std::string::size_type pos     = str.find_first_of(delimiters, lastPos);
+    string_type::size_type pos     = str.find_first_of(delimiters, lastPos);
 
-    while ( std::string::npos != pos || std::string::npos != lastPos ) {
+    while ( string_type::npos != pos || string_type::npos != lastPos ) {
       // Found a token, add it to the vector.
       tokens.push_back(str.substr(lastPos, pos - lastPos));
       // Skip delimiters.  Note the "not_of"
@@ -79,16 +79,16 @@ namespace GC_namespace {
   static
   unsigned
   getLineAndSkipComments(
-    std::istream      & stream,
-    std::string       & line,
-    std::string const & commentchars
+    istream_type      & stream,
+    string_type       & line,
+    string_type const & commentchars
   ) {
     unsigned nl = 0;
     do {
       if ( stream.fail() ) return 0;
       getline( stream, line );
       ++nl;
-    } while ( line.find_first_of(commentchars) != std::string::npos ); // ????????????
+    } while ( line.find_first_of(commentchars) != string_type::npos ); // ????????????
     return nl;
   }
 
@@ -122,12 +122,12 @@ namespace GC_namespace {
   // original code by Francesco Biral (francesco.biral@unitn.it)
   GenericContainer &
   GenericContainer::readFormattedData(
-    std::istream & stream,
+    istream_type & stream,
     char const   * commentChars,
     char const   * delimiters
   ) {
     //read a line
-    std::string line;
+    string_type line;
 
     this->set_map();
     GenericContainer & tmp = (*this)["headers"];

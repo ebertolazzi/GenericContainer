@@ -73,6 +73,7 @@
 namespace GC_namespace {
 
   typedef std::basic_ostream<char> ostream_type;
+  typedef std::basic_istream<char> istream_type;
 
   #ifndef _MSC_VER
   using std::uint8_t;
@@ -184,7 +185,7 @@ namespace GC_namespace {
 
     void info( ostream_type & stream ) const;
 
-    std::string
+    string_type
     info() const {
       std::ostringstream ostr;
       this->info(ostr);
@@ -401,7 +402,9 @@ namespace GC_namespace {
     //!
     void erase( char const * name );
 
-    //! \name Initialize simple data
+    //!
+    //! \name Initialize simple data.
+    //!
     ///@{
     //!
     //! Set data to `pointer_type` initialize and
@@ -458,7 +461,9 @@ namespace GC_namespace {
     string_type & set_string( string_type const & value );
     ///@}
 
-    //! \name Initialize vector data
+    //!
+    //! \name Initialize vector data.
+    //!
     ///@{
     //!
     //! Set data to `vec_pointer_type`, allocate and initialize.
@@ -742,7 +747,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Initialize generic data
+    //!
+    //! \name Initialize generic data.
+    //!
     ///@{
     //!
     //! Set data to `vector_type`, allocate an empty generic
@@ -761,7 +768,9 @@ namespace GC_namespace {
     map_type & set_map();
     ///@}
 
-    //! \name Access to a single element
+    //!
+    //! \name Access to a single element.
+    //!
     ///@{
 
     //! Return an integer representing the type of data stored
@@ -808,7 +817,7 @@ namespace GC_namespace {
     //!
     //! Print to string the kind of data stored
     //!
-    std::string
+    string_type
     info() const {
       std::ostringstream sstr;
       this->info(sstr);
@@ -1070,7 +1079,9 @@ namespace GC_namespace {
     string_type const & get_string( char const * msg = nullptr ) const;
     ///@}
 
-    //! \name Access to vector type data
+    //!
+    //! \name Access to vector type data.
+    //!
     ///@{
     //!
     //! Get the stored value as a vector of `GenericoContainer`
@@ -1266,7 +1277,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Access to vector type data and convert
+    //!
+    //! \name Access to vector type data and convert.
+    //!
     ///@{
 
     //!
@@ -1576,7 +1589,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Access to map type element
+    //!
+    //! \name Access to map type element.
+    //!
     ///@{
 
     //!
@@ -1597,7 +1612,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Access using operators
+    //!
+    //! \name Access using operators.
+    //!
     ///@{
 
     //!
@@ -1622,7 +1639,7 @@ namespace GC_namespace {
     //! \param[in]  s  key string of the element in the map
     //! \return the stored value
     //!
-    GenericContainer & operator [] ( std::string const & s );
+    GenericContainer & operator [] ( string_type const & s );
 
     //!
     //! Get the `i`-th const `GenericContainer` of the stored data.
@@ -1630,7 +1647,7 @@ namespace GC_namespace {
     //! \param[in]  s  key string of the element in the map
     //! \return the stored value
     //!
-    GenericContainer const & operator [] ( std::string const & s ) const;
+    GenericContainer const & operator [] ( string_type const & s ) const;
 
     //!
     //! Get the `i`-th `GenericContainer` of the stored data.
@@ -1657,7 +1674,7 @@ namespace GC_namespace {
     //! \param[in]  msg message of error in case of failure
     //! \return the stored value
     //!
-    GenericContainer & operator () ( std::string const & s, char const * msg = nullptr );
+    GenericContainer & operator () ( string_type const & s, char const * msg = nullptr );
 
     //!
     //! Get a const `GenericContainer` in the stored data.
@@ -1666,10 +1683,12 @@ namespace GC_namespace {
     //! \param[in]  msg message of error in case of failure
     //! \return the stored value
     //!
-    GenericContainer const & operator () ( std::string const & s, char const * msg = nullptr ) const;
+    GenericContainer const & operator () ( string_type const & s, char const * msg = nullptr ) const;
     ///@}
 
-    //! \name Initialize data using set command
+    //!
+    //! \name Initialize data using set command.
+    //!
     ///@{
 
     //! 
@@ -1749,7 +1768,7 @@ namespace GC_namespace {
     //! 
     //! \param[in] a string to be stored
     //! 
-    void set( std::string const & a ) { this->set_string(a); }
+    void set( string_type const & a ) { this->set_string(a); }
 
     //! 
     //! Assign a pointer to the generic container.
@@ -1760,7 +1779,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Initialize data using operators
+    //!
+    //! \name Initialize data using operators.
+    //!
     //!
     //! The `=` operator is overloaded to initialize the 
     //! `GenericContainer` on its left side.
@@ -1922,7 +1943,7 @@ namespace GC_namespace {
     //! 
     //! \param[in] a string to be stored
     //! 
-    GenericContainer & operator = ( std::string const & a )
+    GenericContainer & operator = ( string_type const & a )
     { this->set_string(a); return * this; }
 
     //! 
@@ -1949,7 +1970,9 @@ namespace GC_namespace {
     void load( GenericContainer const & a );
     ///@}
 
-    //! \name Promotion to a ``bigger'' data
+    //!
+    //! \name Promotion to a ``bigger'' data.
+    //!
     ///@{
     //!
     //! If data contains a boolean it is promoted to an integer.
@@ -2026,7 +2049,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Initialize data by overloading constructor
+    //!
+    //! \name Initialize data by overloading constructor.
+    //!
     ///@{
 
     //! 
@@ -2103,7 +2128,7 @@ namespace GC_namespace {
     //! Construct a generic container storing a string
     //! \param[in] a initializer data
     //! 
-    GenericContainer( std::string const & a )
+    GenericContainer( string_type const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
     //! 
@@ -2122,73 +2147,120 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Utilities methods
+    //!
+    //! \name Utilities methods.
+    //!
+    ///@{
 
     //!
     //! Check if string `s` is a key of the stored map (if fails issue an error).
     //! \param[in] s key to be checked
     //!
-    bool exists( std::string const & s ) const;
+    bool exists( string_type const & s ) const;
+
+    //!
+    //! Check if any string in `vs` is a key of the stored 
+    //! map (if fails issue an error).
+    //! \param[in] vs vector of string with the keys to be checked
+    //!
+    bool exists( vec_string_type const & vs ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, bool & value ) const;
+    bool get_if_exists( string_type const & field, bool & value ) const;
+
+    //!
+    //! Check if vector of strings `fields` is a key of the
+    //! stored map and extract value if exists
+    //! \param[in] fields keys to be checked
+    //! \param[in] value  value to be extracted
+    //!
+    bool get_if_exists( vec_string_type const & fields, bool & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, int_type & value ) const;
+    bool get_if_exists( string_type const & field, int_type & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, uint_type & value ) const;
+    bool get_if_exists( string_type const & field, uint_type & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, long_type & value ) const;
+    bool get_if_exists( string_type const & field, long_type & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, ulong_type & value ) const;
+    bool get_if_exists( string_type const & field, ulong_type & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, real_type & value ) const;
+    bool get_if_exists( string_type const & field, real_type & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, complex_type & value ) const;
+    bool get_if_exists( string_type const & field, complex_type & value ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
     //!
-    bool get_if_exists( char const * field, string_type & value ) const;
+    bool get_if_exists( string_type const & field, string_type & value ) const;
+
+    //!
+    //! Check if vector of strings `fields` is a key of the
+    //! stored map and extract value if exists
+    //! \param[in] fields keys to be checked
+    //! \param[in] value  value to be extracted
+    //!
+    template <typename T>
+    bool
+    get_if_exists( vec_string_type const & fields, T & value ) const {
+      for ( string_type const & field : fields ) {
+        if ( get_if_exists( field, value ) ) return true;
+      }
+      return false;
+    }
+
+    //!
+    //! Check if string `field` is a key of the stored map and extract value if exists
+    //! \param[in] field key to be checked
+    //! \param[in] value value to be extracted
+    //!
+    template <typename T>
+    bool
+    get_if_exists( char const * field, T & value ) const {
+      string_type field_str(field);
+      return get_if_exists( field_str, value );
+    }
 
     ///@}
 
-    //! \name I/O for GenericContainer objects
+    //!
+    //! \name I/O for GenericContainer objects.
+    //!
     ///@{
 
     //!
@@ -2201,8 +2273,8 @@ namespace GC_namespace {
     void
     print_content_types(
       ostream_type      & stream,
-      std::string const & prefix = "",
-      std::string const & indent = "    "
+      string_type const & prefix = "",
+      string_type const & indent = "    "
     ) const;
 
     //!
@@ -2215,8 +2287,8 @@ namespace GC_namespace {
     void
     dump(
       ostream_type      & stream,
-      std::string const & prefix = "",
-      std::string const & indent = "    "
+      string_type const & prefix = "",
+      string_type const & indent = "    "
     ) const;
 
     //!
@@ -2229,8 +2301,8 @@ namespace GC_namespace {
     void
     print(
       ostream_type      & stream,
-      std::string const & prefix = "",
-      std::string const & indent = "    "
+      string_type const & prefix = "",
+      string_type const & indent = "    "
     ) const {
       this->dump( stream, prefix, indent );
     }
@@ -2241,10 +2313,10 @@ namespace GC_namespace {
     //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
     //! \param[in] indent indentation
     //!
-    std::string
+    string_type
     print(
-      std::string const & prefix = "",
-      std::string const & indent = "    "
+      string_type const & prefix = "",
+      string_type const & indent = "    "
     ) const {
       std::ostringstream ostr;
       this->print(ostr,prefix,indent);
@@ -2257,7 +2329,7 @@ namespace GC_namespace {
     //! \param[in] stream output stream
     //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
     //!
-    void to_yaml( ostream_type & stream, std::string const & prefix = "" ) const;
+    void to_yaml( ostream_type & stream, string_type const & prefix = "" ) const;
 
     //!
     //! Write `GenericContainer` as regular formatted data to stream.
@@ -2302,7 +2374,7 @@ namespace GC_namespace {
     //!
     GenericContainer &
     readFormattedData(
-      std::istream & stream,
+      istream_type & stream,
       char const * commentChars = "#%",
       char const * delimiters = " \t"
     );
@@ -2332,7 +2404,9 @@ namespace GC_namespace {
 
     ///@}
 
-    //! \name Serialization
+    //!
+    //! \name Serialization.
+    //!
     ///@{
 
     //!

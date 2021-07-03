@@ -111,11 +111,11 @@
 
 <span class="cp">#include</span> <span class="cpf">"GenericContainerConfig.hh"</span><span class="cp"></span>
 
-<span class="cp">#if defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)</span>
-  <span class="cp">#define GENERIC_CONTAINER_ON_WINDOWS</span>
+<span class="cp">#ifdef GENERIC_CONTAINER_ON_WINDOWS</span>
   <span class="cp">#ifdef _MSC_VER</span>
     <span class="cp">#pragma comment(lib, "kernel32.lib")</span>
     <span class="cp">#pragma comment(lib, "user32.lib")</span>
+    <span class="cp">#pragma comment(lib, "Ws2_32.lib")</span>
   <span class="cp">#endif</span>
 <span class="cp">#endif</span>
 

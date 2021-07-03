@@ -635,7 +635,7 @@ namespace GC_namespace {
       for ( int32_t i = 0; i < nr; ++i ) {
         nb = buffer_to_int32( buffer, &i32 );
         buffer += nb; nbyte += nb;
-        std::string key = reinterpret_cast<char const*>(buffer);
+        string_type key = reinterpret_cast<char const*>(buffer);
         buffer += i32; nbyte += i32;
         //std::cout << "key[" << i << "] = " << key << '\n';
         sz = (*m_data.m)[key].de_serialize( buffer_dim-nbyte, buffer );

@@ -16,7 +16,8 @@ using namespace GC;
 using namespace std;
 
 int
-main( int argc, const char * argv[] ) {
+//main( int argc, const char * argv[] ) {
+main() {
 
   GenericContainer gc;
 

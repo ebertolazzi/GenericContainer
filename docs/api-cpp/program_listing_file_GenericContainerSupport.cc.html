@@ -127,19 +127,19 @@
   <span class="k">static</span>
   <span class="kt">void</span>
   <span class="n">tokenizeString</span><span class="p">(</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span>
     <span class="n">vec_string_type</span>   <span class="o">&amp;</span> <span class="n">tokens</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">delimiters</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">delimiters</span>
   <span class="p">)</span> <span class="p">{</span>
 
     <span class="n">tokens</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
 
     <span class="c1">// Skip delimiters at beginning.</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">size_type</span> <span class="n">lastPos</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">find_first_not_of</span><span class="p">(</span><span class="n">delimiters</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">string_type</span><span class="o">::</span><span class="n">size_type</span> <span class="n">lastPos</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">find_first_not_of</span><span class="p">(</span><span class="n">delimiters</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
     <span class="c1">// Find first "non-delimiter".</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">size_type</span> <span class="n">pos</span>     <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="n">delimiters</span><span class="p">,</span> <span class="n">lastPos</span><span class="p">);</span>
+    <span class="n">string_type</span><span class="o">::</span><span class="n">size_type</span> <span class="n">pos</span>     <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="n">delimiters</span><span class="p">,</span> <span class="n">lastPos</span><span class="p">);</span>
 
-    <span class="k">while</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span> <span class="o">!=</span> <span class="n">pos</span> <span class="o">||</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span> <span class="o">!=</span> <span class="n">lastPos</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">string_type</span><span class="o">::</span><span class="n">npos</span> <span class="o">!=</span> <span class="n">pos</span> <span class="o">||</span> <span class="n">string_type</span><span class="o">::</span><span class="n">npos</span> <span class="o">!=</span> <span class="n">lastPos</span> <span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Found a token, add it to the vector.</span>
       <span class="n">tokens</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">lastPos</span><span class="p">,</span> <span class="n">pos</span> <span class="o">-</span> <span class="n">lastPos</span><span class="p">));</span>
       <span class="c1">// Skip delimiters.  Note the "not_of"</span>
@@ -164,16 +164,16 @@
   <span class="k">static</span>
   <span class="kt">unsigned</span>
   <span class="n">getLineAndSkipComments</span><span class="p">(</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">istream</span>      <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span>       <span class="o">&amp;</span> <span class="n">line</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">commentchars</span>
+    <span class="n">istream_type</span>      <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
+    <span class="n">string_type</span>       <span class="o">&amp;</span> <span class="n">line</span><span class="p">,</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">commentchars</span>
   <span class="p">)</span> <span class="p">{</span>
     <span class="kt">unsigned</span> <span class="n">nl</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">do</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span> <span class="n">stream</span><span class="p">.</span><span class="n">fail</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
       <span class="n">getline</span><span class="p">(</span> <span class="n">stream</span><span class="p">,</span> <span class="n">line</span> <span class="p">);</span>
       <span class="o">++</span><span class="n">nl</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="n">line</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="n">commentchars</span><span class="p">)</span> <span class="o">!=</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">::</span><span class="n">npos</span> <span class="p">);</span> <span class="c1">// ????????????</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="n">line</span><span class="p">.</span><span class="n">find_first_of</span><span class="p">(</span><span class="n">commentchars</span><span class="p">)</span> <span class="o">!=</span> <span class="n">string_type</span><span class="o">::</span><span class="n">npos</span> <span class="p">);</span> <span class="c1">// ????????????</span>
     <span class="k">return</span> <span class="n">nl</span><span class="p">;</span>
   <span class="p">}</span>
 
@@ -207,12 +207,12 @@
   <span class="c1">// original code by Francesco Biral (francesco.biral@unitn.it)</span>
   <span class="n">GenericContainer</span> <span class="o">&amp;</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">readFormattedData</span><span class="p">(</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
+    <span class="n">istream_type</span> <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
     <span class="kt">char</span> <span class="k">const</span>   <span class="o">*</span> <span class="n">commentChars</span><span class="p">,</span>
     <span class="kt">char</span> <span class="k">const</span>   <span class="o">*</span> <span class="n">delimiters</span>
   <span class="p">)</span> <span class="p">{</span>
     <span class="c1">//read a line</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="n">string_type</span> <span class="n">line</span><span class="p">;</span>
 
     <span class="k">this</span><span class="o">-&gt;</span><span class="n">set_map</span><span class="p">();</span>
     <span class="n">GenericContainer</span> <span class="o">&amp;</span> <span class="n">tmp</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)[</span><span class="s">"headers"</span><span class="p">];</span>

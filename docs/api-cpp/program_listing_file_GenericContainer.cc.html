@@ -349,7 +349,7 @@
     <span class="p">{</span> <span class="p">}</span>
 
     <span class="kt">int</span>
-    <span class="n">exec</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">matches</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">exec</span><span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">string_type</span> <span class="n">matches</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">regex_match</span><span class="p">(</span> <span class="n">str</span><span class="p">,</span> <span class="n">reMatches</span><span class="p">,</span> <span class="n">reCompiled</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">reMatches</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span>
           <span class="n">matches</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">reMatches</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">str</span><span class="p">();</span>
@@ -402,11 +402,11 @@
   <span class="cp">#ifdef GENERIC_CONTAINER_ON_WINDOWS</span>
   <span class="kt">bool</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">simple_data</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">_data_type</span> <span class="o">&lt;=</span> <span class="n">GC_STRING</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">m_data_type</span> <span class="o">&lt;=</span> <span class="n">GC_STRING</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="kt">bool</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">simple_vec_data</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">_data_type</span> <span class="o">&lt;=</span> <span class="n">GC_VEC_STRING</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">m_data_type</span> <span class="o">&lt;=</span> <span class="n">GC_VEC_STRING</span><span class="p">;</span>
   <span class="p">}</span>
   <span class="cp">#endif</span>
 
@@ -2242,7 +2242,7 @@
 
   <span class="n">complex_type</span> <span class="k">const</span> <span class="o">&amp;</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_complex</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="n">ck</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">GC_REAL</span><span class="p">);</span>
+    <span class="n">ck</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span><span class="n">GC_COMPLEX</span><span class="p">);</span>
     <span class="k">return</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">c</span><span class="p">;</span>
   <span class="p">}</span>
 
@@ -3210,14 +3210,26 @@
   <span class="c1">// --------------------------------------------------------------</span>
 
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">exists</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">exists</span><span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
     <span class="k">return</span> <span class="n">iv</span> <span class="o">!=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">();</span>
   <span class="p">}</span>
 
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="kt">bool</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">exists</span><span class="p">(</span> <span class="n">vec_string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">vs</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="nl">s</span> <span class="p">:</span> <span class="n">vs</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">!=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
+  <span class="kt">bool</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span> <span class="kt">bool</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3227,7 +3239,29 @@
   <span class="p">}</span>
 
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">int_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">vec_string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">fields</span><span class="p">,</span>
+    <span class="kt">bool</span>                  <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">map_type</span> <span class="o">&amp;</span> <span class="n">m</span> <span class="o">=</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="nl">field</span> <span class="p">:</span> <span class="n">fields</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">!=</span> <span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">iv</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_BOOL</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">iv</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">m_data</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
+  <span class="kt">bool</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">int_type</span>          <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3271,8 +3305,13 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">uint_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">uint_type</span>         <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3318,8 +3357,13 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">long_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">long_type</span>         <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3363,8 +3407,13 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">ulong_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">ulong_type</span>        <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3410,8 +3459,13 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">real_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">real_type</span>         <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3453,8 +3507,13 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">complex_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">complex_type</span>      <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3495,8 +3554,13 @@
     <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
   <span class="p">}</span>
 
+  <span class="c1">// -----------------------------------------------------------------------</span>
+
   <span class="kt">bool</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">field</span><span class="p">,</span> <span class="n">string_type</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">get_if_exists</span><span class="p">(</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">field</span><span class="p">,</span>
+    <span class="n">string_type</span>       <span class="o">&amp;</span> <span class="n">value</span>
+  <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">m_data_type</span> <span class="o">!=</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">map_type</span><span class="o">::</span><span class="n">iterator</span> <span class="n">iv</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">find</span><span class="p">(</span><span class="n">field</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">iv</span> <span class="o">==</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">).</span><span class="n">end</span><span class="p">()</span> <span class="p">)</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
@@ -3913,7 +3977,7 @@
   <span class="p">}</span>
 
   <span class="n">GenericContainer</span> <span class="o">&amp;</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">()</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg_in</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">()</span> <span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg_in</span> <span class="p">)</span> <span class="p">{</span>
     <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_in</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="o">?</span> <span class="s">""</span> <span class="o">:</span> <span class="n">msg_in</span><span class="p">;</span>
     <span class="n">GC_ASSERT</span><span class="p">(</span>
       <span class="n">GC_MAP</span> <span class="o">==</span> <span class="n">m_data_type</span><span class="p">,</span>
@@ -3930,7 +3994,7 @@
   <span class="p">}</span>
 
   <span class="n">GenericContainer</span> <span class="k">const</span> <span class="o">&amp;</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">()</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg_in</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">()</span> <span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg_in</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">msg_in</span> <span class="o">==</span> <span class="k">nullptr</span> <span class="o">?</span> <span class="s">""</span> <span class="o">:</span> <span class="n">msg_in</span><span class="p">;</span>
     <span class="n">GC_ASSERT</span><span class="p">(</span>
       <span class="n">GC_MAP</span> <span class="o">==</span> <span class="n">m_data_type</span><span class="p">,</span>
@@ -3956,13 +4020,13 @@
 <span class="cm">  */</span>
 
   <span class="n">GenericContainer</span> <span class="o">&amp;</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">[]</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">[]</span> <span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span> <span class="n">ck</span><span class="p">(</span> <span class="n">GC_MAP</span> <span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="n">set_map</span><span class="p">();</span> <span class="c1">// if not data present allocate!</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">)[</span><span class="n">s</span><span class="p">];</span>
   <span class="p">}</span>
 
   <span class="n">GenericContainer</span> <span class="k">const</span> <span class="o">&amp;</span>
-  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">[]</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="k">operator</span> <span class="p">[]</span> <span class="p">(</span> <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="n">GC_ASSERT</span><span class="p">(</span>
       <span class="n">GC_MAP</span> <span class="o">==</span> <span class="n">m_data_type</span><span class="p">,</span>
       <span class="s">"operator [] string argument ``"</span> <span class="o">&lt;&lt;</span> <span class="n">s</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">"''"</span>
@@ -4869,8 +4933,8 @@
   <span class="kt">void</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">dump</span><span class="p">(</span>
     <span class="n">ostream_type</span>      <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">prefix</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">indent</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">prefix</span><span class="p">,</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">indent</span>
   <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
 
     <span class="k">switch</span> <span class="p">(</span><span class="n">m_data_type</span><span class="p">)</span> <span class="p">{</span>
@@ -4974,10 +5038,10 @@
           <span class="c1">// check formatting using pcre</span>
           <span class="c1">// num+"@"+"underline character"</span>
           <span class="c1">// Try to find the regex in aLineToMatch, and report results.</span>
-          <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">matches</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+          <span class="n">string_type</span> <span class="n">matches</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
           <span class="kt">int</span> <span class="n">pcreExecRet</span> <span class="o">=</span> <span class="n">pcre_for_GC</span><span class="p">.</span><span class="n">exec</span><span class="p">(</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">,</span> <span class="n">matches</span> <span class="p">);</span>
           <span class="k">if</span> <span class="p">(</span> <span class="n">pcreExecRet</span> <span class="o">==</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">header</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// header</span>
+            <span class="n">string_type</span> <span class="n">header</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// header</span>
             <span class="c1">// found formatting</span>
             <span class="k">if</span> <span class="p">(</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">simple_data</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
               <span class="n">stream</span> <span class="o">&lt;&lt;</span> <span class="n">prefix</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">header</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span><span class="p">;</span>
@@ -4997,7 +5061,7 @@
               <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="n">prefix</span><span class="o">+</span><span class="n">indent</span><span class="p">);</span>
             <span class="p">}</span>
           <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">header</span> <span class="o">=</span> <span class="n">pcreExecRet</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">?</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">:</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+            <span class="n">string_type</span> <span class="n">header</span> <span class="o">=</span> <span class="n">pcreExecRet</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">?</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">:</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">simple_data</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
               <span class="n">stream</span> <span class="o">&lt;&lt;</span> <span class="n">prefix</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">header</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span><span class="p">;</span>
               <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="s">""</span><span class="p">);</span>
@@ -5021,8 +5085,8 @@
   <span class="kt">void</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">print_content_types</span><span class="p">(</span>
     <span class="n">ostream_type</span>      <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">prefix</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">indent</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">prefix</span><span class="p">,</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">indent</span>
   <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
 
     <span class="k">switch</span> <span class="p">(</span><span class="n">m_data_type</span><span class="p">)</span> <span class="p">{</span>
@@ -5119,10 +5183,10 @@
           <span class="c1">// check formatting using pcre</span>
           <span class="c1">// num+"@"+"underline character"</span>
           <span class="c1">// Try to find the regex in aLineToMatch, and report results.</span>
-          <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">matches</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+          <span class="n">string_type</span> <span class="n">matches</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
           <span class="kt">int</span> <span class="n">pcreExecRet</span> <span class="o">=</span> <span class="n">pcre_for_GC</span><span class="p">.</span><span class="n">exec</span><span class="p">(</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">,</span> <span class="n">matches</span> <span class="p">);</span>
           <span class="k">if</span> <span class="p">(</span> <span class="n">pcreExecRet</span> <span class="o">==</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">{</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">header</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// header</span>
+            <span class="n">string_type</span> <span class="n">header</span> <span class="o">=</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// header</span>
             <span class="c1">// found formatting</span>
             <span class="k">if</span> <span class="p">(</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">simple_data</span><span class="p">()</span> <span class="o">||</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">simple_vec_data</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
               <span class="n">stream</span> <span class="o">&lt;&lt;</span> <span class="n">prefix</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">header</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span><span class="p">;</span>
@@ -5142,7 +5206,7 @@
               <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">print_content_types</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="n">prefix</span><span class="o">+</span><span class="n">indent</span><span class="p">,</span><span class="n">indent</span><span class="p">);</span>
             <span class="p">}</span>
           <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">header</span> <span class="o">=</span> <span class="n">pcreExecRet</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">?</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">:</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
+            <span class="n">string_type</span> <span class="n">header</span> <span class="o">=</span> <span class="n">pcreExecRet</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">?</span> <span class="n">matches</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">:</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">first</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">simple_data</span><span class="p">()</span> <span class="o">||</span> <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">simple_vec_data</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
               <span class="n">stream</span> <span class="o">&lt;&lt;</span> <span class="n">prefix</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">header</span><span class="p">.</span><span class="n">c_str</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">": "</span><span class="p">;</span>
               <span class="n">im</span><span class="o">-&gt;</span><span class="n">second</span><span class="p">.</span><span class="n">print_content_types</span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="s">""</span><span class="p">);</span>
@@ -5174,7 +5238,7 @@
   <span class="kt">void</span>
   <span class="n">GenericContainer</span><span class="o">::</span><span class="n">to_yaml</span><span class="p">(</span>
     <span class="n">ostream_type</span>      <span class="o">&amp;</span> <span class="n">stream</span><span class="p">,</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">prefix</span>
+    <span class="n">string_type</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">prefix</span>
   <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
     <span class="k">switch</span> <span class="p">(</span><span class="n">m_data_type</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="nl">GC_NOTYPE</span><span class="p">:</span>

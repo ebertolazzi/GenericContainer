@@ -264,7 +264,7 @@ namespace GC_namespace {
     { }
 
     int
-    exec( std::string const & str, std::string matches[4] ) {
+    exec( string_type const & str, string_type matches[4] ) {
       if ( std::regex_match( str, reMatches, reCompiled ) ) {
         for ( std::size_t i = 0; i < reMatches.size(); ++i )
           matches[i] = reMatches[i].str();
@@ -3125,14 +3125,26 @@ namespace GC_namespace {
   // --------------------------------------------------------------
 
   bool
-  GenericContainer::exists( std::string const & s ) const {
+  GenericContainer::exists( string_type const & s ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(s);
     return iv != (*m_data.m).end();
   }
 
   bool
-  GenericContainer::get_if_exists( char const * field, bool & value ) const {
+  GenericContainer::exists( vec_string_type const & vs ) const {
+    if ( m_data_type != GC_MAP ) return false;
+    for ( string_type const & s : vs ) {
+      map_type::iterator iv = (*m_data.m).find(s);
+      if ( iv != (*m_data.m).end() ) return true;
+    }
+    return false;
+  }
+
+  // -----------------------------------------------------------------------
+
+  bool
+  GenericContainer::get_if_exists( string_type const & field, bool & value ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3142,7 +3154,29 @@ namespace GC_namespace {
   }
 
   bool
-  GenericContainer::get_if_exists( char const * field, int_type & value ) const {
+  GenericContainer::get_if_exists(
+    vec_string_type const & fields,
+    bool                  & value
+  ) const {
+    if ( m_data_type != GC_MAP ) return false;
+    map_type & m = *m_data.m;
+    for ( string_type const & field : fields ) {
+      map_type::iterator iv = m.find(field);
+      if ( iv != m.end() && iv->second.m_data_type != GC_BOOL ) {
+        value = iv->second.m_data.b;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // -----------------------------------------------------------------------
+
+  bool
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    int_type          & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3186,8 +3220,13 @@ namespace GC_namespace {
     return true;
   }
 
+  // -----------------------------------------------------------------------
+
   bool
-  GenericContainer::get_if_exists( char const * field, uint_type & value ) const {
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    uint_type         & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3233,8 +3272,13 @@ namespace GC_namespace {
     return true;
   }
 
+  // -----------------------------------------------------------------------
+
   bool
-  GenericContainer::get_if_exists( char const * field, long_type & value ) const {
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    long_type         & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3278,8 +3322,13 @@ namespace GC_namespace {
     return true;
   }
 
+  // -----------------------------------------------------------------------
+
   bool
-  GenericContainer::get_if_exists( char const * field, ulong_type & value ) const {
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    ulong_type        & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3325,8 +3374,13 @@ namespace GC_namespace {
     return true;
   }
 
+  // -----------------------------------------------------------------------
+
   bool
-  GenericContainer::get_if_exists( char const * field, real_type & value ) const {
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    real_type         & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3368,8 +3422,13 @@ namespace GC_namespace {
     return true;
   }
 
+  // -----------------------------------------------------------------------
+
   bool
-  GenericContainer::get_if_exists( char const * field, complex_type & value ) const {
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    complex_type      & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3410,8 +3469,13 @@ namespace GC_namespace {
     return true;
   }
 
+  // -----------------------------------------------------------------------
+
   bool
-  GenericContainer::get_if_exists( char const * field, string_type & value ) const {
+  GenericContainer::get_if_exists(
+    string_type const & field,
+    string_type       & value
+  ) const {
     if ( m_data_type != GC_MAP ) return false;
     map_type::iterator iv = (*m_data.m).find(field);
     if ( iv == (*m_data.m).end() ) return false;
@@ -3828,7 +3892,7 @@ namespace GC_namespace {
   }
 
   GenericContainer &
-  GenericContainer::operator () ( std::string const & s, char const * msg_in ) {
+  GenericContainer::operator () ( string_type const & s, char const * msg_in ) {
     char const * msg = msg_in == nullptr ? "" : msg_in;
     GC_ASSERT(
       GC_MAP == m_data_type,
@@ -3845,7 +3909,7 @@ namespace GC_namespace {
   }
 
   GenericContainer const &
-  GenericContainer::operator () ( std::string const & s, char const * msg_in ) const {
+  GenericContainer::operator () ( string_type const & s, char const * msg_in ) const {
     char const * msg = msg_in == nullptr ? "" : msg_in;
     GC_ASSERT(
       GC_MAP == m_data_type,
@@ -3871,13 +3935,13 @@ namespace GC_namespace {
   */
 
   GenericContainer &
-  GenericContainer::operator [] ( std::string const & s ) {
+  GenericContainer::operator [] ( string_type const & s ) {
     if ( ck( GC_MAP ) != 0 ) set_map(); // if not data present allocate!
     return (*m_data.m)[s];
   }
 
   GenericContainer const &
-  GenericContainer::operator [] ( std::string const & s ) const {
+  GenericContainer::operator [] ( string_type const & s ) const {
     GC_ASSERT(
       GC_MAP == m_data_type,
       "operator [] string argument ``" << s.c_str() << "''"
@@ -4784,8 +4848,8 @@ namespace GC_namespace {
   void
   GenericContainer::dump(
     ostream_type      & stream,
-    std::string const & prefix,
-    std::string const & indent
+    string_type const & prefix,
+    string_type const & indent
   ) const {
 
     switch (m_data_type) {
@@ -4889,10 +4953,10 @@ namespace GC_namespace {
           // check formatting using pcre
           // num+"@"+"underline character"
           // Try to find the regex in aLineToMatch, and report results.
-          std::string matches[4];
+          string_type matches[4];
           int pcreExecRet = pcre_for_GC.exec( im->first, matches );
           if ( pcreExecRet == 4 ) {
-            std::string header = matches[3]; // header
+            string_type header = matches[3]; // header
             // found formatting
             if ( im->second.simple_data() ) {
               stream << prefix.c_str() << header << ": ";
@@ -4912,7 +4976,7 @@ namespace GC_namespace {
               im->second.dump(stream,prefix+indent);
             }
           } else {
-            std::string header = pcreExecRet == 3 ? matches[3] : im->first;
+            string_type header = pcreExecRet == 3 ? matches[3] : im->first;
             if ( im->second.simple_data() ) {
               stream << prefix.c_str() << header.c_str() << ": ";
               im->second.dump(stream,"");
@@ -4936,8 +5000,8 @@ namespace GC_namespace {
   void
   GenericContainer::print_content_types(
     ostream_type      & stream,
-    std::string const & prefix,
-    std::string const & indent
+    string_type const & prefix,
+    string_type const & indent
   ) const {
 
     switch (m_data_type) {
@@ -5034,10 +5098,10 @@ namespace GC_namespace {
           // check formatting using pcre
           // num+"@"+"underline character"
           // Try to find the regex in aLineToMatch, and report results.
-          std::string matches[4];
+          string_type matches[4];
           int pcreExecRet = pcre_for_GC.exec( im->first, matches );
           if ( pcreExecRet == 4 ) {
-            std::string header = matches[3]; // header
+            string_type header = matches[3]; // header
             // found formatting
             if ( im->second.simple_data() || im->second.simple_vec_data() ) {
               stream << prefix.c_str() << header << ": ";
@@ -5057,7 +5121,7 @@ namespace GC_namespace {
               im->second.print_content_types(stream,prefix+indent,indent);
             }
           } else {
-            std::string header = pcreExecRet == 3 ? matches[3] : im->first;
+            string_type header = pcreExecRet == 3 ? matches[3] : im->first;
             if ( im->second.simple_data() || im->second.simple_vec_data() ) {
               stream << prefix.c_str() << header.c_str() << ": ";
               im->second.print_content_types(stream,"");
@@ -5089,7 +5153,7 @@ namespace GC_namespace {
   void
   GenericContainer::to_yaml(
     ostream_type      & stream,
-    std::string const & prefix
+    string_type const & prefix
   ) const {
     switch (m_data_type) {
     case GC_NOTYPE:

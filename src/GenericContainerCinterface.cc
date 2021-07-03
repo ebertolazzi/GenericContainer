@@ -55,8 +55,8 @@ catch(std::runtime_error & err) { \
 
 using namespace ::GC_namespace;
 
-typedef std::map<std::string,GenericContainerExplorer*>  MAP;
-typedef std::pair<std::string,GenericContainerExplorer*> MAP_DATA;
+typedef std::map<string_type,GenericContainerExplorer*>  MAP;
+typedef std::pair<string_type,GenericContainerExplorer*> MAP_DATA;
 
 static MAP                        gc_explorer;
 static GenericContainerExplorer * gc_active = nullptr;

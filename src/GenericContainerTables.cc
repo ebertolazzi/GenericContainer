@@ -99,7 +99,7 @@ namespace GC_namespace {
     if      ( ml < 8  ) ml = 8;
     else if ( ml > 20 ) ml = 20;
 
-    string line = std::string(ncol*(ml+1)-1, '-');
+    string line = string_type(ncol*(ml+1)-1, '-');
 
     is = headers.begin();
     stream << std::setw(int(ml)) << is->c_str();
@@ -137,7 +137,7 @@ namespace GC_namespace {
     if      ( ml < 8  ) ml = 8;
     else if ( ml > 20 ) ml = 20;
 
-    string line = std::string(ncol*(ml+1)-1, '-');
+    string line = string_type(ncol*(ml+1)-1, '-');
 
     is = headers.begin();
     stream << std::setw(int(ml)) << is->c_str();

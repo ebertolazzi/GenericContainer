@@ -111,6 +111,28 @@
 <span class="cp">#ifndef GENERIC_CONTAINER_CONFIG_HH</span>
 <span class="cp">#define GENERIC_CONTAINER_CONFIG_HH</span>
 
+<span class="c1">// select computer architecture</span>
+<span class="cp">#if defined(__APPLE__) &amp;&amp; defined(__MACH__)</span>
+  <span class="c1">// osx architecture</span>
+  <span class="cp">#define GENERIC_CONTAINER_ON_OSX 1</span>
+<span class="cp">#elif defined(__unix__)</span>
+  <span class="c1">// linux architecture</span>
+  <span class="cp">#define GENERIC_CONTAINER_ON_LINUX 1</span>
+<span class="cp">#elif defined(_WIN32) || defined(WIN32) || defined(_WIN64) || defined(WIN64)</span>
+  <span class="c1">// windows architecture</span>
+  <span class="cp">#define GENERIC_CONTAINER_ON_WINDOWS</span>
+<span class="cp">#else</span>
+  <span class="cp">#warning "unsupported OS!"</span>
+<span class="cp">#endif</span>
+
+<span class="c1">// check if compiler is C++11</span>
+<span class="cp">#if (defined(_MSC_VER) &amp;&amp;  _MSC_VER &gt;= 1800) || \</span>
+<span class="cp">    (defined(__cplusplus) &amp;&amp; __cplusplus &gt; 199711L)</span>
+<span class="cp">#else</span>
+  <span class="cp">#error "Lapack Wrapper must be compiled using C++ &gt;= C++11"</span>
+<span class="cp">#endif</span>
+
+
 <span class="c1">// check if compiler is C++11</span>
 <span class="cp">#if (defined(_MSC_VER) &amp;&amp;  _MSC_VER &gt;= 1800) || \</span>
 <span class="cp">    (defined(__cplusplus) &amp;&amp; __cplusplus &gt;= 201103L)</span>

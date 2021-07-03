@@ -1,0 +1,823 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Program Listing for File GenericContainerSerialize.cc &#8212; Generic Container v1.0.0
+</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+
+    
+    
+     
+        <script src="../_static/jquery.cookie.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.base.js"></script>
+    
+
+    
+     
+        <script src="../_static/cloud.js"></script>
+    
+
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head><body>
+    <div class="relbar-top">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             accesskey="C">toc</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File GenericContainerSerialize.cc</a></li> 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="program-listing-for-file-genericcontainerserialize-cc">
+<span id="program-listing-file-genericcontainerserialize-cc"></span><h1>Program Listing for File GenericContainerSerialize.cc<a class="headerlink" href="#program-listing-for-file-genericcontainerserialize-cc" title="Permalink to this headline">¶</a>
+</h1>
+<p>↰ <a class="reference internal" href="file_GenericContainerSerialize.cc.html#file-genericcontainerserialize-cc"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">GenericContainerSerialize.cc</span></code>)</p>
+<div class="highlight-cpp notranslate">
+<div class="highlight"><pre><span></span><span class="cm">/*--------------------------------------------------------------------------*\</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |  Copyright (C) 2021                                                      |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |         , __                 , __                                        |</span>
+<span class="cm"> |        /|/  \               /|/  \                                       |</span>
+<span class="cm"> |         | __/ _   ,_         | __/ _   ,_                                |</span>
+<span class="cm"> |         |   \|/  /  |  |   | |   \|/  /  |  |   |                        |</span>
+<span class="cm"> |         |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/                       |</span>
+<span class="cm"> |                           /|                   /|                        |</span>
+<span class="cm"> |                           \|                   \|                        |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |      Enrico Bertolazzi                                                   |</span>
+<span class="cm"> |      Dipartimento di Ingegneria Industriale                              |</span>
+<span class="cm"> |      Universita` degli Studi di Trento                                   |</span>
+<span class="cm"> |      email: enrico.bertolazzi@unitn.it                                   |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm">\*--------------------------------------------------------------------------*/</span>
+
+<span class="c1">//</span>
+<span class="c1">// file: GenericContainerSerialize.cc</span>
+<span class="c1">//</span>
+
+<span class="cp">#include</span> <span class="cpf">"GenericContainer.hh"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"GenericContainerLibs.hh"</span><span class="cp"></span>
+
+<span class="cp">#ifdef GENERIC_CONTAINER_ON_WINDOWS</span>
+  <span class="cp">#include</span> <span class="cpf">&lt;winsock.h&gt;</span><span class="cp"></span>
+<span class="cp">#else</span>
+  <span class="cp">#include</span> <span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
+<span class="cp">#endif</span>
+
+<span class="k">namespace</span> <span class="n">GC_namespace</span> <span class="p">{</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint64_t</span>
+  <span class="c1">//htonll_local( uint64_t n ) {</span>
+  <span class="c1">//  uint64_t lo, hi;</span>
+  <span class="c1">//  if ( 1 == htonl(1) ) return n;</span>
+  <span class="c1">//  hi = uint64_t( htonl( *(static_cast&lt;uint32_t*&gt;(&amp;n) ) ) );</span>
+  <span class="c1">//  n = n&gt;&gt;32;</span>
+  <span class="c1">//  lo = uint64_t( htonl( *(static_cast&lt;uint32_t*&gt;(&amp;n) ) ) );</span>
+  <span class="c1">//  return (hi &lt;&lt; 32) + lo;</span>
+  <span class="c1">//}</span>
+
+  <span class="cm">/* -------------------------------------------------- */</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">int8_to_buffer</span><span class="p">(</span> <span class="kt">int8_t</span> <span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">int8_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//uint8_to_buffer( uint8_t in, uint8_t * buffer ) {</span>
+  <span class="c1">//  buffer[0] = in;</span>
+  <span class="c1">//  return sizeof(uint8_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//int16_to_buffer( int16_t in, uint8_t * buffer ) {</span>
+  <span class="c1">//  uint16_t tmp = htons( (uint16_t) in );</span>
+  <span class="c1">//  memcpy( buffer, &amp;tmp, sizeof(int16_t) );</span>
+  <span class="c1">//  return sizeof(int16_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//uint16_to_buffer( uint16_t in, uint8_t * buffer ) {</span>
+  <span class="c1">//  uint16_t tmp = htons( in );</span>
+  <span class="c1">//  memcpy( buffer, &amp;tmp, sizeof(uint16_t)  );</span>
+  <span class="c1">//  return sizeof(uint16_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span> <span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">htonl</span><span class="p">(</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">memcpy</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//uint32_to_buffer( uint32_t in, uint8_t * buffer ) {</span>
+  <span class="c1">//  uint32_t tmp = htonl( in );</span>
+  <span class="c1">//  memcpy( buffer, &amp;tmp, sizeof(uint32_t) );</span>
+  <span class="c1">//  return sizeof(uint32_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">int64_to_buffer</span><span class="p">(</span> <span class="kt">int64_t</span> <span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">htonll</span><span class="p">(</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">memcpy</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">uint64_to_buffer</span><span class="p">(</span> <span class="kt">uint64_t</span> <span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">htonll</span><span class="p">(</span> <span class="n">in</span> <span class="p">);</span>
+    <span class="n">memcpy</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">)</span>  <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//float_to_buffer( float in, uint8_t * buffer ) {</span>
+  <span class="c1">//  union {</span>
+  <span class="c1">//    float    f;</span>
+  <span class="c1">//    uint32_t i;</span>
+  <span class="c1">//  } tmp;</span>
+  <span class="c1">//  tmp.f = in;</span>
+  <span class="c1">//  uint32_to_buffer( tmp.i, buffer );</span>
+  <span class="c1">//  return sizeof(float);</span>
+  <span class="c1">//}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">double_to_buffer</span><span class="p">(</span> <span class="kt">double</span> <span class="n">in</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">union</span> <span class="p">{</span>
+      <span class="kt">double</span>   <span class="n">f</span><span class="p">;</span>
+      <span class="kt">uint64_t</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">tmp</span><span class="p">.</span><span class="n">f</span> <span class="o">=</span> <span class="n">in</span><span class="p">;</span>
+    <span class="n">uint64_to_buffer</span><span class="p">(</span> <span class="n">tmp</span><span class="p">.</span><span class="n">i</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint64_t</span>
+  <span class="c1">//ntohll_local( uint64_t n ) {</span>
+  <span class="c1">//  uint64_t lo, hi;</span>
+  <span class="c1">//  if ( 1 == ntohl(1) ) return n;</span>
+  <span class="c1">//  hi = (uint64_t)ntohl( *((uint32_t*)&amp;n) );</span>
+  <span class="c1">//  n = n&gt;&gt;32;</span>
+  <span class="c1">//  lo = (uint64_t)ntohl( *((uint32_t*)&amp;n) );</span>
+  <span class="c1">//  return (hi &lt;&lt; 32) + lo;</span>
+  <span class="c1">//}</span>
+
+  <span class="cm">/* ---------------------------------------------------------------------------- */</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">buffer_to_uint8</span><span class="p">(</span> <span class="kt">uint8_t</span> <span class="k">const</span> <span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">out</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="o">*</span><span class="n">out</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//buffer_to_int8( uint8_t const * buffer, int8_t * out ) {</span>
+  <span class="c1">//  *((uint8_t*)out) = buffer[0];</span>
+  <span class="c1">//  return sizeof(int8_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//buffer_to_uint16( uint8_t const * buffer, uint16_t * out ) {</span>
+  <span class="c1">//  uint16_t tmp;</span>
+  <span class="c1">//  memcpy( &amp;tmp, buffer, sizeof(uint16_t) );</span>
+  <span class="c1">//  *out = ntohs( tmp );</span>
+  <span class="c1">//  return sizeof(uint16_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//buffer_to_int16( uint8_t const * buffer, int16_t * out ) {</span>
+  <span class="c1">//  uint16_t tmp;</span>
+  <span class="c1">//  memcpy( &amp;tmp, buffer, sizeof(int16_t) );</span>
+  <span class="c1">//  *((uint16_t*)out) = ntohs( tmp );</span>
+  <span class="c1">//  return sizeof(int16_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//buffer_to_uint32( uint8_t const * buffer, uint32_t * out ) {</span>
+  <span class="c1">//  uint32_t tmp;</span>
+  <span class="c1">//  memcpy( &amp;tmp, buffer, sizeof(uint32_t) );</span>
+  <span class="c1">//  *out = ntohl( tmp );</span>
+  <span class="c1">//  return sizeof(uint32_t);</span>
+  <span class="c1">//}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="kt">uint8_t</span> <span class="k">const</span> <span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="kt">int32_t</span> <span class="o">*</span> <span class="n">out</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint32_t</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">memcpy</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span> <span class="p">);</span>
+    <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">=</span> <span class="n">ntohl</span><span class="p">(</span> <span class="n">tmp</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">buffer_to_uint64</span><span class="p">(</span> <span class="kt">uint8_t</span> <span class="k">const</span> <span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="o">*</span> <span class="n">out</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">memcpy</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">)</span> <span class="p">);</span>
+    <span class="o">*</span><span class="n">out</span> <span class="o">=</span> <span class="n">ntohll</span><span class="p">(</span> <span class="n">tmp</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">buffer_to_int64</span><span class="p">(</span> <span class="kt">uint8_t</span> <span class="k">const</span> <span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="kt">int64_t</span> <span class="o">*</span> <span class="n">out</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">uint64_t</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">memcpy</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span> <span class="p">);</span>
+    <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="o">=</span> <span class="n">ntohll</span><span class="p">(</span> <span class="n">tmp</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">//static</span>
+  <span class="c1">//uint32_t</span>
+  <span class="c1">//buffer_to_float( uint8_t const * buffer, float *out) {</span>
+  <span class="c1">//  union {</span>
+  <span class="c1">//    float    f;</span>
+  <span class="c1">//    uint32_t i;</span>
+  <span class="c1">//  } tmp;</span>
+  <span class="c1">//  buffer_to_uint32( buffer, &amp;tmp.i );</span>
+  <span class="c1">//  *out = tmp.f;</span>
+  <span class="c1">//  return sizeof(float);</span>
+  <span class="c1">//}</span>
+
+  <span class="k">static</span>
+  <span class="kt">uint32_t</span>
+  <span class="n">buffer_to_double</span><span class="p">(</span> <span class="kt">uint8_t</span> <span class="k">const</span> <span class="o">*</span> <span class="n">buffer</span><span class="p">,</span> <span class="kt">double</span> <span class="o">*</span> <span class="n">out</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">union</span> <span class="p">{</span>
+      <span class="kt">double</span>   <span class="n">f</span><span class="p">;</span>
+      <span class="kt">uint64_t</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="n">buffer_to_uint64</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tmp</span><span class="p">.</span><span class="n">i</span> <span class="p">);</span>
+    <span class="o">*</span><span class="n">out</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">.</span><span class="n">f</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nf">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int32_t</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">mem_size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="kt">int32_t</span> <span class="n">header_size</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">);</span>
+    <span class="kt">int32_t</span> <span class="n">ptr_size</span>    <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kt">int32_t</span> <span class="n">res</span>         <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="n">m_data_type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">GC_NOTYPE</span><span class="p">:</span>      <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_BOOL</span><span class="p">:</span>        <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_INTEGER</span><span class="p">:</span>     <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">int_type</span><span class="p">));</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_LONG</span><span class="p">:</span>        <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">long_type</span><span class="p">));</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_REAL</span><span class="p">:</span>        <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">real_type</span><span class="p">));</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_POINTER</span><span class="p">:</span>     <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="n">ptr_size</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_STRING</span><span class="p">:</span>      <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="n">m_data</span><span class="p">.</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">5</span><span class="p">);</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_COMPLEX</span><span class="p">:</span>     <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">complex_type</span><span class="p">));</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_POINTER</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="n">ptr_size</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_p</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_BOOL</span><span class="p">:</span>    <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_b</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_INTEGER</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">int_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_i</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_LONG</span><span class="p">:</span>    <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">long_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_l</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_REAL</span><span class="p">:</span>    <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">real_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_r</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_COMPLEX</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">complex_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_c</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+
+    <span class="k">case</span> <span class="nl">GC_MAT_INTEGER</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">int_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_i</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_LONG</span><span class="p">:</span>    <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">long_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_l</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_REAL</span><span class="p">:</span>    <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">real_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_r</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_COMPLEX</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="n">complex_type</span><span class="p">)</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_c</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">());</span> <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_STRING</span><span class="p">:</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">));</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">s</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_s</span> <span class="p">)</span> <span class="n">res</span> <span class="o">+=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VECTOR</span><span class="p">:</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">));</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">S</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v</span> <span class="p">)</span> <span class="n">res</span> <span class="o">+=</span> <span class="n">S</span><span class="p">.</span><span class="n">mem_size</span><span class="p">();</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAP</span><span class="p">:</span>
+      <span class="n">res</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">header_size</span><span class="o">+</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">));</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">S</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span> <span class="p">)</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="o">+</span><span class="n">S</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="o">+</span><span class="n">S</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">mem_size</span><span class="p">());</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int32_t</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">serialize</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">buffer</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="kt">int32_t</span> <span class="n">sz</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">buffer</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">serialize</span><span class="p">(</span> <span class="n">sz</span><span class="p">,</span> <span class="n">buffer</span><span class="p">.</span><span class="n">data</span><span class="p">()</span> <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int32_t</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">serialize</span><span class="p">(</span> <span class="kt">int32_t</span> <span class="n">buffer_dim</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+    <span class="c1">//int_type ptr_size = 8;</span>
+    <span class="kt">int32_t</span> <span class="n">sz</span><span class="p">,</span> <span class="n">nb</span><span class="p">,</span> <span class="n">nbyte</span><span class="p">;</span>
+
+    <span class="n">nbyte</span> <span class="o">=</span> <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data_type</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+    <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">m_data_type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">GC_NOTYPE</span><span class="p">:</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_BOOL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int8_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">b</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_INTEGER</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">i</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_LONG</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int64_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">l</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_REAL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">r</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_POINTER</span><span class="p">:</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_STRING</span><span class="p">:</span>
+      <span class="n">sz</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">sz</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">memcpy</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_data</span><span class="p">.</span><span class="n">s</span><span class="o">-&gt;</span><span class="n">front</span><span class="p">(),</span> <span class="n">sz</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_COMPLEX</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">real</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">imag</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_POINTER</span><span class="p">:</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_BOOL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_b</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="nl">b</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_b</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">int8_to_buffer</span><span class="p">(</span> <span class="n">b</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="o">++</span><span class="n">nb</span><span class="p">;</span> <span class="o">++</span><span class="n">buffer</span><span class="p">;</span> <span class="o">++</span><span class="n">nbyte</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_INTEGER</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_i</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_i</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_LONG</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_l</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_l</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">int64_to_buffer</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_REAL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_r</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">r</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_r</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">r</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_COMPLEX</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_c</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_c</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">c</span><span class="p">.</span><span class="n">imag</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_INTEGER</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_i</span><span class="o">-&gt;</span><span class="n">numRows</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_i</span><span class="o">-&gt;</span><span class="n">numCols</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_i</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_LONG</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_l</span><span class="o">-&gt;</span><span class="n">numRows</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_l</span><span class="o">-&gt;</span><span class="n">numCols</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_l</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">int64_to_buffer</span><span class="p">(</span> <span class="n">i</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_REAL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_r</span><span class="o">-&gt;</span><span class="n">numRows</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_r</span><span class="o">-&gt;</span><span class="n">numCols</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">r</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_r</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">r</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_COMPLEX</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_c</span><span class="o">-&gt;</span><span class="n">numRows</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">m_data</span><span class="p">.</span><span class="n">m_c</span><span class="o">-&gt;</span><span class="n">numCols</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_c</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">double_to_buffer</span><span class="p">(</span> <span class="n">c</span><span class="p">.</span><span class="n">imag</span><span class="p">(),</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_STRING</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_s</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">s</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_s</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">sz</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+        <span class="n">memcpy</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">s</span><span class="p">.</span><span class="n">front</span><span class="p">(),</span> <span class="n">sz</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VECTOR</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">v</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">S</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">serialize</span><span class="p">(</span> <span class="n">buffer_dim</span><span class="o">-</span><span class="n">nbyte</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAP</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">()),</span> <span class="n">buffer</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">S</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="n">int32_to_buffer</span><span class="p">(</span> <span class="n">sz</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+        <span class="n">memcpy</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">S</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">front</span><span class="p">(),</span> <span class="n">sz</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">serialize</span><span class="p">(</span> <span class="n">buffer_dim</span><span class="o">-</span><span class="n">nbyte</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">GC_ASSERT</span><span class="p">(</span>
+      <span class="n">nbyte</span> <span class="o">&lt;=</span> <span class="n">buffer_dim</span><span class="p">,</span>
+      <span class="s">"GenericContainer::serialize, buffer overflow"</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="n">nbyte</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int32_t</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">de_serialize</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int32_t</span> <span class="n">sz</span> <span class="o">=</span> <span class="kt">int32_t</span><span class="p">(</span><span class="n">buffer</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+    <span class="k">return</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">de_serialize</span><span class="p">(</span> <span class="n">sz</span><span class="p">,</span> <span class="n">buffer</span><span class="p">.</span><span class="n">data</span><span class="p">()</span> <span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">int32_t</span>
+  <span class="n">GenericContainer</span><span class="o">::</span><span class="n">de_serialize</span><span class="p">(</span> <span class="kt">int32_t</span> <span class="n">buffer_dim</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="k">const</span> <span class="o">*</span> <span class="n">buffer</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//int_type ptr_size = 8;</span>
+    <span class="kt">int32_t</span> <span class="n">sz</span><span class="p">,</span> <span class="n">nb</span><span class="p">,</span> <span class="n">nbyte</span><span class="p">;</span>
+    <span class="kt">double</span>  <span class="n">bf</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">clear</span><span class="p">();</span>
+
+    <span class="kt">int32_t</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">i32</span><span class="p">;</span>
+    <span class="n">nbyte</span> <span class="o">=</span> <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+    <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+
+    <span class="k">switch</span> <span class="p">(</span><span class="n">TypeAllowed</span><span class="p">(</span><span class="n">i32</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="nl">GC_NOTYPE</span><span class="p">:</span>
+      <span class="n">m_data_type</span> <span class="o">=</span> <span class="n">GC_NOTYPE</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_BOOL</span><span class="p">:</span>
+      <span class="n">m_data_type</span> <span class="o">=</span> <span class="n">GC_BOOL</span><span class="p">;</span>
+      <span class="kt">uint8_t</span> <span class="n">b</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_uint8</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">m_data</span><span class="p">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_INTEGER</span><span class="p">:</span>
+      <span class="n">m_data_type</span> <span class="o">=</span> <span class="n">GC_INTEGER</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_data</span><span class="p">.</span><span class="n">i</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_LONG</span><span class="p">:</span>
+      <span class="n">m_data_type</span> <span class="o">=</span> <span class="n">GC_LONG</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int64</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_data</span><span class="p">.</span><span class="n">l</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_REAL</span><span class="p">:</span>
+      <span class="n">m_data_type</span> <span class="o">=</span> <span class="n">GC_REAL</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_data</span><span class="p">.</span><span class="n">r</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_POINTER</span><span class="p">:</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_STRING</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_string</span><span class="p">();</span>
+      <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">s</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span> <span class="k">const</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">i32</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">i32</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_COMPLEX</span><span class="p">:</span>
+      <span class="n">allocate_complex</span><span class="p">();</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bf</span> <span class="p">);</span> <span class="n">m_data</span><span class="p">.</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">real</span><span class="p">(</span><span class="n">bf</span><span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bf</span> <span class="p">);</span> <span class="n">m_data</span><span class="p">.</span><span class="n">c</span><span class="o">-&gt;</span><span class="n">imag</span><span class="p">(</span><span class="n">bf</span><span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_POINTER</span><span class="p">:</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_BOOL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vec_bool</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="n">m_data</span><span class="p">.</span><span class="n">v_b</span><span class="o">-&gt;</span><span class="n">reserve</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="kt">int32_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">i32</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kt">uint8_t</span> <span class="n">i8</span><span class="p">;</span>
+        <span class="n">buffer_to_uint8</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i8</span> <span class="p">);</span>
+        <span class="o">++</span><span class="n">nb</span><span class="p">;</span> <span class="o">++</span><span class="n">buffer</span><span class="p">;</span> <span class="o">++</span><span class="n">nbyte</span><span class="p">;</span>
+        <span class="n">m_data</span><span class="p">.</span><span class="n">v_b</span><span class="o">-&gt;</span><span class="n">push_back</span><span class="p">(</span> <span class="n">i8</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_INTEGER</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vec_int</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_i</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_LONG</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vec_long</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_l</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_int64</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_REAL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vec_real</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">r</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_r</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_COMPLEX</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vec_complex</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_c</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bf</span> <span class="p">);</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">(</span><span class="n">bf</span><span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bf</span> <span class="p">);</span> <span class="n">c</span><span class="p">.</span><span class="n">imag</span><span class="p">(</span><span class="n">bf</span><span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_INTEGER</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nr</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nc</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_mat_int</span><span class="p">(</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_i</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_LONG</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nr</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nc</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_mat_long</span><span class="p">(</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">i</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_l</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_int64</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_REAL</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nr</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nc</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_mat_real</span><span class="p">(</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">r</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_r</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r</span> <span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAT_COMPLEX</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nr</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">nc</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_mat_complex</span><span class="p">(</span> <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m_c</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bf</span> <span class="p">);</span> <span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">(</span><span class="n">bf</span><span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">buffer_to_double</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">bf</span> <span class="p">);</span> <span class="n">c</span><span class="p">.</span><span class="n">imag</span><span class="p">(</span><span class="n">bf</span><span class="p">);</span>
+        <span class="n">nb</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="k">case</span> <span class="nl">GC_VEC_STRING</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vec_string</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">s</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v_s</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span> <span class="k">const</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">i32</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">i32</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_VECTOR</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_vector</span><span class="p">(</span><span class="n">i32</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">S</span> <span class="p">:</span> <span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">v</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">de_serialize</span><span class="p">(</span> <span class="n">buffer_dim</span><span class="o">-</span><span class="n">nbyte</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nl">GC_MAP</span><span class="p">:</span>
+      <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span> <span class="n">nr</span> <span class="o">=</span> <span class="n">i32</span><span class="p">;</span>
+      <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+      <span class="n">allocate_map</span><span class="p">();</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="kt">int32_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nr</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">nb</span> <span class="o">=</span> <span class="n">buffer_to_int32</span><span class="p">(</span> <span class="n">buffer</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i32</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">nb</span><span class="p">;</span>
+        <span class="n">string_type</span> <span class="n">key</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">char</span> <span class="k">const</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">buffer</span><span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">i32</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">i32</span><span class="p">;</span>
+        <span class="c1">//std::cout &lt;&lt; "key[" &lt;&lt; i &lt;&lt; "] = " &lt;&lt; key &lt;&lt; '\n';</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">m_data</span><span class="p">.</span><span class="n">m</span><span class="p">)[</span><span class="n">key</span><span class="p">].</span><span class="n">de_serialize</span><span class="p">(</span> <span class="n">buffer_dim</span><span class="o">-</span><span class="n">nbyte</span><span class="p">,</span> <span class="n">buffer</span> <span class="p">);</span>
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span> <span class="n">nbyte</span> <span class="o">+=</span> <span class="n">sz</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">GC_ASSERT</span><span class="p">(</span>
+      <span class="n">nbyte</span> <span class="o">&lt;=</span> <span class="n">buffer_dim</span><span class="p">,</span>
+      <span class="s">"GenericContainer::serialize, buffer overflow"</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="n">nbyte</span><span class="p">;</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">//</span>
+<span class="c1">// eof: GenericContainerSerialize.cc</span>
+<span class="c1">//</span>
+</pre></div>
+</div>
+</div>
+
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+        <p class="logo"><a href="../index.html" title="index">
+          <img class="logo" src="../_static/logo.png" alt="Logo"/>
+        </a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+<div class="sphinx-toc sphinxglobaltoc">
+<h3><a href="../index.html">Table of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="root.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-c/root.html">C API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-lua/root.html">LUA API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-json/root.html">JSON API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api-matlab/root.html">MATLAB API</a></li>
+</ul>
+</div>
+        </div>
+      </div>
+    
+    
+        <div class="sidebar-toggle-group no-js">
+            
+            <button class="sidebar-toggle" id="sidebar-hide" title="Hide the sidebar menu">
+                 «
+                <span class="show-for-small">hide menu</span>
+                
+            </button>
+            <button class="sidebar-toggle" id="sidebar-show" title="Show the sidebar menu">
+                
+                <span class="show-for-small">menu</span>
+                <span class="hide-for-small">sidebar</span>
+                 »
+            </button>
+        </div>
+    
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../index.html" title="Table Of Contents"
+             >toc</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">Generic Container</a> &#187;</li>
+
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File GenericContainerSerialize.cc</a></li> 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, Enrico Bertolazzi.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+    </div>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
