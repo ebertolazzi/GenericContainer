@@ -1684,6 +1684,26 @@ namespace GC_namespace {
     //! \return the stored value
     //!
     GenericContainer const & operator () ( string_type const & s, char const * msg = nullptr ) const;
+
+    //!
+    //! Get a `GenericContainer` in the stored data.
+    //! Search for a matching key
+    //!
+    //! \param[in]  vs  vector of keys strings
+    //! \param[in]  msg message of error in case no keys found
+    //! \return the stored value of the first match 
+    //!
+    GenericContainer & operator () ( vec_string_type const & vs, char const * msg = nullptr );
+
+    //!
+    //! Get a const `GenericContainer` in the stored data.
+    //!
+    //! \param[in]  vs  vector of keys string
+    //! \param[in]  msg message of error in case no keys found
+    //! \return the stored value of the first match 
+    //!
+    GenericContainer const & operator () ( vec_string_type const & vs, char const * msg = nullptr ) const;
+
     ///@}
 
     //!

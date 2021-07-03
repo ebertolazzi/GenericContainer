@@ -3925,6 +3925,44 @@ namespace GC_namespace {
     return iv->second;
   }
 
+  // ------------
+
+  GenericContainer &
+  GenericContainer::operator () ( vec_string_type const & vs, char const * msg_in ) {
+    char const * msg = msg_in == nullptr ? "" : msg_in;
+    GC_ASSERT(
+      GC_MAP == m_data_type,
+      "operator (), with vectror of string argument\n"
+      "expect: " << typeName[GC_MAP] <<
+      " but data stored is of type: " << typeName[m_data_type]
+    )
+    map_type & m = *m_data.m;
+    for ( string_type const & s : vs ) {
+      map_type::iterator iv = m.find(s);
+      if ( iv != m.end() ) return iv->second;
+    }
+    GC_DO_ERROR( msg << "\nGenericContainer::operator(): Cannot find the key!" );
+    //return *this;
+  }
+
+  GenericContainer const &
+  GenericContainer::operator () ( vec_string_type const & vs, char const * msg_in ) const {
+    char const * msg = msg_in == nullptr ? "" : msg_in;
+    GC_ASSERT(
+      GC_MAP == m_data_type,
+      "operator (), with vectror of string argument\n"
+      "expect: " << typeName[GC_MAP] <<
+      " but data stored is of type: " << typeName[m_data_type]
+    )
+    map_type const & m = *m_data.m;
+    for ( string_type const & s : vs ) {
+      map_type::const_iterator iv = m.find(s);
+      if ( iv != m.end() ) return iv->second;
+    }
+    GC_DO_ERROR( msg << "\nGenericContainer::operator(): Cannot find the key!" );
+    //return *this;
+  }
+
   /*
   //                              _               __ __
   //    ___  _ __   ___ _ __ __ _| |_ ___  _ __  | _|_ |
