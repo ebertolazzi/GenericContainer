@@ -32,16 +32,20 @@
 
 namespace GC_namespace {
 
-  //static
-  //uint64_t
-  //htonll_local( uint64_t n ) {
-  //  uint64_t lo, hi;
-  //  if ( 1 == htonl(1) ) return n;
-  //  hi = uint64_t( htonl( *(static_cast<uint32_t*>(&n) ) ) );
-  //  n = n>>32;
-  //  lo = uint64_t( htonl( *(static_cast<uint32_t*>(&n) ) ) );
-  //  return (hi << 32) + lo;
-  //}
+  #ifdef GENERIC_CONTAINER_ON_WINDOWS
+  static
+  uint64_t
+  htonll_local( uint64_t n ) {
+    uint64_t lo, hi;
+    if ( 1 == htonl(1) ) return n;
+    hi = uint64_t( htonl( *(reinterpret_cast<uint32_t*>(&n) ) ) );
+    n = n>>32;
+    lo = uint64_t( htonl( *(reinterpret_cast<uint32_t*>(&n) ) ) );
+    return (hi << 32) + lo;
+  }
+  
+  #define htonll htonll_local
+  #endif
 
   /* -------------------------------------------------- */
 
@@ -131,16 +135,20 @@ namespace GC_namespace {
     return sizeof(double);
   }
 
-  //static
-  //uint64_t
-  //ntohll_local( uint64_t n ) {
-  //  uint64_t lo, hi;
-  //  if ( 1 == ntohl(1) ) return n;
-  //  hi = (uint64_t)ntohl( *((uint32_t*)&n) );
-  //  n = n>>32;
-  //  lo = (uint64_t)ntohl( *((uint32_t*)&n) );
-  //  return (hi << 32) + lo;
-  //}
+  #ifdef GENERIC_CONTAINER_ON_WINDOWS
+  static
+  uint64_t
+  ntohll_local( uint64_t n ) {
+    uint64_t lo, hi;
+    if ( 1 == ntohl(1) ) return n;
+    hi = uint64_t(ntohl( *((uint32_t*)&n) ));
+    n = n>>32;
+    lo = uint64_t(ntohl( *((uint32_t*)&n) ));
+    return (hi << 32) + lo;
+  }
+
+  #define ntohll ntohll_local
+  #endif
 
   /* ---------------------------------------------------------------------------- */
 
