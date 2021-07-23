@@ -75,7 +75,8 @@ namespace GC_namespace {
   typedef std::basic_ostream<char> ostream_type;
   typedef std::basic_istream<char> istream_type;
 
-  #ifndef _MSC_VER
+  #if defined(GENERIC_CONTAINER_ON_WINDOWS) && defined(GENERIC_CONTAINER_USE_WINDOWS_TYPES)
+  #else
   using std::uint8_t;
   using std::int32_t;
   using std::int64_t;

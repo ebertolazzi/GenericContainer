@@ -57,9 +57,7 @@
 
 // Standard types
 #ifdef GENERIC_CONTAINER_ON_WINDOWS
-  #ifdef _MSC_VER
-    #include <stdint.h>
-  #else
+  #ifdef GENERIC_CONTAINER_USE_WINDOWS_TYPES
     typedef          __int8  int8_t;
     typedef          __int16 int16_t;
     typedef          __int32 int32_t;
@@ -68,6 +66,8 @@
     typedef unsigned __int16 uint16_t;
     typedef unsigned __int32 uint32_t;
     typedef unsigned __int64 uint64_t;
+  #else
+    #include <cstdint>
   #endif
 #else
   #include <cstdint>
