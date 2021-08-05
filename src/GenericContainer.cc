@@ -2151,7 +2151,13 @@ namespace GC_namespace {
 
   complex_type &
   GenericContainer::get_complex( char const * msg ) {
-    ck_or_set(msg,GC_COMPLEX);
+    if ( m_data_type == GC_NOTYPE ) {
+      clear();
+      m_data_type = GC_COMPLEX;
+      m_data.c    = new complex_type;
+    } else {
+      ck(msg,GC_COMPLEX);
+    }
     return *m_data.c;
   }
 
@@ -2163,7 +2169,13 @@ namespace GC_namespace {
 
   string_type &
   GenericContainer::get_string( char const * msg ) {
-    ck_or_set(msg,GC_STRING);
+    if ( m_data_type == GC_NOTYPE ) {
+      clear();
+      m_data_type = GC_STRING;
+      m_data.s    = new string_type("");
+    } else {
+      ck(msg,GC_STRING);
+    }
     return *m_data.s;
   }
 

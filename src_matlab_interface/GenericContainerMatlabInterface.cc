@@ -266,6 +266,7 @@ namespace GC_namespace {
 
   void
   mxArray_to_GenericContainer( mxArray const * mx, GenericContainer & gc ) {
+    gc.clear();
     if ( mx == nullptr ) return;
     mxClassID category = mxGetClassID(mx);
     //mexPrintf("\n\n\n%s\n\n\n",mxGetClassName(mx));
@@ -277,6 +278,20 @@ namespace GC_namespace {
       gc = mxArrayToString(mx);
     } else if ( mxIsSparse(mx) ) {
       mxSparse_to_GenericContainer( mx, gc );
+    } else if ( mxIsClass(mx,"string") ) {
+      // https://it.mathworks.com/matlabcentral/answers/330929-how-to-access-matlab-string-data-in-mex-c
+      // Matlab's String class is encapsulated,
+      // use Matlab call to convert it to char array
+      mxArray * string_class[1];
+      mxArray * char_array[1];
+      string_class[0] = const_cast<mxArray*>(mx);
+      mexCallMATLAB(1, char_array, 1, string_class, "char");
+      // Parse the char array to create an std::string
+      int buflen = mxGetN(char_array[0])*sizeof(mxChar)+1;
+      char* buf = new char[buflen];
+      mxGetString(char_array[0],buf,buflen);
+      gc = buf;
+      delete [] buf;
     } else {
       if ( mxIsComplex(mx) ) {
         switch (category)  {
