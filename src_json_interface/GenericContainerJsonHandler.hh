@@ -12,7 +12,6 @@
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 #ifdef __GNUC__
-#pragma GCC diagnostic ignored "-Wc++98-compat"
 #pragma GCC diagnostic ignored "-Wzero-as-null-pointer-constant"
 #endif
 #ifdef __clang__

@@ -30,9 +30,13 @@
   #include <arpa/inet.h>
 #endif
 
+#include <cstring>
+
 namespace GC_namespace {
 
-  #ifdef GENERIC_CONTAINER_ON_WINDOWS
+  using std::memcpy;
+
+  #ifndef GENERIC_CONTAINER_ON_OSX
   static
   uint64_t
   htonll_local( uint64_t n ) {
@@ -135,7 +139,7 @@ namespace GC_namespace {
     return sizeof(double);
   }
 
-  #ifdef GENERIC_CONTAINER_ON_WINDOWS
+  #ifndef GENERIC_CONTAINER_ON_OSX
   static
   uint64_t
   ntohll_local( uint64_t n ) {
