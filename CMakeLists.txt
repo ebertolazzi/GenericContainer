@@ -84,7 +84,7 @@ set(SOURCES
   "${SOURCES_LUA_DIR}/GenericContainerLuaPmain.cc")
 
   # FIXME: I had to invent a workaroud to have all the headers... 
-file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src*/*.hh")
+file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src*/GenericContainer*.h*")
 
 add_library(${STATIC_PROJECT} STATIC
   ${SOURCES})
