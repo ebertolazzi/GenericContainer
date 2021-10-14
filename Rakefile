@@ -15,6 +15,8 @@ CLEAN.exclude('**/[cC][oO][rR][eE]')
 
 require_relative "./Rakefile_common.rb"
 
+file_base = File.expand_path(File.dirname(__FILE__)).to_s
+
 TESTS = [
   "example1",
   "example2",
@@ -116,6 +118,7 @@ task :build_win, [:year, :bits] do |t, args|
   else
     cmake_cmd += ' -DBUILD_SHARED:VAR=false '
   end
+  cmake_cmd += " -DCMAKE_INSTALL_PREFIX=\"#{file_base}\" "
 
   FileUtils.mkdir_p "../lib/lib"
   FileUtils.mkdir_p "../lib/bin"
@@ -157,6 +160,7 @@ task :build_osx do
   else
     cmake_cmd += ' -DBUILD_SHARED:VAR=false '
   end
+  cmake_cmd += " -DCMAKE_INSTALL_PREFIX=\"#{file_base}\" "
 
   if COMPILE_DEBUG then
     sh cmake_cmd + ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING ..'
