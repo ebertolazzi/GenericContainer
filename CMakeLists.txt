@@ -76,8 +76,8 @@ set(SOURCES
   "${SOURCES_DIR}/GenericContainerTables.cc")
 set(SOURCES
   ${SOURCES}
-  "${SOURCES_JSON_DIR}/GenericContainerJson"
-  "${SOURCES_JSON_DIR}/GenericContainerJsonHandler")
+  "${SOURCES_JSON_DIR}/GenericContainerJson.cc"
+  "${SOURCES_JSON_DIR}/GenericContainerJsonHandler.cc")
 set(SOURCES
   ${SOURCES}
   "${SOURCES_LUA_DIR}/GenericContainerLuaInterface.cc"
