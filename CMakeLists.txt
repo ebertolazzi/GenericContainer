@@ -14,9 +14,11 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INSTALL_MESSAGE ALWAYS)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
-project(GenericContainer 
+project(
+  GenericContainer 
   VERSION 1.0.0
-  HOMEPAGE_URL "https://ebertolazzi.github.io/GenericContainer/")
+  HOMEPAGE_URL "https://ebertolazzi.github.io/GenericContainer/"
+)
 
 # NOTE: Predictable target name
 set(STATIC_PROJECT "${PROJECT_NAME}Static")
@@ -41,25 +43,29 @@ else()
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 endif()
 
+set( LUALIB    lua${ARTIFACTS_STATIC_SUFFIX} )
+set( RAPIDJSON rapidjson${ARTIFACTS_STATIC_SUFFIX} )
+
 # Creating Dependency libraries
 # RAPIDJSON LIBRARY
 set(rapidjson_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface")
 file(GLOB_RECURSE rapidjson_HEADERS "${rapidjson_DIR}/*.h")
-add_library(rapidjson INTERFACE)
-# target_include_directories(rapidjson INTERFACE ${rapidjson_DIR})
-set_target_properties(rapidjson PROPERTIES
-  PUBLIC_HEADER "${rapidjson_HEADERS}")
-
+add_library(${RAPIDJSON} INTERFACE)
+# target_include_directories(${RAPIDJSON} INTERFACE ${rapidjson_DIR})
+set_target_properties(${RAPIDJSON} PROPERTIES PUBLIC_HEADER "${rapidjson_HEADERS}")
+  
 # LUA LIBRARY
 set(lualib_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/lua-5.4.3/src")
 file(GLOB_RECURSE lualib_HEADERS "${lualib_DIR}/*.h")
 file(GLOB lualib_SOURCES "${lualib_DIR}/*.c")
-add_library(lualib STATIC ${lualib_SOURCES})
-target_include_directories(lualib PRIVATE ${lualib_DIR})
-target_link_libraries(lualib PRIVATE ${CMAKE_DL_LIBS})
-set_target_properties(lualib PROPERTIES 
+add_library(${LUALIB} STATIC ${lualib_SOURCES})
+target_include_directories(${LUALIB} PRIVATE ${lualib_DIR})
+target_link_libraries(${LUALIB} PRIVATE ${CMAKE_DL_LIBS})
+set_target_properties(
+  ${LUALIB} PROPERTIES 
   PUBLIC_HEADER "${lualib_HEADERS}"
-  POSITION_INDEPENDENT_CODE ON)
+  POSITION_INDEPENDENT_CODE ON
+)
 
 set(SOURCES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(SOURCES_JSON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface")
@@ -68,52 +74,63 @@ set(SOURCES_LUA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface")
 # NOTE: Glob shall be avoided. Headers and sources shall be declared 
 # manually in order to rebuild cmake-cache automatically.
 # Ref: https://cmake.org/cmake/help/v3.15/command/file.html?highlight=glob#filesystem
-set(SOURCES
+set(
+  SOURCES
   "${SOURCES_DIR}/GenericContainer.cc"
   "${SOURCES_DIR}/GenericContainerCinterface.cc"
   "${SOURCES_DIR}/GenericContainerSerialize.cc"
   "${SOURCES_DIR}/GenericContainerSupport.cc"
-  "${SOURCES_DIR}/GenericContainerTables.cc")
-set(SOURCES
+  "${SOURCES_DIR}/GenericContainerTables.cc"
+)
+set(
+  SOURCES
   ${SOURCES}
   "${SOURCES_JSON_DIR}/GenericContainerJson.cc"
-  "${SOURCES_JSON_DIR}/GenericContainerJsonHandler.cc")
-set(SOURCES
+  "${SOURCES_JSON_DIR}/GenericContainerJsonHandler.cc"
+)
+set(
+  SOURCES
   ${SOURCES}
   "${SOURCES_LUA_DIR}/GenericContainerLuaInterface.cc"
-  "${SOURCES_LUA_DIR}/GenericContainerLuaPmain.cc")
+  "${SOURCES_LUA_DIR}/GenericContainerLuaPmain.cc"
+)
 
   # FIXME: I had to invent a workaroud to have all the headers... 
-file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src*/*.hh")
+file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src*/GenericContainer*.h*")
 
-add_library(${STATIC_PROJECT} STATIC
-  ${SOURCES})
+add_library(${STATIC_PROJECT} STATIC ${SOURCES})
 target_include_directories(${STATIC_PROJECT} PUBLIC
   "$<BUILD_INTERFACE:${SOURCES_DIR}>"
   "$<BUILD_INTERFACE:${SOURCES_JSON_DIR}>"
   "$<BUILD_INTERFACE:${SOURCES_LUA_DIR}>"
-  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
-target_include_directories(${STATIC_PROJECT} PRIVATE lualib)
-target_link_libraries(${STATIC_PROJECT} PUBLIC lualib)
-target_link_libraries(${STATIC_PROJECT} PUBLIC rapidjson)
-set_target_properties(${STATIC_PROJECT} PROPERTIES
+  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
+)
+
+target_include_directories(${STATIC_PROJECT} PRIVATE ${LUALIB})
+target_link_libraries(${STATIC_PROJECT} PUBLIC ${LUALIB})
+target_link_libraries(${STATIC_PROJECT} PUBLIC ${RAPIDJSON})
+set_target_properties(
+  ${STATIC_PROJECT} PROPERTIES
   OUTPUT_NAME "${PROJECT_NAME}${ARTIFACTS_STATIC_SUFFIX}"
   PUBLIC_HEADER "${HEADERS}"
-  POSITION_INDEPENDENT_CODE ON)  
+  POSITION_INDEPENDENT_CODE ON
+)  
 
 if(BUILD_SHARED)
-  add_library(${DYNAMIC_PROJECT} SHARED
-    ${SOURCES})
-  set_target_properties(${DYNAMIC_PROJECT} PROPERTIES
+  add_library(${DYNAMIC_PROJECT} SHARED ${SOURCES})
+  set_target_properties(
+    ${DYNAMIC_PROJECT} PROPERTIES
     OUTPUT_NAME "${PROJECT_NAME}${ARTIFACTS_DYNAMIC_SUFFIX}"
     PUBLIC_HEADER "${HEADERS}"
-    POSITION_INDEPENDENT_CODE ON)
-  target_include_directories(${DYNAMIC_PROJECT} PRIVATE
-    ${SOURCES_DIR} ${SOURCES_JSON_DIR} ${SOURCES_LUA_DIR})
-  target_link_libraries(${DYNAMIC_PROJECT} PRIVATE rapidjson lualib)
+    POSITION_INDEPENDENT_CODE ON
+  )
+  target_include_directories(
+    ${DYNAMIC_PROJECT} PRIVATE
+    ${SOURCES_DIR} ${SOURCES_JSON_DIR} ${SOURCES_LUA_DIR}
+  )
+  target_link_libraries(${DYNAMIC_PROJECT} PRIVATE ${RAPIDJSON} ${LUALIB})
   if(WIN32)
-    set_target_properties(${DYNAMIC_PROJECT} PROPERTIES 
-      WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+    set_target_properties(${DYNAMIC_PROJECT} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
   endif()
   target_link_libraries(${DYNAMIC_PROJECT} PRIVATE ${CMAKE_DL_LIBS})
 endif()
@@ -126,80 +143,67 @@ if(BUILD_EXECUTABLE)
 
   add_executable(example1 examples/example1.cc)
   target_link_libraries(example1 ${STATIC_PROJECT})
-  set_target_properties(example1 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example1 ${TEST_OUTPUT_PATH}/example1)
 
   add_executable(example2 examples/example2.cc)
   target_link_libraries(example2 ${STATIC_PROJECT})
-  set_target_properties(example2 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example2 ${TEST_OUTPUT_PATH}/example2)
 
   add_executable(example3 examples/example3.cc)
   target_link_libraries(example3 ${STATIC_PROJECT})
-  set_target_properties(example3 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example3 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example3 ${TEST_OUTPUT_PATH}/example3)
 
   add_executable(example4 examples/example4.cc)
   target_link_libraries(example4 ${STATIC_PROJECT})
-  set_target_properties(example4 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example4 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example4 ${TEST_OUTPUT_PATH}/example4)
 
   add_executable(example5 examples/example5.cc)
   target_link_libraries(example5 ${STATIC_PROJECT})
-  set_target_properties(example5 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example5 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example5 ${TEST_OUTPUT_PATH}/example5)
 
   add_executable(example6 examples/example6.c) # IT'S C!
   target_link_libraries(example6 ${STATIC_PROJECT})
-  set_target_properties(example6 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example6 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example6 ${TEST_OUTPUT_PATH}/example6)
 
   add_executable(example7 examples/example7.cc)
   target_link_libraries(example7 ${STATIC_PROJECT})
-  set_target_properties(example7 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example7 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example7 ${TEST_OUTPUT_PATH}/example7)
 
   add_executable(example8 examples/example8.cc)
   target_link_libraries(example8 ${STATIC_PROJECT})
-  set_target_properties(example8 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example8 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example8 ${TEST_OUTPUT_PATH}/example8)
 
   add_executable(example9 examples/example9.cc)
   target_link_libraries(example9 ${STATIC_PROJECT})
-  set_target_properties(example9 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(example9 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example9 ${TEST_OUTPUT_PATH}/example9)
 
   add_executable(JSON_test_1 src_json_interface/tests/JSON_test_1.cc)
   target_link_libraries(JSON_test_1 ${STATIC_PROJECT})
-  set_target_properties(JSON_test_1 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  set_target_properties(JSON_test_1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(JSON_test_1 ${TEST_OUTPUT_PATH}/JSON_test_1)
 
   add_executable(example_lua1 src_lua_interface/tests/example_lua1.cc)
-  target_link_libraries(example_lua1 ${STATIC_PROJECT} lualib)
-  set_target_properties(example_lua1 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  target_link_libraries(example_lua1 ${STATIC_PROJECT} ${LUALIB})
+  set_target_properties(example_lua1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example_lua1 ${TEST_OUTPUT_PATH}/example_lua1)
 
   add_executable(example_lua2 src_lua_interface/tests/example_lua2.cc)
-  target_link_libraries(example_lua2 ${STATIC_PROJECT} lualib)
-  set_target_properties(example_lua2 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  target_link_libraries(example_lua2 ${STATIC_PROJECT} ${LUALIB})
+  set_target_properties(example_lua2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example_lua2 ${TEST_OUTPUT_PATH}/example_lua2)
 
   add_executable(example_lua3 src_lua_interface/tests/example_lua3.cc)
-  target_link_libraries(example_lua3 ${STATIC_PROJECT} lualib)
-  set_target_properties(example_lua3 PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
+  target_link_libraries(example_lua3 ${STATIC_PROJECT} ${LUALIB})
+  set_target_properties(example_lua3 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
   add_test(example_lua3 ${TEST_OUTPUT_PATH}/example_lua3)
 endif()
 
@@ -225,9 +229,9 @@ install(TARGETS ${INSTALL_TARGETS}
   PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/${PROJECT_NAME}"
   PRIVATE_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/${PROJECT_NAME}")
 # Rapidjson target (exposed in public api)
-install(TARGETS rapidjson
+install(TARGETS ${RAPIDJSON}
   PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/rapidjson")
-install(TARGETS lualib
+install(TARGETS ${LUALIB}
   RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/bin"
   ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/lib"
   LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/dll"
