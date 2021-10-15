@@ -43,8 +43,8 @@ else()
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 endif()
 
-set( LUALIB    lua${ARTIFACTS_STATIC_SUFFIX} )
-set( RAPIDJSON rapidjson${ARTIFACTS_STATIC_SUFFIX} )
+set(LUALIB    lualib)
+set(RAPIDJSON rapidjson)
 
 # Creating Dependency libraries
 # RAPIDJSON LIBRARY
@@ -64,6 +64,7 @@ target_link_libraries(${LUALIB} PRIVATE ${CMAKE_DL_LIBS})
 set_target_properties(
   ${LUALIB} PROPERTIES 
   PUBLIC_HEADER "${lualib_HEADERS}"
+  OUTPUT_NAME "${LUALIB}${ARTIFACTS_STATIC_SUFFIX}"
   POSITION_INDEPENDENT_CODE ON
 )
 
@@ -135,7 +136,27 @@ if(BUILD_SHARED)
   target_link_libraries(${DYNAMIC_PROJECT} PRIVATE ${CMAKE_DL_LIBS})
 endif()
 
-# INSTALL( FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_PREFIX}/include ) # FIXME
+# FIXME: Untested target!
+if(BUILD_MATLAB)
+  FindMatlab()
+  if(Matlab_FOUND)
+    set(SOURCES_MATLAB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_matlab_interface")
+    set(MEX_FILES test_gc print_recursive)
+    foreach(MEX_FILE MEX_FILES)
+      matlab_add_mex(${MEX_FILE}
+        "{SOURCES_MATLAB_DIR}/GenericContainerMatlabInterface.cc"
+        "{SOURCES_MATLAB_DIR}/mex_${MEX_FILE}.cc")
+      target_include_directories(${MEX_FILE} PRIVATE "{SOURCES_MATLAB_DIR}")
+      target_link_libraries(${MEX_FILE} PRIVATE ${STATIC_PROJECT})
+      target_compile_options(${MEX_FILE} PRIVATE -largeArrayDims)
+      if(UNIX)
+        target_compile_options(${MEX_FILE} PRIVATE -lstdc++ -Wall -O2 -g)
+      endif()
+    endforeach()
+  else()
+    message(WARNING "Cannot find Matlab installation, skipping Matlab Targets")
+  endif()
+endif()
 
 if(BUILD_EXECUTABLE)
   enable_testing()
@@ -215,6 +236,9 @@ endif()
 # Also I realy don't like the solution I came up with...
 if(NOT ADDITIONAL_PATH_PREFIX)
   set(ADDITIONAL_PATH_PREFIX "lib")
+endif()
+if(INSTALL_HERE)
+  set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
 set(INSTALL_TARGETS ${STATIC_PROJECT})
