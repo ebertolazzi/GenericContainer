@@ -14,9 +14,17 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INSTALL_MESSAGE ALWAYS)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
 
+if(ENABLE_CTEST)
+  enable_testing()
+endif()
+
+# get version from the git tag
+execute_process(COMMAND git describe --tags --abbrev=0 OUTPUT_VARIABLE VERSION)
+string(REGEX REPLACE "\n$" "" VERSION "${VERSION}")
+
 project(
   GenericContainer 
-  VERSION 1.0.0
+  VERSION #{VERSION}
   HOMEPAGE_URL "https://ebertolazzi.github.io/GenericContainer/"
 )
 
@@ -43,7 +51,7 @@ else()
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 endif()
 
-set(LUALIB    lualib)
+set(LUALIB    Lua)
 set(RAPIDJSON rapidjson)
 
 # Creating Dependency libraries
@@ -158,7 +166,7 @@ if(BUILD_MATLAB)
   endif()
 endif()
 
-if(BUILD_EXECUTABLE)
+if(BUILD_EXECUTABLE OR ENABLE_CTEST)
   enable_testing()
   set(TEST_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
