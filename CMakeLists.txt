@@ -64,7 +64,13 @@ set_target_properties(${RAPIDJSON} PROPERTIES PUBLIC_HEADER "${rapidjson_HEADERS
   
 # LUA LIBRARY
 set(lualib_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/lua-5.4.3/src")
-file(GLOB_RECURSE lualib_HEADERS "${lualib_DIR}/*.h")
+#file(GLOB_RECURSE lualib_HEADERS "${lualib_DIR}/*.h")
+set(
+  lualib_HEADERS
+  "${lualib_DIR}/lua.hpp"
+  "${lualib_DIR}/lua.h"
+  "${lualib_DIR}/luaconf.h"
+)
 file(GLOB lualib_SOURCES "${lualib_DIR}/*.c")
 add_library(${LUALIB} STATIC ${lualib_SOURCES})
 target_include_directories(${LUALIB} PRIVATE ${lualib_DIR})
@@ -238,36 +244,7 @@ endif()
 
 # INSTALL TARGETS
 
-# FIXME: CMakeLists should not override CMAKE_INSTALL_PREFIX
-# ref: https://gitlab.kitware.com/cmake/cmake/-/issues/19322
-# SET( CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/lib )
-# Also I realy don't like the solution I came up with...
-if(NOT ADDITIONAL_PATH_PREFIX)
-  set(ADDITIONAL_PATH_PREFIX "lib")
-endif()
-if(INSTALL_HERE)
-  set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR})
-endif()
-
-set(INSTALL_TARGETS ${STATIC_PROJECT})
-if(BUILD_SHARED)
-set(INSTALL_TARGETS ${INSTALL_TARGETS} ${DYNAMIC_PROJECT})
-endif()
-# Current project scope target
-install(TARGETS ${INSTALL_TARGETS}
-  RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/bin"
-  ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/lib"
-  LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/dll"
-  PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/${PROJECT_NAME}"
-  PRIVATE_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/${PROJECT_NAME}")
-# Rapidjson target (exposed in public api)
-install(TARGETS ${RAPIDJSON}
-  PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/rapidjson")
-install(TARGETS ${LUALIB}
-  RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/bin"
-  ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/lib"
-  LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/dll"
-  PUBLIC_HEADER DESTINATION "${CMAKE_INSTALL_PREFIX}/${ADDITIONAL_PATH_PREFIX}/include/lua")
+include(./CMakeInstall.txt)
 
 message(STATUS "C compiler                  = ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER}")
 message(STATUS "C++ compiler                = ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER}")
