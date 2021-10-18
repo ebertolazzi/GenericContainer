@@ -220,11 +220,15 @@ namespace GC_namespace {
   template <typename TYPE>
   ostream_type &
   operator << ( ostream_type & s, mat_type<TYPE> const & m ) {
-    for ( unsigned i = 0; i < m.numRows(); ++i ) {
-      s << std::setw(8) << m(i,0);
-      for ( unsigned j = 1; j < m.numCols(); ++j )
-        s << " " << std::setw(8) << m(i,j);
-      s << '\n';
+    if ( m.numRows() > 0 && m.numCols() ) {
+      for ( unsigned i = 0; i < m.numRows(); ++i ) {
+        s << std::setw(8) << m(i,0);
+        for ( unsigned j = 1; j < m.numCols(); ++j )
+          s << " " << std::setw(8) << m(i,j);
+        s << '\n';
+      }
+    } else {
+      s << m.numRows() << " by " << m.numCols() << " matrix\n";
     }
     return s;
   }
@@ -232,11 +236,15 @@ namespace GC_namespace {
   template <>
   ostream_type &
   operator << ( ostream_type & s, mat_complex_type const & m ) {
-    for ( unsigned i = 0; i < m.numRows(); ++i ) {
-      for ( unsigned j = 0; j < m.numCols(); ++j )
-        s << " (" << std::setw(8) << m(i,j).real() << ", "
-                  << std::setw(8) << m(i,j).imag() << " )";
-      s << '\n';
+    if ( m.numRows() > 0 && m.numCols() ) {
+      for ( unsigned i = 0; i < m.numRows(); ++i ) {
+        for ( unsigned j = 0; j < m.numCols(); ++j )
+          s << " (" << std::setw(8) << m(i,j).real() << ", "
+                    << std::setw(8) << m(i,j).imag() << " )";
+        s << '\n';
+      }
+    } else {
+      s << m.numRows() << " by " << m.numCols() << " (complex) matrix\n";
     }
     return s;
   }
