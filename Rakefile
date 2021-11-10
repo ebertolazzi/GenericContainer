@@ -13,7 +13,19 @@ CLEAN.include   ["./**/*.o", "./**/*.obj", "./bin/**/example*", "./build"]
 CLOBBER.include []
 CLEAN.exclude('**/[cC][oO][rR][eE]')
 
+case RUBY_PLATFORM
+when /darwin/
+  OS = :mac
+when /linux/
+  OS = :linux
+when /cygwin|mswin|mingw|bccwin|wince|emx/
+  OS = :win
+end
+
 require_relative "./Rakefile_common.rb"
+
+desc "default task --> build"
+task :default => :build
 
 file_base = File.expand_path(File.dirname(__FILE__)).to_s
 
@@ -112,6 +124,19 @@ task :run_win_debug do
   FileUtils.cd "../.."
 end
 
+desc "build lib"
+task :build do
+  puts "UTILS build".green
+  case OS
+  when :mac
+    Rake::Task[:build_osx].invoke
+  when :linux
+    Rake::Task[:build_linux].invoke
+  when :win
+    Rake::Task[:build_win].invoke
+  end
+end
+
 desc "compile for Visual Studio [default year=2017, bits=x64]"
 task :build_win, [:year, :bits] do |t, args|
   FileUtils.rm_rf 'lib'
@@ -166,8 +191,7 @@ task :build_osx do
 end
 
 desc 'compile for LINUX'
-task :build_linux => [ :build_osx ] do
-end
+task :build_linux => :build_osx
 
 desc "clean for OSX"
 task :clean_osx do
@@ -176,13 +200,7 @@ task :clean_osx do
 end
 
 desc "clean for LINUX"
-task :clean_linux do
-  FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
-end
+task :clean_linux => :clean_osx
 
 desc "clean for WINDOWS"
-task :clean_win do
-  FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
-end
+task :clean_win => :clean_osx

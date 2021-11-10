@@ -9,7 +9,7 @@
 #                                                                          #
 ############################################################################
 
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.2.0)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INSTALL_MESSAGE ALWAYS)
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
