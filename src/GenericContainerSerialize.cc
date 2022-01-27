@@ -21,8 +21,8 @@
 // file: GenericContainerSerialize.cc
 //
 
-#include "GenericContainer.hh"
-#include "GenericContainerLibs.hh"
+#include "GenericContainer/GenericContainer.hh"
+#include "GenericContainer/GenericContainerLibs.hh"
 
 #ifdef GENERIC_CONTAINER_ON_WINDOWS
   #include <winsock.h>

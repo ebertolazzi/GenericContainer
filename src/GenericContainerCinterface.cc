@@ -28,8 +28,8 @@
  This file contains the sources for the C interface to `GenericContainer`
  */
 
-#include "GenericContainer.hh"
-#include "GenericContainerCinterface.h"
+#include "GenericContainer/GenericContainer.hh"
+#include "GenericContainer/GenericContainerCinterface.h"
 
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wc++98-compat"

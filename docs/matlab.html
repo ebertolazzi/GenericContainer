@@ -6,11 +6,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Matlab Support &#8212; Generic Container v1.0.0
 </title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
@@ -19,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -78,13 +79,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="matlab-support">
+  <section id="matlab-support">
 <h1>Matlab Support<a class="headerlink" href="#matlab-support" title="Permalink to this headline">¶</a>
 </h1>
 <p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> has an interfacing to exchange data with matlab.
 To use the interface include</p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
 </pre></div>
 </div>
 <p>compile and link with <code class="docutils literal notranslate"><span class="pre">GenericContainerMatlabInterface.cc</span></code>.
@@ -92,31 +93,31 @@ The interface contains a set of functions to convert from <code class="docutils 
 to <code class="docutils literal notranslate"><span class="pre">mxArray</span></code> and the other way around.</p>
 <p>The following code stored in <code class="docutils literal notranslate"><span class="pre">mex_print_recursive.cc</span></code></p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"GenericContainer.hh"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"mex.h"</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainer.hh"</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"mex.h"</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="n">GC_namespace</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">GC_namespace</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-  <span class="k">extern</span> <span class="s">"C"</span>
-  <span class="kt">void</span>
-  <span class="n">mexFunction</span><span class="p">(</span> <span class="kt">int</span> <span class="n">nlhs</span><span class="p">,</span> <span class="n">mxArray</span>       <span class="o">*</span><span class="n">plhs</span><span class="p">[],</span>
-               <span class="kt">int</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">mxArray</span> <span class="k">const</span> <span class="o">*</span><span class="n">prhs</span><span class="p">[]</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">{</span>
-      <span class="n">GenericContainer</span> <span class="n">gc</span><span class="p">;</span>
-      <span class="n">mxArray_to_GenericContainer</span><span class="p">(</span> <span class="n">prhs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gc</span> <span class="p">);</span>
-      <span class="n">mexPrint</span><span class="p">(</span><span class="n">gc</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="o">&amp;</span> <span class="n">exc</span> <span class="p">)</span> <span class="p">{</span>
-      <span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Error: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">exc</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{</span>
-      <span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Unknown error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="s">"C"</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"></span>
+<span class="w">  </span><span class="n">mexFunction</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nlhs</span><span class="p">,</span><span class="w"> </span><span class="n">mxArray</span><span class="w">       </span><span class="o">*</span><span class="n">plhs</span><span class="p">[],</span><span class="w"></span>
+<span class="w">               </span><span class="kt">int</span><span class="w"> </span><span class="n">nrhs</span><span class="p">,</span><span class="w"> </span><span class="n">mxArray</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">prhs</span><span class="p">[]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">GenericContainer</span><span class="w"> </span><span class="n">gc</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">mxArray_to_GenericContainer</span><span class="p">(</span><span class="w"> </span><span class="n">prhs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">mexPrint</span><span class="p">(</span><span class="n">gc</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">exc</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Error: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">exc</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Unknown error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Implement a mex command that print a Matlab structure
@@ -182,7 +183,7 @@ vector:
     [ 1 2 3 4 ]
 </pre></div>
 </div>
-</div>
+</section>
 
 
 
@@ -199,7 +200,7 @@ vector:
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -256,7 +257,7 @@ vector:
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Enrico Bertolazzi.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

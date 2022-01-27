@@ -6,11 +6,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Generic Container &#8212; Generic Container v1.0.0
 </title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="_static/table_styling.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
@@ -19,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -82,7 +83,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="generic-container">
+  <section id="generic-container">
 <h1>Generic Container<a class="headerlink" href="#generic-container" title="Permalink to this headline">¶</a>
 </h1>
 <p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> is a C++ class that permit to store eterogeneous
@@ -132,34 +133,34 @@ data:</p>
 <p>this permits to build complex recursive data. The main usage of the
 class is in interchange data with scripting language like <code class="docutils literal notranslate"><span class="pre">Ruby</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Lua</span></code>, <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code>.</p>
-<div class="section" id="simple-usage">
+<section id="simple-usage">
 <h2>Simple Usage<a class="headerlink" href="#simple-usage" title="Permalink to this headline">¶</a>
 </h2>
 <p>The usage is simple, for example it can be used as an associative array
 with eterogenous data</p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="n">GenericContainer</span> <span class="n">gc</span><span class="p">;</span>
-<span class="n">gc</span><span class="p">[</span><span class="s">"one"</span><span class="p">]</span>  <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>             <span class="c1">// store integer</span>
-<span class="n">gc</span><span class="p">[</span><span class="s">"two"</span><span class="p">]</span>  <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>          <span class="c1">// store a boolean</span>
-<span class="n">gc</span><span class="p">[</span><span class="s">"3"</span><span class="p">]</span>    <span class="o">=</span> <span class="mf">1.4</span><span class="p">;</span>           <span class="c1">// store floating point number</span>
-<span class="n">gc</span><span class="p">[</span><span class="s">"four"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"pippo"</span><span class="p">;</span>       <span class="c1">// store a string</span>
-<span class="n">gc</span><span class="p">[</span><span class="s">"five"</span><span class="p">].</span><span class="n">set_vec_int</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// store a vector of integer of 10 elements</span>
+<div class="highlight"><pre><span></span><span class="n">GenericContainer</span><span class="w"> </span><span class="n">gc</span><span class="p">;</span><span class="w"></span>
+<span class="n">gc</span><span class="p">[</span><span class="s">"one"</span><span class="p">]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">             </span><span class="c1">// store integer</span>
+<span class="n">gc</span><span class="p">[</span><span class="s">"two"</span><span class="p">]</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">          </span><span class="c1">// store a boolean</span>
+<span class="n">gc</span><span class="p">[</span><span class="s">"3"</span><span class="p">]</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mf">1.4</span><span class="p">;</span><span class="w">           </span><span class="c1">// store floating point number</span>
+<span class="n">gc</span><span class="p">[</span><span class="s">"four"</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"pippo"</span><span class="p">;</span><span class="w">       </span><span class="c1">// store a string</span>
+<span class="n">gc</span><span class="p">[</span><span class="s">"five"</span><span class="p">].</span><span class="n">set_vec_int</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"> </span><span class="c1">// store a vector of integer of 10 elements</span>
 </pre></div>
 </div>
 <p>and to retrieve elements</p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gc</span><span class="p">[</span><span class="s">"one"</span><span class="p">].</span><span class="n">get_int</span><span class="p">()</span>     <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gc</span><span class="p">[</span><span class="s">"two"</span><span class="p">].</span><span class="n">get_bool</span><span class="p">()</span>    <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gc</span><span class="p">[</span><span class="s">"3"</span><span class="p">].</span><span class="n">get_real</span><span class="p">()</span>      <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">gc</span><span class="p">[</span><span class="s">"four"</span><span class="p">].</span><span class="n">get_string</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
-<span class="n">GenericContainer</span><span class="o">::</span><span class="n">vec_int_type</span> <span class="o">&amp;</span> <span class="n">v</span> <span class="o">=</span> <span class="n">gc</span><span class="p">[</span><span class="s">"five"</span><span class="p">].</span><span class="n">get_vec_int</span><span class="p">();</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gc</span><span class="p">[</span><span class="s">"one"</span><span class="p">].</span><span class="n">get_int</span><span class="p">()</span><span class="w">     </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span><span class="w"></span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gc</span><span class="p">[</span><span class="s">"two"</span><span class="p">].</span><span class="n">get_bool</span><span class="p">()</span><span class="w">    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span><span class="w"></span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gc</span><span class="p">[</span><span class="s">"3"</span><span class="p">].</span><span class="n">get_real</span><span class="p">()</span><span class="w">      </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span><span class="w"></span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">gc</span><span class="p">[</span><span class="s">"four"</span><span class="p">].</span><span class="n">get_string</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span><span class="w"></span>
+<span class="n">GenericContainer</span><span class="o">::</span><span class="n">vec_int_type</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gc</span><span class="p">[</span><span class="s">"five"</span><span class="p">].</span><span class="n">get_vec_int</span><span class="p">();</span><span class="w"></span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>For more complex emxamples and recursive data see example test files in
 the distribution.</p>
-</div>
-<div class="section" id="compile-and-tests">
+</section>
+<section id="compile-and-tests">
 <h2>Compile and tests<a class="headerlink" href="#compile-and-tests" title="Permalink to this headline">¶</a>
 </h2>
 <p>Edit makefile file to match compiler of your OS and do:</p>
@@ -179,30 +180,30 @@ rake run       <span class="c1"># for linux/OSX</span>
 rake run_win   <span class="c1"># for windows</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
-<div class="section" id="lua-support">
+<section id="lua-support">
 <h1>Lua Support<a class="headerlink" href="#lua-support" title="Permalink to this headline">¶</a>
 </h1>
 <p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> has an interfacing to exchange data with Lua.
 To use the interface include</p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"GenericContainerLuaInterface.hh"</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainerLuaInterface.hh"</span><span class="cp"></span>
 </pre></div>
 </div>
 <p>compile and link with <code class="docutils literal notranslate"><span class="pre">GenericContainerLuaInterface.cc</span></code>.
 The interface contains a set of functions to convert from <code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code>
 to Lua global variables and the other way around.</p>
-</div>
+</section>
 
-<div class="section" id="matlab-support">
+<section id="matlab-support">
 <h1>Matlab Support<a class="headerlink" href="#matlab-support" title="Permalink to this headline">¶</a>
 </h1>
 <p><code class="docutils literal notranslate"><span class="pre">GenericContainer</span></code> has an interfacing to exchange data with matlab.
 To use the interface include</p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
 </pre></div>
 </div>
 <p>compile and link with <code class="docutils literal notranslate"><span class="pre">GenericContainerMatlabInterface.cc</span></code>.
@@ -210,31 +211,31 @@ The interface contains a set of functions to convert from <code class="docutils 
 to <code class="docutils literal notranslate"><span class="pre">mxArray</span></code> and the other way around.</p>
 <p>The following code stored in <code class="docutils literal notranslate"><span class="pre">mex_print_recursive.cc</span></code></p>
 <div class="highlight-cpp notranslate">
-<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"GenericContainer.hh"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">"mex.h"</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainer.hh"</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainerMatlabInterface.hh"</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"mex.h"</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="n">GC_namespace</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">GC_namespace</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-  <span class="k">extern</span> <span class="s">"C"</span>
-  <span class="kt">void</span>
-  <span class="n">mexFunction</span><span class="p">(</span> <span class="kt">int</span> <span class="n">nlhs</span><span class="p">,</span> <span class="n">mxArray</span>       <span class="o">*</span><span class="n">plhs</span><span class="p">[],</span>
-               <span class="kt">int</span> <span class="n">nrhs</span><span class="p">,</span> <span class="n">mxArray</span> <span class="k">const</span> <span class="o">*</span><span class="n">prhs</span><span class="p">[]</span> <span class="p">)</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">{</span>
-      <span class="n">GenericContainer</span> <span class="n">gc</span><span class="p">;</span>
-      <span class="n">mxArray_to_GenericContainer</span><span class="p">(</span> <span class="n">prhs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gc</span> <span class="p">);</span>
-      <span class="n">mexPrint</span><span class="p">(</span><span class="n">gc</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="o">&amp;</span> <span class="n">exc</span> <span class="p">)</span> <span class="p">{</span>
-      <span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Error: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">exc</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">catch</span> <span class="p">(...)</span> <span class="p">{</span>
-      <span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Unknown error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="k">extern</span><span class="w"> </span><span class="s">"C"</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"></span>
+<span class="w">  </span><span class="n">mexFunction</span><span class="p">(</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">nlhs</span><span class="p">,</span><span class="w"> </span><span class="n">mxArray</span><span class="w">       </span><span class="o">*</span><span class="n">plhs</span><span class="p">[],</span><span class="w"></span>
+<span class="w">               </span><span class="kt">int</span><span class="w"> </span><span class="n">nrhs</span><span class="p">,</span><span class="w"> </span><span class="n">mxArray</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">prhs</span><span class="p">[]</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">GenericContainer</span><span class="w"> </span><span class="n">gc</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">mxArray_to_GenericContainer</span><span class="p">(</span><span class="w"> </span><span class="n">prhs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="w"> </span><span class="n">gc</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">mexPrint</span><span class="p">(</span><span class="n">gc</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">exc</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Error: %s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">exc</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">mexPrintf</span><span class="p">(</span><span class="s">"Unknown error</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Implement a mex command that print a Matlab structure
@@ -300,7 +301,7 @@ vector:
     [ 1 2 3 4 ]
 </pre></div>
 </div>
-<div class="section" id="interfaces">
+<section id="interfaces">
 <h2>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this headline">¶</a>
 </h2>
 <div class="toctree-wrapper compound">
@@ -377,7 +378,7 @@ vector:
 </li>
 </ul>
 </div>
-<div class="section" id="author">
+<section id="author">
 <h3>Author<a class="headerlink" href="#author" title="Permalink to this headline">¶</a>
 </h3>
 <div class="line-block">
@@ -397,8 +398,8 @@ vector:
 <div class="line">homepage: <a class="reference external" href="https://e.bertolazzi.dii.unitn.it">https://e.bertolazzi.dii.unitn.it</a>
 </div>
 </div>
-</div>
-<div class="section" id="license">
+</section>
+<section id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a>
 </h3>
 <div class="highlight-none notranslate">
@@ -429,9 +430,9 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
 
@@ -448,7 +449,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -508,7 +509,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Enrico Bertolazzi.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

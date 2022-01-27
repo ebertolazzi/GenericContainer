@@ -18,7 +18,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-#include "GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerLuaInterface.hh"
 
 #ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"
@@ -40,7 +40,7 @@
 #ifdef USE_SYSTEM_LUA
   #include <lua.hpp>
 #else
-  #include "lua-5.4.3/src/lua.hpp"
+  #include "lua-5.4.4/src/lua.hpp"
 #endif
 
 /* print a string */

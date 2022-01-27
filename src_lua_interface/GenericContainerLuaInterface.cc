@@ -16,7 +16,7 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
-#include "GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerLuaInterface.hh"
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -63,7 +63,7 @@
 #ifdef USE_SYSTEM_LUA
   #include <lua.hpp>
 #else
-  #include "lua-5.4.3/src/lua.hpp"
+  #include "lua-5.4.4/src/lua.hpp"
 #endif
 
 // load string.h for strlen

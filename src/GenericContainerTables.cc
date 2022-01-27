@@ -21,7 +21,7 @@
 // file: GenericContainerTables.cc
 //
 
-#include "GenericContainer.hh"
+#include "GenericContainer/GenericContainer.hh"
 #include <iomanip>
 #include <string>
 

@@ -45,7 +45,6 @@ if COMPILE_DEBUG then
 else
   cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING '
 end
-cmd_cmake_build += " -DINSTALL_HERE:VAR=true "
 
 TESTS = [
   "example1",
@@ -56,7 +55,8 @@ TESTS = [
   "example6",
   "example7",
   "example8",
-  "example9"
+  "example9",
+  "JSON_test_1"
 ]
 
 TESTS_LUA = [

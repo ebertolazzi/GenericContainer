@@ -21,7 +21,7 @@
 // file: GenericContainer.cc
 //
 
-#include "GenericContainer.hh"
+#include "GenericContainer/GenericContainer.hh"
 #include <iomanip>
 #include <cmath>
 #include <ctgmath>

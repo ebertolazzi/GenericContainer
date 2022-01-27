@@ -21,6 +21,9 @@ breathe_projects = {
 
 breathe_default_project = "doc_cpp"
 
+dir_path_inc = os.path.dirname(os.path.realpath(__file__))+"../../../include"
+dir_path_inc = Path(dir_path_inc).resolve()
+
 dir_path_c   = os.path.dirname(os.path.realpath(__file__))+"../../../src"
 dir_path_c   = Path(dir_path_c).resolve()
 
@@ -68,9 +71,9 @@ doc_c = {
     "rootFileName":          "root.rst",
     "createTreeView":        True,
     "exhaleExecutesDoxygen": True,
-    "doxygenStripFromPath":  str(dir_path_c),
+    "doxygenStripFromPath":  str(dir_path_inc),
     "exhaleDoxygenStdin":   '''
-        INPUT               = ../../src
+        INPUT               = ../../include/GenericContainer
         PREDEFINED         += protected=private
         XML_OUTPUT          = xml-c
         FILE_PATTERNS       = GenericContainerCinterface.h
@@ -86,10 +89,10 @@ doc_cpp = {
     "exhaleExecutesDoxygen": True,
     "doxygenStripFromPath":  str(dir_path_cpp),
     "exhaleDoxygenStdin":   '''
-        INPUT               = ../../src
+        INPUT               = ../../src ../../include/GenericContainer
         PREDEFINED         += protected=private
         XML_OUTPUT          = xml-cpp
-        EXCLUDE_PATTERNS    = GenericContainerCinterface.*
+        EXCLUDE_PATTERNS    = GenericContainerCinterface.* GenericContainerJson*.* GenericContainerMatlabInterface.* GenericContainerLua*.*
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-cpp'),
     "rootFileTitle":        "C++ API",
@@ -102,9 +105,10 @@ doc_json = {
     "exhaleExecutesDoxygen": True,
     "doxygenStripFromPath":  str(dir_path_json),
     "exhaleDoxygenStdin":   '''
-        INPUT               = ../../src_json_interface
+        INPUT               = ../../src_json_interface ../../include/GenericContainer
         PREDEFINED         += protected=private
         XML_OUTPUT          = xml-json
+        FILE_PATTERNS       = GenericContainerJson*.*
 '''+doxygen_common_stdin,
     "containmentFolder":    os.path.realpath('./api-json'),
     "rootFileTitle":        "JSON API",
@@ -117,7 +121,7 @@ doc_matlab = {
     "exhaleExecutesDoxygen": True,
     "doxygenStripFromPath":  str(dir_path_matlab),
     "exhaleDoxygenStdin":   '''
-        INPUT               = ../../src_matlab_interface
+        INPUT               = ../../src_matlab_interface ../../include/GenericContainer
         PREDEFINED         += protected=private
         XML_OUTPUT          = xml-matlab
         FILE_PATTERNS       = GenericContainerMatlabInterface.*
@@ -133,7 +137,7 @@ doc_lua = {
     "exhaleExecutesDoxygen": True,
     "doxygenStripFromPath":  str(dir_path_lua),
     "exhaleDoxygenStdin":   '''
-        INPUT               = ../../src_lua_interface
+        INPUT               = ../../src_lua_interface ../../include/GenericContainer
         PREDEFINED         += protected=private
         XML_OUTPUT          = xml-lua
         FILE_PATTERNS       = GenericContainerLua*.hh GenericContainerLua*.cc

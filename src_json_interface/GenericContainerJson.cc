@@ -22,8 +22,8 @@
 #pragma clang diagnostic ignored "-Wzero-as-null-pointer-constant"
 #endif
 
-#include "GenericContainerJson.hh"
-#include "GenericContainerJsonHandler.hh"
+#include "GenericContainer/GenericContainerJson.hh"
+#include "GenericContainer/GenericContainerJsonHandler.hh"
 
 #include <iostream>
 #include <string>

@@ -3,7 +3,7 @@
   See file license.txt
 \****************************************************************************/
 
-#include "GenericContainerMatlabInterface.hh"
+#include "GenericContainer/GenericContainerMatlabInterface.hh"
 
 #include <iostream>
 #include <cstdint>

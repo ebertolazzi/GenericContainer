@@ -21,7 +21,7 @@
 // file: GenericContainerSupport.cc
 //
 
-#include "GenericContainer.hh"
+#include "GenericContainer/GenericContainer.hh"
 #include <iomanip>
 
 namespace GC_namespace {

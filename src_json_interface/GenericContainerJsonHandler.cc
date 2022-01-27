@@ -8,7 +8,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-#include "GenericContainerJsonHandler.hh"
+#include "GenericContainer/GenericContainerJsonHandler.hh"
 #include <iostream>
 #include <iomanip>
 #include <regex>

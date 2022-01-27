@@ -24,7 +24,7 @@
 
  */
 
-#include "GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerLuaInterface.hh"
 #include <iostream>
 #include <fstream>
 

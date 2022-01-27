@@ -6,11 +6,12 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>File GenericContainerSerialize.cc &#8212; Generic Container v1.0.0
 </title>
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/cloud.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
     <link rel="stylesheet" type="text/css" href="../_static/table_styling.css" />
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
@@ -19,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noticia+Text:400,i,b,bi|Open+Sans:400,i,b,bi|Roboto+Mono:400,i,b,bi&amp;display=swap" type="text/css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
@@ -78,7 +79,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="file-genericcontainerserialize-cc">
+  <section id="file-genericcontainerserialize-cc">
 <span id="id1"></span><h1>File GenericContainerSerialize.cc<a class="headerlink" href="#file-genericcontainerserialize-cc" title="Permalink to this headline">¶</a>
 </h1>
 <div class="contents local topic" id="contents">
@@ -88,9 +89,10 @@
 <li><p><a class="reference internal" href="#includes" id="id3">Includes</a></p></li>
 <li><p><a class="reference internal" href="#namespaces" id="id4">Namespaces</a></p></li>
 <li><p><a class="reference internal" href="#functions" id="id5">Functions</a></p></li>
+<li><p><a class="reference internal" href="#defines" id="id6">Defines</a></p></li>
 </ul>
 </div>
-<div class="section" id="definition-genericcontainerserialize-cc">
+<section id="definition-genericcontainerserialize-cc">
 <h2>Definition (<code class="docutils literal notranslate"><span class="pre">GenericContainerSerialize.cc</span></code>)<a class="headerlink" href="#definition-genericcontainerserialize-cc" title="Permalink to this headline">¶</a>
 </h2>
 <div class="toctree-wrapper compound">
@@ -98,24 +100,25 @@
 <li class="toctree-l1"><a class="reference internal" href="program_listing_file_GenericContainerSerialize.cc.html">Program Listing for File GenericContainerSerialize.cc</a></li>
 </ul>
 </div>
-</div>
-<div class="section" id="includes">
+</section>
+<section id="includes">
 <h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a>
 </h2>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">GenericContainer.hh</span></code> (<a class="reference internal" href="file_GenericContainer.hh.html#file-genericcontainer-hh"><span class="std std-ref">File GenericContainer.hh</span></a>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">GenericContainerLibs.hh</span></code> (<a class="reference internal" href="file_GenericContainerLibs.hh.html#file-genericcontainerlibs-hh"><span class="std std-ref">File GenericContainerLibs.hh</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GenericContainer/GenericContainer.hh</span></code> (<a class="reference internal" href="file__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include_GenericContainer_GenericContainer.hh.html#file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainer-hh"><span class="std std-ref">File GenericContainer.hh</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GenericContainer/GenericContainerLibs.hh</span></code> (<a class="reference internal" href="file__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include_GenericContainer_GenericContainerLibs.hh.html#file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainerlibs-hh"><span class="std std-ref">File GenericContainerLibs.hh</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">arpa/inet.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cstring</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="namespaces">
+</section>
+<section id="namespaces">
 <h2>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a>
 </h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="../api-matlab/namespace_GC_namespace.html#namespace-gc-namespace"><span class="std std-ref">Namespace GC_namespace</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="functions">
+</section>
+<section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a>
 </h2>
 <ul class="simple">
@@ -125,13 +128,23 @@
 <li><p><a class="reference internal" href="function_a00023_1a00d797933c0f67763236e1dea740b67e.html#exhale-function-a00023-1a00d797933c0f67763236e1dea740b67e"><span class="std std-ref">Function GC_namespace::buffer_to_uint64</span></a></p></li>
 <li><p><a class="reference internal" href="function_a00023_1a5862a7e25bcb5e0286ed8c1ed92d81c9.html#exhale-function-a00023-1a5862a7e25bcb5e0286ed8c1ed92d81c9"><span class="std std-ref">Function GC_namespace::buffer_to_uint8</span></a></p></li>
 <li><p><a class="reference internal" href="function_a00023_1aae00fa9e107002a37a48f8faeb39ee32.html#exhale-function-a00023-1aae00fa9e107002a37a48f8faeb39ee32"><span class="std std-ref">Function GC_namespace::double_to_buffer</span></a></p></li>
+<li><p><a class="reference internal" href="function_a00023_1a6874c4c96c5fbd033de33a432b5dab34.html#exhale-function-a00023-1a6874c4c96c5fbd033de33a432b5dab34"><span class="std std-ref">Function GC_namespace::htonll_local</span></a></p></li>
 <li><p><a class="reference internal" href="function_a00023_1a2be41376655de42900dd610844f0b9b4.html#exhale-function-a00023-1a2be41376655de42900dd610844f0b9b4"><span class="std std-ref">Function GC_namespace::int32_to_buffer</span></a></p></li>
 <li><p><a class="reference internal" href="function_a00023_1a7859616d9bbc963ffa6bffa302641303.html#exhale-function-a00023-1a7859616d9bbc963ffa6bffa302641303"><span class="std std-ref">Function GC_namespace::int64_to_buffer</span></a></p></li>
 <li><p><a class="reference internal" href="function_a00023_1a888f3bc1769d240220eab9ea5409e77f.html#exhale-function-a00023-1a888f3bc1769d240220eab9ea5409e77f"><span class="std std-ref">Function GC_namespace::int8_to_buffer</span></a></p></li>
+<li><p><a class="reference internal" href="function_a00023_1a29b470baef6c74f548f2d391c6cbdae1.html#exhale-function-a00023-1a29b470baef6c74f548f2d391c6cbdae1"><span class="std std-ref">Function GC_namespace::ntohll_local</span></a></p></li>
 <li><p><a class="reference internal" href="function_a00023_1a0aaeffe4ef00b527229868a257e4e62c.html#exhale-function-a00023-1a0aaeffe4ef00b527229868a257e4e62c"><span class="std std-ref">Function GC_namespace::uint64_to_buffer</span></a></p></li>
 </ul>
-</div>
-</div>
+</section>
+<section id="defines">
+<h2>Defines<a class="headerlink" href="#defines" title="Permalink to this headline">¶</a>
+</h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="define_a00002_1abc94cd8dc29ed8b19db4cc23ed830618.html#exhale-define-a00002-1abc94cd8dc29ed8b19db4cc23ed830618"><span class="std std-ref">Define htonll</span></a></p></li>
+<li><p><a class="reference internal" href="define_a00002_1a4a7fe653db1b12381e8189b96d3d8bd1.html#exhale-define-a00002-1a4a7fe653db1b12381e8189b96d3d8bd1"><span class="std std-ref">Define ntohll</span></a></p></li>
+</ul>
+</section>
+</section>
 
 
 
@@ -148,7 +161,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -205,7 +218,7 @@
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2021, Enrico Bertolazzi.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.4.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
     </div>
     <!-- cloud_sptheme 1.4 -->
   </body>

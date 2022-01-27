@@ -9,40 +9,29 @@
 #                                                                          #
 ############################################################################
 
-cmake_minimum_required(VERSION 3.2.0)
-set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_INSTALL_MESSAGE ALWAYS)
-set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+cmake_minimum_required(VERSION 3.14)
 
-if(ENABLE_CTEST)
-  enable_testing()
-endif()
-
-# get version from the git tag
-execute_process(COMMAND git describe --tags --abbrev=0 OUTPUT_VARIABLE VERSION)
-string(REGEX REPLACE "\n$" "" VERSION "${VERSION}")
+project( GenericContainer )
+include(./cmake/CMakeLists-common.txt)
 
 project(
-  GenericContainer 
-  VERSION #{VERSION}
+  ${PROJECT_NAME}
+  VERSION ${EB_PROJECT_VERSION}
   HOMEPAGE_URL "https://ebertolazzi.github.io/GenericContainer/"
 )
 
-# NOTE: Predictable target name
-set(STATIC_PROJECT "${PROJECT_NAME}Static")
-set(DYNAMIC_PROJECT "${PROJECT_NAME}")
-
-# FIXME: This should refer to functions that acts on targets
-include(./CMakeLists-cflags.txt)
-include(./CMakeUtilities.txt)
+include(./cmake/CMakeLists-cflags.txt)
+include(./cmake/CMakeLists-utilities.txt)
 
 # Evaluating the suffix to append to target built by this CMake file
 ebertolazzi_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
-if (BUILD_SHARED)
+if(BUILD_SHARED)
   ebertolazzi_artifacts_suffix(ARTIFACTS_DYNAMIC_SUFFIX FALSE)
 endif()
 
-message(STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}")
+message( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}" )
+message( STATUS "BASE SUFFIXES = ${ARTIFACTS_STATIC_SUFFIX} ${ARTIFACTS_DYNAMIC_SUFFIX}" )
+
 if (APPLE)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLUA_USE_MACOSX")
 elseif(LINUX OR UNIX)
@@ -51,213 +40,197 @@ else()
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
 endif()
 
-set(LUALIB    Lua)
-set(RAPIDJSON rapidjson)
+set(LUALIB Lua)
 
-# Creating Dependency libraries
-# RAPIDJSON LIBRARY
-set(rapidjson_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface")
-file(GLOB_RECURSE rapidjson_HEADERS "${rapidjson_DIR}/*.h")
-add_library(${RAPIDJSON} INTERFACE)
-# target_include_directories(${RAPIDJSON} INTERFACE ${rapidjson_DIR})
-set_target_properties(${RAPIDJSON} PROPERTIES PUBLIC_HEADER "${rapidjson_HEADERS}")
-  
+#   ___
+#  / __| ___ _  _ _ _ __ ___ ___
+#  \__ \/ _ \ || | '_/ _/ -_|_-<
+#  |___/\___/\_,_|_| \__\___/__/
+#
+set( SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src" )
+
+set( SOURCES )
+file(
+  GLOB S
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface/*.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/*.cc
+)
+foreach(F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
+  list( APPEND SOURCES ${RF} )
+endforeach(F ${S})
+
+#list(FILTER SOURCES EXCLUDE REGEX ".*hsl_fake.cc$")
+
+#   _  _             _
+#  | || |___ __ _ __| |___ _ _ ___
+#  | __ / -_) _` / _` / -_) '_(_-<
+#  |_||_\___\__,_\__,_\___|_| /__/
+#
+set( PUBLIC_HEADERS )
+file(
+  GLOB S
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h*
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*/*.h*
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*/*/*.h*
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*/*/*/*.h*
+)
+foreach (F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF "${CMAKE_CURRENT_SOURCE_DIR}/include" "${F}" )
+  list( APPEND PUBLIC_HEADERS ${RF} )
+endforeach(F ${S})
+
+# extra include directory for compilation
+include_directories( ./include ./src_json_interface )
+
+#  _    _   _   _
+# | |  | | | | / \
+# | |  | | | |/ _ \
+# | |__| |_| / ___ \
+# |_____\___/_/   \_\
+#
 # LUA LIBRARY
-set(lualib_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/lua-5.4.3/src")
-#file(GLOB_RECURSE lualib_HEADERS "${lualib_DIR}/*.h")
-set(
-  lualib_HEADERS
-  "${lualib_DIR}/lua.hpp"
-  "${lualib_DIR}/lua.h"
-  "${lualib_DIR}/luaconf.h"
-)
-file(GLOB lualib_SOURCES "${lualib_DIR}/*.c")
-add_library(${LUALIB} STATIC ${lualib_SOURCES})
-target_include_directories(${LUALIB} PRIVATE ${lualib_DIR})
-target_link_libraries(${LUALIB} PRIVATE ${CMAKE_DL_LIBS})
-set_target_properties(
-  ${LUALIB} PROPERTIES 
-  PUBLIC_HEADER "${lualib_HEADERS}"
-  OUTPUT_NAME "${LUALIB}${ARTIFACTS_STATIC_SUFFIX}"
-  POSITION_INDEPENDENT_CODE ON
-)
+set( lualib_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/lua-5.4.4/src/" )
 
-set(SOURCES_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
-set(SOURCES_JSON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface")
-set(SOURCES_LUA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface")
+set( lualib_HEADERS )
+file( GLOB S "${lualib_DIR}/lua*.h*" "${lualib_DIR}/lauxlib.h" )
+foreach (F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF "${lualib_DIR}" "${F}" )
+  list( APPEND lualib_HEADERS ${RF} )
+endforeach(F ${S})
 
-# NOTE: Glob shall be avoided. Headers and sources shall be declared 
-# manually in order to rebuild cmake-cache automatically.
-# Ref: https://cmake.org/cmake/help/v3.15/command/file.html?highlight=glob#filesystem
-set(
-  SOURCES
-  "${SOURCES_DIR}/GenericContainer.cc"
-  "${SOURCES_DIR}/GenericContainerCinterface.cc"
-  "${SOURCES_DIR}/GenericContainerSerialize.cc"
-  "${SOURCES_DIR}/GenericContainerSupport.cc"
-  "${SOURCES_DIR}/GenericContainerTables.cc"
+set( lualib_SOURCES )
+file( GLOB S "${lualib_DIR}/*.c" )
+foreach (F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF "${lualib_DIR}" "${F}" )
+  list( APPEND lualib_SOURCES ${RF} )
+endforeach(F ${S})
+
+list( FILTER lualib_SOURCES EXCLUDE REGEX "luac\.c$" )
+
+#   _____                  _
+#  |_   _|_ _ _ _ __ _ ___| |_ ___
+#    | |/ _` | '_/ _` / -_)  _(_-<
+#    |_|\__,_|_| \__, \___|\__/__/
+#                |___/
+#
+# define target
+ebertolazzi_setup_target(
+  ${PROJECT_NAME}
+  TRUE # build static
+  "${CMAKE_CURRENT_SOURCE_DIR}"
+  "${SOURCES}"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include"
+  "${PUBLIC_HEADERS}"
 )
-set(
-  SOURCES
-  ${SOURCES}
-  "${SOURCES_JSON_DIR}/GenericContainerJson.cc"
-  "${SOURCES_JSON_DIR}/GenericContainerJsonHandler.cc"
+ebertolazzi_setup_target(
+  Lua
+  TRUE # build static
+  "${lualib_DIR}"
+  "${lualib_SOURCES}"
+  "${lualib_DIR}"
+  "${lualib_HEADERS}"
 )
-set(
-  SOURCES
-  ${SOURCES}
-  "${SOURCES_LUA_DIR}/GenericContainerLuaInterface.cc"
-  "${SOURCES_LUA_DIR}/GenericContainerLuaPmain.cc"
-)
-
-  # FIXME: I had to invent a workaroud to have all the headers... 
-file(GLOB_RECURSE HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src*/GenericContainer*.h*")
-
-add_library(${STATIC_PROJECT} STATIC ${SOURCES})
-target_include_directories(${STATIC_PROJECT} PUBLIC
-  "$<BUILD_INTERFACE:${SOURCES_DIR}>"
-  "$<BUILD_INTERFACE:${SOURCES_JSON_DIR}>"
-  "$<BUILD_INTERFACE:${SOURCES_LUA_DIR}>"
-  "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
-)
-
-target_include_directories(${STATIC_PROJECT} PRIVATE ${LUALIB})
-target_link_libraries(${STATIC_PROJECT} PUBLIC ${LUALIB})
-target_link_libraries(${STATIC_PROJECT} PUBLIC ${RAPIDJSON})
-set_target_properties(
-  ${STATIC_PROJECT} PROPERTIES
-  OUTPUT_NAME "${PROJECT_NAME}${ARTIFACTS_STATIC_SUFFIX}"
-  PUBLIC_HEADER "${HEADERS}"
-  POSITION_INDEPENDENT_CODE ON
-)  
-
-if(BUILD_SHARED)
-  add_library(${DYNAMIC_PROJECT} SHARED ${SOURCES})
-  set_target_properties(
-    ${DYNAMIC_PROJECT} PROPERTIES
-    OUTPUT_NAME "${PROJECT_NAME}${ARTIFACTS_DYNAMIC_SUFFIX}"
-    PUBLIC_HEADER "${HEADERS}"
-    POSITION_INDEPENDENT_CODE ON
+if ( BUILD_SHARED )
+  ebertolazzi_setup_target(
+    ${PROJECT_NAME}
+    FALSE # build dynamic
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${SOURCES}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${PUBLIC_HEADERS}"
   )
-  target_include_directories(
-    ${DYNAMIC_PROJECT} PRIVATE
-    ${SOURCES_DIR} ${SOURCES_JSON_DIR} ${SOURCES_LUA_DIR}
+  ebertolazzi_setup_target(
+    Lua
+    FALSE # build dynamic
+    "${lualib_DIR}"
+    "${lualib_SOURCES}"
+    "${lualib_DIR}"
+    "${lualib_HEADERS}"
   )
-  target_link_libraries(${DYNAMIC_PROJECT} PRIVATE ${RAPIDJSON} ${LUALIB})
-  if(WIN32)
-    set_target_properties(${DYNAMIC_PROJECT} PROPERTIES WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
-  endif()
-  target_link_libraries(${DYNAMIC_PROJECT} PRIVATE ${CMAKE_DL_LIBS})
 endif()
 
-# FIXME: Untested target!
-if(BUILD_MATLAB)
-  FindMatlab()
-  if(Matlab_FOUND)
-    set(SOURCES_MATLAB_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_matlab_interface")
-    set(MEX_FILES test_gc print_recursive)
-    foreach(MEX_FILE MEX_FILES)
-      matlab_add_mex(${MEX_FILE}
-        "{SOURCES_MATLAB_DIR}/GenericContainerMatlabInterface.cc"
-        "{SOURCES_MATLAB_DIR}/mex_${MEX_FILE}.cc")
-      target_include_directories(${MEX_FILE} PRIVATE "{SOURCES_MATLAB_DIR}")
-      target_link_libraries(${MEX_FILE} PRIVATE ${STATIC_PROJECT})
-      target_compile_options(${MEX_FILE} PRIVATE -largeArrayDims)
-      if(UNIX)
-        target_compile_options(${MEX_FILE} PRIVATE -lstdc++ -Wall -O2 -g)
-      endif()
-    endforeach()
-  else()
-    message(WARNING "Cannot find Matlab installation, skipping Matlab Targets")
-  endif()
-endif()
+#   _____       _
+#  |_   _|__ __| |_ ___
+#    | |/ -_|_-<  _(_-<
+#    |_|\___/__/\__/__/
+#
+if ( BUILD_EXECUTABLE OR EB_ENABLE_TESTS )
 
-if(BUILD_EXECUTABLE OR ENABLE_CTEST)
   enable_testing()
-  set(TEST_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
-  add_executable(example1 examples/example1.cc)
-  target_link_libraries(example1 ${STATIC_PROJECT})
-  set_target_properties(example1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example1 ${TEST_OUTPUT_PATH}/example1)
+  set( EXELISTBIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bin" )
+  set( EXELISTCPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_tests" )
 
-  add_executable(example2 examples/example2.cc)
-  target_link_libraries(example2 ${STATIC_PROJECT})
-  set_target_properties(example2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example2 ${TEST_OUTPUT_PATH}/example2)
+  set(
+    EXELISTCPP
+    example1 example2 example3 example4 example5
+    example7 example8 example9
+  )
 
-  add_executable(example3 examples/example3.cc)
-  target_link_libraries(example3 ${STATIC_PROJECT})
-  set_target_properties(example3 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example3 ${TEST_OUTPUT_PATH}/example3)
+  set( EXELISTC example6 )
+  set( EXEJSONTEST JSON_test_1 )
+  set( EXELUATEST example_lua1 example_lua2 example_lua3 )
 
-  add_executable(example4 examples/example4.cc)
-  target_link_libraries(example4 ${STATIC_PROJECT})
-  set_target_properties(example4 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example4 ${TEST_OUTPUT_PATH}/example4)
+  add_custom_target( all_tests ALL )
 
-  add_executable(example5 examples/example5.cc)
-  target_link_libraries(example5 ${STATIC_PROJECT})
-  set_target_properties(example5 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example5 ${TEST_OUTPUT_PATH}/example5)
+  set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin )
+  set( LIBS ${EB_NAMESPACE}_${PROJECT_NAME}_Static ${EB_NAMESPACE}_Lua_Static ${CMAKE_DL_LIBS} )
 
-  add_executable(example6 examples/example6.c) # IT'S C!
-  target_link_libraries(example6 ${STATIC_PROJECT})
-  set_target_properties(example6 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example6 ${TEST_OUTPUT_PATH}/example6)
+  foreach( S ${EXELISTCPP} )
+    add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/examples/${S}.cc )
+    target_link_libraries( ${S} ${LIBS} )
+    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    add_dependencies( all_tests ${S} )
+  endforeach()
+  foreach( S ${EXELISTC} )
+    add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/examples/${S}.c )
+    target_link_libraries( ${S} ${LIBS} )
+    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    add_dependencies( all_tests ${S} )
+  endforeach()
+  foreach( S ${EXEJSONTEST} )
+    add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface/tests/${S}.cc )
+    target_link_libraries( ${S} ${LIBS} )
+    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    add_dependencies( all_tests ${S} )
+  endforeach()
+  foreach( S ${EXELUATEST} )
+    add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/tests/${S}.cc )
+    target_link_libraries( ${S} ${LIBS} )
+    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    add_dependencies( all_tests ${S} )
+  endforeach()
 
-  add_executable(example7 examples/example7.cc)
-  target_link_libraries(example7 ${STATIC_PROJECT})
-  set_target_properties(example7 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example7 ${TEST_OUTPUT_PATH}/example7)
-
-  add_executable(example8 examples/example8.cc)
-  target_link_libraries(example8 ${STATIC_PROJECT})
-  set_target_properties(example8 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example8 ${TEST_OUTPUT_PATH}/example8)
-
-  add_executable(example9 examples/example9.cc)
-  target_link_libraries(example9 ${STATIC_PROJECT})
-  set_target_properties(example9 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example9 ${TEST_OUTPUT_PATH}/example9)
-
-  add_executable(JSON_test_1 src_json_interface/tests/JSON_test_1.cc)
-  target_link_libraries(JSON_test_1 ${STATIC_PROJECT})
-  set_target_properties(JSON_test_1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(JSON_test_1 ${TEST_OUTPUT_PATH}/JSON_test_1)
-
-  add_executable(example_lua1 src_lua_interface/tests/example_lua1.cc)
-  target_link_libraries(example_lua1 ${STATIC_PROJECT} ${LUALIB})
-  set_target_properties(example_lua1 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example_lua1 ${TEST_OUTPUT_PATH}/example_lua1)
-
-  add_executable(example_lua2 src_lua_interface/tests/example_lua2.cc)
-  target_link_libraries(example_lua2 ${STATIC_PROJECT} ${LUALIB})
-  set_target_properties(example_lua2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example_lua2 ${TEST_OUTPUT_PATH}/example_lua2)
-
-  add_executable(example_lua3 src_lua_interface/tests/example_lua3.cc)
-  target_link_libraries(example_lua3 ${STATIC_PROJECT} ${LUALIB})
-  set_target_properties(example_lua3 PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEST_OUTPUT_PATH}")
-  add_test(example_lua3 ${TEST_OUTPUT_PATH}/example_lua3)
 endif()
 
-# INSTALL TARGETS
+#   ___         _        _ _
+#  |_ _|_ _  __| |_ __ _| | |
+#   | || ' \(_-<  _/ _` | | |
+#  |___|_||_/__/\__\__,_|_|_|
+#
+install(
+  TARGETS ${TARGETS_TO_BE_INSTALLED}
+  # EXPORT (da definire)
+  LIBRARY DESTINATION ${INSTALL_PREFIX}/dll
+  ARCHIVE DESTINATION ${INSTALL_PREFIX}/lib
+  RUNTIME DESTINATION ${INSTALL_PREFIX}/bin
+  PUBLIC_HEADER DESTINATION ${PROJECT_PUBLIC_HEADER_DESTINATION}
+)
 
-include(./CMakeInstall.txt)
+#   ___         _
+#  | _ \__ _ __| |____ _ __ _ ___
+#  |  _/ _` / _| / / _` / _` / -_)
+#  |_| \__,_\__|_\_\__,_\__, \___|
+#                       |___/
+#
 
-message(STATUS "C compiler                  = ${CMAKE_C_COMPILER_ID} ${CMAKE_C_COMPILER}")
-message(STATUS "C++ compiler                = ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER}")
-message(STATUS "CMAKE_CXX_FLAGS_RELEASE     = ${CMAKE_CXX_FLAGS_RELEASE}")
-message(STATUS "CMAKE_CXX_FLAGS             = ${CMAKE_CXX_FLAGS}")
-message(STATUS "CMAKE_C_FLAGS_RELEASE       = ${CMAKE_C_FLAGS_RELEASE}")
-message(STATUS "CMAKE_C_FLAGS               = ${CMAKE_C_FLAGS}")
-message(STATUS "CMAKE_SYSTEM_NAME           = ${CMAKE_SYSTEM_NAME}")
-message(STATUS "CMAKE_SYSTEM_PROCESSOR      = ${CMAKE_SYSTEM_PROCESSOR}")
-if(APPLE)
-  message(STATUS "CMAKE_OSX_SYSROOT           = ${CMAKE_OSX_SYSROOT}")
-  message(STATUS "CMAKE_OSX_ARCHITECTURES     = ${CMAKE_OSX_ARCHITECTURES}")
-  message(STATUS "CMAKE_OSX_DEPLOYMENT_TARGET = ${CMAKE_OSX_DEPLOYMENT_TARGET}")
-endif()
-message(STATUS "SOURCES = ${SOURCES}")
-message(STATUS "HEADERS = ${HEADERS}")
+# do not work
+#include( ./cmake/CMakeLists-cpack.txt )
+
+ebertolazzi_final_messages()
