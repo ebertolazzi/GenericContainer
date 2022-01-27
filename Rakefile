@@ -90,35 +90,19 @@ end
 
 desc "run tests (Release) on windows"
 task :run_win do
+  BIN = 'bin\\'
   TESTS.each do |cmd|
-    sh "bin\\Release\\#{cmd}.exe"
+    exe = "#{BIN}/#{cmd}.exe"
+    sh exe if File.exist?(exe)
   end
   FileUtils.cd "src_lua_interface/tests"
   TESTS_LUA.each do |cmd|
-    exe = "..\\..\\bin\\Release\\#{cmd}.exe"
+    exe = "..\\..\\#{BIN}#{cmd}.exe"
     sh exe if File.exist?(exe)
   end
-  FileUtils.cd "../../src_lua_interface/tests"
+  FileUtils.cd "../../src_json_interface/tests"
   TESTS_JSON.each do |cmd|
-    exe = "..\\..\\bin\\Release\\#{cmd}.exe"
-    sh exe if File.exist?(exe)
-  end
-  FileUtils.cd "../.."
-end
-
-desc "run tests (Debug) on windows"
-task :run_win_debug do
-  TESTS.each do |cmd|
-    sh "bin\\Debug\\#{cmd}.exe"
-  end
-  FileUtils.cd "src_lua_interface/tests"
-  TESTS_LUA.each do |cmd|
-    exe = "..\\..\\bin\\Debug\\#{cmd}.exe"
-    sh exe if File.exist?(exe)
-  end
-  FileUtils.cd "../../src_lua_interface/tests"
-  TESTS_JSON.each do |cmd|
-    exe = "..\\..\\bin\\Debug\\#{cmd}.exe"
+    exe = "..\\..\\#{BIN}#{cmd}.exe"
     sh exe if File.exist?(exe)
   end
   FileUtils.cd "../.."
