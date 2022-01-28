@@ -25,7 +25,7 @@ include(./cmake/CMakeLists-utilities.txt)
 
 # Evaluating the suffix to append to target built by this CMake file
 ebertolazzi_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
-if(BUILD_SHARED)
+if( EB_BUILD_SHARED )
   ebertolazzi_artifacts_suffix(ARTIFACTS_DYNAMIC_SUFFIX FALSE)
 endif()
 
@@ -121,14 +121,6 @@ list( FILTER lualib_SOURCES EXCLUDE REGEX "luac\.c$" )
 #
 # define target
 ebertolazzi_setup_target(
-  ${PROJECT_NAME}
-  TRUE # build static
-  "${CMAKE_CURRENT_SOURCE_DIR}"
-  "${SOURCES}"
-  "${CMAKE_CURRENT_SOURCE_DIR}/include"
-  "${PUBLIC_HEADERS}"
-)
-ebertolazzi_setup_target(
   Lua
   TRUE # build static
   "${lualib_DIR}"
@@ -136,15 +128,15 @@ ebertolazzi_setup_target(
   "${lualib_DIR}"
   "${lualib_HEADERS}"
 )
-if ( BUILD_SHARED )
-  ebertolazzi_setup_target(
-    ${PROJECT_NAME}
-    FALSE # build dynamic
-    "${CMAKE_CURRENT_SOURCE_DIR}"
-    "${SOURCES}"
-    "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    "${PUBLIC_HEADERS}"
-  )
+ebertolazzi_setup_target(
+  ${PROJECT_NAME}
+  TRUE # build static
+  "${CMAKE_CURRENT_SOURCE_DIR}"
+  "${SOURCES}"
+  "${CMAKE_CURRENT_SOURCE_DIR}/include"
+  "${PUBLIC_HEADERS}"
+)
+if ( EB_BUILD_SHARED )
   ebertolazzi_setup_target(
     Lua
     FALSE # build dynamic
@@ -153,6 +145,15 @@ if ( BUILD_SHARED )
     "${lualib_DIR}"
     "${lualib_HEADERS}"
   )
+  ebertolazzi_setup_target(
+    ${PROJECT_NAME}
+    FALSE # build dynamic
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${SOURCES}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    "${PUBLIC_HEADERS}"
+  )
+  target_link_libraries( "${EB_NAMESPACE}_${PROJECT_NAME}" "${EB_NAMESPACE}_Lua" )
 endif()
 
 #   _____       _
@@ -160,7 +161,7 @@ endif()
 #    | |/ -_|_-<  _(_-<
 #    |_|\___/__/\__/__/
 #
-if ( BUILD_EXECUTABLE OR EB_ENABLE_TESTS )
+if ( EB_ENABLE_TESTS )
 
   enable_testing()
 
