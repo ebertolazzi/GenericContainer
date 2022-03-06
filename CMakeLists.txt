@@ -111,7 +111,7 @@ foreach (F ${S})
   list( APPEND lualib_SOURCES ${RF} )
 endforeach(F ${S})
 
-list( FILTER lualib_SOURCES EXCLUDE REGEX "luac\.c$" )
+list( FILTER lualib_SOURCES EXCLUDE REGEX ".*luac?\.c$" )
 
 #   _____                  _
 #  |_   _|_ _ _ _ __ _ ___| |_ ___
