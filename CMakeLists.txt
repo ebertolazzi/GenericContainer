@@ -171,7 +171,7 @@ if ( EB_ENABLE_TESTS )
   set(
     EXELISTCPP
     example1 example2 example3 example4 example5
-    example7 example8 example9
+    example7 example8 example9 example10
   )
 
   set( EXELISTC example6 )

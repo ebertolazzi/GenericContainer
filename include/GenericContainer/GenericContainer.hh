@@ -499,7 +499,7 @@ namespace GC_namespace {
     //!
     vec_bool_type & set_vec_bool( unsigned sz = 0 );
 
-    //! 
+    //!
     //! Set data to `vec_bool_type`, allocate and initialize.
     //!
     //! Return a reference to vector of `bool`.
@@ -586,7 +586,7 @@ namespace GC_namespace {
     //!
     vec_complex_type & set_vec_complex( unsigned sz = 0 );
 
-    //! 
+    //!
     //! Set data to `vec_complex_type`, allocate and initialize.
     //!
     //! Return a reference to vector of complex number.
@@ -801,7 +801,7 @@ namespace GC_namespace {
     //! 19. `vector_type`
     //! 20. `map_type`
     //!
-    //! \return the type of the internally stored data 
+    //! \return the type of the internally stored data
     //!
     TypeAllowed get_type() const { return m_data_type; }
 
@@ -1345,7 +1345,7 @@ namespace GC_namespace {
 
     ///@{
     //!
-    //! If `i`-th element of the vector is boolean, 
+    //! If `i`-th element of the vector is boolean,
     //! integer or floating point then return number, otherwise return `0`.
     //!
     //! \param[in] i the position of the element in the vector
@@ -1460,7 +1460,7 @@ namespace GC_namespace {
     //! \return the stored value
     //!
     real_type const & get_real_at( unsigned i, char const * msg ) const;
- 
+
     //!
     //! Get the `i`-th `complex_type` of the stored data.
     //!
@@ -1692,7 +1692,7 @@ namespace GC_namespace {
     //!
     //! \param[in]  vs  vector of keys strings
     //! \param[in]  msg message of error in case no keys found
-    //! \return the stored value of the first match 
+    //! \return the stored value of the first match
     //!
     GenericContainer & operator () ( vec_string_type const & vs, char const * msg = nullptr );
 
@@ -1701,7 +1701,7 @@ namespace GC_namespace {
     //!
     //! \param[in]  vs  vector of keys string
     //! \param[in]  msg message of error in case no keys found
-    //! \return the stored value of the first match 
+    //! \return the stored value of the first match
     //!
     GenericContainer const & operator () ( vec_string_type const & vs, char const * msg = nullptr ) const;
 
@@ -1712,90 +1712,90 @@ namespace GC_namespace {
     //!
     ///@{
 
-    //! 
+    //!
     //! Assign a boolean to the generic container.
-    //! 
+    //!
     //! \param[in] a boolean to be stored
-    //! 
+    //!
     void set( bool const & a ) { this->set_bool(a); }
 
-    //! 
+    //!
     //! Assign an integer to the generic container.
-    //! 
+    //!
     //! \param[in] a integer to be stored
-    //! 
+    //!
     void set( uint_type const & a ) { this->set_int(int_type(a)); }
 
-    //! 
+    //!
     //! Assign an integer to the generic container.
-    //! 
+    //!
     //! \param[in] a integer to be stored
-    //! 
+    //!
     void set( int_type const & a ) { this->set_int(a); }
 
-    //! 
+    //!
     //! Assign an unsigned integer to the generic container.
-    //! 
+    //!
     //! \param[in] a unsigned integer to be stored
-    //! 
+    //!
     void set( ulong_type const & a ) { this->set_long(long_type(a)); }
 
-    //! 
+    //!
     //! Assign a long integer to the generic container.
-    //! 
+    //!
     //! \param[in] a long integer to be stored
-    //! 
+    //!
     void set( long_type const & a ) { this->set_long(a); }
 
-    //! 
+    //!
     //! Assign a float to the generic container.
-    //! 
+    //!
     //! \param[in] a float to be stored
-    //! 
+    //!
     void set( float const & a ) { this->set_real(real_type(a)); }
 
-    //! 
+    //!
     //! Assign a double to the generic container.
-    //! 
+    //!
     //! \param[in] a double to be stored
-    //! 
+    //!
     void set( double const & a ) { this->set_real(real_type(a)); }
 
-    //! 
+    //!
     //! Assign a complex of float to the generic container.
-    //! 
+    //!
     //! \param[in] a complex of float to be stored
-    //! 
+    //!
     void set( std::complex<float> const & a )
     { this->set_complex(real_type(a.real()),real_type(a.imag())); }
 
-    //! 
+    //!
     //! Assign a complex of double to the generic container.
-    //! 
+    //!
     //! \param[in] a complex of double to be stored
-    //! 
+    //!
     void set( std::complex<double> const & a )
     { this->set_complex(real_type(a.real()),real_type(a.imag())); }
 
-    //! 
+    //!
     //! Assign a string to the generic container.
-    //! 
+    //!
     //! \param[in] a string to be stored
-    //! 
+    //!
     void set( char const * a ) { this->set_string(a); }
 
-    //! 
+    //!
     //! Assign a string to the generic container.
-    //! 
+    //!
     //! \param[in] a string to be stored
-    //! 
+    //!
     void set( string_type const & a ) { this->set_string(a); }
 
-    //! 
+    //!
     //! Assign a pointer to the generic container.
-    //! 
+    //!
     //! \param[in] a pointer to be stored
-    //! 
+    //!
     void set( pointer_type a ) { this->set_pointer(a); }
 
     ///@}
@@ -1804,190 +1804,190 @@ namespace GC_namespace {
     //! \name Initialize data using operators.
     //!
     //!
-    //! The `=` operator is overloaded to initialize the 
+    //! The `=` operator is overloaded to initialize the
     //! `GenericContainer` on its left side.
     //!
     ///@{
 
-    //! 
+    //!
     //! Assign a boolean to the generic container.
-    //! 
+    //!
     //! \param[in] a boolean to be stored
-    //! 
+    //!
     GenericContainer & operator = ( bool const & a )
     { this->set_bool(a); return * this; }
 
-    //! 
+    //!
     //! Assign an integer to the generic container.
-    //! 
+    //!
     //! \param[in] a integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( uint_type const & a )
     { this->set_int(int_type(a)); return * this; }
 
-    //! 
+    //!
     //! Assign an integer to the generic container.
-    //! 
+    //!
     //! \param[in] a integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( int_type const & a )
     { this->set_int(a); return * this; }
 
-    //! 
+    //!
     //! Assign an unsigned long to the generic container.
-    //! 
+    //!
     //! \param[in] a unsigned long to be stored
-    //! 
+    //!
     GenericContainer & operator = ( ulong_type const & a )
     { this->set_long(long_type(a)); return * this; }
 
-    //! 
+    //!
     //! Assign a long integer to the generic container.
-    //! 
+    //!
     //! \param[in] a long integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( long_type const & a )
     { this->set_long(a); return * this; }
 
-    //! 
+    //!
     //! Assign a float to the generic container.
-    //! 
+    //!
     //! \param[in] a float to be stored
-    //! 
+    //!
     GenericContainer & operator = ( float const & a )
     { this->set_real(real_type(a)); return * this; }
 
-    //! 
+    //!
     //! Assign a double to the generic container.
-    //! 
+    //!
     //! \param[in] a double to be stored
-    //! 
+    //!
     GenericContainer & operator = ( double const & a )
     { this->set_real(real_type(a)); return * this; }
 
-    //! 
+    //!
     //! Assign a complex of float to the generic container.
-    //! 
+    //!
     //! \param[in] a complex of float to be stored
-    //! 
+    //!
     GenericContainer & operator = ( std::complex<float> const & a )
     { this->set_complex(real_type(a.real()),real_type(a.imag())); return * this; }
 
-    //! 
+    //!
     //! Assign a complex of double to the generic container.
-    //! 
+    //!
     //! \param[in] a complex of double to be stored
-    //! 
+    //!
     GenericContainer & operator = ( std::complex<double> const & a )
     { this->set_complex(real_type(a.real()),real_type(a.imag())); return * this; }
 
-    //! 
+    //!
     //! Assign a vector of bool to the generic container.
-    //! 
+    //!
     //! \param[in] a vector of bool to be stored
-    //! 
+    //!
     GenericContainer & operator = ( vec_bool_type const & a );
 
-    //! 
+    //!
     //! Assign a vector of integer to the generic container.
-    //! 
+    //!
     //! \param[in] a vector of integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( vec_int_type const & a );
 
-    //! 
+    //!
     //! Assign a vector of long integer to the generic container.
-    //! 
+    //!
     //! \param[in] a vector of long integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( vec_long_type const & a );
 
-    //! 
+    //!
     //! Assign a vector of `real_type` to the generic container.
-    //! 
+    //!
     //! \param[in] a vector of `real_type` to be stored
-    //! 
+    //!
     GenericContainer & operator = ( vec_real_type const & a );
 
-    //! 
+    //!
     //! Assign a vector of `complex_type` to the generic container.
-    //! 
+    //!
     //! \param[in] a vector of `complex_type` to be stored
-    //! 
+    //!
     GenericContainer & operator = ( vec_complex_type const & a );
 
-    //! 
+    //!
     //! Assign a vector of string to the generic container.
-    //! 
+    //!
     //! \param[in] a vector of string to be stored
-    //! 
+    //!
     GenericContainer & operator = ( vec_string_type const & a );
 
-    //! 
+    //!
     //! Assign a matrix of integer to the generic container.
-    //! 
+    //!
     //! \param[in] a matrix of integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( mat_int_type const & a );
 
-    //! 
+    //!
     //! Assign a matrix of long integer to the generic container.
-    //! 
+    //!
     //! \param[in] a matrix of long integer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( mat_long_type const & a );
 
-    //! 
+    //!
     //! Assign a matrix of `real_type` to the generic container.
-    //! 
+    //!
     //! \param[in] a matrix of `real_type` to be stored
-    //! 
+    //!
     GenericContainer & operator = ( mat_real_type const & a );
 
-    //! 
+    //!
     //! Assign a matrix of `complex_type` to the generic container.
-    //! 
+    //!
     //! \param[in] a matrix of `complex_type` to be stored
-    //! 
+    //!
     GenericContainer & operator = ( mat_complex_type const & a );
 
-    //! 
+    //!
     //! Assign a string to the generic container.
-    //! 
+    //!
     //! \param[in] a string to be stored
-    //! 
+    //!
     GenericContainer & operator = ( char const * a )
     { this->set_string(a); return * this; }
 
-    //! 
+    //!
     //! Assign a string to the generic container.
-    //! 
+    //!
     //! \param[in] a string to be stored
-    //! 
+    //!
     GenericContainer & operator = ( string_type const & a )
     { this->set_string(a); return * this; }
 
-    //! 
+    //!
     //! Assign a pointer to the generic container.
-    //! 
+    //!
     //! \param[in] a pointer to be stored
-    //! 
+    //!
     GenericContainer & operator = ( pointer_type a )
     { this->set_pointer(a); return * this; }
 
-    //! 
+    //!
     //! Assign a `GenericContainer` to the generic container (deep copy).
-    //! 
+    //!
     //! \param[in] a `GenericContainer` to be stored
-    //! 
+    //!
     GenericContainer const & operator = ( GenericContainer const & a )
     { this->load( a ); return * this; }
 
-    //! 
+    //!
     //! Load a `GenericContainer` to the generic container (deep copy).
-    //! 
+    //!
     //! \param[in] a `GenericContainer` to be stored
-    //! 
+    //!
     void load( GenericContainer const & a );
     ///@}
 
@@ -2075,94 +2075,94 @@ namespace GC_namespace {
     //!
     ///@{
 
-    //! 
+    //!
     //! Construct a generic container storing a boolean
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( bool const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( uint_type const & a )
     : m_data_type(GC_NOTYPE) { *this = a; }
 
-    //! 
+    //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( int_type const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( ulong_type const & a )
     : m_data_type(GC_NOTYPE) { *this = a; }
 
-    //! 
+    //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( long_type const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a floating point number
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( float const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a floating point number
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( double const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a complex floating point number
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( std::complex<float> const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a complex floating point number
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( std::complex<double> const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a string
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( char const * a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a string
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( string_type const & a )
     : m_data_type(GC_NOTYPE) { this->operator=(a); }
 
-    //! 
+    //!
     //! Construct a generic container storing a pointer
     //! \param[in] a initializer data
-    //! 
+    //!
     GenericContainer( pointer_type a )
     : m_data_type(GC_NOTYPE) { this->set_pointer(a); }
 
-    //! 
+    //!
     //! Construct a generic container copying container `gc`
     //! \param[in] gc initializer data
-    //! 
+    //!
     GenericContainer( GenericContainer const & gc )
     : m_data_type(GC_NOTYPE) { this->load(gc); }
 
@@ -2180,7 +2180,7 @@ namespace GC_namespace {
     bool exists( string_type const & s ) const;
 
     //!
-    //! Check if any string in `vs` is a key of the stored 
+    //! Check if any string in `vs` is a key of the stored
     //! map (if fails issue an error).
     //! \param[in] vs vector of string with the keys to be checked
     //!
@@ -2385,13 +2385,13 @@ namespace GC_namespace {
     //! - "headers"  a `vec_string_type` which contains
     //!              the strings of the headers of the columns of the data
     //!
-    //! - "data"     a `vector_type` which contais the vectors which are the
-    //!              columns of the data readed of type `vec_real_type`.
+    //! - "data"     a `vector_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
     //!
     //! \param stream       stream to write the output
-    //! \param commentChars lines beginnig with one of this chars are treated as comments.
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
     //!                     Default are `#` and `%`
-    //! \param delimiters   caracters used as delimiter for headers
+    //! \param delimiters   characters used as delimiter for headers
     //!
     GenericContainer &
     readFormattedData(
@@ -2408,16 +2408,63 @@ namespace GC_namespace {
     //! - "headers"  a `vec_string_type` which contains
     //!              the strings of the headers of the columns of the data
     //!
-    //! - "data"     a `vector_type` which contais the vectors which are the
-    //!              columns of the data readed of type `vec_real_type`.
+    //! - "data"     a `vector_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
     //!
     //! \param fname        file name to be read
-    //! \param commentChars lines beginnig with one of this chars are treated as comments.
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
     //!                     Default are `#` and `%`
-    //! \param delimiters   caracters used as delimiter for headers
+    //! \param delimiters   characters used as delimiter for headers
     //!
     GenericContainer &
     readFormattedData(
+      char const * fname,
+      char const * commentChars = "#%",
+      char const * delimiters   = " \t"
+    );
+
+    //!
+    //! Read regular formatted data from `stream` to `GenericContainer`.
+    //!
+    //! After successful read `GenericContainer` will be a map
+    //! which contains the fields:
+    //!
+    //! - "headers"  a `vec_string_type` which contains
+    //!              the strings of the headers of the columns of the data
+    //!
+    //! - "data"     a `map_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
+    //!
+    //! \param stream       stream to write the output
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
+    //!                     Default are `#` and `%`
+    //! \param delimiters   characters used as delimiter for headers
+    //!
+    GenericContainer &
+    readFormattedData2(
+      istream_type & stream,
+      char const * commentChars = "#%",
+      char const * delimiters = " \t"
+    );
+
+    //!
+    //! Read regular formatted data from file `fname` to `GenericContainer`.
+    //!
+    //! After successful read `GenericContainer` will be a map which contains the fields:
+    //!
+    //! - "headers"  a `vec_string_type` which contains
+    //!              the strings of the headers of the columns of the data
+    //!
+    //! - "data"     a `map_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
+    //!
+    //! \param fname        file name to be read
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
+    //!                     Default are `#` and `%`
+    //! \param delimiters   characters used as delimiter for headers
+    //!
+    GenericContainer &
+    readFormattedData2(
       char const * fname,
       char const * commentChars = "#%",
       char const * delimiters   = " \t"

@@ -25,7 +25,10 @@
 #include <iomanip>
 
 namespace GC_namespace {
- 
+
+  using std::vector;
+  using std::string;
+
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   /*
@@ -153,13 +156,65 @@ namespace GC_namespace {
 
       GC_ASSERT(
         unsigned(tokens.size()) == ncol,
-        "readFormattedDataFile, in reading line: " << nline <<
+        "readFormattedData, in reading line: " << nline <<
         " expected " << ncol << " found: " << tokens.size()
       );
 
       // store data in row vector
       for ( unsigned icol = 0; icol < ncol; ++icol )
         data[icol].get_vec_real().push_back(atof(tokens[icol].c_str()) );
+    }
+    return *this;
+  }
+
+  // -------------------------------------------------------
+  // original code by Francesco Biral (francesco.biral@unitn.it)
+  GenericContainer &
+  GenericContainer::readFormattedData2(
+    istream_type & stream,
+    char const   * commentChars,
+    char const   * delimiters
+  ) {
+    //read a line
+    string_type line;
+
+    this->set_map();
+    GenericContainer & tmp = (*this)["headers"];
+    vec_string_type & headers = tmp.set_vec_string();
+
+    // reading header line
+    unsigned nline = getLineAndSkipComments( stream, line, commentChars ); // read  line
+    tokenizeString( line, headers, delimiters ); // tokenize line
+    unsigned ncol = unsigned( headers.size() );
+
+    vector<vec_real_type*> pcolumns(ncol);
+
+    GenericContainer & data = (*this)["data"];
+    for ( unsigned icol = 0; icol < ncol; ++icol ) {
+      GenericContainer & ICOL = data[headers[icol]];
+      ICOL.set_vec_real();
+      pcolumns[icol] = &ICOL.get_vec_real();
+    }
+
+    // read data by line
+    unsigned nread;
+    vec_string_type tokens;
+    while ( (nread=getLineAndSkipComments( stream, line, commentChars )) > 0 ) {
+      nline += nread;
+
+      // read line and convert into vector of strings
+      tokenizeString( line, tokens, delimiters );
+      if ( tokens.size() == 0 ) break; // riga vuota!
+
+      GC_ASSERT(
+        unsigned(tokens.size()) == ncol,
+        "readFormattedData2, in reading line: " << nline <<
+        " expected " << ncol << " found: " << tokens.size()
+      );
+
+      // store data in row vector
+      for ( unsigned icol = 0; icol < ncol; ++icol )
+        pcolumns[icol]->push_back(atof(tokens[icol].c_str()) );
     }
     return *this;
   }

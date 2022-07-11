@@ -5321,6 +5321,20 @@ namespace GC_namespace {
     return readFormattedData( file, commentChars, delimiters );
   }
 
+  GenericContainer &
+  GenericContainer::readFormattedData2(
+    char const * fname,
+    char const * commentChars,
+    char const * delimiters
+  ) {
+    std::ifstream file( fname );
+    GC_ASSERT(
+      file.good(),
+      "readFormattedData2, failed to open file: ``" << fname << "''"
+    )
+    return readFormattedData2( file, commentChars, delimiters );
+  }
+
   void
   GenericContainer::exception( char const * msg ) {
     throw std::runtime_error(msg);
