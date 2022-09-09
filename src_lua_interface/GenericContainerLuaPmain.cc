@@ -97,7 +97,7 @@
 #include <unistd.h>
 #define lua_stdin_is_tty()	isatty(0)
 
-#elif defined(LUA_USE_WINDOWS)	/* }{ */
+#elif defined(LUA_USE_WINDOWS) && !defined(__MINGW32__)	/* }{ */
 #include  <stdlib.h>
 #include <io.h>
 #define lua_stdin_is_tty()	_isatty(_fileno(stdin))
@@ -607,7 +607,7 @@ static
 int
 handle_luainit (lua_State *L) {
   const char *name = "=" LUA_INITVARVERSION;
-  #ifdef LUA_USE_WINDOWS
+  #if defined(LUA_USE_WINDOWS) && !defined(__MINGW32__)
   size_t sz;
   char * buffer;
   errno_t err = _dupenv_s( &buffer, &sz, name );
@@ -617,14 +617,14 @@ handle_luainit (lua_State *L) {
   #endif
   if ( init == nullptr ) {
     name = "=" LUA_INIT_VAR;
-    #ifdef LUA_USE_WINDOWS
+    #if defined(LUA_USE_WINDOWS) && !defined(__MINGW32__)
     errno_t err = _dupenv_s( &buffer, &sz, name );
     const char *init = err ? nullptr : buffer;
     #else
     init = getenv(name + 1);  /* try alternative name */
     #endif
   }
-  #ifdef LUA_USE_WINDOWS
+  #if defined(LUA_USE_WINDOWS) && !defined(__MINGW32__)
   free( buffer );
   #endif
   if ( init == nullptr ) return LUA_OK;

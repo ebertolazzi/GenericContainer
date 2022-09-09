@@ -23,35 +23,11 @@
 
 #include "GenericContainer/GenericContainer.hh"
 #include "GenericContainer/GenericContainerLibs.hh"
-
-#ifdef GENERIC_CONTAINER_ON_WINDOWS
-  #include <winsock.h>
-#else
-  #include <arpa/inet.h>
-#endif
-
 #include <cstring>
 
 namespace GC_namespace {
 
   using std::memcpy;
-
-  #ifndef GENERIC_CONTAINER_ON_OSX
-  static
-  uint64_t
-  htonll_local( uint64_t n ) {
-    uint64_t lo, hi;
-    if ( 1 == htonl(1) ) return n;
-    hi = uint64_t( htonl( *(reinterpret_cast<uint32_t*>(&n) ) ) );
-    n = n>>32;
-    lo = uint64_t( htonl( *(reinterpret_cast<uint32_t*>(&n) ) ) );
-    return (hi << 32) + lo;
-  }
-  
-  #define htonll htonll_local
-  #endif
-
-  /* -------------------------------------------------- */
 
   static
   uint32_t
@@ -60,99 +36,50 @@ namespace GC_namespace {
     return sizeof(int8_t);
   }
 
-  //static
-  //uint32_t
-  //uint8_to_buffer( uint8_t in, uint8_t * buffer ) {
-  //  buffer[0] = in;
-  //  return sizeof(uint8_t);
-  //}
-
-  //static
-  //uint32_t
-  //int16_to_buffer( int16_t in, uint8_t * buffer ) {
-  //  uint16_t tmp = htons( (uint16_t) in );
-  //  memcpy( buffer, &tmp, sizeof(int16_t) );
-  //  return sizeof(int16_t);
-  //}
-
-  //static
-  //uint32_t
-  //uint16_to_buffer( uint16_t in, uint8_t * buffer ) {
-  //  uint16_t tmp = htons( in );
-  //  memcpy( buffer, &tmp, sizeof(uint16_t)  );
-  //  return sizeof(uint16_t);
-  //}
+  static
+  uint32_t
+  uint32_to_buffer( uint32_t in, uint8_t * buffer ) {
+    buffer[0] = uint8_t(in&0xFF); in >>= 8;
+    buffer[1] = uint8_t(in&0xFF); in >>= 8;
+    buffer[2] = uint8_t(in&0xFF); in >>= 8;
+    buffer[3] = uint8_t(in&0xFF);
+    return sizeof(uint32_t);
+  }
 
   static
   uint32_t
   int32_to_buffer( int32_t in, uint8_t * buffer ) {
-    uint32_t tmp = htonl( *reinterpret_cast<uint32_t*>(&in) );
-    memcpy( buffer, &tmp, sizeof(int32_t) );
-    return sizeof(int32_t);
-  }
-
-  //static
-  //uint32_t
-  //uint32_to_buffer( uint32_t in, uint8_t * buffer ) {
-  //  uint32_t tmp = htonl( in );
-  //  memcpy( buffer, &tmp, sizeof(uint32_t) );
-  //  return sizeof(uint32_t);
-  //}
-
-  static
-  uint32_t
-  int64_to_buffer( int64_t in, uint8_t * buffer ) {
-    uint64_t tmp = htonll( *reinterpret_cast<uint64_t*>(&in) );
-    memcpy( buffer, &tmp, sizeof(int64_t) );
-    return sizeof(int64_t);
+    return uint32_to_buffer( *reinterpret_cast<uint32_t*>(&in), buffer );
   }
 
   static
   uint32_t
   uint64_to_buffer( uint64_t in, uint8_t * buffer ) {
-    uint64_t tmp = htonll( in );
-    memcpy( buffer, &tmp, sizeof(uint64_t)  );
-    return sizeof(uint64_t);
+    buffer[0] = uint8_t(in&0xFF); in >>= 8;
+    buffer[1] = uint8_t(in&0xFF); in >>= 8;
+    buffer[2] = uint8_t(in&0xFF); in >>= 8;
+    buffer[3] = uint8_t(in&0xFF); in >>= 8;
+    buffer[4] = uint8_t(in&0xFF); in >>= 8;
+    buffer[5] = uint8_t(in&0xFF); in >>= 8;
+    buffer[6] = uint8_t(in&0xFF); in >>= 8;
+    buffer[7] = uint8_t(in&0xFF);
+    return sizeof(int64_t);
   }
 
-  //static
-  //uint32_t
-  //float_to_buffer( float in, uint8_t * buffer ) {
-  //  union {
-  //    float    f;
-  //    uint32_t i;
-  //  } tmp;
-  //  tmp.f = in;
-  //  uint32_to_buffer( tmp.i, buffer );
-  //  return sizeof(float);
-  //}
+  static
+  uint32_t
+  int64_to_buffer( int64_t in, uint8_t * buffer ) {
+    return uint64_to_buffer( *reinterpret_cast<uint64_t*>(&in), buffer );
+  }
 
   static
   uint32_t
   double_to_buffer( double in, uint8_t * buffer ) {
-    union {
-      double   f;
-      uint64_t i;
-    } tmp;
+    union { double f; uint64_t i; } tmp;
     tmp.f = in;
     uint64_to_buffer( tmp.i, buffer );
     return sizeof(double);
   }
-
-  #ifndef GENERIC_CONTAINER_ON_OSX
-  static
-  uint64_t
-  ntohll_local( uint64_t n ) {
-    uint64_t lo, hi;
-    if ( 1 == ntohl(1) ) return n;
-    hi = uint64_t(ntohl( *((uint32_t*)&n) ));
-    n = n>>32;
-    lo = uint64_t(ntohl( *((uint32_t*)&n) ));
-    return (hi << 32) + lo;
-  }
-
-  #define ntohll ntohll_local
-  #endif
 
   /* ---------------------------------------------------------------------------- */
 
@@ -163,86 +90,48 @@ namespace GC_namespace {
     return sizeof(uint8_t);
   }
 
-  //static
-  //uint32_t
-  //buffer_to_int8( uint8_t const * buffer, int8_t * out ) {
-  //  *((uint8_t*)out) = buffer[0];
-  //  return sizeof(int8_t);
-  //}
-
-  //static
-  //uint32_t
-  //buffer_to_uint16( uint8_t const * buffer, uint16_t * out ) {
-  //  uint16_t tmp;
-  //  memcpy( &tmp, buffer, sizeof(uint16_t) );
-  //  *out = ntohs( tmp );
-  //  return sizeof(uint16_t);
-  //}
-
-  //static
-  //uint32_t
-  //buffer_to_int16( uint8_t const * buffer, int16_t * out ) {
-  //  uint16_t tmp;
-  //  memcpy( &tmp, buffer, sizeof(int16_t) );
-  //  *((uint16_t*)out) = ntohs( tmp );
-  //  return sizeof(int16_t);
-  //}
-
-  //static
-  //uint32_t
-  //buffer_to_uint32( uint8_t const * buffer, uint32_t * out ) {
-  //  uint32_t tmp;
-  //  memcpy( &tmp, buffer, sizeof(uint32_t) );
-  //  *out = ntohl( tmp );
-  //  return sizeof(uint32_t);
-  //}
-
   static
   uint32_t
-  buffer_to_int32( uint8_t const * buffer, int32_t * out ) {
-    uint32_t tmp;
-    memcpy( &tmp, buffer, sizeof(int32_t) );
-    *reinterpret_cast<uint32_t*>(out) = ntohl( tmp );
+  buffer_to_uint32( uint8_t const * buffer, uint32_t * out ) {
+    uint32_t tmp0 = buffer[0];
+    uint32_t tmp1 = buffer[1];
+    uint32_t tmp2 = buffer[2];
+    uint32_t tmp3 = buffer[3];
+    *out = tmp0|(tmp1<<8)|(tmp2<<16)|(tmp3<<24);
     return sizeof(int32_t);
   }
 
   static
   uint32_t
+  buffer_to_int32( uint8_t const * buffer, int32_t * out ) {
+    return buffer_to_uint32( buffer, reinterpret_cast<uint32_t*>(out) );
+  }
+
+  static
+  uint32_t
   buffer_to_uint64( uint8_t const * buffer, uint64_t * out ) {
-    uint64_t tmp;
-    memcpy( &tmp, buffer, sizeof(uint64_t) );
-    *out = ntohll( tmp );
+    uint64_t tmp0 = buffer[0];
+    uint64_t tmp1 = buffer[1];
+    uint64_t tmp2 = buffer[2];
+    uint64_t tmp3 = buffer[3];
+    uint64_t tmp4 = buffer[4];
+    uint64_t tmp5 = buffer[5];
+    uint64_t tmp6 = buffer[6];
+    uint64_t tmp7 = buffer[7];
+    *out = tmp0|(tmp1<<8)|(tmp2<<16)|(tmp3<<24)|(tmp4<<32)|(tmp5<<40)|(tmp6<<48)|(tmp7<<56);
     return sizeof(uint64_t);
   }
 
   static
   uint32_t
   buffer_to_int64( uint8_t const * buffer, int64_t * out ) {
-    uint64_t tmp;
-    memcpy( &tmp, buffer, sizeof(int64_t) );
-    *reinterpret_cast<uint64_t*>(out) = ntohll( tmp );
-    return sizeof(int64_t);
+    return buffer_to_uint64( buffer, reinterpret_cast<uint64_t*>(out) );
   }
-
-  //static
-  //uint32_t
-  //buffer_to_float( uint8_t const * buffer, float *out) {
-  //  union {
-  //    float    f;
-  //    uint32_t i;
-  //  } tmp;
-  //  buffer_to_uint32( buffer, &tmp.i );
-  //  *out = tmp.f;
-  //  return sizeof(float);
-  //}
 
   static
   uint32_t
   buffer_to_double( uint8_t const * buffer, double * out ) {
-    union {
-      double   f;
-      uint64_t i;
-    } tmp;
+    union { double f; uint64_t i; } tmp;
     buffer_to_uint64( buffer, &tmp.i );
     *out = tmp.f;
     return sizeof(double);
