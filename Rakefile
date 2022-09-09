@@ -7,11 +7,12 @@
   end
 end
 
-require "rake/clean"
+require 'rake/clean'
 
 CLEAN.include   ["./**/*.o", "./**/*.obj", "./bin/**/example*", "./build"]
-CLOBBER.include []
+CLEAN.clear_exclude.exclude { |fn| fn.pathmap("%f").downcase == "core" }
 CLEAN.exclude('**/[cC][oO][rR][eE]')
+CLOBBER.include []
 
 case RUBY_PLATFORM
 when /darwin/
@@ -20,12 +21,11 @@ when /linux/
   OS = :linux
 when /cygwin|mswin|mingw|bccwin|wince|emx/
   OS = :win
+when /msys/
+  OS = :win
 end
 
 require_relative "./Rakefile_common.rb"
-
-desc "default task --> build"
-task :default => :build
 
 file_base = File.expand_path(File.dirname(__FILE__)).to_s
 
@@ -41,10 +41,13 @@ else
   cmd_cmake_build += ' -DEB_BUILD_SHARED:VAR=OFF '
 end
 if COMPILE_DEBUG then
-  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=WARNING '
+  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=STATUS '
 else
-  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=WARNING '
+  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=STATUS '
 end
+
+desc "default task --> build"
+task :default => :build
 
 TESTS = [
   "example1",
@@ -135,7 +138,7 @@ task :build_win, [:year, :bits] do |t, args|
   FileUtils.cd      dir
 
   cmd_cmake = win_vs(args.bits,args.year) + cmd_cmake_build
-  
+
   puts "run CMAKE for GenericContainer".yellow
   sh cmd_cmake + ' ..'
   puts "compile with CMAKE for GenericContainer".yellow
