@@ -111,9 +111,9 @@ task :run_win do
   FileUtils.cd "../.."
 end
 
-desc "build lib"
+desc "build GenericContainer library"
 task :build do
-  puts "UTILS build".green
+  puts "build GenericContainer".green
   case OS
   when :mac
     Rake::Task[:build_osx].invoke
