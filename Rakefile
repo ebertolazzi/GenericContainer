@@ -1,50 +1,8 @@
-%w(colorize rake fileutils).each do |gem|
-  begin
-    require gem
-  rescue LoadError
-    warn "Install the #{gem} gem:\n $ (sudo) gem install #{gem}".magenta
-    exit 1
-  end
-end
-
-require 'rake/clean'
+require_relative "./cmake_utils/Rakefile_common.rb"
 
 CLEAN.include   ["./**/*.o", "./**/*.obj", "./bin/**/example*", "./build"]
 CLEAN.clear_exclude.exclude { |fn| fn.pathmap("%f").downcase == "core" }
-CLEAN.exclude('**/[cC][oO][rR][eE]')
 CLOBBER.include []
-
-case RUBY_PLATFORM
-when /darwin/
-  OS = :mac
-when /linux/
-  OS = :linux
-when /cygwin|mswin|mingw|bccwin|wince|emx/
-  OS = :win
-when /msys/
-  OS = :win
-end
-
-require_relative "./Rakefile_common.rb"
-
-file_base = File.expand_path(File.dirname(__FILE__)).to_s
-
-cmd_cmake_build = ""
-if COMPILE_EXECUTABLE then
-  cmd_cmake_build += ' -DEB_ENABLE_TESTS:VAR=ON '
-else
-  cmd_cmake_build += ' -DEB_ENABLE_TESTS:VAR=OFF '
-end
-if COMPILE_DYNAMIC then
-  cmd_cmake_build += ' -DEB_BUILD_SHARED:VAR=ON '
-else
-  cmd_cmake_build += ' -DEB_BUILD_SHARED:VAR=OFF '
-end
-if COMPILE_DEBUG then
-  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Debug --loglevel=STATUS '
-else
-  cmd_cmake_build += ' -DCMAKE_BUILD_TYPE:VAR=Release --loglevel=STATUS '
-end
 
 desc "default task --> build"
 task :default => :build
@@ -111,19 +69,6 @@ task :run_win do
   FileUtils.cd "../.."
 end
 
-desc "build GenericContainer library"
-task :build do
-  puts "build GenericContainer".green
-  case OS
-  when :mac
-    Rake::Task[:build_osx].invoke
-  when :linux
-    Rake::Task[:build_linux].invoke
-  when :win
-    Rake::Task[:build_win].invoke
-  end
-end
-
 desc "compile for Visual Studio [default year=2017, bits=x64]"
 task :build_win, [:year, :bits] do |t, args|
   FileUtils.rm_rf 'lib'
@@ -131,13 +76,11 @@ task :build_win, [:year, :bits] do |t, args|
 
   args.with_defaults( :year => "2017", :bits => "x64" )
 
-  dir = "vs_#{args.year}_#{args.bits}"
+  FileUtils.rm_rf   "build"
+  FileUtils.mkdir_p "build"
+  FileUtils.cd      "build"
 
-  FileUtils.rm_rf   dir
-  FileUtils.mkdir_p dir
-  FileUtils.cd      dir
-
-  cmd_cmake = win_vs(args.bits,args.year) + cmd_cmake_build
+  cmd_cmake = cmake_generation_command(args.bits,args.year) + cmd_cmake_build()
 
   puts "run CMAKE for GenericContainer".yellow
   sh cmd_cmake + ' ..'
@@ -148,17 +91,11 @@ task :build_win, [:year, :bits] do |t, args|
     sh 'cmake  --build . --config Release  --target install '+PARALLEL+QUIET
   end
 
-  if RUN_CPACK then
-    puts "run CPACK for ROOTS".yellow
-    sh 'cpack -C CPackConfig.cmake'
-    sh 'cpack -C CPackSourceConfig.cmake'
-  end
-
   FileUtils.cd '..'
 end
 
-desc 'compile for OSX'
-task :build_osx do
+desc 'compile for OSX/LINUX/MINGW'
+task :build_osx_linux_mingw do
   FileUtils.rm_rf 'lib'
   FileUtils.rm_rf 'lib3rd'
 
@@ -168,7 +105,7 @@ task :build_osx do
   FileUtils.mkdir_p dir
   FileUtils.cd      dir
 
-  cmd_cmake = "cmake " + cmd_cmake_build
+  cmd_cmake = "cmake " + cmd_cmake_build()
 
   puts "run CMAKE for GenericContainer".yellow
   sh cmd_cmake + ' ..'
@@ -179,26 +116,42 @@ task :build_osx do
     sh 'cmake --build . --config Release --target install '+PARALLEL+QUIET
   end
 
-  if RUN_CPACK then
-    puts "run CPACK for ROOTS".yellow
-    sh 'cpack -C CPackConfig.cmake'
-    sh 'cpack -C CPackSourceConfig.cmake'
-  end
-
   FileUtils.cd '..'
 end
 
-desc 'compile for LINUX'
-task :build_linux => :build_osx
-
-desc "clean for OSX"
-task :clean_osx do
+desc 'clean for OSX/LINUX/MINGW'
+task :clean_osx_linux_mingw do
+  FileUtils.rm_rf 'build'
   FileUtils.rm_rf 'lib'
   FileUtils.rm_rf 'lib3rd'
 end
 
-desc "clean for LINUX"
-task :clean_linux => :clean_osx
+desc 'compile for LINUX'
+task :build_linux => :build_osx_linux_mingw
 
-desc "clean for WINDOWS"
-task :clean_win => :clean_osx
+desc 'compile for OSX'
+task :build_osx => :build_osx_linux_mingw
+
+desc 'compile for MINGW'
+task :build_mingw => :build_osx_linux_mingw
+
+desc 'clean for LINUX'
+task :clean_linux => :clean_osx_linux_mingw
+
+desc 'clean for OSX'
+task :clean_osx => :clean_osx_linux_mingw
+
+desc 'clean for MINGW'
+task :clean_mingw => :clean_osx_linux_mingw
+
+desc 'clean for WINDOWS'
+task :clean_win => :clean_osx_linux_mingw
+
+desc 'pack for OSX/LINUX/MINGW/WINDOWS'
+task :cpack do
+  FileUtils.cd "build"
+  puts "run CPACK for GenericContainer".yellow
+  sh 'cpack -C CPackConfig.cmake'
+  sh 'cpack -C CPackSourceConfig.cmake'
+  FileUtils.cd ".."
+end
