@@ -183,7 +183,7 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
 <span class="cp">#define lua_stdin_is_tty()  isatty(0)</span>
 
-<span class="cp">#elif defined(LUA_USE_WINDOWS)  </span><span class="cm">/* }{ */</span><span class="cp"></span>
+<span class="cp">#elif defined(LUA_USE_WINDOWS) &amp;&amp; !defined(__MINGW32__) </span><span class="cm">/* }{ */</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w">  </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;io.h&gt;</span><span class="cp"></span>
 <span class="cp">#define lua_stdin_is_tty()  _isatty(_fileno(stdin))</span>
@@ -693,7 +693,7 @@
 <span class="kt">int</span><span class="w"></span>
 <span class="nf">handle_luainit</span><span class="w"> </span><span class="p">(</span><span class="n">lua_State</span><span class="w"> </span><span class="o">*</span><span class="n">L</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"="</span><span class="w"> </span><span class="n">LUA_INITVARVERSION</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="cp">#ifdef LUA_USE_WINDOWS</span>
+<span class="w">  </span><span class="cp">#if defined(LUA_USE_WINDOWS) &amp;&amp; !defined(__MINGW32__)</span>
 <span class="w">  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">sz</span><span class="p">;</span><span class="w"></span>
 <span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
 <span class="w">  </span><span class="n">errno_t</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_dupenv_s</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sz</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
@@ -703,14 +703,14 @@
 <span class="w">  </span><span class="cp">#endif</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">init</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"="</span><span class="w"> </span><span class="n">LUA_INIT_VAR</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="cp">#ifdef LUA_USE_WINDOWS</span>
+<span class="w">    </span><span class="cp">#if defined(LUA_USE_WINDOWS) &amp;&amp; !defined(__MINGW32__)</span>
 <span class="w">    </span><span class="n">errno_t</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_dupenv_s</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sz</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">err</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="cp">#else</span>
 <span class="w">    </span><span class="n">init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getenv</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="cm">/* try alternative name */</span><span class="w"></span>
 <span class="w">    </span><span class="cp">#endif</span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="cp">#ifdef LUA_USE_WINDOWS</span>
+<span class="w">  </span><span class="cp">#if defined(LUA_USE_WINDOWS) &amp;&amp; !defined(__MINGW32__)</span>
 <span class="w">  </span><span class="n">free</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="cp">#endif</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">init</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">nullptr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">LUA_OK</span><span class="p">;</span><span class="w"></span>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Directory GenericContainer &#8212; Generic Container v1.0.0
+    <title>Program Listing for File GenericContainerLibs.hh &#8212; Generic Container v1.0.0
 </title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/cloud.css" />
@@ -68,7 +68,7 @@
              accesskey="C">toc</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Generic Container</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Directory GenericContainer</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File GenericContainerLibs.hh</a></li> 
       </ul>
     </div>
     </div>
@@ -79,20 +79,54 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="directory-genericcontainer">
-<span id="dir-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer"></span><h1>Directory GenericContainer<a class="headerlink" href="#directory-genericcontainer" title="Permalink to this headline">¶</a>
+  <section id="program-listing-for-file-genericcontainerlibs-hh">
+<span id="program-listing-file-users-enrico-ricerca-develop-pins-pins-working-libsources-submodules-gc-include-genericcontainer-genericcontainerlibs-hh"></span><h1>Program Listing for File GenericContainerLibs.hh<a class="headerlink" href="#program-listing-for-file-genericcontainerlibs-hh" title="Permalink to this headline">¶</a>
 </h1>
-<p>↰ <a class="reference internal" href="../api-matlab/dir__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include.html#dir-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">/Users/enrico/Ricerca/Software/REPOS/myReposGit/Splines/submodules/GenericContainer/include</span></code>)</p>
-<p><em>Directory path:</em> <code class="docutils literal notranslate"><span class="pre">/Users/enrico/Ricerca/Software/REPOS/myReposGit/Splines/submodules/GenericContainer/include/GenericContainer</span></code></p>
-<section id="files">
-<h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a>
-</h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="file__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include_GenericContainer_GenericContainer.hh.html#file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainer-hh"><span class="std std-ref">File GenericContainer.hh</span></a></p></li>
-<li><p><a class="reference internal" href="file__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include_GenericContainer_GenericContainerConfig.hh.html#file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainerconfig-hh"><span class="std std-ref">File GenericContainerConfig.hh</span></a></p></li>
-<li><p><a class="reference internal" href="file__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include_GenericContainer_GenericContainerLibs.hh.html#file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainerlibs-hh"><span class="std std-ref">File GenericContainerLibs.hh</span></a></p></li>
-</ul>
-</section>
+<p>↰ <a class="reference internal" href="file__Users_enrico_Ricerca_develop_PINS_pins-WORKING_LibSources_submodules_GC_include_GenericContainer_GenericContainerLibs.hh.html#file-users-enrico-ricerca-develop-pins-pins-working-libsources-submodules-gc-include-genericcontainer-genericcontainerlibs-hh"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/Users/enrico/Ricerca/develop/PINS/pins-WORKING/LibSources/submodules/GC/include/GenericContainer/GenericContainerLibs.hh</span></code>)</p>
+<div class="highlight-cpp notranslate">
+<div class="highlight"><pre><span></span><span class="cm">/*--------------------------------------------------------------------------*\</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |  Copyright (C) 2013                                                      |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |         , __                 , __                                        |</span>
+<span class="cm"> |        /|/  \               /|/  \                                       |</span>
+<span class="cm"> |         | __/ _   ,_         | __/ _   ,_                                |</span>
+<span class="cm"> |         |   \|/  /  |  |   | |   \|/  /  |  |   |                        |</span>
+<span class="cm"> |         |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/                       |</span>
+<span class="cm"> |                           /|                   /|                        |</span>
+<span class="cm"> |                           \|                   \|                        |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm"> |      Enrico Bertolazzi                                                   |</span>
+<span class="cm"> |      Dipartimento di Ingegneria Industriale                              |</span>
+<span class="cm"> |      Universita` degli Studi di Trento                                   |</span>
+<span class="cm"> |      email: enrico.bertolazzi@unitn.it                                   |</span>
+<span class="cm"> |                                                                          |</span>
+<span class="cm">\*--------------------------------------------------------------------------*/</span><span class="w"></span>
+
+<span class="c1">//</span>
+<span class="c1">// file: GenericContainerLibs.hh</span>
+<span class="c1">//</span>
+
+<span class="cp">#ifndef GENERIC_CONTAINER_LIBS_HH</span>
+<span class="cp">#define GENERIC_CONTAINER_LIBS_HH</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainerConfig.hh"</span><span class="cp"></span>
+
+<span class="cp">#ifdef GENERIC_CONTAINER_ON_WINDOWS</span>
+<span class="w">  </span><span class="cp">#ifdef _MSC_VER</span>
+<span class="w">    </span><span class="cp">#pragma comment(lib, "kernel32.lib")</span>
+<span class="w">    </span><span class="cp">#pragma comment(lib, "user32.lib")</span>
+<span class="w">    </span><span class="cp">#pragma comment(lib, "Ws2_32.lib")</span>
+<span class="w">  </span><span class="cp">#endif</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif</span>
+
+<span class="c1">//</span>
+<span class="c1">// eof: GenericContainerLibs.hh</span>
+<span class="c1">//</span>
+</pre></div>
+</div>
 </section>
 
 
@@ -160,7 +194,7 @@
              >toc</a> &nbsp; &nbsp;</li>
     <li><a href="../index.html">Generic Container</a> &#187;</li>
 
-        <li class="nav-item nav-item-this"><a href="">Directory GenericContainer</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Program Listing for File GenericContainerLibs.hh</a></li> 
       </ul>
     </div>
     </div>

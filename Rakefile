@@ -108,11 +108,9 @@ task :build_osx_linux_mingw do
   FileUtils.rm_rf 'lib'
   FileUtils.rm_rf 'lib3rd'
 
-  dir = "build"
-
-  FileUtils.rm_rf   dir
-  FileUtils.mkdir_p dir
-  FileUtils.cd      dir
+  FileUtils.rm_rf   "build"
+  FileUtils.mkdir_p "build"
+  FileUtils.cd      "build"
 
   puts "run CMAKE for GenericContainer".yellow
   sh "cmake -G Ninja " + cmd_cmake_build() + ' ..'

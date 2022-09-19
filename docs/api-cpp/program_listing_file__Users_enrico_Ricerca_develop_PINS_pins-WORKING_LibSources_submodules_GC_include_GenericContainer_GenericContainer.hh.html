@@ -80,9 +80,9 @@
           <div class="body" role="main">
             
   <section id="program-listing-for-file-genericcontainer-hh">
-<span id="program-listing-file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainer-hh"></span><h1>Program Listing for File GenericContainer.hh<a class="headerlink" href="#program-listing-for-file-genericcontainer-hh" title="Permalink to this headline">¶</a>
+<span id="program-listing-file-users-enrico-ricerca-develop-pins-pins-working-libsources-submodules-gc-include-genericcontainer-genericcontainer-hh"></span><h1>Program Listing for File GenericContainer.hh<a class="headerlink" href="#program-listing-for-file-genericcontainer-hh" title="Permalink to this headline">¶</a>
 </h1>
-<p>↰ <a class="reference internal" href="file__Users_enrico_Ricerca_Software_REPOS_myReposGit_Splines_submodules_GenericContainer_include_GenericContainer_GenericContainer.hh.html#file-users-enrico-ricerca-software-repos-myreposgit-splines-submodules-genericcontainer-include-genericcontainer-genericcontainer-hh"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/Users/enrico/Ricerca/Software/REPOS/myReposGit/Splines/submodules/GenericContainer/include/GenericContainer/GenericContainer.hh</span></code>)</p>
+<p>↰ <a class="reference internal" href="file__Users_enrico_Ricerca_develop_PINS_pins-WORKING_LibSources_submodules_GC_include_GenericContainer_GenericContainer.hh.html#file-users-enrico-ricerca-develop-pins-pins-working-libsources-submodules-gc-include-genericcontainer-genericcontainer-hh"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">/Users/enrico/Ricerca/develop/PINS/pins-WORKING/LibSources/submodules/GC/include/GenericContainer/GenericContainer.hh</span></code>)</p>
 <div class="highlight-cpp notranslate">
 <div class="highlight"><pre><span></span><span class="cm">/*--------------------------------------------------------------------------*\</span>
 <span class="cm"> |                                                                          |</span>
@@ -996,6 +996,20 @@
 
 <span class="w">    </span><span class="n">GenericContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
 <span class="w">    </span><span class="nf">readFormattedData</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">commentChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#%"</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delimiters</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">" </span><span class="se">\t</span><span class="s">"</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GenericContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">readFormattedData2</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">istream_type</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">stream</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">commentChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#%"</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delimiters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">" </span><span class="se">\t</span><span class="s">"</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">GenericContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
+<span class="w">    </span><span class="nf">readFormattedData2</span><span class="p">(</span><span class="w"></span>
 <span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">commentChars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"#%"</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delimiters</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="s">" </span><span class="se">\t</span><span class="s">"</span><span class="w"></span>

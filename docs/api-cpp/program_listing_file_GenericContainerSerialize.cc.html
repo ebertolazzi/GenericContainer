@@ -109,35 +109,11 @@
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainer/GenericContainer.hh"</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">"GenericContainer/GenericContainerLibs.hh"</span><span class="cp"></span>
-
-<span class="cp">#ifdef GENERIC_CONTAINER_ON_WINDOWS</span>
-<span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;winsock.h&gt;</span><span class="cp"></span>
-<span class="cp">#else</span>
-<span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;arpa/inet.h&gt;</span><span class="cp"></span>
-<span class="cp">#endif</span>
-
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstring&gt;</span><span class="cp"></span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">GC_namespace</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">using</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memcpy</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">  </span><span class="cp">#ifndef GENERIC_CONTAINER_ON_OSX</span>
-<span class="w">  </span><span class="k">static</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint64_t</span><span class="w"></span>
-<span class="w">  </span><span class="nf">htonll_local</span><span class="p">(</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">lo</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">htonl</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">hi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint64_t</span><span class="p">(</span><span class="w"> </span><span class="n">htonl</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">32</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint64_t</span><span class="p">(</span><span class="w"> </span><span class="n">htonl</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">hi</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lo</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="cp">#define htonll htonll_local</span>
-<span class="w">  </span><span class="cp">#endif</span>
-
-<span class="w">  </span><span class="cm">/* -------------------------------------------------- */</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
@@ -146,99 +122,50 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int8_t</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//uint8_to_buffer( uint8_t in, uint8_t * buffer ) {</span>
-<span class="w">  </span><span class="c1">//  buffer[0] = in;</span>
-<span class="w">  </span><span class="c1">//  return sizeof(uint8_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//int16_to_buffer( int16_t in, uint8_t * buffer ) {</span>
-<span class="w">  </span><span class="c1">//  uint16_t tmp = htons( (uint16_t) in );</span>
-<span class="w">  </span><span class="c1">//  memcpy( buffer, &amp;tmp, sizeof(int16_t) );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(int16_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//uint16_to_buffer( uint16_t in, uint8_t * buffer ) {</span>
-<span class="w">  </span><span class="c1">//  uint16_t tmp = htons( in );</span>
-<span class="w">  </span><span class="c1">//  memcpy( buffer, &amp;tmp, sizeof(uint16_t)  );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(uint16_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
+<span class="w">  </span><span class="nf">uint32_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint32_t</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
 <span class="w">  </span><span class="nf">int32_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htonl</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//uint32_to_buffer( uint32_t in, uint8_t * buffer ) {</span>
-<span class="w">  </span><span class="c1">//  uint32_t tmp = htonl( in );</span>
-<span class="w">  </span><span class="c1">//  memcpy( buffer, &amp;tmp, sizeof(uint32_t) );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(uint32_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="k">static</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
-<span class="w">  </span><span class="nf">int64_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="kt">int64_t</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htonll</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">uint32_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
 <span class="w">  </span><span class="nf">uint64_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htonll</span><span class="p">(</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">)</span><span class="w">  </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="o">&gt;&gt;=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buffer</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint8_t</span><span class="p">(</span><span class="n">in</span><span class="o">&amp;</span><span class="mh">0xFF</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//float_to_buffer( float in, uint8_t * buffer ) {</span>
-<span class="w">  </span><span class="c1">//  union {</span>
-<span class="w">  </span><span class="c1">//    float    f;</span>
-<span class="w">  </span><span class="c1">//    uint32_t i;</span>
-<span class="w">  </span><span class="c1">//  } tmp;</span>
-<span class="w">  </span><span class="c1">//  tmp.f = in;</span>
-<span class="w">  </span><span class="c1">//  uint32_to_buffer( tmp.i, buffer );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(float);</span>
-<span class="w">  </span><span class="c1">//}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
+<span class="w">  </span><span class="nf">int64_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="kt">int64_t</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">uint64_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
 <span class="w">  </span><span class="nf">double_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">in</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">union</span> <span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kt">double</span><span class="w">   </span><span class="n">f</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">union</span> <span class="p">{</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">tmp</span><span class="p">.</span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">uint64_to_buffer</span><span class="p">(</span><span class="w"> </span><span class="n">tmp</span><span class="p">.</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="cp">#ifndef GENERIC_CONTAINER_ON_OSX</span>
-<span class="w">  </span><span class="k">static</span><span class="w"></span>
-<span class="w">  </span><span class="kt">uint64_t</span><span class="w"></span>
-<span class="w">  </span><span class="nf">ntohll_local</span><span class="p">(</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">lo</span><span class="p">,</span><span class="w"> </span><span class="n">hi</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ntohl</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">hi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint64_t</span><span class="p">(</span><span class="n">ntohl</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="kt">uint32_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="o">&gt;&gt;</span><span class="mi">32</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">lo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uint64_t</span><span class="p">(</span><span class="n">ntohl</span><span class="p">(</span><span class="w"> </span><span class="o">*</span><span class="p">((</span><span class="kt">uint32_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">hi</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lo</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="cp">#define ntohll ntohll_local</span>
-<span class="w">  </span><span class="cp">#endif</span>
 
 <span class="w">  </span><span class="cm">/* ---------------------------------------------------------------------------- */</span><span class="w"></span>
 
@@ -249,86 +176,48 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//buffer_to_int8( uint8_t const * buffer, int8_t * out ) {</span>
-<span class="w">  </span><span class="c1">//  *((uint8_t*)out) = buffer[0];</span>
-<span class="w">  </span><span class="c1">//  return sizeof(int8_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//buffer_to_uint16( uint8_t const * buffer, uint16_t * out ) {</span>
-<span class="w">  </span><span class="c1">//  uint16_t tmp;</span>
-<span class="w">  </span><span class="c1">//  memcpy( &amp;tmp, buffer, sizeof(uint16_t) );</span>
-<span class="w">  </span><span class="c1">//  *out = ntohs( tmp );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(uint16_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//buffer_to_int16( uint8_t const * buffer, int16_t * out ) {</span>
-<span class="w">  </span><span class="c1">//  uint16_t tmp;</span>
-<span class="w">  </span><span class="c1">//  memcpy( &amp;tmp, buffer, sizeof(int16_t) );</span>
-<span class="w">  </span><span class="c1">//  *((uint16_t*)out) = ntohs( tmp );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(int16_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//buffer_to_uint32( uint8_t const * buffer, uint32_t * out ) {</span>
-<span class="w">  </span><span class="c1">//  uint32_t tmp;</span>
-<span class="w">  </span><span class="c1">//  memcpy( &amp;tmp, buffer, sizeof(uint32_t) );</span>
-<span class="w">  </span><span class="c1">//  *out = ntohl( tmp );</span>
-<span class="w">  </span><span class="c1">//  return sizeof(uint32_t);</span>
-<span class="w">  </span><span class="c1">//}</span>
-
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
-<span class="w">  </span><span class="nf">buffer_to_int32</span><span class="p">(</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ntohl</span><span class="p">(</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="nf">buffer_to_uint32</span><span class="p">(</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">tmp0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">tmp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">tmp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">tmp3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="o">*</span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp0</span><span class="o">|</span><span class="p">(</span><span class="n">tmp1</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp2</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp3</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int32_t</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
+<span class="w">  </span><span class="nf">buffer_to_int32</span><span class="p">(</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">buffer_to_uint32</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">static</span><span class="w"></span>
+<span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
 <span class="w">  </span><span class="nf">buffer_to_uint64</span><span class="p">(</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="o">*</span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ntohll</span><span class="p">(</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="o">*</span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp0</span><span class="o">|</span><span class="p">(</span><span class="n">tmp1</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp2</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp3</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp4</span><span class="o">&lt;&lt;</span><span class="mi">32</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp5</span><span class="o">&lt;&lt;</span><span class="mi">40</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp6</span><span class="o">&lt;&lt;</span><span class="mi">48</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">tmp7</span><span class="o">&lt;&lt;</span><span class="mi">56</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint64_t</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
 <span class="w">  </span><span class="nf">buffer_to_int64</span><span class="p">(</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">int64_t</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">memcpy</span><span class="p">(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ntohll</span><span class="p">(</span><span class="w"> </span><span class="n">tmp</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int64_t</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">buffer_to_uint64</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1">//static</span>
-<span class="w">  </span><span class="c1">//uint32_t</span>
-<span class="w">  </span><span class="c1">//buffer_to_float( uint8_t const * buffer, float *out) {</span>
-<span class="w">  </span><span class="c1">//  union {</span>
-<span class="w">  </span><span class="c1">//    float    f;</span>
-<span class="w">  </span><span class="c1">//    uint32_t i;</span>
-<span class="w">  </span><span class="c1">//  } tmp;</span>
-<span class="w">  </span><span class="c1">//  buffer_to_uint32( buffer, &amp;tmp.i );</span>
-<span class="w">  </span><span class="c1">//  *out = tmp.f;</span>
-<span class="w">  </span><span class="c1">//  return sizeof(float);</span>
-<span class="w">  </span><span class="c1">//}</span>
 
 <span class="w">  </span><span class="k">static</span><span class="w"></span>
 <span class="w">  </span><span class="kt">uint32_t</span><span class="w"></span>
 <span class="w">  </span><span class="nf">buffer_to_double</span><span class="p">(</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">union</span> <span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kt">double</span><span class="w">   </span><span class="n">f</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">union</span> <span class="p">{</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">f</span><span class="p">;</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">tmp</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="n">buffer_to_uint64</span><span class="p">(</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">.</span><span class="n">i</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="o">*</span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">.</span><span class="n">f</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span><span class="w"></span>
