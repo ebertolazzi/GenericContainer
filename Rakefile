@@ -121,28 +121,36 @@ task :build do
   end
 end
 
-desc "compile for Visual Studio [default year=2017, bits=x64]"
-task :build_win, [:year, :bits] do |t, args|
+desc "compile for Visual Studio"
+task :build_win do
+
+  # check architecture
+  case `where cl.exe`.chop
+  when /x64\\cl\.exe/
+    VS_ARCH = 'x64'
+  when /amd64\\cl\.exe/
+    VS_ARCH = 'x64'
+  when /bin\\cl\.exe/
+    VS_ARCH = 'x86'
+  else
+    raise RuntimeError, "Cannot determine architecture for Visual Studio".red
+  end
+
   FileUtils.rm_rf 'lib'
   FileUtils.rm_rf 'lib3rd'
 
-  args.with_defaults( :year => "2017", :bits => "x64" )
+  FileUtils.rm_rf   "build"
+  FileUtils.mkdir_p "build"
+  FileUtils.cd      "build"
 
-  dir = "vs_#{args.year}_#{args.bits}"
-
-  FileUtils.rm_rf   dir
-  FileUtils.mkdir_p dir
-  FileUtils.cd      dir
-
-  cmd_cmake = win_vs(args.bits,args.year) + cmd_cmake_build
-  
   puts "run CMAKE for GenericContainer".yellow
-  sh cmd_cmake + ' ..'
+  sh "cmake -G Ninja -DBITS:VAR=#{VS_ARCH} " + cmd_cmake_build() + ' ..'
+
   puts "compile with CMAKE for GenericContainer".yellow
   if COMPILE_DEBUG then
-    sh 'cmake --build . --config Debug --target install '+PARALLEL+QUIET
+    sh 'cmake --build . --config Debug --target install '+PARALLEL
   else
-    sh 'cmake  --build . --config Release  --target install '+PARALLEL+QUIET
+    sh 'cmake  --build . --config Release  --target install '+PARALLEL
   end
 
   if RUN_CPACK then
