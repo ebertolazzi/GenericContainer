@@ -91,7 +91,7 @@ task :build_win do
   FileUtils.cd      "build"
 
   puts "run CMAKE for GenericContainer".yellow
-  sh "cmake -G Ninja -DBITS:VAR=#{args.bits} " + cmd_cmake_build() + ' ..'
+  sh "cmake -G Ninja -DBITS:VAR=#{VS_ARCH} " + cmd_cmake_build() + ' ..'
 
   puts "compile with CMAKE for GenericContainer".yellow
   if COMPILE_DEBUG then
