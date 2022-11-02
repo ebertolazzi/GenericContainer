@@ -72,8 +72,8 @@
 
 namespace GC_namespace {
 
-  typedef std::basic_ostream<char> ostream_type;
-  typedef std::basic_istream<char> istream_type;
+  using ostream_type = std::basic_ostream<char>;
+  using istream_type = std::basic_istream<char>;
 
   #if defined(GENERIC_CONTAINER_ON_WINDOWS) && defined(GENERIC_CONTAINER_USE_WINDOWS_TYPES)
   #else
@@ -86,45 +86,44 @@ namespace GC_namespace {
 
   class GenericContainer;
 
-  typedef void*                   pointer_type; //!< generic pointer type
-  typedef bool                    bool_type;    //!< boolean type data
-  typedef int32_t                 int_type;     //!< integer type data
-  typedef int64_t                 long_type;    //!< long integer type data
-  typedef double                  real_type;    //!< floating point type data
-  typedef std::complex<real_type> complex_type; //!< complex floating point type data
-  typedef std::string             string_type;  //!< string type data
+  using string = std::string;
 
-  typedef std::vector<pointer_type> vec_pointer_type; //!< vector of generic pointer
-  typedef std::vector<bool_type>    vec_bool_type;    //!< vector of boolean
-  typedef std::vector<int_type>     vec_int_type;     //!< vector of integer
-  typedef std::vector<long_type>    vec_long_type;    //!< vector of long integer
-  typedef std::vector<real_type>    vec_real_type;    //!< vector of floating point
-  typedef std::vector<complex_type> vec_complex_type; //!< vector of complex floating point
-  typedef std::vector<string_type>  vec_string_type;  //!< vector of strings
+  typedef void* pointer_type;   //!< generic pointer type
+  using bool_type    = bool;    //!< boolean type data
+  using int_type     = int32_t; //!< integer type data
+  using long_type    = int64_t; //!< long integer type data
+  using real_type    = double;  //!< floating point type data
+  using complex_type = std::complex<real_type>; //!< complex floating point type data
+  using string_type  = std::string;             //!< string type data
 
-  typedef std::vector<GenericContainer>          vector_type; //!< vector of `GenericContainer`
-  typedef std::map<string_type,GenericContainer> map_type;    //!< associative array of `GenericContainer`
+  using vec_pointer_type = std::vector<pointer_type>; //!< vector of generic pointer
+  using vec_bool_type    = std::vector<bool_type>;    //!< vector of boolean
+  using vec_int_type     = std::vector<int_type>;     //!< vector of integer
+  using vec_long_type    = std::vector<long_type>;    //!< vector of long integer
+  using vec_real_type    = std::vector<real_type>;    //!< vector of floating point
+  using vec_complex_type = std::vector<complex_type>; //!< vector of complex floating point
+  using vec_string_type  = std::vector<string_type>;  //!< vector of strings
+
+  using vector_type = std::vector<GenericContainer>;          //!< vector of `GenericContainer`
+  using map_type    = std::map<string_type,GenericContainer>; //!< associative array of `GenericContainer`
 
   // ---------------------------------------------------------------------------
 
-  typedef uint32_t uint_type;  //!< integer type data
-  typedef uint64_t ulong_type; //!< long integer type data
+  using uint_type  = uint32_t; //!< integer type data
+  using ulong_type = uint64_t; //!< long integer type data
 
-  typedef std::vector<uint_type>  vec_uint_type;  //!< vector of unsigned integer
-  typedef std::vector<ulong_type> vec_ulong_type; //!< vector of unsigned integer
+  using vec_uint_type  = std::vector<uint_type>;  //!< vector of unsigned integer
+  using vec_ulong_type = std::vector<ulong_type>; //!< vector of unsigned integer
 
   // ---------------------------------------------------------------------------
   template <typename TYPE>
   class mat_type : public std::vector<TYPE> {
-    unsigned m_numRows;
-    unsigned m_numCols;
+    unsigned m_numRows{0};
+    unsigned m_numCols{0};
     typedef typename std::vector<TYPE>::size_type size_type;
   public:
 
-    mat_type()
-    : m_numRows(0)
-    , m_numCols(0)
-    {}
+    mat_type() = default;
 
     //!
     //! Create a matrix of size `nr x nc`
@@ -213,10 +212,10 @@ namespace GC_namespace {
   extern template class mat_type<complex_type>;
   #endif
 
-  typedef mat_type<int_type>     mat_int_type;
-  typedef mat_type<long_type>    mat_long_type;
-  typedef mat_type<real_type>    mat_real_type;
-  typedef mat_type<complex_type> mat_complex_type;
+  using mat_int_type     = mat_type<int_type>;
+  using mat_long_type    = mat_type<long_type>;
+  using mat_real_type    = mat_type<real_type>;
+  using mat_complex_type = mat_type<complex_type>;
 
   // ---------------------------------------------------------------------------
   #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -231,36 +230,21 @@ namespace GC_namespace {
   //!
   //! Type allowed for the `GenericContainer`
   //!
-  enum TypeAllowed {
+  using TypeAllowed = enum class GC_type : int_type {
     // simple type
-    GC_NOTYPE=0,
-    GC_POINTER,
-    GC_BOOL,
-    GC_INTEGER,
-    GC_LONG,
-    GC_REAL,
-    GC_COMPLEX,
-    GC_STRING,
+    NOTYPE, POINTER, BOOL, INTEGER, LONG, REAL, COMPLEX, STRING,
 
     // vector type
-    GC_VEC_POINTER,
-    GC_VEC_BOOL,
-    GC_VEC_INTEGER,
-    GC_VEC_LONG,
-    GC_VEC_REAL,
-    GC_VEC_COMPLEX,
-    GC_VEC_STRING,
+    VEC_POINTER, VEC_BOOL, VEC_INTEGER, VEC_LONG, VEC_REAL, VEC_COMPLEX, VEC_STRING,
 
     // matrix type
-    GC_MAT_INTEGER,
-    GC_MAT_LONG,
-    GC_MAT_REAL,
-    GC_MAT_COMPLEX,
+    MAT_INTEGER, MAT_LONG, MAT_REAL, MAT_COMPLEX,
 
     // complex type
-    GC_VECTOR,
-    GC_MAP
+    VECTOR, MAP
   };
+
+  char const * to_string( GC_type s );
 
   //!
   //! `GenericContainer` is a class which permit to store eterogeneous data:
@@ -289,37 +273,37 @@ namespace GC_namespace {
   class GenericContainer {
   public:
     // import type
-    typedef GC_namespace::pointer_type     pointer_type;
-    typedef GC_namespace::bool_type        bool_type;
-    typedef GC_namespace::int_type         int_type;
-    typedef GC_namespace::uint_type        uint_type;
-    typedef GC_namespace::long_type        long_type;
-    typedef GC_namespace::ulong_type       ulong_type;
-    typedef GC_namespace::real_type        real_type;
-    typedef GC_namespace::complex_type     complex_type;
-    typedef GC_namespace::string_type      string_type;
-    typedef GC_namespace::vec_pointer_type vec_pointer_type;
-    typedef GC_namespace::vec_bool_type    vec_bool_type;
-    typedef GC_namespace::vec_int_type     vec_int_type;
-    typedef GC_namespace::vec_uint_type    vec_uint_type;
-    typedef GC_namespace::vec_long_type    vec_long_type;
-    typedef GC_namespace::vec_ulong_type   vec_ulong_type;
-    typedef GC_namespace::vec_real_type    vec_real_type;
-    typedef GC_namespace::vec_complex_type vec_complex_type;
-    typedef GC_namespace::vec_string_type  vec_string_type;
-    typedef GC_namespace::vector_type      vector_type;
-    typedef GC_namespace::map_type         map_type;
-    typedef GC_namespace::mat_int_type     mat_int_type;
-    typedef GC_namespace::mat_long_type    mat_long_type;
-    typedef GC_namespace::mat_real_type    mat_real_type;
-    typedef GC_namespace::mat_complex_type mat_complex_type;
+    using pointer_type     = GC_namespace::pointer_type;
+    using bool_type        = GC_namespace::bool_type;
+    using int_type         = GC_namespace::int_type;
+    using uint_type        = GC_namespace::uint_type;
+    using long_type        = GC_namespace::long_type;
+    using ulong_type       = GC_namespace::ulong_type;
+    using real_type        = GC_namespace::real_type;
+    using complex_type     = GC_namespace::complex_type;
+    using string_type      = GC_namespace::string_type;
+    using vec_pointer_type = GC_namespace::vec_pointer_type;
+    using vec_bool_type    = GC_namespace::vec_bool_type;
+    using vec_int_type     = GC_namespace::vec_int_type;
+    using vec_uint_type    = GC_namespace::vec_uint_type;
+    using vec_long_type    = GC_namespace::vec_long_type;
+    using vec_ulong_type   = GC_namespace::vec_ulong_type;
+    using vec_real_type    = GC_namespace::vec_real_type;
+    using vec_complex_type = GC_namespace::vec_complex_type;
+    using vec_string_type  = GC_namespace::vec_string_type;
+    using vector_type      = GC_namespace::vector_type;
+    using map_type         = GC_namespace::map_type;
+    using mat_int_type     = GC_namespace::mat_int_type;
+    using mat_long_type    = GC_namespace::mat_long_type;
+    using mat_real_type    = GC_namespace::mat_real_type;
+    using mat_complex_type = GC_namespace::mat_complex_type;
 
   private:
 
     //!
     //! Data is stored in a union
     //!
-    typedef union {
+    using DataStorage = union {
       pointer_type     p;
       bool_type        b;
       int_type         i;
@@ -344,10 +328,10 @@ namespace GC_namespace {
       vector_type      * v;
       map_type         * m;
 
-    } DataStorage;
+    };
 
-    DataStorage m_data;      //!< The data stored in the class instance
-    TypeAllowed m_data_type; //!< The kind of data stored
+    DataStorage m_data;                           //!< The data stored in the class instance
+    TypeAllowed m_data_type{GC_type::NOTYPE}; //!< The kind of data stored
 
     void allocate_string();
     void allocate_complex();
@@ -375,8 +359,8 @@ namespace GC_namespace {
     bool simple_data()     const;
     bool simple_vec_data() const;
     #else
-    bool simple_data()     const { return m_data_type <= GC_STRING; }
-    bool simple_vec_data() const { return m_data_type <= GC_VEC_STRING; }
+    bool simple_data()     const { return m_data_type <= GC_type::STRING; }
+    bool simple_vec_data() const { return m_data_type <= GC_type::VEC_STRING; }
     #endif
 
   public:
@@ -808,7 +792,7 @@ namespace GC_namespace {
     //!
     //! Return a string pointer representing the type of data stored
     //!
-    char const * get_type_name() const;
+    char const * get_type_name() const { return to_string(get_type()); }
 
     //!
     //! Print to stream the kind of data stored
@@ -923,19 +907,19 @@ namespace GC_namespace {
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     template <typename T>
     T& get_pointer()
-    { ck("get_pointer",GC_POINTER); return *reinterpret_cast<T*>(get_ppvoid()); }
+    { ck("get_pointer",GC_type::POINTER); return *reinterpret_cast<T*>(get_ppvoid()); }
 
     template <typename T>
     T get_pointer() const
-    { ck("get_pointer",GC_POINTER); return reinterpret_cast<T>(get_pvoid()); }
+    { ck("get_pointer",GC_type::POINTER); return reinterpret_cast<T>(get_pvoid()); }
     #else
     template <typename T>
     T& get_pointer()
-    { ck("get_pointer",GC_POINTER); return *reinterpret_cast<T*>(&(m_data.p)); }
+    { ck("get_pointer",GC_type::POINTER); return *reinterpret_cast<T*>(&(m_data.p)); }
 
     template <typename T>
     T get_pointer() const
-    { ck("get_pointer",GC_POINTER); return reinterpret_cast<T>(m_data.p); }
+    { ck("get_pointer",GC_type::POINTER); return reinterpret_cast<T>(m_data.p); }
     #endif
 
     //!
@@ -2080,91 +2064,91 @@ namespace GC_namespace {
     //! \param[in] a initializer data
     //!
     GenericContainer( bool const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
     //!
     GenericContainer( uint_type const & a )
-    : m_data_type(GC_NOTYPE) { *this = a; }
+    : m_data_type(GC_type::NOTYPE) { *this = a; }
 
     //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
     //!
     GenericContainer( int_type const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
     //!
     GenericContainer( ulong_type const & a )
-    : m_data_type(GC_NOTYPE) { *this = a; }
+    : m_data_type(GC_type::NOTYPE) { *this = a; }
 
     //!
     //! Construct a generic container storing an integer
     //! \param[in] a initializer data
     //!
     GenericContainer( long_type const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a floating point number
     //! \param[in] a initializer data
     //!
     GenericContainer( float const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a floating point number
     //! \param[in] a initializer data
     //!
     GenericContainer( double const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a complex floating point number
     //! \param[in] a initializer data
     //!
     GenericContainer( std::complex<float> const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a complex floating point number
     //! \param[in] a initializer data
     //!
     GenericContainer( std::complex<double> const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a string
     //! \param[in] a initializer data
     //!
     GenericContainer( char const * a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a string
     //! \param[in] a initializer data
     //!
     GenericContainer( string_type const & a )
-    : m_data_type(GC_NOTYPE) { this->operator=(a); }
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
     //! Construct a generic container storing a pointer
     //! \param[in] a initializer data
     //!
     GenericContainer( pointer_type a )
-    : m_data_type(GC_NOTYPE) { this->set_pointer(a); }
+    : m_data_type(GC_type::NOTYPE) { this->set_pointer(a); }
 
     //!
     //! Construct a generic container copying container `gc`
     //! \param[in] gc initializer data
     //!
     GenericContainer( GenericContainer const & gc )
-    : m_data_type(GC_NOTYPE) { this->load(gc); }
+    : m_data_type(GC_type::NOTYPE) { this->load(gc); }
 
     ///@}
 
@@ -2625,7 +2609,7 @@ namespace GC_namespace {
     void const * mem_ptr() const { return &data; }
 
     int
-    check( int data_type ) const {
+    check( GC_type data_type ) const {
       if ( head.empty() ) return GENERIC_CONTAINER_BAD_HEAD;
       if ( data_type == head.back()->get_type() ) {
         if ( head.back() == nullptr ) return GENERIC_CONTAINER_NO_DATA;
@@ -2636,10 +2620,10 @@ namespace GC_namespace {
     }
 
     int
-    check_no_data( int data_type ) const {
+    check_no_data( GC_type data_type ) const {
       if ( head.empty() ) return GENERIC_CONTAINER_BAD_HEAD;
-      if ( GC_NOTYPE == head.back()->get_type() ||
-           data_type == head.back()->get_type() ) return GENERIC_CONTAINER_OK;
+      if ( GC_type::NOTYPE == head.back()->get_type() ||
+           data_type       == head.back()->get_type() ) return GENERIC_CONTAINER_OK;
       return GENERIC_CONTAINER_NOT_EMPTY;
     }
 
@@ -2658,7 +2642,7 @@ namespace GC_namespace {
 
     int
     push_vector_position( unsigned pos ) {
-      int ok = check( GC_VECTOR );
+      int ok = check( GC_type::VECTOR );
       if ( ok == GENERIC_CONTAINER_OK  ) {
         GenericContainer * gc = &((*head.back())[pos]);
         head.push_back( gc );
@@ -2668,7 +2652,7 @@ namespace GC_namespace {
 
     int
     push_map_position( char const * pos ) {
-      int ok = check( GC_MAP );
+      int ok = check( GC_type::MAP );
       if ( ok == GENERIC_CONTAINER_OK  ) {
         GenericContainer * gc = &((*head.back())[pos]);
         head.push_back( gc );
@@ -2678,7 +2662,7 @@ namespace GC_namespace {
 
     int
     init_map_key() {
-      int ok = check( GC_MAP );
+      int ok = check( GC_type::MAP );
       if ( ok == GENERIC_CONTAINER_OK ) {
         ptr_map = &head.back()->get_map();
         map_iterator = ptr_map->begin();

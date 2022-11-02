@@ -480,29 +480,29 @@ namespace GC_namespace {
     static char const where[] = "in GenericContainer_to_mxArray: ";
     mwSize dims[2] = {1,1};
     switch ( gc.get_type() ) {
-    case GC_NOTYPE:
-    case GC_POINTER:
-    case GC_VEC_POINTER:
+    case GC_type::NOTYPE:
+    case GC_type::POINTER:
+    case GC_type::VEC_POINTER:
       mx = mxCreateDoubleMatrix(0,0,mxREAL);
       break;
-    case GC_BOOL:
+    case GC_type::BOOL:
       {
         mxLogical val = gc.get_bool() ? 1 : 0;
         mx = mxCreateLogicalScalar(val);
       }
       break;
-    case GC_INTEGER:
+    case GC_type::INTEGER:
       mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
       *(mwSize *)mxGetData(mx) = gc.get_int();
       break;
-    case GC_LONG:
+    case GC_type::LONG:
       mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
       *(mwSize *)mxGetData(mx) = gc.get_long();
       break;
-    case GC_REAL:
+    case GC_type::REAL:
       mx = mxCreateDoubleScalar(gc.get_real());
       break;
-    case GC_COMPLEX:
+    case GC_type::COMPLEX:
       {
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
         real_type re, im;
@@ -511,10 +511,10 @@ namespace GC_namespace {
         *mxGetPi(mx) = im;
       }
       break;
-    case GC_STRING:
+    case GC_type::STRING:
       mx = mxCreateString( gc.get_string().c_str() );
       break;
-    case GC_VEC_BOOL:
+    case GC_type::VEC_BOOL:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxLOGICAL_CLASS,mxREAL);
@@ -522,7 +522,7 @@ namespace GC_namespace {
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_bool_at(i,where);
       }
       break;
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
@@ -530,7 +530,7 @@ namespace GC_namespace {
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_int_at(i,where);
       }
       break;
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
@@ -538,7 +538,7 @@ namespace GC_namespace {
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_long_at(i,where);
       }
       break;
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxREAL);
@@ -546,7 +546,7 @@ namespace GC_namespace {
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_real_at(i,where);
       }
       break;
-    case GC_VEC_COMPLEX:
+    case GC_type::VEC_COMPLEX:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
@@ -556,7 +556,7 @@ namespace GC_namespace {
           gc.get_complex_number_at(i,ptr[i],pti[i]);
       }
       break;
-    case GC_VEC_STRING:
+    case GC_type::VEC_STRING:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateCellMatrix(dims[0], dims[1]);
@@ -564,7 +564,7 @@ namespace GC_namespace {
           mxSetCell(mx,i,mxCreateString( gc.get_string_at(i,where).c_str()));
       }
       break;
-    case GC_MAT_INTEGER:
+    case GC_type::MAT_INTEGER:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
@@ -576,7 +576,7 @@ namespace GC_namespace {
             ptr[k++] = gc.get_int_at(i,j,where);
       }
       break;
-    case GC_MAT_LONG:
+    case GC_type::MAT_LONG:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
@@ -588,7 +588,7 @@ namespace GC_namespace {
             ptr[k++] = gc.get_long_at(i,j,where);
         }
       break;
-    case GC_MAT_REAL:
+    case GC_type::MAT_REAL:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
@@ -600,7 +600,7 @@ namespace GC_namespace {
             ptr[k++] = gc.get_real_at(i,j,where);
       }
       break;
-    case GC_MAT_COMPLEX:
+    case GC_type::MAT_COMPLEX:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
@@ -618,7 +618,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_VECTOR:
+    case GC_type::VECTOR:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateCellMatrix(dims[0], dims[1]);
@@ -629,7 +629,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_MAP:
+    case GC_type::MAP:
       {
         map_type const & mappa = gc.get_map();
         std::vector<char const *> fieldnames;

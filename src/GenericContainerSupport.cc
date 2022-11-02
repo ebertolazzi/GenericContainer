@@ -114,7 +114,7 @@ namespace GC_namespace {
     );
     GenericContainer const & data    = (*this)("data");
     vec_string_type  const & headers = (*this)("headers").get_vec_string(" writeFormattedData, `header` field must be `vec_string_type`");
-    if ( (*this)("data").get_type() == GC_MAT_REAL )
+    if ( (*this)("data").get_type() == GC_type::MAT_REAL )
       writeTable( headers, data.get_mat_real(), stream, delimiter );
     else
       writeTable( headers, data.get_vector(), stream, delimiter );

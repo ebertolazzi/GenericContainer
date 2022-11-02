@@ -73,7 +73,7 @@ protected:
   string const m_delimiters;
 public:
   Tokenizer( string const & str, string const & delimiters )
-  : m_offset(0) 
+  : m_offset(0)
   , m_string(str)
   , m_delimiters(delimiters)
   { }
@@ -172,7 +172,7 @@ is_string_a_complex_number(
     return false;
   }
   double real, imag;
-  if ( is_string_a_real_number( real_imag[0], real ) && 
+  if ( is_string_a_real_number( real_imag[0], real ) &&
        is_string_an_imaginary_number( real_imag[1], imag, im_unit ) ) {
     out_number = complex_type( real, imag );
     return true;
@@ -188,131 +188,131 @@ find_minimum_common_type_allowed( TypeAllowed type1, TypeAllowed type2 ) {
 
   switch ( type1 ) {
   //the following types are not compatible with any other type different from them
-  case GC_NOTYPE:
-  case GC_BOOL:
-  case GC_VEC_BOOL:
-  case GC_MAP:
-  case GC_POINTER:
-  case GC_VEC_POINTER:
-  case GC_VEC_STRING:
-  case GC_VECTOR:
-    return GC_NOTYPE;
+  case GC_type::NOTYPE:
+  case GC_type::BOOL:
+  case GC_type::VEC_BOOL:
+  case GC_type::MAP:
+  case GC_type::POINTER:
+  case GC_type::VEC_POINTER:
+  case GC_type::VEC_STRING:
+  case GC_type::VECTOR:
+    return GC_type::NOTYPE;
 
-  case GC_STRING:
-    if ( type2 == GC_COMPLEX ||
-         type2 == GC_REAL    ||
-         type2 == GC_LONG    ||
-         type2 == GC_INTEGER ) {
-      return GC_STRING;
+  case GC_type::STRING:
+    if ( type2 ==GC_type::COMPLEX ||
+         type2 ==GC_type::REAL    ||
+         type2 ==GC_type::LONG    ||
+         type2 ==GC_type::INTEGER ) {
+      return GC_type::STRING;
     }
     break;
 
   //numbers
-  case GC_INTEGER:
-    if ( type2 == GC_LONG ||
-         type2 == GC_REAL ||
-         type2 == GC_COMPLEX ) {
+  case GC_type::INTEGER:
+    if ( type2 == GC_type::LONG ||
+         type2 == GC_type::REAL ||
+         type2 == GC_type::COMPLEX ) {
       return type2;
     }
-    if ( type2 == GC_STRING ) return GC_STRING;
+    if ( type2 == GC_type::STRING ) return GC_type::STRING;
     break;
 
-  case GC_LONG:
-    if ( type2 == GC_INTEGER ) return GC_LONG;
-    if ( type2 == GC_REAL    ||
-         type2 == GC_COMPLEX ||
-         type2 == GC_STRING ) {
-      return type2;
-    }
-    break;
-
-  case GC_REAL:
-    if ( type2 == GC_INTEGER ||
-         type2 == GC_LONG ) {
-      return GC_REAL;
-    }
-    if ( type2 == GC_COMPLEX ||
-         type2 == GC_STRING ) {
+  case GC_type::LONG:
+    if ( type2 == GC_type::INTEGER ) return GC_type::LONG;
+    if ( type2 == GC_type::REAL    ||
+         type2 == GC_type::COMPLEX ||
+         type2 == GC_type::STRING ) {
       return type2;
     }
     break;
 
-  case GC_COMPLEX:
-    if ( type2 == GC_INTEGER ||
-         type2 == GC_LONG    ||
-         type2 == GC_REAL ) {
-      return GC_COMPLEX;
+  case GC_type::REAL:
+    if ( type2 == GC_type::INTEGER ||
+         type2 == GC_type::LONG ) {
+      return GC_type::REAL;
     }
-    if ( type2 == GC_STRING ) return GC_STRING;
+    if ( type2 == GC_type::COMPLEX ||
+         type2 == GC_type::STRING ) {
+      return type2;
+    }
+    break;
+
+  case GC_type::COMPLEX:
+    if ( type2 == GC_type::INTEGER ||
+         type2 == GC_type::LONG    ||
+         type2 == GC_type::REAL ) {
+      return GC_type::COMPLEX;
+    }
+    if ( type2 == GC_type::STRING ) return GC_type::STRING;
     break;
 
   //vector type
-  case GC_VEC_INTEGER:
-    if ( type2 == GC_VEC_LONG ||
-         type2 == GC_VEC_REAL ||
-         type2 == GC_VEC_COMPLEX ) {
+  case GC_type::VEC_INTEGER:
+    if ( type2 == GC_type::VEC_LONG ||
+         type2 == GC_type::VEC_REAL ||
+         type2 == GC_type::VEC_COMPLEX ) {
       return type2;
     }
     break;
 
-  case GC_VEC_LONG:
-    if ( type2 == GC_VEC_INTEGER ) return GC_VEC_LONG;
-    if ( type2 == GC_VEC_REAL ||
-         type2 == GC_VEC_COMPLEX ) {
+  case GC_type::VEC_LONG:
+    if ( type2 == GC_type::VEC_INTEGER ) return GC_type::VEC_LONG;
+    if ( type2 == GC_type::VEC_REAL ||
+         type2 == GC_type::VEC_COMPLEX ) {
       return type2;
     }
     break;
 
-  case GC_VEC_REAL:
-    if ( type2 == GC_VEC_INTEGER ||
-         type2 == GC_VEC_LONG ) {
-      return GC_VEC_REAL;
+  case GC_type::VEC_REAL:
+    if ( type2 == GC_type::VEC_INTEGER ||
+         type2 == GC_type::VEC_LONG ) {
+      return GC_type::VEC_REAL;
     }
-    if ( type2 == GC_VEC_COMPLEX ) return type2;
+    if ( type2 == GC_type::VEC_COMPLEX ) return type2;
     break;
 
-  case GC_VEC_COMPLEX:
-    if ( type2 == GC_VEC_INTEGER ||
-         type2 == GC_VEC_LONG    ||
-         type2 == GC_VEC_REAL ) {
-      return GC_VEC_COMPLEX;
+  case GC_type::VEC_COMPLEX:
+    if ( type2 == GC_type::VEC_INTEGER ||
+         type2 == GC_type::VEC_LONG    ||
+         type2 == GC_type::VEC_REAL ) {
+      return GC_type::VEC_COMPLEX;
     }
     break;
 
   //matrix type
-  case GC_MAT_INTEGER:
-    if ( type2 == GC_MAT_LONG ||
-         type2 == GC_MAT_REAL ||
-         type2 == GC_MAT_COMPLEX ) {
+  case GC_type::MAT_INTEGER:
+    if ( type2 == GC_type::MAT_LONG ||
+         type2 == GC_type::MAT_REAL ||
+         type2 == GC_type::MAT_COMPLEX ) {
       return type2;
     }
     break;
 
-  case GC_MAT_LONG:
-    if ( type2 == GC_MAT_INTEGER ) return GC_MAT_LONG;
-    if ( type2 == GC_MAT_REAL ||
-         type2 == GC_MAT_COMPLEX ) {
+  case GC_type::MAT_LONG:
+    if ( type2 == GC_type::MAT_INTEGER ) return GC_type::MAT_LONG;
+    if ( type2 == GC_type::MAT_REAL ||
+         type2 == GC_type::MAT_COMPLEX ) {
       return type2;
     }
     break;
 
-  case GC_MAT_REAL:
-    if ( type2 == GC_MAT_INTEGER ||
-         type2 == GC_MAT_LONG ) {
-      return GC_MAT_REAL;
+  case GC_type::MAT_REAL:
+    if ( type2 == GC_type::MAT_INTEGER ||
+         type2 == GC_type::MAT_LONG ) {
+      return GC_type::MAT_REAL;
     }
-    if ( type2 == GC_MAT_COMPLEX ) return type2;
+    if ( type2 == GC_type::MAT_COMPLEX ) return type2;
     break;
 
-  case GC_MAT_COMPLEX:
-    if ( type2 == GC_MAT_INTEGER ||
-         type2 == GC_MAT_LONG    ||
-         type2 == GC_MAT_REAL ) {
-      return GC_MAT_COMPLEX;
+  case GC_type::MAT_COMPLEX:
+    if ( type2 == GC_type::MAT_INTEGER ||
+         type2 == GC_type::MAT_LONG    ||
+         type2 == GC_type::MAT_REAL ) {
+      return GC_type::MAT_COMPLEX;
     }
     break;
   }
-  return GC_NOTYPE;
+  return GC_type::NOTYPE;
 }
 
 static
@@ -333,21 +333,21 @@ convert_GenericVector_to_StringVector(
   vector<string> new_vec;
 
   for ( GenericContainer const & gc : root.get_vector() ) {
-    if ( gc.get_type() == GC_STRING ) {
+    if ( gc.get_type() == GC_type::STRING ) {
       new_vec.push_back( gc.get_string() );
-    } else if ( gc.get_type() == GC_INTEGER ) {
+    } else if ( gc.get_type() == GC_type::INTEGER ) {
       stringstream ss;
       ss << gc.get_int();
       new_vec.push_back( ss.str() );
-    } else if ( gc.get_type() == GC_LONG ) {
+    } else if ( gc.get_type() == GC_type::LONG ) {
       stringstream ss;
       ss << gc.get_long();
       new_vec.push_back( ss.str() );
-    } else if ( gc.get_type() == GC_REAL ) {
+    } else if ( gc.get_type() == GC_type::REAL ) {
       stringstream ss;
       real_to_stream( gc.get_real(), ss );
       new_vec.push_back( ss.str() );
-    } else if ( gc.get_type() == GC_COMPLEX ) {
+    } else if ( gc.get_type() == GC_type::COMPLEX ) {
       stringstream ss;
       complex_to_stream( gc.get_complex(), ss, im_unit );
       new_vec.push_back( ss.str() );
@@ -371,7 +371,7 @@ void
 convert_GenericVector_to_LongVector( GenericContainer & root ) {
   vector<long_type> new_vec;
   for ( GenericContainer & gc : root.get_vector() ) {
-    if ( gc.get_type() != GC_LONG ) {
+    if ( gc.get_type() != GC_type::LONG ) {
       gc.promote_to_long();
     }
     new_vec.push_back( gc.get_long() );
@@ -385,7 +385,7 @@ convert_GenericVector_to_RealVector( GenericContainer & root ) {
   vector<real_type> new_vec;
 
   for ( GenericContainer & gc : root.get_vector() ) {
-    if ( gc.get_type() != GC_REAL ) {
+    if ( gc.get_type() != GC_type::REAL ) {
       gc.promote_to_real();
     }
     new_vec.push_back( gc.get_real() );
@@ -399,7 +399,7 @@ convert_GenericVector_to_ComplexVector( GenericContainer & root ) {
   vector<complex_type> new_vec;
 
   for ( GenericContainer & gc : root.get_vector() ) {
-    if ( gc.get_type() != GC_COMPLEX ) {
+    if ( gc.get_type() != GC_type::COMPLEX ) {
       gc.promote_to_complex();
     }
     new_vec.push_back( gc.get_complex() );
@@ -460,7 +460,7 @@ convert_GenericVector_to_LongMat(
   unsigned num_rows = 0;
   for ( GenericContainer & gc : root.get_vector() ) {
     switch ( gc.get_type() ) {
-    case GC_VEC_INTEGER: {
+    case GC_type::VEC_INTEGER: {
       if ( started ) {
         if ( gc.get_vec_int().size() != num_rows ) {
           return;
@@ -471,7 +471,7 @@ convert_GenericVector_to_LongMat(
       }
       break;
     }
-    case GC_VEC_LONG: {
+    case GC_type::VEC_LONG: {
       if ( started ) {
         if ( gc.get_vec_long().size() != num_rows ) {
           return;
@@ -489,7 +489,7 @@ convert_GenericVector_to_LongMat(
 
   // now promote
   for ( GenericContainer & gc : root.get_vector() ) {
-    if ( gc.get_type() != GC_VEC_LONG ) gc.promote_to_vec_long();
+    if ( gc.get_type() != GC_type::VEC_LONG ) gc.promote_to_vec_long();
   }
 
   unsigned num_cols = unsigned(root.get_vector().size());
@@ -527,7 +527,7 @@ convert_GenericVector_to_RealMat(
   unsigned num_rows = 0;
   for ( GenericContainer & gc : root.get_vector() ) {
     switch ( gc.get_type() ) {
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       if ( started ) {
         if ( gc.get_vec_int().size() != num_rows ) return;
       } else {
@@ -535,7 +535,7 @@ convert_GenericVector_to_RealMat(
         started = true;
       }
       break;
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       if ( started ) {
         if ( gc.get_vec_long().size() != num_rows ) return;
       } else {
@@ -543,7 +543,7 @@ convert_GenericVector_to_RealMat(
         started = true;
       }
       break;
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       if ( started ) {
         if ( gc.get_vec_real().size() != num_rows ) return;
       } else {
@@ -558,7 +558,7 @@ convert_GenericVector_to_RealMat(
 
   // now promote
   for ( GenericContainer & gc : root.get_vector() ) {
-    if ( gc.get_type() != GC_VEC_REAL ) {
+    if ( gc.get_type() != GC_type::VEC_REAL ) {
       gc.promote_to_vec_real();
     }
   }
@@ -598,7 +598,7 @@ convert_GenericVector_to_ComplexMat(
   unsigned num_rows = 0;
   for ( GenericContainer & gc : root.get_vector() ) {
     switch ( gc.get_type() ) {
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       if ( started ) {
         if ( gc.get_vec_int().size() != num_rows ) return;
       } else {
@@ -607,7 +607,7 @@ convert_GenericVector_to_ComplexMat(
       }
       break;
 
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       if ( started ) {
         if ( gc.get_vec_long().size() != num_rows ) return;
       } else {
@@ -616,7 +616,7 @@ convert_GenericVector_to_ComplexMat(
       }
       break;
 
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       if ( started ) {
         if ( gc.get_vec_real().size() != num_rows ) return;
       } else {
@@ -625,7 +625,7 @@ convert_GenericVector_to_ComplexMat(
       }
       break;
 
-    case GC_VEC_COMPLEX:
+    case GC_type::VEC_COMPLEX:
       if ( started ) {
         if ( gc.get_vec_complex().size() != num_rows ) return;
       } else {
@@ -641,7 +641,7 @@ convert_GenericVector_to_ComplexMat(
 
   // now promote
   for ( GenericContainer & gc : root.get_vector() ) {
-    if ( gc.get_type() != GC_VEC_COMPLEX ) gc.promote_to_vec_complex();
+    if ( gc.get_type() != GC_type::VEC_COMPLEX ) gc.promote_to_vec_complex();
   }
 
   unsigned num_cols = unsigned(root.get_vector().size());
@@ -884,37 +884,37 @@ GenericContainerJsonHandler::finalizeArrayProcess() {
     minimum_common_type = find_minimum_common_type_allowed( minimum_common_type, gc.get_type() );
   }
 
-  if ( minimum_common_type == GC_NOTYPE ) return;
+  if ( minimum_common_type == GC_type::NOTYPE ) return;
 
-  if ( minimum_common_type == GC_BOOL ) {
+  if ( minimum_common_type == GC_type::BOOL ) {
     convert_GenericVector_to_BoolVector( *getCurrentGCPointer() );
     return;
-  } else if ( minimum_common_type == GC_STRING ) {
+  } else if ( minimum_common_type == GC_type::STRING ) {
     convert_GenericVector_to_StringVector( *getCurrentGCPointer(), _im_unit );
     return;
-  } else if ( minimum_common_type == GC_INTEGER ) {
+  } else if ( minimum_common_type == GC_type::INTEGER ) {
     convert_GenericVector_to_IntVector( *getCurrentGCPointer() );
     return;
-  } else if ( minimum_common_type == GC_LONG ) {
+  } else if ( minimum_common_type == GC_type::LONG ) {
     convert_GenericVector_to_LongVector( *getCurrentGCPointer() );
     return;
-  } else if ( minimum_common_type == GC_REAL ) {
+  } else if ( minimum_common_type == GC_type::REAL ) {
     convert_GenericVector_to_RealVector( *getCurrentGCPointer() );
     return;
-  } else if ( minimum_common_type == GC_COMPLEX ) {
+  } else if ( minimum_common_type == GC_type::COMPLEX ) {
     convert_GenericVector_to_ComplexVector( *getCurrentGCPointer() );
     return;
   }
 
   if ( _mat_order == GCJsonMatrixOrder::none ) return;
 
-  if ( minimum_common_type == GC_VEC_INTEGER ) {
+  if ( minimum_common_type == GC_type::VEC_INTEGER ) {
     convert_GenericVector_to_IntMat( *getCurrentGCPointer(), _mat_order );
-  } else if ( minimum_common_type == GC_VEC_LONG ) {
+  } else if ( minimum_common_type == GC_type::VEC_LONG ) {
     convert_GenericVector_to_LongMat( *getCurrentGCPointer(), _mat_order );
-  } else if ( minimum_common_type == GC_VEC_REAL ) {
+  } else if ( minimum_common_type == GC_type::VEC_REAL ) {
     convert_GenericVector_to_RealMat( *getCurrentGCPointer(), _mat_order );
-  } else if ( minimum_common_type == GC_VEC_COMPLEX ) {
+  } else if ( minimum_common_type == GC_type::VEC_COMPLEX ) {
     convert_GenericVector_to_ComplexMat( *getCurrentGCPointer(), _mat_order );
   }
 

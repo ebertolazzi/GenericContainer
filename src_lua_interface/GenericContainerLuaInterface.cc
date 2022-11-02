@@ -118,7 +118,8 @@ namespace GC_namespace {
     case LUA_TNUMBER:
       {
         real_type val = lua_tonumber(L, -1);
-        if ( gc.get_type() == GC_VEC_REAL || gc.get_type() == GC_MAT_REAL ) {
+        if ( gc.get_type() == GC_type::VEC_REAL ||
+             gc.get_type() == GC_type::MAT_REAL ) {
           gc.get_real_at(idx) = val;
         } else if ( isInteger64(val) ) {
           gc.get_long_at(idx) = long_type(val);
@@ -225,31 +226,31 @@ namespace GC_namespace {
   GC_to_lua( lua_State * L, GenericContainer const & gc ) {
     // inizializzazione
     switch ( gc.get_type() ) {
-    case GC_NOTYPE:
+    case GC_type::NOTYPE:
       lua_pushnil(L);
       break;
-    case GC_POINTER:
+    case GC_type::POINTER:
       lua_pushnil(L);
       break;
-    case GC_BOOL:
+    case GC_type::BOOL:
       lua_pushboolean( L, gc.get_bool() ? 1 : 0 );
       break;
-    case GC_INTEGER:
+    case GC_type::INTEGER:
       lua_pushnumber( L, gc.get_int() );
       break;
-    case GC_LONG:
+    case GC_type::LONG:
       lua_pushnumber( L, lua_Number(gc.get_long()) );
       break;
-    case GC_REAL:
+    case GC_type::REAL:
       lua_pushnumber( L, gc.get_real() );
       break;
-    case GC_STRING:
+    case GC_type::STRING:
       lua_pushstring( L, gc.get_string().c_str() );
       break;
-    case GC_VEC_POINTER:
+    case GC_type::VEC_POINTER:
       lua_pushnil(L);
       break;
-    case GC_VEC_BOOL:
+    case GC_type::VEC_BOOL:
       { vec_bool_type const & vb = gc.get_vec_bool();
         lua_createtable( L, int(vb.size()), 0 );
         for ( unsigned i = 0; i < vb.size(); ++i ) {
@@ -259,7 +260,7 @@ namespace GC_namespace {
       }
       lua_pushnil(L);
       break;
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       { vec_int_type const & vi = gc.get_vec_int();
         lua_createtable( L, int(vi.size()), 0);
         for ( unsigned i = 0; i < vi.size(); ++i ) {
@@ -268,7 +269,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       { vec_long_type const & vi = gc.get_vec_long();
         lua_createtable(L, int(vi.size()), 0);
         for ( unsigned i = 0; i < vi.size(); ++i ) {
@@ -277,7 +278,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       { vec_real_type const & vr = gc.get_vec_real();
         lua_createtable(L, int(vr.size()), 0);
         for ( unsigned i = 0; i < vr.size(); ++i ) {
@@ -286,7 +287,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_VEC_STRING:
+    case GC_type::VEC_STRING:
       { vec_string_type const & vs = gc.get_vec_string();
         lua_createtable( L, int(vs.size()), 0);
         for ( unsigned i = 0; i < vs.size(); ++i ) {
@@ -295,7 +296,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_VECTOR:
+    case GC_type::VECTOR:
       { vector_type const & v = gc.get_vector();
         lua_createtable(L, int(v.size()), 0);
         for ( unsigned i = 0; i < v.size(); ++i ) {
@@ -304,7 +305,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_MAP:
+    case GC_type::MAP:
       { map_type const & m = gc.get_map();
         lua_createtable(L, int(m.size()), 0);
         for ( map_type::const_iterator it = m.begin(); it != m.end(); ++it ) {
@@ -314,12 +315,12 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_COMPLEX:
-    case GC_VEC_COMPLEX:
-    case GC_MAT_INTEGER:
-    case GC_MAT_LONG:
-    case GC_MAT_REAL:
-    case GC_MAT_COMPLEX:
+    case GC_type::COMPLEX:
+    case GC_type::VEC_COMPLEX:
+    case GC_type::MAT_INTEGER:
+    case GC_type::MAT_LONG:
+    case GC_type::MAT_REAL:
+    case GC_type::MAT_COMPLEX:
     //default:
       lua_pushnil(L);
       break;

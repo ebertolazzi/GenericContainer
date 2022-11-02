@@ -195,7 +195,7 @@ GC_dump() {
 int
 GC_get_type() {
   if ( gc_active == nullptr ) return -1;
-  return gc_active->top()->get_type();
+  return static_cast<int>(gc_active->top()->get_type());
 }
 
 char const *
@@ -288,20 +288,20 @@ GC_get_complex( ) {
 
 double
 GC_get_complex_re( ) {
-  if ( gc_active != nullptr ) return gc_active->top()->get_complex() . real();
+  if ( gc_active != nullptr ) return gc_active->top()->get_complex().real();
   return 0;
 }
 
 double
 GC_get_complex_im( ) {
-  if ( gc_active != nullptr ) return gc_active->top()->get_complex() . imag();
+  if ( gc_active != nullptr ) return gc_active->top()->get_complex().imag();
   return 0;
 }
 
 char const *
 GC_get_string( ) {
   if ( gc_active == nullptr ) return nullptr;
-  return gc_active->top()->get_string() . c_str();
+  return gc_active->top()->get_string().c_str();
 }
 
 //..............................................................................

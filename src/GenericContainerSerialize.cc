@@ -143,34 +143,34 @@ namespace GC_namespace {
     int32_t ptr_size    = 8;
     int32_t res         = 0;
     switch (m_data_type) {
-    case GC_NOTYPE:      res = int32_t(header_size); break;
-    case GC_BOOL:        res = int32_t(header_size+1); break;
-    case GC_INTEGER:     res = int32_t(header_size+sizeof(int_type)); break;
-    case GC_LONG:        res = int32_t(header_size+sizeof(long_type)); break;
-    case GC_REAL:        res = int32_t(header_size+sizeof(real_type)); break;
-    case GC_POINTER:     res = int32_t(header_size+ptr_size); break;
-    case GC_STRING:      res = int32_t(header_size+m_data.s->length()+5); break;
-    case GC_COMPLEX:     res = int32_t(header_size+sizeof(complex_type)); break;
-    case GC_VEC_POINTER: res = int32_t(header_size+sizeof(int32_t)+ptr_size*m_data.v_p->size()); break;
-    case GC_VEC_BOOL:    res = int32_t(header_size+sizeof(int32_t)+m_data.v_b->size()); break;
-    case GC_VEC_INTEGER: res = int32_t(header_size+sizeof(int32_t)+sizeof(int_type)*m_data.v_i->size()); break;
-    case GC_VEC_LONG:    res = int32_t(header_size+sizeof(int32_t)+sizeof(long_type)*m_data.v_l->size()); break;
-    case GC_VEC_REAL:    res = int32_t(header_size+sizeof(int32_t)+sizeof(real_type)*m_data.v_r->size()); break;
-    case GC_VEC_COMPLEX: res = int32_t(header_size+sizeof(int32_t)+sizeof(complex_type)*m_data.v_c->size()); break;
+    case GC_type::NOTYPE:      res = int32_t(header_size); break;
+    case GC_type::BOOL:        res = int32_t(header_size+1); break;
+    case GC_type::INTEGER:     res = int32_t(header_size+sizeof(int_type)); break;
+    case GC_type::LONG:        res = int32_t(header_size+sizeof(long_type)); break;
+    case GC_type::REAL:        res = int32_t(header_size+sizeof(real_type)); break;
+    case GC_type::POINTER:     res = int32_t(header_size+ptr_size); break;
+    case GC_type::STRING:      res = int32_t(header_size+m_data.s->length()+5); break;
+    case GC_type::COMPLEX:     res = int32_t(header_size+sizeof(complex_type)); break;
+    case GC_type::VEC_POINTER: res = int32_t(header_size+sizeof(int32_t)+ptr_size*m_data.v_p->size()); break;
+    case GC_type::VEC_BOOL:    res = int32_t(header_size+sizeof(int32_t)+m_data.v_b->size()); break;
+    case GC_type::VEC_INTEGER: res = int32_t(header_size+sizeof(int32_t)+sizeof(int_type)*m_data.v_i->size()); break;
+    case GC_type::VEC_LONG:    res = int32_t(header_size+sizeof(int32_t)+sizeof(long_type)*m_data.v_l->size()); break;
+    case GC_type::VEC_REAL:    res = int32_t(header_size+sizeof(int32_t)+sizeof(real_type)*m_data.v_r->size()); break;
+    case GC_type::VEC_COMPLEX: res = int32_t(header_size+sizeof(int32_t)+sizeof(complex_type)*m_data.v_c->size()); break;
 
-    case GC_MAT_INTEGER: res = int32_t(header_size+2*sizeof(int32_t)+sizeof(int_type)*m_data.m_i->size()); break;
-    case GC_MAT_LONG:    res = int32_t(header_size+2*sizeof(int32_t)+sizeof(long_type)*m_data.m_l->size()); break;
-    case GC_MAT_REAL:    res = int32_t(header_size+2*sizeof(int32_t)+sizeof(real_type)*m_data.m_r->size()); break;
-    case GC_MAT_COMPLEX: res = int32_t(header_size+2*sizeof(int32_t)+sizeof(complex_type)*m_data.m_c->size()); break;
-    case GC_VEC_STRING:
+    case GC_type::MAT_INTEGER: res = int32_t(header_size+2*sizeof(int32_t)+sizeof(int_type)*m_data.m_i->size()); break;
+    case GC_type::MAT_LONG:    res = int32_t(header_size+2*sizeof(int32_t)+sizeof(long_type)*m_data.m_l->size()); break;
+    case GC_type::MAT_REAL:    res = int32_t(header_size+2*sizeof(int32_t)+sizeof(real_type)*m_data.m_r->size()); break;
+    case GC_type::MAT_COMPLEX: res = int32_t(header_size+2*sizeof(int32_t)+sizeof(complex_type)*m_data.m_c->size()); break;
+    case GC_type::VEC_STRING:
       res = int32_t(header_size+sizeof(int32_t));
       for ( auto & s : *m_data.v_s ) res += int32_t(sizeof(int32_t)+s.length()+1);
       break;
-    case GC_VECTOR:
+    case GC_type::VECTOR:
       res = int32_t(header_size+sizeof(int32_t));
       for ( auto & S : *m_data.v ) res += S.mem_size();
       break;
-    case GC_MAP:
+    case GC_type::MAP:
       res = int32_t(header_size+sizeof(int32_t));
       for ( auto & S : *m_data.m )
         res += int32_t(sizeof(int32_t)+S.first.length()+1+S.second.mem_size());
@@ -190,46 +190,46 @@ namespace GC_namespace {
     //int_type ptr_size = 8;
     int32_t sz, nb, nbyte;
 
-    nbyte = nb = int32_to_buffer( m_data_type, buffer );
+    nbyte = nb = int32_to_buffer( static_cast<int32_t>(m_data_type), buffer );
     buffer += nb;
 
     switch (m_data_type) {
-    case GC_NOTYPE:
+    case GC_type::NOTYPE:
       break;
-    case GC_BOOL:
+    case GC_type::BOOL:
       nb = int8_to_buffer( m_data.b ? 1 : 0, buffer );
       buffer += nb; nbyte += nb;
       break;
-    case GC_INTEGER:
+    case GC_type::INTEGER:
       nb = int32_to_buffer( m_data.i, buffer );
       buffer += nb; nbyte += nb;
       break;
-    case GC_LONG:
+    case GC_type::LONG:
       nb = int64_to_buffer( m_data.l, buffer );
       buffer += nb; nbyte += nb;
       break;
-    case GC_REAL:
+    case GC_type::REAL:
       nb = double_to_buffer( m_data.r, buffer );
       buffer += nb; nbyte += nb;
       break;
-    case GC_POINTER:
+    case GC_type::POINTER:
       break;
-    case GC_STRING:
+    case GC_type::STRING:
       sz = int32_t(m_data.s->length()+1);
       nb = int32_to_buffer( sz, buffer );
       buffer += nb; nbyte += nb;
       memcpy( buffer, &m_data.s->front(), sz );
       buffer += sz; nbyte += sz;
       break;
-    case GC_COMPLEX:
+    case GC_type::COMPLEX:
       nb = double_to_buffer( m_data.c->real(), buffer );
       buffer += nb; nbyte += nb;
       nb = double_to_buffer( m_data.c->imag(), buffer );
       buffer += nb; nbyte += nb;
       break;
-    case GC_VEC_POINTER:
+    case GC_type::VEC_POINTER:
       break;
-    case GC_VEC_BOOL:
+    case GC_type::VEC_BOOL:
       nb = int32_to_buffer( int32_t(m_data.v_b->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto b : *m_data.v_b ) {
@@ -237,7 +237,7 @@ namespace GC_namespace {
         ++nb; ++buffer; ++nbyte;
       }
       break;
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       nb = int32_to_buffer( int32_t(m_data.v_i->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & i : *m_data.v_i ) {
@@ -245,7 +245,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       nb = int32_to_buffer( int32_t(m_data.v_l->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & i : *m_data.v_l ) {
@@ -253,7 +253,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       nb = int32_to_buffer( int32_t(m_data.v_r->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & r : *m_data.v_r ) {
@@ -261,7 +261,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VEC_COMPLEX:
+    case GC_type::VEC_COMPLEX:
       nb = int32_to_buffer( int32_t(m_data.v_c->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & c : *m_data.v_c ) {
@@ -271,7 +271,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_INTEGER:
+    case GC_type::MAT_INTEGER:
       nb = int32_to_buffer( m_data.m_i->numRows(), buffer );
       buffer += nb; nbyte += nb;
       nb = int32_to_buffer( m_data.m_i->numCols(), buffer );
@@ -281,7 +281,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_LONG:
+    case GC_type::MAT_LONG:
       nb = int32_to_buffer( m_data.m_l->numRows(), buffer );
       buffer += nb; nbyte += nb;
       nb = int32_to_buffer( m_data.m_l->numCols(), buffer );
@@ -291,7 +291,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_REAL:
+    case GC_type::MAT_REAL:
       nb = int32_to_buffer( m_data.m_r->numRows(), buffer );
       buffer += nb; nbyte += nb;
       nb = int32_to_buffer( m_data.m_r->numCols(), buffer );
@@ -301,7 +301,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_COMPLEX:
+    case GC_type::MAT_COMPLEX:
       nb = int32_to_buffer( m_data.m_c->numRows(), buffer );
       buffer += nb; nbyte += nb;
       nb = int32_to_buffer( m_data.m_c->numCols(), buffer );
@@ -312,7 +312,7 @@ namespace GC_namespace {
         sz = double_to_buffer( c.imag(), buffer );
         nb += sz; buffer += sz; nbyte += sz;
       }
-    case GC_VEC_STRING:
+    case GC_type::VEC_STRING:
       nb = int32_to_buffer( int32_t(m_data.v_s->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & s : *m_data.v_s ) {
@@ -323,7 +323,7 @@ namespace GC_namespace {
         buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VECTOR:
+    case GC_type::VECTOR:
       nb = int32_to_buffer( int32_t(m_data.v->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & S : *m_data.v ) {
@@ -331,7 +331,7 @@ namespace GC_namespace {
         buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAP:
+    case GC_type::MAP:
       nb = int32_to_buffer( int32_t(m_data.m->size()), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & S : *m_data.m ) {
@@ -371,50 +371,50 @@ namespace GC_namespace {
     buffer += nb;
 
     switch (TypeAllowed(i32)) {
-    case GC_NOTYPE:
-      m_data_type = GC_NOTYPE;
+    case GC_type::NOTYPE:
+      m_data_type = GC_type::NOTYPE;
       break;
-    case GC_BOOL:
-      m_data_type = GC_BOOL;
+    case GC_type::BOOL:
+      m_data_type = GC_type::BOOL;
       uint8_t b;
       nb = buffer_to_uint8( buffer, &b );
       buffer += nb; nbyte += nb;
       m_data.b = b > 0;
       break;
-    case GC_INTEGER:
-      m_data_type = GC_INTEGER;
+    case GC_type::INTEGER:
+      m_data_type = GC_type::INTEGER;
       nb = buffer_to_int32( buffer, &m_data.i );
       buffer += nb; nbyte += nb;
       break;
-    case GC_LONG:
-      m_data_type = GC_LONG;
+    case GC_type::LONG:
+      m_data_type = GC_type::LONG;
       nb = buffer_to_int64( buffer, &m_data.l );
       buffer += nb; nbyte += nb;
       break;
-    case GC_REAL:
-      m_data_type = GC_REAL;
+    case GC_type::REAL:
+      m_data_type = GC_type::REAL;
       nb = buffer_to_double( buffer, &m_data.r );
       buffer += nb; nbyte += nb;
       break;
-    case GC_POINTER:
+    case GC_type::POINTER:
       break;
-    case GC_STRING:
+    case GC_type::STRING:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_string();
       *m_data.s = reinterpret_cast<char const*>(buffer);
       buffer += i32; nbyte += i32;
       break;
-    case GC_COMPLEX:
+    case GC_type::COMPLEX:
       allocate_complex();
       nb = buffer_to_double( buffer, &bf ); m_data.c->real(bf);
       buffer += nb; nbyte += nb;
       nb = buffer_to_double( buffer, &bf ); m_data.c->imag(bf);
       buffer += nb; nbyte += nb;
       break;
-    case GC_VEC_POINTER:
+    case GC_type::VEC_POINTER:
       break;
-    case GC_VEC_BOOL:
+    case GC_type::VEC_BOOL:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vec_bool(0);
@@ -426,7 +426,7 @@ namespace GC_namespace {
         m_data.v_b->push_back( i8 > 0 );
       }
       break;
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vec_int(i32);
@@ -435,7 +435,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vec_long(i32);
@@ -444,7 +444,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vec_real(i32);
@@ -453,7 +453,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_VEC_COMPLEX:
+    case GC_type::VEC_COMPLEX:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vec_complex(i32);
@@ -464,7 +464,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_INTEGER:
+    case GC_type::MAT_INTEGER:
       nb = buffer_to_int32( buffer, &nr );
       buffer += nb; nbyte += nb;
       nb = buffer_to_int32( buffer, &nc );
@@ -475,7 +475,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_LONG:
+    case GC_type::MAT_LONG:
       nb = buffer_to_int32( buffer, &nr );
       buffer += nb; nbyte += nb;
       nb = buffer_to_int32( buffer, &nc );
@@ -486,7 +486,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_REAL:
+    case GC_type::MAT_REAL:
       nb = buffer_to_int32( buffer, &nr );
       buffer += nb; nbyte += nb;
       nb = buffer_to_int32( buffer, &nc );
@@ -497,7 +497,7 @@ namespace GC_namespace {
         nb += sz; buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAT_COMPLEX:
+    case GC_type::MAT_COMPLEX:
       nb = buffer_to_int32( buffer, &nr );
       buffer += nb; nbyte += nb;
       nb = buffer_to_int32( buffer, &nc );
@@ -509,7 +509,7 @@ namespace GC_namespace {
         sz = buffer_to_double( buffer, &bf ); c.imag(bf);
         nb += sz; buffer += sz; nbyte += sz;
       }
-    case GC_VEC_STRING:
+    case GC_type::VEC_STRING:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vec_string(i32);
@@ -520,7 +520,7 @@ namespace GC_namespace {
         buffer += i32; nbyte += i32;
       }
       break;
-    case GC_VECTOR:
+    case GC_type::VECTOR:
       nb = buffer_to_int32( buffer, &i32 );
       buffer += nb; nbyte += nb;
       allocate_vector(i32);
@@ -529,7 +529,7 @@ namespace GC_namespace {
         buffer += sz; nbyte += sz;
       }
       break;
-    case GC_MAP:
+    case GC_type::MAP:
       nb = buffer_to_int32( buffer, &i32 ); nr = i32;
       buffer += nb; nbyte += nb;
       allocate_map();
