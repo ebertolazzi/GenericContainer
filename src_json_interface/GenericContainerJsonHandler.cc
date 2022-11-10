@@ -54,13 +54,18 @@ bool isZero( real_type x )
 
 static
 inline
+bool isZero0( real_type x )
+{ int c = fpclassify(x); return FP_ZERO == c || FP_SUBNORMAL == c; }
+
+static
+inline
 bool isInteger32( real_type x )
-{ return isZero( x-static_cast<int32_t>(floor(x)) ); }
+{ using std::round; return isZero0( x-round(x) ); }
 
 static
 inline
 bool isInteger64( real_type x )
-{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
+{ using std::round; return isZero0( x-round(x) ); }
 
 //
 // https://stackoverflow.com/questions/53849/how-do-i-tokenize-a-string-in-c
@@ -729,9 +734,9 @@ bool
 GenericContainerJsonHandler::Uint( unsigned int i ) {
   ASSERT_STACK_SIZE
   if ( isInteger32 ( i ) ) {
-    getCurrentGCPointer()->set_int( static_cast<int> ( i ) );
+    getCurrentGCPointer()->set_int( static_cast<int>( i ) );
   } else {
-    getCurrentGCPointer()->set_long( static_cast<long_type> ( i ) );
+    getCurrentGCPointer()->set_long( static_cast<long_type>( i ) );
   }
   advanceCurrentGCPointer();
   return true;

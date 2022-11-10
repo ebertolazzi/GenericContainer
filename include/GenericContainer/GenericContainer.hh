@@ -2426,9 +2426,10 @@ namespace GC_namespace {
     //!
     GenericContainer &
     readFormattedData2(
-      istream_type & stream,
-      char const * commentChars = "#%",
-      char const * delimiters = " \t"
+      istream_type     & stream,
+      char const       * commentChars = "#%",
+      char const       * delimiters   = " \t",
+      GenericContainer * ptr_pars     = nullptr
     );
 
     //!
@@ -2449,9 +2450,10 @@ namespace GC_namespace {
     //!
     GenericContainer &
     readFormattedData2(
-      char const * fname,
-      char const * commentChars = "#%",
-      char const * delimiters   = " \t"
+      char const       * fname,
+      char const       * commentChars = "#%",
+      char const       * delimiters   = " \t",
+      GenericContainer * ptr_pars     = nullptr
     );
 
     ///@}

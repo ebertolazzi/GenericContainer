@@ -54,15 +54,20 @@
 using std::fpclassify;
 using GC_namespace::real_type;
 
+//static
+//inline
+//bool isZero( real_type x )
+//{ return FP_ZERO == fpclassify(x); }
+
 static
 inline
-bool isZero( real_type x )
-{ return FP_ZERO == fpclassify(x); }
+bool isZero0( real_type x )
+{ int c = fpclassify(x); return FP_ZERO == c || FP_SUBNORMAL == c; }
 
 static
 inline
 bool isInteger32( real_type x )
-{ return isZero( x-static_cast<int32_t>(floor(x)) ); }
+{ using std::round; return isZero0( x-round(x) ); }
 
 static
 inline
@@ -72,7 +77,7 @@ bool isUnsigned32( real_type x )
 static
 inline
 bool isInteger64( real_type x )
-{ return isZero( x-static_cast<int64_t>(floor(x)) ); }
+{ using std::round; return isZero0( x-round(x) ); }
 
 static
 inline
@@ -1413,7 +1418,7 @@ namespace GC_namespace {
 
   template <>
   void
-  GenericContainer::get_value( unsigned & v, char const * msg ) const {
+  GenericContainer::get_value( uint_type & v, char const * msg ) const {
     switch (m_data_type) {
     case GC_type::BOOL:
       v = m_data.b?1:0;
@@ -1421,29 +1426,33 @@ namespace GC_namespace {
     case GC_type::INTEGER:
       GC_ASSERT(
         m_data.i >= 0,
-        msg << "value '" << m_data.i << "' cannot be converted in `unsigned'"
+        msg << " negative `integer` value '" << m_data.i
+            << "' cannot be converted into `uint_type'"
       )
       v = unsigned(m_data.i);
       break;
     case GC_type::LONG:
       GC_ASSERT(
         m_data.l >= 0,
-        msg << "value '" << m_data.l << "' cannot be converted in `unsigned'"
+        msg << " negative `long` value '" << m_data.l
+            << "' cannot be converted into `uint_type'"
       )
       v = unsigned(m_data.l);
       break;
     case GC_type::REAL:
       GC_ASSERT(
         m_data.r >= 0 && isUnsigned32(m_data.r),
-        msg << "value '" << m_data.r << "' cannot be converted in `unsigned'"
+        msg << " negative or fractional `real` value '" << m_data.r
+            << "' cannot be converted into `uint_type'"
       )
       v = unsigned(m_data.r);
       break;
     case GC_type::COMPLEX:
       GC_ASSERT(
-        isZero(m_data.c->imag()) && isUnsigned32(m_data.c->real()),
-        msg << "value = (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") cannot be converted in `unsigned'"
+        isZero0(m_data.c->imag()) && isUnsigned32(m_data.c->real()),
+        msg << " `complex` value = ("
+            << m_data.c->real() << ","
+            << m_data.c->imag() << ") cannot be converted into `uint_type'"
       )
       v = unsigned(m_data.c->real());
       break;
@@ -1464,24 +1473,20 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `unsigned'"
+        msg << "\nbad data type: `" << to_string(m_data_type)
+            << "' cannot be converted into `uint_type'"
       )
     }
   }
 
   template <>
   void
-  GenericContainer::get_value( int & v, char const * msg ) const {
+  GenericContainer::get_value( int_type & v, char const * msg ) const {
     switch (m_data_type) {
     case GC_type::BOOL:
       v = m_data.b?1:0;
       break;
     case GC_type::INTEGER:
-      GC_ASSERT(
-        m_data.i >= 0,
-        msg << "value '" << m_data.i << "' cannot be converted in `int'"
-      )
       v = m_data.i;
       break;
     case GC_type::LONG:
@@ -1490,15 +1495,17 @@ namespace GC_namespace {
     case GC_type::REAL:
       GC_ASSERT(
         isInteger32(m_data.r),
-        msg << "value '" << m_data.r << "' cannot be converted in `int'"
+        msg << " fractional `real` value '" << m_data.r
+            << "' cannot be converted into `int_type'"
       )
       v = int(m_data.r);
       break;
     case GC_type::COMPLEX:
       GC_ASSERT(
-        isZero(m_data.c->imag()) && isInteger32(m_data.c->real()),
-        msg << "value = (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") cannot be converted in `int'"
+        isZero0(m_data.c->imag()) && isInteger32(m_data.c->real()),
+        msg << " `complex` value = ("
+            << m_data.c->real() << ","
+            << m_data.c->imag() << ") cannot be converted into `int_type'"
       )
       v = int(m_data.c->real());
       break;
@@ -1519,16 +1526,15 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `unsigned'"
+        msg << "\nbad data type: `" << to_string(m_data_type)
+            << "' cannot be converted into `int_type'"
       )
     }
   }
 
   template <>
   void
-  GenericContainer::get_value( unsigned long & v, char const * msg ) const {
-    typedef unsigned long ul;
+  GenericContainer::get_value( ulong_type & v, char const * msg ) const {
     switch (m_data_type) {
     case GC_type::BOOL:
       v = m_data.b?1:0;
@@ -1536,31 +1542,35 @@ namespace GC_namespace {
     case GC_type::INTEGER:
       GC_ASSERT(
         m_data.i >= 0,
-        msg << "value '" << m_data.i << "' cannot be converted in `unsigned long'"
+        msg << " negative `integer` value '" << m_data.i
+            << "' cannot be converted into `ulong_type'"
       )
-      v = ul(m_data.i);
+      v = ulong_type(m_data.i);
       break;
     case GC_type::LONG:
       GC_ASSERT(
         m_data.l >= 0,
-        msg << "value '" << m_data.l << "' cannot be converted in `unsigned long'"
+        msg << " negative `long` value '" << m_data.l
+            << "' cannot be converted into `ulong_type'"
       )
-      v = ul(m_data.l);
+      v = ulong_type(m_data.l);
       break;
     case GC_type::REAL:
       GC_ASSERT(
         m_data.r >= 0 && isUnsigned64(m_data.r),
-        msg << "value '" << m_data.r << "' cannot be converted in `unsigned long'"
+        msg << " negative or fractional `real` value '" << m_data.r
+            << "' cannot be converted into `ulong_type'"
       )
-      v = ul(m_data.r);
+      v = ulong_type(m_data.r);
       break;
     case GC_type::COMPLEX:
       GC_ASSERT(
-        isZero(m_data.c->imag()) && isUnsigned64(m_data.c->real()),
-        msg << "value (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") cannot be converted in `unsigned long'"
+        isZero0(m_data.c->imag()) && isUnsigned64(m_data.c->real()),
+        msg << " `complex` value ("
+            << m_data.c->real() << ","
+            << m_data.c->imag() << ") cannot be converted into `ulong_type'"
       )
-      v = ul(m_data.c->real());
+      v = ulong_type(m_data.c->real());
       break;
     case GC_type::NOTYPE:
     case GC_type::POINTER:
@@ -1579,15 +1589,16 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `unsigned long'"
+        msg << "\nbad data type: `"
+            << to_string(m_data_type)
+            << "' cannot be converted into `ulong_type'"
       )
     }
   }
 
   template <>
   void
-  GenericContainer::get_value( long & v, char const * msg ) const {
+  GenericContainer::get_value( long_type & v, char const * msg ) const {
     switch (m_data_type) {
     case GC_type::BOOL:
       v = m_data.b?1:0;
@@ -1601,15 +1612,17 @@ namespace GC_namespace {
     case GC_type::REAL:
       GC_ASSERT(
         isInteger64(m_data.r),
-        msg << "value '" << m_data.r << "' cannot be converted in `long'"
+        msg << " fractional `real` value '" << m_data.r
+            << "' cannot be converted into `long_type'"
       )
       v = long(m_data.r);
       break;
     case GC_type::COMPLEX:
       GC_ASSERT(
-        isZero(m_data.c->imag()) && isInteger64(m_data.c->real()),
-        msg << "value (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") cannot be converted in `long'"
+        isZero0(m_data.c->imag()) && isInteger64(m_data.c->real()),
+        msg << " `complex` value ("
+            << m_data.c->real() << ","
+            << m_data.c->imag() << ") cannot be converted into `long_type'"
       )
       v = long(m_data.c->real());
       break;
@@ -1630,8 +1643,8 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `long'"
+        msg << "\nbad data type: `" << to_string(m_data_type)
+            << "' cannot be converted into `long_type'"
       )
     }
   }
@@ -1654,9 +1667,10 @@ namespace GC_namespace {
       break;
     case GC_type::COMPLEX:
       GC_ASSERT(
-        isZero(m_data.c->imag()),
-        msg << "value (" << m_data.c->real() << " " << m_data.c->imag() <<
-        ") cannot be converted in `float'"
+        isZero0(m_data.c->imag()),
+        msg << " `complex` value ("
+            << m_data.c->real() << " "
+            << m_data.c->imag() << ") cannot be converted into `float'"
       )
       v = float(m_data.c->real());
       break;
@@ -1677,8 +1691,8 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `float'"
+        msg << "\nbad data type: `" << to_string(m_data_type)
+            << "' cannot be converted into `float'"
       )
     }
   }
@@ -1701,9 +1715,10 @@ namespace GC_namespace {
       break;
     case GC_type::COMPLEX:
       GC_ASSERT(
-        isZero(m_data.c->imag()),
-        msg << "value (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") cannot be converted in `double'"
+        isZero0(m_data.c->imag()),
+        msg << " `complex` value ("
+            << m_data.c->real() << "," << m_data.c->imag()
+            << ") cannot be converted into `double'"
       )
       v = m_data.c->real();
       break;
@@ -1724,8 +1739,8 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `double'"
+        msg << "\nbad data type: `" << to_string(m_data_type)
+            << "' cannot be converted into `double'"
       )
     }
   }
@@ -1897,220 +1912,32 @@ namespace GC_namespace {
   }
 
   int_type
-  GenericContainer::get_as_int( char const * msg_in ) const {
-    char const * msg = msg_in == nullptr ? "" : msg_in;
-    switch (m_data_type) {
-    case GC_type::VEC_BOOL:
-    case GC_type::VEC_INTEGER:
-    case GC_type::VEC_LONG:
-    case GC_type::VEC_REAL:
-    case GC_type::VEC_COMPLEX:
-    case GC_type::MAT_INTEGER:
-    case GC_type::MAT_LONG:
-    case GC_type::MAT_REAL:
-    case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
-    case GC_type::NOTYPE:
-    case GC_type::POINTER:
-    case GC_type::STRING:
-    case GC_type::VEC_POINTER:
-    case GC_type::VEC_STRING:
-    case GC_type::MAP:
-      GC_DO_ERROR(
-        msg << "bad data type: " << to_string(m_data_type) <<
-        " can't be converted to int"
-      )
-    case GC_type::BOOL:
-      return m_data.b ? 1 : 0;
-    case GC_type::INTEGER:
-      return m_data.i;
-    case GC_type::LONG:
-      GC_ASSERT(
-        (std::abs(m_data.l)>>31) == 0,
-        msg << "type: " << to_string(m_data_type) <<
-        " value = " << m_data.l << " can't be converted to int"
-      )
-      return int_type(m_data.l);
-    case GC_type::REAL:
-      GC_ASSERT(
-        isInteger32(m_data.r),
-        msg << "type: " << to_string(m_data_type) <<
-        " value = " << m_data.r << " can't be converted to int"
-      )
-      return int_type(m_data.r);
-    case GC_type::COMPLEX:
-      GC_ASSERT(
-        isInteger32(m_data.c->real()) && isZero(m_data.c->imag()),
-        msg << "type: " << to_string(m_data_type) <<
-        " value = (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") can't be converted to int"
-      )
-      return int_type(m_data.c->real());
-    }
-    return 0;
+  GenericContainer::get_as_int( char const * msg ) const {
+    int_type res;
+    this->get_value<int_type>( res, msg );
+    return res;
   }
 
   uint_type
-  GenericContainer::get_as_uint( char const * msg_in ) const {
-    char const * msg = msg_in == nullptr ? "" : msg_in;
-    switch (m_data_type) {
-    case GC_type::VEC_BOOL:
-    case GC_type::VEC_INTEGER:
-    case GC_type::VEC_LONG:
-    case GC_type::VEC_REAL:
-    case GC_type::VEC_COMPLEX:
-    case GC_type::MAT_INTEGER:
-    case GC_type::MAT_LONG:
-    case GC_type::MAT_REAL:
-    case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
-    case GC_type::NOTYPE:
-    case GC_type::POINTER:
-    case GC_type::STRING:
-    case GC_type::VEC_POINTER:
-    case GC_type::VEC_STRING:
-    case GC_type::MAP:
-      GC_DO_ERROR(
-        msg << "bad data type: " << to_string(m_data_type) <<
-        " can't be converted to uint"
-      )
-    case GC_type::BOOL:
-      return m_data.b ? 1 : 0;
-    case GC_type::INTEGER:
-      GC_ASSERT(
-        m_data.i >= 0,
-        msg << "type: " << to_string(m_data_type) <<
-        " value = " << m_data.i << " can't be converted to uint"
-      )
-      return uint_type(m_data.i);
-    case GC_type::LONG:
-      GC_ASSERT(
-        (std::abs(m_data.l)>>32) == 0 && m_data.l >= 0,
-        msg << "type: " << to_string(m_data_type) <<
-        " value = " << m_data.l << " can't be converted to uint"
-      )
-      return uint_type(m_data.l);
-    case GC_type::REAL:
-      GC_ASSERT(
-        isUnsigned32(m_data.r),
-        msg << "type: " << to_string(m_data_type) <<
-        " value = " << m_data.r << " can't be converted to uint"
-      )
-      return uint_type(m_data.r);
-    case GC_type::COMPLEX:
-      GC_ASSERT(
-        isUnsigned32(m_data.c->real()) && isZero(m_data.c->imag()),
-        msg << "type: " << to_string(m_data_type) <<
-        "v alue = (" << m_data.c->real() << "," <<  m_data.c->imag() <<
-        ") can't be converted to uint"
-      )
-      return uint_type(m_data.c->real());
-    }
-    return 0;
+  GenericContainer::get_as_uint( char const * msg ) const {
+    uint_type res;
+    this->get_value<uint_type>( res, msg );
+    return res;
   }
 
   long_type
-  GenericContainer::get_as_long( char const * msg_in ) const {
-    char const * msg = msg_in == nullptr ? "" : msg_in;
-    switch (m_data_type) {
-    case GC_type::VEC_BOOL:
-    case GC_type::VEC_INTEGER:
-    case GC_type::VEC_LONG:
-    case GC_type::VEC_REAL:
-    case GC_type::VEC_COMPLEX:
-    case GC_type::MAT_INTEGER:
-    case GC_type::MAT_LONG:
-    case GC_type::MAT_REAL:
-    case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
-    case GC_type::NOTYPE:
-    case GC_type::POINTER:
-    case GC_type::STRING:
-    case GC_type::VEC_POINTER:
-    case GC_type::VEC_STRING:
-    case GC_type::MAP:
-      GC_DO_ERROR(
-        msg << "bad data type: " << to_string(m_data_type) <<
-        " can't be converted to long"
-      )
-    case GC_type::BOOL:
-      return m_data.b ? 1 : 0;
-    case GC_type::INTEGER:
-      return long_type(m_data.i);
-    case GC_type::LONG:
-      return m_data.l;
-    case GC_type::REAL:
-      GC_ASSERT(
-        isInteger64(m_data.r),
-        msg << "value = " << m_data.r << " can't be converted to long"
-      )
-      return long_type(m_data.r);
-    case GC_type::COMPLEX:
-      GC_ASSERT(
-        isInteger64(m_data.c->real()) && isZero(m_data.c->imag()),
-        msg << "value = (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") can't be converted to long"
-      )
-      return long_type(m_data.c->real());
-    }
-    return 0;
+  GenericContainer::get_as_long( char const * msg ) const {
+    long_type res;
+    this->get_value<long_type>( res, msg );
+    return res;
   }
 
   ulong_type
-  GenericContainer::get_as_ulong( char const * msg_in ) const {
-    char const * msg = msg_in == nullptr ? "" : msg_in;
-    switch (m_data_type) {
-    case GC_type::VEC_BOOL:
-    case GC_type::VEC_INTEGER:
-    case GC_type::VEC_LONG:
-    case GC_type::VEC_REAL:
-    case GC_type::VEC_COMPLEX:
-    case GC_type::MAT_INTEGER:
-    case GC_type::MAT_LONG:
-    case GC_type::MAT_REAL:
-    case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
-    case GC_type::NOTYPE:
-    case GC_type::POINTER:
-    case GC_type::STRING:
-    case GC_type::VEC_POINTER:
-    case GC_type::VEC_STRING:
-    case GC_type::MAP:
-      GC_DO_ERROR(
-        msg << "bad data type: " << to_string(m_data_type) <<
-        " can't be converted to ulong"
-      )
-    case GC_type::BOOL:
-      return m_data.b ? 1 : 0;
-    case GC_type::INTEGER:
-      GC_ASSERT(
-        m_data.i >= 0,
-        msg << "value = " << m_data.i << " can't be converted to ulong"
-      )
-      return ulong_type(m_data.i);
-    case GC_type::LONG:
-      GC_ASSERT(
-        m_data.l >= 0,
-        msg << "value = " << m_data.l << " can't be converted to ulong"
-      )
-      return ulong_type(m_data.l);
-    case GC_type::REAL:
-      GC_ASSERT(
-        isUnsigned64(m_data.r),
-        msg << "value = " << m_data.r << " can't be converted to ulong"
-      )
-      return ulong_type(m_data.r);
-    case GC_type::COMPLEX:
-      GC_ASSERT(
-        isUnsigned64(m_data.c->real()) && isZero(m_data.c->imag()),
-        msg << "value = (" << m_data.c->real() << "," << m_data.c->imag() <<
-        ") can't be converted to ulong"
-      )
-      return ulong_type(m_data.c->real());
-    }
-    return 0;
+  GenericContainer::get_as_ulong( char const * msg ) const {
+    ulong_type res;
+    this->get_value<ulong_type>( res, msg );
+    return res;
   }
-
 
   real_type &
   GenericContainer::get_real( char const * msg ) {
@@ -2379,8 +2206,8 @@ namespace GC_namespace {
         lval = m_data.l;
         GC_ASSERT(
           int_type(lval) == lval,
-          msg << "copyto_vec_int: v[" << i << "] = " << lval <<
-          " cannot be converted to `integer'"
+          msg << "copyto_vec_int: v[" << i << "] = " << lval
+              << " cannot be converted to `integer'"
         );
         val = int_type(lval);
         break;
@@ -2388,8 +2215,8 @@ namespace GC_namespace {
         rval = m_data.r;
         GC_ASSERT(
           isInteger32(rval),
-          msg << "copyto_vec_int: v[" << i << "] = " << rval <<
-          " cannot be converted to `integer'"
+          msg << "copyto_vec_int: v[" << i << "] = " << rval
+              << " cannot be converted to `integer'"
         )
         val = int_type(rval);
         break;
@@ -2403,8 +2230,8 @@ namespace GC_namespace {
         lval = (*m_data.v_l)[i];
         GC_ASSERT(
           int_type(lval) == lval,
-          msg << "copyto_vec_int: v[" << i << "] = " << lval <<
-          " cannot be converted to `integer'"
+          msg << "copyto_vec_int: v[" << i << "] = " << lval
+              << " cannot be converted to `integer'"
         )
         val = int_type(lval);
         break;
@@ -2412,28 +2239,28 @@ namespace GC_namespace {
         rval = (*m_data.v_r)[i];
         GC_ASSERT(
           isInteger32(rval),
-          msg << "copyto_vec_int: v[" << i << "] = " << rval <<
-          " cannot be converted to `integer'"
+          msg << "copyto_vec_int: v[" << i << "] = " << rval
+              << " cannot be converted to `integer'"
         )
         val = int_type(rval);
         break;
       case GC_type::COMPLEX:
         cval = *m_data.c;
         GC_ASSERT(
-          isZero(cval.imag()) && isInteger32(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `integer'"
+          isZero0(cval.imag()) && isInteger32(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `integer'"
         )
         val = int_type(cval.real());
         break;
       case GC_type::VEC_COMPLEX:
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isInteger32(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `integer'"
+          isZero0(cval.imag()) && isInteger32(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `integer'"
         )
         val = int_type(cval.real());
         break;
@@ -2444,8 +2271,8 @@ namespace GC_namespace {
         lval = (*m_data.m_l)[i];
         GC_ASSERT(
           int_type(lval) == lval,
-          msg << "copyto_vec_int: v[" << i << "] = " << lval <<
-          " cannot be converted to `integer'"
+          msg << "copyto_vec_int: v[" << i << "] = " << lval
+              << " cannot be converted to `integer'"
         );
         val = int_type(lval);
         break;
@@ -2453,18 +2280,18 @@ namespace GC_namespace {
         rval = (*m_data.m_r)[i];
         GC_ASSERT(
           isInteger32(rval),
-          msg << "copyto_vec_int: v[" << i << "] = " << rval <<
-          " cannot be converted to `integer'"
+          msg << "copyto_vec_int: v[" << i << "] = " << rval
+              << " cannot be converted to `integer'"
         )
         val = int_type(rval);
         break;
       case GC_type::MAT_COMPLEX:
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isInteger32(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `integer'"
+          isZero0(cval.imag()) && isInteger32(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `integer'"
         )
         val = int_type(cval.real());
         break;
@@ -2478,8 +2305,8 @@ namespace GC_namespace {
       case GC_type::VEC_STRING:
       case GC_type::MAP:
         GC_DO_ERROR(
-          msg << "\nbad data type: `" << to_string(m_data_type) <<
-          "' cannot be converted in `vec_int_type'"
+          msg << "\nbad data type: `" << to_string(m_data_type)
+              << "' cannot be converted into `vec_int_type'"
         )
       }
       v.emplace_back(val);
@@ -2508,8 +2335,8 @@ namespace GC_namespace {
         ival = m_data.i;
         GC_ASSERT(
           ival >= 0,
-          msg << "copyto_vec_uint: value = " << ival <<
-          " cannot be converted to `unsigned integer'"
+          msg << "copyto_vec_uint: value = " << ival
+              << " cannot be converted to `unsigned integer'"
         );
         val = uint_type(ival);
         break;
@@ -2517,8 +2344,8 @@ namespace GC_namespace {
         lval = m_data.l;
         GC_ASSERT(
           int_type(lval) == lval && lval >= 0,
-          msg << "copyto_vec_uint: v[" << i << "] = " << lval <<
-          " cannot be converted to `unsigned integer'"
+          msg << "copyto_vec_uint: v[" << i << "] = " << lval
+              << " cannot be converted to `unsigned integer'"
         )
         val = uint_type(lval);
         break;
@@ -2526,8 +2353,8 @@ namespace GC_namespace {
         rval = m_data.r;
         GC_ASSERT(
           isUnsigned32(rval),
-          msg << "copyto_vec_uint: v[" << i << "] = " << rval <<
-          " cannot be converted to `unsigned integer'"
+          msg << "copyto_vec_uint: v[" << i << "] = " << rval
+              << " cannot be converted to `unsigned integer'"
         )
         val = uint_type(rval);
         break;
@@ -2564,20 +2391,20 @@ namespace GC_namespace {
       case GC_type::COMPLEX:
         cval = *m_data.c;
         GC_ASSERT(
-          isZero(cval.imag()) && isUnsigned32(cval.real()),
-          msg << "copyto_vec_uint: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `unsigned integer'"
+          isZero0(cval.imag()) && isUnsigned32(cval.real()),
+          msg << "copyto_vec_uint: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `unsigned integer'"
         )
         val = uint_type(cval.real());
         break;
       case GC_type::VEC_COMPLEX:
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isUnsigned32(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `unsigned integer'"
+          isZero0(cval.imag()) && isUnsigned32(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `unsigned integer'"
         );
         val = uint_type(cval.real());
         break;
@@ -2585,8 +2412,8 @@ namespace GC_namespace {
         ival = (*m_data.m_i)[i];
         GC_ASSERT(
           ival >= 0,
-          msg << "copyto_vec_uint: value = " << ival <<
-          " cannot be converted to `unsigned integer'"
+          msg << "copyto_vec_uint: value = " << ival
+              << " cannot be converted to `unsigned integer'"
         )
         val = uint_type(ival);
         break;
@@ -2594,8 +2421,8 @@ namespace GC_namespace {
         lval = (*m_data.m_l)[i];
         GC_ASSERT(
           int_type(lval) == lval && lval >= 0,
-          msg << "copyto_vec_uint: v[" << i << "] = " << lval <<
-          " cannot be converted to `unsigned integer'"
+          msg << "copyto_vec_uint: v[" << i << "] = " << lval
+              << " cannot be converted to `unsigned integer'"
         )
         val = uint_type(lval);
         break;
@@ -2611,7 +2438,7 @@ namespace GC_namespace {
       case GC_type::MAT_COMPLEX:
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isUnsigned32(cval.real()),
+          isZero0(cval.imag()) && isUnsigned32(cval.real()),
           msg << "copyto_vec_uint: v[" << i << "] = (" <<
           cval.real() << "," << cval.imag() <<
           ") cannot be converted to `unsigned integer'"
@@ -2628,8 +2455,8 @@ namespace GC_namespace {
       case GC_type::VEC_STRING:
       case GC_type::MAP:
         GC_DO_ERROR(
-          msg << "\nbad data type: `" << to_string(m_data_type) <<
-          "' cannot be converted in `vec_uint_type'"
+          msg << "\nbad data type: `" << to_string(m_data_type)
+              << "' cannot be converted into `vec_uint_type'"
         )
       }
       v.emplace_back(val);
@@ -2662,8 +2489,8 @@ namespace GC_namespace {
         rval = m_data.r;
         GC_ASSERT(
           isInteger64(rval),
-          msg << "copyto_vec_long: v[" << i << "] = " << rval <<
-          " cannot be converted to `long'"
+          msg << "copyto_vec_long: v[" << i << "] = " << rval
+              << " cannot be converted to `long'"
         )
         val = long_type(rval);
         break;
@@ -2680,28 +2507,28 @@ namespace GC_namespace {
         rval = (*m_data.v_r)[i];
         GC_ASSERT(
           isInteger64(rval),
-          msg << "copyto_vec_long: v[" << i << "] = " << rval <<
-          " cannot be converted to `long'"
+          msg << "copyto_vec_long: v[" << i << "] = " << rval
+              << " cannot be converted to `long'"
         )
         val = long_type(rval);
         break;
       case GC_type::COMPLEX:
         cval = *m_data.c;
         GC_ASSERT(
-          isZero(cval.imag()) && isInteger64(cval.real()),
-          msg << "copyto_vec_long: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `long'"
+          isZero0(cval.imag()) && isInteger64(cval.real()),
+          msg << "copyto_vec_long: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `long'"
         )
         val = long_type(cval.real());
         break;
       case GC_type::VEC_COMPLEX:
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isInteger64(cval.real()),
-          msg << "copyto_vec_long: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `long'"
+          isZero0(cval.imag()) && isInteger64(cval.real()),
+          msg << "copyto_vec_long: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `long'"
         )
         val = long_type(cval.real());
         break;
@@ -2723,10 +2550,10 @@ namespace GC_namespace {
       case GC_type::MAT_COMPLEX:
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isInteger64(cval.real()),
-          msg << "copyto_vec_long: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `long'"
+          isZero0(cval.imag()) && isInteger64(cval.real()),
+          msg << "copyto_vec_long: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `long'"
         )
         val = long_type(cval.real());
         break;
@@ -2740,8 +2567,8 @@ namespace GC_namespace {
       case GC_type::VEC_STRING:
       case GC_type::MAP:
         GC_DO_ERROR(
-          msg << "\nbad data type: `" << to_string(m_data_type) <<
-          "' cannot be converted in `vec_long_type'"
+          msg << "\nbad data type: `" << to_string(m_data_type)
+              << "' cannot be converted into `vec_long_type'"
         )
       }
       v.emplace_back(val);
@@ -2770,8 +2597,8 @@ namespace GC_namespace {
         ival = m_data.i;
         GC_ASSERT(
           ival >= 0,
-          msg << "copyto_vec_uint: value = " << ival <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_uint: value = " << ival
+              << " cannot be converted to `unsigned long'"
         );
         val = ulong_type(ival);
         break;
@@ -2779,8 +2606,8 @@ namespace GC_namespace {
         lval = m_data.l;
         GC_ASSERT(
           lval >= 0,
-          msg << "copyto_vec_int: v[" << i << "] = " << lval <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_int: v[" << i << "] = " << lval
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(lval);
         break;
@@ -2788,8 +2615,8 @@ namespace GC_namespace {
         rval = m_data.r;
         GC_ASSERT(
           isUnsigned64(rval),
-          msg << "copyto_vec_int: v[" << i << "] = " << rval <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_int: v[" << i << "] = " << rval
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(rval);
         break;
@@ -2800,8 +2627,8 @@ namespace GC_namespace {
         ival = (*m_data.v_i)[i];
         GC_ASSERT(
           ival >= 0,
-          msg << "copyto_vec_uint: value = " << ival <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_uint: value = " << ival
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(ival);
         break;
@@ -2809,8 +2636,8 @@ namespace GC_namespace {
         lval = (*m_data.v_l)[i];
         GC_ASSERT(
           lval >= 0,
-          msg << "copyto_vec_int: v[" << i << "] = " << lval <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_int: v[" << i << "] = " << lval
+              << " cannot be converted to `unsigned long'"
         );
         val = ulong_type(lval);
         break;
@@ -2818,28 +2645,28 @@ namespace GC_namespace {
         rval = (*m_data.v_r)[i];
         GC_ASSERT(
           isUnsigned64(rval),
-          msg << "copyto_vec_int: v[" << i << "] = " << rval <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_int: v[" << i << "] = " << rval
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(rval);
         break;
       case GC_type::COMPLEX:
         cval = *m_data.c;
         GC_ASSERT(
-          isZero(cval.imag()) && isUnsigned64(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `unsigned long'"
+          isZero0(cval.imag()) && isUnsigned64(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `unsigned long'"
         )
         val = ulong_type(cval.real());
         break;
       case GC_type::VEC_COMPLEX:
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isUnsigned64(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `unsigned long'"
+          isZero0(cval.imag()) && isUnsigned64(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `unsigned long'"
         );
         val = ulong_type(cval.real());
         break;
@@ -2847,8 +2674,8 @@ namespace GC_namespace {
         ival = (*m_data.m_i)[i];
         GC_ASSERT(
           ival >= 0,
-          msg << "copyto_vec_uint: value = " << ival <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_uint: value = " << ival
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(ival);
         break;
@@ -2856,8 +2683,8 @@ namespace GC_namespace {
         lval = (*m_data.m_l)[i];
         GC_ASSERT(
           lval >= 0,
-          msg << "copyto_vec_int: v[" << i << "] = " << lval <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_int: v[" << i << "] = " << lval
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(lval);
         break;
@@ -2865,18 +2692,18 @@ namespace GC_namespace {
         rval = (*m_data.m_r)[i];
         GC_ASSERT(
           isUnsigned64(rval),
-          msg << "copyto_vec_int: v[" << i << "] = " << rval <<
-          " cannot be converted to `unsigned long'"
+          msg << "copyto_vec_int: v[" << i << "] = " << rval
+              << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(rval);
         break;
       case GC_type::MAT_COMPLEX:
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()) && isUnsigned64(cval.real()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `unsigned long'"
+          isZero0(cval.imag()) && isUnsigned64(cval.real()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `unsigned long'"
         )
         val = ulong_type(cval.real());
         break;
@@ -2890,8 +2717,8 @@ namespace GC_namespace {
       case GC_type::VEC_STRING:
       case GC_type::MAP:
         GC_DO_ERROR(
-          msg << "\nbad data type: `" << to_string(m_data_type) <<
-          "' cannot be converted in `vec_ulong_type'"
+          msg << "\nbad data type: `" << to_string(m_data_type)
+              << "' cannot be converted into `vec_ulong_type'"
         )
       }
       v.emplace_back(val);
@@ -2938,20 +2765,20 @@ namespace GC_namespace {
       case GC_type::COMPLEX:
         cval = *m_data.c;
         GC_ASSERT(
-          isZero(cval.imag()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `real'"
+          isZero0(cval.imag()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `real_type'"
         )
         val = cval.real();
         break;
       case GC_type::VEC_COMPLEX:
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `real'"
+          isZero0(cval.imag()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `real_type'"
         )
         val = cval.real();
         break;
@@ -2967,10 +2794,10 @@ namespace GC_namespace {
       case GC_type::MAT_COMPLEX:
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
-          isZero(cval.imag()),
-          msg << "copyto_vec_int: v[" << i << "] = (" <<
-          cval.real() << "," << cval.imag() <<
-          ") cannot be converted to `real'"
+          isZero0(cval.imag()),
+          msg << "copyto_vec_int: v[" << i << "] = ("
+              << cval.real() << "," << cval.imag()
+              << ") cannot be converted to `real_type'"
         )
         val = cval.real();
         break;
@@ -2984,8 +2811,8 @@ namespace GC_namespace {
       case GC_type::VEC_STRING:
       case GC_type::MAP:
         GC_DO_ERROR(
-          msg << "\nbad data type: `" << to_string(m_data_type) <<
-          "' cannot be converted in `vec_real_type'"
+          msg << "\nbad data type: `" << to_string(m_data_type)
+              << "' cannot be converted into `vec_real_type'"
         )
       }
       v.emplace_back(val);
@@ -3057,8 +2884,8 @@ namespace GC_namespace {
       case GC_type::VEC_STRING:
       case GC_type::MAP:
         GC_DO_ERROR(
-          msg << "\nbad data type: `" << to_string(m_data_type) <<
-          "' cannot be converted in `vec_complex_type'"
+          msg << "\nbad data type: `" << to_string(m_data_type)
+              << "' cannot be converted into `vec_complex_type'"
         )
       }
       v.emplace_back(val);
@@ -3104,8 +2931,8 @@ namespace GC_namespace {
     case GC_type::VEC_POINTER:
     case GC_type::MAP:
       GC_DO_ERROR(
-        msg << "\nbad data type: `" << to_string(m_data_type) <<
-        "' cannot be converted in `vec_string_type'"
+        msg << "\nbad data type: `" << to_string(m_data_type)
+            << "' cannot be converted into `vec_string_type'"
       )
     }
   }
@@ -3184,7 +3011,7 @@ namespace GC_namespace {
       break;
     case GC_type::COMPLEX:
       if ( ! ( isInteger32(iv->second.m_data.c->real()) &&
-               isZero(iv->second.m_data.c->imag()) ) ) return false;
+               isZero0(iv->second.m_data.c->imag()) ) ) return false;
       value = int_type(iv->second.m_data.c->real());
       break;
     case GC_type::NOTYPE:
@@ -3236,7 +3063,7 @@ namespace GC_namespace {
       break;
     case GC_type::COMPLEX:
       if ( ! ( isUnsigned32(iv->second.m_data.c->real()) &&
-               isZero(iv->second.m_data.c->imag()) ) ) return false;
+               isZero0(iv->second.m_data.c->imag()) ) ) return false;
       value = uint_type(iv->second.m_data.c->real());
       break;
     case GC_type::NOTYPE:
@@ -3286,7 +3113,7 @@ namespace GC_namespace {
       break;
     case GC_type::COMPLEX:
       if ( ! ( isInteger64(iv->second.m_data.c->real()) &&
-               isZero(iv->second.m_data.c->imag()) ) ) return false;
+               isZero0(iv->second.m_data.c->imag()) ) ) return false;
       value = long_type(iv->second.m_data.c->real());
       break;
     case GC_type::NOTYPE:
@@ -3338,7 +3165,7 @@ namespace GC_namespace {
       break;
     case GC_type::COMPLEX:
       if ( ! ( isUnsigned64(iv->second.m_data.c->real()) &&
-               isZero(iv->second.m_data.c->imag()) ) ) return false;
+               isZero0(iv->second.m_data.c->imag()) ) ) return false;
       value = ulong_type(iv->second.m_data.c->real());
       break;
     case GC_type::NOTYPE:
@@ -3386,7 +3213,7 @@ namespace GC_namespace {
       value = iv->second.m_data.r;
       break;
     case GC_type::COMPLEX:
-      if ( ! isZero(iv->second.m_data.c->imag()) ) return false;
+      if ( ! isZero0(iv->second.m_data.c->imag()) ) return false;
       value = real_type(iv->second.m_data.c->real());
       break;
     case GC_type::NOTYPE:
@@ -5291,16 +5118,17 @@ namespace GC_namespace {
 
   GenericContainer &
   GenericContainer::readFormattedData2(
-    char const * fname,
-    char const * commentChars,
-    char const * delimiters
+    char const       * fname,
+    char const       * commentChars,
+    char const       * delimiters,
+    GenericContainer * ptr_pars
   ) {
     std::ifstream file( fname );
     GC_ASSERT(
       file.good(),
       "readFormattedData2, failed to open file: ``" << fname << "''"
     )
-    return readFormattedData2( file, commentChars, delimiters );
+    return readFormattedData2( file, commentChars, delimiters, ptr_pars );
   }
 
   void

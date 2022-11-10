@@ -39,13 +39,15 @@ main() {
     << "***********************\n\n";
 
   try {
-    GenericContainer gc1, gc2;
-    gc1.readFormattedData( "example10_data.txt" );
-    gc2.readFormattedData2( "example10_data.txt" );
-    std::cout << "--------------------------\n";
+    GenericContainer gc1, gc2, pars;
+    gc1.readFormattedData( "examples/example10_data.txt" );
+    gc2.readFormattedData2( "examples/example10_data.txt", "#", " \t", &pars );
+    std::cout << "GC1 --------------------------\n";
     gc1.print(std::cout);
-    std::cout << "--------------------------\n";
+    std::cout << "GC2 --------------------------\n";
     gc2.print(std::cout);
+    std::cout << "PARS --------------------------\n";
+    pars.print(std::cout);
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';
