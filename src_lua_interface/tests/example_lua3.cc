@@ -42,7 +42,7 @@ main() {
 
   try {
     LuaInterpreter lua;
-    lua.do_file("test_call.lua");
+    lua.do_file("./src_lua_interface/tests/test_call.lua");
 
     GC::GenericContainer gc, gc_res;
     gc["function"] = "pippo";

@@ -21,6 +21,8 @@
 // file: GenericContainer.hh
 //
 
+#pragma once
+
 #ifndef GENERIC_CONTAINER_HH
 #define GENERIC_CONTAINER_HH
 
@@ -402,6 +404,17 @@ namespace GC_namespace {
     //! initialize and return a reference to the data
     //!
     GenericContainer & free_pointer();
+
+    //!
+    //! get available keys (if container type is a map)
+    //!
+    void get_keys( vec_string_type & keys ) const;
+
+    //!
+    //! get available keys (if container type is a map)
+    //! in a string comma separated.
+    //!
+    string get_keys() const;
 
     //!
     //! Set data to `bool_type` initialize and return

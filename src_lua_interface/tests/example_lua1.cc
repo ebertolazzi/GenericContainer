@@ -42,7 +42,7 @@ main() {
   try {
     GenericContainer gc;
     LuaInterpreter   lua;
-    lua.do_file("test.lua");
+    lua.do_file("./src_lua_interface/tests/test.lua");
     lua.global_to_GC("DATA",gc);
     cout << "\n\n\n\nConverted in GenericContainer\n\n";
     gc.dump(cout);

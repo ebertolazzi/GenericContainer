@@ -21,6 +21,8 @@
 // file: GenericContainer.hh
 //
 
+#pragma once
+
 #ifndef GENERIC_CONTAINER_FORWARD_HH
 #define GENERIC_CONTAINER_FORWARD_HH
 #include "GenericContainer/GenericContainer.hh"
