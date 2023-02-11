@@ -14,7 +14,7 @@ for k=1:2
   N=NAMES{k};
   fprintf(1,'Compiling: %s\n',N);
 
-  CMD = ['mex -I../src -output ',N,' -largeArrayDims mex_',N,'.cc ', SRCS];
+  CMD = ['mex -I../src -I../include -I../include/GenericContainer -output ',N,' -largeArrayDims mex_',N,'.cc ', SRCS];
   if isunix
     if ismac
       CMD = [CMD, ' -lstdc++ CXXFLAGS="\$CXXFLAGS -Wall -O2 -g"'];
