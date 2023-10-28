@@ -470,7 +470,7 @@ l_print (lua_State *L) {
 */
 static
 void
-doREPL( lua_State *L, char const * prompt ) {
+doREPL( lua_State *L, char const prompt[] ) {
   int status;
   const char *oldprogname = progname;
   progname = nullptr;  /* no 'progname' on errors in interactive mode */

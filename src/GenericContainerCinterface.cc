@@ -64,7 +64,7 @@ static GenericContainerExplorer * gc_active = nullptr;
 extern "C" {
 
 int
-GC_new( char const * id ) {
+GC_new( char const id[] ) {
   // ckeck if exists
   MAP::iterator pos = gc_explorer.find(id);
   if ( pos == gc_explorer.end() ) {
@@ -76,7 +76,7 @@ GC_new( char const * id ) {
 }
 
 int
-GC_select( char const * id ) {
+GC_select( char const id[] ) {
   // ckeck if exists
   MAP::iterator pos = gc_explorer.find(id);
   if ( pos == gc_explorer.end() ) {
@@ -88,20 +88,20 @@ GC_select( char const * id ) {
 }
 
 void *
-GC_mem_ptr( char const * id ) {
+GC_mem_ptr( char const id[] ) {
   GC_select( id );
   if ( gc_active == nullptr ) return nullptr;
   return gc_active->mem_ptr();
 }
 
 int
-GC_delete( char const * id ) {
+GC_delete( char const id[] ) {
   gc_explorer.erase(id);
   return GENERIC_CONTAINER_OK;
 }
 
 int
-GC_fill_for_test( char const * id ) {
+GC_fill_for_test( char const id[] ) {
   // ckeck if exists
   GC_select( id );
   GenericContainer & gc =
@@ -243,7 +243,7 @@ GC_set_complex2( double re, double im ) {
 }
 
 int
-GC_set_string( char const * a ) {
+GC_set_string( char const a[] ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   GC_TRY( gc_active->top()->set_string(a) );
   return GENERIC_CONTAINER_OK;
@@ -342,7 +342,7 @@ GC_push_complex2( double re, double im ) {
 }
 
 int
-GC_push_string( char const * a ) {
+GC_push_string( char const a[] ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   GC_TRY( gc_active->top()->push_string( a ) );
   return GENERIC_CONTAINER_OK;
@@ -571,7 +571,7 @@ GC_set_map() {
 //!
 
 int
-GC_push_map_position( char const * pos ) {
+GC_push_map_position( char const pos[] ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
   return gc_active->push_map_position( pos );
 }

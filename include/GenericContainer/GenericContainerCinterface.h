@@ -55,7 +55,7 @@ typedef struct {
 //! \param[in] id string `id` of the new `GenericContainer`
 //! \return error code, 0 = OK
 //!
-int GC_new( char const * id );
+int GC_new( char const id[] );
 
 //!
 //! Select an old `GenericContainer` object 'id'
@@ -63,7 +63,7 @@ int GC_new( char const * id );
 //! \param[in] id string `id` of the `GenericContainer`
 //! \return error code, 0 = OK
 //!
-int GC_select( char const * id );
+int GC_select( char const id[] );
 
 //!
 //! Delete the `GenericContainer` object 'id'
@@ -71,7 +71,7 @@ int GC_select( char const * id );
 //! \param[in] id string `id` of the `GenericContainer`
 //! \return error code, 0 = OK
 //!
-int GC_delete( char const * id );
+int GC_delete( char const id[] );
 
 //!
 //! Fill the `GenericContainer` object 'id' with data for test purposes
@@ -79,7 +79,7 @@ int GC_delete( char const * id );
 //! \param[in] id string `id` of the `GenericContainer`
 //! \return error code, 0 = OK
 //!
-int GC_fill_for_test( char const * id );
+int GC_fill_for_test( char const id[] );
 
 //!
 //! Move `head` up to a level
@@ -129,7 +129,7 @@ char const * GC_get_type_name();
 //! \param[in] id string `id` of the `GenericContainer`
 //! \return pointer to the internal object
 //!
-void * GC_mem_ptr( char const * id );
+void * GC_mem_ptr( char const id[] );
 
 // -----------------------------------------------------------------------------
 
@@ -180,7 +180,7 @@ int GC_set_complex2( double re, double im );
 //! \param[in] a string to be stored
 //! \return error code, 0 = OK
 //!
-int GC_set_string( char const * a );
+int GC_set_string( char const a[] );
 
 // -----------------------------------------------------------------------------
 
@@ -289,7 +289,7 @@ int GC_push_complex2( double re, double im );
 //! \param[in] a the value to be stored
 //! \return error code, 0 = OK
 //!
-int GC_push_string( char const * a );
+int GC_push_string( char const a[] );
 
 // -----------------------------------------------------------------------------
 
@@ -578,7 +578,7 @@ char const * GC_get_next_key( void );
 //! \param[in] pos key of the map
 //! \return error code, 0 = OK
 //!
-int GC_push_map_position( char const * pos );
+int GC_push_map_position( char const pos[] );
 
 #ifdef __cplusplus
 }

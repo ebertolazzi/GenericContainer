@@ -153,11 +153,11 @@ namespace GC_namespace {
     char const     delimiter
   ) const {
     GC_ASSERT(
-      exists("headers"),
+      this->exists("headers"),
       "writeFormattedData, missing field `headers` in container"
     );
     GC_ASSERT(
-      exists("data"),
+      this->exists("data"),
       "writeFormattedData, missing field `data` in container"
     );
     GenericContainer const & data    = (*this)("data");

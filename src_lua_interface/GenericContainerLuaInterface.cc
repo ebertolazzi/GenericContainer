@@ -358,7 +358,7 @@ namespace GC_namespace {
   // -----------------------------------------------------------------------------
 
   void
-  LuaInterpreter::do_file( char const * filename ) {
+  LuaInterpreter::do_file( char const filename[] ) {
     lua_State *& L = *(reinterpret_cast<lua_State**>(&void_L));
     GC_ASSERT_DEBUG(
       L != nullptr,
@@ -377,7 +377,7 @@ namespace GC_namespace {
   // -----------------------------------------------------------------------------
 
   void
-  LuaInterpreter::execute( char const * cmd ) {
+  LuaInterpreter::execute( char const cmd[] ) {
     lua_State *& L = *(reinterpret_cast<lua_State**>(&void_L));
     GC_ASSERT(
       L != nullptr &&

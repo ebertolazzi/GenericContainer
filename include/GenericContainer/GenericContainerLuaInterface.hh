@@ -72,7 +72,7 @@ namespace GC_namespace {
     //!
     //! Interpret the string `cmd` as a Lua statement
     //!
-    void execute( char const * cmd );
+    void execute( char const cmd[] );
 
     //!
     //! Execute a function in Lua with arguments passed by the `GenericContainer`
@@ -88,13 +88,13 @@ namespace GC_namespace {
     //!
     //! Interpret the file `fname` as a Lua script.
     //!
-    void do_file( char const * fname );
+    void do_file( char const fname[] );
 
     //!
     //! Get `gc` and store in the Lua global variable `global_var`.
     //!
     void
-    GC_to_global( GenericContainer const & gc, char const * global_var ) {
+    GC_to_global( GenericContainer const & gc, char const global_var[] ) {
       Lua_GC_to_global( void_L, gc, global_var );
     }
 
@@ -102,7 +102,7 @@ namespace GC_namespace {
     //! Get a Lua global variable `global_var` and store in `gc`.
     //!
     void
-    global_to_GC( char const * var, GenericContainer & gc ) {
+    global_to_GC( char const var[], GenericContainer & gc ) {
       Lua_global_to_GC( void_L, var, gc );
     }
 
