@@ -938,106 +938,92 @@ namespace GC_namespace {
     //!
     //! Get the stored value in the map as boolean
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
     //! \return the boolean stored in the container
     //!
     bool_type
     get_map_bool(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!
     //! Get the stored value in the map as integer
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
-    //! \return the boolean stored in the container
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the integer stored in the container
     //!
     int_type
     get_map_int(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!
     //! Get the stored value in the map as boolean
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
-    //! \return the boolean stored in the container
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the real number stored in the container
     //!
     real_type
     get_map_number(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!
     //! Get the stored value in the map as boolean
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
-    //! \return the boolean stored in the container
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the string stored in the container
     //!
     string_type const &
     get_map_string(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!
     //! Get the stored value in the map as boolean
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
-    //! \return the boolean stored in the container
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the vector of real stored in the container
     //!
     vec_real_type const &
     get_map_vec_real(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!
     //! Get the stored value in the map as boolean
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
-    //! \return the boolean stored in the container
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the vector of complex stored in the container
     //!
     vec_complex_type const &
     get_map_vec_complex(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!
     //! Get the stored value in the map as boolean
     //!
-    //! \param[in] key            key of the map to be selected
-    //! \param[in] missing_msg    message for missing key
-    //! \param[in] wrong_type_msg message for wrong stored type
-    //! \return the boolean stored in the container
+    //! \param[in] key   key of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the vector of string stored in the container
     //!
     vec_string_type const &
     get_map_vec_string(
       char const key[],
-      char const missing_msg[]    = "",
-      char const wrong_type_msg[] = ""
+      char const where[] = ""
     ) const;
 
     //!

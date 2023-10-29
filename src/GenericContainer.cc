@@ -2195,71 +2195,64 @@ namespace GC_namespace {
   bool_type
   GenericContainer::get_map_bool(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_bool( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_bool( where );
   }
 
   int_type
   GenericContainer::get_map_int(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_as_int( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_as_int( where );
   }
 
   real_type
   GenericContainer::get_map_number(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_number( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_number( where );
   }
 
   string_type const &
   GenericContainer::get_map_string(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_string( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_string( where );
   }
 
   vec_real_type const &
   GenericContainer::get_map_vec_real(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_vec_real( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_vec_real( where );
   }
 
   vec_complex_type const &
   GenericContainer::get_map_vec_complex(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_vec_complex( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_vec_complex( where );
   }
 
   vec_string_type const &
   GenericContainer::get_map_vec_string(
     char const key[],
-    char const missing_msg[],
-    char const wrong_type_msg[]
+    char const where[]
   ) const {
-    GC_ASSERT( this->exists(key), missing_msg << " key: `" << key << "` is missing" );
-    return (*this)(key).get_vec_string( wrong_type_msg );
+    GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
+    return (*this)(key).get_vec_string( where );
   }
 
   // ---------------------------------------------------------------------------
