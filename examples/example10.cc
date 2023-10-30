@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------*\
  |                                                                          |
- |  Copyright (C) 2013                                                      |
+ |  Copyright (C) 2021                                                      |
  |                                                                          |
  |         , __                 , __                                        |
  |        /|/  \               /|/  \                                       |
@@ -16,18 +16,45 @@
  |      email: enrico.bertolazzi@unitn.it                                   |
  |                                                                          |
 \*--------------------------------------------------------------------------*/
+/*!
 
-//
-// file: GenericContainer.hh
-//
+ \example example10.cc
 
-#pragma once
+ */
 
-#ifndef GENERIC_CONTAINER_FORWARD_HH
-#define GENERIC_CONTAINER_FORWARD_HH
-#include "GenericContainer/GenericContainer.hh"
-#endif
+#include "GenericContainer.hh"
+#include <iostream>
+#include <fstream>
 
-//
-// eof: GenericContainer.hh
-//
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.10     \n"
+    << "***********************\n\n";
+
+  try {
+    GenericContainer gc1, gc2, pars;
+    gc1.readFormattedData( "examples/example10_data.txt" );
+    gc2.readFormattedData2( "examples/example10_data.txt", "#", " \t", &pars );
+    std::cout << "GC1 --------------------------\n";
+    gc1.print(std::cout);
+    std::cout << "GC2 --------------------------\n";
+    gc2.print(std::cout);
+    std::cout << "PARS --------------------------\n";
+    pars.print(std::cout);
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}

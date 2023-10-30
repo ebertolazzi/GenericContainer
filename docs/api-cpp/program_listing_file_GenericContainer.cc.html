@@ -5407,6 +5407,20 @@
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">readFormattedData</span><span class="p">(</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">commentChars</span><span class="p">,</span><span class="w"> </span><span class="n">delimiters</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
+<span class="w">  </span><span class="n">GenericContainer</span><span class="w"> </span><span class="o">&amp;</span><span class="w"></span>
+<span class="w">  </span><span class="n">GenericContainer</span><span class="o">::</span><span class="n">readFormattedData2</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fname</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">commentChars</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delimiters</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">GC_ASSERT</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">file</span><span class="p">.</span><span class="n">good</span><span class="p">(),</span><span class="w"></span>
+<span class="w">      </span><span class="s">"readFormattedData2, failed to open file: ``"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">fname</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"''"</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">readFormattedData2</span><span class="p">(</span><span class="w"> </span><span class="n">file</span><span class="p">,</span><span class="w"> </span><span class="n">commentChars</span><span class="p">,</span><span class="w"> </span><span class="n">delimiters</span><span class="w"> </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
 <span class="w">  </span><span class="kt">void</span><span class="w"></span>
 <span class="w">  </span><span class="n">GenericContainer</span><span class="o">::</span><span class="n">exception</span><span class="p">(</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span><span class="w"></span>

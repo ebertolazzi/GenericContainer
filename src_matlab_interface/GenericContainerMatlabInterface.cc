@@ -165,7 +165,7 @@ namespace GC_namespace {
     T * pi = static_cast<T*>(mxGetImagData(mx));
 
     if ( mxGetNumberOfElements(mx) == 1 ) {
-      gc = complex_type(*pr,*pi);
+      gc = complex_type(real_type(*pr),real_type(*pi));
     } else {
       mwSize number_of_dimensions = mxGetNumberOfDimensions(mx);
       switch ( number_of_dimensions ) {
@@ -173,7 +173,7 @@ namespace GC_namespace {
         { mwSize total_num_of_elements = mxGetNumberOfElements(mx);
           vec_complex_type & vec = gc.set_vec_complex( total_num_of_elements );
           for ( mwSize idx = 0; idx < total_num_of_elements; ++idx )
-            vec[idx] = complex_type(*pr++,*pi++);
+            vec[idx] = complex_type(real_type(*pr++),real_type(*pi++));
         }
         break;
       case 2:
@@ -181,12 +181,12 @@ namespace GC_namespace {
           mwSize total_num_of_elements = mxGetNumberOfElements(mx);
           vec_complex_type & vec = gc.set_vec_complex( total_num_of_elements );
           for ( mwSize idx = 0; idx < total_num_of_elements; ++idx )
-            vec[idx] = complex_type(*pr++,*pi++);
+            vec[idx] = complex_type(real_type(*pr++),real_type(*pi++));
         } else {
           mat_complex_type & mat = gc.set_mat_complex( dims[0], dims[1] );
           mwSize total_num_of_elements = mxGetNumberOfElements(mx);
           for ( mwSize idx = 0; idx < total_num_of_elements; ++idx )
-            mat[idx] = complex_type(*pr++,*pi++);
+            mat[idx] = complex_type(real_type(*pr++),real_type(*pi++));
         }
         break;
       default:
@@ -251,9 +251,9 @@ namespace GC_namespace {
     for ( unsigned i = 0; i <= nc; ++i ) jc[i] = jcs[i];
     for ( unsigned i = 0; i < nnz; ++i ) ir[i] = irs[i];
 
-    double * sr = mxGetPr(mx);
+    real_type * sr = mxGetPr(mx);
     if ( mxIsComplex( mx ) ) {
-      double * si = mxGetPi(mx);
+      real_type * si = mxGetPi(mx);
       vec_complex_type & val = gc["values"].set_vec_complex( nnz );
       for ( unsigned i = 0; i < nnz; ++i ) val[i] = complex_type(sr[i],si[i]);
     } else {
@@ -343,14 +343,14 @@ namespace GC_namespace {
   to_mxArray( int_type const & val, mxArray * & mx ) {
     mwSize dims[2] = {1,1};
     mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-    *(mwSize *)mxGetData(mx) = mwSize(val);
+    *static_cast<mwSize *>(mxGetData(mx)) = mwSize(val);
   }
 
   void
   to_mxArray( long_type const & val, mxArray * & mx ) {
     mwSize dims[2] = {1,1};
     mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-    *(int64_t*)mxGetData(mx) = int64_t(val);
+    *static_cast<int64_t*>(mxGetData(mx)) = int64_t(val);
   }
 
   void
@@ -375,7 +375,7 @@ namespace GC_namespace {
   to_mxArray( vec_bool_type const & val, mxArray * & mx ) {
     mwSize dims[2] = { mwSize(val.size()), 1 };
     mx = mxCreateNumericArray(2,dims,mxLOGICAL_CLASS,mxREAL);
-    mxLogical * ptr = (mxLogical*)mxGetData(mx);
+    mxLogical * ptr = static_cast<mxLogical*>(mxGetData(mx));
     for ( mwSize i = 0; i < dims[0]; ++i ) ptr[i] = val[i];
   }
 
@@ -384,7 +384,7 @@ namespace GC_namespace {
   cout << "in  to_mxArray( vec_int_type\n";
     mwSize dims[2] = { mwSize(val.size()), 1 };
     mx = mxCreateNumericArray(2,dims,mxINT32_CLASS,mxREAL);
-    int32_t * ptr = (int32_t*)mxGetData(mx);
+    int32_t * ptr = static_cast<int32_t*>(mxGetData(mx));
     for ( mwSize i = 0; i < dims[0]; ++i ) ptr[i] = int32_t(val[i]);
   }
 
@@ -392,7 +392,7 @@ namespace GC_namespace {
   to_mxArray( vec_long_type const & val, mxArray * & mx ) {
     mwSize dims[2] = { mwSize(val.size()), 1 };
     mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-    int64_t * ptr = (int64_t*)mxGetData(mx);
+    int64_t * ptr = static_cast<int64_t*>(mxGetData(mx));
     for ( mwSize i = 0; i < dims[0]; ++i ) ptr[i] = int64_t(val[i]);
   }
 
@@ -400,7 +400,7 @@ namespace GC_namespace {
   to_mxArray( vec_real_type const & val, mxArray * & mx ) {
     mwSize dims[2] = { mwSize(val.size()), 1 };
     mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxREAL);
-    double * ptr = mxGetPr(mx);
+    real_type * ptr = mxGetPr(mx);
     for ( mwSize i = 0; i < dims[0]; ++i ) ptr[i] = val[i];
   }
 
@@ -408,8 +408,8 @@ namespace GC_namespace {
   to_mxArray( vec_complex_type const & val, mxArray * & mx ) {
     mwSize dims[2] = { mwSize(val.size()), 1 };
     mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
-    double * ptr = mxGetPr(mx);
-    double * pti = mxGetPi(mx);
+    real_type * ptr = mxGetPr(mx);
+    real_type * pti = mxGetPi(mx);
     for ( mwSize i = 0; i < dims[0]; ++i ) {
       ptr[i] = val[i].real();
       pti[i] = val[i].imag();
@@ -450,7 +450,7 @@ namespace GC_namespace {
   to_mxArray( mat_real_type const & val, mxArray * & mx ) {
     mwSize dims[2] = { mwSize(val.numRows()), mwSize(val.numCols()) };
     mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxREAL);
-    double * ptr = mxGetPr(mx);
+    real_type * ptr = mxGetPr(mx);
     mwSize k = 0;
     for ( mwSize j = 0; j < dims[1]; ++j )
       for ( mwSize i = 0; i < dims[0]; ++i )
@@ -461,8 +461,8 @@ namespace GC_namespace {
   to_mxArray( mat_complex_type const & val, mxArray * & mx ) {
     mwSize dims[2] = { mwSize(val.numRows()), mwSize(val.numCols()) };
     mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
-    double * ptr = mxGetPr(mx);
-    double * pti = mxGetPi(mx);
+    real_type * ptr = mxGetPr(mx);
+    real_type * pti = mxGetPi(mx);
     mwSize k = 0;
     for ( mwSize j = 0; j < dims[1]; ++j ) {
       for ( mwSize i = 0; i < dims[0]; ++i ) {
@@ -480,29 +480,29 @@ namespace GC_namespace {
     static char const where[] = "in GenericContainer_to_mxArray: ";
     mwSize dims[2] = {1,1};
     switch ( gc.get_type() ) {
-    case GC_NOTYPE:
-    case GC_POINTER:
-    case GC_VEC_POINTER:
+    case GC_type::NOTYPE:
+    case GC_type::POINTER:
+    case GC_type::VEC_POINTER:
       mx = mxCreateDoubleMatrix(0,0,mxREAL);
       break;
-    case GC_BOOL:
+    case GC_type::BOOL:
       {
         mxLogical val = gc.get_bool() ? 1 : 0;
         mx = mxCreateLogicalScalar(val);
       }
       break;
-    case GC_INTEGER:
+    case GC_type::INTEGER:
       mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-      *(mwSize *)mxGetData(mx) = gc.get_int();
+      *static_cast<mwSize *>(mxGetData(mx)) = gc.get_int();
       break;
-    case GC_LONG:
+    case GC_type::LONG:
       mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-      *(mwSize *)mxGetData(mx) = gc.get_long();
+      *static_cast<mwSize *>(mxGetData(mx)) = gc.get_long();
       break;
-    case GC_REAL:
+    case GC_type::REAL:
       mx = mxCreateDoubleScalar(gc.get_real());
       break;
-    case GC_COMPLEX:
+    case GC_type::COMPLEX:
       {
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
         real_type re, im;
@@ -511,52 +511,52 @@ namespace GC_namespace {
         *mxGetPi(mx) = im;
       }
       break;
-    case GC_STRING:
+    case GC_type::STRING:
       mx = mxCreateString( gc.get_string().c_str() );
       break;
-    case GC_VEC_BOOL:
+    case GC_type::VEC_BOOL:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxLOGICAL_CLASS,mxREAL);
-        mxLogical * ptr = (mxLogical*)mxGetData(mx);
+        mxLogical * ptr = static_cast<mxLogical*>(mxGetData(mx));
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_bool_at(i,where);
       }
       break;
-    case GC_VEC_INTEGER:
+    case GC_type::VEC_INTEGER:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-        mwSize * ptr = (mwSize*)mxGetData(mx);
+        mwSize * ptr = static_cast<mwSize*>(mxGetData(mx));
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_int_at(i,where);
       }
       break;
-    case GC_VEC_LONG:
+    case GC_type::VEC_LONG:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxINT64_CLASS,mxREAL);
-        mwSize * ptr = (mwSize*)mxGetData(mx);
+        mwSize * ptr = static_cast<mwSize*>(mxGetData(mx));
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_long_at(i,where);
       }
       break;
-    case GC_VEC_REAL:
+    case GC_type::VEC_REAL:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxREAL);
-        double * ptr = mxGetPr(mx);
+        real_type * ptr = mxGetPr(mx);
         for ( mwSize i = 0; i < dims[1]; ++i ) ptr[i] = gc.get_real_at(i,where);
       }
       break;
-    case GC_VEC_COMPLEX:
+    case GC_type::VEC_COMPLEX:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
-        double * ptr = mxGetPr(mx);
-        double * pti = mxGetPi(mx);
+        real_type * ptr = mxGetPr(mx);
+        real_type * pti = mxGetPi(mx);
         for ( mwSize i = 0; i < dims[1]; ++i )
           gc.get_complex_number_at(i,ptr[i],pti[i]);
       }
       break;
-    case GC_VEC_STRING:
+    case GC_type::VEC_STRING:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateCellMatrix(dims[0], dims[1]);
@@ -564,7 +564,7 @@ namespace GC_namespace {
           mxSetCell(mx,i,mxCreateString( gc.get_string_at(i,where).c_str()));
       }
       break;
-    case GC_MAT_INTEGER:
+    case GC_type::MAT_INTEGER:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
@@ -576,7 +576,7 @@ namespace GC_namespace {
             ptr[k++] = gc.get_int_at(i,j,where);
       }
       break;
-    case GC_MAT_LONG:
+    case GC_type::MAT_LONG:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
@@ -588,25 +588,25 @@ namespace GC_namespace {
             ptr[k++] = gc.get_long_at(i,j,where);
         }
       break;
-    case GC_MAT_REAL:
+    case GC_type::MAT_REAL:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxREAL);
-        double * ptr = mxGetPr(mx);
+        real_type * ptr = mxGetPr(mx);
         mwSize k = 0;
         for ( mwSize j = 0; j < dims[1]; ++j )
           for ( mwSize i = 0; i < dims[0]; ++i )
             ptr[k++] = gc.get_real_at(i,j,where);
       }
       break;
-    case GC_MAT_COMPLEX:
+    case GC_type::MAT_COMPLEX:
       {
         dims[0] = gc.get_numRows();
         dims[1] = gc.get_numCols();
         mx = mxCreateNumericArray(2,dims,mxDOUBLE_CLASS,mxCOMPLEX);
-        double * ptr = mxGetPr(mx);
-        double * pti = mxGetPi(mx);
+        real_type * ptr = mxGetPr(mx);
+        real_type * pti = mxGetPi(mx);
         mwSize k = 0;
         for ( mwSize j = 0; j < dims[1]; ++j ) {
           for ( mwSize i = 0; i < dims[0]; ++i ) {
@@ -618,7 +618,7 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_VECTOR:
+    case GC_type::VECTOR:
       {
         dims[1] = gc.get_num_elements();
         mx = mxCreateCellMatrix(dims[0], dims[1]);
@@ -629,10 +629,10 @@ namespace GC_namespace {
         }
       }
       break;
-    case GC_MAP:
+    case GC_type::MAP:
       {
         map_type const & mappa = gc.get_map();
-        std::vector<char const *> fieldnames;
+        vector<char const *> fieldnames;
         int nfield = mappa.size();
         fieldnames.reserve(nfield);
         for ( map_type::const_iterator im = mappa.begin(); im != mappa.end(); ++im )

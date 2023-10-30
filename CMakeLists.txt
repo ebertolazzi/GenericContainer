@@ -5,34 +5,35 @@
 #      Enrico Bertolazzi                                                   #
 #      Dipartimento di Ingegneria Industriale                              #
 #      Universita` degli Studi di Trento                                   #
-#      email: enrico.bertolazzi@ing.unitn.it                               #
+#      email: enrico.bertolazzi@unitn.it                                   #
 #                                                                          #
 ############################################################################
 
 cmake_minimum_required(VERSION 3.14)
 
 project( GenericContainer )
-include(./cmake/CMakeLists-common.txt)
+include(./cmake_utils/CMakeLists-common.txt)
 
 project(
   ${PROJECT_NAME}
-  VERSION ${EB_PROJECT_VERSION}
+  VERSION ${UTILS_PROJECT_VERSION}
   HOMEPAGE_URL "https://ebertolazzi.github.io/GenericContainer/"
 )
 
-include(./cmake/CMakeLists-cflags.txt)
-include(./cmake/CMakeLists-utilities.txt)
+include(./cmake_utils/CMakeLists-cflags.txt)
+include(./cmake_utils/CMakeLists-utilities.txt)
 
 # Evaluating the suffix to append to target built by this CMake file
-ebertolazzi_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
-if( EB_BUILD_SHARED )
-  ebertolazzi_artifacts_suffix(ARTIFACTS_DYNAMIC_SUFFIX FALSE)
+utils_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
+if( UTILS_BUILD_SHARED )
+  utils_artifacts_suffix(ARTIFACTS_DYNAMIC_SUFFIX FALSE)
 endif()
 
 message( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}" )
 message( STATUS "BASE SUFFIXES = ${ARTIFACTS_STATIC_SUFFIX} ${ARTIFACTS_DYNAMIC_SUFFIX}" )
 
 if (APPLE)
+  set( CMAKE_OSX_ARCHITECTURES arm64;x86_64 )
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLUA_USE_MACOSX")
 elseif(LINUX OR UNIX)
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLUA_USE_LINUX")
@@ -111,7 +112,7 @@ foreach (F ${S})
   list( APPEND lualib_SOURCES ${RF} )
 endforeach(F ${S})
 
-list( FILTER lualib_SOURCES EXCLUDE REGEX "luac\.c$" )
+list( FILTER lualib_SOURCES EXCLUDE REGEX ".*luac?\.c$" )
 
 #   _____                  _
 #  |_   _|_ _ _ _ __ _ ___| |_ ___
@@ -120,7 +121,7 @@ list( FILTER lualib_SOURCES EXCLUDE REGEX "luac\.c$" )
 #                |___/
 #
 # define target
-ebertolazzi_setup_target(
+utils_setup_target(
   Lua
   TRUE # build static
   "${lualib_DIR}"
@@ -128,7 +129,7 @@ ebertolazzi_setup_target(
   "${lualib_DIR}"
   "${lualib_HEADERS}"
 )
-ebertolazzi_setup_target(
+utils_setup_target(
   ${PROJECT_NAME}
   TRUE # build static
   "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -136,8 +137,8 @@ ebertolazzi_setup_target(
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
   "${PUBLIC_HEADERS}"
 )
-if ( EB_BUILD_SHARED )
-  ebertolazzi_setup_target(
+if ( UTILS_BUILD_SHARED )
+  utils_setup_target(
     Lua
     FALSE # build dynamic
     "${lualib_DIR}"
@@ -145,7 +146,7 @@ if ( EB_BUILD_SHARED )
     "${lualib_DIR}"
     "${lualib_HEADERS}"
   )
-  ebertolazzi_setup_target(
+  utils_setup_target(
     ${PROJECT_NAME}
     FALSE # build dynamic
     "${CMAKE_CURRENT_SOURCE_DIR}"
@@ -153,7 +154,7 @@ if ( EB_BUILD_SHARED )
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${PUBLIC_HEADERS}"
   )
-  target_link_libraries( "${EB_NAMESPACE}_${PROJECT_NAME}" "${EB_NAMESPACE}_Lua" )
+  target_link_libraries( "${UTILS_NAMESPACE}_${PROJECT_NAME}" "${UTILS_NAMESPACE}_Lua" )
 endif()
 
 #   _____       _
@@ -161,7 +162,7 @@ endif()
 #    | |/ -_|_-<  _(_-<
 #    |_|\___/__/\__/__/
 #
-if ( EB_ENABLE_TESTS )
+if ( UTILS_ENABLE_TESTS )
 
   enable_testing()
 
@@ -171,7 +172,7 @@ if ( EB_ENABLE_TESTS )
   set(
     EXELISTCPP
     example1 example2 example3 example4 example5
-    example7 example8 example9
+    example7 example8 example9 example10
   )
 
   set( EXELISTC example6 )
@@ -181,30 +182,34 @@ if ( EB_ENABLE_TESTS )
   add_custom_target( "${PROJECT_NAME}_all_tests" ALL )
 
   set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin )
-  set( LIBS ${EB_NAMESPACE}_${PROJECT_NAME}_Static ${EB_NAMESPACE}_Lua_Static ${CMAKE_DL_LIBS} )
+  set( LIBS ${UTILS_NAMESPACE}_${PROJECT_NAME}_Static ${UTILS_NAMESPACE}_Lua_Static ${CMAKE_DL_LIBS} )
 
   foreach( S ${EXELISTCPP} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/examples/${S}.cc )
     target_link_libraries( ${S} ${LIBS} )
-    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
+    add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
   endforeach()
   foreach( S ${EXELISTC} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/examples/${S}.c )
     target_link_libraries( ${S} ${LIBS} )
-    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
+    add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
   endforeach()
   foreach( S ${EXEJSONTEST} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface/tests/${S}.cc )
     target_link_libraries( ${S} ${LIBS} )
-    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
+    add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
   endforeach()
   foreach( S ${EXELUATEST} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/tests/${S}.cc )
     target_link_libraries( ${S} ${LIBS} )
-    add_test( NAME "${S}" COMMAND ./bin/${S} WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
+    set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
+    add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
   endforeach()
 
@@ -232,6 +237,6 @@ install(
 #
 
 # do not work
-#include( ./cmake/CMakeLists-cpack.txt )
+#include( ./cmake_utils/CMakeLists-cpack.txt )
 
-ebertolazzi_final_messages()
+utils_final_messages()

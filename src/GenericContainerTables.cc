@@ -41,9 +41,9 @@ namespace GC_namespace {
     unsigned ncol = unsigned(headers.size());
     unsigned nrow = unsigned(data[0].get_num_elements());
 
-    stream << headers[0].c_str();
+    stream << headers[0];
     for ( unsigned icol = 1; icol < ncol; ++icol )
-      stream << delimiter << headers[icol].c_str();
+      stream << delimiter << headers[icol];
     stream << '\n';
 
     for ( unsigned row = 0; row < nrow; ++row ) {
@@ -65,9 +65,9 @@ namespace GC_namespace {
     unsigned ncol = unsigned(data.numCols());
     unsigned nrow = unsigned(data.numRows());
 
-    stream << headers[0].c_str();
+    stream << headers[0];
     for ( unsigned icol = 1; icol < ncol; ++icol )
-      stream << delimiter << headers[icol].c_str();
+      stream << delimiter << headers[icol];
     stream << '\n';
 
     for ( unsigned row = 0; row < nrow; ++row ) {
@@ -105,7 +105,7 @@ namespace GC_namespace {
     stream << std::setw(int(ml)) << is->c_str();
     for ( ++is; is != headers.end(); ++is )
       stream << " " << std::setw(int(ml)) << is->c_str();
-    stream << '\n' << line.c_str() << '\n';
+    stream << '\n' << line << '\n';
 
     for ( unsigned row = 0; row < nrow; ++row ) {
       stream << std::setw(int(ml)) << data[0].get_number_at(row);
@@ -113,7 +113,7 @@ namespace GC_namespace {
         stream << " " << std::setw(int(ml)) << data[icol].get_number_at(row);
       stream << '\n';
     }
-    stream << line.c_str() << '\n';
+    stream << line << '\n';
   }
 
   void
@@ -143,7 +143,7 @@ namespace GC_namespace {
     stream << std::setw(int(ml)) << is->c_str();
     for ( ++is; is != headers.end(); ++is )
       stream << " " << std::setw(int(ml)) << is->c_str();
-    stream << '\n' << line.c_str() << '\n';
+    stream << '\n' << line << '\n';
 
     for ( unsigned row = 0; row < nrow; ++row ) {
       stream << std::setw(int(ml)) << data(row,0);
@@ -151,7 +151,7 @@ namespace GC_namespace {
         stream << " " << std::setw(int(ml)) << data(row,icol);
       stream << '\n';
     }
-    stream << line.c_str() << '\n';
+    stream << line << '\n';
   }
 
   #endif

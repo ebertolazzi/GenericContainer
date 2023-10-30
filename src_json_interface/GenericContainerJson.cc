@@ -106,125 +106,125 @@ namespace GC_namespace {
   ) {
 
     switch ( gc.get_type() ) {
-    case GC_NOTYPE: {
+    case GC_type::NOTYPE: {
       string null = "null";
-      writer.String ( null.c_str() );
+      writer.String( null.c_str() );
       break;
     }
-    case GC_POINTER: {
+    case GC_type::POINTER: {
       stringstream ss;
       ss << gc.get_pointer<void *>();
-      writer.String ( ss.str().c_str(), SizeType(ss.str().length()) );
+      writer.String( ss.str().c_str(), SizeType(ss.str().length()) );
       break;
     }
-    case GC_BOOL: {
-      writer.Bool ( gc.get_bool() );
+    case GC_type::BOOL: {
+      writer.Bool( gc.get_bool() );
       break;
     }
-    case GC_INTEGER: {
-      writer.Int ( gc.get_int() );
+    case GC_type::INTEGER: {
+      writer.Int( gc.get_int() );
       break;
     }
-    case GC_LONG: {
-      writer.Int64 ( gc.get_long() );
+    case GC_type::LONG: {
+      writer.Int64( gc.get_long() );
       break;
     }
-    case GC_REAL: {
-      writer.Double ( gc.get_real() );
+    case GC_type::REAL: {
+      writer.Double( gc.get_real() );
       break;
     }
-    case GC_STRING: {
-      writer.String ( gc.get_string().c_str(), SizeType(gc.get_string().length()) );
+    case GC_type::STRING: {
+      writer.String( gc.get_string().c_str(), SizeType(gc.get_string().length()) );
       break;
     }
-    case GC_COMPLEX: {
+    case GC_type::COMPLEX: {
       stringstream ss;
       complex_to_stream ( gc.get_complex(), ss, im_unit );
-      writer.String ( ss.str().c_str(), SizeType(ss.str().length()) );
+      writer.String( ss.str().c_str(), SizeType(ss.str().length()) );
       break;
     }
     //vector type
-    case GC_VEC_POINTER: {
+    case GC_type::VEC_POINTER: {
       writer.StartArray();
       for ( void * pointer : gc.get_vec_pointer() ) {
         stringstream ss;
         ss << pointer;
-        writer.String ( ss.str().c_str(), SizeType(ss.str().length()) );
+        writer.String( ss.str().c_str(), SizeType(ss.str().length()) );
       }
       writer.EndArray();
       break;
     }
-    case GC_VEC_BOOL: {
+    case GC_type::VEC_BOOL: {
       writer.StartArray();
       for ( bool value : gc.get_vec_bool() ) {
-        writer.Bool ( value );
+        writer.Bool( value );
       }
       writer.EndArray();
       break;
     }
-    case GC_VEC_INTEGER: {
+    case GC_type::VEC_INTEGER: {
       writer.StartArray();
       for ( int_type value : gc.get_vec_int() ) {
-        writer.Int ( value );
+        writer.Int( value );
       }
       writer.EndArray();
       break;
     }
-    case GC_VEC_LONG: {
+    case GC_type::VEC_LONG: {
       writer.StartArray();
       for ( long_type value : gc.get_vec_long() ) {
-        writer.Int64 ( value );
+        writer.Int64( value );
       }
       writer.EndArray();
       break;
     }
-    case GC_VEC_REAL: {
+    case GC_type::VEC_REAL: {
       writer.StartArray();
       for ( real_type value : gc.get_vec_real() ) {
-        writer.Double ( value );
+        writer.Double( value );
       }
       writer.EndArray();
       break;
     }
-    case GC_VEC_STRING: {
+    case GC_type::VEC_STRING: {
       writer.StartArray();
       for ( string const & value : gc.get_vec_string() ) {
-        writer.String ( value.c_str(), SizeType(value.length()) );
+        writer.String( value.c_str(), SizeType(value.length()) );
       }
       writer.EndArray();
       break;
     }
-    case GC_VECTOR: {
+    case GC_type::VECTOR: {
       writer.StartArray();
       for ( GenericContainer const & value : gc.get_vector() ) {
-        gc_to_writer ( value, writer, im_unit, mat_order );
+        gc_to_writer( value, writer, im_unit, mat_order );
       }
       writer.EndArray();
       break;
     }
-    case GC_VEC_COMPLEX: {
+    case GC_type::VEC_COMPLEX: {
       writer.StartArray();
       for ( complex_type value : gc.get_vec_complex() ) {
         stringstream ss;
         complex_to_stream ( value, ss, im_unit );
-        writer.String ( ss.str().c_str(), SizeType(ss.str().length()) );
+        writer.String( ss.str().c_str(), SizeType(ss.str().length()) );
       }
       writer.EndArray();
       break;
     }
     // map type
-    case GC_MAP: {
+    case GC_type::MAP: {
       writer.StartObject();
       map_type const & m = gc.get_map();
       for ( map_type::const_iterator it = m.begin(); it != m.end(); ++it ) {
-        writer.Key ( it->first.c_str() );
-        gc_to_writer ( it->second, writer, im_unit, mat_order );
+        writer.Key( it->first.c_str() );
+        gc_to_writer( it->second, writer, im_unit, mat_order );
       }
       writer.EndObject();
       break;
     }
     // matrix type
-    case GC_MAT_INTEGER: {
+    case GC_type::MAT_INTEGER: {
       writer.StartArray();
       mat_int_type mat = gc.get_mat_int();
       if ( mat_order == row_major ) { // if row_major
@@ -247,7 +247,7 @@ namespace GC_namespace {
       writer.EndArray();
       break;
     }
-    case GC_MAT_LONG: {
+    case GC_type::MAT_LONG: {
       writer.StartArray();
       mat_long_type mat = gc.get_mat_long();
       if ( mat_order == row_major ) { // if row_major
@@ -270,7 +270,7 @@ namespace GC_namespace {
       writer.EndArray();
       break;
     }
-    case GC_MAT_REAL: {
+    case GC_type::MAT_REAL: {
       writer.StartArray();
       mat_real_type mat = gc.get_mat_real();
       if ( mat_order == row_major ) { // if row_major
@@ -293,7 +293,7 @@ namespace GC_namespace {
       writer.EndArray();
       break;
     }
-    case GC_MAT_COMPLEX: {
+    case GC_type::MAT_COMPLEX: {
       writer.StartArray();
       mat_complex_type mat = gc.get_mat_complex();
       if ( mat_order == row_major ) { // if row_major
