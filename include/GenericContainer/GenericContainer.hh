@@ -444,7 +444,7 @@ namespace GC_namespace {
     //! Set data to `complex_type` initialize and
     //! return a reference to the data
     //!
-    complex_type & set_complex( complex_type & value );
+    complex_type & set_complex( complex_type const & value );
 
     //!
     //! Set data to `complex_type` initialize and
@@ -2418,6 +2418,20 @@ namespace GC_namespace {
       this->print(ostr,prefix,indent);
       return ostr.str();
     }
+
+    //!
+    //! Copy the contents of the object into another object
+    //!
+    //! \param[out] gc output `GenericContainer`
+    //!
+    void to_gc( GenericContainer & gc ) const;
+
+    //!
+    //! Copy the contents of the object into another object
+    //!
+    //! \param[in] gc input `GenericContainer`
+    //!
+    void from_gc( GenericContainer const & gc );
 
     //!
     //! Print the contents of the object in yaml syntax

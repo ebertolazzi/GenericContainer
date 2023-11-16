@@ -819,7 +819,7 @@ namespace GC_namespace {
   }
 
   complex_type &
-  GenericContainer::set_complex( complex_type & value ) {
+  GenericContainer::set_complex( complex_type const & value ) {
     clear();
     m_data_type = GC_type::COMPLEX;
     m_data.c    = new complex_type;
@@ -5019,6 +5019,190 @@ namespace GC_namespace {
     //default:
     //  GC_DO_ERROR( "Error, print(...) unknown type!\n");
     //  break;
+    }
+  }
+
+  /*
+  //   _
+  //  | |_ ___      __ _  ___
+  //  | __/ _ \    / _` |/ __|
+  //  | || (_) |  | (_| | (__
+  //   \__\___/____\__, |\___|
+  //         |_____|___/
+  */
+
+  void
+  GenericContainer::to_gc( GenericContainer & gc ) const {
+    switch (m_data_type) {
+    case GC_type::NOTYPE:
+      gc.clear();
+      break;
+    case GC_type::BOOL:
+      gc.set_bool(this->get_bool());
+      break;
+    case GC_type::INTEGER:
+      gc.set_int(this->get_int());
+      break;
+    case GC_type::LONG:
+      gc.set_long(this->get_long());
+      break;
+    case GC_type::REAL:
+      gc.set_real(this->get_real());
+      break;
+    case GC_type::COMPLEX:
+      gc.set_complex(this->get_complex());
+      break;
+    case GC_type::STRING:
+      gc.set_string(this->get_string());
+      break;
+    case GC_type::VEC_BOOL:
+      gc = this->get_vec_bool();
+      break;
+    case GC_type::VEC_INTEGER:
+      gc = this->get_vec_int();
+      break;
+    case GC_type::VEC_LONG:
+      gc = this->get_vec_long();
+      break;
+    case GC_type::VEC_REAL:
+      gc = this->get_vec_real();
+      break;
+    case GC_type::VEC_STRING:
+      gc = this->get_vec_string();
+      break;
+
+    case GC_type::VECTOR:
+      gc.set_vector();
+      { vector_type const & v  = this->get_vector();
+        vector_type       & vv = gc.set_vector(v.size());
+        for ( vector_type::size_type i = 0; i < v.size(); ++i )
+          v[i].to_gc(vv[i]);
+      }
+      break;
+    case GC_type::MAP:
+      gc.set_map();
+      { map_type const & m = this->get_map();
+        for ( auto const & im : m )
+          im.second.to_gc(gc[im.first]);
+      }
+      break;
+    case GC_type::MAT_INTEGER:
+      gc = this->get_mat_int();
+      break;
+    case GC_type::MAT_LONG:
+      gc = this->get_mat_long();
+      break;
+    case GC_type::MAT_REAL:
+      gc = this->get_mat_real();
+      break;
+    case GC_type::VEC_COMPLEX:
+      gc = this->get_vec_complex();
+      break;
+    case GC_type::MAT_COMPLEX:
+      gc = this->get_mat_complex();
+      break;
+    case GC_type::POINTER:
+      gc = this->get_pointer<void *>();
+      break;
+    case GC_type::VEC_POINTER:
+      { vec_pointer_type const & v  = this->get_vec_pointer();
+        vec_pointer_type       & vv = gc.set_vec_pointer(v.size());
+        for ( vec_pointer_type::size_type i{0}; i < v.size(); ++i )
+          vv[i] = v[i];
+      }
+      break;
+    }
+  }
+
+  /*
+  //    __
+  //   / _|_ __ ___  _ __ ___       __ _  ___
+  //  | |_| '__/ _ \| '_ ` _ \     / _` |/ __|
+  //  |  _| | | (_) | | | | | |   | (_| | (__
+  //  |_| |_|  \___/|_| |_| |_|____\__, |\___|
+  //                         |_____|___/
+  */
+
+  void
+  GenericContainer::from_gc( GenericContainer const & gc ) {
+    switch ( gc.get_type()) {
+    case GC_type::NOTYPE:
+      this->clear();
+      break;
+    case GC_type::BOOL:
+      this->set_bool(gc.get_bool());
+      break;
+    case GC_type::INTEGER:
+      this->set_int(gc.get_int());
+      break;
+    case GC_type::LONG:
+      this->set_long(gc.get_long());
+      break;
+    case GC_type::REAL:
+      this->set_real(gc.get_real());
+      break;
+    case GC_type::COMPLEX:
+      this->set_complex(gc.get_complex());
+      break;
+    case GC_type::STRING:
+      this->set_string(gc.get_string());
+      break;
+    case GC_type::VEC_BOOL:
+      this->set_vec_bool( gc.get_vec_bool() );
+      break;
+    case GC_type::VEC_INTEGER:
+      this->set_vec_int( gc.get_vec_int() );
+      break;
+    case GC_type::VEC_LONG:
+      this->set_vec_long( gc.get_vec_long() );
+      break;
+    case GC_type::VEC_REAL:
+      this->set_vec_real( gc.get_vec_real() );
+      break;
+    case GC_type::VEC_STRING:
+      this->set_vec_string( gc.get_vec_string() );
+      break;
+
+    case GC_type::VECTOR:
+      this->set_vector();
+      { vector_type const & v  = gc.get_vector();
+        vector_type       & vv = this->set_vector(v.size());
+        for ( vector_type::size_type i = 0; i < v.size(); ++i )
+          vv[i].from_gc(v[i]);
+      }
+      break;
+    case GC_type::MAP:
+      this->set_map();
+      { map_type const & m = gc.get_map();
+        for ( auto const & im : m )
+          (*this)[im.first].from_gc(im.second);
+      }
+      break;
+    case GC_type::MAT_INTEGER:
+      this->set_mat_int( gc.get_mat_int() );
+      break;
+    case GC_type::MAT_LONG:
+      this->set_mat_long( gc.get_mat_long() );
+      break;
+    case GC_type::MAT_REAL:
+      this->set_mat_real( gc.get_mat_real() );
+      break;
+    case GC_type::VEC_COMPLEX:
+      this->set_vec_complex( gc.get_vec_complex() );
+      break;
+    case GC_type::MAT_COMPLEX:
+      this->set_mat_complex( gc.get_mat_complex() );
+      break;
+    case GC_type::POINTER:
+      this->set_pointer( gc.get_pointer<void *>() );
+      break;
+    case GC_type::VEC_POINTER:
+      { vec_pointer_type const & v  = gc.get_vec_pointer();
+        vec_pointer_type       & vv = this->set_vec_pointer(v.size());
+        for ( vec_pointer_type::size_type i{0}; i < v.size(); ++i )
+          vv[i] = v[i];
+      }
+      break;
     }
   }
 
