@@ -272,9 +272,9 @@ namespace GC_namespace {
       }
       break;
     case GC_type::MAT_INTEGER:
-      nb = int32_to_buffer( m_data.m_i->numRows(), buffer );
+      nb = int32_to_buffer( m_data.m_i->num_rows(), buffer );
       buffer += nb; nbyte += nb;
-      nb = int32_to_buffer( m_data.m_i->numCols(), buffer );
+      nb = int32_to_buffer( m_data.m_i->num_cols(), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & i : *m_data.m_i ) {
         sz = int32_to_buffer( i, buffer );
@@ -282,9 +282,9 @@ namespace GC_namespace {
       }
       break;
     case GC_type::MAT_LONG:
-      nb = int32_to_buffer( m_data.m_l->numRows(), buffer );
+      nb = int32_to_buffer( m_data.m_l->num_rows(), buffer );
       buffer += nb; nbyte += nb;
-      nb = int32_to_buffer( m_data.m_l->numCols(), buffer );
+      nb = int32_to_buffer( m_data.m_l->num_cols(), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & i : *m_data.m_l ) {
         sz = int64_to_buffer( i, buffer );
@@ -292,9 +292,9 @@ namespace GC_namespace {
       }
       break;
     case GC_type::MAT_REAL:
-      nb = int32_to_buffer( m_data.m_r->numRows(), buffer );
+      nb = int32_to_buffer( m_data.m_r->num_rows(), buffer );
       buffer += nb; nbyte += nb;
-      nb = int32_to_buffer( m_data.m_r->numCols(), buffer );
+      nb = int32_to_buffer( m_data.m_r->num_cols(), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & r : *m_data.m_r ) {
         sz = double_to_buffer( r, buffer );
@@ -302,9 +302,9 @@ namespace GC_namespace {
       }
       break;
     case GC_type::MAT_COMPLEX:
-      nb = int32_to_buffer( m_data.m_c->numRows(), buffer );
+      nb = int32_to_buffer( m_data.m_c->num_rows(), buffer );
       buffer += nb; nbyte += nb;
-      nb = int32_to_buffer( m_data.m_c->numCols(), buffer );
+      nb = int32_to_buffer( m_data.m_c->num_cols(), buffer );
       buffer += nb; nbyte += nb;
       for ( auto & c : *m_data.m_c ) {
         sz = double_to_buffer( c.real(), buffer );

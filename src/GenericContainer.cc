@@ -116,7 +116,7 @@ namespace GC_namespace {
   TYPE const &
   mat_type<TYPE>::operator () ( unsigned i, unsigned j ) const {
     try {
-      return this->at(i+j*m_numRows);
+      return this->at(i+j*m_num_rows);
     } catch ( std::exception const & exc ) {
       GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): " << exc.what() << "\n" );
     } catch ( ... ) {
@@ -128,7 +128,7 @@ namespace GC_namespace {
   TYPE &
   mat_type<TYPE>::operator () ( unsigned i, unsigned j ) {
     try {
-      return this->at(i+j*m_numRows);
+      return this->at(i+j*m_num_rows);
     } catch ( std::exception const & exc ) {
       GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): " << exc.what() << "\n" );
     } catch ( ... ) {
@@ -138,49 +138,49 @@ namespace GC_namespace {
 
   template <typename TYPE>
   void
-  mat_type<TYPE>::getColumn( unsigned nc, std::vector<TYPE> & C ) const {
+  mat_type<TYPE>::get_column( unsigned nc, std::vector<TYPE> & C ) const {
     GC_ASSERT(
-      nc < m_numCols,
-      "mat_type::getColumn(" << nc << ",C) column index out of range max = " << m_numCols-1
+      nc < m_num_cols,
+      "mat_type::get_column(" << nc << ",C) column index out of range max = " << m_num_cols-1
     );
     C.clear();
-    C.reserve(m_numRows);
-    for ( unsigned i = 0; i < m_numRows; ++i )
+    C.reserve(m_num_rows);
+    for ( unsigned i = 0; i < m_num_rows; ++i )
       C.push_back( (*this)(i,nc) );
   }
 
   template <typename TYPE>
   void
-  mat_type<TYPE>::getColumn( unsigned nc, TYPE * C ) const {
+  mat_type<TYPE>::get_column( unsigned nc, TYPE * C ) const {
     GC_ASSERT(
-      nc < m_numCols,
-      "mat_type::getColumn(" << nc << ",C) column index out of range max = " << m_numCols-1
+      nc < m_num_cols,
+      "mat_type::get_column(" << nc << ",C) column index out of range max = " << m_num_cols-1
     );
-    for ( unsigned i = 0; i < m_numRows; ++i )
+    for ( unsigned i = 0; i < m_num_rows; ++i )
       *C++ = (*this)(i,nc);
   }
 
   template <typename TYPE>
   void
-  mat_type<TYPE>::getRow( unsigned nr, std::vector<TYPE> & R ) const {
+  mat_type<TYPE>::get_row( unsigned nr, std::vector<TYPE> & R ) const {
     GC_ASSERT(
-      nr < m_numRows,
-      "mat_type::getRow(" << nr << ",C) row index out of range max = " << m_numRows-1
+      nr < m_num_rows,
+      "mat_type::get_row(" << nr << ",C) row index out of range max = " << m_num_rows-1
     );
     R.clear();
-    R.reserve(m_numCols);
-    for ( unsigned j = 0; j < m_numCols; ++j )
+    R.reserve(m_num_cols);
+    for ( unsigned j = 0; j < m_num_cols; ++j )
       R.push_back( (*this)(nr,j) );
   }
 
   template <typename TYPE>
   void
-  mat_type<TYPE>::getRow( unsigned nr, TYPE * R ) const {
+  mat_type<TYPE>::get_row( unsigned nr, TYPE * R ) const {
     GC_ASSERT(
-      nr < m_numRows,
-      "mat_type::getRow(" << nr << ",C) row index out of range max = " << m_numRows-1
+      nr < m_num_rows,
+      "mat_type::get_row(" << nr << ",C) row index out of range max = " << m_num_rows-1
     );
-    for ( unsigned j = 0; j < m_numCols; ++j )
+    for ( unsigned j = 0; j < m_num_cols; ++j )
       *R++ = (*this)(nr,j);
   }
 
@@ -189,7 +189,7 @@ namespace GC_namespace {
   mat_type<TYPE>::info( ostream_type & stream ) const {
     stream
       << "Matrix of floating point number of size "
-      << m_numRows << " x " << m_numCols
+      << m_num_rows << " x " << m_num_cols
       << '\n';
   }
 
@@ -197,15 +197,15 @@ namespace GC_namespace {
   template <typename TYPE>
   ostream_type &
   operator << ( ostream_type & s, mat_type<TYPE> const & m ) {
-    if ( m.numRows() > 0 && m.numCols() ) {
-      for ( unsigned i = 0; i < m.numRows(); ++i ) {
+    if ( m.num_rows() > 0 && m.num_cols() ) {
+      for ( unsigned i = 0; i < m.num_rows(); ++i ) {
         s << std::setw(8) << m(i,0);
-        for ( unsigned j = 1; j < m.numCols(); ++j )
+        for ( unsigned j = 1; j < m.num_cols(); ++j )
           s << " " << std::setw(8) << m(i,j);
         s << '\n';
       }
     } else {
-      s << m.numRows() << " by " << m.numCols() << " matrix\n";
+      s << m.num_rows() << " by " << m.num_cols() << " matrix\n";
     }
     return s;
   }
@@ -213,15 +213,15 @@ namespace GC_namespace {
   template <>
   ostream_type &
   operator << ( ostream_type & s, mat_complex_type const & m ) {
-    if ( m.numRows() > 0 && m.numCols() ) {
-      for ( unsigned i = 0; i < m.numRows(); ++i ) {
-        for ( unsigned j = 0; j < m.numCols(); ++j )
+    if ( m.num_rows() > 0 && m.num_cols() ) {
+      for ( unsigned i = 0; i < m.num_rows(); ++i ) {
+        for ( unsigned j = 0; j < m.num_cols(); ++j )
           s << " (" << std::setw(8) << m(i,j).real() << ", "
                     << std::setw(8) << m(i,j).imag() << " )";
         s << '\n';
       }
     } else {
-      s << m.numRows() << " by " << m.numCols() << " (complex) matrix\n";
+      s << m.num_rows() << " by " << m.num_cols() << " (complex) matrix\n";
     }
     return s;
   }
@@ -479,7 +479,7 @@ namespace GC_namespace {
   }
 
   unsigned
-  GenericContainer::get_numRows() const {
+  GenericContainer::num_rows() const {
     switch (m_data_type) {
     case GC_type::POINTER:
     case GC_type::BOOL:
@@ -496,10 +496,10 @@ namespace GC_namespace {
     case GC_type::VEC_COMPLEX:
     case GC_type::VEC_STRING:
     case GC_type::VECTOR:      return 1;
-    case GC_type::MAT_INTEGER: return unsigned(m_data.m_i->numRows());
-    case GC_type::MAT_LONG:    return unsigned(m_data.m_l->numRows());
-    case GC_type::MAT_REAL:    return unsigned(m_data.m_r->numRows());
-    case GC_type::MAT_COMPLEX: return unsigned(m_data.m_c->numRows());
+    case GC_type::MAT_INTEGER: return unsigned(m_data.m_i->num_rows());
+    case GC_type::MAT_LONG:    return unsigned(m_data.m_l->num_rows());
+    case GC_type::MAT_REAL:    return unsigned(m_data.m_r->num_rows());
+    case GC_type::MAT_COMPLEX: return unsigned(m_data.m_c->num_rows());
     case GC_type::MAP:         return 1;
     case GC_type::NOTYPE:      return 0;
     }
@@ -507,7 +507,7 @@ namespace GC_namespace {
   }
 
   unsigned
-  GenericContainer::get_numCols() const {
+  GenericContainer::num_cols() const {
     switch (m_data_type) {
     case GC_type::POINTER:
     case GC_type::BOOL:
@@ -524,10 +524,10 @@ namespace GC_namespace {
     case GC_type::VEC_COMPLEX: return unsigned(m_data.v_c->size());
     case GC_type::VEC_STRING:  return unsigned(m_data.v_s->size());
 
-    case GC_type::MAT_INTEGER: return unsigned(m_data.m_i->numCols());
-    case GC_type::MAT_LONG:    return unsigned(m_data.m_l->numCols());
-    case GC_type::MAT_REAL:    return unsigned(m_data.m_r->numCols());
-    case GC_type::MAT_COMPLEX: return unsigned(m_data.m_c->numCols());
+    case GC_type::MAT_INTEGER: return unsigned(m_data.m_i->num_cols());
+    case GC_type::MAT_LONG:    return unsigned(m_data.m_l->num_cols());
+    case GC_type::MAT_REAL:    return unsigned(m_data.m_r->num_cols());
+    case GC_type::MAT_COMPLEX: return unsigned(m_data.m_c->num_cols());
 
     case GC_type::VECTOR:      return unsigned(m_data.v->size());
     case GC_type::MAP:         return unsigned(m_data.m->size());
@@ -925,7 +925,7 @@ namespace GC_namespace {
 
   mat_int_type &
   GenericContainer::set_mat_int( mat_int_type const & m ) {
-    allocate_mat_int( m.numRows(), m.numCols() );
+    allocate_mat_int( m.num_rows(), m.num_cols() );
     std::copy( m.begin(), m.end(), m_data.m_i->begin() );
     return *m_data.m_i;
   }
@@ -938,7 +938,7 @@ namespace GC_namespace {
 
   mat_long_type &
   GenericContainer::set_mat_long( mat_long_type const & m ) {
-    allocate_mat_long( m.numRows(), m.numCols() );
+    allocate_mat_long( m.num_rows(), m.num_cols() );
     std::copy( m.begin(), m.end(), m_data.m_l->begin() );
     return *m_data.m_l;
   }
@@ -951,7 +951,7 @@ namespace GC_namespace {
 
   mat_real_type &
   GenericContainer::set_mat_real( mat_real_type const & m ) {
-    allocate_mat_real( m.numRows(), m.numCols() );
+    allocate_mat_real( m.num_rows(), m.num_cols() );
     std::copy( m.begin(), m.end(), m_data.m_r->begin() );
     return *m_data.m_r;
   }
@@ -964,7 +964,7 @@ namespace GC_namespace {
 
   mat_complex_type &
   GenericContainer::set_mat_complex( mat_complex_type const & m ) {
-    allocate_mat_complex( m.numRows(), m.numCols() );
+    allocate_mat_complex( m.num_rows(), m.num_cols() );
     std::copy( m.begin(), m.end(), m_data.m_c->begin() );
     return *m_data.m_c;
   }
@@ -2188,7 +2188,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_bool( where );
+    return this->m_data.m->at(key).get_bool( where );
+  }
+
+  bool_type
+  GenericContainer::get_map_bool(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_bool( where );
   }
 
   int_type
@@ -2197,7 +2206,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_as_int( where );
+    return this->m_data.m->at(key).get_as_int( where );
+  }
+
+  int_type
+  GenericContainer::get_map_int(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_as_int( where );
   }
 
   real_type
@@ -2206,7 +2224,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_number( where );
+    return this->m_data.m->at(key).get_number( where );
+  }
+
+  real_type
+  GenericContainer::get_map_number(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_number( where );
   }
 
   string_type const &
@@ -2215,7 +2242,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_string( where );
+    return this->m_data.m->at(key).get_string( where );
+  }
+
+  string_type const &
+  GenericContainer::get_map_string(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_string( where );
   }
 
   vec_real_type const &
@@ -2224,7 +2260,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_vec_real( where );
+    return this->m_data.m->at(key).get_vec_real( where );
+  }
+
+  vec_real_type const &
+  GenericContainer::get_map_vec_real(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_vec_real( where );
   }
 
   vec_complex_type const &
@@ -2233,7 +2278,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_vec_complex( where );
+    return this->m_data.m->at(key).get_vec_complex( where );
+  }
+
+  vec_complex_type const &
+  GenericContainer::get_map_vec_complex(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_vec_complex( where );
   }
 
   vec_string_type const &
@@ -2242,7 +2296,16 @@ namespace GC_namespace {
     char const where[]
   ) const {
     GC_ASSERT( this->exists(key), where << " key: `" << key << "` is missing" );
-    return (*this)(key).get_vec_string( where );
+    return this->m_data.m->at(key).get_vec_string( where );
+  }
+
+  vec_string_type const &
+  GenericContainer::get_map_vec_string(
+    vec_string_type const & keys,
+    char const              where[]
+  ) const {
+    string who = must_exists( keys, where );
+    return this->m_data.m->at(who).get_vec_string( where );
   }
 
   // ---------------------------------------------------------------------------
@@ -3005,18 +3068,33 @@ namespace GC_namespace {
   bool
   GenericContainer::exists( string_type const & s ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(s);
-    return iv != (*m_data.m).end();
+    map_type::iterator iv = m_data.m->find(s);
+    return iv != m_data.m->end();
   }
 
   bool
   GenericContainer::exists( vec_string_type const & vs ) const {
     if ( m_data_type != GC_type::MAP ) return false;
     for ( string_type const & s : vs ) {
-      map_type::iterator iv = (*m_data.m).find(s);
-      if ( iv != (*m_data.m).end() ) return true;
+      map_type::iterator iv = m_data.m->find(s);
+      if ( iv != m_data.m->end() ) return true;
     }
     return false;
+  }
+
+  string
+  GenericContainer::must_exists( vec_string_type const & vs, char const where[] ) const {
+    GC_ASSERT(
+      m_data_type == GC_type::MAP,
+      where
+        << " bad data type, expect: " << to_string(GC_type::MAP)
+        << " but data stored is of type: " << to_string(m_data_type)
+    )
+    for ( string_type const & s : vs ) {
+      map_type::iterator iv = m_data.m->find(s);
+      if ( iv != m_data.m->end() ) return s;
+    }
+    GC_DO_ERROR( where << " cant find keys: " << vs )
   }
 
   // -----------------------------------------------------------------------
@@ -3024,8 +3102,8 @@ namespace GC_namespace {
   bool
   GenericContainer::get_if_exists( string_type const & field, bool & value ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     if ( iv->second.m_data_type != GC_type::BOOL ) return false;
     value = iv->second.m_data.b;
     return true;
@@ -3056,8 +3134,8 @@ namespace GC_namespace {
     int_type          & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     switch (iv->second.m_data_type) {
     case GC_type::BOOL:
       value = iv->second.m_data.b?1:0;
@@ -3106,8 +3184,8 @@ namespace GC_namespace {
     uint_type         & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     switch (iv->second.m_data_type) {
     case GC_type::BOOL:
       value = iv->second.m_data.b?1:0;
@@ -3158,8 +3236,8 @@ namespace GC_namespace {
     long_type         & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     switch (iv->second.m_data_type) {
     case GC_type::BOOL:
       value = iv->second.m_data.b?1:0;
@@ -3208,8 +3286,8 @@ namespace GC_namespace {
     ulong_type        & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     switch (iv->second.m_data_type) {
     case GC_type::BOOL:
       value = iv->second.m_data.b?1:0;
@@ -3260,8 +3338,8 @@ namespace GC_namespace {
     real_type         & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     switch (iv->second.m_data_type) {
     case GC_type::BOOL:
       value = real_type(iv->second.m_data.b?1:0);
@@ -3308,17 +3386,17 @@ namespace GC_namespace {
     complex_type      & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     switch (iv->second.m_data_type) {
     case GC_type::BOOL:
       value = complex_type(iv->second.m_data.b?1:0,0);
       break;
     case GC_type::INTEGER:
-      value = complex_type(real_type( iv->second.m_data.i),0);
+      value = complex_type(real_type(iv->second.m_data.i),0);
       break;
     case GC_type::LONG:
-      value = complex_type(real_type( iv->second.m_data.l),0);
+      value = complex_type(real_type(iv->second.m_data.l),0);
       break;
     case GC_type::REAL:
       value = complex_type(iv->second.m_data.r,0);
@@ -3355,8 +3433,8 @@ namespace GC_namespace {
     string_type       & value
   ) const {
     if ( m_data_type != GC_type::MAP ) return false;
-    map_type::iterator iv = (*m_data.m).find(field);
-    if ( iv == (*m_data.m).end() ) return false;
+    map_type::iterator iv = m_data.m->find(field);
+    if ( iv == m_data.m->end() ) return false;
     if ( iv->second.m_data_type != GC_type::STRING ) return false;
     value = *iv->second.m_data.s;
     return true;
@@ -3430,7 +3508,7 @@ namespace GC_namespace {
   GenericContainer::get_int_at( unsigned i, unsigned j, char const where[] ) const  {
     ck(where,GC_type::MAT_INTEGER);
     GC_ASSERT(
-      i < m_data.m_i->numRows() && j < m_data.m_i->numCols(),
+      i < m_data.m_i->num_rows() && j < m_data.m_i->num_cols(),
       where << " get_int_at( " << i << ", " << j << " ) const, out of range"
     )
     return (*m_data.m_i)(i,j);
@@ -3483,7 +3561,7 @@ namespace GC_namespace {
   GenericContainer::get_long_at( unsigned i, unsigned j, char const where[] ) const  {
     ck(where,GC_type::MAT_LONG);
     GC_ASSERT(
-      i < m_data.m_l->numRows() && j < m_data.m_l->numCols(),
+      i < m_data.m_l->num_rows() && j < m_data.m_l->num_cols(),
       where << " get_long_at( " << i << ", " << j << " ) const, out of range"
     )
     return (*m_data.m_l)(i,j);
@@ -4393,7 +4471,7 @@ namespace GC_namespace {
     case GC_type::MAT_INTEGER:
       { mat_int_type * m_i = m_data.m_i;
         m_data_type = GC_type::NOTYPE;
-        set_mat_long(m_i->numRows(),m_i->numCols());
+        set_mat_long(m_i->num_rows(),m_i->num_cols());
         for ( unsigned i = 0; i < m_i->size(); ++i )
           (*m_data.m_l)[i] = long_type((*m_i)[i]);
         delete m_i;
@@ -4479,7 +4557,7 @@ namespace GC_namespace {
     case GC_type::MAT_INTEGER:
       { mat_int_type * m_i = m_data.m_i;
         m_data_type = GC_type::NOTYPE;
-        set_mat_real(m_i->numRows(),m_i->numCols());
+        set_mat_real(m_i->num_rows(),m_i->num_cols());
         for ( unsigned i = 0; i < m_i->size(); ++i )
           (*m_data.m_r)[i] = real_type( (*m_i)[i] );
         delete m_i;
@@ -4488,7 +4566,7 @@ namespace GC_namespace {
     case GC_type::MAT_LONG:
       { mat_long_type * m_l = m_data.m_l;
         m_data_type = GC_type::NOTYPE;
-        set_mat_real(m_l->numRows(),m_l->numCols());
+        set_mat_real(m_l->num_rows(),m_l->num_cols());
         for ( unsigned i = 0; i < m_l->size(); ++i )
           (*m_data.m_r)[i] = real_type( (*m_l)[i] );
         delete m_l;
@@ -4576,7 +4654,7 @@ namespace GC_namespace {
     case GC_type::MAT_INTEGER:
       { mat_int_type * m_i = m_data.m_i;
         m_data_type = GC_type::NOTYPE;
-        set_mat_complex(m_i->numRows(),m_i->numCols());
+        set_mat_complex(m_i->num_rows(),m_i->num_cols());
         for ( unsigned i = 0; i < m_i->size(); ++i )
           (*m_data.m_c)[i] = complex_type( real_type( (*m_i)[i] ), 0 );
         delete m_i;
@@ -4585,7 +4663,7 @@ namespace GC_namespace {
     case GC_type::MAT_LONG:
       { mat_long_type * m_l = m_data.m_l;
         m_data_type = GC_type::NOTYPE;
-        set_mat_complex(m_l->numRows(),m_l->numCols());
+        set_mat_complex(m_l->num_rows(),m_l->num_cols());
         for ( unsigned i = 0; i < m_l->size(); ++i )
           (*m_data.m_c)[i] = complex_type( real_type( (*m_l)[i] ), 0 );
         delete m_l;
@@ -4594,7 +4672,7 @@ namespace GC_namespace {
     case GC_type::MAT_REAL:
       { mat_real_type * m_r = m_data.m_r;
         m_data_type = GC_type::NOTYPE;
-        set_mat_complex(m_r->numRows(),m_r->numCols());
+        set_mat_complex(m_r->num_rows(),m_r->num_cols());
         for ( unsigned i = 0; i < m_r->size(); ++i )
           (*m_data.m_c)[i] = complex_type((*m_r)[i],0);
         delete m_r;
@@ -4936,19 +5014,19 @@ namespace GC_namespace {
       break;
     case GC_type::MAT_INTEGER:
       { mat_int_type const & m = this->get_mat_int();
-        stream << "matrix of int[" << m.numRows() << "," << m.numCols() << "]\n"; }
+        stream << "matrix of int[" << m.num_rows() << "," << m.num_cols() << "]\n"; }
       break;
     case GC_type::MAT_LONG:
       { mat_long_type const & m = this->get_mat_long();
-        stream << "matrix of long[" << m.numRows() << "," << m.numCols() << "]\n"; }
+        stream << "matrix of long[" << m.num_rows() << "," << m.num_cols() << "]\n"; }
       break;
     case GC_type::MAT_REAL:
       { mat_real_type const & m = this->get_mat_real();
-        stream << "matrix of double[" << m.numRows() << "," << m.numCols() << "]\n"; }
+        stream << "matrix of double[" << m.num_rows() << "," << m.num_cols() << "]\n"; }
       break;
     case GC_type::MAT_COMPLEX:
       { mat_complex_type const & m = this->get_mat_complex();
-        stream << "matrix of complex[" << m.numRows() << "," << m.numCols() << "]\n"; }
+        stream << "matrix of complex[" << m.num_rows() << "," << m.num_cols() << "]\n"; }
       break;
     case GC_type::VEC_STRING:
       { vec_string_type const & v = this->get_vec_string();

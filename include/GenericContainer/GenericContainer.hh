@@ -120,8 +120,8 @@ namespace GC_namespace {
   // ---------------------------------------------------------------------------
   template <typename TYPE>
   class mat_type : public std::vector<TYPE> {
-    unsigned m_numRows{0};
-    unsigned m_numCols{0};
+    unsigned m_num_rows{0};
+    unsigned m_num_cols{0};
     typedef typename std::vector<TYPE>::size_type size_type;
   public:
 
@@ -131,8 +131,8 @@ namespace GC_namespace {
     //! Create a matrix of size `nr x nc`
     //!
     mat_type( unsigned nr, unsigned nc )
-    : m_numRows(nr)
-    , m_numCols(nc)
+    : m_num_rows(nr)
+    , m_num_cols(nc)
     { std::vector<TYPE>::resize(size_type(nr*nc)); }
 
     //!
@@ -140,40 +140,58 @@ namespace GC_namespace {
     //!
     void
     resize( unsigned nr, unsigned nc ) {
-      m_numRows = nr;
-      m_numCols = nc;
+      m_num_rows = nr;
+      m_num_cols = nc;
       std::vector<TYPE>::resize(size_type(nr*nc));
     }
 
     //!
     //! Get the `nc`-th column of the matrix and store to vector `C`.
     //!
-    void getColumn( unsigned nc, std::vector<TYPE> & C ) const;
+    void get_column( unsigned nc, std::vector<TYPE> & C ) const;
+
+    void
+    getColumn( unsigned nc, std::vector<TYPE> & C ) const
+    { this->get_column( nc, C ); }
 
     //!
     //! Get the `nr`-th row of the matrix and store to vector `R`.
     //!
-    void getRow( unsigned nr, std::vector<TYPE> & R ) const;
+    void get_row( unsigned nr, std::vector<TYPE> & R ) const;
+
+    void
+    getRow( unsigned nr, std::vector<TYPE> & R ) const
+    { this->get_row( nr, R ); }
 
     //!
     //! Get the `nc`-th column of the matrix and store to memory pointed by `C`.
     //!
-    void getColumn( unsigned nc, TYPE * C ) const;
+    void get_column( unsigned nc, TYPE * C ) const;
+
+    void
+    getColumn( unsigned nc, TYPE * C ) const
+    { get_column( nc, C ); }
 
     //!
     //! Get the `nr`-th row of the matrix and store to memory pointed by `R`.
     //!
-    void getRow( unsigned nr, TYPE * R ) const;
+    void get_row( unsigned nr, TYPE * R ) const;
+
+    void
+    getRow( unsigned nr, TYPE * R ) const
+    { this->get_row( nr, R ); }
 
     //!
     //! Get the number of rows of the matrix
     //!
-    unsigned numRows() const { return m_numRows; }
+    unsigned num_rows() const { return m_num_rows; }
+    unsigned numRows() const { return m_num_rows; }
 
     //!
     //! Get the number of columns of the matrix
     //!
-    unsigned numCols() const { return m_numCols; }
+    unsigned num_cols() const { return m_num_cols; }
+    unsigned numCols() const { return m_num_cols; }
 
     //!
     //! Access to the element `A(i,j)` og the matrix
@@ -831,12 +849,14 @@ namespace GC_namespace {
     //!
     //! Return the number of rows ot the internally stored matrix
     //!
-    unsigned get_numRows() const;
+    unsigned num_rows() const;
+    unsigned get_numRows() const { return this->num_rows(); }
 
     //!
     //! Return the number of columns ot the internally stored matrix
     //!
-    unsigned get_numCols() const;
+    unsigned num_cols() const;
+    unsigned get_numCols() const { return this->num_cols(); }
 
     //!
     //! If data is boolean, integer or `real_type`
@@ -942,11 +962,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the boolean stored in the container
     //!
-    bool_type
-    get_map_bool(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    bool_type get_map_bool( char const key[], char const where[] = "" ) const;
+    bool_type get_map_bool( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value in the map as integer
@@ -955,11 +972,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the integer stored in the container
     //!
-    int_type
-    get_map_int(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    int_type get_map_int( char const key[], char const where[] = "" ) const;
+    int_type get_map_int( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value in the map as boolean
@@ -968,11 +982,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the real number stored in the container
     //!
-    real_type
-    get_map_number(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    real_type get_map_number( char const key[], char const where[] = "" ) const;
+    real_type get_map_number( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value in the map as boolean
@@ -981,11 +992,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the string stored in the container
     //!
-    string_type const &
-    get_map_string(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    string_type const & get_map_string( char const key[], char const where[] = "" ) const;
+    string_type const & get_map_string( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value in the map as boolean
@@ -994,11 +1002,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the vector of real stored in the container
     //!
-    vec_real_type const &
-    get_map_vec_real(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    vec_real_type const & get_map_vec_real( char const key[], char const where[] = "" ) const;
+    vec_real_type const & get_map_vec_real( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value in the map as boolean
@@ -1007,11 +1012,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the vector of complex stored in the container
     //!
-    vec_complex_type const &
-    get_map_vec_complex(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    vec_complex_type const & get_map_vec_complex( char const key[], char const where[] = "" ) const;
+    vec_complex_type const & get_map_vec_complex( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value in the map as boolean
@@ -1020,11 +1022,8 @@ namespace GC_namespace {
     //! \param[in] where position added to the error message
     //! \return the vector of string stored in the container
     //!
-    vec_string_type const &
-    get_map_vec_string(
-      char const key[],
-      char const where[] = ""
-    ) const;
+    vec_string_type const & get_map_vec_string( char const key[], char const where[] = "" ) const;
+    vec_string_type const & get_map_vec_string( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value as a boolean
@@ -2260,6 +2259,7 @@ namespace GC_namespace {
     //! \param[in] vs vector of string with the keys to be checked
     //!
     bool exists( vec_string_type const & vs ) const;
+    string must_exists( vec_string_type const & vs, char const where[] ) const;
 
     //!
     //! Check if string `field` is a key of the stored map and extract value if exists

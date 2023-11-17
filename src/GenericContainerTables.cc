@@ -62,8 +62,8 @@ namespace GC_namespace {
     char                    delimiter
   ) {
 
-    unsigned ncol = unsigned(data.numCols());
-    unsigned nrow = unsigned(data.numRows());
+    unsigned ncol = unsigned(data.num_cols());
+    unsigned nrow = unsigned(data.num_rows());
 
     stream << headers[0];
     for ( unsigned icol = 1; icol < ncol; ++icol )
@@ -123,8 +123,8 @@ namespace GC_namespace {
     ostream_type          & stream
   ) {
 
-    unsigned ncol = unsigned(data.numCols());
-    unsigned nrow = unsigned(data.numRows());
+    unsigned ncol = unsigned(data.num_cols());
+    unsigned nrow = unsigned(data.num_rows());
 
     if ( ncol == 0 ) return;
 

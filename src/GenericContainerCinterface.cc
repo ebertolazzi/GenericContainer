@@ -541,13 +541,13 @@ GC_get_vector_size() {
 int
 GC_get_matrix_num_rows() {
   if ( gc_active == nullptr ) return 0;
-  return int(gc_active->top()->get_numRows());
+  return int(gc_active->top()->num_rows());
 }
 
 int
 GC_get_matrix_num_cols() {
   if ( gc_active == nullptr ) return 0;
-  return int(gc_active->top()->get_numCols());
+  return int(gc_active->top()->num_cols());
 }
 
 int

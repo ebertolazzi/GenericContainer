@@ -228,20 +228,20 @@ namespace GC_namespace {
       writer.StartArray();
       mat_int_type mat = gc.get_mat_int();
       if ( mat_order == row_major ) { // if row_major
-        for ( unsigned int i_row = 0; i_row < mat.numRows(); i_row++ ) {
+        for ( unsigned int i_row = 0; i_row < mat.num_rows(); i_row++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_int();
           vec_int_type & vec = tmp_gc.get_vec_int();
-          mat.getRow ( i_row, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_row( i_row, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       } else { // else: column majot (default)
-        for ( unsigned int i_col = 0; i_col < mat.numCols(); i_col++ ) {
+        for ( unsigned int i_col = 0; i_col < mat.num_cols(); i_col++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_int();
           vec_int_type & vec = tmp_gc.get_vec_int();
-          mat.getColumn ( i_col, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_column( i_col, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       }
       writer.EndArray();
@@ -251,20 +251,20 @@ namespace GC_namespace {
       writer.StartArray();
       mat_long_type mat = gc.get_mat_long();
       if ( mat_order == row_major ) { // if row_major
-        for ( unsigned int i_row = 0; i_row < mat.numRows(); i_row++ ) {
+        for ( unsigned int i_row = 0; i_row < mat.num_rows(); i_row++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_long();
           vec_long_type & vec = tmp_gc.get_vec_long();
-          mat.getRow ( i_row, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_row( i_row, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       } else { // else: column majot (default)
-        for ( unsigned int i_col = 0; i_col < mat.numCols(); i_col++ ) {
+        for ( unsigned int i_col = 0; i_col < mat.num_cols(); i_col++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_long();
           vec_long_type & vec = tmp_gc.get_vec_long();
-          mat.getColumn ( i_col, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_column( i_col, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       }
       writer.EndArray();
@@ -274,20 +274,20 @@ namespace GC_namespace {
       writer.StartArray();
       mat_real_type mat = gc.get_mat_real();
       if ( mat_order == row_major ) { // if row_major
-        for ( unsigned int i_row = 0; i_row < mat.numRows(); i_row++ ) {
+        for ( unsigned i_row = 0; i_row < mat.num_rows(); i_row++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_real();
           vec_real_type & vec = tmp_gc.get_vec_real();
-          mat.getRow ( i_row, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_row( i_row, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       } else { // else: column majot (default)
-        for ( unsigned int i_col = 0; i_col < mat.numCols(); i_col++ ) {
+        for ( unsigned i_col = 0; i_col < mat.num_cols(); i_col++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_real();
           vec_real_type & vec = tmp_gc.get_vec_real();
-          mat.getColumn ( i_col, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_column( i_col, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       }
       writer.EndArray();
@@ -297,20 +297,20 @@ namespace GC_namespace {
       writer.StartArray();
       mat_complex_type mat = gc.get_mat_complex();
       if ( mat_order == row_major ) { // if row_major
-        for ( unsigned int i_row = 0; i_row < mat.numRows(); i_row++ ) {
+        for ( unsigned i_row = 0; i_row < mat.num_rows(); i_row++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_complex();
           vec_complex_type & vec = tmp_gc.get_vec_complex();
-          mat.getRow ( i_row, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_row( i_row, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       } else { // else: column majot (default)
-        for ( unsigned int i_col = 0; i_col < mat.numCols(); i_col++ ) {
+        for ( unsigned i_col = 0; i_col < mat.num_cols(); i_col++ ) {
           GenericContainer tmp_gc;
           tmp_gc.set_vec_complex();
           vec_complex_type & vec = tmp_gc.get_vec_complex();
-          mat.getColumn ( i_col, vec );
-          gc_to_writer ( tmp_gc, writer, im_unit, mat_order );
+          mat.get_column( i_col, vec );
+          gc_to_writer( tmp_gc, writer, im_unit, mat_order );
         }
       }
       writer.EndArray();
