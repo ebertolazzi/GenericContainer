@@ -2055,14 +2055,14 @@ namespace GC_namespace {
     //! \param[in] a `GenericContainer` to be stored
     //!
     GenericContainer const & operator = ( GenericContainer const & a )
-    { this->load( a ); return * this; }
+    { this->from_gc( a ); return * this; }
 
     //!
     //! Load a `GenericContainer` to the generic container (deep copy).
     //!
     //! \param[in] a `GenericContainer` to be stored
     //!
-    void load( GenericContainer const & a );
+    void load( GenericContainer const & a ) { this->from_gc(a); }
     ///@}
 
     //!
@@ -2238,7 +2238,7 @@ namespace GC_namespace {
     //! \param[in] gc initializer data
     //!
     GenericContainer( GenericContainer const & gc )
-    : m_data_type(GC_type::NOTYPE) { this->load(gc); }
+    : m_data_type(GC_type::NOTYPE) { this->from_gc(gc); }
 
     ///@}
 
@@ -2432,6 +2432,14 @@ namespace GC_namespace {
     //! \param[in] gc input `GenericContainer`
     //!
     void from_gc( GenericContainer const & gc );
+
+    //!
+    //! Merge two generic container
+    //!
+    //! \param[in] gc    input `GenericContainer`
+    //! \param[in] where for error message
+    //!
+    void merge( GenericContainer const & gc, char const where[] );
 
     //!
     //! Print the contents of the object in yaml syntax

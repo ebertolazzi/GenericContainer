@@ -536,50 +536,6 @@ namespace GC_namespace {
     return 0;
   }
 
-  void
-  GenericContainer::load( GenericContainer const & gc ) {
-    this->clear();
-    switch (gc.m_data_type) {
-    case GC_type::NOTYPE:      break;
-    case GC_type::POINTER:     this->set_pointer(gc.m_data.p);  break;
-    case GC_type::BOOL:        this->set_bool(gc.m_data.b);     break;
-    case GC_type::INTEGER:     this->set_int(gc.m_data.i);      break;
-    case GC_type::LONG:        this->set_long(gc.m_data.l);     break;
-    case GC_type::REAL:        this->set_real(gc.m_data.r);     break;
-    case GC_type::COMPLEX:     this->set_complex(*gc.m_data.c); break;
-    case GC_type::STRING:      this->set_string(*gc.m_data.s);  break;
-
-    case GC_type::VEC_POINTER: this->set_vec_pointer(*gc.m_data.v_p); break;
-    case GC_type::VEC_BOOL:    this->set_vec_bool(*gc.m_data.v_b);    break;
-    case GC_type::VEC_INTEGER: this->set_vec_int(*gc.m_data.v_i);     break;
-    case GC_type::VEC_LONG:    this->set_vec_long(*gc.m_data.v_l);    break;
-    case GC_type::VEC_REAL:    this->set_vec_real(*gc.m_data.v_r);    break;
-    case GC_type::VEC_COMPLEX: this->set_vec_complex(*gc.m_data.v_c); break;
-    case GC_type::VEC_STRING:  this->set_vec_string(*gc.m_data.v_s);  break;
-
-    case GC_type::MAT_INTEGER: this->set_mat_int(*gc.m_data.m_i);     break;
-    case GC_type::MAT_LONG:    this->set_mat_long(*gc.m_data.m_l);    break;
-    case GC_type::MAT_REAL:    this->set_mat_real(*gc.m_data.m_r);    break;
-    case GC_type::MAT_COMPLEX: this->set_mat_complex(*gc.m_data.m_c); break;
-
-    case GC_type::VECTOR:
-      { unsigned N = unsigned(gc.m_data.v->size());
-        allocate_vector( N );
-        std::copy( gc.m_data.v->begin(),
-                   gc.m_data.v->end(),
-                   this->m_data.v->begin() );
-      }
-      break;
-    case GC_type::MAP:
-      { allocate_map();
-        // this->_data.m->insert( gc._data.m->begin(), gc._data.m->end() ); !!!! DO NOT WORK ON CLANG
-        for ( auto const & mi : *gc.m_data.m )
-          (*this->m_data.m)[mi.first] = mi.second;
-      }
-      break;
-    }
-  }
-
   int
   GenericContainer::ck( TypeAllowed tp ) const {
     if ( tp == m_data_type     ) return 0; // ok
@@ -5281,6 +5237,27 @@ namespace GC_namespace {
           vv[i] = v[i];
       }
       break;
+    }
+  }
+
+  //
+  // -------------------------------------------------------------------
+  //
+
+  void
+  GenericContainer::merge( GenericContainer const & gc, char const where[] ) {
+    if ( gc.get_type() == GC_type::NOTYPE ) return;
+    GC_ASSERT(
+      gc.get_type() == GC_type::MAP,
+      where
+        << " in merge data expected to be of type: " << to_string(GC_type::MAP)
+        << " but data stored is of type: " << gc.get_type_name()
+    )
+    if ( m_data_type == GC_type::NOTYPE ) this->set_map();
+    ck( where, GC_type::MAP );
+    { map_type const & m = gc.get_map();
+      for ( auto const & im : m )
+        (*this)[im.first].from_gc(im.second);
     }
   }
 
