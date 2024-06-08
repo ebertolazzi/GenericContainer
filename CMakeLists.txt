@@ -12,7 +12,18 @@
 cmake_minimum_required(VERSION 3.14)
 
 project( GenericContainer )
-include(./cmake_utils/CMakeLists-common.txt)
+
+if (IS_DIRECTORY "${PROJECT_SOURCE_DIR}/cmake_utils")
+  set( HOME "${PROJECT_SOURCE_DIR}/cmake_utils/" )
+else()
+  if (IS_DIRECTORY "${PROJECT_SOURCE_DIR}/../cmake_utils")
+    set( HOME "${PROJECT_SOURCE_DIR}/../cmake_utils/" )
+  else()
+    set( HOME "${PROJECT_SOURCE_DIR}/../../cmake_utils/" )
+  endif()
+endif()
+
+include( "${HOME}/CMakeLists-common.txt" )
 
 project(
   ${PROJECT_NAME}
@@ -20,8 +31,8 @@ project(
   HOMEPAGE_URL "https://ebertolazzi.github.io/GenericContainer/"
 )
 
-include(./cmake_utils/CMakeLists-cflags.txt)
-include(./cmake_utils/CMakeLists-utilities.txt)
+include( "${HOME}/CMakeLists-cflags.txt" )
+include( "${HOME}/CMakeLists-utilities.txt" )
 
 # Evaluating the suffix to append to target built by this CMake file
 utils_artifacts_suffix(ARTIFACTS_STATIC_SUFFIX TRUE)
@@ -97,7 +108,7 @@ include_directories( ./include ./src_json_interface )
 # |_____\___/_/   \_\
 #
 # LUA LIBRARY
-set( lualib_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/lua-5.4.4/src/" )
+set( lualib_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/lua-5.4.6/src/" )
 
 set( lualib_HEADERS )
 file( GLOB S "${lualib_DIR}/lua*.h*" "${lualib_DIR}/lauxlib.h" )
@@ -240,6 +251,6 @@ install(
 #
 
 # do not work
-#include( ./cmake_utils/CMakeLists-cpack.txt )
+#include( "${HOME}/CMakeLists-cpack.txt" )
 
 utils_final_messages()
