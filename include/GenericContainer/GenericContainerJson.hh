@@ -9,6 +9,8 @@
 #ifndef GC_JSON_HH
 #define GC_JSON_HH
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #include "GenericContainer.hh"
 
 #define GC_JSON_IM_UNIT      "imaginary_unit"
@@ -83,5 +85,7 @@ namespace GC_namespace {
   );
 
 }
+
+#endif
 
 #endif

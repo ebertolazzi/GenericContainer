@@ -45,6 +45,8 @@
 
 #include "GenericContainerConfig.hh"
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #ifndef GC_DO_ERROR
   #define GC_DO_ERROR(MSG) {                          \
     std::ostringstream ost;                           \
@@ -72,7 +74,14 @@
   #define GC_NO_RETURN
 #endif
 
+#endif
+
+//!
+//! Namespace for the Generic Container
+//!
 namespace GC_namespace {
+
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   using ostream_type = std::basic_ostream<char>;
   using istream_type = std::basic_istream<char>;
@@ -88,36 +97,35 @@ namespace GC_namespace {
 
   class GenericContainer;
 
-  using string = std::string;
+  typedef void* pointer_type;
 
-  typedef void* pointer_type;   //!< generic pointer type
-  using bool_type    = bool;    //!< boolean type data
-  using int_type     = int32_t; //!< integer type data
-  using long_type    = int64_t; //!< long integer type data
-  using real_type    = double;  //!< floating point type data
-  using complex_type = std::complex<real_type>; //!< complex floating point type data
-  using string_type  = std::string;             //!< string type data
+  using string           = std::string;
+  using bool_type        = bool;
+  using int_type         = int32_t;
+  using long_type        = int64_t;
+  using uint_type        = uint32_t;
+  using ulong_type       = uint64_t;
+  using real_type        = double;
+  using complex_type     = std::complex<real_type>;
+  using string_type      = std::string;
+  using vec_pointer_type = std::vector<pointer_type>;
+  using vec_bool_type    = std::vector<bool_type>;
+  using vec_int_type     = std::vector<int_type>;
+  using vec_long_type    = std::vector<long_type>;
+  using vec_real_type    = std::vector<real_type>;
+  using vec_complex_type = std::vector<complex_type>;
+  using vec_string_type  = std::vector<string_type>;
+  using vector_type      = std::vector<GenericContainer>;
+  using map_type         = std::map<string_type,GenericContainer>;
+  using vec_uint_type    = std::vector<uint_type>;
+  using vec_ulong_type   = std::vector<ulong_type>;
 
-  using vec_pointer_type = std::vector<pointer_type>; //!< vector of generic pointer
-  using vec_bool_type    = std::vector<bool_type>;    //!< vector of boolean
-  using vec_int_type     = std::vector<int_type>;     //!< vector of integer
-  using vec_long_type    = std::vector<long_type>;    //!< vector of long integer
-  using vec_real_type    = std::vector<real_type>;    //!< vector of floating point
-  using vec_complex_type = std::vector<complex_type>; //!< vector of complex floating point
-  using vec_string_type  = std::vector<string_type>;  //!< vector of strings
-
-  using vector_type = std::vector<GenericContainer>;          //!< vector of `GenericContainer`
-  using map_type    = std::map<string_type,GenericContainer>; //!< associative array of `GenericContainer`
-
-  // ---------------------------------------------------------------------------
-
-  using uint_type  = uint32_t; //!< integer type data
-  using ulong_type = uint64_t; //!< long integer type data
-
-  using vec_uint_type  = std::vector<uint_type>;  //!< vector of unsigned integer
-  using vec_ulong_type = std::vector<ulong_type>; //!< vector of unsigned integer
+  #endif
 
   // ---------------------------------------------------------------------------
+  //!
+  //! Generic matrix storage type
+  //!
   template <typename TYPE>
   class mat_type : public std::vector<TYPE> {
     unsigned m_num_rows{0};
@@ -146,19 +154,37 @@ namespace GC_namespace {
     }
 
     //!
-    //! Get the `nc`-th column of the matrix and store to vector `C`.
+    //! Copy the `nc` column of the matrix to a vector `C`
+    //!
+    //! \param nc number of the column to be extracted
+    //! \param C  vector that will be filled with the column
     //!
     void get_column( unsigned nc, std::vector<TYPE> & C ) const;
 
+    //!
+    //! Copy the `nc` column of the matrix to a vector `C`
+    //!
+    //! \param nc number of the column to be extracted
+    //! \param C  pointer to memory that will be filled with the column
+    //!
     void
     getColumn( unsigned nc, std::vector<TYPE> & C ) const
     { this->get_column( nc, C ); }
 
     //!
-    //! Get the `nr`-th row of the matrix and store to vector `R`.
+    //! Copy the `nr` row of the matrix to a vector `R`
+    //!
+    //! \param nr number of the row to be extracted
+    //! \param R  vector that will be filled with the row
     //!
     void get_row( unsigned nr, std::vector<TYPE> & R ) const;
 
+    //!
+    //! Copy the `nr` row of the matrix to a vector `R`
+    //!
+    //! \param nr number of the row to be extracted
+    //! \param R  vector that will be filled with the row
+    //!
     void
     getRow( unsigned nr, std::vector<TYPE> & R ) const
     { this->get_row( nr, R ); }
@@ -168,6 +194,9 @@ namespace GC_namespace {
     //!
     void get_column( unsigned nc, TYPE * C ) const;
 
+    //!
+    //! Get the `nc`-th column of the matrix and store to memory pointed by `C`.
+    //!
     void
     getColumn( unsigned nc, TYPE * C ) const
     { get_column( nc, C ); }
@@ -177,6 +206,9 @@ namespace GC_namespace {
     //!
     void get_row( unsigned nr, TYPE * R ) const;
 
+    //!
+    //! Get the `nr`-th row of the matrix and store to memory pointed by `R`.
+    //!
     void
     getRow( unsigned nr, TYPE * R ) const
     { this->get_row( nr, R ); }
@@ -185,26 +217,40 @@ namespace GC_namespace {
     //! Get the number of rows of the matrix
     //!
     unsigned num_rows() const { return m_num_rows; }
+
+    //!
+    //! Get the number of rows of the matrix
+    //!
     unsigned numRows() const { return m_num_rows; }
 
     //!
     //! Get the number of columns of the matrix
     //!
     unsigned num_cols() const { return m_num_cols; }
+
+    //!
+    //! Get the number of columns of the matrix
+    //!
     unsigned numCols() const { return m_num_cols; }
 
     //!
-    //! Access to the element `A(i,j)` og the matrix
+    //! Access to the element \f$ (i,j)\f$ of the matrix
     //!
     TYPE const & operator () ( unsigned i, unsigned j ) const;
 
     //!
-    //! Access to the element `A(i,j)` og the matrix
+    //! Access to the element \f$ (i,j)\f$ of the matrix
     //!
     TYPE & operator () ( unsigned i, unsigned j );
 
+    //!
+    //! Print to `stream` information of the matrix object
+    //!
     void info( ostream_type & stream ) const;
 
+    //!
+    //! return in a string information of the matrix object
+    //!
     string_type
     info() const {
       std::ostringstream ostr;
@@ -224,6 +270,7 @@ namespace GC_namespace {
   };
 
   // ---------------------------------------------------------------------------
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   #ifndef GENERIC_CONTAINER_ON_WINDOWS
   extern template class mat_type<int_type>;
@@ -237,13 +284,12 @@ namespace GC_namespace {
   using mat_real_type    = mat_type<real_type>;
   using mat_complex_type = mat_type<complex_type>;
 
-  // ---------------------------------------------------------------------------
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
   template <typename TYPE>
   ostream_type & operator << ( ostream_type & s, std::vector<TYPE> const & v );
 
   template <typename TYPE>
   ostream_type & operator << ( ostream_type & s, mat_type<TYPE> const & );
+
   #endif
   // ---------------------------------------------------------------------------
 
@@ -264,6 +310,9 @@ namespace GC_namespace {
     VECTOR, MAP
   };
 
+  //!
+  //! Convert `GenericContainer` type to a string
+  //!
   char const * to_string( GC_type s );
 
   //!
@@ -293,30 +342,30 @@ namespace GC_namespace {
   class GenericContainer {
   public:
     // import type
-    using pointer_type     = GC_namespace::pointer_type;
-    using bool_type        = GC_namespace::bool_type;
-    using int_type         = GC_namespace::int_type;
-    using uint_type        = GC_namespace::uint_type;
-    using long_type        = GC_namespace::long_type;
-    using ulong_type       = GC_namespace::ulong_type;
-    using real_type        = GC_namespace::real_type;
-    using complex_type     = GC_namespace::complex_type;
-    using string_type      = GC_namespace::string_type;
-    using vec_pointer_type = GC_namespace::vec_pointer_type;
-    using vec_bool_type    = GC_namespace::vec_bool_type;
-    using vec_int_type     = GC_namespace::vec_int_type;
-    using vec_uint_type    = GC_namespace::vec_uint_type;
-    using vec_long_type    = GC_namespace::vec_long_type;
-    using vec_ulong_type   = GC_namespace::vec_ulong_type;
-    using vec_real_type    = GC_namespace::vec_real_type;
-    using vec_complex_type = GC_namespace::vec_complex_type;
-    using vec_string_type  = GC_namespace::vec_string_type;
-    using vector_type      = GC_namespace::vector_type;
-    using map_type         = GC_namespace::map_type;
-    using mat_int_type     = GC_namespace::mat_int_type;
-    using mat_long_type    = GC_namespace::mat_long_type;
-    using mat_real_type    = GC_namespace::mat_real_type;
-    using mat_complex_type = GC_namespace::mat_complex_type;
+    using pointer_type     = GC_namespace::pointer_type;       //!< pointer type
+    using bool_type        = GC_namespace::bool_type;          //!< boolean type
+    using int_type         = GC_namespace::int_type;           //!< integer type
+    using uint_type        = GC_namespace::uint_type;          //!< unsigned integer type
+    using long_type        = GC_namespace::long_type;          //!< long integer type
+    using ulong_type       = GC_namespace::ulong_type;         //!< unsigned long integer type
+    using real_type        = GC_namespace::real_type;          //!< real number type
+    using complex_type     = GC_namespace::complex_type;       //!< complex number type
+    using string_type      = GC_namespace::string_type;        //!< string type
+    using vec_pointer_type = GC_namespace::vec_pointer_type;   //!< vector of pointer type
+    using vec_bool_type    = GC_namespace::vec_bool_type;      //!< vector of boolean type
+    using vec_int_type     = GC_namespace::vec_int_type;       //!< vector of integer type
+    using vec_uint_type    = GC_namespace::vec_uint_type;      //!< vector of unsigned integer type
+    using vec_long_type    = GC_namespace::vec_long_type;      //!< vector of long integer type
+    using vec_ulong_type   = GC_namespace::vec_ulong_type;     //!< vector of unsigned long integer type
+    using vec_real_type    = GC_namespace::vec_real_type;      //!< vector of real number type
+    using vec_complex_type = GC_namespace::vec_complex_type;   //!< vector of complex number type
+    using vec_string_type  = GC_namespace::vec_string_type;    //!< vector of strings type
+    using vector_type      = GC_namespace::vector_type;        //!< vector of `GenericContainer` type (recursive)
+    using map_type         = GC_namespace::map_type;           //!< map of `GenericContainer` type (recursive)
+    using mat_int_type     = GC_namespace::mat_int_type;       //!< matrix of integer type
+    using mat_long_type    = GC_namespace::mat_long_type;      //!< matrix of long integer type
+    using mat_real_type    = GC_namespace::mat_real_type;      //!< matrix of real number type
+    using mat_complex_type = GC_namespace::mat_complex_type;   //!< matrix of complex number type
 
   private:
 
@@ -350,7 +399,7 @@ namespace GC_namespace {
 
     };
 
-    DataStorage m_data;                           //!< The data stored in the class instance
+    DataStorage m_data;                       //!< The data stored in the class instance
     TypeAllowed m_data_type{GC_type::NOTYPE}; //!< The kind of data stored
 
     void allocate_string();
@@ -388,7 +437,7 @@ namespace GC_namespace {
     //!
     //! build an instance of `GenericContainer` with empty data
     //!
-    GenericContainer();
+    GenericContainer() : m_data_type(GC_type::NOTYPE) {}
 
     //!
     //! destroy the instance of `GenericContainer`
@@ -396,14 +445,17 @@ namespace GC_namespace {
     ~GenericContainer() { clear(); }
 
     //!
-    //! free memory of the data stored in `GenericContainer`,
+    //! Initialized the `GenericContainer` to an exmpty object.
+    //! Free memory of the data stored in `GenericContainer`,
     //! data type become `NOTYPE`
     //!
     void clear();
 
     //!
-    //! free memory of the data stored in `GenericContainer`,
-    //! data type must be 'MAP'
+    //! If `GenericContainer`contain a map remove the item with key `name`.
+    //! Data type must be 'MAP'
+    //!
+    //! \param name key of the elemen to be eliminated
     //!
     void erase( char const name[] );
 
@@ -424,13 +476,18 @@ namespace GC_namespace {
     GenericContainer & free_pointer();
 
     //!
-    //! get available keys (if container type is a map)
+    //! If the `GenericContainer` contains a `map` extract
+    //! the keys of the map to the vector of srings `keys`
+    //!
+    //! \param[out] keys a vector of string filled with the keys
     //!
     void get_keys( vec_string_type & keys ) const;
 
     //!
-    //! get available keys (if container type is a map)
-    //! in a string comma separated.
+    //! If the `GenericContainer` contains a `map` extract
+    //! the keys of the map into a string
+    //!
+    //! \return a string filled with the keys separated by ", "
     //!
     string get_keys() const;
 
@@ -841,8 +898,13 @@ namespace GC_namespace {
     }
 
     //!
-    //! Return the number of the elements of the first level of the generic container
-    //! 1 for single element, the size of vector or map, or 0
+    //! Return the number of the elements of the first level of the generic container.
+    //!
+    //! - return 1 in case of scalar element (a boolean, an integer, a double,...)
+    //! - return the size of the vector for vector type element (vector of boolean, vector of integer, vector of double,...)
+    //! - return the number of keys in case of maps.
+    //!
+    //! \return the number of element
     //!
     unsigned get_num_elements() const;
 
@@ -850,23 +912,31 @@ namespace GC_namespace {
     //! Return the number of rows ot the internally stored matrix
     //!
     unsigned num_rows() const;
+    //!
+    //! Return the number of rows ot the internally stored matrix
+    //!
     unsigned get_numRows() const { return this->num_rows(); }
 
     //!
     //! Return the number of columns ot the internally stored matrix
     //!
     unsigned num_cols() const;
+    //!
+    //! Return the number of columns ot the internally stored matrix
+    //!
     unsigned get_numCols() const { return this->num_cols(); }
 
     //!
     //! If data is boolean, integer or `real_type`
     //! return number, otherwise return `0`.
+    //! \param[in] where position added to the error message
     //!
     real_type get_number( char const where[] = "" ) const;
 
     //!
     //! If data is boolean, integer, `real_type` or
     //! `complex_type` return number, otherwise return `0`.
+    //! \param[in] where position added to the error message
     //!
     complex_type get_complex_number( char const where[] = "" ) const;
 
@@ -878,11 +948,13 @@ namespace GC_namespace {
 
     //!
     //! Return the stored data as a pointer
+    //! \param[in] where position added to the error message
     //!
     void * get_pvoid( char const where[] = "" ) const;
 
     //!
     //! Return the stored data as a double pointer
+    //! \param[in] where position added to the error message
     //!
     void ** get_ppvoid( char const where[] = "" ) const;
 
@@ -930,18 +1002,24 @@ namespace GC_namespace {
     //! Get the stored value
     //!
     //!
-    //! \param[out] v      a copy of the stored value
-    //! \param[in]  where  message of error in case of failure
+    //! \param[out] v     a copy of the stored value
+    //! \param[in]  where position added to the error message
     //!
     template <typename T>
     void
     get_value( T & v, char const where[] = "" ) const;
 
+    //!
+    //! Get the stored value as a pointer
+    //!
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     template <typename T>
     T& get_pointer()
     { ck("get_pointer",GC_type::POINTER); return *reinterpret_cast<T*>(get_ppvoid()); }
 
+    //!
+    //! Get the stored value as a pointer
+    //!
     template <typename T>
     T get_pointer() const
     { ck("get_pointer",GC_type::POINTER); return reinterpret_cast<T>(get_pvoid()); }
@@ -950,6 +1028,9 @@ namespace GC_namespace {
     T& get_pointer()
     { ck("get_pointer",GC_type::POINTER); return *reinterpret_cast<T*>(&(m_data.p)); }
 
+    //!
+    //! Get the stored value as a pointer
+    //!
     template <typename T>
     T get_pointer() const
     { ck("get_pointer",GC_type::POINTER); return reinterpret_cast<T>(m_data.p); }
@@ -963,6 +1044,15 @@ namespace GC_namespace {
     //! \return the boolean stored in the container
     //!
     bool_type get_map_bool( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as boolean.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the boolean stored in the container
+    //!
     bool_type get_map_bool( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
@@ -973,6 +1063,15 @@ namespace GC_namespace {
     //! \return the integer stored in the container
     //!
     int_type get_map_int( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as integer.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the integer stored in the container
+    //!
     int_type get_map_int( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
@@ -983,52 +1082,97 @@ namespace GC_namespace {
     //! \return the real number stored in the container
     //!
     real_type get_map_number( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as boolean.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the real number stored in the container
+    //!
     real_type get_map_number( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
-    //! Get the stored value in the map as boolean
+    //! Get the stored value in the map as string
     //!
     //! \param[in] key   key of the map to be selected
     //! \param[in] where position added to the error message
     //! \return the string stored in the container
     //!
     string_type const & get_map_string( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as string.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the string stored in the container
+    //!
     string_type const & get_map_string( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
-    //! Get the stored value in the map as boolean
+    //! Get the stored value in the map as vector of real number
     //!
     //! \param[in] key   key of the map to be selected
     //! \param[in] where position added to the error message
     //! \return the vector of real stored in the container
     //!
     vec_real_type const & get_map_vec_real( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as vector of real number.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the vector of real stored in the container
+    //!
     vec_real_type const & get_map_vec_real( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
-    //! Get the stored value in the map as boolean
+    //! Get the stored value in the map as vector of complex numbers.
     //!
     //! \param[in] key   key of the map to be selected
     //! \param[in] where position added to the error message
     //! \return the vector of complex stored in the container
     //!
     vec_complex_type const & get_map_vec_complex( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as vector of complex numbers.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the vector of complex numbers stored in the container
+    //!
     vec_complex_type const & get_map_vec_complex( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
-    //! Get the stored value in the map as boolean
+    //! Get the stored value in the map as vector of string
     //!
     //! \param[in] key   key of the map to be selected
     //! \param[in] where position added to the error message
     //! \return the vector of string stored in the container
     //!
     vec_string_type const & get_map_vec_string( char const key[], char const where[] = "" ) const;
+    //!
+    //! Get the stored value in the map as vector of string.
+    //! The key is searched between the strings in `keys`
+    //! the first one found return the boolena value.
+    //!
+    //! \param[in] keys  keys of the map to be selected
+    //! \param[in] where position added to the error message
+    //! \return the vector of string stored in the container
+    //!
     vec_string_type const & get_map_vec_string( vec_string_type const & keys, char const where[] = "" ) const;
 
     //!
     //! Get the stored value as a boolean
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the boolean stored in the container
     //!
     bool_type & get_bool( char const where[] = "" );
@@ -1036,7 +1180,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const boolean
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the boolean stored in the container
     //!
     bool_type const & get_bool( char const where[] = "" ) const;
@@ -1044,7 +1188,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as an integer
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the boolean stored in the container
     //!
     int_type & get_int( char const where[] = "" );
@@ -1052,7 +1196,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const integer
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the integer stored in the container
     //!
     int_type const & get_int( char const where[] = "" ) const;
@@ -1060,7 +1204,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a long integer
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the long integer stored in the container
     //!
     long_type & get_long( char const where[] = "" );
@@ -1068,7 +1212,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a long integer
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the long integer stored in the container
     //!
     long_type const & get_long( char const where[] = "" ) const;
@@ -1076,7 +1220,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as an integer
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as an integer
     //!
     int_type get_as_int( char const where[] = "" ) const;
@@ -1084,7 +1228,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as an unsigned
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as an unsigned
     //!
     uint_type get_as_uint( char const where[] = "" ) const;
@@ -1092,7 +1236,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a long integer
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a long integer
     //!
     long_type get_as_long( char const where[] = "" ) const;
@@ -1100,7 +1244,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as an unsigned long
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as an unsigned long
     //!
     ulong_type get_as_ulong( char const where[] = "" ) const;
@@ -1108,7 +1252,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as `real_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as `real_type`
     //!
     real_type & get_real( char const where[] = "" );
@@ -1116,7 +1260,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const `real_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const `real_type`
     //!
     real_type const & get_real( char const where[] = "" ) const;
@@ -1124,7 +1268,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a `complex_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a `complex_type`
     //!
     complex_type & get_complex( char const where[] = "" );
@@ -1132,7 +1276,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const `complex_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const `complex_type`
     //!
     complex_type const & get_complex( char const where[] = "" ) const;
@@ -1140,7 +1284,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a string
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a string
     //!
     string_type & get_string( char const where[] = "" );
@@ -1148,7 +1292,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const string
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const string
     //!
     string_type const & get_string( char const where[] = "" ) const;
@@ -1161,7 +1305,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of `GenericoContainer`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of `GenericoContainer`
     //!
     vector_type & get_vector( char const where[] = "" );
@@ -1169,7 +1313,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of `GenericoContainer`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of `GenericoContainer`
     //!
     vector_type const & get_vector( char const where[] = "" ) const;
@@ -1177,7 +1321,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of pointers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of pointers
     //!
     vec_pointer_type & get_vec_pointer( char const where[] = "" );
@@ -1185,7 +1329,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of pointers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of pointers
     //!
     vec_pointer_type const & get_vec_pointer( char const where[] = "" ) const;
@@ -1193,7 +1337,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of booleans
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of booleans
     //!
     vec_bool_type & get_vec_bool( char const where[] = "" );
@@ -1201,7 +1345,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of booleans
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of booleans
     //!
     vec_bool_type const & get_vec_bool( char const where[] = "" ) const;
@@ -1209,7 +1353,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of integers
     //!
     vec_int_type & get_vec_int( char const where[] = "" );
@@ -1217,7 +1361,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of integers
     //!
     vec_int_type const & get_vec_int( char const where[] = "" ) const;
@@ -1225,7 +1369,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of long integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of long integers
     //!
     vec_long_type & get_vec_long( char const where[] = "" );
@@ -1233,7 +1377,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of long integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of long integers
     //!
     vec_long_type const & get_vec_long( char const where[] = "" ) const;
@@ -1241,7 +1385,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of `real_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of `real_type`
     //!
     vec_real_type & get_vec_real( char const where[] = "" );
@@ -1249,7 +1393,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of `real_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of `real_type`
     //!
     vec_real_type const & get_vec_real( char const where[] = "" ) const;
@@ -1257,7 +1401,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of `complex_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of `complex_type`
     //!
     vec_complex_type & get_vec_complex( char const where[] = "" );
@@ -1265,7 +1409,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of `complex_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of `complex_type`
     //!
     vec_complex_type const & get_vec_complex( char const where[] = "" ) const;
@@ -1273,7 +1417,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a matrix of integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a matrix of integers
     //!
     mat_int_type & get_mat_int( char const where[] = "" );
@@ -1281,7 +1425,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const matrix of integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const matrix of integers
     //!
     mat_int_type const & get_mat_int( char const where[] = "" ) const;
@@ -1289,7 +1433,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a matrix of long integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a matrix of long integers
     //!
     mat_long_type & get_mat_long( char const where[] = "" );
@@ -1297,7 +1441,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const matrix of long integers
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const matrix of long integers
     //!
     mat_long_type const & get_mat_long( char const where[] = "" ) const;
@@ -1305,7 +1449,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a matrix of `real_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a matrix of `real_type`
     //!
     mat_real_type & get_mat_real( char const where[] = "" );
@@ -1313,7 +1457,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const matrix of `real_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const matrix of `real_type`
     //!
     mat_real_type const & get_mat_real( char const where[] = "" ) const;
@@ -1321,7 +1465,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a matrix of `complex_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a matrix of `complex_type`
     //!
     mat_complex_type & get_mat_complex( char const where[] = "" );
@@ -1329,7 +1473,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const matrix of `complex_type`
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const matrix of `complex_type`
     //!
     mat_complex_type const & get_mat_complex( char const where[] = "" ) const;
@@ -1337,7 +1481,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a vector of string
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a vector of string
     //!
     vec_string_type & get_vec_string( char const where[] = "" );
@@ -1345,7 +1489,7 @@ namespace GC_namespace {
     //!
     //! Get the stored value as a const vector of string
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the data stored in the container as a const vector of string
     //!
     vec_string_type const & get_vec_string( char const where[] = "" ) const;
@@ -1361,7 +1505,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of integers
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_int( vec_int_type & v, char const where[] = "" ) const;
 
@@ -1369,7 +1513,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of unsigned integer
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_uint( vec_uint_type & v, char const where[] = "" ) const;
 
@@ -1377,7 +1521,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of long integer
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_long( vec_long_type & v, char const where[] = "" ) const;
 
@@ -1385,7 +1529,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of unsigned long integer
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_ulong( vec_ulong_type & v, char const where[] = "" ) const;
 
@@ -1393,7 +1537,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of `real_type`
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_real( vec_real_type & v, char const where[] = "" ) const;
 
@@ -1401,7 +1545,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of `complex_type`
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_complex( vec_complex_type & v, char const where[] = "" ) const;
 
@@ -1409,7 +1553,7 @@ namespace GC_namespace {
     //! Copy internal data a vector of strings
     //!
     //! \param[out] v     vector to store the data
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //!
     void copyto_vec_string( vec_string_type & v, char const where[] = "" ) const;
 
@@ -1422,7 +1566,8 @@ namespace GC_namespace {
     //! If `i`-th element of the vector is boolean,
     //! integer or floating point then return number, otherwise return `0`.
     //!
-    //! \param[in] i the position of the element in the vector
+    //! \param[in] i     the position of the element in the vector
+    //! \param[in]  where position added to the error message
     //! \return the value as `real_type`
     //!
     real_type get_number_at( unsigned i, char const where[] = "" ) const;
@@ -1431,7 +1576,8 @@ namespace GC_namespace {
     //! If `i`-th element of the vector is convertible to
     //! compex return number, otherwise return `0`.
     //!
-    //! \param[in] i the position of the element in the vector
+    //! \param[in] i     the position of the element in the vector
+    //! \param[in]  where position added to the error message
     //! \return the value as `complex_type`
     //!
     complex_type get_complex_number_at( unsigned i, char const where[] = "" ) const;
@@ -1443,6 +1589,7 @@ namespace GC_namespace {
     //! \param[in]  i  the position of the element in the vector
     //! \param[out] re real part of the number
     //! \param[out] im imaginary part of the number
+    //! \param[in]  where position added to the error message
     //!
     void get_complex_number_at( unsigned i, real_type & re, real_type & im, char const where[] = "" ) const;
 
@@ -1479,7 +1626,7 @@ namespace GC_namespace {
     //! Get the `i`-th boolean of the stored data.
     //!
     //! \param[in]  i     the position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     bool_type get_bool_at( unsigned i, char const where[] ) const;
@@ -1496,7 +1643,7 @@ namespace GC_namespace {
     //! Get the `i`-th const integer of the stored data.
     //!
     //! \param[in]  i     the position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     int_type const & get_int_at( unsigned i, char const where[] ) const;
@@ -1513,7 +1660,7 @@ namespace GC_namespace {
     //! Get the `i`-th const long integer of the stored data.
     //!
     //! \param[in]  i     the position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     long_type const & get_long_at( unsigned i, char const where[] ) const;
@@ -1530,7 +1677,7 @@ namespace GC_namespace {
     //! Get the `i`-th const `real_type` of the stored data.
     //!
     //! \param[in]  i     the position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     real_type const & get_real_at( unsigned i, char const where[] ) const;
@@ -1547,7 +1694,7 @@ namespace GC_namespace {
     //! Get the `i`-th const `complex_type` of the stored data.
     //!
     //! \param[in]  i     the position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     complex_type const & get_complex_at( unsigned i, char const where[] ) const;
@@ -1566,7 +1713,7 @@ namespace GC_namespace {
     //!
     //! \param[in]  i     row position of the element in the matrix
     //! \param[in]  j     colun position of the element in the matrix
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     int_type const & get_int_at( unsigned i, unsigned j, char const where[] ) const;
@@ -1585,7 +1732,7 @@ namespace GC_namespace {
     //!
     //! \param[in]  i     row position of the element in the matrix
     //! \param[in]  j     colun position of the element in the matrix
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     long_type const & get_long_at( unsigned i, unsigned j, char const where[] ) const;
@@ -1604,7 +1751,7 @@ namespace GC_namespace {
     //!
     //! \param[in]  i     row position of the element in the matrix
     //! \param[in]  j     colun position of the element in the matrix
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     real_type const & get_real_at( unsigned i, unsigned j, char const where[] ) const;
@@ -1623,7 +1770,7 @@ namespace GC_namespace {
     //!
     //! \param[in]  i     row position of the element in the matrix
     //! \param[in]  j     colun position of the element in the matrix
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     complex_type const & get_complex_at( unsigned i, unsigned j, char const where[] ) const;
@@ -1640,7 +1787,7 @@ namespace GC_namespace {
     //! Get the `i`-th const string of the stored data.
     //!
     //! \param[in]  i     position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     string_type const & get_string_at( unsigned i, char const where[] ) const;
@@ -1657,7 +1804,7 @@ namespace GC_namespace {
     //! Get the `i`-th const `GenericContainer` of the stored data.
     //!
     //! \param[in]  i     position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     GenericContainer const & get_gc_at( unsigned i, char const where[] ) const;
@@ -1672,7 +1819,7 @@ namespace GC_namespace {
     //!
     //! Get the stored data as a map of `GenericContainer`.
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     map_type & get_map( char const where[] = "" );
@@ -1680,7 +1827,7 @@ namespace GC_namespace {
     //!
     //! Get the stored data as a const map of `GenericContainer`.
     //!
-    //! \param[in] where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     map_type const & get_map( char const where[] = "" ) const;
@@ -1728,7 +1875,7 @@ namespace GC_namespace {
     //! Get the `i`-th `GenericContainer` of the stored data.
     //!
     //! \param[in]  i     position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     GenericContainer & operator () ( unsigned i, char const where[] = "" );
@@ -1737,7 +1884,7 @@ namespace GC_namespace {
     //! Get the `i`-th `GenericContainer` of the stored data.
     //!
     //! \param[in]  i     position of the element in the vector
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     GenericContainer const & operator () ( unsigned i, char const where[] = "" ) const;
@@ -1746,7 +1893,7 @@ namespace GC_namespace {
     //! Get a `GenericContainer` in the stored data.
     //!
     //! \param[in]  s     key string of the element in the map
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     GenericContainer & operator () ( string_type const & s, char const where[] = "" );
@@ -1755,7 +1902,7 @@ namespace GC_namespace {
     //! Get a const `GenericContainer` in the stored data.
     //!
     //! \param[in]  s     key string of the element in the map
-    //! \param[in]  where message of error in case of failure
+    //! \param[in]  where position added to the error message
     //! \return the stored value
     //!
     GenericContainer const & operator () ( string_type const & s, char const where[] = "" ) const;
@@ -1765,7 +1912,7 @@ namespace GC_namespace {
     //! Search for a matching key
     //!
     //! \param[in]  vs    vector of keys strings
-    //! \param[in]  where message of error in case no keys found
+    //! \param[in]  where position added to the error message
     //! \return the stored value of the first match
     //!
     GenericContainer & operator () ( vec_string_type const & vs, char const where[] = "" );
@@ -1774,7 +1921,7 @@ namespace GC_namespace {
     //! Get a const `GenericContainer` in the stored data.
     //!
     //! \param[in]  vs    vector of keys string
-    //! \param[in]  where message of error in case no keys found
+    //! \param[in]  where position added to the error message
     //! \return the stored value of the first match
     //!
     GenericContainer const & operator () ( vec_string_type const & vs, char const where[] = "" ) const;
@@ -2066,7 +2213,7 @@ namespace GC_namespace {
     ///@}
 
     //!
-    //! \name Promotion to a ``bigger'' data.
+    //! \name Promotion to a `bigger` data.
     //!
     ///@{
     //!
@@ -2259,6 +2406,13 @@ namespace GC_namespace {
     //! \param[in] vs vector of string with the keys to be checked
     //!
     bool exists( vec_string_type const & vs ) const;
+
+    //!
+    //! The data stored musty be a `map`.
+    //! Search the
+    //! \param[in] `vs` vector of string with the keys to be searched
+    //! \param[in]  where position added to the error message
+    //!
     string must_exists( vec_string_type const & vs, char const where[] ) const;
 
     //!
@@ -2437,7 +2591,7 @@ namespace GC_namespace {
     //! Merge two generic container
     //!
     //! \param[in] gc    input `GenericContainer`
-    //! \param[in] where for error message
+    //! \param[in] where position added to the error message
     //!
     void merge( GenericContainer const & gc, char const where[] );
 
@@ -2536,6 +2690,7 @@ namespace GC_namespace {
     //! \param commentChars lines beginning with one of this chars are treated as comments.
     //!                     Default are `#` and `%`
     //! \param delimiters   characters used as delimiter for headers
+    //! \param ptr_pars     pointer to a `GenericContainer` which store poarameter parsed in the comment part of the file
     //!
     GenericContainer &
     readFormattedData2(
@@ -2560,6 +2715,7 @@ namespace GC_namespace {
     //! \param commentChars lines beginning with one of this chars are treated as comments.
     //!                     Default are `#` and `%`
     //! \param delimiters   characters used as delimiter for headers
+    //! \param ptr_pars     pointer to a `GenericContainer` which store poarameter parsed in the comment part of the file
     //!
     GenericContainer &
     readFormattedData2(
@@ -2585,6 +2741,9 @@ namespace GC_namespace {
     //! Fill the buffer with the serialized version of the GenericContainer.
     //!
     int32_t serialize( int32_t buffer_dim, uint8_t * buffer ) const;
+    //!
+    //! Fill the buffer with the serialized version of the GenericContainer.
+    //!
     int32_t serialize( std::vector<uint8_t> & buffer ) const;
 
     //!
@@ -2592,6 +2751,10 @@ namespace GC_namespace {
     //! of the GenericContainer conrined in buffer.
     //!
     int32_t de_serialize( int32_t buffer_dim, uint8_t const * buffer );
+    //!
+    //! Build the generic container from the serialized version
+    //! of the GenericContainer conrined in buffer.
+    //!
     int32_t de_serialize( std::vector<uint8_t> const & buffer );
 
     ///@}
@@ -2599,7 +2762,7 @@ namespace GC_namespace {
     //!
     //! Do an exception
     //!
-    //! \param[in] where message of the exception
+    //! \param[in]  where position added to the error message
     //!
     static
     void
@@ -2669,6 +2832,8 @@ namespace GC_namespace {
     ostream_type          & stream
   );
 
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+
   // -------------------------------------------------------
   class GenericContainerExplorer {
   private:
@@ -2714,15 +2879,21 @@ namespace GC_namespace {
     int reset();
 
   };
+
+  #endif
 }
 
-// do not define alias GC if use X11
-#ifndef XlibSpecificationRelease
-namespace GC = GC_namespace;
-#endif
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-// for backward compatibility
-namespace GenericContainerNamespace = GC_namespace;
+  // do not define alias GC if use X11
+  #ifndef XlibSpecificationRelease
+  namespace GC = GC_namespace;
+  #endif
+
+  // for backward compatibility
+  namespace GenericContainerNamespace = GC_namespace;
+
+#endif
 
 #ifdef __clang__
 #pragma clang diagnostic pop

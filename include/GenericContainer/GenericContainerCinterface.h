@@ -42,12 +42,12 @@ enum {
   GENERIC_CONTAINER_NOT_EMPTY,
   GENERIC_CONTAINER_BAD_HEAD
 };
-#endif
 
 typedef struct {
   double real;
   double imag;
 } c_complex_type;
+#endif
 
 //!
 //! Create a new `GenericContainer` object 'id'

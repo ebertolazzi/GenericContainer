@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GenericContainer: GC_namespace::LuaInterpreter Class Reference &#8212; Generic Container</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/agogo.css?v=9f70d9a6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_style.css?v=678fb11e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-needs/modern.css?v=803738c0" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=9e3b0030" />
+    <script src="../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../_static/documentation_options.js?v=60dbed4a"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../../_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../../_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+          <p class="logo"><a href="../../index.html">
+            <img class="logo" src="../../_static/logo1.png" alt="Logo of Generic Container"/>
+          </a></p>
+        <div class="headertitle"><a
+          href="../../index.html">Generic Container</a></div>
+<!--
+        <div class="rel" role="navigation" aria-label="Related">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+-->
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="luainterpreter-class-reference">
+<h1>LuaInterpreter Class Reference<a class="headerlink" href="#luainterpreter-class-reference" title="Link to this heading">¶</a></h1>
+<div class="doxygen-content docutils container">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GenericContainer: GC_namespace::LuaInterpreter Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript">
+window.MathJax = {
+  options: {
+    ignoreHtmlClass: 'tex2jax_ignore',
+    processHtmlClass: 'tex2jax_process'
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">GenericContainer
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Search',false);
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespace_g_c__namespace.html">GC_namespace</a></li><li class="navelem"><a class="el" href="class_g_c__namespace_1_1_lua_interpreter.html">LuaInterpreter</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="class_g_c__namespace_1_1_lua_interpreter-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">GC_namespace::LuaInterpreter Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_generic_container_lua_interface_8hh_source.html">GenericContainerLuaInterface.hh</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aceb0cfbc2635061987f1e9059d94467c" id="r_aceb0cfbc2635061987f1e9059d94467c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aceb0cfbc2635061987f1e9059d94467c">execute</a> (char const cmd[])</td></tr>
+<tr class="separator:aceb0cfbc2635061987f1e9059d94467c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186148c0e5ade70406e0b8d598c3f25e" id="r_a186148c0e5ade70406e0b8d598c3f25e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a186148c0e5ade70406e0b8d598c3f25e">call</a> (<a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;arguments, <a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;res)</td></tr>
+<tr class="separator:a186148c0e5ade70406e0b8d598c3f25e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdc77aab9959d7a61c925873730a1163" id="r_acdc77aab9959d7a61c925873730a1163"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdc77aab9959d7a61c925873730a1163">do_file</a> (char const fname[])</td></tr>
+<tr class="separator:acdc77aab9959d7a61c925873730a1163"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a954f6908998c24db8a3597dd6e4c9973" id="r_a954f6908998c24db8a3597dd6e4c9973"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a954f6908998c24db8a3597dd6e4c9973">GC_to_global</a> (<a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, char const global_var[])</td></tr>
+<tr class="separator:a954f6908998c24db8a3597dd6e4c9973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b9ef737cde0975ad5ee4dbdc613c19b" id="r_a4b9ef737cde0975ad5ee4dbdc613c19b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b9ef737cde0975ad5ee4dbdc613c19b">global_to_GC</a> (char const var[], <a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="separator:a4b9ef737cde0975ad5ee4dbdc613c19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49a8963a83b5e9f75826007c6eba7b91" id="r_a49a8963a83b5e9f75826007c6eba7b91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49a8963a83b5e9f75826007c6eba7b91">interactive</a> (int argc, char const **argv, char const **messages, char const *prompt)</td></tr>
+<tr class="separator:a49a8963a83b5e9f75826007c6eba7b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>C++ class imnplementing a simple Lua interpreter that can be used to read and interpret data file. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a186148c0e5ade70406e0b8d598c3f25e" name="a186148c0e5ade70406e0b8d598c3f25e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186148c0e5ade70406e0b8d598c3f25e">&#9670;&#160;</a></span>call()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::LuaInterpreter::call </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>arguments</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>res</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Execute a function in Lua with arguments passed by the <code><a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a></code></p>
+<ul>
+<li><code>arguments</code> must contain the field</li>
+<li>"function" of type string with the name of the Lua function to be called</li>
+<li>"args" a generic container storing the arguments of the function</li>
+</ul>
+<p>The result of computation is returned in <code>res</code>. </p>
+
+</div>
+</div>
+<a id="acdc77aab9959d7a61c925873730a1163" name="acdc77aab9959d7a61c925873730a1163"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdc77aab9959d7a61c925873730a1163">&#9670;&#160;</a></span>do_file()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::LuaInterpreter::do_file </td>
+          <td>(</td>
+          <td class="paramtype">char const</td>          <td class="paramname"><span class="paramname"><em>fname</em></span>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Interpret the file <code>fname</code> as a Lua script. </p>
+
+</div>
+</div>
+<a id="aceb0cfbc2635061987f1e9059d94467c" name="aceb0cfbc2635061987f1e9059d94467c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceb0cfbc2635061987f1e9059d94467c">&#9670;&#160;</a></span>execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::LuaInterpreter::execute </td>
+          <td>(</td>
+          <td class="paramtype">char const</td>          <td class="paramname"><span class="paramname"><em>cmd</em></span>[]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Interpret the string <code>cmd</code> as a Lua statement </p>
+
+</div>
+</div>
+<a id="a954f6908998c24db8a3597dd6e4c9973" name="a954f6908998c24db8a3597dd6e4c9973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a954f6908998c24db8a3597dd6e4c9973">&#9670;&#160;</a></span>GC_to_global()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::LuaInterpreter::GC_to_global </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const</td>          <td class="paramname"><span class="paramname"><em>global_var</em></span>[]&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get <code>gc</code> and store in the Lua global variable <code>global_var</code>. </p>
+
+</div>
+</div>
+<a id="a4b9ef737cde0975ad5ee4dbdc613c19b" name="a4b9ef737cde0975ad5ee4dbdc613c19b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b9ef737cde0975ad5ee4dbdc613c19b">&#9670;&#160;</a></span>global_to_GC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::LuaInterpreter::global_to_GC </td>
+          <td>(</td>
+          <td class="paramtype">char const</td>          <td class="paramname"><span class="paramname"><em>var</em></span>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get a Lua global variable <code>global_var</code> and store in <code>gc</code>. </p>
+
+</div>
+</div>
+<a id="a49a8963a83b5e9f75826007c6eba7b91" name="a49a8963a83b5e9f75826007c6eba7b91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49a8963a83b5e9f75826007c6eba7b91">&#9670;&#160;</a></span>interactive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GC_namespace::LuaInterpreter::interactive </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>argc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const **</td>          <td class="paramname"><span class="paramname"><em>argv</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const **</td>          <td class="paramname"><span class="paramname"><em>messages</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char const *</td>          <td class="paramname"><span class="paramname"><em>prompt</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Execute the Lua interpreter interatively. </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>/Users/enrico/Ricerca/develop/PINS/pins-mechatronix/LibSources/submodules/GC/include/GenericContainer/<a class="el" href="_generic_container_lua_interface_8hh_source.html">GenericContainerLuaInterface.hh</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../usage.html">Generic Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_CPP.html">GenericContainer C++ interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../author.html">Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../LICENSE.html">LICENSE</a></li>
+</ul>
+
+          <search role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
+          </search>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+<!--
+        <div class="left">
+          <div role="navigation" aria-label="Related">
+            <a href="../../genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="../../_sources/doxygen/html/class_g_c__namespace_1_1_lua_interpreter.rst.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+-->
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

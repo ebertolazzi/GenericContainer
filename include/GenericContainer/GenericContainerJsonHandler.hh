@@ -21,6 +21,8 @@
 
 #include "GenericContainerJson.hh"
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 #ifdef USE_SYSTEM_JSON
   #include <rapidjson/reader.h>
 #else
@@ -75,5 +77,7 @@ namespace GC_namespace {
   };
 
 }
+
+#endif
 
 #endif

@@ -1,0 +1,14 @@
+.. meta::afaef7bc0247f3f68002aa50842c12d71b8867ef7609a9343c5d98466e1fc2945c766d47d09fba5361932060db188a231fbba4bc972877b81a6de5791092344a
+
+:orphan:
+
+.. title:: GenericContainer: GC_namespace::mat_type&lt; TYPE &gt; Class Template Reference
+
+mat\_type&lt; TYPE &gt; Class Template Reference
+================================================
+
+.. container:: doxygen-content
+
+   
+   .. raw:: html
+     :file: class_g_c__namespace_1_1mat__type.html

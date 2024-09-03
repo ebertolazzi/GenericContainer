@@ -110,6 +110,7 @@ namespace GC_namespace {
   template ostream_type & operator << ( ostream_type & s, vec_int_type const & v );
   template ostream_type & operator << ( ostream_type & s, vec_long_type const & v );
   template ostream_type & operator << ( ostream_type & s, vec_real_type const & v );
+
   #endif
 
   template <typename TYPE>
@@ -229,7 +230,6 @@ namespace GC_namespace {
   template ostream_type & operator << ( ostream_type & s, mat_type<int_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<long_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<real_type> const & m );
-  #endif
 
   #ifdef HAVE_WORKING_REGEX
   class Pcre_for_GC {
@@ -264,6 +264,8 @@ namespace GC_namespace {
 
   #endif
 
+  #endif
+
   char const *
   to_string( GC_type s ) {
     switch ( s ) {
@@ -291,12 +293,6 @@ namespace GC_namespace {
     }
     return "";
   };
-
-  // costruttore
-  GenericContainer::GenericContainer()
-  : m_data_type(GC_type::NOTYPE)
-  {
-  }
 
   #ifdef GENERIC_CONTAINER_ON_WINDOWS
   bool
@@ -394,7 +390,6 @@ namespace GC_namespace {
     return *this;
   }
 
-  // distruttore
   void
   GenericContainer::clear() {
     switch (m_data_type) {
@@ -435,7 +430,6 @@ namespace GC_namespace {
     m_data_type = GC_type::NOTYPE;
   }
 
-  // distruttore
   void
   GenericContainer::erase( char const name[] ) {
     GC_ASSERT(
@@ -1356,6 +1350,8 @@ namespace GC_namespace {
     return nullptr;
   }
 
+  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+
   template <>
   void
   GenericContainer::get_value( uint_type & v, char const where[] ) const {
@@ -1684,6 +1680,8 @@ namespace GC_namespace {
       )
     }
   }
+
+  #endif
 
   real_type
   GenericContainer::get_number( char const where[] ) const {
