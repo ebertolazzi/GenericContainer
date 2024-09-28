@@ -32,20 +32,11 @@
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
 
-#if __cplusplus >= 201103L &&                             \
-    (!defined(__GLIBCXX__) || (__cplusplus >= 201402L) || \
-        (defined(_GLIBCXX_REGEX_DFS_QUANTIFIERS_LIMIT) || \
-         defined(_GLIBCXX_REGEX_STATE_LIMIT)           || \
-             (defined(_GLIBCXX_RELEASE)                && \
-             _GLIBCXX_RELEASE > 4)))
-#define HAVE_WORKING_REGEX 1
+#if __cplusplus <= 199711L
+  #error This library needs at least a C++11 compliant compiler
 #endif
 
-#ifdef HAVE_WORKING_REGEX
-  #include <regex>
-#endif
-
-
+#include <regex>
 #include <fstream>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -98,18 +89,10 @@ namespace GC_namespace {
     return s;
   }
 
-  template <>
-  ostream_type &
-  operator << ( ostream_type & s, vec_complex_type const & v ) {
-    s << '[';
-    for ( complex_type const & vi : v ) s << " (" << vi.real() << ", " << vi.imag() << " )";
-    s << " ]";
-    return s;
-  }
-
   template ostream_type & operator << ( ostream_type & s, vec_int_type const & v );
   template ostream_type & operator << ( ostream_type & s, vec_long_type const & v );
   template ostream_type & operator << ( ostream_type & s, vec_real_type const & v );
+  template ostream_type & operator << ( ostream_type & s, vec_complex_type const & v );
 
   #endif
 
@@ -211,27 +194,19 @@ namespace GC_namespace {
     return s;
   }
 
-  template <>
   ostream_type &
-  operator << ( ostream_type & s, mat_complex_type const & m ) {
-    if ( m.num_rows() > 0 && m.num_cols() ) {
-      for ( unsigned i = 0; i < m.num_rows(); ++i ) {
-        for ( unsigned j = 0; j < m.num_cols(); ++j )
-          s << " (" << std::setw(8) << m(i,j).real() << ", "
-                    << std::setw(8) << m(i,j).imag() << " )";
-        s << '\n';
-      }
-    } else {
-      s << m.num_rows() << " by " << m.num_cols() << " (complex) matrix\n";
-    }
+  operator << ( ostream_type & s, complex_type const & c ) {
+    s << c.real();
+    if ( c.imag() < 0 ) s << '-' << -c.imag() << 'i';
+    else                s << '+' <<  c.imag() << 'i';
     return s;
   }
 
   template ostream_type & operator << ( ostream_type & s, mat_type<int_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<long_type> const & m );
   template ostream_type & operator << ( ostream_type & s, mat_type<real_type> const & m );
+  template ostream_type & operator << ( ostream_type & s, mat_type<complex_type> const & m );
 
-  #ifdef HAVE_WORKING_REGEX
   class Pcre_for_GC {
 
   private:
@@ -261,8 +236,6 @@ namespace GC_namespace {
   };
 
   static Pcre_for_GC pcre_for_GC;
-
-  #endif
 
   #endif
 
@@ -1386,9 +1359,8 @@ namespace GC_namespace {
     case GC_type::COMPLEX:
       GC_ASSERT(
         isZero0(m_data.c->imag()) && isUnsigned(m_data.c->real()),
-        where << " in get_value(...) `complex` value = ("
-              << m_data.c->real() << ","
-              << m_data.c->imag() << ") cannot be converted into `uint_type'"
+        where << " in get_value(...) `complex` value = "
+              << (*m_data.c) << " cannot be converted into `uint_type'"
       )
       v = unsigned(m_data.c->real());
       break;
@@ -1439,9 +1411,8 @@ namespace GC_namespace {
     case GC_type::COMPLEX:
       GC_ASSERT(
         isZero0(m_data.c->imag()) && isInteger(m_data.c->real()),
-        where << " in get_value(...) `complex` value = ("
-              << m_data.c->real() << ","
-              << m_data.c->imag() << ") cannot be converted into `int_type'"
+        where << " in get_value(...) `complex` value = "
+              << (*m_data.c) << " cannot be converted into `int_type'"
       )
       v = int(m_data.c->real());
       break;
@@ -1502,9 +1473,8 @@ namespace GC_namespace {
     case GC_type::COMPLEX:
       GC_ASSERT(
         isZero0(m_data.c->imag()) && isUnsigned(m_data.c->real()),
-        where << " in get_value(...) `complex` value ("
-              << m_data.c->real() << ","
-              << m_data.c->imag() << ") cannot be converted into `ulong_type'"
+        where << " in get_value(...) `complex` value "
+              << (*m_data.c) << " cannot be converted into `ulong_type'"
       )
       v = ulong_type(m_data.c->real());
       break;
@@ -1556,9 +1526,8 @@ namespace GC_namespace {
     case GC_type::COMPLEX:
       GC_ASSERT(
         isZero0(m_data.c->imag()) && isInteger(m_data.c->real()),
-        where << " in get_value(...) `complex` value ("
-              << m_data.c->real() << ","
-              << m_data.c->imag() << ") cannot be converted into `long_type'"
+        where << " in get_value(...) `complex` value = "
+              << (*m_data.c) << " cannot be converted into `long_type'"
       )
       v = long(m_data.c->real());
       break;
@@ -1604,9 +1573,8 @@ namespace GC_namespace {
     case GC_type::COMPLEX:
       GC_ASSERT(
         isZero0(m_data.c->imag()),
-        where << " in get_value(...) `complex` value ("
-              << m_data.c->real() << " "
-              << m_data.c->imag() << ") cannot be converted into `float'"
+        where << " in get_value(...) `complex` value = "
+              << (*m_data.c) << " cannot be converted into `float'"
       )
       v = float(m_data.c->real());
       break;
@@ -1652,9 +1620,8 @@ namespace GC_namespace {
     case GC_type::COMPLEX:
       GC_ASSERT(
         isZero0(m_data.c->imag()),
-        where << " in get_value(...) `complex` value ("
-              << m_data.c->real() << "," << m_data.c->imag()
-              << ") cannot be converted into `double'"
+        where << " in get_value(...) `complex` value = "
+              << (*m_data.c) << " cannot be converted into `double'"
       )
       v = m_data.c->real();
       break;
@@ -2328,9 +2295,8 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()) && isInteger(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `integer'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `integer'"
         )
         val = int_type(cval.real());
         break;
@@ -2338,9 +2304,8 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isInteger(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `integer'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `integer'"
         )
         val = int_type(cval.real());
         break;
@@ -2369,9 +2334,8 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isInteger(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `integer'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `integer'"
         )
         val = int_type(cval.real());
         break;
@@ -2472,9 +2436,8 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_uint: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `unsigned integer'"
+          where << " copyto_vec_uint: v[" << i << "] = "
+                << cval << " cannot be converted to `unsigned integer'"
         )
         val = uint_type(cval.real());
         break;
@@ -2482,9 +2445,8 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `unsigned integer'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `unsigned integer'"
         );
         val = uint_type(cval.real());
         break;
@@ -2519,9 +2481,8 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_uint: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `unsigned integer'"
+          where << " copyto_vec_uint: v[" << i << "] = "
+                << cval << " cannot be converted to `unsigned integer'"
         )
         val = uint_type(cval.real());
         break;
@@ -2596,9 +2557,8 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()) && isInteger(cval.real()),
-          where << " opyto_vec_long: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `long'"
+          where << " copyto_vec_long: v[" << i << "] = "
+                << cval << " cannot be converted to `long'"
         )
         val = long_type(cval.real());
         break;
@@ -2606,9 +2566,8 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isInteger(cval.real()),
-          where << " copyto_vec_long: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `long'"
+          where << " copyto_vec_long: v[" << i << "] = "
+                << cval << " cannot be converted to `long'"
         )
         val = long_type(cval.real());
         break;
@@ -2631,9 +2590,8 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isInteger(cval.real()),
-          where << " copyto_vec_long: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `long'"
+          where << " copyto_vec_long: v[" << i << "] = "
+                << cval << " cannot be converted to `long'"
         )
         val = long_type(cval.real());
         break;
@@ -2734,9 +2692,8 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `unsigned long'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(cval.real());
         break;
@@ -2744,9 +2701,8 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `unsigned long'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `unsigned long'"
         );
         val = ulong_type(cval.real());
         break;
@@ -2781,9 +2737,8 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `unsigned long'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(cval.real());
         break;
@@ -2846,9 +2801,8 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `real_type'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `real_type'"
         )
         val = cval.real();
         break;
@@ -2856,9 +2810,8 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `real_type'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `real_type'"
         )
         val = cval.real();
         break;
@@ -2875,9 +2828,8 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()),
-          where << " copyto_vec_int: v[" << i << "] = ("
-                << cval.real() << "," << cval.imag()
-                << ") cannot be converted to `real_type'"
+          where << " copyto_vec_int: v[" << i << "] = "
+                << cval << " cannot be converted to `real_type'"
         )
         val = cval.real();
         break;
@@ -3685,7 +3637,7 @@ namespace GC_namespace {
       stream << "Floating Point: " << m_data.r << '\n';
       break;
     case GC_type::COMPLEX:
-      stream << "Complex Floating Point: [" << m_data.c->real() << ", " << m_data.c->imag() << " ]\n";
+      stream << "Complex Floating Point: " << (*m_data.c) << "\n";
       break;
     case GC_type::STRING:
       stream << "String: " << m_data.s->c_str() << '\n';
@@ -4785,8 +4737,7 @@ namespace GC_namespace {
       stream << prefix << this->get_real() << '\n';
       break;
     case GC_type::COMPLEX:
-      stream << prefix << "( " << this->get_complex().real()
-             << ", " << this->get_complex().imag() << " )\n";
+      stream << prefix << get_complex() << '\n';
       break;
     case GC_type::STRING:
       stream << prefix << "\"" << this->get_string() << "\"\n";
@@ -4859,10 +4810,6 @@ namespace GC_namespace {
     case GC_type::MAP:
       { map_type const & m = this->get_map();
         for ( auto const & im : m ) {
-          #ifndef HAVE_WORKING_REGEX
-          stream << prefix << im.first << ":\n";
-          im.second.dump(stream,prefix+indent);
-          #else
           // check formatting using pcre
           // num+"@"+"underline character"
           // Try to find the regex in aLineToMatch, and report results.
@@ -4898,7 +4845,6 @@ namespace GC_namespace {
               im.second.dump(stream,prefix+indent);
             }
           }
-          #endif
         }
       }
       break;
@@ -5004,10 +4950,6 @@ namespace GC_namespace {
     case GC_type::MAP:
       { map_type const & m = this->get_map();
         for ( auto const & im : m ) {
-          #ifndef HAVE_WORKING_REGEX
-          stream << prefix << im.first << ":\n";
-          im.second.print_content_types(stream,prefix+indent,indent);
-          #else
           // check formatting using pcre
           // num+"@"+"underline character"
           // Try to find the regex in aLineToMatch, and report results.
@@ -5043,7 +4985,6 @@ namespace GC_namespace {
               im.second.print_content_types(stream,prefix+indent,indent);
             }
           }
-          #endif
         }
       }
       break;
@@ -5259,119 +5200,11 @@ namespace GC_namespace {
     }
   }
 
-  /*
-  //   _                                 _
-  //  | |_ ___     _   _  __ _ _ __ ___ | |
-  //  | __/ _ \   | | | |/ _` | '_ ` _ \| |
-  //  | || (_) |  | |_| | (_| | | | | | | |
-  //   \__\___/____\__, |\__,_|_| |_| |_|_|
-  //         |_____|___/
-  */
-
-  void
-  GenericContainer::to_yaml(
-    ostream_type      & stream,
-    string_type const & prefix
-  ) const {
-    switch (m_data_type) {
-    case GC_type::NOTYPE:
-      stream << "Empty!\n";
-      break;
-    case GC_type::BOOL:
-      stream << (this->get_bool()?"true":"false") << '\n';
-      break;
-    case GC_type::INTEGER:
-      stream << this->get_int() << '\n';
-      break;
-    case GC_type::LONG:
-      stream << this->get_long() << '\n';
-      break;
-    case GC_type::REAL:
-      stream << this->get_real() << '\n';
-      break;
-    case GC_type::COMPLEX:
-      stream << this->get_complex().real() << ' '
-             << this->get_complex().imag() << '\n';
-      break;
-    case GC_type::STRING:
-      stream << "'" << this->get_string().c_str() << "'\n";
-      break;
-    case GC_type::VEC_BOOL:
-      { vec_bool_type const & v = this->get_vec_bool();
-        stream << "[ " << (v[0]?"true":"false");
-        for ( vec_bool_type::size_type i = 1; i < v.size(); ++i )
-          stream << ", " << (v[i]?"true":"false");
-        stream << " ]\n";
-      }
-      break;
-    case GC_type::VEC_INTEGER:
-      { vec_int_type const & v = this->get_vec_int();
-        stream << "[ " << v[0];
-        for ( vec_int_type::size_type i = 1; i < v.size(); ++i )
-          stream << ", " << v[i];
-        stream << " ]\n";
-      }
-      break;
-    case GC_type::VEC_LONG:
-      { vec_long_type const & v = this->get_vec_long();
-        stream << "[ " << v[0];
-        for ( vec_long_type::size_type i = 1; i < v.size(); ++i )
-          stream << ", " << v[i];
-        stream << " ]\n";
-      }
-      break;
-    case GC_type::VEC_REAL:
-      { vec_real_type const & v = this->get_vec_real();
-        stream << "[ " << v[0];
-        for ( vec_real_type::size_type i = 1; i < v.size(); ++i )
-          stream << ", " << v[i];
-        stream << " ]\n";
-      }
-      break;
-    case GC_type::VEC_STRING:
-      { vec_string_type const & v = this->get_vec_string();
-        stream << "[ '" << v[0] << "'";
-        for ( vec_string_type::size_type i = 1; i < v.size(); ++i )
-          stream << ", '" << v[i] << "'";
-        stream << " ]\n";
-      }
-      break;
-
-    case GC_type::VECTOR:
-      { vector_type const & v = this->get_vector();
-        stream << '\n';
-        for ( vector_type::size_type i = 0; i < v.size(); ++i ) {
-          stream << prefix << "- ";
-          v[i].to_yaml(stream,prefix+"  ");
-        }
-      }
-      break;
-    case GC_type::MAP:
-      { map_type const & m = this->get_map();
-        stream << '\n';
-        for ( auto const & im : m ) {
-          stream << prefix << im.first << ": ";
-          im.second.to_yaml(stream,prefix+"  ");
-        }
-      }
-      break;
-    case GC_type::MAT_INTEGER:
-    case GC_type::MAT_LONG:
-    case GC_type::MAT_REAL:
-    case GC_type::VEC_COMPLEX:
-    case GC_type::MAT_COMPLEX:
-    case GC_type::POINTER:
-    case GC_type::VEC_POINTER:
-      { /* DA FARE */ }
-      break;
-    }
-  }
-
   GenericContainer &
   GenericContainer::readFormattedData(
-    char const * fname,
-    char const * commentChars,
-    char const * delimiters
+    char const fname[],
+    char const commentChars[],
+    char const delimiters[]
   ) {
     std::ifstream file( fname );
     GC_ASSERT(
@@ -5383,10 +5216,10 @@ namespace GC_namespace {
 
   GenericContainer &
   GenericContainer::readFormattedData2(
-    char const       * fname,
-    char const       * commentChars,
-    char const       * delimiters,
-    GenericContainer * ptr_pars
+    char const       fname[],
+    char const       commentChars[],
+    char const       delimiters[],
+    GenericContainer ptr_pars[]
   ) {
     std::ifstream file( fname );
     GC_ASSERT(

@@ -24,6 +24,8 @@
 #include "GenericContainer/GenericContainer.hh"
 #include <cstring>
 
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
 namespace GC_namespace {
 
   GenericContainer *
@@ -130,6 +132,8 @@ namespace GC_namespace {
   }
 
 }
+
+#endif
 
 //
 // eof: GenericContainerExplorer.cc

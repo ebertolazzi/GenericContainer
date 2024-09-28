@@ -6,7 +6,7 @@
 //  Copyright © 2017 Nicola Dal Bianco. All rights reserved.
 //
 
-#include "GenericContainer/GenericContainerJsonHandler.hh"
+#include "GenericContainerJsonHandler.hh"
 #include <iostream>
 #include <string>
 

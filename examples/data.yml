@@ -1,0 +1,90 @@
+# Livello 1: tipi di dati semplici
+string_value: "This is a string"
+integer_value: 42
+float_value: 3.14159
+boolean_true: true
+boolean_false: false
+null_value: null
+
+# Livello 1: sequenza (lista) con elementi di tipi diversi
+simple_sequence:
+  - "item 1"
+  - 100
+  - false
+  - null
+  - 3.14
+
+# Livello 1: mapping (dizionario) con profondità 2 e 3
+nested_mapping:
+  level_2:
+    level_3:
+      key_1: "value 1"
+      key_2: 123
+      key_3: true
+
+# Livello 1: sequenza di mapping (lista di dizionari) con profondità 2
+sequence_of_mappings:
+  - name: "Alice"
+    age: 30
+    active: true
+  - name: "Bob"
+    age: 25
+    active: false
+
+# Livello 1: mapping con profondità 4
+deep_nested_structure:
+  level_1:
+    level_2:
+      level_3:
+        level_4_key_1: "Deep value 1"
+        level_4_key_2: 987
+        level_4_key_3: false
+
+# Livello 1: sequenza di sequenze (lista di liste) con profondità 3
+sequence_of_sequences:
+  - - 1
+    - 2
+    - 3
+  - - 10
+    - 20
+    - 30
+  - - 100
+    - 200
+    - 300
+
+# Livello 1: mapping contenente una sequenza con profondità 3
+mapping_with_sequence:
+  key_1:
+    - level_3_item_1
+    - level_3_item_2
+  key_2:
+    - 100
+    - 200
+    - 300
+
+# Livello 1: mapping con un nodo vuoto
+empty_mapping: {}
+
+# Livello 1: sequenza vuota
+empty_sequence: []
+
+# Livello 1: mapping con tipi eterogenei
+mixed_type_mapping:
+  integer_key: 1234
+  boolean_key: true
+  null_key: null
+  float_key: 2.718
+  string_key: "hello"
+matrix_complex:
+  - [ 4+5i, 0 ]
+  - [      0, 0 ]
+  - [      0, 0 ]
+  - [      0, 0 ]
+matrix_int:
+  - [ 1, 0, 0, 0 ]
+  - [ 0, 1, 0, 0 ]
+  - [ 0, 4, 1, 0 ]
+matrix_real:
+  - [ -2, 0 ]
+  - [ 0, 4 ]
+  - [ 0, 2 ]

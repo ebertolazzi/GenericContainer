@@ -1,148 +1,450 @@
-<!DOCTYPE html>
-
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Contents &#8212; Generic Container</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="_static/agogo.css?v=9f70d9a6" />
-    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
-    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_style.css?v=678fb11e" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-needs/modern.css?v=803738c0" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=9e3b0030" />
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=60dbed4a"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
-    <script src="_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
-    <script src="_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
-    <script src="_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
-    <script src="_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
-    <script src="_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Generic Container" href="usage.html" /> 
-  </head><body>
-    <div class="header-wrapper" role="banner">
-      <div class="header">
-          <p class="logo"><a href="#">
-            <img class="logo" src="_static/logo1.png" alt="Logo of Generic Container"/>
-          </a></p>
-        <div class="headertitle"><a
-          href="#">Generic Container</a></div>
-<!--
-        <div class="rel" role="navigation" aria-label="Related">
-          <a href="usage.html" title="Generic Container"
-             accesskey="N">next</a> |
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a>
-        </div>
--->
-       </div>
-    </div>
-
-    <div class="content-wrapper">
-      <div class="content">
-        <div class="document">
-            
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
-            
-  <section class="tex2jax_ignore mathjax_ignore" id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Generic Container</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#supported-types">Supported types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#simple-usage">Simple Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#compile-and-tests">Compile and tests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#lua-support">Lua Support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usage.html#matlab-support">Matlab Support</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="index_CPP.html">GenericContainer C++ interface</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="doxygen/html/namespaces_namespaces.html">Namespaces</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doxygen/html/annotated_classes.html">Classes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="doxygen/html/files.html">Files</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="author.html">Author</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
-</ul>
+<!-- HTML header for doxygen 1.12.0-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.12.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>GenericContainer: GenericContainer</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript">
+  DoxygenAwesomeDarkModeToggle.init()
+  DoxygenAwesomeInteractiveToc.init()
+  DoxygenAwesomeTabs.init()
+  DoxygenAwesomeParagraphLink.init()
+</script>
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">GenericContainer
+   </div>
+   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
 </div>
-</section>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.12.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('index.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
 
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
 
-            <div class="clearer"></div>
-          </div>
-        </div>
-      </div>
-        </div>
-        <div class="sidebar">
-          
-          <h3>Table of Contents</h3>
-          <ul>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Generic Container</a></li>
-<li class="toctree-l1"><a class="reference internal" href="index_CPP.html">GenericContainer C++ interface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="author.html">Author</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LICENSE.html">LICENSE</a></li>
+<div><div class="header">
+  <div class="headertitle"><div class="title">GenericContainer </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Enrico Bertolazzi</dd></dl>
+<ul>
+<li>Dipartimento di Ingegneria Industriale</li>
+<li>Università degli Studi di Trento</li>
+<li><a href="https://e.bertolazzi.dii.unitn.it">personal homepage</a></li>
 </ul>
-
-          <search role="search">
-            <h3 style="margin-top: 1.5em;">Search</h3>
-            <form class="search" action="search.html" method="get">
-                <input type="text" name="q" />
-                <input type="submit" value="Go" />
-            </form>
-          </search>
-
-        </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
-
-    <div class="footer-wrapper">
-      <div class="footer">
-<!--
-        <div class="left">
-          <div role="navigation" aria-label="Related">
-            <a href="usage.html" title="Generic Container"
-              >next</a> |
-            <a href="genindex.html" title="General Index"
-              >index</a>
-          </div>
-          <div role="note" aria-label="source link">
-              <br/>
-              <a href="_sources/index.md.txt"
-                rel="nofollow">Show Source</a>
-          </div>
-        </div>
--->
-        <div class="right">
-          
-    <div class="footer" role="contentinfo">
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
-    </div>
-        </div>
-        <div class="clearer"></div>
-      </div>
-    </div>
-
-  </body>
+<dl class="section copyright"><dt>Copyright</dt><dd><a href="https://opensource.org/license/bsd-2-clause">The 2-Clause BSD License</a></dd></dl>
+<ul>
+<li><a href="https://github.com/ebertolazzi/GenericContainer">Github repository</a></li>
+<li><a class="el" href="df/d70/_install.html">Installation guide</a></li>
+<li>Usage</li>
+<li><a class="el" href="d5/d8f/_license.html">License</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Introduction</h2>
+<p>The <code>GenericContainer</code> class is a powerful and flexible data structure designed to manage a wide variety of data types and structures. Its capabilities include storing integers, real numbers, strings, vectors, maps, and more. This manual is a simple guide to using the <code>GenericContainer</code> class, providing explanations, usage examples, and descriptions of various functionalities.</p>
+<h2><a class="anchor" id="autotoc_md1"></a>
+Features</h2>
+<ul>
+<li><b>Data Types</b>: Supports integers, floating-point numbers, strings, vectors, maps, and complex numbers.</li>
+<li><b>Formatted I/O</b>: Allows reading and writing formatted data from and to files.</li>
+<li><b>Serialization</b>: Facilitates serialization and deserialization of the entire container.</li>
+<li><b>Error Handling</b>: Comprehensive error handling with exceptions and error codes.</li>
+<li><b>Flexibility</b>: Supports nested containers, enabling complex data structures.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Class Overview</h2>
+<p>The <code>GenericContainer</code> class is designed to be generic, allowing the user to store any data type. It provides methods to manipulate the stored data and to perform various operations, including:</p>
+<ul>
+<li>Setting and getting values.</li>
+<li>Managing collections of data with vectors and maps.</li>
+<li>Reading from and writing to files.</li>
+<li>Serializing and deserializing the container.</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Example Usage</h2>
+<p>This section presents various examples demonstrating the functionalities of the <code>GenericContainer</code> class.</p>
+<h3><a class="anchor" id="autotoc_md4"></a>
+Example 1: Basic Operations</h3>
+<p>This example illustrates basic operations, including setting and retrieving integer values.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Setting an integer value</span></div>
+<div class="line">    gc[<span class="stringliteral">&quot;integerValue&quot;</span>] = 42;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Retrieving the integer value</span></div>
+<div class="line">    <span class="keywordtype">int</span> value = gc[<span class="stringliteral">&quot;integerValue&quot;</span>].get_int();</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;The integer value is: &quot;</span> &lt;&lt; value &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_generic_container_8hh_html"><div class="ttname"><a href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md5"></a>
+Example 2: Working with Vectors</h3>
+<p>This example shows how to create and manipulate a vector within a <code>GenericContainer</code>.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    gc.set_vec_real(5);  <span class="comment">// Create a vector of 5 real numbers</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Assigning values to the vector</span></div>
+<div class="line">    gc[0] = 3.14;</div>
+<div class="line">    gc[1] = 2.71;</div>
+<div class="line">    gc[2] = 1.41;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Displaying vector contents</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Vector contents: &quot;</span>;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; gc.get_vector_size(); i++) {</div>
+<div class="line">        cout &lt;&lt; gc[i].get_real() &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    cout &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md6"></a>
+Example 3: Using Maps</h3>
+<p>Demonstrates how to create and manipulate maps within a <code>GenericContainer</code>.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    gc.set_map();  <span class="comment">// Create a map</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Setting values in the map</span></div>
+<div class="line">    gc[<span class="stringliteral">&quot;key1&quot;</span>] = 123;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;key2&quot;</span>] = <span class="stringliteral">&quot;example&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Retrieving values from the map</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Key1: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;key1&quot;</span>].get_int() &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Key2: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;key2&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md7"></a>
+Example 4: Nested Containers</h3>
+<p>Illustrates how to create nested containers with vectors and maps.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    gc.set_vec_real(2);  <span class="comment">// Create a vector of 2 elements</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create first element as a map</span></div>
+<div class="line">    gc[0].set_map();</div>
+<div class="line">    gc[0][<span class="stringliteral">&quot;innerKey1&quot;</span>] = 100;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create second element as another vector</span></div>
+<div class="line">    gc[1].set_vec_real(3);</div>
+<div class="line">    gc[1][0] = 1.0;</div>
+<div class="line">    gc[1][1] = 2.0;</div>
+<div class="line">    gc[1][2] = 3.0;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Display contents</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Inner Key1: &quot;</span> &lt;&lt; gc[0][<span class="stringliteral">&quot;innerKey1&quot;</span>].get_int() &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Vector contents of second element: &quot;</span>;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; gc[1].get_vector_size(); i++) {</div>
+<div class="line">        cout &lt;&lt; gc[1][i].get_real() &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line">    cout &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md8"></a>
+Example 5: Serialization</h3>
+<p>This example showcases how to serialize and deserialize a <code>GenericContainer</code>.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;name&quot;</span>] = <span class="stringliteral">&quot;Doxygen&quot;</span>;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;version&quot;</span>] = 1.8;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Serialize the GenericContainer</span></div>
+<div class="line">    <span class="keywordtype">int</span> sz = gc.mem_size();</div>
+<div class="line">    vector&lt;uint8_t&gt; buffer(sz);</div>
+<div class="line">    <span class="keywordtype">int</span> sz1 = gc.serialize(sz, buffer.data());</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Serialized size: &quot;</span> &lt;&lt; sz1 &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Deserialize into a new GenericContainer</span></div>
+<div class="line">    GenericContainer gc_new;</div>
+<div class="line">    gc_new.de_serialize(sz, buffer.data());</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Deserialized Name: &quot;</span> &lt;&lt; gc_new[<span class="stringliteral">&quot;name&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md9"></a>
+Example 6: Complex Data Structures</h3>
+<p>Demonstrates the creation of a complex data structure with various data types.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Create a map with different data types</span></div>
+<div class="line">    gc.set_map();</div>
+<div class="line">    gc[<span class="stringliteral">&quot;intValue&quot;</span>] = 100;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;stringValue&quot;</span>] = <span class="stringliteral">&quot;Hello World&quot;</span>;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;realValue&quot;</span>] = 3.14159;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Accessing values</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Integer: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;intValue&quot;</span>].get_int() &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;String: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;stringValue&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Real: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;realValue&quot;</span>].get_real() &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md10"></a>
+Example 7: File I/O</h3>
+<p>This example demonstrates the use of file I/O with <code>GenericContainer</code> to read and print formatted data.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    ifstream file(<span class="stringliteral">&quot;data_example.txt&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (file.fail()) {</div>
+<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot;Error opening file!&quot;</span> &lt;&lt; endl;</div>
+<div class="line">        <span class="keywordflow">return</span> 1;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    gc.readFormattedData(file, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot;\t &quot;</span>);</div>
+<div class="line">    gc.dump(cout);  <span class="comment">// Print contents</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
+Example 8: Matrix Operations</h3>
+<p>This example shows how to create and manipulate a matrix using <code>GenericContainer</code>.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    gc.set_mat_real(3, 3);  <span class="comment">// Create a 3x3 matrix</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Assigning values to the matrix</span></div>
+<div class="line">    gc.get_real_at(0, 0) = 1.0;</div>
+<div class="line">    gc.get_real_at(1, 1) = 2.0;</div>
+<div class="line">    gc.get_real_at(2, 2) = 3.0;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Display matrix contents</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Matrix contents:&quot;</span> &lt;&lt; endl;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 3; ++j) {</div>
+<div class="line">            cout &lt;&lt; gc.get_real_at(i, j) &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line">        }</div>
+<div class="line">        cout &lt;&lt; endl;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md12"></a>
+Example 9: Advanced Serialization</h3>
+<p>This example illustrates advanced serialization and deserialization of <code>GenericContainer</code>.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;item1&quot;</span>] = 45.67;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;item2&quot;</span>] = <span class="stringliteral">&quot;OpenAI&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Serialize the GenericContainer</span></div>
+<div class="line">    <span class="keywordtype">int</span> sz = gc.mem_size();</div>
+<div class="line">    vector&lt;uint8_t&gt; buffer(sz);</div>
+<div class="line">    gc.serialize(sz, buffer.data());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Deserialize into a new GenericContainer</span></div>
+<div class="line">    GenericContainer gc_new;</div>
+<div class="line">    gc_new.de_serialize(sz, buffer.data());</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Deserialized Item1: &quot;</span> &lt;&lt; gc_new[<span class="stringliteral">&quot;item1&quot;</span>].get_real() &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Deserialized Item2: &quot;</span> &lt;&lt; gc_new[<span class="stringliteral">&quot;item2&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md13"></a>
+Example 10: Data Manipulation from Files</h3>
+<p>This example demonstrates reading formatted data from a file and displaying it using <code>GenericContainer</code>.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">         &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">         &lt;&lt; <span class="stringliteral">&quot;      Example N.10     \n&quot;</span></div>
+<div class="line">         &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">try</span> {</div>
+<div class="line">        GenericContainer gc1, gc2, gc3, gc4, pars;</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Reading formatted data from a file</span></div>
+<div class="line">        gc1.readFormattedData(<span class="stringliteral">&quot;examples/example10_data.txt&quot;</span>);</div>
+<div class="line">        gc2.readFormattedData2(<span class="stringliteral">&quot;examples/example10_data.txt&quot;</span>, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot; \t&quot;</span>, &amp;pars);</div>
+<div class="line">        gc2.to_gc(gc3);</div>
+<div class="line">        gc4.from_gc(gc2);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Print contents of the GenericContainers</span></div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC1 --------------------------\n&quot;</span>;</div>
+<div class="line">        gc1.print(cout);</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC2 --------------------------\n&quot;</span>;</div>
+<div class="line">        gc2.print(cout);</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;PARS --------------------------\n&quot;</span>;</div>
+<div class="line">        pars.print(cout);</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC2 COPY ----------------------\n&quot;</span>;</div>
+<div class="line">        gc3.print(cout);</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC2 COPY2 ---------------------\n&quot;</span>;</div>
+<div class="line">        gc4.print(cout);</div>
+<div class="line">    } <span class="keywordflow">catch</span> (std::exception &amp;exc) {</div>
+<div class="line">        cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">    } <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Unknown error\n&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
+</body>
 </html>

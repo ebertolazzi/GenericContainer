@@ -63,11 +63,15 @@ the distribution.
 
 ## Compile and tests
 
-Edit makefile file to match compiler of your OS and do:
+Tou need rake installed in your system
 
 ```sh
-make # using make (only linux/OSX or mingw)
+rake
+```
 
+if the OS is not correctly detected try
+
+```sh
 rake build_osx   # compile for OSX
 rake build_linux # compile for linux
 rake build_win   # compile for WINDOWS
@@ -76,8 +80,6 @@ rake build_win   # compile for WINDOWS
 To run the test
 
 ```sh
-make run
-
 rake run       # for linux/OSX
 rake run_win   # for windows
 ```

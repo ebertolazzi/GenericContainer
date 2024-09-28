@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['readformatteddata_0',['readFormattedData',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa563c8487e1a4003e2117582090c6c1d',1,'GC_namespace::GenericContainer::readFormattedData(istream_type &amp;stream, char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;)'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a508f7d80af5ec95b48e650be20ad8c62',1,'GC_namespace::GenericContainer::readFormattedData(char const fname[], char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;)']]],
+  ['readformatteddata2_1',['readFormattedData2',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a380d31ee71bc8f0083819c87d401a7d8',1,'GC_namespace::GenericContainer::readFormattedData2(istream_type &amp;stream, char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;, GenericContainer ptr_pars[]=nullptr)'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a61512a442494e55521f330f92c8a04ca',1,'GC_namespace::GenericContainer::readFormattedData2(char const fname[], char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;, GenericContainer ptr_pars[]=nullptr)']]],
+  ['real_5fto_5fstream_2',['real_to_stream',['../d7/d2f/group___j_s_o_n.html#gae7a9f7c5d6102731524b11948fbf3bf1',1,'GC_namespace']]],
+  ['resize_3',['resize',['../df/def/class_g_c__namespace_1_1mat__type.html#a0910662873d43456a100bebfa80637ca',1,'GC_namespace::mat_type']]]
+];

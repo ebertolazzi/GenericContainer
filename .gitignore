@@ -128,3 +128,5 @@ example2
 example3
 .vscode
 .idea
+doxygen/docs
+Xcode

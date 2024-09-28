@@ -21,7 +21,10 @@ TESTS = [
   "example7",
   "example8",
   "example9",
-  "JSON_test_1"
+  "example10",
+  "example11",
+  "example12",
+  "example13"
 ]
 
 TESTS_LUA = [

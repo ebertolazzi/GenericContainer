@@ -8,7 +8,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-#include "GenericContainer/GenericContainerJsonHandler.hh"
+#include "GenericContainerJsonHandler.hh"
 #include <iostream>
 #include <iomanip>
 #include <regex>
@@ -416,7 +416,7 @@ static
 void
 convert_GenericVector_to_IntMat(
   GenericContainer & root,
-  GCJsonMatrixOrder  order
+  int_type           order
 ) {
 
   if ( root.get_vector().size() == 0 ) return;
@@ -429,7 +429,7 @@ convert_GenericVector_to_IntMat(
 
   unsigned num_cols = unsigned(root.get_vector().size());
   unsigned num_mat_rows, num_mat_cols;
-  if ( order == column_major ) {
+  if ( order == GC_JSON_column_major ) {
     num_mat_cols = num_cols;
     num_mat_rows = num_rows;
   } else {
@@ -441,7 +441,7 @@ convert_GenericVector_to_IntMat(
   for ( unsigned i_col = 0; i_col < num_cols; i_col++ ) {
     vec_int_type vec = root.get_vector() [i_col].get_vec_int();
     for ( unsigned i_row = 0; i_row < num_rows; i_row++ ) {
-      if ( order == column_major ) {
+      if ( order == GC_JSON_column_major ) {
         mat( i_row, i_col ) = vec[i_row];
       } else {
         mat( i_col, i_row ) = vec[i_row];
@@ -455,7 +455,7 @@ static
 void
 convert_GenericVector_to_LongMat(
   GenericContainer & root,
-  GCJsonMatrixOrder  order
+  int_type           order
 ) {
 
   if ( root.get_vector().size() == 0 ) return;
@@ -499,7 +499,7 @@ convert_GenericVector_to_LongMat(
 
   unsigned num_cols = unsigned(root.get_vector().size());
   unsigned num_mat_rows, num_mat_cols;
-  if ( order == column_major ) {
+  if ( order == GC_JSON_column_major ) {
     num_mat_cols = num_cols;
     num_mat_rows = num_rows;
   } else {
@@ -511,8 +511,8 @@ convert_GenericVector_to_LongMat(
   for ( unsigned i_col = 0; i_col < num_cols; i_col++ ) {
     vec_long_type vec = root.get_vector() [i_col].get_vec_long();
     for ( unsigned i_row = 0; i_row < num_rows; i_row++ ) {
-      if ( order == column_major ) mat( i_row, i_col ) = vec[i_row];
-      else                         mat( i_col, i_row ) = vec[i_row];
+      if ( order == GC_JSON_column_major ) mat( i_row, i_col ) = vec[i_row];
+      else                                            mat( i_col, i_row ) = vec[i_row];
     }
   }
   root.set_mat_long( mat );
@@ -522,7 +522,7 @@ static
 void
 convert_GenericVector_to_RealMat(
   GenericContainer & root,
-  GCJsonMatrixOrder  order
+  int_type           order
 ) {
 
   if ( root.get_vector().size() == 0 ) return;
@@ -570,7 +570,7 @@ convert_GenericVector_to_RealMat(
 
   unsigned num_cols = unsigned(root.get_vector().size());
   unsigned num_mat_rows, num_mat_cols;
-  if ( order == column_major ) {
+  if ( order == GC_JSON_column_major ) {
     num_mat_cols = num_cols;
     num_mat_rows = num_rows;
   } else {
@@ -582,8 +582,8 @@ convert_GenericVector_to_RealMat(
   for ( unsigned i_col = 0; i_col < num_cols; i_col++ ) {
     vec_real_type vec = root.get_vector() [i_col].get_vec_real();
     for ( unsigned i_row = 0; i_row < num_rows; i_row++ ) {
-      if ( order == column_major ) mat( i_row, i_col ) = vec[i_row];
-      else                         mat( i_col, i_row ) = vec[i_row];
+      if ( order == GC_JSON_column_major ) mat( i_row, i_col ) = vec[i_row];
+      else                                            mat( i_col, i_row ) = vec[i_row];
     }
   }
   root.set_mat_real( mat );
@@ -593,7 +593,7 @@ static
 void
 convert_GenericVector_to_ComplexMat(
   GenericContainer & root,
-  GCJsonMatrixOrder  order
+  int_type           order
 ) {
 
   if ( root.get_vector().size() == 0 ) return;
@@ -651,7 +651,7 @@ convert_GenericVector_to_ComplexMat(
 
   unsigned num_cols = unsigned(root.get_vector().size());
   unsigned num_mat_rows, num_mat_cols;
-  if ( order == column_major ) {
+  if ( order == GC_JSON_column_major ) {
     num_mat_cols = num_cols;
     num_mat_rows = num_rows;
   } else {
@@ -663,7 +663,7 @@ convert_GenericVector_to_ComplexMat(
   for ( unsigned i_col = 0; i_col < num_cols; i_col++ ) {
     vec_complex_type vec = root.get_vector() [i_col].get_vec_complex();
     for ( unsigned i_row = 0; i_row < num_rows; i_row++ ) {
-      if ( order == column_major ) {
+      if ( order == GC_JSON_column_major ) {
         mat ( i_row, i_col ) = vec[i_row];
       } else {
         mat ( i_col, i_row ) = vec[i_row];
@@ -681,9 +681,9 @@ GenericContainerJsonHandler::GenericContainerJsonHandler(
   GenericContainer       & gc_output,
   GenericContainer const & gc_options
 ) {
-  int_type mat_order = GCJsonMatrixOrder::column_major;
+  int_type mat_order = GC_JSON_column_major;
   gc_options.get_if_exists( GC_JSON_MAT_ORDER, mat_order );
-  _mat_order = GCJsonMatrixOrder(mat_order);
+  _mat_order = mat_order;
 
   _im_unit = "i";
   gc_options.get_if_exists( GC_JSON_IM_UNIT, _im_unit );
@@ -911,7 +911,7 @@ GenericContainerJsonHandler::finalizeArrayProcess() {
     return;
   }
 
-  if ( _mat_order == GCJsonMatrixOrder::none ) return;
+  if ( _mat_order == GC_JSON_none ) return;
 
   if ( minimum_common_type == GC_type::VEC_INTEGER ) {
     convert_GenericVector_to_IntMat( *getCurrentGCPointer(), _mat_order );

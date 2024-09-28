@@ -174,8 +174,8 @@ namespace GC_namespace {
   GenericContainer &
   GenericContainer::readFormattedData(
     istream_type & stream,
-    char const   * commentChars,
-    char const   * delimiters
+    char const     commentChars[],
+    char const     delimiters[]
   ) {
     //read a line
     string_type line;
@@ -219,10 +219,10 @@ namespace GC_namespace {
   // original code by Francesco Biral (francesco.biral@unitn.it)
   GenericContainer &
   GenericContainer::readFormattedData2(
-    istream_type     & stream,
-    char const       * commentChars,
-    char const       * delimiters,
-    GenericContainer * ptr_pars
+    istream_type   & stream,
+    char const       commentChars[],
+    char const       delimiters[],
+    GenericContainer ptr_pars[]
   ) {
     //read a line
     string_type line;

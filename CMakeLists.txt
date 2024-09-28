@@ -68,6 +68,8 @@ set( SOURCES )
 file(
   GLOB S
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src_yaml_interface/*.cc
+  ${CMAKE_CURRENT_SOURCE_DIR}/src_yaml_interface/src/*.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface/*.cc
   ${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/*.cc
 )
@@ -99,7 +101,7 @@ foreach (F ${S})
 endforeach(F ${S})
 
 # extra include directory for compilation
-include_directories( ./include ./src_json_interface )
+include_directories( ./include ./src_yaml_interface ./src_json_interface )
 
 #  _    _   _   _
 # | |  | | | | / \
@@ -186,7 +188,8 @@ if ( UTILS_ENABLE_TESTS )
   set(
     EXELISTCPP
     example1 example2 example3 example4 example5
-    example7 example8 example9 example10
+    example7 example8 example9 example10 example11
+    example12 example13
   )
 
   set( EXELISTC example6 )
