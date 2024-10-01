@@ -1,4 +1,6 @@
-# Usage
+/*!
+
+\page Usage
 
 `GenericContainer` is a `C++` class that permit to store eterogeneous
 data:
@@ -35,25 +37,25 @@ class is in interchange data with scripting language like `Ruby`,
 The usage is simple, for example it can be used as an associative array
 with eterogenous data
 
-```cpp
+\code{cpp}
 GenericContainer gc;
 gc["one"]  = 1;             // store integer
 gc["two"]  = true;          // store a boolean
 gc["3"]    = 1.4;           // store floating point number
 gc["four"] = "pippo";       // store a string
 gc["five"].set_vec_int(10); // store a vector of integer of 10 elements
-```
+\endcode
 
 and to retrieve elements
 
-``` cpp
+\code{cpp}
 cout << gc["one"].get_int()     << '\n';
 cout << gc["two"].get_bool()    << '\n';
 cout << gc["3"].get_real()      << '\n';
 cout << gc["four"].get_string() << '\n';
 GenericContainer::vec_int_type & v = gc["five"].get_vec_int();
 cout << v[1] << '\n';
-```
+\endcode
 
 For more complex emxamples and recursive data see example test files in
 the distribution.
@@ -62,31 +64,31 @@ the distribution.
 
 Edit makefile file to match compiler of your OS and do:
 
-```sh
+\code{bash}
 make # using make (only linux/OSX or mingw)
 
 rake build_osx   # compile for OSX
 rake build_linux # compile for linux
 rake build_win   # compile for WINDOWS
-```
+\endcode
 
 To run the test
 
-```sh
+\code{bash}
 make run
 
 rake run       # for linux/OSX
 rake run_win   # for windows
-```
+\endcode
 
 ## Lua Support
 
 `GenericContainer` has an interfacing to exchange data with Lua.
 To use the interface include
 
-```cpp
+\code{cpp}
 #include "GenericContainerLuaInterface.hh"
-```
+\endcode
 
 compile and link with `GenericContainerLuaInterface.cc`.
 The interface contains a set of functions to convert from `GenericContainer`
@@ -97,9 +99,9 @@ to Lua global variables and the other way around.
 `GenericContainer` has an interfacing to exchange data with matlab.
 To use the interface include
 
-```cpp
+\code{cpp}
 #include "GenericContainerMatlabInterface.hh"
-```
+\endcode
 
 compile and link with `GenericContainerMatlabInterface.cc`.
 The interface contains a set of functions to convert from `GenericContainer`
@@ -107,7 +109,7 @@ to `mxArray` and the other way around.
 
 The following code stored in `mex_print_recursive.cc`
 
-```cpp
+\code{cpp}
 #include "GenericContainer.hh"
 #include "GenericContainerMatlabInterface.hh"
 #include "mex.h"
@@ -133,21 +135,21 @@ namespace GC_namespace {
     }
   }
 }
-```
+\endcode
 
 Implement a mex command that print a Matlab structure
 recursively on the console after the conversion to a
 `mxArray_to_GenericContainer`.
 After the compilation
 
-```text
+\code{text}
   > mex mex_print_recursive.cc GenericContainerMatlabInterface.cc -output print_recursive
-```
+\endcode
 
 Produce the `Matlab` command `print_recursive`
 so that the following MATLAB code:
 
-```matlab
+\code{matlab}
 S         = [ 1 0 2 9; 0 0 2 3; 2 0 0 0; 1 0 -2 -2 ];
 S1        = [ 1 0 2 9; 0 0 2 3; 2+1i 0 0 0; 1 0 -2 -2 ];
 A.vector  = [1,2,3,4];
@@ -157,11 +159,11 @@ A.struct1  = { 'paperino', [1 2], [1 2; 3 5] };
 A.struct2  = { B, sparse(S), sparse(S1) };
 
 print_recursive( A );
-```
+\endcode
 
 has the following output:
 
-```text
+\code{text}
 
   string: "pippo"
   strings:
@@ -200,4 +202,5 @@ has the following output:
               [ (1, 0 ) (2, 1 ) (1, 0 ) (2, 0 ) (2, 0 ) (-2, 0 ) (9, 0 ) (3, 0 ) (-2, 0 ) ]
   vector:
       [ 1 2 3 4 ]
-```
+\endcode
+*/

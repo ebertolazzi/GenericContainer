@@ -1,0 +1,156 @@
+{
+  "Level1": {
+    "name": "Primitive Data Types",
+    "description": "Top-level group containing basic data types",
+    "features": [
+      {
+        "name": "String",
+        "type": "string",
+        "example": "Hello, World!",
+        "Level2": {
+          "name": "String Features",
+          "features": [
+            {
+              "name": "Length",
+              "type": "integer",
+              "description": "Number of characters in the string",
+              "example": 12
+            },
+            {
+              "name": "Encoding",
+              "type": "string",
+              "description": "Character encoding used",
+              "example": "UTF-8"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Integer",
+        "type": "integer",
+        "example": 42,
+        "Level2": {
+          "name": "Integer Features",
+          "features": [
+            {
+              "name": "Range",
+              "type": "string",
+              "description": "The possible range of integer values",
+              "example": "[-2147483648, 2147483647]"
+            },
+            {
+              "name": "Signed",
+              "type": "boolean",
+              "description": "Whether the integer can be negative",
+              "example": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "Double",
+        "type": "double",
+        "example": 3.14159,
+        "Level2": {
+          "name": "Double Features",
+          "features": [
+            {
+              "name": "Precision",
+              "type": "integer",
+              "description": "Number of digits after the decimal point",
+              "example": 5
+            },
+            {
+              "name": "Range",
+              "type": "string",
+              "description": "The possible range of double values",
+              "example": "[2.2E-308, 1.8E+308]"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Matrix",
+        "type": "matrix",
+        "dimensions": [3, 3],
+        "example": [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+        "Level2": {
+          "name": "Matrix Features",
+          "features": [
+            {
+              "name": "Rows",
+              "type": "integer",
+              "description": "Number of rows in the matrix",
+              "example": 3
+            },
+            {
+              "name": "Columns",
+              "type": "integer",
+              "description": "Number of columns in the matrix",
+              "example": 3
+            },
+            {
+              "name": "Determinant",
+              "type": "double",
+              "description": "Determinant of the matrix",
+              "example": 1.0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "Level3": {
+    "name": "Complex Data Types",
+    "description": "Top-level group containing complex data types",
+    "features": [
+      {
+        "name": "Array",
+        "type": "array",
+        "element_type": "integer",
+        "example": [1, 2, 3, 4, 5],
+        "Level2": {
+          "name": "Array Features",
+          "features": [
+            {
+              "name": "Length",
+              "type": "integer",
+              "description": "Number of elements in the array",
+              "example": 5
+            },
+            {
+              "name": "Element Type",
+              "type": "string",
+              "description": "Type of elements in the array",
+              "example": "integer"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Dictionary",
+        "type": "dictionary",
+        "key_type": "string",
+        "value_type": "integer",
+        "example": { "key1": 100, "key2": 200 },
+        "Level2": {
+          "name": "Dictionary Features",
+          "features": [
+            {
+              "name": "Key Type",
+              "type": "string",
+              "description": "Type of the keys",
+              "example": "string"
+            },
+            {
+              "name": "Value Type",
+              "type": "string",
+              "description": "Type of the values",
+              "example": "integer"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

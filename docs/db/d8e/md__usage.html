@@ -121,9 +121,9 @@ $(function(){initNavTree('db/d8e/md__usage.html','../../'); initResizable(true);
   <div class="headertitle"><div class="title">Usage</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="autotoc_md54"></a></p>
+<div class="textblock"><p><a class="anchor" id="autotoc_md63"></a></p>
 <p><code>GenericContainer</code> is a <code>C++</code> class that permit to store eterogeneous data:</p>
-<h1><a class="anchor" id="autotoc_md55"></a>
+<h1><a class="anchor" id="autotoc_md64"></a>
 Supported types</h1>
 <ul>
 <li>pointer</li>
@@ -148,7 +148,7 @@ Supported types</h1>
 <li>map of <code>GenericContainer</code></li>
 </ul>
 <p>this permits to build complex recursive data. The main usage of the class is in interchange data with scripting language like <code>Ruby</code>, <code>Lua</code>, <code>MATLAB</code>.</p>
-<h1><a class="anchor" id="autotoc_md56"></a>
+<h1><a class="anchor" id="autotoc_md65"></a>
 Simple Usage</h1>
 <p>The usage is simple, for example it can be used as an associative array with eterogenous data</p>
 <div class="fragment"><div class="line">GenericContainer gc;</div>
@@ -166,7 +166,7 @@ Simple Usage</h1>
 <div class="line">GenericContainer::vec_int_type &amp; v = gc[&quot;five&quot;].get_vec_int();</div>
 <div class="line">cout &lt;&lt; v[1] &lt;&lt; &#39;\n&#39;;</div>
 </div><!-- fragment --><p>For more complex emxamples and recursive data see example test files in the distribution.</p>
-<h1><a class="anchor" id="autotoc_md57"></a>
+<h1><a class="anchor" id="autotoc_md66"></a>
 Compile and tests</h1>
 <p>Edit makefile file to match compiler of your OS and do:</p>
 <div class="fragment"><div class="line">make # using make (only linux/OSX or mingw)</div>
@@ -179,13 +179,13 @@ Compile and tests</h1>
 <div class="line"> </div>
 <div class="line">rake run       # for linux/OSX</div>
 <div class="line">rake run_win   # for windows</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md58"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md67"></a>
 Lua Support</h1>
 <p><code>GenericContainer</code> has an interfacing to exchange data with Lua. To use the interface include</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d76/_generic_container_lua_interface_8hh.html">GenericContainerLuaInterface.hh</a>&quot;</span></div>
 <div class="ttc" id="a_generic_container_lua_interface_8hh_html"><div class="ttname"><a href="../../d5/d76/_generic_container_lua_interface_8hh.html">GenericContainerLuaInterface.hh</a></div></div>
 </div><!-- fragment --><p>compile and link with <code>GenericContainerLuaInterface.cc</code>. The interface contains a set of functions to convert from <code>GenericContainer</code> to Lua global variables and the other way around.</p>
-<h1><a class="anchor" id="autotoc_md59"></a>
+<h1><a class="anchor" id="autotoc_md68"></a>
 Matlab Support</h1>
 <p><code>GenericContainer</code> has an interfacing to exchange data with matlab. To use the interface include</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerMatlabInterface.hh</a>&quot;</span></div>

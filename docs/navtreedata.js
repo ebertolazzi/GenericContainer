@@ -42,14 +42,8 @@ var NAVTREE =
         [ "Example 10: Data Manipulation from Files", "index.html#autotoc_md13", null ]
       ] ]
     ] ],
+    [ "Usage", "dc/dbb/_usage.html", null ],
     [ "License", "d5/d8f/_license.html", null ],
-    [ "Usage", "db/d8e/md__usage.html", [
-      [ "Supported types", "db/d8e/md__usage.html#autotoc_md55", null ],
-      [ "Simple Usage", "db/d8e/md__usage.html#autotoc_md56", null ],
-      [ "Compile and tests", "db/d8e/md__usage.html#autotoc_md57", null ],
-      [ "Lua Support", "db/d8e/md__usage.html#autotoc_md58", null ],
-      [ "Matlab Support", "db/d8e/md__usage.html#autotoc_md59", null ]
-    ] ],
     [ "Deprecated List", "da/d58/deprecated.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [
@@ -57,7 +51,6 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
-        [ "Variables", "namespacemembers_vars.html", null ],
         [ "Typedefs", "namespacemembers_type.html", null ]
       ] ]
     ] ],
@@ -87,9 +80,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#a320cab11bff52b24a1c098d78a9413ef",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#a9725806d85094fd17c37670c412309ad",
-"db/de3/group___g_c.html#ga500e4630417332cdab4f9960177a3fe9"
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#a368263e47851907290efd718c4853fed",
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#a9b73faa4e20c83efe950e542daf559d4",
+"db/de3/group___g_c.html#ga85f3102cc4c8212ca7b4602505bb8086"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

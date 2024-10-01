@@ -30,7 +30,6 @@ var menudata={children:[
 {text:"Namespace List",url:"namespaces.html"},
 {text:"Namespace Members",url:"namespacemembers.html",children:[
 {text:"All",url:"namespacemembers.html",children:[
-{text:"c",url:"namespacemembers.html#index_c"},
 {text:"f",url:"namespacemembers.html#index_f"},
 {text:"g",url:"namespacemembers.html#index_g"},
 {text:"i",url:"namespacemembers.html#index_i"},
@@ -38,23 +37,19 @@ var menudata={children:[
 {text:"l",url:"namespacemembers.html#index_l"},
 {text:"m",url:"namespacemembers.html#index_m"},
 {text:"o",url:"namespacemembers.html#index_o"},
-{text:"r",url:"namespacemembers.html#index_r"},
 {text:"t",url:"namespacemembers.html#index_t"},
 {text:"w",url:"namespacemembers.html#index_w"},
 {text:"y",url:"namespacemembers.html#index_y"}]},
 {text:"Functions",url:"namespacemembers_func.html",children:[
-{text:"c",url:"namespacemembers_func.html#index_c"},
 {text:"f",url:"namespacemembers_func.html#index_f"},
 {text:"g",url:"namespacemembers_func.html#index_g"},
 {text:"j",url:"namespacemembers_func.html#index_j"},
 {text:"l",url:"namespacemembers_func.html#index_l"},
 {text:"m",url:"namespacemembers_func.html#index_m"},
 {text:"o",url:"namespacemembers_func.html#index_o"},
-{text:"r",url:"namespacemembers_func.html#index_r"},
 {text:"t",url:"namespacemembers_func.html#index_t"},
 {text:"w",url:"namespacemembers_func.html#index_w"},
 {text:"y",url:"namespacemembers_func.html#index_y"}]},
-{text:"Variables",url:"namespacemembers_vars.html"},
 {text:"Typedefs",url:"namespacemembers_type.html"}]}]},
 {text:"Classes",url:"annotated.html",children:[
 {text:"Class List",url:"annotated.html"},

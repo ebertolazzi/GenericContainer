@@ -22,8 +22,8 @@
 //
 
 #ifdef __clang__
-#pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
+#pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
 
 #include "GenericContainer/GenericContainerYamlInterface.hh"
@@ -63,6 +63,7 @@ namespace GC_namespace {
     uint64_t        uint64_value;
     double          double_value;
     complex<double> complex_value;
+    void *          pointer_value;
     // Costruttore di default
     MyValue() {}
     // Distruttore
@@ -78,7 +79,8 @@ namespace GC_namespace {
     UINT64,
     DOUBLE,
     COMPLEX,
-    STRING
+    STRING,
+    POINTER
   };
 
   // Funzione per determinare il tipo e restituire il dato nella union
@@ -87,6 +89,7 @@ namespace GC_namespace {
   parse_value( string const & input, MyValue & value ) {
     // Regex per riconoscere numeri complessi (es: "3.5+4.2i" o "-2.5-3.1i")
     static regex complex_regex(R"(^([+-]?\d+(\.\d+)?)[+-](\d+(\.\d+)?)i$)");
+    static regex pointer_regex(R"(^0x(\d+)$)");
 
     // Rimuovi spazi bianchi
     string trimmed{input};
@@ -103,20 +106,29 @@ namespace GC_namespace {
       return ValueType::BOOL;
     }
 
+    // controllo per pointer
+    char * end{nullptr};
+    smatch match;
+    if ( regex_match(trimmed, match, pointer_regex) ) {
+      unsigned long long ptr = strtoull(trimmed.c_str()+2, &end, 16);
+      if ( *end == '\0' ) {
+        value.pointer_value = reinterpret_cast<void*>(ptr);
+        return ValueType::POINTER;
+      }
+    }
+
     // Controllo per complex
-    smatch complex_match;
-    if ( regex_match(trimmed, complex_match, complex_regex) ) {
+    if ( regex_match(trimmed, match, complex_regex) ) {
       value.complex_value = complex<double>(
-        stod(complex_match[1].str()),
-        stod(complex_match[3].str())
+        stod(match[1].str()),
+        stod(match[3].str())
       );
       return ValueType::COMPLEX;
     }
 
     if ( trimmed[0] != '-' ) { // provo unsigned
-      char* end;
       uint64_t uint64Val = strtoull(trimmed.c_str(), &end, 10);
-      if (*end == '\0' ) {
+      if ( *end == '\0' ) {
         if ( uint64Val <= numeric_limits<uint32_t>::max() ) {
           value.uint32_value = uint32_t(uint64Val);
           return ValueType::UINT32;
@@ -128,7 +140,6 @@ namespace GC_namespace {
     }
 
     // provo signed
-    char* end;
     int64_t int64Val = strtoll(trimmed.c_str(), &end, 10);
     if (*end == '\0' ) {
       if ( int64Val >= numeric_limits<int32_t>::min() &&
@@ -167,14 +178,15 @@ namespace GC_namespace {
         MyValue value;
         ValueType type = parse_value( node.Scalar(), value );
         switch (type) {
-          case ValueType::BOOL:    gc = value.bool_value;    break;
-          case ValueType::INT32:   gc = value.int32_value;   break;
-          case ValueType::INT64:   gc = value.int64_value;   break;
-          case ValueType::UINT32:  gc = value.uint32_value;  break;
-          case ValueType::UINT64:  gc = value.uint64_value;  break;
-          case ValueType::DOUBLE:  gc = value.double_value;  break;
-          case ValueType::COMPLEX: gc = value.complex_value; break;
-          case ValueType::STRING:  gc = node.as<string>();   break;
+          case ValueType::BOOL:     gc = value.bool_value;    break;
+          case ValueType::INT32:    gc = value.int32_value;   break;
+          case ValueType::INT64:    gc = value.int64_value;   break;
+          case ValueType::UINT32:   gc = value.uint32_value;  break;
+          case ValueType::UINT64:   gc = value.uint64_value;  break;
+          case ValueType::DOUBLE:   gc = value.double_value;  break;
+          case ValueType::COMPLEX:  gc = value.complex_value; break;
+          case ValueType::STRING:   gc = node.as<string>();   break;
+          case ValueType::POINTER:  gc = value.pointer_value; break;
         }
         break;
       }
@@ -198,9 +210,9 @@ namespace GC_namespace {
         ok = false;
         break;
       }
-      default:
-        ok = false;
-        break;
+      //default:
+      //  ok = false;
+      //  break;
     }
     return ok;
   }

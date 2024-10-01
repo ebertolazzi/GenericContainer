@@ -24,17 +24,14 @@ TESTS = [
   "example10",
   "example11",
   "example12",
-  "example13"
+  "example13",
+  "example14"
 ]
 
 TESTS_LUA = [
   "example_lua1",
   "example_lua2",
   "example_lua3"
-]
-
-TESTS_JSON = [
-  "JSON-test-1"
 ]
 
 "run tests on linux/osx"
@@ -45,11 +42,6 @@ task :run do
   end
   FileUtils.cd "src_lua_interface/tests"
   TESTS_LUA.each do |cmd|
-    exe = "../../bin/#{cmd}"
-    sh exe if File.exist?(exe)
-  end
-  FileUtils.cd "../../src_json_interface/tests"
-  TESTS_JSON.each do |cmd|
     exe = "../../bin/#{cmd}"
     sh exe if File.exist?(exe)
   end

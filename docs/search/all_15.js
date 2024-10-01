@@ -11,7 +11,7 @@ var searchData=
   ['mat_5flong_5ftype_8',['mat_long_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a98812bcd86f0d97bf1eeaf1be6a80480',1,'GC_namespace::GenericContainer::mat_long_type'],['../d8/d51/namespace_g_c__namespace.html#a160b17e464aa5634213779e62efd841a',1,'GC_namespace::mat_long_type']]],
   ['mat_5freal_5ftype_9',['mat_real_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a2e2c80f81633031c115b204df7fdc418',1,'GC_namespace::GenericContainer::mat_real_type'],['../d8/d51/namespace_g_c__namespace.html#a2e60874c678fe38416bfa3bd9866e102',1,'GC_namespace::mat_real_type']]],
   ['mat_5ftype_10',['mat_type',['../df/def/class_g_c__namespace_1_1mat__type.html',1,'GC_namespace::mat_type&lt; TYPE &gt;'],['../df/def/class_g_c__namespace_1_1mat__type.html#ae4a5cfc977faae8b45caf6859697f777',1,'GC_namespace::mat_type::mat_type()=default'],['../df/def/class_g_c__namespace_1_1mat__type.html#a938990c1db1f67c9a8c3f82422efd2cf',1,'GC_namespace::mat_type::mat_type(unsigned nr, unsigned nc)']]],
-  ['matlab_20support_11',['Matlab Support',['../db/d8e/md__usage.html#autotoc_md59',1,'']]],
+  ['matlab_20support_11',['Matlab Support',['../dc/dbb/_usage.html#autotoc_md67',1,'']]],
   ['matrix_20operations_12',['Example 8: Matrix Operations',['../index.html#autotoc_md11',1,'']]],
   ['mem_5fsize_13',['mem_size',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a7cb07560f41eb190a0ed5c4a96654d99',1,'GC_namespace::GenericContainer']]],
   ['merge_14',['merge',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#add9fe1a7a17b30bc4829e20220514135',1,'GC_namespace::GenericContainer']]],

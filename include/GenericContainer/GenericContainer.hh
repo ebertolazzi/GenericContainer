@@ -429,17 +429,7 @@ namespace GC_namespace {
   using mat_real_type    = mat_type<real_type>;
   using mat_complex_type = mat_type<complex_type>;
 
-  //!
-  //! \brief Overload of the `operator<<` for printing a complex number.
-  //!
-  //! This function allows the printing of a `complex_type` object using an output stream.
-  //! The complex number is typically printed in the format "(real, imag)".
-  //!
-  //! \param s  The output stream to write to (e.g., `cout` or a `ostringstream`).
-  //! \param vc The `complex_type` object to print, representing a complex number.
-  //! \return The modified output stream after writing the `complex_type` object.
-  //!
-  ostream_type & operator << ( ostream_type & s, complex_type const & vc );
+  string to_string( complex_type const & v );
 
   //!
   //! \brief Overload of the `operator<<` for printing a vector of elements of a generic type.
@@ -462,12 +452,12 @@ namespace GC_namespace {
   //! containing elements of type `TYPE`. The matrix is typically printed in a row-by-row format.
   //!
   //! \tparam TYPE The type of the elements contained in the matrix.
-  //! \param s The output stream to write to (e.g., `cout` or a `ostringstream`).
-  //! \param mat The `mat_type` object to print, representing the matrix.
+  //! \param  s    The output stream to write to (e.g., `cout` or a `ostringstream`).
+  //! \param  mat  The `mat_type` object to print, representing the matrix.
   //! \return The modified output stream after writing the matrix elements.
   //!
   template <typename TYPE>
-  ostream_type & operator << ( ostream_type & s, mat_type<TYPE> const & );
+  ostream_type & operator << ( ostream_type & s, mat_type<TYPE> const & mat );
 
   // ---------------------------------------------------------------------------
 
@@ -710,7 +700,7 @@ namespace GC_namespace {
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     bool simple_vec_data() const;
     #else
-    bool simple_vec_data() const { return m_data_type <= GC_type::VEC_STRING; }
+    bool simple_vec_data() const { return m_data_type < GC_type::VEC_STRING; }
     #endif
 
   public:
@@ -3905,6 +3895,12 @@ namespace GC_namespace {
     //!
     void to_yaml( ostream_type & stream, string_type const & prefix = "" ) const;
 
+    string
+    to_yaml( string_type const & prefix = "" ) const {
+      ostringstream out;
+      to_yaml( out, prefix );
+      return out.str();
+    }
 
     //!
     //! Print the contents of the object in JSON syntax
@@ -3913,6 +3909,13 @@ namespace GC_namespace {
     //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
     //!
     void to_json( ostream_type & stream, string_type const & prefix = "" ) const;
+
+    string
+    to_json( string_type const & prefix = "" ) const {
+      ostringstream out;
+      to_json( out, prefix );
+      return out.str();
+    }
 
     //!
     //! Collapse heterogeneous vectors into a unified type.

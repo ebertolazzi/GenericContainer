@@ -69,7 +69,6 @@ file(
   GLOB S
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc
   ${CMAKE_CURRENT_SOURCE_DIR}/src_yaml_interface/*.cc
-  ${CMAKE_CURRENT_SOURCE_DIR}/src_yaml_interface/src/*.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface/*.cc
   ${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/*.cc
 )
@@ -77,6 +76,19 @@ foreach(F ${S})
   # build relative path respect to source directory
   file( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
   list( APPEND SOURCES ${RF} )
+endforeach(F ${S})
+
+
+set( SOURCES_EXTRA )
+file(
+  GLOB S
+  ${CMAKE_CURRENT_SOURCE_DIR}/src_yaml_interface/src/*.cpp
+)
+foreach(F ${S})
+  # build relative path respect to source directory
+  file( RELATIVE_PATH RF ${CMAKE_CURRENT_SOURCE_DIR} "${F}" )
+  list( APPEND SOURCES_EXTRA ${RF} )
+  list( APPEND SOURCES       ${RF} )
 endforeach(F ${S})
 
 #list(FILTER SOURCES EXCLUDE REGEX ".*hsl_fake.cc$")
@@ -173,6 +185,10 @@ if ( UTILS_BUILD_SHARED )
   target_link_libraries( "${UTILS_NAMESPACE}_${PROJECT_NAME}" "${UTILS_NAMESPACE}_Lua" )
 endif()
 
+if ( UNIX )
+  set_property(SOURCE ${SOURCES_EXTRA} PROPERTY COMPILE_FLAGS "-Wno-exit-time-destructors -Wno-suggest-destructor-override -Wno-deprecated-copy-with-dtor -Wno-missing-prototypes -Wno-covered-switch-default -Wno-unreachable-code-return -Wno-missing-noreturn -Wno-shadow" )
+endif()
+
 #   _____       _
 #  |_   _|__ __| |_ ___
 #    | |/ -_|_-<  _(_-<
@@ -189,11 +205,11 @@ if ( UTILS_ENABLE_TESTS )
     EXELISTCPP
     example1 example2 example3 example4 example5
     example7 example8 example9 example10 example11
-    example12 example13
+    example12 example13 example14
   )
 
   set( EXELISTC example6 )
-  set( EXEJSONTEST JSON_test_1 )
+  set( EXEJSONTEST )
   set( EXELUATEST example_lua1 example_lua2 example_lua3 )
 
   add_custom_target( "${PROJECT_NAME}_all_tests" ALL )
@@ -207,6 +223,7 @@ if ( UTILS_ENABLE_TESTS )
     set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
     add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
+    set_target_properties( ${S} PROPERTIES XCODE_GENERATE_SCHEME TRUE XCODE_SCHEME_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
   endforeach()
   foreach( S ${EXELISTC} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/examples/${S}.c )
@@ -214,6 +231,7 @@ if ( UTILS_ENABLE_TESTS )
     set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
     add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
+    set_target_properties( ${S} PROPERTIES XCODE_GENERATE_SCHEME TRUE XCODE_SCHEME_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
   endforeach()
   foreach( S ${EXEJSONTEST} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_json_interface/tests/${S}.cc )
@@ -221,6 +239,7 @@ if ( UTILS_ENABLE_TESTS )
     set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
     add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
+    set_target_properties( ${S} PROPERTIES XCODE_GENERATE_SCHEME TRUE XCODE_SCHEME_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
   endforeach()
   foreach( S ${EXELUATEST} )
     add_executable( ${S} ${CMAKE_CURRENT_SOURCE_DIR}/src_lua_interface/tests/${S}.cc )
@@ -228,6 +247,7 @@ if ( UTILS_ENABLE_TESTS )
     set_target_properties( ${S} PROPERTIES SUFFIX ".exe" )
     add_test( NAME "${S}" COMMAND ./bin/${S}.exe WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
     add_dependencies( "${PROJECT_NAME}_all_tests" ${S} )
+    set_target_properties( ${S} PROPERTIES XCODE_GENERATE_SCHEME TRUE XCODE_SCHEME_WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
   endforeach()
 
 endif()

@@ -9,7 +9,7 @@ PROJECT_BRIEF          = "GenericContaine a tool for C++ programming"
 PROJECT_LOGO           = logo.png
 
 # Imposta la directory in cui sono contenuti i file sorgente
-INPUT                  = main.hh group.hh group_yaml.hh group_lua.hh roup_json.hh  Usage.md ../src ../include/GenericContainer
+INPUT                  = main.hh group_GC.hh group_yaml.hh group_json.hh group_lua.hh Usage.hh ../src ../include/GenericContainer
 
 #../src
 USE_MDFILE_AS_MAINPAGE = main.md
