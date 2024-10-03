@@ -23,7 +23,7 @@
  */
 
 #include "GenericContainer.hh"
-#include "GenericContainer/GenericContainerJsonInterface.hh"
+#include "GenericContainer/GenericContainerInterface_json.hh"
 
 #include <iostream>
 #include <fstream>

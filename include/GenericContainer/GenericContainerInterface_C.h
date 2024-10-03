@@ -17,6 +17,8 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
+#pragma once
+
 /*
 // file: GenericContainerCinterface.h
 */
@@ -26,8 +28,8 @@
 //!
 //! @{
 
-#ifndef GENERIC_CONTAINER_C_INTERFACE_H
-#define GENERIC_CONTAINER_C_INTERFACE_H
+#ifndef GENERIC_CONTAINER_INTERFACE_C_H
+#define GENERIC_CONTAINER_INTERFACE_C_H
 
 #ifdef __cplusplus
 extern "C" {

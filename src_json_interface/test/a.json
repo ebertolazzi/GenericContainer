@@ -1,0 +1,233 @@
+{
+  "appName": "ProjectManager",
+  "version": "1.4.2",
+  "lastUpdate": "2024-10-04T14:20:00Z",
+  "users": [
+    {
+      "id": 1,
+      "username": "john_doe",
+      "email": "john.doe@example.com",
+      "profile": {
+        "fullName": "John Doe",
+        "role": "Administrator",
+        "active": true,
+        "age": 35,
+        "contact": {
+          "phone": "+1234567890",
+          "address": {
+            "street": "123 Elm St",
+            "city": "Metropolis",
+            "zipCode": "12345"
+          }
+        }
+      },
+      "preferences": {
+        "theme": "dark",
+        "notifications": {
+          "email": true,
+          "sms": false
+        }
+      },
+      "projectIds": [1, 2],
+      "createdAt": "2023-08-15T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "username": "jane_smith",
+      "email": "jane.smith@example.com",
+      "profile": {
+        "fullName": "Jane Smith",
+        "role": "Project Manager",
+        "active": true,
+        "age": 28,
+        "contact": {
+          "phone": "+0987654321",
+          "address": {
+            "street": "456 Oak St",
+            "city": "Gotham",
+            "zipCode": "54321"
+          }
+        }
+      },
+      "preferences": {
+        "theme": "light",
+        "notifications": {
+          "email": true,
+          "sms": true
+        }
+      },
+      "projectIds": [2],
+      "createdAt": "2023-09-01T10:15:30Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Website Redesign",
+      "description": "Complete overhaul of the company website.",
+      "status": "In Progress",
+      "tasks": [
+        {
+          "id": 101,
+          "title": "Design mockups",
+          "assignedTo": 1,
+          "dueDate": "2024-10-10",
+          "priority": "High",
+          "completed": false
+        },
+        {
+          "id": 102,
+          "title": "Implement front-end",
+          "assignedTo": 2,
+          "dueDate": "2024-11-01",
+          "priority": "Medium",
+          "completed": false
+        }
+      ],
+      "startDate": "2024-01-05",
+      "endDate": "2024-12-01",
+      "team": [1, 2],
+      "budget": 50000.75,
+      "currency": "USD",
+      "tags": ["website", "UI", "UX"]
+    },
+    {
+      "id": 2,
+      "name": "Mobile App Launch",
+      "description": "Launch of the new mobile application.",
+      "status": "Planning",
+      "tasks": [
+        {
+          "id": 201,
+          "title": "Market Research",
+          "assignedTo": 2,
+          "dueDate": "2024-11-15",
+          "priority": "High",
+          "completed": false
+        },
+        {
+          "id": 202,
+          "title": "Develop MVP",
+          "assignedTo": 1,
+          "dueDate": "2024-12-30",
+          "priority": "High",
+          "completed": false
+        }
+      ],
+      "startDate": "2024-02-01",
+      "endDate": "2024-12-31",
+      "team": [2],
+      "budget": 120000.00,
+      "currency": "USD",
+      "tags": ["mobile", "launch"]
+    }
+  ],
+  "settings": {
+    "notifications": {
+      "reminderBeforeDeadline": 2,
+      "sendDailySummary": true,
+      "channels": ["email", "app"]
+    },
+    "dataPrivacy": {
+      "trackingEnabled": false,
+      "deleteDataAfter": "5 years"
+    },
+    "integrations": {
+      "googleDrive": {
+        "enabled": true,
+        "lastSync": "2024-09-30T11:45:00Z"
+      },
+      "slack": {
+        "enabled": false,
+        "workspace": null
+      }
+    },
+    "appearance": {
+      "defaultTheme": "dark",
+      "languages": ["en", "fr", "es"],
+      "fontSize": "medium"
+    }
+  },
+  "activityLog": [
+    {
+      "userId": 1,
+      "action": "Created new project",
+      "projectId": 1,
+      "timestamp": "2024-01-05T10:20:00Z"
+    },
+    {
+      "userId": 2,
+      "action": "Assigned task",
+      "taskId": 201,
+      "timestamp": "2024-09-10T09:30:00Z"
+    },
+    {
+      "userId": 1,
+      "action": "Completed task",
+      "taskId": 101,
+      "timestamp": "2024-10-02T14:10:00Z"
+    }
+  ],
+  "statistics": {
+    "totalUsers": 150,
+    "totalProjects": 25,
+    "completedTasks": 500,
+    "openTasks": 75,
+    "projectProgress": [
+      {
+        "projectId": 1,
+        "progress": 45,
+        "milestones": [
+          { "name": "Design Phase", "completed": true },
+          { "name": "Development Phase", "completed": false }
+        ]
+      },
+      {
+        "projectId": 2,
+        "progress": 10,
+        "milestones": [
+          { "name": "Research Phase", "completed": false },
+          { "name": "Development Phase", "completed": false }
+        ]
+      }
+    ]
+  },
+  "helpCenter": {
+    "faq": [
+      {
+        "question": "How do I reset my password?",
+        "answer": "Go to your account settings and click on 'Reset Password'."
+      },
+      {
+        "question": "How can I add new members to a project?",
+        "answer": "Open the project settings and click 'Add Members'."
+      }
+    ],
+    "contactSupport": {
+      "email": "support@projectmanager.com",
+      "phone": "+11234567890",
+      "hours": {
+        "weekdays": "9:00 AM - 5:00 PM",
+        "weekends": "Closed"
+      }
+    },
+    "feedback": {
+      "lastFeedbackDate": "2024-09-28",
+      "feedbackReceived": [
+        {
+          "userId": 2,
+          "comment": "Great user experience!",
+          "rating": 5,
+          "date": "2024-09-28"
+        },
+        {
+          "userId": 1,
+          "comment": "Could use more integrations.",
+          "rating": 4,
+          "date": "2024-09-25"
+        }
+      ]
+    }
+  }
+}
+

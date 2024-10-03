@@ -22,7 +22,7 @@
  Example of usage of the C interface.
  */
 
-#include "GenericContainer/GenericContainerCinterface.h"
+#include "GenericContainer/GenericContainerInterface_C.h"
 #include <stdio.h>
 
 #define CK( A ) ok = A; if ( ok != GENERIC_CONTAINER_OK ) printf("Error = %d\n",ok )

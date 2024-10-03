@@ -19,14 +19,16 @@
 
 #pragma once
 
-#ifndef GC_JSON_INTERFACE_HH
-#define GC_JSON_INTERFACE_HH
+#ifndef GENERIC_CONTAINER_INTERFACE_JSON_HH
+#define GENERIC_CONTAINER_INTERFACE_JSON_HH
 
 #include "GenericContainer.hh"
 
+#include <fstream>
+
 namespace GC_namespace {
 
-  using std::vector;
+  using std::ifstream;
 
   //!
   //! \addtogroup JSON
@@ -34,20 +36,25 @@ namespace GC_namespace {
   //! @{
 
   //!
-  //! Convert a JSON file  to a `GenericContainer`.
+  //! Convert a JSON file to a `GenericContainer`.
   //!
   //! This function reads JSON data from the provided input stream and
   //! populates the given `GenericContainer` with the parsed data.
   //!
-  //! \param[in]  file_name_JSON Input file name containing JSON data.
-  //! \param[out] gc             The `GenericContainer` to be populated.
-  //! \return true if the conversion was successful, false otherwise.
+  //! \param[in]  file_name Input file name containing JSON data.
+  //! \param[out] gc        The `GenericContainer` to be populated.
+  //! \return     true      if the conversion was successful, false otherwise.
   //!
+  inline
   bool
   file_JSON_to_GC(
-    string const     & file_name_JSON,
+    string const     & file_name,
     GenericContainer & gc
-  );
+  ) {
+    ifstream stream(file_name.c_str());
+    gc.clear();
+    return gc.from_json( stream );
+  }
 
   //!
   //! Convert a JSON file stream to a `GenericContainer`.
@@ -55,15 +62,19 @@ namespace GC_namespace {
   //! This function reads JSON data from the provided input stream and
   //! populates the given `GenericContainer` with the parsed data.
   //!
-  //! \param[in]  file_JSON Input stream containing JSON data.
-  //! \param[out] gc        The `GenericContainer` to be populated.
-  //! \return true if the conversion was successful, false otherwise.
+  //! \param[in]  stream Input stream containing JSON data.
+  //! \param[out] gc     The `GenericContainer` to be populated.
+  //! \return    true    if the conversion was successful, false otherwise.
   //!
+  inline
   bool
   JSON_to_GC(
-    istream_type     & file_JSON,
+    istream_type     & stream,
     GenericContainer & gc
-  );
+  ) {
+    gc.clear();
+    return gc.from_json( stream );
+  }
 
   //!
   //! Convert a JSON string to a `GenericContainer`.
@@ -71,47 +82,39 @@ namespace GC_namespace {
   //! This function parses the given JSON string and populates the
   //! specified `GenericContainer` with the resulting data.
   //!
-  //! \param[in]  JSON The JSON string to parse.
+  //! \param[in]  DATA The JSON string to parse.
   //! \param[out] gc   The `GenericContainer` to be populated.
-  //! \return true if the conversion was successful, false otherwise.
+  //! \return     true if the conversion was successful, false otherwise.
   //!
+  inline
   bool
   JSON_to_GC(
-    string const     & JSON,
+    string const     & DATA,
     GenericContainer & gc
-  );
+  ) {
+    istringstream stream(DATA);
+    gc.clear();
+    return gc.from_json(stream);
+  }
 
   //!
-  //! Convert a vector of JSON strings to a `GenericContainer`.
-  //!
-  //! This function parses each string in the given vector as YAML
-  //! and populates the specified `GenericContainer` with the resulting
-  //! data.
-  //!
-  //! \param[in]  JSON Vector containing JSON strings to parse.
-  //! \param[out] gc   The `GenericContainer` to be populated.
-  //! \return true if the conversion was successful, false otherwise.
-  //!
-  bool
-  JSON_to_GC(
-    vector<string> const & JSON,
-    GenericContainer     & gc
-  );
-
-  //!
-  //! Convert a `GenericContainer` to a vector of JSON strings.
+  //! Convert a `GenericContainer` to a JSON string.
   //!
   //! This function converts the contents of the provided `GenericContainer`
-  //! into YAML format and stores it in the specified vector.
+  //! into JSON format and stores it in the specified string.
   //!
   //! \param[in]  gc   The `GenericContainer` to convert.
-  //! \param[out] JSON Vector to store the resulting JSON strings.
+  //! \param[out] DATA String to store the JSON encoded GenericContainer.
   //!
+  inline
   void
   GC_to_JSON(
     GenericContainer const & gc,
-    vector<string>         & JSON
-  );
+    string                 & DATA
+  ) {
+    ostringstream stream(DATA);
+    gc.to_json( stream );
+  }
 
   //!
   //! Convert a `GenericContainer` to a JSON file stream.
@@ -119,14 +122,17 @@ namespace GC_namespace {
   //! This function converts the contents of the provided `GenericContainer`
   //! into JSON format and writes it to the specified output stream.
   //!
-  //! \param[in] gc The `GenericContainer` to convert.
-  //! \param[out] file_JSON Output stream to write the JSON data.
+  //! \param[in]  gc     The `GenericContainer` to convert.
+  //! \param[out] stream Output stream to write the JSON data.
   //!
+  inline
   void
   GC_to_JSON(
     GenericContainer const & gc,
-    ostream_type           & file_JSON
-  );
+    ostream_type           & stream
+  ) {
+    gc.to_json( stream );
+  }
 
   //!
   //! @}

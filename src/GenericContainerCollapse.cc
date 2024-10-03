@@ -47,20 +47,20 @@ namespace GC_namespace {
   GenericContainer::collapse() {
     switch (m_data_type) {
       case GC_type::MAP: {
-        map_type & M = this->get_map();
+        map_type & M{*m_data.m};
         for ( auto & m : M ) m.second.collapse();
         break;
       }
       case GC_type::VECTOR: {
         // posso collassare solo i vettori
-        vector_type & v = this->get_vector();
+        vector_type & v{*m_data.v};
         TypeAllowed max_sub_type{GC_type::NOTYPE};
         bool can_collapse{true};
         int_type last_nelem{-1};
         for ( auto & vi : v ) {
           vi.collapse();
           // get type
-          TypeAllowed ti = vi.get_type();
+          TypeAllowed ti{vi.get_type()};
           if ( max_sub_type < ti ) max_sub_type = ti;
           int_type ne = int_type(vi.get_num_elements());
           if ( last_nelem >= 0 && can_collapse ) {

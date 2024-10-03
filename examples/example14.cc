@@ -1,12 +1,28 @@
-//
-//  main.cpp
-//  genconjson
-//
-//  Created by Nicola Dal Bianco on 08/11/17.
-//  Copyright © 2017 Nicola Dal Bianco. All rights reserved.
-//
+/*--------------------------------------------------------------------------*\
+ |                                                                          |
+ |  Copyright (C) 2021                                                      |
+ |                                                                          |
+ |         , __                 , __                                        |
+ |        /|/  \               /|/  \                                       |
+ |         | __/ _   ,_         | __/ _   ,_                                |
+ |         |   \|/  /  |  |   | |   \|/  /  |  |   |                        |
+ |         |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/                       |
+ |                           /|                   /|                        |
+ |                           \|                   \|                        |
+ |                                                                          |
+ |      Enrico Bertolazzi                                                   |
+ |      Dipartimento di Ingegneria Industriale                              |
+ |      Universita` degli Studi di Trento                                   |
+ |      email: enrico.bertolazzi@unitn.it                                   |
+ |                                                                          |
+\*--------------------------------------------------------------------------*/
+/*!
 
-#include "GenericContainer/GenericContainerJsonInterface.hh"
+ \example example14.cc
+
+ */
+
+#include "GenericContainer/GenericContainerInterface_json.hh"
 #include <iostream>
 #include <string>
 
@@ -111,7 +127,8 @@ main() {
     gc.dump( cout );
     cout << endl << endl;
 
-    string out_str = gc.to_json();
+    string out_str;
+    GC::GC_to_JSON( gc, out_str );
     cout << "Json string is:\n" << out_str << '\n';
 
     //string out_str1 = gc.to_yaml();

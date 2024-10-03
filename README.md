@@ -90,10 +90,10 @@ rake run_win   # for windows
 To use the interface include
 
 ```cpp
-#include "GenericContainerLuaInterface.hh"
+#include "GenericContainerInterface_lua.hh"
 ```
 
-compile and link with `GenericContainerLuaInterface.cc`.
+compile and link with `GenericContainerInterface_lua.cc`.
 The interface contains a set of functions to convert from `GenericContainer`
 to Lua global variables and the other way around.
 
@@ -103,7 +103,7 @@ to Lua global variables and the other way around.
 To use the interface include
 
 ```cpp
-#include "GenericContainerMatlabInterface.hh"
+#include "GenericContainerInterface_matlab.hh"
 ```
 
 compile and link with `GenericContainerMatlabInterface.cc`.

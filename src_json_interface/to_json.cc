@@ -18,7 +18,7 @@
 \*--------------------------------------------------------------------------*/
 
 //
-// file: GenericContainerJSON.cc
+// file: to_json.cc
 //
 
 #include "GenericContainer/GenericContainer.hh"
@@ -87,7 +87,7 @@ namespace GC_namespace {
         break;
       case GC_type::VEC_BOOL: {
         vec_bool_type const & v{*m_data.v_b};
-        char const * pre = "[ ";
+        char const * pre{"[ "};
         for ( bool vi : v ) {
           stream << pre << (vi?"true":"false");
           pre = ", ";
@@ -129,7 +129,7 @@ namespace GC_namespace {
       case GC_type::VECTOR: {
         vector_type const & v{*m_data.v};
         stream << '\n' << prefix;
-        char const * pre = "[\n";
+        char const * pre{"[\n"};
         for ( auto const & vi : v ) {
           stream << pre << prefix1;
           vi.to_json(stream,prefix1);
@@ -141,7 +141,7 @@ namespace GC_namespace {
       case GC_type::MAP: {
         map_type const & m{*m_data.m};
         stream << '\n' << prefix;
-        char const * pre = "{\n";
+        char const * pre{"{\n"};
         for ( auto const & im : m ) {
           stream << pre << prefix << indent << '"' << im.first <<  '"' << ": ";
           im.second.to_json(stream,prefix1);
@@ -188,7 +188,7 @@ namespace GC_namespace {
         break;
       case GC_type::VEC_POINTER: {
         vec_pointer_type const & V = this->get_vec_pointer("");
-        char const * pre = "[ ";
+        char const * pre{"[ "};
         for ( auto const & vi : V ) {
           stream << pre << std::hex << std::showbase << reinterpret_cast<uintptr_t>(vi);
           pre = ", ";
@@ -202,5 +202,5 @@ namespace GC_namespace {
 }
 
 //
-// eof: GenericContainerJSON.cc
+// eof: to_json.cc
 //

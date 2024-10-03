@@ -15,8 +15,11 @@
  |      email: enrico.bertolazzi@unitn.it                                   |
  |                                                                          |
 \*--------------------------------------------------------------------------*/
+//
+// FILE: GenericContainerInterface_lua.cc
+//
 
-#include "GenericContainer/GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerInterface_lua.hh"
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
@@ -490,5 +493,5 @@ namespace GC_namespace {
 #endif
 
 //
-// EOF: GenericContainerLuaInterface.cc
+// EOF: GenericContainerInterface_lua.cc
 //

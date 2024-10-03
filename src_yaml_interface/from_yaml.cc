@@ -26,7 +26,7 @@
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
 
-#include "GenericContainer/GenericContainerYamlInterface.hh"
+#include "GenericContainer/GenericContainerInterface_yaml.hh"
 
 #include <iterator>
 #include <sstream>
@@ -218,40 +218,15 @@ namespace GC_namespace {
   }
 
   bool
-  YAML_to_GC(
-    istream_type     & file_YAML,
-    GenericContainer & gc
-  ) {
-    YAML::Node yaml_root = YAML::Load(file_YAML);
-    bool ok = YAML_to_GC( yaml_root, gc );
-    if ( ok ) gc.collapse();
-    return ok;
-  }
-
-  bool
-  YAML_to_GC(
-    string const     & yaml_content,
-    GenericContainer & gc
-  ) {
-    YAML::Node yaml_root = YAML::Load(yaml_content);
-    bool ok = YAML_to_GC( yaml_root, gc );
-    if ( ok ) gc.collapse();
-    return ok;
-  }
-
-  bool
-  file_YAML_to_GC(
-    string const     & yaml_file_name,
-    GenericContainer & gc
-  ) {
-    YAML::Node yaml_root = YAML::LoadFile(yaml_file_name.c_str());
-    bool ok = YAML_to_GC( yaml_root, gc );
-    if ( ok ) gc.collapse();
+  GenericContainer::from_yaml( istream_type & stream ) {
+    YAML::Node yaml_root = YAML::Load(stream);
+    bool ok = YAML_to_GC( yaml_root, *this );
+    if ( ok ) this->collapse();
     return ok;
   }
 
 }
 
 //
-// eof: GenericContainerYaml.cc
+// eof: from_yaml.cc
 //

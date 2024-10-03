@@ -41,6 +41,7 @@
 #include <deque>
 #include <vector>
 #include <sstream>
+#include <iomanip>
 #include <stdexcept>
 
 #include "GenericContainerConfig.hh"
@@ -89,9 +90,12 @@ namespace GC_namespace {
   using std::vector;
   using std::map;
   using std::deque;
+  using std::istringstream;
   using std::ostringstream;
   using std::runtime_error;
   using std::exception;
+
+  extern unsigned stream_number_precision;
 
   //!
   //! \brief Alias for a character-based output stream.
@@ -151,7 +155,7 @@ namespace GC_namespace {
 
   // ---------------------------------------------------------------------------
   //!
-  //! @brief Generic matrix storage type.
+  //! \brief Generic matrix storage type.
   //!
   //! This template class defines a matrix type that extends vector<TYPE>
   //! to store and manipulate a 2D matrix of elements of type TYPE.
@@ -172,13 +176,13 @@ namespace GC_namespace {
     //!
     //! Constructs a matrix with given number of rows and columns.
     //!
-    //! @param nr Number of rows.
-    //! @param nc Number of columns.
+    //! \param nr Number of rows.
+    //! \param nc Number of columns.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 4);  // Creates a 3x4 matrix
-    //! @endcode
+    //! \endcode
     //!
     mat_type( unsigned nr, unsigned nc )
     : m_num_rows(nr)
@@ -188,14 +192,14 @@ namespace GC_namespace {
     //!
     //! Resizes the matrix to the specified dimensions.
     //!
-    //! @param nr New number of rows.
-    //! @param nc New number of columns.
+    //! \param nr New number of rows.
+    //! \param nc New number of columns.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(2, 3);
     //! matrix.resize(4, 5);  // Resizes the matrix to 4x5
-    //! @endcode
+    //! \endcode
     //!
     void
     resize( unsigned nr, unsigned nc ) {
@@ -207,20 +211,20 @@ namespace GC_namespace {
     //!
     //! Copies the specified column of the matrix to a vector.
     //!
-    //! @param nc The index of the column to be copied (0-based).
-    //! @param C The vector that will be filled with the column elements.
+    //! \param nc The index of the column to be copied (0-based).
+    //! \param C The vector that will be filled with the column elements.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! vector<int> column;
     //! matrix.get_column(1, column);  // Copies the second column into `column`
-    //! @endcode
+    //! \endcode
     //!
     void get_column( unsigned nc, vector<TYPE> & C ) const;
 
     //!
-    //! @deprecated
+    //! \deprecated
     //!
     void
     getColumn( unsigned nc, vector<TYPE> & C ) const
@@ -229,20 +233,20 @@ namespace GC_namespace {
     //!
     //! Copies the specified row of the matrix to a vector.
     //!
-    //! @param nr The index of the row to be copied (0-based).
-    //! @param R The vector that will be filled with the row elements.
+    //! \param nr The index of the row to be copied (0-based).
+    //! \param R The vector that will be filled with the row elements.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! vector<int> row;
     //! matrix.get_row(0, row);  // Copies the first row into `row`
-    //! @endcode
+    //! \endcode
     //!
     void get_row( unsigned nr, vector<TYPE> & R ) const;
 
     //!
-    //! @deprecated
+    //! \deprecated
     //!
     void
     getRow( unsigned nr, vector<TYPE> & R ) const
@@ -251,20 +255,20 @@ namespace GC_namespace {
     //!
     //! Copies the specified column of the matrix to the given memory.
     //!
-    //! @param nc The index of the column to be copied (0-based).
-    //! @param C Pointer to memory where the column elements will be stored.
+    //! \param nc The index of the column to be copied (0-based).
+    //! \param C Pointer to memory where the column elements will be stored.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! int column[3];
     //! matrix.get_column(1, column);  // Copies the second column into `column`
-    //! @endcode
+    //! \endcode
     //!
     void get_column( unsigned nc, TYPE * C ) const;
 
     //!
-    //! @deprecated
+    //! \deprecated
     //!
     void
     getColumn( unsigned nc, TYPE * C ) const
@@ -273,20 +277,20 @@ namespace GC_namespace {
     //!
     //! Copies the specified row of the matrix to the given memory.
     //!
-    //! @param nr The index of the row to be copied (0-based).
-    //! @param R Pointer to memory where the row elements will be stored.
+    //! \param nr The index of the row to be copied (0-based).
+    //! \param R Pointer to memory where the row elements will be stored.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! int row[3];
     //! matrix.get_row(0, row);  // Copies the first row into `row`
-    //! @endcode
+    //! \endcode
     //!
     void get_row( unsigned nr, TYPE * R ) const;
 
     //!
-    //! @deprecated
+    //! \deprecated
     //!
     void
     getRow( unsigned nr, TYPE * R ) const
@@ -295,92 +299,92 @@ namespace GC_namespace {
     //!
     //! Returns the number of rows in the matrix.
     //!
-    //! @return The number of rows.
+    //! \return The number of rows.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! unsigned rows = matrix.num_rows();  // Returns 3
-    //! @endcode
+    //! \endcode
     //!
     unsigned num_rows() const { return m_num_rows; }
 
     //!
-    //! @deprecated
+    //! \deprecated
     //!
     unsigned numRows() const { return m_num_rows; }
 
     //!
     //! Returns the number of columns in the matrix.
     //!
-    //! @return The number of columns.
+    //! \return The number of columns.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! unsigned cols = matrix.num_cols();  // Returns 3
-    //! @endcode
+    //! \endcode
     //!
     unsigned num_cols() const { return m_num_cols; }
 
     //!
-    //! @deprecated
+    //! \deprecated
     //!
     unsigned numCols() const { return m_num_cols; }
 
     //!
     //! Provides constant access to the element at position (i, j).
     //!
-    //! @param i Row index (0-based).
-    //! @param j Column index (0-based).
-    //! @return A constant reference to the element at (i, j).
+    //! \param i Row index (0-based).
+    //! \param j Column index (0-based).
+    //! \return A constant reference to the element at (i, j).
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! const int &value = matrix(1, 1);  // Accesses element at (1,1)
-    //! @endcode
+    //! \endcode
     //!
     TYPE const & operator () ( unsigned i, unsigned j ) const;
 
     //!
     //! Provides mutable access to the element at position (i, j).
     //!
-    //! @param i Row index (0-based).
-    //! @param j Column index (0-based).
-    //! @return A reference to the element at (i, j).
+    //! \param i Row index (0-based).
+    //! \param j Column index (0-based).
+    //! \return A reference to the element at (i, j).
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! matrix(1, 1) = 42;  // Sets the element at (1,1) to 42
-    //! @endcode
+    //! \endcode
     //!
     TYPE & operator () ( unsigned i, unsigned j );
 
     //!
     //! Prints matrix information (dimensions and content) to the given output stream.
     //!
-    //! @param stream The output stream where matrix information will be printed.
+    //! \param stream The output stream where matrix information will be printed.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! matrix.info(cout);  // Prints matrix info to standard output
-    //! @endcode
+    //! \endcode
     //!
     void info( ostream_type & stream ) const;
 
     //!
     //! Returns a string containing matrix information (dimensions and content).
     //!
-    //! @return A string with matrix information.
+    //! \return A string with matrix information.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! string info = matrix.info();  // Returns matrix info as string
-    //! @endcode
+    //! \endcode
     //!
     string_type
     info() const {
@@ -392,26 +396,26 @@ namespace GC_namespace {
     //!
     //! Returns a pointer to the underlying data block of the matrix.
     //!
-    //! @return A pointer to the first element of the matrix data array.
+    //! \return A pointer to the first element of the matrix data array.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! int *dataPtr = matrix.data();  // Pointer to matrix data
-    //! @endcode
+    //! \endcode
     //!
     TYPE * data() { return &vector<TYPE>::front(); }
 
     //!
     //! Returns a constant pointer to the underlying data block of the matrix.
     //!
-    //! @return A constant pointer to the first element of the matrix data array.
+    //! \return A constant pointer to the first element of the matrix data array.
     //!
     //! ### Example
-    //! @code
+    //! \code
     //! mat_type<int> matrix(3, 3);
     //! const int *dataPtr = matrix.data();  // Constant pointer to matrix data
-    //! @endcode
+    //! \endcode
     //!
     TYPE const * data() const { return &vector<TYPE>::front(); }
   };
@@ -462,15 +466,15 @@ namespace GC_namespace {
   // ---------------------------------------------------------------------------
 
   //!
-  //! @brief Enum class representing types allowed for the `GenericContainer`.
+  //! \brief Enum class representing types allowed for the `GenericContainer`.
   //!
   //! This enum class defines the types that are allowed to be used in the `GenericContainer`.
   //! The types are categorized as simple types, vector types, matrix types, and complex types.
   //!
   //! ### Example
-  //! @code
+  //! \code
   //! TypeAllowed type = TypeAllowed::INTEGER;  // Defines an integer type for GenericContainer
-  //! @endcode
+  //! \endcode
   //!
   using TypeAllowed = enum class GC_type : int_type {
     NOTYPE,      //!< No type assigned
@@ -503,25 +507,25 @@ namespace GC_namespace {
   };
 
   //!
-  //! @brief Converts the `GC_type` enum value to a string representation.
+  //! \brief Converts the `GC_type` enum value to a string representation.
   //!
   //! This function takes a `GC_type` enum value and returns a corresponding
   //! string representation for easier debugging and logging.
   //!
-  //! @param s The `GC_type` enum value to convert.
-  //! @return A constant C-string representing the type.
+  //! \param s The `GC_type` enum value to convert.
+  //! \return A constant C-string representing the type.
   //!
   //! ### Example
-  //! @code
+  //! \code
   //! GC_type type = GC_type::INTEGER;
   //! const char* typeStr = to_string(type);  // Returns "INTEGER"
   //! cout << "Type: " << typeStr << endl;  // Output: Type: INTEGER
-  //! @endcode
+  //! \endcode
   //!
   char const * to_string(GC_type s);
 
   //!
-  //! @brief The `GenericContainer` class provides a flexible container for storing heterogeneous data types.
+  //! \brief The `GenericContainer` class provides a flexible container for storing heterogeneous data types.
   //!
   //! This class allows storage of various data types, including primitive types (e.g., integer, floating-point),
   //! complex types, and containers like vectors and maps. It supports recursive structures where elements of the
@@ -559,7 +563,7 @@ namespace GC_namespace {
   //! These capabilities make `GenericContainer` a highly versatile container for managing mixed-type data in C++.
   //!
   //! ### Example:
-  //! @code
+  //! \code
   //! GenericContainer gc;
   //! gc.set_integer(42);  // Store an integer
   //! gc.set_string("Hello, World!");  // Store a string
@@ -567,7 +571,7 @@ namespace GC_namespace {
   //! GenericContainer vec_gc;
   //! vec_gc.set_vector(3);  // Store a vector of GenericContainers
   //! vec_gc[0].set_real(3.14);  // Set first element as a floating-point number
-  //! @endcode
+  //! \endcode
   //!
   class GenericContainer {
   public:
@@ -600,7 +604,7 @@ namespace GC_namespace {
   private:
 
     //!
-    //! @brief Union for internal data storage.
+    //! \brief Union for internal data storage.
     //!
     //! This union holds the actual data for the container in its various possible forms.
     //! Depending on the current data type stored in the container, different members of the union will be used.
@@ -634,69 +638,68 @@ namespace GC_namespace {
     DataStorage m_data;                       //!< The actual data stored in the container.
     TypeAllowed m_data_type{GC_type::NOTYPE}; //!< The type of data currently stored.
 
-
-    //! @brief Allocates memory for a string.
+    //! \brief Allocates memory for a string.
     void allocate_string();
 
-    //! @brief Allocates memory for a complex number.
+    //! \brief Allocates memory for a complex number.
     void allocate_complex();
 
-    //! @brief Allocates memory for a vector of pointers of size `sz`.
+    //! \brief Allocates memory for a vector of pointers of size `sz`.
     void allocate_vec_pointer(unsigned sz);
 
-    //! @brief Allocates memory for a vector of booleans of size `sz`.
+    //! \brief Allocates memory for a vector of booleans of size `sz`.
     void allocate_vec_bool(unsigned sz);
 
-    //! @brief Allocates memory for a vector of integers of size `sz`.
+    //! \brief Allocates memory for a vector of integers of size `sz`.
     void allocate_vec_int(unsigned sz);
 
-    //! @brief Allocates memory for a vector of long integers of size `sz`.
+    //! \brief Allocates memory for a vector of long integers of size `sz`.
     void allocate_vec_long(unsigned sz);
 
-    //! @brief Allocates memory for a vector of real numbers of size `sz`.
+    //! \brief Allocates memory for a vector of real numbers of size `sz`.
     void allocate_vec_real(unsigned sz);
 
-    //! @brief Allocates memory for a vector of complex numbers of size `sz`.
+    //! \brief Allocates memory for a vector of complex numbers of size `sz`.
     void allocate_vec_complex(unsigned sz);
 
-    //! @brief Allocates memory for a matrix of integers of size `nr` x `nc`.
+    //! \brief Allocates memory for a matrix of integers of size `nr` x `nc`.
     void allocate_mat_int(unsigned nr, unsigned nc);
 
-    //! @brief Allocates memory for a matrix of long integers of size `nr` x `nc`.
+    //! \brief Allocates memory for a matrix of long integers of size `nr` x `nc`.
     void allocate_mat_long(unsigned nr, unsigned nc);
 
-    //! @brief Allocates memory for a matrix of real numbers of size `nr` x `nc`.
+    //! \brief Allocates memory for a matrix of real numbers of size `nr` x `nc`.
     void allocate_mat_real(unsigned nr, unsigned nc);
 
-    //! @brief Allocates memory for a matrix of complex numbers of size `nr` x `nc`.
+    //! \brief Allocates memory for a matrix of complex numbers of size `nr` x `nc`.
     void allocate_mat_complex(unsigned nr, unsigned nc);
 
-    //! @brief Allocates memory for a vector of strings of size `sz`.
+    //! \brief Allocates memory for a vector of strings of size `sz`.
     void allocate_vec_string(unsigned sz);
 
-    //! @brief Allocates memory for a vector of `GenericContainer` of size `sz`.
+    //! \brief Allocates memory for a vector of `GenericContainer` of size `sz`.
     void allocate_vector(unsigned sz);
 
-    //! @brief Allocates memory for a map of `GenericContainer`.
+    //! \brief Allocates memory for a map of `GenericContainer`.
     void allocate_map();
 
-    //! @brief Checks the type of data stored, throws error if type mismatch.
+    //! \brief Checks the type of data stored, throws error if type mismatch.
     void ck(char const [], TypeAllowed) const;
 
-    //! @brief Checks the type of data stored, returns an error code for type mismatch.
+    //! \brief Checks the type of data stored, returns an error code for type mismatch.
     int ck(TypeAllowed) const;
 
-    //! @brief Checks or sets the type of data stored.
+    //! \brief Checks or sets the type of data stored.
     void ck_or_set(char const [], TypeAllowed);
 
-    //! @brief Returns true if the data type is a simple type (e.g., primitive).
+    //! \brief Returns true if the data type is a simple type (e.g., primitive).
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     bool simple_data() const;
     #else
     bool simple_data() const { return m_data_type <= GC_type::STRING; }
     #endif
 
-    //! @brief Returns true if the data type is a simple vector type.
+    //! \brief Returns true if the data type is a simple vector type.
     #ifdef GENERIC_CONTAINER_ON_WINDOWS
     bool simple_vec_data() const;
     #else
@@ -706,39 +709,39 @@ namespace GC_namespace {
   public:
 
     //!
-    //! @brief Constructs a `GenericContainer` with an initial empty state.
+    //! \brief Constructs a `GenericContainer` with an initial empty state.
     //!
     //! This constructor initializes a `GenericContainer` object with no data. The internal
     //! data type is set to `NOTYPE`, indicating that no data is currently stored in the container.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! // gc is now an empty container with no type assigned
-    //! @endcode
+    //! \endcode
     //!
     GenericContainer() : m_data_type(GC_type::NOTYPE) {}
 
     //!
-    //! @brief Destroys the `GenericContainer` and releases any allocated resources.
+    //! \brief Destroys the `GenericContainer` and releases any allocated resources.
     //!
     //! This destructor ensures that any dynamically allocated memory or resources associated with
     //! the data stored in the `GenericContainer` are properly freed. It automatically calls the
     //! `clear()` method to ensure the object is fully cleaned up before destruction.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! {
     //!   GenericContainer gc;
     //!   // Perform operations with gc...
     //! }
     //! // When gc goes out of scope, the destructor is called automatically, freeing resources
-    //! @endcode
+    //! \endcode
     //!
     ~GenericContainer() { clear(); }
 
     //!
-    //! @brief Clears the content of the `GenericContainer`, resetting it to an empty state.
+    //! \brief Clears the content of the `GenericContainer`, resetting it to an empty state.
     //!
     //! This method frees any memory or resources associated with the data currently stored in
     //! the container. After calling `clear()`, the container's data type is set back to `NOTYPE`.
@@ -747,31 +750,31 @@ namespace GC_namespace {
     //! want to reuse the same `GenericContainer` object for different data.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! gc.set_integer(42);  // Store an integer
     //! gc.clear();          // Clear the container, now it is empty
-    //! @endcode
+    //! \endcode
     //!
     void clear();
 
     //!
-    //! @brief Removes an item from the map stored in the `GenericContainer` by its key.
+    //! \brief Removes an item from the map stored in the `GenericContainer` by its key.
     //!
     //! This method deletes an entry in the map contained within the `GenericContainer`,
     //! identified by the provided key `name`. The `GenericContainer` must currently store
     //! a map (`MAP` data type), otherwise, an error is thrown.
     //!
-    //! @param name The key of the element to be removed from the map.
+    //! \param name The key of the element to be removed from the map.
     //!
-    //! @throws runtime_error If the current data type is not `MAP`.
+    //! \throws runtime_error If the current data type is not `MAP`.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_map();  // Initialize as a map
     //! gc["key1"].set_integer(10);  // Add an entry with key "key1"
     //! gc.erase("key1");  // Remove the entry with key "key1"
-    //! @endcode
+    //! \endcode
     //!
     void erase( char const name[] );
 
@@ -783,200 +786,200 @@ namespace GC_namespace {
     //! @{
 
     //!
-    //! @brief Set the data type to `pointer_type` and assign a value.
+    //! \brief Set the data type to `pointer_type` and assign a value.
     //!
     //! This method initializes the `GenericContainer` to hold a pointer, stores the provided `value`,
     //! and returns a reference to the internal pointer storage.
     //!
-    //! @param value The pointer value to store in the container.
-    //! @return A reference to the stored pointer value.
+    //! \param value The pointer value to store in the container.
+    //! \return A reference to the stored pointer value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! int x = 42;
     //! GenericContainer gc;
     //! gc.set_pointer(&x);  // Store the pointer to x
-    //! @endcode
+    //! \endcode
     //!
     pointer_type & set_pointer( pointer_type value );
 
     //!
-    //! @brief Free the pointer and reset the container to an empty state.
+    //! \brief Free the pointer and reset the container to an empty state.
     //!
     //! This method deallocates any memory or resources associated with the current pointer,
     //! resets the container's type to `NOTYPE`, and returns a reference to the `GenericContainer` instance itself.
     //!
-    //! @return A reference to the `GenericContainer` after the pointer has been freed.
+    //! \return A reference to the `GenericContainer` after the pointer has been freed.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_pointer(malloc(100));  // Allocate memory and store the pointer
     //! gc.free_pointer();            // Free the allocated memory and reset container
-    //! @endcode
+    //! \endcode
     //!
     GenericContainer & free_pointer();
 
     //!
-    //! @brief Extracts the keys of the map stored in the `GenericContainer` into a vector of strings.
+    //! \brief Extracts the keys of the map stored in the `GenericContainer` into a vector of strings.
     //!
     //! If the container holds a map (`MAP` type), this method populates the provided `keys` vector
     //! with the keys from the map. If the container is not a map, the method throws an exception.
     //!
-    //! @param[out] keys A vector of strings that will be filled with the map's keys.
-    //! @throws runtime_error if the container does not hold a map.
+    //! \param[out] keys A vector of strings that will be filled with the map's keys.
+    //! \throws runtime_error if the container does not hold a map.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_map();
     //! gc["key1"].set_int(1);
     //! gc["key2"].set_real(3.14);
     //! vector<string> keys;
     //! gc.get_keys(keys);  // keys will contain "key1" and "key2"
-    //! @endcode
+    //! \endcode
     //!
     void get_keys( vec_string_type & keys ) const;
 
     //!
-    //! @brief Extracts the keys of the map stored in the `GenericContainer` as a comma-separated string.
+    //! \brief Extracts the keys of the map stored in the `GenericContainer` as a comma-separated string.
     //!
     //! If the container holds a map (`MAP` type), this method returns the map's keys as a single string,
     //! where each key is separated by a comma. If the container is not a map, an exception is thrown.
     //!
-    //! @return A string containing the keys of the map, separated by ", ".
-    //! @throws runtime_error if the container does not hold a map.
+    //! \return A string containing the keys of the map, separated by ", ".
+    //! \throws runtime_error if the container does not hold a map.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_map();
     //! gc["key1"].set_int(1);
     //! gc["key2"].set_real(3.14);
     //! string keys = gc.get_keys();  // "key1, key2"
-    //! @endcode
+    //! \endcode
     //!
     string get_keys() const;
 
     //!
-    //! @brief Set the data type to `bool_type` and assign a boolean value.
+    //! \brief Set the data type to `bool_type` and assign a boolean value.
     //!
     //! This method initializes the `GenericContainer` to hold a boolean value, stores the provided value,
     //! and returns a reference to the stored boolean.
     //!
-    //! @param value The boolean value to store.
-    //! @return A reference to the stored boolean value.
+    //! \param value The boolean value to store.
+    //! \return A reference to the stored boolean value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_bool(true);  // Store a boolean value
-    //! @endcode
+    //! \endcode
     //!
     bool_type & set_bool( bool_type value );
 
     //!
-    //! @brief Set the data type to `int_type` and assign an integer value.
+    //! \brief Set the data type to `int_type` and assign an integer value.
     //!
     //! This method initializes the `GenericContainer` to hold an integer value, stores the provided value,
     //! and returns a reference to the stored integer.
     //!
-    //! @param value The integer value to store.
-    //! @return A reference to the stored integer value.
+    //! \param value The integer value to store.
+    //! \return A reference to the stored integer value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_int(42);  // Store an integer value
-    //! @endcode
+    //! \endcode
     //!
     int_type & set_int( int_type value );
 
     //!
-    //! @brief Set the data type to `long_type` and assign a long integer value.
+    //! \brief Set the data type to `long_type` and assign a long integer value.
     //!
     //! This method initializes the `GenericContainer` to hold a long integer value, stores the provided value,
     //! and returns a reference to the stored long integer.
     //!
-    //! @param value The long integer value to store.
-    //! @return A reference to the stored long integer value.
+    //! \param value The long integer value to store.
+    //! \return A reference to the stored long integer value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_long(123456789L);  // Store a long integer value
-    //! @endcode
+    //! \endcode
     //!
     long_type & set_long( long_type value );
 
     //!
-    //! @brief Set the data type to `real_type` and assign a floating-point value.
+    //! \brief Set the data type to `real_type` and assign a floating-point value.
     //!
     //! This method initializes the `GenericContainer` to hold a floating-point value, stores the provided value,
     //! and returns a reference to the stored real value.
     //!
-    //! @param value The floating-point value to store.
-    //! @return A reference to the stored floating-point value.
+    //! \param value The floating-point value to store.
+    //! \return A reference to the stored floating-point value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_real(3.14);  // Store a floating-point value
-    //! @endcode
+    //! \endcode
     //!
     real_type & set_real( real_type value );
 
     //!
-    //! @brief Set the data type to `complex_type` and assign a complex value.
+    //! \brief Set the data type to `complex_type` and assign a complex value.
     //!
     //! This method initializes the `GenericContainer` to hold a complex number, stores the provided value,
     //! and returns a reference to the stored complex value.
     //!
-    //! @param value The complex number to store.
-    //! @return A reference to the stored complex value.
+    //! \param value The complex number to store.
+    //! \return A reference to the stored complex value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! complex<double> c(1.0, 2.0);
     //! gc.set_complex(c);  // Store a complex number
-    //! @endcode
+    //! \endcode
     //!
     complex_type & set_complex( complex_type const & value );
 
     //!
-    //! @brief Set the data type to `complex_type` and assign a complex value from real and imaginary parts.
+    //! \brief Set the data type to `complex_type` and assign a complex value from real and imaginary parts.
     //!
     //! This method initializes the `GenericContainer` to hold a complex number. It takes two real numbers
     //! (representing the real and imaginary components), stores the complex number, and returns a reference
     //! to the stored complex value.
     //!
-    //! @param r The real part of the complex number.
-    //! @param i The imaginary part of the complex number.
-    //! @return A reference to the stored complex value.
+    //! \param r The real part of the complex number.
+    //! \param i The imaginary part of the complex number.
+    //! \return A reference to the stored complex value.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_complex(1.0, 2.0);  // Store a complex number (1.0 + 2.0i)
-    //! @endcode
+    //! \endcode
     //!
     complex_type & set_complex( real_type r, real_type i );
 
     //!
-    //! @brief Set the data type to `string_type`, allocate memory, and assign a string value.
+    //! \brief Set the data type to `string_type`, allocate memory, and assign a string value.
     //!
     //! This method initializes the `GenericContainer` to hold a string, allocates the necessary memory,
     //! stores the provided string value, and returns a reference to the stored string.
     //!
-    //! @param value The string to store.
-    //! @return A reference to the stored string.
+    //! \param value The string to store.
+    //! \return A reference to the stored string.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_string("Hello, World!");  // Store a string
-    //! @endcode
+    //! \endcode
     //!
     string_type & set_string( string_type const & value );
     ///@}
@@ -993,416 +996,416 @@ namespace GC_namespace {
     //! the size or by copying from an existing vector or matrix.
     //! @{
 
-    //! @brief Set the data to `vec_pointer_type`, allocate and initialize.
+    //! \brief Set the data to `vec_pointer_type`, allocate and initialize.
     //!
     //! This method allocates memory for a vector of pointers. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of pointers to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of pointers.
+    //! \param[in] sz The size of the vector of pointers to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of pointers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_pointer(10);  // Allocates a vector of 10 pointers
-    //! @endcode
+    //! \endcode
     //!
     vec_pointer_type & set_vec_pointer( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_pointer_type` by copying from another vector.
+    //! \brief Set the data to `vec_pointer_type` by copying from another vector.
     //!
     //! This method initializes the vector of pointers by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of pointers used for initialization.
-    //! @return A reference to the internally allocated vector of pointers.
+    //! \param[in] v The vector of pointers used for initialization.
+    //! \return A reference to the internally allocated vector of pointers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_pointer_type v = {ptr1, ptr2, ptr3};
     //! GenericContainer gc;
     //! gc.set_vec_pointer(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_pointer_type & set_vec_pointer( vec_pointer_type const & v );
 
-    //! @brief Set the data to `vec_bool_type`, allocate and initialize.
+    //! \brief Set the data to `vec_bool_type`, allocate and initialize.
     //!
     //! Allocates memory for a vector of boolean values. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of booleans to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of booleans.
+    //! \param[in] sz The size of the vector of booleans to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of booleans.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_bool(5);  // Allocates a vector of 5 booleans
-    //! @endcode
+    //! \endcode
     //!
     vec_bool_type & set_vec_bool( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_bool_type` by copying from another vector.
+    //! \brief Set the data to `vec_bool_type` by copying from another vector.
     //!
     //! This method initializes the vector of booleans by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of booleans used for initialization.
-    //! @return A reference to the internally allocated vector of booleans.
+    //! \param[in] v The vector of booleans used for initialization.
+    //! \return A reference to the internally allocated vector of booleans.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_bool_type v = {true, false, true};
     //! GenericContainer gc;
     //! gc.set_vec_bool(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_bool_type & set_vec_bool( vec_bool_type const & v );
 
-    //! @brief Set the data to `vec_int_type`, allocate and initialize.
+    //! \brief Set the data to `vec_int_type`, allocate and initialize.
     //!
     //! Allocates memory for a vector of integers. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of integers to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of integers.
+    //! \param[in] sz The size of the vector of integers to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_int(10);  // Allocates a vector of 10 integers
-    //! @endcode
+    //! \endcode
     //!
     vec_int_type & set_vec_int( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_int_type` by copying from another vector.
+    //! \brief Set the data to `vec_int_type` by copying from another vector.
     //!
     //! This method initializes the vector of integers by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of integers used for initialization.
-    //! @return A reference to the internally allocated vector of integers.
+    //! \param[in] v The vector of integers used for initialization.
+    //! \return A reference to the internally allocated vector of integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_int_type v{1, 2, 3};
     //! GenericContainer gc;
     //! gc.set_vec_int(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_int_type & set_vec_int( vec_int_type const & v );
 
-    //! @brief Set the data to `vec_long_type`, allocate and initialize.
+    //! \brief Set the data to `vec_long_type`, allocate and initialize.
     //!
     //! Allocates memory for a vector of long integers. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of long integers to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of long integers.
+    //! \param[in] sz The size of the vector of long integers to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of long integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_long(10);  // Allocates a vector of 10 long integers
-    //! @endcode
+    //! \endcode
     //!
     vec_long_type & set_vec_long( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_long_type` by copying from another vector.
+    //! \brief Set the data to `vec_long_type` by copying from another vector.
     //!
     //! This method initializes the vector of long integers by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of long integers used for initialization.
-    //! @return A reference to the internally allocated vector of long integers.
+    //! \param[in] v The vector of long integers used for initialization.
+    //! \return A reference to the internally allocated vector of long integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_long_type v{100000L, 200000L};
     //! GenericContainer gc;
     //! gc.set_vec_long(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_long_type & set_vec_long( vec_long_type const & v );
 
-    //! @brief Set the data to `vec_real_type`, allocate and initialize.
+    //! \brief Set the data to `vec_real_type`, allocate and initialize.
     //!
     //! Allocates memory for a vector of `real_type` numbers. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of real numbers to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of real numbers.
+    //! \param[in] sz The size of the vector of real numbers to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of real numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_real(5);  // Allocates a vector of 5 real numbers
-    //! @endcode
+    //! \endcode
     //!
     vec_real_type & set_vec_real( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_real_type` by copying from another vector.
+    //! \brief Set the data to `vec_real_type` by copying from another vector.
     //!
     //! This method initializes the vector of `real_type` numbers by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of `real_type` numbers used for initialization.
-    //! @return A reference to the internally allocated vector of `real_type` numbers.
+    //! \param[in] v The vector of `real_type` numbers used for initialization.
+    //! \return A reference to the internally allocated vector of `real_type` numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_real_type v = {1.5, 2.5, 3.5};
     //! GenericContainer gc;
     //! gc.set_vec_real(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_real_type & set_vec_real( vec_real_type const & v );
 
-    //! @brief Set the data to `vec_complex_type`, allocate and initialize.
+    //! \brief Set the data to `vec_complex_type`, allocate and initialize.
     //!
     //! Allocates memory for a vector of complex numbers. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of complex numbers to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of complex numbers.
+    //! \param[in] sz The size of the vector of complex numbers to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of complex numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_complex(10);  // Allocates a vector of 10 complex numbers
-    //! @endcode
+    //! \endcode
     //!
     vec_complex_type & set_vec_complex( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_complex_type` by copying from another vector.
+    //! \brief Set the data to `vec_complex_type` by copying from another vector.
     //!
     //! This method initializes the vector of complex numbers by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of complex numbers used for initialization.
-    //! @return A reference to the internally allocated vector of complex numbers.
+    //! \param[in] v The vector of complex numbers used for initialization.
+    //! \return A reference to the internally allocated vector of complex numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_complex_type v{ {1.0, 2.0}, {3.0, 4.0} };
     //! GenericContainer gc;
     //! gc.set_vec_complex(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_complex_type & set_vec_complex( vec_complex_type const & v );
 
-    //! @brief Set the data to `vec_string_type`, allocate and initialize.
+    //! \brief Set the data to `vec_string_type`, allocate and initialize.
     //!
     //! Allocates memory for a vector of strings. If the specified size `sz` is greater than zero,
     //! the vector will be allocated with that size.
     //!
-    //! @param[in] sz The size of the vector of strings to allocate (default is 0).
-    //! @return A reference to the internally allocated vector of strings.
+    //! \param[in] sz The size of the vector of strings to allocate (default is 0).
+    //! \return A reference to the internally allocated vector of strings.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_vec_string(5);  // Allocates a vector of 5 strings
-    //! @endcode
+    //! \endcode
     //!
     vec_string_type & set_vec_string( unsigned sz = 0 );
 
-    //! @brief Set the data to `vec_string_type` by copying from another vector.
+    //! \brief Set the data to `vec_string_type` by copying from another vector.
     //!
     //! This method initializes the vector of strings by copying data from the provided vector `v`.
     //!
-    //! @param[in] v The vector of strings used for initialization.
-    //! @return A reference to the internally allocated vector of strings.
+    //! \param[in] v The vector of strings used for initialization.
+    //! \return A reference to the internally allocated vector of strings.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! vec_string_type v{"Hello", "World"};
     //! GenericContainer gc;
     //! gc.set_vec_string(v);  // Copies data from vector v
-    //! @endcode
+    //! \endcode
     //!
     vec_string_type & set_vec_string( vec_string_type const & v );
 
-    //! @brief Set the data to `mat_int_type`, allocate and initialize.
+    //! \brief Set the data to `mat_int_type`, allocate and initialize.
     //!
     //! Allocates memory for a matrix of integers. If the specified number of rows `nr` and columns `nc`
     //! are greater than zero, the matrix will be allocated with size `nr` x `nc`.
     //!
-    //! @param[in] nr The number of rows in the matrix (default is 0).
-    //! @param[in] nc The number of columns in the matrix (default is 0).
-    //! @return A reference to the internally allocated matrix of integers.
+    //! \param[in] nr The number of rows in the matrix (default is 0).
+    //! \param[in] nc The number of columns in the matrix (default is 0).
+    //! \return A reference to the internally allocated matrix of integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_mat_int(3, 4);  // Allocates a 3x4 matrix of integers
-    //! @endcode
+    //! \endcode
     //!
     mat_int_type & set_mat_int( unsigned nr = 0, unsigned nc = 0 );
 
-    //! @brief Set the data to `mat_int_type` by copying from another matrix.
+    //! \brief Set the data to `mat_int_type` by copying from another matrix.
     //!
     //! This method initializes the matrix of integers by copying data from the provided matrix `m`.
     //!
-    //! @param[in] m The matrix of integers used for initialization.
-    //! @return A reference to the internally allocated matrix of integers.
+    //! \param[in] m The matrix of integers used for initialization.
+    //! \return A reference to the internally allocated matrix of integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! mat_int_type m{{1, 2}, {3, 4}};
     //! GenericContainer gc;
     //! gc.set_mat_int(m);  // Copies data from matrix m
-    //! @endcode
+    //! \endcode
     //!
     mat_int_type & set_mat_int( mat_int_type const & m );
 
-    //! @brief Set the data to `mat_long_type`, allocate and initialize.
+    //! \brief Set the data to `mat_long_type`, allocate and initialize.
     //!
     //! Allocates memory for a matrix of long integers. If the specified number of rows `nr` and columns `nc`
     //! are greater than zero, the matrix will be allocated with size `nr` x `nc`.
     //!
-    //! @param[in] nr The number of rows in the matrix (default is 0).
-    //! @param[in] nc The number of columns in the matrix (default is 0).
-    //! @return A reference to the internally allocated matrix of long integers.
+    //! \param[in] nr The number of rows in the matrix (default is 0).
+    //! \param[in] nc The number of columns in the matrix (default is 0).
+    //! \return A reference to the internally allocated matrix of long integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_mat_long(3, 4);  // Allocates a 3x4 matrix of long integers
-    //! @endcode
+    //! \endcode
     //!
     mat_long_type & set_mat_long( unsigned nr = 0, unsigned nc = 0 );
 
-    //! @brief Set the data to `mat_long_type` by copying from another matrix.
+    //! \brief Set the data to `mat_long_type` by copying from another matrix.
     //!
     //! This method initializes the matrix of long integers by copying data from the provided matrix `m`.
     //!
-    //! @param[in] m The matrix of long integers used for initialization.
-    //! @return A reference to the internally allocated matrix of long integers.
+    //! \param[in] m The matrix of long integers used for initialization.
+    //! \return A reference to the internally allocated matrix of long integers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! mat_long_type m = {{100000L, 200000L}, {300000L, 400000L}};
     //! GenericContainer gc;
     //! gc.set_mat_long(m);  // Copies data from matrix m
-    //! @endcode
+    //! \endcode
     //!
     mat_long_type & set_mat_long( mat_long_type const & m );
 
-    //! @brief Set the data to `mat_real_type`, allocate and initialize.
+    //! \brief Set the data to `mat_real_type`, allocate and initialize.
     //!
     //! Allocates memory for a matrix of `real_type` numbers. If the specified number of rows `nr` and columns `nc`
     //! are greater than zero, the matrix will be allocated with size `nr` x `nc`.
     //!
-    //! @param[in] nr The number of rows in the matrix (default is 0).
-    //! @param[in] nc The number of columns in the matrix (default is 0).
-    //! @return A reference to the internally allocated matrix of `real_type` numbers.
+    //! \param[in] nr The number of rows in the matrix (default is 0).
+    //! \param[in] nc The number of columns in the matrix (default is 0).
+    //! \return A reference to the internally allocated matrix of `real_type` numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_mat_real(3, 4);  // Allocates a 3x4 matrix of real numbers
-    //! @endcode
+    //! \endcode
     //!
     mat_real_type & set_mat_real( unsigned nr = 0, unsigned nc = 0 );
 
-    //! @brief Set the data to `mat_real_type` by copying from another matrix.
+    //! \brief Set the data to `mat_real_type` by copying from another matrix.
     //!
     //! This method initializes the matrix of `real_type` numbers by copying data from the provided matrix `m`.
     //!
-    //! @param[in] m The matrix of `real_type` numbers used for initialization.
-    //! @return A reference to the internally allocated matrix of `real_type` numbers.
+    //! \param[in] m The matrix of `real_type` numbers used for initialization.
+    //! \return A reference to the internally allocated matrix of `real_type` numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! mat_real_type m = {{1.1, 2.2}, {3.3, 4.4}};
     //! GenericContainer gc;
     //! gc.set_mat_real(m);  // Copies data from matrix m
-    //! @endcode
+    //! \endcode
     //!
     mat_real_type & set_mat_real( mat_real_type const & m );
 
-    //! @brief Set the data to `mat_complex_type`, allocate and initialize.
+    //! \brief Set the data to `mat_complex_type`, allocate and initialize.
     //!
     //! Allocates memory for a matrix of `complex_type` numbers. If the specified number of rows `nr` and columns `nc`
     //! are greater than zero, the matrix will be allocated with size `nr` x `nc`.
     //!
-    //! @param[in] nr The number of rows in the matrix (default is 0).
-    //! @param[in] nc The number of columns in the matrix (default is 0).
-    //! @return A reference to the internally allocated matrix of complex numbers.
+    //! \param[in] nr The number of rows in the matrix (default is 0).
+    //! \param[in] nc The number of columns in the matrix (default is 0).
+    //! \return A reference to the internally allocated matrix of complex numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! GenericContainer gc;
     //! gc.set_mat_complex(3, 4);  // Allocates a 3x4 matrix of complex numbers
-    //! @endcode
+    //! \endcode
     //!
     mat_complex_type & set_mat_complex( unsigned nr = 0, unsigned nc = 0 );
 
-    //! @brief Set the data to `mat_complex_type` by copying from another matrix.
+    //! \brief Set the data to `mat_complex_type` by copying from another matrix.
     //!
     //! This method initializes the matrix of complex numbers by copying data from the provided matrix `m`.
     //!
-    //! @param[in] m The matrix of complex numbers used for initialization.
-    //! @return A reference to the internally allocated matrix of complex numbers.
+    //! \param[in] m The matrix of complex numbers used for initialization.
+    //! \return A reference to the internally allocated matrix of complex numbers.
     //!
     //! ### Example:
-    //! @code
+    //! \code
     //! mat_complex_type m = {{{1.0, 2.0}, {3.0, 4.0}}, {{5.0, 6.0}, {7.0, 8.0}}};
     //! GenericContainer gc;
     //! gc.set_mat_complex(m);  // Copies data from matrix m
-    //! @endcode
+    //! \endcode
     //!
     mat_complex_type & set_mat_complex( mat_complex_type const & m );
 
-    //! @brief Push a boolean value into the vector or matrix.
+    //! \brief Push a boolean value into the vector or matrix.
     //!
     //! This method adds a boolean value to `vec_bool_type` or a general `vector_type`.
     //!
-    //! @param[in] b value The boolean value to push.
+    //! \param[in] b value The boolean value to push.
     //!
     void push_bool( bool b );
 
-    //! @brief Push an integer value into the vector or matrix.
+    //! \brief Push an integer value into the vector or matrix.
     //!
     //! This method adds an integer value to `vec_int_type` or a general `vector_type`.
     //!
-    //! @param[in] i value The integer value to push.
+    //! \param[in] i value The integer value to push.
     //!
     void push_int( int_type i );
 
-    //! @brief Push a long integer value into the vector or matrix.
+    //! \brief Push a long integer value into the vector or matrix.
     //!
     //! This method adds a long integer value to `vec_long_type` or a general `vector_type`.
     //!
-    //! @param[in] l value The long integer value to push.
+    //! \param[in] l value The long integer value to push.
     //!
     void push_long( long_type l );
 
-    //! @brief Push a real number into the vector or matrix.
+    //! \brief Push a real number into the vector or matrix.
     //!
     //! This method adds a real number to `vec_real_type` or a general `vector_type`.
     //!
-    //! @param[in] r value The real number to push.
+    //! \param[in] r value The real number to push.
     //!
     void push_real( real_type r );
 
-    //! @brief Push a complex number into the vector or matrix using an existing complex object.
+    //! \brief Push a complex number into the vector or matrix using an existing complex object.
     //!
     //! This method adds a complex number to `vec_complex_type` or a general `vector_type`.
     //!
-    //! @param[in] c value The complex number to push.
+    //! \param[in] c value The complex number to push.
     //!
     void push_complex( complex_type & c );
 
-    //! @brief Push a complex number into the vector or matrix using real and imaginary parts.
+    //! \brief Push a complex number into the vector or matrix using real and imaginary parts.
     //!
     //! This method adds a complex number to `vec_complex_type` or a general `vector_type`.
     //!
-    //! @param[in] re The real part of the complex number.
-    //! @param[in] im The imaginary part of the complex number.
+    //! \param[in] re The real part of the complex number.
+    //! \param[in] im The imaginary part of the complex number.
     //!
     void push_complex( real_type re, real_type im );
 
-    //! @brief Push a string value into the vector or matrix.
+    //! \brief Push a string value into the vector or matrix.
     //!
     //! This method adds a string to `vec_string_type` or a general `vector_type`.
     //!
-    //! @param[in] s value The string value to push.
+    //! \param[in] s value The string value to push.
     //!
     void push_string( string_type const & s );
 
@@ -3820,6 +3823,15 @@ namespace GC_namespace {
     ) const;
 
     //!
+    //! Compare the contents of the object with `gc`
+    //!
+    //! \param[in] gc to object to compare
+    //! \return a string with the first difference found
+    //!
+    string
+    compare_content( GenericContainer const & gc, string const & from = "" ) const;
+
+    //!
     //! Dump the contents of the object in a human readable way
     //!
     //! \param[in] stream output stream
@@ -3861,6 +3873,7 @@ namespace GC_namespace {
       string_type const & indent = "    "
     ) const {
       ostringstream ostr;
+      ostr.precision(stream_number_precision);
       this->print(ostr,prefix,indent);
       return ostr.str();
     }
@@ -3891,16 +3904,17 @@ namespace GC_namespace {
     //! Print the contents of the object in YAML syntax
     //!
     //! \param[in] stream output stream
-    //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
+    //! \param[in] prefix string to be prepended to any field of the `GenericContainer`
     //!
     void to_yaml( ostream_type & stream, string_type const & prefix = "" ) const;
 
-    string
-    to_yaml( string_type const & prefix = "" ) const {
-      ostringstream out;
-      to_yaml( out, prefix );
-      return out.str();
-    }
+    //!
+    //! Read the contents of stream in YAML syntax
+    //!
+    //! \param[in] stream input stream
+    //! \return true if conversion successful
+    //!
+    bool from_yaml( istream_type & stream );
 
     //!
     //! Print the contents of the object in JSON syntax
@@ -3910,12 +3924,32 @@ namespace GC_namespace {
     //!
     void to_json( ostream_type & stream, string_type const & prefix = "" ) const;
 
-    string
-    to_json( string_type const & prefix = "" ) const {
-      ostringstream out;
-      to_json( out, prefix );
-      return out.str();
-    }
+    //!
+    //! Read the contents of stream in JSON syntax
+    //!
+    //! \param[in] stream input stream
+    //! \return true if conversion successful
+    //!
+    bool from_json( istream_type & stream );
+    bool from_json2( istream_type & stream );
+
+#if 0
+    //!
+    //! Print the contents of the object in TOML syntax
+    //!
+    //! \param[in] stream output stream
+    //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
+    //!
+    void to_toml( ostream_type & stream, string_type const & prefix = "" ) const;
+
+    //!
+    //! Read the contents of stream in JSON syntax
+    //!
+    //! \param[in] stream input stream
+    //! \return true if conversion successful
+    //!
+    bool from_toml( istream_type & stream );
+#endif
 
     //!
     //! Collapse heterogeneous vectors into a unified type.
@@ -3945,7 +3979,15 @@ namespace GC_namespace {
     //! \param delimiter  desired delimiter (optional). Default is tab.
     //!
     GenericContainer const &
-    writeFormattedData( ostream_type & stream, char const delimiter = '\t' ) const;
+    write_formatted_data( ostream_type & stream, char const delimiter = '\t' ) const;
+
+    //!
+    //! \deprecated use `write_formatted_data`
+    //!
+    GenericContainer const &
+    writeFormattedData( ostream_type & stream, char const delimiter = '\t' ) const {
+      return this->write_formatted_data( stream, delimiter );
+    }
 
     //!
     //! Read regular formatted data from `stream` to `GenericContainer`.
@@ -3965,11 +4007,23 @@ namespace GC_namespace {
     //! \param delimiters   characters used as delimiter for headers
     //!
     GenericContainer &
-    readFormattedData(
+    read_formatted_data(
       istream_type & stream,
       char const commentChars[] = "#%",
       char const delimiters[]   = " \t"
     );
+
+    //!
+    //! \deprecated use `read_formatted_data`
+    //!
+    GenericContainer &
+    readFormattedData(
+      istream_type & stream,
+      char const commentChars[] = "#%",
+      char const delimiters[]   = " \t"
+    ) {
+      return read_formatted_data( stream, commentChars, delimiters );
+    }
 
     //!
     //! Read regular formatted data from file `fname` to `GenericContainer`.
@@ -3988,11 +4042,23 @@ namespace GC_namespace {
     //! \param delimiters   characters used as delimiter for headers
     //!
     GenericContainer &
-    readFormattedData(
+    read_formatted_data(
       char const fname[],
       char const commentChars[] = "#%",
       char const delimiters[]   = " \t"
     );
+
+    //!
+    //! \deprecated use `read_formatted_data`
+    //!
+    GenericContainer &
+    readFormattedData(
+      char const fname[],
+      char const commentChars[] = "#%",
+      char const delimiters[]   = " \t"
+    ) {
+      return read_formatted_data( fname, commentChars, delimiters );
+    }
 
     //!
     //! Read regular formatted data from `stream` to `GenericContainer`.
@@ -4013,7 +4079,7 @@ namespace GC_namespace {
     //! \param ptr_pars     pointer to a `GenericContainer` which store poarameter parsed in the comment part of the file
     //!
     GenericContainer &
-    readFormattedData2(
+    read_formatted_data2(
       istream_type   & stream,
       char const       commentChars[] = "#%",
       char const       delimiters[]   = " \t",
@@ -4021,6 +4087,19 @@ namespace GC_namespace {
     );
 
     //!
+    //! \deprecated use `read_formatted_data2`
+    //!
+    GenericContainer &
+    readFormattedData2(
+      istream_type   & stream,
+      char const       commentChars[] = "#%",
+      char const       delimiters[]   = " \t",
+      GenericContainer ptr_pars[]     = nullptr
+    ) {
+      return read_formatted_data2( stream, commentChars, delimiters, ptr_pars );
+    }
+
+    //!
     //! Read regular formatted data from file `fname` to `GenericContainer`.
     //!
     //! After successful read `GenericContainer` will be a map which contains the fields:
@@ -4035,7 +4114,18 @@ namespace GC_namespace {
     //! \param commentChars lines beginning with one of this chars are treated as comments.
     //!                     Default are `#` and `%`
     //! \param delimiters   characters used as delimiter for headers
-    //! \param ptr_pars     pointer to a `GenericContainer` which store poarameter parsed in the comment part of the file
+    //! \param ptr_pars     pointer to a `GenericContainer` which store the parameter parsed in the comment part of the file
+    //!
+    GenericContainer &
+    read_formatted_data2(
+      char const       fname[],
+      char const       commentChars[] = "#%",
+      char const       delimiters[]   = " \t",
+      GenericContainer ptr_pars[]     = nullptr
+    );
+
+    //!
+    //! \deprecated use `read_formatted_data2`
     //!
     GenericContainer &
     readFormattedData2(
@@ -4043,8 +4133,9 @@ namespace GC_namespace {
       char const       commentChars[] = "#%",
       char const       delimiters[]   = " \t",
       GenericContainer ptr_pars[]     = nullptr
-    );
-
+    ) {
+      return read_formatted_data2( fname, commentChars, delimiters, ptr_pars );
+    }
     ///@}
 
     //!
@@ -4053,27 +4144,46 @@ namespace GC_namespace {
     ///@{
 
     //!
-    //! Dimension in byte of the serialized generic container.
+    //! Returns the size, in bytes, required to store the serialized version of the GenericContainer.
+    //! This size represents the memory footprint of the container when serialized.
     //!
     int32_t mem_size() const;
 
     //!
-    //! Fill the buffer with the serialized version of the GenericContainer.
+    //! Serializes the GenericContainer into the provided buffer.
+    //! The buffer must have enough space to store the serialized data (use \ref mem_size() to determine the required size).
+    //!
+    //! \param buffer_dim Size of the provided buffer, in bytes.
+    //! \param buffer Pointer to the buffer where the serialized data will be written.
+    //! \return The number of bytes written into the buffer, or -1 if an error occurs (e.g., insufficient buffer size).
     //!
     int32_t serialize( int32_t buffer_dim, uint8_t * buffer ) const;
+
     //!
-    //! Fill the buffer with the serialized version of the GenericContainer.
+    //! Serializes the GenericContainer into the provided vector buffer.
+    //! The buffer will be resized if necessary to accommodate the serialized data.
+    //!
+    //! \param buffer A vector of bytes that will be filled with the serialized data.
+    //! \return The number of bytes written into the buffer.
     //!
     int32_t serialize( vector<uint8_t> & buffer ) const;
 
     //!
-    //! Build the generic container from the serialized version
-    //! of the GenericContainer conrined in buffer.
+    //! Deserializes the GenericContainer from the provided buffer.
+    //! Reconstructs the container from its serialized version contained within the buffer.
+    //!
+    //! \param buffer_dim Size of the buffer containing the serialized data, in bytes.
+    //! \param buffer Pointer to the buffer containing the serialized data.
+    //! \return The number of bytes readed from the buffer.
     //!
     int32_t de_serialize( int32_t buffer_dim, uint8_t const * buffer );
+
     //!
-    //! Build the generic container from the serialized version
-    //! of the GenericContainer conrined in buffer.
+    //! Deserializes the GenericContainer from the provided vector buffer.
+    //! Reconstructs the container from its serialized version contained within the vector.
+    //!
+    //! \param buffer A vector of bytes containing the serialized data.
+    //! \return  The number of bytes readed from the buffer.
     //!
     int32_t de_serialize( vector<uint8_t> const & buffer );
 
@@ -4101,12 +4211,26 @@ namespace GC_namespace {
   //! \param[in] delimiter delimiter character between columns
   //!
   void
-  writeTable(
+  write_table(
     vec_string_type const & headers,
     vector_type     const & data,
     ostream_type          & stream,
     char delimiter = '\t'
   );
+
+  //!
+  //! \deprecated use `write_table`
+  //!
+  inline
+  void
+  writeTable(
+    vec_string_type const & headers,
+    vector_type     const & data,
+    ostream_type          & stream,
+    char delimiter = '\t'
+  ) {
+    write_table( headers, data, stream, delimiter );
+  }
 
   //!
   //! Write data as a table
@@ -4117,7 +4241,7 @@ namespace GC_namespace {
   //! \param[in] delimiter delimiter character between columns
   //!
   void
-  writeTable(
+  write_table(
     vec_string_type const & headers,
     mat_real_type   const & data,
     ostream_type          & stream,
@@ -4125,6 +4249,20 @@ namespace GC_namespace {
   );
 
   //!
+  //! \deprecated use `write_table`
+  //!
+  inline
+  void
+  writeTable(
+    vec_string_type const & headers,
+    mat_real_type   const & data,
+    ostream_type          & stream,
+    char delimiter = '\t'
+  ) {
+    write_table( headers, data, stream, delimiter );
+  }
+
+  //!
   //! Write data as a table
   //!
   //! \param[in] headers   vector of string with the header of the table
@@ -4132,13 +4270,26 @@ namespace GC_namespace {
   //! \param[in] stream    output stream
   //!
   void
-  writeTableFormatted(
+  write_table_formatted(
     vec_string_type const & headers,
     vector_type     const & data,
     ostream_type          & stream
   );
 
   //!
+  //! \deprecated use `write_table_formatted`
+  //!
+  inline
+  void
+  writeTableFormatted(
+    vec_string_type const & headers,
+    vector_type     const & data,
+    ostream_type          & stream
+  ) {
+    write_table_formatted( headers, data, stream );
+  }
+
+  //!
   //! Write data as a table
   //!
   //! \param[in] headers   vector of string with the header of the table
@@ -4146,59 +4297,25 @@ namespace GC_namespace {
   //! \param[in] stream    output stream
   //!
   void
-  writeTableFormatted(
+  write_table_formatted(
     vec_string_type const & headers,
     mat_real_type   const & data,
     ostream_type          & stream
   );
 
-  #ifndef DOXYGEN_SHOULD_SKIP_THIS
+  //!
+  //! \deprecated use `write_table_formatted`
+  //!
+  inline
+  void
+  writeTableFormatted(
+    vec_string_type const & headers,
+    mat_real_type   const & data,
+    ostream_type          & stream
+  ) {
+    write_table_formatted( headers, data, stream );
+  }
 
-  // -------------------------------------------------------
-  class GenericContainerExplorer {
-  private:
-
-    enum {
-      GENERIC_CONTAINER_OK        = 0,
-      GENERIC_CONTAINER_BAD_TYPE  = 1,
-      GENERIC_CONTAINER_NO_DATA   = 2,
-      GENERIC_CONTAINER_NOT_EMPTY = 3,
-      GENERIC_CONTAINER_BAD_HEAD  = 4
-    };
-
-    GenericContainer         data;
-    deque<GenericContainer*> head;
-
-    map_type         * ptr_map;
-    map_type::iterator map_iterator;
-
-  public:
-
-    GenericContainerExplorer() { head.push_back(&data); }
-    ~GenericContainerExplorer() {}
-
-    GenericContainer       * top();
-    GenericContainer const * top() const;
-
-    void       * mem_ptr()       { return &data; }
-    void const * mem_ptr() const { return &data; }
-
-    int check( GC_type data_type ) const;
-    int check_no_data( GC_type data_type ) const;
-
-    int pop();
-    int push( GenericContainer * gc );
-    int push_vector_position( unsigned pos );
-    int push_map_position( char const pos[] );
-    int init_map_key();
-
-    char const * next_map_key();
-
-    int reset();
-
-  };
-
-  #endif
 }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

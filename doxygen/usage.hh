@@ -87,10 +87,10 @@ rake run_win   # for windows
 To use the interface include
 
 \code{cpp}
-#include "GenericContainerLuaInterface.hh"
+#include "GenericContainerInterface_lua.hh"
 \endcode
 
-compile and link with `GenericContainerLuaInterface.cc`.
+compile and link with `GenericContainerInterface_lua.cc`.
 The interface contains a set of functions to convert from `GenericContainer`
 to Lua global variables and the other way around.
 

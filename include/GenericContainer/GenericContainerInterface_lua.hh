@@ -17,8 +17,10 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
-#ifndef GENERIC_CONTAINER_LUA_INTERFACE_HH
-#define GENERIC_CONTAINER_LUA_INTERFACE_HH
+#pragma once
+
+#ifndef GENERIC_CONTAINER_INTERFACE_LUA_HH
+#define GENERIC_CONTAINER_INTERFACE_LUA_HH
 
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wpoison-system-directories"

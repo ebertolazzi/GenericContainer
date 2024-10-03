@@ -23,7 +23,7 @@
  to write a lua table initialied in a C++ code.
  */
 
-#include "GenericContainer/GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerInterface_lua.hh"
 #include <iostream>
 #include <fstream>
 

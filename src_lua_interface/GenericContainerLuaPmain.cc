@@ -18,7 +18,7 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-#include "GenericContainer/GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerInterface_lua.hh"
 
 #ifdef __GNUC__
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough"

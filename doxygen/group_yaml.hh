@@ -124,29 +124,6 @@
 
  You can also convert a `GenericContainer` back to YAML format.
 
- ### Converting to a Vector of YAML Strings
-
- The `GC_to_YAML` function converts the contents of
- a `GenericContainer` into a vector of YAML strings.
-
- \code
- void GC_to_YAML( GenericContainer const & gc, std::vector<std::string> & YAML );
- \endcode
-
- Example:
- \code
- GenericContainer gc;
- gc["key1"] = "value1";
- gc["key2"] = 42;
-
- std::vector<std::string> yaml_output;
- GC_to_YAML(gc, yaml_output);
-
- for (const auto &line : yaml_output) {
-     std::cout << line << std::endl;
- }
- \endcode
-
  ### Converting to a YAML File Stream
 
  You can write the contents of a `GenericContainer` to an

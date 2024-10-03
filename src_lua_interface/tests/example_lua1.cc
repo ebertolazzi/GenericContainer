@@ -23,7 +23,7 @@
  to read a lua table initialied in a lua script.
  */
 
-#include "GenericContainer/GenericContainerLuaInterface.hh"
+#include "GenericContainer/GenericContainerInterface_lua.hh"
 #include <iostream>
 #include <fstream>
 

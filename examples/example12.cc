@@ -23,7 +23,7 @@
  */
 
 #include "GenericContainer.hh"
-#include "GenericContainer/GenericContainerYamlInterface.hh"
+#include "GenericContainer/GenericContainerInterface_yaml.hh"
 
 #include <iostream>
 #include <fstream>

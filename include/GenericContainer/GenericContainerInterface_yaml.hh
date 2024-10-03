@@ -17,8 +17,10 @@
  |                                                                          |
 \*--------------------------------------------------------------------------*/
 
-#ifndef GENERIC_CONTAINER_YAML_INTERFACE_HH
-#define GENERIC_CONTAINER_YAML_INTERFACE_HH
+#pragma once
+
+#ifndef GENERIC_CONTAINER_INTERFACE_YAML_HH
+#define GENERIC_CONTAINER_INTERFACE_YAML_HH
 
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wpoison-system-directories"
@@ -26,13 +28,11 @@
 
 #include "GenericContainer.hh"
 
-#include <istream>
-#include <ostream>
+#include <fstream>
 
 namespace GC_namespace {
 
-  using std::string;
-  using std::vector;
+  using std::ifstream;
 
   //!
   //! \addtogroup YAML
@@ -45,15 +45,20 @@ namespace GC_namespace {
   //! This function reads YAML data from the provided input stream and
   //! populates the given `GenericContainer` with the parsed data.
   //!
-  //! @param[in] file_name_YAML Input file name containing YAML data.
-  //! @param[out] gc The `GenericContainer` to be populated.
-  //! @return true if the conversion was successful, false otherwise.
+  //! \param[in]  file_name Input file name containing YAML data.
+  //! \param[out] gc        The `GenericContainer` to be populated.
+  //! \return     true      if the conversion was successful, false otherwise.
   //!
+  inline
   bool
   file_YAML_to_GC(
-    string const     & file_name_YAML,
+    string const     & file_name,
     GenericContainer & gc
-  );
+  ) {
+    ifstream stream(file_name.c_str());
+    gc.clear();
+    return gc.from_yaml( stream );
+  }
 
   //!
   //! Convert a YAML file stream to a `GenericContainer`.
@@ -61,15 +66,19 @@ namespace GC_namespace {
   //! This function reads YAML data from the provided input stream and
   //! populates the given `GenericContainer` with the parsed data.
   //!
-  //! @param[in] file_YAML Input stream containing YAML data.
-  //! @param[out] gc The `GenericContainer` to be populated.
-  //! @return true if the conversion was successful, false otherwise.
+  //! \param[in]  stream Input stream containing YAML data.
+  //! \param[out] gc     The `GenericContainer` to be populated.
+  //! \return     true   if the conversion was successful, false otherwise.
   //!
+  inline
   bool
   YAML_to_GC(
-    istream_type     & file_YAML,
+    istream_type     & stream,
     GenericContainer & gc
-  );
+  ) {
+    gc.clear();
+    return gc.from_yaml( stream );
+  }
 
   //!
   //! Convert a YAML string to a `GenericContainer`.
@@ -77,15 +86,20 @@ namespace GC_namespace {
   //! This function parses the given YAML string and populates the
   //! specified `GenericContainer` with the resulting data.
   //!
-  //! @param[in] YAML The YAML string to parse.
-  //! @param[out] gc The `GenericContainer` to be populated.
-  //! @return true if the conversion was successful, false otherwise.
+  //! \param[in]  DATA The YAML string to parse.
+  //! \param[out] gc   The `GenericContainer` to be populated.
+  //! \return     true if the conversion was successful, false otherwise.
   //!
+  inline
   bool
   YAML_to_GC(
-    string const     & YAML,
+    string const     & DATA,
     GenericContainer & gc
-  );
+  ) {
+    istringstream stream(DATA);
+    gc.clear();
+    return gc.from_yaml(stream);
+  }
 
   //!
   //! Convert a vector of YAML strings to a `GenericContainer`.
@@ -94,30 +108,18 @@ namespace GC_namespace {
   //! and populates the specified `GenericContainer` with the resulting
   //! data.
   //!
-  //! @param[in] YAML Vector containing YAML strings to parse.
-  //! @param[out] gc The `GenericContainer` to be populated.
-  //! @return true if the conversion was successful, false otherwise.
+  //! \param[in]  gc   The `GenericContainer` to convert.
+  //! \param[out] DATA String to store the YAML encoded GenericContainer.
   //!
-  bool
-  YAML_to_GC(
-    vector<string> const & YAML,
-    GenericContainer     & gc
-  );
-
-  //!
-  //! Convert a `GenericContainer` to a vector of YAML strings.
-  //!
-  //! This function converts the contents of the provided `GenericContainer`
-  //! into YAML format and stores it in the specified vector.
-  //!
-  //! @param[in] gc The `GenericContainer` to convert.
-  //! @param[out] YAML Vector to store the resulting YAML strings.
-  //!
+  inline
   void
   GC_to_YAML(
     GenericContainer const & gc,
-    vector<string>         & YAML
-  );
+    string                 & DATA
+  ) {
+    ostringstream stream(DATA);
+    gc.to_yaml( stream );
+  }
 
   //!
   //! Convert a `GenericContainer` to a YAML file stream.
@@ -125,14 +127,17 @@ namespace GC_namespace {
   //! This function converts the contents of the provided `GenericContainer`
   //! into YAML format and writes it to the specified output stream.
   //!
-  //! @param[in] gc The `GenericContainer` to convert.
-  //! @param[out] file_YAML Output stream to write the YAML data.
+  //! \param[in]  gc     The `GenericContainer` to convert.
+  //! \param[out] stream Output stream to write the YAML data.
   //!
+  inline
   void
   GC_to_YAML(
     GenericContainer const & gc,
-    ostream_type           & file_YAML
-  );
+    ostream_type           & stream
+  ) {
+    gc.to_yaml( stream );
+  }
 
   //!
   //! @}

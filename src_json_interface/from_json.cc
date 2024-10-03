@@ -24,7 +24,7 @@
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
 
-#include "GenericContainer/GenericContainerJsonInterface.hh"
+#include "GenericContainer/GenericContainer.hh"
 
 #include <fstream>
 #include <string>
@@ -33,18 +33,14 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
-#include "rapidjson/prettywriter.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/reader.h"
 #include "rapidjson/document.h"
 #include "rapidjson/istreamwrapper.h"
+#include "rapidjson/ostreamwrapper.h"
+#include "rapidjson/prettywriter.h"  // Per formattare l'output
+#include "rapidjson/filewritestream.h"
 #endif
-
-/*
- The encoding of a GenericContainer to a Json is much simpler than the reverse operation, and it is
- done basically by the C-like function 'gc_to_writer'.
- The implementation of the header GenericContainerJson.hh then follows.
- */
 
 namespace GC_namespace {
 
@@ -53,25 +49,6 @@ namespace GC_namespace {
   using std::string;
   using std::regex;
   using std::smatch;
-
-  static
-  bool
-  parse_complex( string const & input, complex_type & res ) {
-    // Regular expression per catturare la parte reale e immaginaria
-    std::regex complex_regex(R"(([+-]?(?:\d*\.\d+|\d+)(?:[eE][+-]?\d+)?)?([+-]?(?:\d*\.\d+|\d+)?)(?:\*?i)?)");
-
-    // Match del primo numero
-    std::smatch match;
-    bool ok = std::regex_search(input, match, complex_regex);
-    if ( ok ) {
-      // Parte reale (match[1]) e parte immaginaria (match[2])
-      real_type re(0), im(0);
-      if ( match[1].matched ) { if ( !match[1].str().empty() ) re = stod(match[1].str()); }
-      if ( match[2].matched ) { if ( !match[2].str().empty() ) im = stod(match[2].str()); }
-      res = complex_type( re, im );
-    }
-    return ok;
-  }
 
   // Funzione ricorsiva per convertire un JSON in un GenericContainer
   static
@@ -96,10 +73,7 @@ namespace GC_namespace {
     } else if ( value.IsDouble() ) {
       gc = value.GetDouble();
     } else if ( value.IsString() ) {
-      string const & s{ value.GetString() };
-      complex_type c;
-      if ( parse_complex( s, c ) ) gc = c;
-      else                         gc = s;
+      gc = value.GetString();
     } else if ( value.IsArray() ) {
       vector_type & V{ gc.set_vector( value.Size() ) };
       for ( rapidjson::SizeType i{0}; i < value.Size(); ++i )
@@ -119,32 +93,9 @@ namespace GC_namespace {
   }
 
   bool
-  JSON_to_GC(
-    string const     & JSON,
-    GenericContainer & gc
-  ) {
-
-    rapidjson::Document document;
-    document.Parse(JSON.c_str());
-
-    if (document.HasParseError()) {
-      std::cerr << "Errore durante il parsing del JSON" << std::endl;
-      return false;
-    }
-
-    bool ok{ decode_json(gc,document) };
-    if ( ok ) gc.collapse();
-    return ok;
-
-  }
-
-  bool
-  JSON_to_GC(
-    istream_type     & file_JSON,
-    GenericContainer & gc
-  ) {
+  GenericContainer::from_json( istream_type & stream ) {
     // Usare un IStreamWrapper per leggere il file in un oggetto RapidJSON
-    rapidjson::IStreamWrapper isw(file_JSON);
+    rapidjson::IStreamWrapper isw(stream);
 
     // Creare un oggetto Document per contenere il JSON
     rapidjson::Document document;
@@ -157,19 +108,14 @@ namespace GC_namespace {
       std::cerr << "Errore di parsing in JSON_to_GC\n";
       return false;
     }
-    bool ok = decode_json(gc,document);
-    if ( ok ) gc.collapse();
-    return ok;
-  }
 
-  bool
-  file_JSON_to_GC(
-    string const     & json_file_name,
-    GenericContainer & gc
-  ) {
-    ifstream file_JSON(json_file_name);
-    bool ok = JSON_to_GC( file_JSON, gc );
-    file_JSON.close();
+    //rapidjson::StringBuffer sb;
+    //rapidjson::PrettyWriter<rapidjson::StringBuffer> writer(sb);
+    //document.Accept(writer);    // Accept() traverses the DOM and generates Handler events.
+    //puts(sb.GetString());
+
+    bool ok = decode_json( *this, document );
+    if ( ok ) this->collapse();
     return ok;
   }
 
