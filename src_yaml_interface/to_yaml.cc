@@ -36,6 +36,25 @@
 
 namespace GC_namespace {
 
+  static
+  void
+  string_escape( ostream_type & stream, string const & s ) {
+    stream << '"';
+    for ( auto c : s ) {
+      if      ( c == '"'  ) { stream << "\\\""; }
+      else if ( c == '\n' ) { stream << "\\n"; }
+      else if ( c == '\r' ) { stream << "\\r"; }
+      else if ( c == '\t' ) { stream << "\\t"; }
+      else if ( c == '\v' ) { stream << "\\v"; }
+      else if ( c == '\b' ) { stream << "\\b"; }
+      else if ( c == '\a' ) { stream << "\\a"; }
+      else if ( c == '\\' ) { stream << "\\\\"; }
+      else                    stream << c;
+    }
+    stream << "\"\n";
+  }
+
+
   /*
   //   _                                 _
   //  | |_ ___     _   _  __ _ _ __ ___ | |
@@ -70,7 +89,7 @@ namespace GC_namespace {
         stream << to_string(*m_data.c) << '\n';
         break;
       case GC_type::STRING:
-        stream << "'" << *m_data.s << "'\n";
+        string_escape(stream,*m_data.s);
         break;
       case GC_type::VEC_BOOL: {
         vec_bool_type const & v{*m_data.v_b};
@@ -109,7 +128,10 @@ namespace GC_namespace {
       }
       case GC_type::VEC_STRING: {
         vec_string_type const & v{*m_data.v_s};
-        GC_PRINT_VECTOR;
+        char const * pre = "[ ";
+        for ( auto const & vi : v )
+          { stream << pre; string_escape(stream,vi); pre = ", "; }
+        stream << " ]\n";
         break;
       }
       case GC_type::VECTOR: {

@@ -47,14 +47,16 @@
 // "%code requires" blocks.
 #line 4 "jsonParser.yy"
 
-  // https://lloydrochester.com/post/flex-bison/json-parse/
   #include <cstdlib>
+  #include <sstream>
   #include "jsonLexer.hh"
   #include "GenericContainer.hh"
 
   using GC::GenericContainer;
   using GC::vector;
   using GC::string;
+  using GC::vector_type;
+  using GC::map_type;
 
   // -------------------------------------------------------
   class GenericContainerWrapper {
@@ -65,26 +67,30 @@
 
   public:
 
-    GenericContainerWrapper( GenericContainer * gc ) : m_data(gc) { m_stack.push_back(m_data); }
+    GenericContainerWrapper( GenericContainer * gc )
+    : m_data(gc) {
+      m_stack.reserve(100);
+      m_stack.push_back(m_data);
+    }
     ~GenericContainerWrapper() {}
 
-    GenericContainer       & head()       { return *m_stack.back(); }
-    GenericContainer const & head() const { return *m_stack.back(); }
+    //GenericContainer       & head()       { return *m_stack.back(); }
+    //GenericContainer const & head() const { return *m_stack.back(); }
 
     GenericContainer *
     get_gc() {
       GenericContainer * gc{m_stack.back()};
       if ( gc->get_type() == GC_namespace::GC_type::VECTOR ) {
-        unsigned n{gc->get_num_elements()};
-        gc = &(*gc)[n];
+        vector_type & V{gc->get_vector("GenericContainerWrapper")};
+        V.resize(V.size()+1);
+        gc = &V.back();
       }
       return gc;
     }
 
     void
-    set_string( string const & s ) {
-      get_gc()->set_string(s);
-    }
+    set_string( string const & s )
+    { get_gc()->set_string(s); }
 
     void
     set_float( string const & s ) {
@@ -108,7 +114,6 @@
         }
       }
     }
-
     void set_true()  { get_gc()->set_bool(true); }
     void set_false() { get_gc()->set_bool(false); }
     void set_null()  { get_gc()->clear(); }
@@ -119,14 +124,17 @@
     void open_vector()  { get_gc()->set_vector(); }
     void close_vector() { }
 
-    void set_key( string const & s ) { m_stack.push_back( &( (*get_gc())[s] ) ); }
+    void
+    set_key( string const & s ) {
+      map_type & m{ get_gc()->set_map() };
+      m_stack.push_back( &m[s] );
+    }
 
     void pop() { m_stack.pop_back(); }
-
   };
 
 
-#line 130 "jsonParser.tab.hh"
+#line 138 "jsonParser.tab.hh"
 
 
 # include <cstdlib> // std::abort
@@ -261,7 +269,7 @@
 #endif
 
 namespace yy {
-#line 265 "jsonParser.tab.hh"
+#line 273 "jsonParser.tab.hh"
 
 
 
@@ -364,13 +372,13 @@ namespace yy {
         S_value = 18,                            // value
         S_object = 19,                           // object
         S_20_1 = 20,                             // $@1
-        S_21_2 = 21,                             // $@2
+        S_members_opt = 21,                      // members_opt
         S_members = 22,                          // members
         S_member = 23,                           // member
-        S_24_3 = 24,                             // $@3
+        S_24_2 = 24,                             // $@2
         S_array = 25,                            // array
-        S_26_4 = 26,                             // $@4
-        S_27_5 = 27,                             // $@5
+        S_26_3 = 26,                             // $@3
+        S_values_opt = 27,                       // values_opt
         S_values = 28                            // values
       };
     };
@@ -878,9 +886,9 @@ namespace yy {
     /// Constants.
     enum
     {
-      yylast_ = 23,     ///< Last index in yytable_.
+      yylast_ = 18,     ///< Last index in yytable_.
       yynnts_ = 13,  ///< Number of nonterminal symbols.
-      yyfinal_ = 17 ///< Termination state number.
+      yyfinal_ = 15 ///< Termination state number.
     };
 
 
@@ -892,7 +900,7 @@ namespace yy {
 
 
 } // yy
-#line 896 "jsonParser.tab.hh"
+#line 904 "jsonParser.tab.hh"
 
 
 

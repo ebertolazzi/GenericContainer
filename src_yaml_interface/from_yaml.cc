@@ -87,6 +87,9 @@ namespace GC_namespace {
   static
   ValueType
   parse_value( string const & input, MyValue & value ) {
+
+    if ( input.empty() ) return ValueType::STRING; // stringa vuota == stringa!
+
     // Regex per riconoscere numeri complessi (es: "3.5+4.2i" o "-2.5-3.1i")
     static regex complex_regex(R"(^([+-]?\d+(\.\d+)?)[+-](\d+(\.\d+)?)i$)");
     static regex pointer_regex(R"(^0x(\d+)$)");
@@ -219,9 +222,20 @@ namespace GC_namespace {
 
   bool
   GenericContainer::from_yaml( istream_type & stream ) {
-    YAML::Node yaml_root = YAML::Load(stream);
-    bool ok = YAML_to_GC( yaml_root, *this );
-    if ( ok ) this->collapse();
+    bool ok{true};
+    try {
+      YAML::Node yaml_root = YAML::Load(stream);
+      ok = YAML_to_GC( yaml_root, *this );
+      if ( ok ) this->collapse();
+    }
+    catch ( std::exception const & e ) {
+      std::cerr << "GenericContainer::from_yaml: " << e.what() << '\n';
+      ok = false;
+    }
+    catch ( ... ) {
+      std::cerr << "GenericContainer::from_yaml: failed\n";
+      ok = false;
+    }
     return ok;
   }
 

@@ -42,7 +42,7 @@
 
 
 // Unqualified %code blocks.
-#line 97 "jsonParser.yy"
+#line 104 "jsonParser.yy"
 
   #define yylex lexer.yylex
 
@@ -610,103 +610,79 @@ namespace yy {
           switch (yyn)
             {
   case 6: // value: STRING
-#line 117 "jsonParser.yy"
+#line 122 "jsonParser.yy"
                { gcw->set_string(yystack_[0].value);  }
 #line 616 "jsonParser.tab.cc"
     break;
 
   case 7: // value: INTEGER
-#line 118 "jsonParser.yy"
+#line 123 "jsonParser.yy"
                { gcw->set_integer(yystack_[0].value); }
 #line 622 "jsonParser.tab.cc"
     break;
 
   case 8: // value: FLOAT
-#line 119 "jsonParser.yy"
+#line 124 "jsonParser.yy"
                { gcw->set_float(yystack_[0].value);   }
 #line 628 "jsonParser.tab.cc"
     break;
 
   case 9: // value: VTRUE
-#line 120 "jsonParser.yy"
+#line 125 "jsonParser.yy"
                { gcw->set_true();      }
 #line 634 "jsonParser.tab.cc"
     break;
 
   case 10: // value: VFALSE
-#line 121 "jsonParser.yy"
+#line 126 "jsonParser.yy"
                { gcw->set_false();     }
 #line 640 "jsonParser.tab.cc"
     break;
 
   case 11: // value: VNULL
-#line 122 "jsonParser.yy"
+#line 127 "jsonParser.yy"
                { gcw->set_null();      }
 #line 646 "jsonParser.tab.cc"
     break;
 
   case 12: // $@1: %empty
-#line 125 "jsonParser.yy"
-                    { gcw->open_map(); }
+#line 130 "jsonParser.yy"
+                         { gcw->open_map(); }
 #line 652 "jsonParser.tab.cc"
     break;
 
-  case 13: // object: LEFT_CURLY $@1 RIGHT_CURLY
-#line 125 "jsonParser.yy"
-                                                             { gcw->close_map(); }
+  case 13: // object: LEFT_CURLY $@1 members_opt RIGHT_CURLY
+#line 132 "jsonParser.yy"
+                         { gcw->close_map(); }
 #line 658 "jsonParser.tab.cc"
     break;
 
-  case 14: // $@2: %empty
-#line 126 "jsonParser.yy"
-                    { gcw->open_map(); }
+  case 18: // $@2: %empty
+#line 138 "jsonParser.yy"
+                    { gcw->set_key(yystack_[0].value); }
 #line 664 "jsonParser.tab.cc"
     break;
 
-  case 15: // object: LEFT_CURLY $@2 members RIGHT_CURLY
-#line 126 "jsonParser.yy"
-                                                             { gcw->close_map(); }
+  case 19: // member: STRING $@2 COLON value
+#line 138 "jsonParser.yy"
+                                                      { gcw->pop(); }
 #line 670 "jsonParser.tab.cc"
     break;
 
-  case 18: // $@3: %empty
-#line 133 "jsonParser.yy"
-               { gcw->set_key(yystack_[0].value); }
+  case 20: // $@3: %empty
+#line 140 "jsonParser.yy"
+                         { gcw->open_vector(); }
 #line 676 "jsonParser.tab.cc"
     break;
 
-  case 19: // member: STRING $@3 COLON value
-#line 133 "jsonParser.yy"
-                                                 { gcw->pop(); }
+  case 21: // array: LEFT_BRACE $@3 values_opt RIGHT_BRACE
+#line 142 "jsonParser.yy"
+                         { gcw->close_vector(); }
 #line 682 "jsonParser.tab.cc"
     break;
 
-  case 20: // $@4: %empty
-#line 136 "jsonParser.yy"
-                   { gcw->open_vector(); }
-#line 688 "jsonParser.tab.cc"
-    break;
 
-  case 21: // array: LEFT_BRACE $@4 RIGHT_BRACE
-#line 136 "jsonParser.yy"
-                                                              { gcw->close_vector(); }
-#line 694 "jsonParser.tab.cc"
-    break;
-
-  case 22: // $@5: %empty
-#line 137 "jsonParser.yy"
-                   { gcw->open_vector(); }
-#line 700 "jsonParser.tab.cc"
-    break;
-
-  case 23: // array: LEFT_BRACE $@5 values RIGHT_BRACE
-#line 137 "jsonParser.yy"
-                                                              { gcw->close_vector(); }
-#line 706 "jsonParser.tab.cc"
-    break;
-
-
-#line 710 "jsonParser.tab.cc"
+#line 686 "jsonParser.tab.cc"
 
             default:
               break;
@@ -892,8 +868,8 @@ namespace yy {
     "end of file", "error", "invalid token", "LEFT_CURLY", "RIGHT_CURLY",
   "LEFT_BRACE", "RIGHT_BRACE", "COMMA", "COLON", "VTRUE", "VFALSE",
   "VNULL", "STRING", "FLOAT", "INTEGER", "ERROR", "$accept", "json",
-  "value", "object", "$@1", "$@2", "members", "member", "$@3", "array",
-  "$@4", "$@5", "values", YY_NULLPTR
+  "value", "object", "$@1", "members_opt", "members", "member", "$@2",
+  "array", "$@3", "values_opt", "values", YY_NULLPTR
     };
     return yy_sname[yysymbol];
   }
@@ -1026,81 +1002,79 @@ namespace yy {
   }
 
 
-  const signed char parser::yypact_ninf_ = -17;
+  const signed char parser::yypact_ninf_ = -15;
 
-  const signed char parser::yytable_ninf_ = -21;
+  const signed char parser::yytable_ninf_ = -1;
 
   const signed char
   parser::yypact_[] =
   {
-      -2,   -10,    10,   -17,   -17,   -17,   -17,   -17,   -17,     4,
-     -17,   -17,   -17,    13,     7,    14,    -2,   -17,   -17,   -17,
-      11,   -17,   -17,   -17,    -1,    15,   -17,     7,   -17,    -2,
-      -2,   -17,   -17,   -17
+      -2,   -15,   -15,   -15,   -15,   -15,   -15,   -15,   -15,     2,
+     -15,   -15,   -15,    -8,    -2,   -15,   -15,     1,    -1,   -15,
+     -15,     9,    10,     8,   -15,    -8,   -15,    -2,    -2,   -15,
+     -15,   -15
   };
 
   const signed char
   parser::yydefact_[] =
   {
-       2,    12,    22,     9,    10,    11,     6,     8,     7,     0,
-       3,     4,     5,     0,     0,     0,     0,     1,    13,    18,
-       0,    16,    21,    24,     0,     0,    15,     0,    23,     0,
-       0,    17,    25,    19
+       2,    12,    20,     9,    10,    11,     6,     8,     7,     0,
+       3,     4,     5,    14,    22,     1,    18,     0,    15,    16,
+      24,     0,    23,     0,    13,     0,    21,     0,     0,    17,
+      25,    19
   };
 
   const signed char
   parser::yypgoto_[] =
   {
-     -17,   -17,   -16,   -17,   -17,   -17,   -17,    -6,   -17,   -17,
-     -17,   -17,   -17
+     -15,   -15,   -14,   -15,   -15,   -15,   -15,    -7,   -15,   -15,
+     -15,   -15,   -15
   };
 
   const signed char
   parser::yydefgoto_[] =
   {
-       0,     9,    10,    11,    13,    14,    20,    21,    25,    12,
-      15,    16,    24
+       0,     9,    10,    11,    13,    17,    18,    19,    23,    12,
+      14,    21,    22
   };
 
   const signed char
   parser::yytable_[] =
   {
-      23,     1,   -14,     2,    17,    28,    29,     3,     4,     5,
-       6,     7,     8,    32,    33,    26,   -20,    18,    27,    19,
-      22,    31,     0,    30
+      20,     1,    15,     2,    16,    24,    25,     3,     4,     5,
+       6,     7,     8,    30,    31,    26,    28,    27,    29
   };
 
   const signed char
   parser::yycheck_[] =
   {
-      16,     3,    12,     5,     0,     6,     7,     9,    10,    11,
-      12,    13,    14,    29,    30,     4,     6,     4,     7,    12,
-       6,    27,    -1,     8
+      14,     3,     0,     5,    12,     4,     7,     9,    10,    11,
+      12,    13,    14,    27,    28,     6,     8,     7,    25
   };
 
   const signed char
   parser::yystos_[] =
   {
        0,     3,     5,     9,    10,    11,    12,    13,    14,    17,
-      18,    19,    25,    20,    21,    26,    27,     0,     4,    12,
-      22,    23,     6,    18,    28,    24,     4,     7,     6,     7,
-       8,    23,    18,    18
+      18,    19,    25,    20,    26,     0,    12,    21,    22,    23,
+      18,    27,    28,    24,     4,     7,     6,     7,     8,    23,
+      18,    18
   };
 
   const signed char
   parser::yyr1_[] =
   {
        0,    16,    17,    17,    18,    18,    18,    18,    18,    18,
-      18,    18,    20,    19,    21,    19,    22,    22,    24,    23,
-      26,    25,    27,    25,    28,    28
+      18,    18,    20,    19,    21,    21,    22,    22,    24,    23,
+      26,    25,    27,    27,    28,    28
   };
 
   const signed char
   parser::yyr2_[] =
   {
        0,     2,     0,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     0,     3,     0,     4,     1,     3,     0,     4,
-       0,     3,     0,     4,     1,     3
+       1,     1,     0,     4,     0,     1,     1,     3,     0,     4,
+       0,     4,     0,     1,     1,     3
   };
 
 
@@ -1110,9 +1084,9 @@ namespace yy {
   const unsigned char
   parser::yyrline_[] =
   {
-       0,   111,   111,   112,   115,   116,   117,   118,   119,   120,
-     121,   122,   125,   125,   126,   126,   129,   130,   133,   133,
-     136,   136,   137,   137,   140,   141
+       0,   118,   118,   118,   120,   121,   122,   123,   124,   125,
+     126,   127,   130,   130,   134,   134,   136,   136,   138,   138,
+     140,   140,   144,   144,   146,   146
   };
 
   void
@@ -1192,9 +1166,9 @@ namespace yy {
   }
 
 } // yy
-#line 1196 "jsonParser.tab.cc"
+#line 1170 "jsonParser.tab.cc"
 
-#line 144 "jsonParser.yy"
+#line 148 "jsonParser.yy"
 
 
 void
@@ -1202,7 +1176,10 @@ yy::parser::error(
   yy::parser::location_type const & location,
   std::string               const & message
 ) {
-  std::cerr << "Error at line " << location.begin.line
-            << ", column " << location.begin.column
-            << ": " << message << std::endl;
+  std::ostringstream ost;
+  ost << "GenericContainer::JSON parser, Error reading stream/string at line "
+      << location.begin.line   << ", column "
+      << location.begin.column << ": "
+      << message << '\n';
+  GenericContainer::exception( ost.str().c_str() );
 }

@@ -126,7 +126,7 @@ namespace GC_namespace {
     try {
       return this->at(i+j*m_num_rows);
     } catch ( std::exception const & exc ) {
-      GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): " << exc.what() << "\n" );
+      GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): " << exc.what() << '\n' );
     } catch ( ... ) {
       GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): unknown error\n" );
     }
@@ -138,7 +138,7 @@ namespace GC_namespace {
     try {
       return this->at(i+j*m_num_rows);
     } catch ( std::exception const & exc ) {
-      GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): " << exc.what() << "\n" );
+      GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): " << exc.what() << '\n' );
     } catch ( ... ) {
       GC_DO_ERROR( "mat_type::operator() (" << i << ", " << j << "): unknown error\n" );
     }
@@ -153,7 +153,7 @@ namespace GC_namespace {
     );
     C.clear();
     C.reserve(m_num_rows);
-    for ( unsigned i = 0; i < m_num_rows; ++i )
+    for ( unsigned i{0}; i < m_num_rows; ++i )
       C.push_back( (*this)(i,nc) );
   }
 
@@ -164,7 +164,7 @@ namespace GC_namespace {
       nc < m_num_cols,
       "mat_type::get_column(" << nc << ",C) column index out of range max = " << m_num_cols-1
     );
-    for ( unsigned i = 0; i < m_num_rows; ++i )
+    for ( unsigned i{0}; i < m_num_rows; ++i )
       *C++ = (*this)(i,nc);
   }
 
@@ -177,7 +177,7 @@ namespace GC_namespace {
     );
     R.clear();
     R.reserve(m_num_cols);
-    for ( unsigned j = 0; j < m_num_cols; ++j )
+    for ( unsigned j{0}; j < m_num_cols; ++j )
       R.push_back( (*this)(nr,j) );
   }
 
@@ -188,7 +188,7 @@ namespace GC_namespace {
       nr < m_num_rows,
       "mat_type::get_row(" << nr << ",C) row index out of range max = " << m_num_rows-1
     );
-    for ( unsigned j = 0; j < m_num_cols; ++j )
+    for ( unsigned j{0}; j < m_num_cols; ++j )
       *R++ = (*this)(nr,j);
   }
 
@@ -258,7 +258,7 @@ namespace GC_namespace {
     int
     exec( string_type const & str, string_type matches[4] ) {
       if ( std::regex_match( str, reMatches, reCompiled ) ) {
-        for ( std::size_t i = 0; i < reMatches.size(); ++i )
+        for ( std::size_t i{0}; i < reMatches.size(); ++i )
           matches[i] = reMatches[i].str();
         return int(reMatches.size());
       } else {
@@ -439,7 +439,7 @@ namespace GC_namespace {
     } else {
       data << who << " size: "
            << A->num_rows() << " x " << A->num_cols() << " <> "
-           << B->num_rows() << " x " << B->num_cols() << "\n";
+           << B->num_rows() << " x " << B->num_cols() << '\n';
     }
     return data.str();
   }
@@ -452,7 +452,7 @@ namespace GC_namespace {
       data << from
            << "different type: "
            << to_string(m_data_type) << " <> "
-           << to_string(gc.m_data_type) << "\n";
+           << to_string(gc.m_data_type) << '\n';
     } else {
       switch (m_data_type) {
       case GC_type::NOTYPE:
@@ -463,18 +463,18 @@ namespace GC_namespace {
         break;
       case GC_type::INTEGER:
         if ( m_data.i != gc.m_data.i )
-          data << from << "integer: " << m_data.i << " <> " << gc.m_data.i << "\n";
+          data << from << "integer: " << m_data.i << " <> " << gc.m_data.i << '\n';
         break;
       case GC_type::LONG:
         if ( m_data.l != gc.m_data.l )
-          data << from << "long: " << m_data.l << " <> " << gc.m_data.l << "\n";
+          data << from << "long: " << m_data.l << " <> " << gc.m_data.l << '\n';
         break;
       case GC_type::REAL:
         if ( m_data.r != gc.m_data.r )
-          data << from << "real: " << m_data.r << " <> " << gc.m_data.r << "\n";
+          data << from << "real: " << m_data.r << " <> " << gc.m_data.r << '\n';
       case GC_type::POINTER:
-        //if ( m_data.p != gc.m_data.p )
-        //  data << "pointer: " << m_data.p << " <> " << gc.m_data.p << "\n";
+        if ( m_data.p != gc.m_data.p )
+          data << "pointer: 0x" << std::hex << m_data.p << " <> 0x" <<  std::hex << gc.m_data.p << '\n';
         break;
       case GC_type::STRING:
         if ( *m_data.s != *gc.m_data.s )
@@ -482,7 +482,7 @@ namespace GC_namespace {
         break;
       case GC_type::COMPLEX:
         if ( *m_data.c != *gc.m_data.c )
-          data << from << "complex: " << *m_data.c << " <> " << *gc.m_data.c << "\n";
+          data << from << "complex: " << *m_data.c << " <> " << *gc.m_data.c << '\n';
         break;
       case GC_type::VEC_POINTER:
         tmp = compare_vector( "vector of pointer", m_data.v_p, gc.m_data.v_p );
@@ -544,7 +544,7 @@ namespace GC_namespace {
         } else {
           data << from
                << "vector of GC size do not match: "
-               << m_data.v->size() << " <> " << gc.m_data.v->size() << "\n";
+               << m_data.v->size() << " <> " << gc.m_data.v->size() << '\n';
         }
         break;
       case GC_type::MAP:
@@ -561,7 +561,7 @@ namespace GC_namespace {
             } else {
               data << from
                    << "map of GC keys do not match: "
-                   << it1->first << " <> " << it2->first << "\n";
+                   << it1->first << " <> " << it2->first << '\n';
               break;
             }
             ++it1; ++it2;
@@ -569,7 +569,7 @@ namespace GC_namespace {
         } else {
           data << from
                << "map of GC size do not match: " << m_data.m->size()
-               << " <> " << gc.m_data.m->size() << "\n";
+               << " <> " << gc.m_data.m->size() << '\n';
         }
         break;
       }
@@ -2453,9 +2453,9 @@ namespace GC_namespace {
     long_type    lval;
     real_type    rval;
     complex_type cval;
-    int_type     val = 0;
+    int_type     val{0};
     v.reserve(ne);
-    for ( unsigned i = 0; i < ne; ++i ) {
+    for ( unsigned i{0}; i < ne; ++i ) {
       switch (m_data_type) {
       case GC_type::BOOL:
         val = m_data.b ? 1 : 0;
@@ -2582,9 +2582,9 @@ namespace GC_namespace {
     long_type    lval;
     real_type    rval;
     complex_type cval;
-    uint_type    val = 0;
+    uint_type    val{0};
     v.reserve(ne);
-    for ( unsigned i = 0; i < ne; ++i ) {
+    for ( unsigned i{0}; i < ne; ++i ) {
       switch (m_data_type) {
       case GC_type::BOOL:
         val = m_data.b ? 1 : 0;
@@ -2727,9 +2727,9 @@ namespace GC_namespace {
     v.reserve(ne);
     real_type    rval;
     complex_type cval;
-    long_type    val = 0;
+    long_type    val{0};
     v.reserve(ne);
-    for ( unsigned i = 0; i < ne; ++i ) {
+    for ( unsigned i{0}; i < ne; ++i ) {
       switch (m_data_type) {
       case GC_type::BOOL:
         val = m_data.b ? 1 : 0;
@@ -2838,9 +2838,9 @@ namespace GC_namespace {
     long_type    lval;
     real_type    rval;
     complex_type cval;
-    ulong_type   val = 0;
+    ulong_type   val{0};
     v.reserve(ne);
-    for ( unsigned i = 0; i < ne; ++i ) {
+    for ( unsigned i{0}; i < ne; ++i ) {
       switch (m_data_type) {
       case GC_type::BOOL:
         val = m_data.b ? 1 : 0;
@@ -2983,9 +2983,9 @@ namespace GC_namespace {
     unsigned ne = get_num_elements();
     v.reserve(ne);
     complex_type cval;
-    real_type    val = 0;
+    real_type    val{0};
     v.reserve(ne);
-    for ( unsigned i = 0; i < ne; ++i ) {
+    for ( unsigned i{0}; i < ne; ++i ) {
       switch (m_data_type) {
       case GC_type::BOOL:        val = m_data.b ? 1 : 0;            break;
       case GC_type::INTEGER:     val = real_type(m_data.i);         break;
@@ -3052,9 +3052,9 @@ namespace GC_namespace {
     v.clear();
     unsigned ne = get_num_elements();
     v.reserve(ne);
-    complex_type val = 0;
+    complex_type val{0};
     v.reserve(ne);
-    for ( unsigned i = 0; i < ne; ++i ) {
+    for ( unsigned i{0}; i < ne; ++i ) {
       switch (m_data_type) {
       case GC_type::BOOL:        val = real_type(m_data.b ? 1 : 0);                             break;
       case GC_type::INTEGER:     val = complex_type(real_type( m_data.i ),0);                   break;
@@ -3102,7 +3102,7 @@ namespace GC_namespace {
       break;
     case GC_type::VECTOR:
       v.reserve(ne);
-      for ( unsigned i = 0; i < ne; ++i ) {
+      for ( unsigned i{0}; i < ne; ++i ) {
         GenericContainer const & gc = get_gc_at(i,where);
         v.emplace_back( gc.get_string(where) );
       }
@@ -3800,7 +3800,7 @@ namespace GC_namespace {
       stream << "Floating Point: " << m_data.r << '\n';
       break;
     case GC_type::COMPLEX:
-      stream << "Complex Floating Point: " << to_string(*m_data.c) << "\n";
+      stream << "Complex Floating Point: " << to_string(*m_data.c) << '\n';
       break;
     case GC_type::STRING:
       stream << "String: " << m_data.s->c_str() << '\n';
@@ -4193,7 +4193,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_vec_int(unsigned(v_b->size()));
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.v_i)[i] = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4247,7 +4247,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_vec_long(unsigned(v_b->size()));
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.v_l)[i] = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4256,7 +4256,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_vec_long(unsigned(v_i->size()));
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.v_l)[i] = int_type( (*v_i)[i] );
         delete v_i;
       }
@@ -4312,7 +4312,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b; // salva puntatore
         m_data_type = GC_type::NOTYPE;
         set_vec_real(unsigned(v_b->size()));
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.v_r)[i] = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4321,7 +4321,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i; // salva puntatore
         m_data_type = GC_type::NOTYPE;
         set_vec_real(unsigned(v_i->size()));
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.v_r)[i] = real_type( (*v_i)[i] );
         delete v_i;
       }
@@ -4330,7 +4330,7 @@ namespace GC_namespace {
       { vec_long_type * v_l = m_data.v_l; // salva puntatore
         m_data_type = GC_type::NOTYPE;
         set_vec_real(unsigned(v_l->size()));
-        for ( unsigned i = 0; i < v_l->size(); ++i )
+        for ( unsigned i{0}; i < v_l->size(); ++i )
           (*m_data.v_r)[i] = real_type( (*v_l)[i] );
         delete v_l;
       }
@@ -4389,7 +4389,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_vec_complex(unsigned(v_b->size()));
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.v_c)[i] = complex_type( (*v_b)[i] ? 1: 0, 0 );
         delete v_b;
       }
@@ -4398,7 +4398,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_vec_complex(unsigned(v_i->size()));
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.v_c)[i] = complex_type( real_type( (*v_i)[i] ) , 0 );
         delete v_i;
       }
@@ -4407,7 +4407,7 @@ namespace GC_namespace {
       { vec_long_type * v_l = m_data.v_l;
         m_data_type = GC_type::NOTYPE;
         set_vec_complex(unsigned(v_l->size()));
-        for ( unsigned i = 0; i < v_l->size(); ++i )
+        for ( unsigned i{0}; i < v_l->size(); ++i )
           (*m_data.v_c)[i] = complex_type( real_type( (*v_l)[i] ), 0 );
         delete v_l;
       }
@@ -4416,7 +4416,7 @@ namespace GC_namespace {
       { vec_real_type * v_r = m_data.v_r;
         m_data_type = GC_type::NOTYPE;
         set_vec_complex(unsigned(v_r->size()));
-        for ( unsigned i = 0; i < v_r->size(); ++i )
+        for ( unsigned i{0}; i < v_r->size(); ++i )
           (*m_data.v_c)[i] = complex_type( (*v_r)[i], 0 );
         delete v_r;
       }
@@ -4458,7 +4458,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_mat_int(unsigned(v_b->size()),1);
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.m_r)(i,0) = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4467,7 +4467,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_int(unsigned(v_i->size()),1);
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.m_r)(i,0) = real_type( (*v_i)[i] );
         delete v_i;
       }
@@ -4514,7 +4514,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(unsigned(v_b->size()),1);
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.m_r)(i,0) = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4523,7 +4523,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_long(unsigned(v_i->size()),1);
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.m_l)(i,0) = long_type((*v_i)[i]);
         delete v_i;
       }
@@ -4532,7 +4532,7 @@ namespace GC_namespace {
       { vec_long_type * v_l = m_data.v_l;
         m_data_type = GC_type::NOTYPE;
         set_mat_long(unsigned(v_l->size()),1);
-        for ( unsigned i = 0; i < v_l->size(); ++i )
+        for ( unsigned i{0}; i < v_l->size(); ++i )
           (*m_data.m_l)(i,0) = (*v_l)[i];
         delete v_l;
       }
@@ -4541,7 +4541,7 @@ namespace GC_namespace {
       { mat_int_type * m_i = m_data.m_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_long(m_i->num_rows(),m_i->num_cols());
-        for ( unsigned i = 0; i < m_i->size(); ++i )
+        for ( unsigned i{0}; i < m_i->size(); ++i )
           (*m_data.m_l)[i] = long_type((*m_i)[i]);
         delete m_i;
       }
@@ -4591,7 +4591,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(unsigned(v_b->size()),1);
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.m_r)(i,0) = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4600,7 +4600,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(unsigned(v_i->size()),1);
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.m_r)(i,0) = real_type( (*v_i)[i] );
         delete v_i;
       }
@@ -4609,7 +4609,7 @@ namespace GC_namespace {
       { vec_long_type * v_l = m_data.v_l;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(unsigned(v_l->size()),1);
-        for ( unsigned i = 0; i < v_l->size(); ++i )
+        for ( unsigned i{0}; i < v_l->size(); ++i )
           (*m_data.m_r)(i,0) = real_type( (*v_l)[i] );
         delete v_l;
       }
@@ -4618,7 +4618,7 @@ namespace GC_namespace {
       { vec_real_type * v_r = m_data.v_r;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(unsigned(v_r->size()),1);
-        for ( unsigned i = 0; i < v_r->size(); ++i )
+        for ( unsigned i{0}; i < v_r->size(); ++i )
           (*m_data.m_r)(i,0) = (*v_r)[i];
         delete v_r;
       }
@@ -4627,7 +4627,7 @@ namespace GC_namespace {
       { mat_int_type * m_i = m_data.m_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(m_i->num_rows(),m_i->num_cols());
-        for ( unsigned i = 0; i < m_i->size(); ++i )
+        for ( unsigned i{0}; i < m_i->size(); ++i )
           (*m_data.m_r)[i] = real_type( (*m_i)[i] );
         delete m_i;
       }
@@ -4636,7 +4636,7 @@ namespace GC_namespace {
       { mat_long_type * m_l = m_data.m_l;
         m_data_type = GC_type::NOTYPE;
         set_mat_real(m_l->num_rows(),m_l->num_cols());
-        for ( unsigned i = 0; i < m_l->size(); ++i )
+        for ( unsigned i{0}; i < m_l->size(); ++i )
           (*m_data.m_r)[i] = real_type( (*m_l)[i] );
         delete m_l;
       }
@@ -4688,7 +4688,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_mat_complex(unsigned(v_b->size()),1);
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.m_r)(i,0) = ((*v_b)[i]?1:0);
         delete v_b;
       }
@@ -4697,7 +4697,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_complex(unsigned(v_i->size()),1);
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.m_r)(i,0) = real_type( (*v_i)[i] );
         delete v_i;
       }
@@ -4706,7 +4706,7 @@ namespace GC_namespace {
       { vec_long_type * v_l = m_data.v_l;
        m_data_type = GC_type::NOTYPE;
         set_mat_complex(unsigned(v_l->size()),1);
-        for ( unsigned i = 0; i < v_l->size(); ++i )
+        for ( unsigned i{0}; i < v_l->size(); ++i )
           (*m_data.m_r)(i,0) = real_type( (*v_l)[i] );
         delete v_l;
       }
@@ -4715,7 +4715,7 @@ namespace GC_namespace {
       { vec_real_type * v_r = m_data.v_r;
         m_data_type = GC_type::NOTYPE;
         set_mat_complex(unsigned(v_r->size()),1);
-        for ( unsigned i = 0; i < v_r->size(); ++i )
+        for ( unsigned i{0}; i < v_r->size(); ++i )
           (*m_data.m_r)(i,0) = (*v_r)[i];
         delete v_r;
       }
@@ -4724,7 +4724,7 @@ namespace GC_namespace {
       { mat_int_type * m_i = m_data.m_i;
         m_data_type = GC_type::NOTYPE;
         set_mat_complex(m_i->num_rows(),m_i->num_cols());
-        for ( unsigned i = 0; i < m_i->size(); ++i )
+        for ( unsigned i{0}; i < m_i->size(); ++i )
           (*m_data.m_c)[i] = complex_type( real_type( (*m_i)[i] ), 0 );
         delete m_i;
       }
@@ -4733,7 +4733,7 @@ namespace GC_namespace {
       { mat_long_type * m_l = m_data.m_l;
         m_data_type = GC_type::NOTYPE;
         set_mat_complex(m_l->num_rows(),m_l->num_cols());
-        for ( unsigned i = 0; i < m_l->size(); ++i )
+        for ( unsigned i{0}; i < m_l->size(); ++i )
           (*m_data.m_c)[i] = complex_type( real_type( (*m_l)[i] ), 0 );
         delete m_l;
       }
@@ -4742,7 +4742,7 @@ namespace GC_namespace {
       { mat_real_type * m_r = m_data.m_r;
         m_data_type = GC_type::NOTYPE;
         set_mat_complex(m_r->num_rows(),m_r->num_cols());
-        for ( unsigned i = 0; i < m_r->size(); ++i )
+        for ( unsigned i{0}; i < m_r->size(); ++i )
           (*m_data.m_c)[i] = complex_type((*m_r)[i],0);
         delete m_r;
       }
@@ -4793,7 +4793,7 @@ namespace GC_namespace {
       { vec_pointer_type * v_p = m_data.v_p;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_p->size()));
-        for ( unsigned i = 0; i < v_p->size(); ++i )
+        for ( unsigned i{0}; i < v_p->size(); ++i )
           (*m_data.v)[i] = (*v_p)[i];
         delete v_p;
       }
@@ -4802,7 +4802,7 @@ namespace GC_namespace {
       { vec_bool_type * v_b = m_data.v_b;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_b->size()));
-        for ( unsigned i = 0; i < v_b->size(); ++i )
+        for ( unsigned i{0}; i < v_b->size(); ++i )
           (*m_data.v)[i] = (*v_b)[i];
         delete v_b;
       }
@@ -4811,7 +4811,7 @@ namespace GC_namespace {
       { vec_int_type * v_i = m_data.v_i;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_i->size()));
-        for ( unsigned i = 0; i < v_i->size(); ++i )
+        for ( unsigned i{0}; i < v_i->size(); ++i )
           (*m_data.v)[i] = (*v_i)[i];
         delete v_i;
       }
@@ -4820,7 +4820,7 @@ namespace GC_namespace {
       { vec_long_type * v_l = m_data.v_l;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_l->size()));
-        for ( unsigned i = 0; i < v_l->size(); ++i )
+        for ( unsigned i{0}; i < v_l->size(); ++i )
           (*m_data.v)[i] = (*v_l)[i];
         delete v_l;
       }
@@ -4829,7 +4829,7 @@ namespace GC_namespace {
       { vec_real_type * v_r = m_data.v_r;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_r->size()));
-        for ( unsigned i = 0; i < v_r->size(); ++i )
+        for ( unsigned i{0}; i < v_r->size(); ++i )
           (*m_data.v)[i] = (*v_r)[i];
         delete v_r;
       }
@@ -4838,7 +4838,7 @@ namespace GC_namespace {
       { vec_complex_type * v_c = m_data.v_c;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_c->size()));
-        for ( unsigned i = 0; i < v_c->size(); ++i )
+        for ( unsigned i{0}; i < v_c->size(); ++i )
           (*m_data.v)[i] = (*v_c)[i];
         delete v_c;
       }
@@ -4847,7 +4847,7 @@ namespace GC_namespace {
       { vec_string_type * v_s = m_data.v_s;
         m_data_type = GC_type::NOTYPE;
         set_vector(unsigned(v_s->size()));
-        for ( unsigned i = 0; i < v_s->size(); ++i )
+        for ( unsigned i{0}; i < v_s->size(); ++i )
           (*m_data.v)[i] = (*v_s)[i];
         delete v_s;
       }
@@ -4907,7 +4907,7 @@ namespace GC_namespace {
       break;
     case GC_type::VEC_POINTER:
       { vec_pointer_type const & v{*m_data.v_p};
-        for ( vec_pointer_type::size_type i = 0; i < v.size(); ++i )
+        for ( vec_pointer_type::size_type i{0}; i < v.size(); ++i )
           stream << prefix << "vec_pointer(" << i << "): "
                  << std::hex << std::showbase << reinterpret_cast<uintptr_t>(v[i]) << '\n';
       }
@@ -4950,14 +4950,14 @@ namespace GC_namespace {
       break;
     case GC_type::VEC_STRING:
       { vec_string_type const & v{*m_data.v_s};
-        for ( vec_string_type::size_type i = 0; i < v.size(); ++i )
+        for ( vec_string_type::size_type i{0}; i < v.size(); ++i )
           stream << prefix << i << ": \"" << v[i] << "\"\n";
       }
       break;
 
     case GC_type::VECTOR:
       { vector_type const & v{*m_data.v};
-        for ( vector_type::size_type i = 0; i < v.size(); ++i ) {
+        for ( vector_type::size_type i{0}; i < v.size(); ++i ) {
           GenericContainer const & vi = v[i];
           if ( vi.simple_data() ||
                ( vi.simple_vec_data() && vi.get_num_elements() <= 10 ) ) {
@@ -5187,7 +5187,7 @@ namespace GC_namespace {
       gc.set_vector();
       { vector_type const & v{*m_data.v};
         vector_type       & vv = gc.set_vector(v.size());
-        for ( vector_type::size_type i = 0; i < v.size(); ++i )
+        for ( vector_type::size_type i{0}; i < v.size(); ++i )
           v[i].to_gc(vv[i]);
       }
       break;
@@ -5267,7 +5267,7 @@ namespace GC_namespace {
       this->set_vector();
       { vector_type const & v{*gc.m_data.v};
         vector_type       & vv = this->set_vector(v.size());
-        for ( vector_type::size_type i = 0; i < v.size(); ++i )
+        for ( vector_type::size_type i{0}; i < v.size(); ++i )
           vv[i].from_gc(v[i]);
       }
       break;
@@ -5321,7 +5321,7 @@ namespace GC_namespace {
     )
     if ( m_data_type == GC_type::NOTYPE ) this->set_map();
     ck( where, GC_type::MAP );
-    { map_type const & m = gc.get_map();
+    { map_type const & m{gc.get_map()};
       for ( auto const & im : m )
         (*this)[im.first].from_gc(im.second);
     }

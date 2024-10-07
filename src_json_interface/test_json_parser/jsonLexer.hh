@@ -36,27 +36,23 @@ namespace yy {
     jsonLexer() { m_lexeme.reserve(1023); }
     int yylex( std::string * yylval, yy::location * yylloc );
 
-    // Utilizziamo un buffer di stringa che è più veloce
-    void
-    set_stream( std::istringstream * in )
-    { m_input = in; }
-
     void
     set_stream( std::istream * file ) {
       // Utilizziamo un buffer di stringa per leggere tutto il contenuto dello stream
       std::ostringstream oss;
       oss << file->rdbuf(); // Leggiamo tutto il contenuto nel buffer della stringa
-      m_input_local.str(oss.str());
-      set_stream( &m_input_local );
+      m_input  = oss.str();
+      m_cursor = m_input.begin();
     }
 
   private:
 
-    std::string          m_lexeme;
-    std::istringstream   m_input_local;
-    std::istringstream * m_input{nullptr};
-    int                  m_lineno{1};
-    int                  m_colno{1};
+    std::string                 m_lexeme;
+    std::istringstream          m_input_local;
+    std::string                 m_input;
+    std::string::const_iterator m_cursor;
+    int                         m_lineno{1};
+    int                         m_colno{1};
   };
 }
 

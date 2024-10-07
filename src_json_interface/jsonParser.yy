@@ -3,12 +3,15 @@
 
 %code requires {
   #include <cstdlib>
+  #include <sstream>
   #include "jsonLexer.hh"
   #include "GenericContainer.hh"
 
   using GC::GenericContainer;
   using GC::vector;
   using GC::string;
+  using GC::vector_type;
+  using GC::map_type;
 
   // -------------------------------------------------------
   class GenericContainerWrapper {
@@ -19,30 +22,41 @@
 
   public:
 
-    GenericContainerWrapper( GenericContainer * gc ) : m_data(gc) { m_stack.push_back(m_data); }
+    GenericContainerWrapper( GenericContainer * gc )
+    : m_data(gc) {
+      m_stack.reserve(100);
+      m_stack.push_back(m_data);
+    }
     ~GenericContainerWrapper() {}
 
-    GenericContainer       & head()       { return *m_stack.back(); }
-    GenericContainer const & head() const { return *m_stack.back(); }
+    //GenericContainer       & head()       { return *m_stack.back(); }
+    //GenericContainer const & head() const { return *m_stack.back(); }
 
     GenericContainer *
     get_gc() {
       GenericContainer * gc{m_stack.back()};
       if ( gc->get_type() == GC_namespace::GC_type::VECTOR ) {
-        unsigned n{gc->get_num_elements()};
-        gc = &(*gc)[n];
+        vector_type & V{gc->get_vector("GenericContainerWrapper")};
+        V.resize(V.size()+1);
+        gc = &V.back();
       }
       return gc;
     }
 
-    void set_string( string const & s ) { get_gc()->set_string(s); }
-    void set_float( string const & s ) {
+    void
+    set_string( string const & s )
+    { get_gc()->set_string(s); }
+
+    void
+    set_float( string const & s ) {
       GenericContainer * gc{get_gc()};
       char * end{nullptr};
       double d = std::strtod( s.c_str(), &end );
       if ( *end == '\0' ) gc->set_real( d );
     }
-    void set_integer( string const & s ) {
+
+    void
+    set_integer( string const & s ) {
       GenericContainer * gc{get_gc()};
       char * end{nullptr};
       long long res = std::strtoll(s.c_str(), &end, 10);
@@ -65,7 +79,12 @@
     void open_vector()  { get_gc()->set_vector(); }
     void close_vector() { }
 
-    void set_key( string const & s ) { m_stack.push_back( &( (*get_gc())[s] ) ); }
+    void
+    set_key( string const & s ) {
+      map_type & m{ get_gc()->set_map() };
+      m_stack.push_back( &m[s] );
+    }
+
     void pop() { m_stack.pop_back(); }
   };
 
@@ -96,9 +115,7 @@
 
 %%
 
-json: /* empty */
-    | value
-    ;
+json: /* empty */ | value ;
 
 value: object
      | array
@@ -110,24 +127,23 @@ value: object
      | VNULL   { gcw->set_null();      }
      ;
 
-object: LEFT_CURLY  { gcw->open_map(); }         RIGHT_CURLY { gcw->close_map(); }
-      | LEFT_CURLY  { gcw->open_map(); } members RIGHT_CURLY { gcw->close_map(); }
-      ;
+object:      LEFT_CURLY  { gcw->open_map(); }
+             members_opt
+             RIGHT_CURLY { gcw->close_map(); } ;
 
-members: member
-       | members COMMA member
-       ;
+members_opt: /* empty */ | members;
 
-member: STRING { gcw->set_key($1); } COLON value { gcw->pop(); }
-      ;
+members:     member | members COMMA member ;
 
-array: LEFT_BRACE  { gcw->open_vector(); }        RIGHT_BRACE { gcw->close_vector(); }
-     | LEFT_BRACE  { gcw->open_vector(); } values RIGHT_BRACE { gcw->close_vector(); }
-     ;
+member:      STRING { gcw->set_key($1); } COLON value { gcw->pop(); } ;
 
-values: value
-      | values COMMA value
-      ;
+array:       LEFT_BRACE  { gcw->open_vector(); }
+             values_opt
+             RIGHT_BRACE { gcw->close_vector(); } ;
+
+values_opt:  /* empty */ | values;
+
+values:      value | values COMMA value ;
 
 %%
 
@@ -136,7 +152,10 @@ yy::parser::error(
   yy::parser::location_type const & location,
   std::string               const & message
 ) {
-  std::cerr << "Error at line " << location.begin.line
-            << ", column " << location.begin.column
-            << ": " << message << std::endl;
+  std::ostringstream ost;
+  ost << "GenericContainer::JSON parser, Error reading stream/string at line "
+      << location.begin.line   << ", column "
+      << location.begin.column << ": "
+      << message << '\n';
+  GenericContainer::exception( ost.str().c_str() );
 }
