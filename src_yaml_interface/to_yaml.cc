@@ -36,25 +36,6 @@
 
 namespace GC_namespace {
 
-  static
-  void
-  string_escape( ostream_type & stream, string const & s ) {
-    stream << '"';
-    for ( auto c : s ) {
-      if      ( c == '"'  ) { stream << "\\\""; }
-      else if ( c == '\n' ) { stream << "\\n"; }
-      else if ( c == '\r' ) { stream << "\\r"; }
-      else if ( c == '\t' ) { stream << "\\t"; }
-      else if ( c == '\v' ) { stream << "\\v"; }
-      else if ( c == '\b' ) { stream << "\\b"; }
-      else if ( c == '\a' ) { stream << "\\a"; }
-      else if ( c == '\\' ) { stream << "\\\\"; }
-      else                    stream << c;
-    }
-    stream << "\"\n";
-  }
-
-
   /*
   //   _                                 _
   //  | |_ ___     _   _  __ _ _ __ ___ | |

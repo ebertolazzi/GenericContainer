@@ -45,17 +45,6 @@ namespace GC_namespace {
   //         |_____|__/
   */
 
-  static
-  string
-  escape_string( string const & in ) {
-    string res{""};
-    for ( char c : in ) {
-      if ( c == '"' ) res += '\\';
-      res += c;
-    }
-    return res;
-  }
-
   void
   GenericContainer::to_json(
     ostream_type      & stream,
@@ -83,7 +72,7 @@ namespace GC_namespace {
         stream << '"' << to_string(*m_data.c) << '"';
         break;
       case GC_type::STRING:
-        stream << '"' << escape_string(*m_data.s) << '"';
+        string_escape( stream, *m_data.s );
         break;
       case GC_type::VEC_BOOL: {
         vec_bool_type const & v{*m_data.v_b};
@@ -123,7 +112,10 @@ namespace GC_namespace {
       }
       case GC_type::VEC_STRING: {
         vec_string_type const & v{*m_data.v_s};
-        GC_PRINT_VECTOR('"' << escape_string(vi) << '"');
+        char const * pre = "[ ";
+        for ( auto const & vi : v )
+          { stream << pre; string_escape(stream,vi); pre = ", "; }
+        stream << " ]";
         break;
       }
       case GC_type::VECTOR: {

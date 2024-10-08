@@ -4316,6 +4316,11 @@ namespace GC_namespace {
     write_table_formatted( headers, data, stream );
   }
 
+  //!
+  //! Utrility to write sctring escaping non printable
+  //!
+  void string_escape( ostream_type & stream, string const & s );
+
 }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS

@@ -86,6 +86,23 @@ namespace GC_namespace {
     return data.str();
   }
 
+  void
+  string_escape( ostream_type & stream, string const & s ) {
+    stream << '"';
+    for ( auto c : s ) {
+      if      ( c == '"'  ) { stream << "\\\""; }
+      else if ( c == '\n' ) { stream << "\\n"; }
+      else if ( c == '\r' ) { stream << "\\r"; }
+      else if ( c == '\t' ) { stream << "\\t"; }
+      else if ( c == '\v' ) { stream << "\\v"; }
+      else if ( c == '\b' ) { stream << "\\b"; }
+      else if ( c == '\a' ) { stream << "\\a"; }
+      else if ( c == '\\' ) { stream << "\\\\"; }
+      else                    stream << c;
+    }
+    stream << "\"\n";
+  }
+
   template <typename TYPE>
   ostream_type &
   operator << ( ostream_type & s, vector<TYPE> const & v ) {
