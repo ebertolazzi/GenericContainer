@@ -32,7 +32,8 @@
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
 
-#if __cplusplus <= 199711L
+#if __cplusplus >= 201103L || (defined(_MSC_VER) && _MSC_VER >= 1900)
+#else
   #error This library needs at least a C++11 compliant compiler
 #endif
 
@@ -100,7 +101,7 @@ namespace GC_namespace {
       else if ( c == '\\' ) { stream << "\\\\"; }
       else                    stream << c;
     }
-    stream << "\"\n";
+    stream << '"';
   }
 
   template <typename TYPE>
@@ -491,7 +492,7 @@ namespace GC_namespace {
           data << from << "real: " << m_data.r << " <> " << gc.m_data.r << '\n';
       case GC_type::POINTER:
         if ( m_data.p != gc.m_data.p )
-          data << "pointer: 0x" << std::hex << m_data.p << " <> 0x" <<  std::hex << gc.m_data.p << '\n';
+          data << from << "pointer: 0x" << std::hex << m_data.p << " <> 0x" <<  std::hex << gc.m_data.p << '\n';
         break;
       case GC_type::STRING:
         if ( *m_data.s != *gc.m_data.s )
@@ -552,10 +553,11 @@ namespace GC_namespace {
           auto it2 = gc.m_data.v->begin();
           unsigned i{0};
           while ( it1 != m_data.v->end() ) {
-            ostringstream from1;
-            from1 << from << "position: " << i << '\n';
-            string res = it1->compare_content(*it2,from1.str());
-            if ( !res.empty() ) { data << res; break; }
+            string res = it1->compare_content( *it2, "> " );
+            if ( !res.empty() ) {
+              data << from << "position: " << i << '\n' << res;
+              break;
+            }
             ++i; ++it1; ++it2;
           }
         } else {
@@ -571,10 +573,11 @@ namespace GC_namespace {
           auto it2 = gc.m_data.m->begin();
           while ( it1 != m_data.m->end() ) {
             if ( it1->first == it2->first ) {
-              ostringstream from1;
-              from1 << from << "key: '" << it1->first << "'\n";
-              string res = it1->second.compare_content(it2->second,from1.str());
-              if ( !res.empty() ) { data << res; break; }
+              string res = it1->second.compare_content( it2->second, "> " );
+              if ( !res.empty() ) {
+                data << from << "key: '" << it1->first << "'\n" << res;
+                break;
+              }
             } else {
               data << from
                    << "map of GC keys do not match: "

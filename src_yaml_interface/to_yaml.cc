@@ -30,6 +30,7 @@
 #pragma clang diagnostic ignored "-Wc++98-compat"
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
 #pragma clang diagnostic ignored "-Wglobal-constructors"
+#pragma clang diagnostic ignored "-Wcovered-switch-default"
 #endif
 
 #include <fstream>
@@ -71,6 +72,7 @@ namespace GC_namespace {
         break;
       case GC_type::STRING:
         string_escape(stream,*m_data.s);
+        stream << '\n';
         break;
       case GC_type::VEC_BOOL: {
         vec_bool_type const & v{*m_data.v_b};
@@ -117,19 +119,27 @@ namespace GC_namespace {
       }
       case GC_type::VECTOR: {
         vector_type const & v{*m_data.v};
-        stream << '\n';
-        for ( auto const & vi : v ) {
-          stream << prefix << "- ";
-          vi.to_yaml(stream,prefix+"  ");
+        if ( v.empty() ) {
+          stream << "null\n";
+        } else {
+          stream << '\n';
+          for ( auto const & vi : v ) {
+            stream << prefix << "- ";
+            vi.to_yaml(stream,prefix+"  ");
+          }
         }
         break;
       }
       case GC_type::MAP: {
         map_type const & m{*m_data.m};
-        stream << '\n';
-        for ( auto const & im : m ) {
-          stream << prefix << im.first << ": ";
-          im.second.to_yaml(stream,prefix+"  ");
+        if ( m.empty() ) {
+          stream << "null\n";
+        } else {
+          stream << '\n';
+          for ( auto const & im : m ) {
+            stream << prefix << im.first << ": ";
+            im.second.to_yaml(stream,prefix+"  ");
+          }
         }
         break;
       }

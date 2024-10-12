@@ -120,26 +120,30 @@ namespace GC_namespace {
       }
       case GC_type::VECTOR: {
         vector_type const & v{*m_data.v};
-        stream << '\n' << prefix;
-        char const * pre{"[\n"};
-        for ( auto const & vi : v ) {
-          stream << pre << prefix1;
-          vi.to_json(stream,prefix1);
-          pre = ",\n";
+        if ( !v.empty() ) {
+          stream << '\n' << prefix;
+          char const * pre{"[\n"};
+          for ( auto const & vi : v ) {
+            stream << pre << prefix1;
+            vi.to_json(stream,prefix1);
+            pre = ",\n";
+          }
+          stream << '\n' << prefix << "]";
         }
-        stream << '\n' << prefix << "]";
         break;
       }
       case GC_type::MAP: {
         map_type const & m{*m_data.m};
-        stream << '\n' << prefix;
-        char const * pre{"{\n"};
-        for ( auto const & im : m ) {
-          stream << pre << prefix << indent << '"' << im.first <<  '"' << ": ";
-          im.second.to_json(stream,prefix1);
-          pre = ",\n";
+        if ( !m.empty() ) {
+          stream << '\n' << prefix;
+          char const * pre{"{\n"};
+          for ( auto const & im : m ) {
+            stream << pre << prefix << indent << '"' << im.first <<  '"' << ": ";
+            im.second.to_json(stream,prefix1);
+            pre = ",\n";
+          }
+          stream << '\n' << prefix << "}";
         }
-        stream << '\n' << prefix << "}";
         break;
       }
       #define GC_PRINT_MATRIX(MDATA)                 \

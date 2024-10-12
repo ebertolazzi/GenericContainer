@@ -44,61 +44,36 @@ main() {
   cout
     << "\n\n\n"
     << "***********************\n"
-    << "      example N.15     \n"
+    << "      example N.16     \n"
     << "***********************\n\n";
 
   GenericContainer gc1;
   GenericContainer gc2;
-  GenericContainer gc3;
 
-  // Memorizza il tempo iniziale
-  auto start = high_resolution_clock::now();
+  std::cout << "READ JSON\n";
   {
-    //ifstream file( "examples/large-file.json" );
-    ifstream file( "examples/data2.json" );
+    ifstream file( "examples/data.json" );
     gc1.from_json( file );
     file.close();
   }
-
-  auto end      = high_resolution_clock::now();
-  auto duration = duration_cast<milliseconds>(end - start);
-  std::cout << "READ JSON to GC1 " << duration.count() << " millisecondi." << std::endl;
-
-  start = high_resolution_clock::now();
+  std::cout << "WRITE YAML\n";
   {
-    //ifstream file( "examples/large-file.json" );
-    ifstream file( "examples/data2.json" );
-    gc2.from_json2( file );
+    ofstream file( "examples/data.yaml" );
+    gc1.to_yaml( file );
     file.close();
   }
-
-  end      = high_resolution_clock::now();
-  duration = duration_cast<milliseconds>(end - start);
-  std::cout << "READ JSON to GC2 " << duration.count() << " millisecondi." << std::endl;
-
-  cout << "COMPARE GC1 vs GC2: " << gc1.compare_content(gc2,">>> ");
-
-  start = high_resolution_clock::now();
-  vector<uint8_t> buffer(gc1.mem_size());
-  int32_t nb = gc1.serialize( buffer );
-
-  end      = high_resolution_clock::now();
-  duration = duration_cast<milliseconds>(end - start);
-  std::cout << "SERIALIZE [" << nb << "] bytes " << duration.count() << " millisecondi." << std::endl;
-
-
-
-  start = high_resolution_clock::now();
-  gc3.clear();
-  int32_t nb2 = gc3.de_serialize( buffer );
-
-  end      = high_resolution_clock::now();
-  duration = duration_cast<milliseconds>(end - start);
-  std::cout << "DE-SERIALIZE to GC3 [" << nb2 << "] bytes " << duration.count() << " millisecondi." << std::endl;
-
-
-  cout << "COMPARE GC1 vs GC3: " << gc1.compare_content(gc2);
-
+  std::cout << "REAL YAML\n";
+  {
+    ifstream file( "examples/data.yaml" );
+    gc2.from_yaml( file );
+    file.close();
+  }
+  std::cout << "WRITE YAML\n";
+  {
+    ofstream file( "examples/data2.yaml" );
+    gc2.to_yaml( file );
+    file.close();
+  }
 
   cout << "\n\nAll done Folks!!!\n\n";
   return 0;

@@ -24,6 +24,9 @@
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
 #pragma clang diagnostic ignored "-Wglobal-constructors"
+#pragma clang diagnostic ignored "-Wcovered-switch-default"
+#pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
+#pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-dtor"
 #endif
 
 #include "GenericContainer/GenericContainerInterface_yaml.hh"
@@ -38,7 +41,8 @@
 #include <limits>
 #include <cstdlib>
 
-#include "yaml-cpp/yaml.h"
+//#include "yaml-cpp/yaml.h"
+#include "fkYAML/node.hpp"
 
 namespace GC_namespace {
 
@@ -53,6 +57,8 @@ namespace GC_namespace {
   using std::stod;
   using std::numeric_limits;
   using std::size_t;
+
+#if 0
 
   // Definizione della union per contenere diversi tipi
   union MyValue {
@@ -166,56 +172,56 @@ namespace GC_namespace {
     return ValueType::STRING;
   }
 
+#endif
+
   static
   bool
-  YAML_to_GC( YAML::Node const & node, GenericContainer & gc ) {
+  YAML_to_GC( fkyaml::node const & node, GenericContainer & gc ) {
     // Controlla il tipo di nodo
     bool ok{true};
-    switch (node.Type()) {
-      case YAML::NodeType::Null: {
+    switch (node.get_type()) {
+      case fkyaml::node_type::NULL_OBJECT: {
         gc.clear();
         break;
       }
-      case YAML::NodeType::Scalar: {
-        // Nodo scalare (valore singolo)
-        MyValue value;
-        ValueType type = parse_value( node.Scalar(), value );
-        switch (type) {
-          case ValueType::BOOL:     gc = value.bool_value;    break;
-          case ValueType::INT32:    gc = value.int32_value;   break;
-          case ValueType::INT64:    gc = value.int64_value;   break;
-          case ValueType::UINT32:   gc = value.uint32_value;  break;
-          case ValueType::UINT64:   gc = value.uint64_value;  break;
-          case ValueType::DOUBLE:   gc = value.double_value;  break;
-          case ValueType::COMPLEX:  gc = value.complex_value; break;
-          case ValueType::STRING:   gc = node.as<string>();   break;
-          case ValueType::POINTER:  gc = value.pointer_value; break;
+      case fkyaml::node_type::BOOLEAN: {
+        gc.set_bool( node.get_value<bool>() );
+        break;
+      }
+      case fkyaml::node_type::INTEGER: {
+        std::int64_t tmp{ node.get_value<std::int64_t>() };
+        if ( tmp >= numeric_limits<int32_t>::min() && tmp <= numeric_limits<int32_t>::max() ) {
+          gc.set_int( std::int32_t(tmp) );
+        } else {
+          gc.set_long( tmp );
         }
         break;
       }
-      case YAML::NodeType::Sequence: {
-        size_t N{node.size()};
-        gc.set_vector( N );
-        for ( size_t i = 0; ok && i < N; ++i )
-          ok = YAML_to_GC( node[i], gc[i] );
+      case fkyaml::node_type::FLOAT: {
+        gc = node.get_value<double>();
         break;
       }
-      case YAML::NodeType::Map: {
-        map_type & M = gc.set_map();
-        for ( auto & it : node ) {
-          GenericContainer & gcm = M[it.first.as<string>()];
+      case fkyaml::node_type::STRING: {
+        gc.set_string( node.get_value<string>() );
+        break;
+      }
+      case fkyaml::node_type::SEQUENCE: {
+        size_t N{node.size()};
+        vector_type & V{ gc.set_vector( N ) };
+        for ( size_t i{0}; ok && i < N; ++i )
+          ok = YAML_to_GC( node[i], V[i] );
+        break;
+      }
+      case fkyaml::node_type::MAPPING: {
+        map_type & M{ gc.set_map() };
+        auto & mapping = node.get_value_ref<const fkyaml::node::mapping_type&>();
+        for ( auto & it : mapping ) {
+          GenericContainer & gcm = M[it.first.get_value<string>()];
           ok = YAML_to_GC( it.second, gcm );
           if ( !ok ) break;
         }
         break;
       }
-      case YAML::NodeType::Undefined: {
-        ok = false;
-        break;
-      }
-      //default:
-      //  ok = false;
-      //  break;
     }
     return ok;
   }
@@ -224,8 +230,9 @@ namespace GC_namespace {
   GenericContainer::from_yaml( istream_type & stream ) {
     bool ok{true};
     try {
-      YAML::Node yaml_root = YAML::Load(stream);
-      ok = YAML_to_GC( yaml_root, *this );
+      // deserialize the loaded file contents.
+      fkyaml::node root = fkyaml::node::deserialize(stream);
+      ok = YAML_to_GC( root, *this );
       if ( ok ) this->collapse();
     }
     catch ( std::exception const & e ) {

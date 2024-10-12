@@ -206,7 +206,7 @@ if ( UTILS_ENABLE_TESTS )
     EXELISTCPP
     example1 example2 example3 example4 example5
     example7 example8 example9 example10 example11
-    example12 example13 example14 example15
+    example12 example13 example14 example15 example16
   )
 
   set( EXELISTC example6 )
