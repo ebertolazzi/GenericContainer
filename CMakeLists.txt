@@ -204,12 +204,12 @@ if ( UTILS_ENABLE_TESTS )
 
   set(
     EXELISTCPP
-    example1 example2 example3 example4 example5
-    example7 example8 example9 example10 example11
+    example01 example02 example03 example04 example05
+    example07 example08 example09 example10 example11
     example12 example13 example14 example15 example16
   )
 
-  set( EXELISTC example6 )
+  set( EXELISTC example06 )
   set( EXEJSONTEST )
   set( EXELUATEST example_lua1 example_lua2 example_lua3 )
 
