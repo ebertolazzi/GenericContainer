@@ -18,7 +18,7 @@
 \*--------------------------------------------------------------------------*/
 /*!
 
- \example example15.cc
+ \example example16.cc
 
  */
 #include "GenericContainer/GenericContainerInterface_json.hh"
@@ -52,28 +52,33 @@ main() {
 
   std::cout << "READ JSON\n";
   {
-    ifstream file( "examples/data.json" );
+    ifstream file( "examples/test.json" );
     gc1.from_json( file );
     file.close();
   }
   std::cout << "WRITE YAML\n";
   {
-    ofstream file( "examples/data.yaml" );
+    ofstream file( "examples/test.yml" );
     gc1.to_yaml( file );
     file.close();
   }
-  std::cout << "REAL YAML\n";
+  std::cout << "READ YAML\n";
   {
-    ifstream file( "examples/data.yaml" );
+    ifstream file( "examples/test.yml" );
     gc2.from_yaml( file );
     file.close();
   }
   std::cout << "WRITE YAML\n";
   {
-    ofstream file( "examples/data2.yaml" );
+    ofstream file( "examples/test2.yml" );
     gc2.to_yaml( file );
     file.close();
   }
+
+  //std::cout << "GC1\n";
+  //gc1.print(cout);
+  //std::cout << "GC2\n";
+  //gc2.print(cout);
 
   cout << "\n\nAll done Folks!!!\n\n";
   return 0;
