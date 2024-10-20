@@ -74,6 +74,12 @@ main() {
     gc2.to_yaml( file );
     file.close();
   }
+  std::cout << "READ YAML\n";
+  {
+    ifstream file( "examples/test3.yml" );
+    gc2.from_yaml( file );
+    file.close();
+  }
 
   //std::cout << "GC1\n";
   //gc1.print(cout);
