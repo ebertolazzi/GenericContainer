@@ -466,7 +466,7 @@ namespace GC_namespace {
         ival = m_data.i;
         GC_ASSERT(
           ival >= 0,
-          where << " copyto_vec_uint: value = " << ival
+          where << " copyto_vec_ulong: value = " << ival
                 << " cannot be converted to `unsigned long'"
         );
         val = ulong_type(ival);
@@ -475,7 +475,7 @@ namespace GC_namespace {
         lval = m_data.l;
         GC_ASSERT(
           lval >= 0,
-          where << " copyto_vec_int: v[" << i << "] = " << lval
+          where << " copyto_vec_ulong: v[" << i << "] = " << lval
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(lval);
@@ -484,7 +484,7 @@ namespace GC_namespace {
         rval = m_data.r;
         GC_ASSERT(
           isUnsigned(rval),
-          where << " copyto_vec_int: v[" << i << "] = " << rval
+          where << " copyto_vec_ulong: v[" << i << "] = " << rval
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(rval);
@@ -496,7 +496,7 @@ namespace GC_namespace {
         ival = (*m_data.v_i)[i];
         GC_ASSERT(
           ival >= 0,
-          where << " copyto_vec_uint: value = " << ival
+          where << " copyto_vec_ulong: value = " << ival
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(ival);
@@ -505,7 +505,7 @@ namespace GC_namespace {
         lval = (*m_data.v_l)[i];
         GC_ASSERT(
           lval >= 0,
-          where << " copyto_vec_int: v[" << i << "] = " << lval
+          where << " copyto_vec_ulong: v[" << i << "] = " << lval
                 << " cannot be converted to `unsigned long'"
         );
         val = ulong_type(lval);
@@ -514,7 +514,7 @@ namespace GC_namespace {
         rval = (*m_data.v_r)[i];
         GC_ASSERT(
           isUnsigned(rval),
-          where << " copyto_vec_int: v[" << i << "] = " << rval
+          where << " copyto_vec_ulong: v[" << i << "] = " << rval
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(rval);
@@ -523,7 +523,7 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = "
+          where << " copyto_vec_ulong: v[" << i << "] = "
                 << cval << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(cval.real());
@@ -532,7 +532,7 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = "
+          where << " copyto_vec_ulong: v[" << i << "] = "
                 << cval << " cannot be converted to `unsigned long'"
         );
         val = ulong_type(cval.real());
@@ -541,7 +541,7 @@ namespace GC_namespace {
         ival = (*m_data.m_i)[i];
         GC_ASSERT(
           ival >= 0,
-          where << " copyto_vec_uint: value = " << ival
+          where << " copyto_vec_ulong: value = " << ival
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(ival);
@@ -550,7 +550,7 @@ namespace GC_namespace {
         lval = (*m_data.m_l)[i];
         GC_ASSERT(
           lval >= 0,
-          where << " copyto_vec_int: v[" << i << "] = " << lval
+          where << " copyto_vec_ulong: v[" << i << "] = " << lval
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(lval);
@@ -559,7 +559,7 @@ namespace GC_namespace {
         rval = (*m_data.m_r)[i];
         GC_ASSERT(
           isUnsigned(rval),
-          where << " copyto_vec_int: v[" << i << "] = " << rval
+          where << " copyto_vec_ulong: v[" << i << "] = " << rval
                 << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(rval);
@@ -568,7 +568,7 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()) && isUnsigned(cval.real()),
-          where << " copyto_vec_int: v[" << i << "] = "
+          where << " copyto_vec_ulong: v[" << i << "] = "
                 << cval << " cannot be converted to `unsigned long'"
         )
         val = ulong_type(cval.real());
@@ -616,7 +616,7 @@ namespace GC_namespace {
         cval = *m_data.c;
         GC_ASSERT(
           isZero0(cval.imag()),
-          where << " copyto_vec_int: v[" << i << "] = "
+          where << " copyto_vec_real: v[" << i << "] = "
                 << cval << " cannot be converted to `real_type'"
         )
         val = cval.real();
@@ -625,7 +625,7 @@ namespace GC_namespace {
         cval = (*m_data.v_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()),
-          where << " copyto_vec_int: v[" << i << "] = "
+          where << " copyto_vec_real: v[" << i << "] = "
                 << cval << " cannot be converted to `real_type'"
         )
         val = cval.real();
@@ -637,7 +637,7 @@ namespace GC_namespace {
         cval = (*m_data.m_c)[i];
         GC_ASSERT(
           isZero0(cval.imag()),
-          where << " copyto_vec_int: v[" << i << "] = "
+          where << " copyto_vec_real: v[" << i << "] = "
                 << cval << " cannot be converted to `real_type'"
         )
         val = cval.real();
@@ -782,6 +782,30 @@ namespace GC_namespace {
         std::copy_n( m_i->data(), m_i->num_rows()*m_i->num_cols(), m.data() );
       }
       break;
+    case GC_type::VECTOR:
+      { vector_type const & v{*m_data.v};
+        unsigned nc{unsigned(v.size())};
+        if ( nc > 0 ) {
+          unsigned nr{unsigned(v[0].get_num_elements())};
+          for ( unsigned j{1}; j < nc; ++j ) {
+            GC_ASSERT(
+              v[j].get_num_elements() == nr,
+              where << " copyto_mat_int() cannot promote vector of size " <<
+              v[j].get_num_elements() << " to a column of mat_int_type of size " <<
+              nr << " x " << nc
+            )
+          }
+          m.resize( nr, nc );
+          for ( unsigned j{0}; j < nc; ++j ) {
+            vec_int_type vj;
+            v[j].copyto_vec_int( vj, where );
+            for ( unsigned i{0}; i < nr; ++i )
+              m(i,j) = vj[i];
+          }
+          break; // finito esco.
+        }
+        GC_DO_ERROR( where << " copyto_mat_int() cannot promote vector of size " << v.size() << " to mat_int_type" )
+      }
     case GC_type::MAT_LONG:
     case GC_type::MAT_REAL:
     case GC_type::REAL:
@@ -795,9 +819,8 @@ namespace GC_namespace {
     case GC_type::VEC_POINTER:
     case GC_type::VEC_STRING:
     case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
     case GC_type::MAP:
-      GC_DO_ERROR( where << "copyto_mat_int() cannot promote " << get_type_name() << " to mat_int_type" )
+      GC_DO_ERROR( where << " opyto_mat_int() cannot promote " << get_type_name() << " to mat_int_type" )
     }
   }
 
@@ -850,6 +873,30 @@ namespace GC_namespace {
         std::copy_n( m_l->data(), m_l->num_rows()*m_l->num_cols(), m.data() );
       }
       break;
+    case GC_type::VECTOR:
+      { vector_type const & v{*m_data.v};
+        unsigned nc{unsigned(v.size())};
+        if ( nc > 0 ) {
+          unsigned nr{unsigned(v[0].get_num_elements())};
+          for ( unsigned j{1}; j < nc; ++j ) {
+            GC_ASSERT(
+              v[j].get_num_elements() == nr,
+              where << " copyto_mat_long() cannot promote vector of size " <<
+              v[j].get_num_elements() << " to a column of mat_long_type of size " <<
+              nr << " x " << nc
+            )
+          }
+          m.resize( nr, nc );
+          for ( unsigned j{0}; j < nc; ++j ) {
+            vec_long_type vj;
+            v[j].copyto_vec_long( vj, where );
+            for ( unsigned i{0}; i < nr; ++i )
+              m(i,j) = vj[i];
+          }
+          break; // finito esco.
+        }
+        GC_DO_ERROR( where << " copyto_mat_long() cannot promote vector of size " << v.size() << " to mat_long_type" )
+      }
     case GC_type::MAT_REAL:
     case GC_type::REAL:
     case GC_type::POINTER:
@@ -860,7 +907,6 @@ namespace GC_namespace {
     case GC_type::VEC_POINTER:
     case GC_type::VEC_STRING:
     case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR( where << "copyto_mat_long() cannot promote " << get_type_name() << " to mat_long_type" )
     }
@@ -930,6 +976,30 @@ namespace GC_namespace {
         std::copy_n( m_r->data(), m_r->num_rows()*m_r->num_cols(), m.data() );
       }
       break;
+    case GC_type::VECTOR:
+      { vector_type const & v{*m_data.v};
+        unsigned nc{unsigned(v.size())};
+        if ( nc > 0 ) {
+          unsigned nr{unsigned(v[0].get_num_elements())};
+          for ( unsigned j{1}; j < nc; ++j ) {
+            GC_ASSERT(
+              v[j].get_num_elements() == nr,
+              where << " copyto_mat_real() cannot promote vector of size " <<
+              v[j].get_num_elements() << " to a column of mat_real_type of size " <<
+              nr << " x " << nc
+            )
+          }
+          m.resize( nr, nc );
+          for ( unsigned j{0}; j < nc; ++j ) {
+            vec_real_type vj;
+            v[j].copyto_vec_real( vj, where );
+            for ( unsigned i{0}; i < nr; ++i )
+              m(i,j) = vj[i];
+          }
+          break; // finito esco.
+        }
+        GC_DO_ERROR( where << " copyto_mat_real() cannot promote vector of size " << v.size() << " to mat_real_type" )
+      }
     case GC_type::POINTER:
     case GC_type::STRING:
     case GC_type::COMPLEX:
@@ -937,9 +1007,8 @@ namespace GC_namespace {
     case GC_type::VEC_POINTER:
     case GC_type::VEC_STRING:
     case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
     case GC_type::MAP:
-      GC_DO_ERROR( where << "copyto_mat_real() cannot promote " << get_type_name() << " to mat_real_type" )
+      GC_DO_ERROR( where << " copyto_mat_real() cannot promote " << get_type_name() << " to mat_real_type" )
     }
   }
 
@@ -1016,12 +1085,35 @@ namespace GC_namespace {
         std::copy_n( m_r->data(), m_r->num_rows()*m_r->num_cols(), m.data() );
       }
       break;
+    case GC_type::VECTOR:
+      { vector_type const & v{*m_data.v};
+        unsigned nc{unsigned(v.size())};
+        if ( nc > 0 ) {
+          unsigned nr{unsigned(v[0].get_num_elements())};
+          for ( unsigned j{1}; j < nc; ++j ) {
+            GC_ASSERT(
+              v[j].get_num_elements() == nr,
+              where << " copyto_mat_complex() cannot promote vector of size " <<
+              v[j].get_num_elements() << " to a column of mat_complex_type of size " <<
+              nr << " x " << nc
+            )
+          }
+          m.resize( nr, nc );
+          for ( unsigned j{0}; j < nc; ++j ) {
+            vec_complex_type vj;
+            v[j].copyto_vec_complex( vj, where );
+            for ( unsigned i{0}; i < nr; ++i )
+              m(i,j) = vj[i];
+          }
+          break; // finito esco.
+        }
+        GC_DO_ERROR( where << " copyto_mat_complex() cannot promote vector of size " << v.size() << " to mat_complex_type" )
+      }
     case GC_type::POINTER:
     case GC_type::STRING:
     case GC_type::VEC_POINTER:
     case GC_type::VEC_STRING:
     case GC_type::MAT_COMPLEX:
-    case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR( where << "copyto_mat_complex() cannot promote " << get_type_name() << " to mat_complex_type" )
     }
