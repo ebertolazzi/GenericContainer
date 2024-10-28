@@ -193,7 +193,7 @@ namespace GC_namespace {
   void
   GenericContainer::copyto_vec_uint( vec_uint_type & v, char const where[] ) const {
     v.clear();
-    unsigned ne = get_num_elements();
+    unsigned ne{ get_num_elements() };
     v.reserve(ne);
     int_type     ival;
     long_type    lval;
@@ -340,7 +340,7 @@ namespace GC_namespace {
   void
   GenericContainer::copyto_vec_long( vec_long_type & v, char const where[] ) const {
     v.clear();
-    unsigned ne = get_num_elements();
+    unsigned ne{ get_num_elements() };
     v.reserve(ne);
     real_type    rval;
     complex_type cval;
@@ -449,7 +449,7 @@ namespace GC_namespace {
   void
   GenericContainer::copyto_vec_ulong( vec_ulong_type & v, char const where[] ) const {
     v.clear();
-    unsigned ne = get_num_elements();
+    unsigned ne{ get_num_elements() };
     v.reserve(ne);
     int_type     ival;
     long_type    lval;
@@ -597,7 +597,7 @@ namespace GC_namespace {
   void
   GenericContainer::copyto_vec_real( vec_real_type & v, char const where[] ) const {
     v.clear();
-    unsigned ne = get_num_elements();
+    unsigned ne{ get_num_elements() };
     v.reserve(ne);
     complex_type cval;
     real_type    val{0};
@@ -666,7 +666,7 @@ namespace GC_namespace {
   void
   GenericContainer::copyto_vec_complex( vec_complex_type & v, char const where[] ) const {
     v.clear();
-    unsigned ne = get_num_elements();
+    unsigned ne{ get_num_elements() };
     v.reserve(ne);
     complex_type val{0};
     v.reserve(ne);
@@ -706,7 +706,7 @@ namespace GC_namespace {
   void
   GenericContainer::copyto_vec_string( vec_string_type & v, char const where[] ) const {
     v.clear();
-    unsigned ne = get_num_elements();
+    unsigned ne{ get_num_elements() };
     switch (m_data_type) {
     case GC_type::STRING:
       v.reserve(ne);
@@ -820,7 +820,7 @@ namespace GC_namespace {
     case GC_type::VEC_STRING:
     case GC_type::MAT_COMPLEX:
     case GC_type::MAP:
-      GC_DO_ERROR( where << " opyto_mat_int() cannot promote " << get_type_name() << " to mat_int_type" )
+      GC_DO_ERROR( where << " copyto_mat_int() cannot promote " << get_type_name() << " to mat_int_type" )
     }
   }
 
@@ -1157,7 +1157,7 @@ namespace GC_namespace {
     case GC_type::VECTOR:
     case GC_type::MAP:
       GC_DO_ERROR(
-        ":promote_to_int() cannot promote " << get_type_name() << " to int"
+        "promote_to_int() cannot promote " << get_type_name() << " to int"
       )
     }
     return *this;
@@ -1283,17 +1283,19 @@ namespace GC_namespace {
   GenericContainer::promote_to_vec_int() {
     switch (m_data_type) {
     case GC_type::NOTYPE:
-    { set_vec_int(1); get_int_at(0) = 0; }
+      { set_vec_int(1); get_int_at(0) = 0; }
       break;
     case GC_type::BOOL:
-    { int_type tmp = m_data.b?1:0;
-      set_vec_int(1);
-      get_int_at(0) = tmp; }
+      { int_type tmp = m_data.b?1:0;
+        set_vec_int(1);
+        get_int_at(0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
-    { int_type tmp = m_data.i;
-      set_vec_int(1);
-      get_int_at(0) = tmp; }
+      { int_type tmp = m_data.i;
+        set_vec_int(1);
+        get_int_at(0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;
@@ -1337,17 +1339,20 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { long_type tmp = m_data.b?1:0;
         set_vec_long(1);
-        get_long_at(0) = tmp; }
+        get_long_at(0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { long_type tmp = long_type(m_data.i);
         set_vec_long(1);
-        get_long_at(0) = tmp; }
+        get_long_at(0) = tmp;
+      }
       break;
     case GC_type::LONG:
       { long_type tmp = m_data.l;
         set_vec_long(1);
-        get_long_at(0) = tmp; }
+        get_long_at(0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;
@@ -1397,22 +1402,26 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { real_type tmp = m_data.b?1:0;
         set_vec_real(1);
-        get_real_at(0) = tmp; }
+        get_real_at(0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { real_type tmp = real_type( m_data.i );
         set_vec_real(1);
-        get_real_at(0) = tmp; }
+        get_real_at(0) = tmp;
+      }
       break;
     case GC_type::LONG:
       { real_type tmp = real_type( m_data.l );
         set_vec_real(1);
-        get_real_at(0) = tmp; }
+        get_real_at(0) = tmp;
+      }
       break;
     case GC_type::REAL:
       { real_type tmp = m_data.r;
         set_vec_real(1);
-        get_real_at(0) = tmp; }
+        get_real_at(0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b; // salva puntatore
@@ -1469,27 +1478,32 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { real_type tmp = m_data.b?1:0;
         set_vec_complex(1);
-        get_complex_at(0) = tmp; }
+        get_complex_at(0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { real_type tmp = real_type( m_data.i );
         set_vec_complex(1);
-        get_complex_at(0) = tmp; }
+        get_complex_at(0) = tmp;
+      }
       break;
     case GC_type::LONG:
       { real_type tmp = real_type( m_data.l );
         set_vec_complex(1);
-        get_complex_at(0) = tmp; }
+        get_complex_at(0) = tmp;
+      }
       break;
     case GC_type::REAL:
       { real_type tmp = m_data.r;
         set_vec_complex(1);
-        get_complex_at(0) = tmp; }
+        get_complex_at(0) = tmp;
+      }
       break;
     case GC_type::COMPLEX:
       { complex_type tmp = *m_data.c;
         set_vec_complex(1);
-        get_complex_at(0) = tmp; }
+        get_complex_at(0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;
@@ -1553,12 +1567,14 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { int_type tmp = m_data.b?1:0;
         set_mat_int(1,1);
-        get_int_at(0,0) = tmp; }
+        get_int_at(0,0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { int_type tmp = m_data.i;
         set_mat_int(1,1);
-        get_int_at(0,0) = tmp; }
+        get_int_at(0,0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;
@@ -1609,12 +1625,14 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { long_type tmp = m_data.b?1:0;
         set_mat_long(1,1);
-        get_long_at(0,0) = tmp; }
+        get_long_at(0,0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { long_type tmp = m_data.i;
         set_mat_long(1,1);
-        get_long_at(0,0) = tmp; }
+        get_long_at(0,0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;
@@ -1681,17 +1699,20 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { real_type tmp = m_data.b?1:0;
         set_mat_real(1,1);
-        get_real_at(0,0) = tmp; }
+        get_real_at(0,0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { real_type tmp = m_data.i;
         set_mat_real(1,1);
-        get_real_at(0,0) = tmp; }
+        get_real_at(0,0) = tmp;
+      }
       break;
     case GC_type::REAL:
       { real_type tmp = m_data.r;
         set_mat_real(1,1);
-        get_real_at(0,0) = tmp; }
+        get_real_at(0,0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;
@@ -1773,22 +1794,26 @@ namespace GC_namespace {
     case GC_type::BOOL:
       { real_type tmp = m_data.b?1:0;
         set_mat_complex(1,1);
-        get_complex_at(0,0) = tmp; }
+        get_complex_at(0,0) = tmp;
+      }
       break;
     case GC_type::INTEGER:
       { real_type tmp = real_type( m_data.i );
         set_mat_complex(1,1);
-        get_complex_at(0,0) = tmp; }
+        get_complex_at(0,0) = tmp;
+      }
       break;
     case GC_type::LONG:
       { real_type tmp = real_type( m_data.l );
         set_mat_complex(1,1);
-        get_complex_at(0,0) = tmp; }
+        get_complex_at(0,0) = tmp;
+      }
       break;
     case GC_type::REAL:
       { real_type tmp = m_data.r;
         set_mat_complex(1,1);
-        get_complex_at(0,0) = tmp; }
+        get_complex_at(0,0) = tmp;
+      }
       break;
     case GC_type::VEC_BOOL:
       { vec_bool_type * v_b = m_data.v_b;

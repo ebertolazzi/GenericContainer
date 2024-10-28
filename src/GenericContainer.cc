@@ -3575,7 +3575,6 @@ namespace GC_namespace {
       { vec_string_type const & v{*m_data.v_s};
         stream << "vector of string[" << v.size() << "]\n"; }
       break;
-
     case GC_type::VECTOR:
       { vector_type const & v{*m_data.v};
         for ( vector_type::size_type i{0}; i < v.size(); ++i ) {
