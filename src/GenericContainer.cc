@@ -3806,35 +3806,6 @@ namespace GC_namespace {
     }
   }
 
-  GenericContainer &
-  GenericContainer::read_formatted_data(
-    char const fname[],
-    char const commentChars[],
-    char const delimiters[]
-  ) {
-    std::ifstream file( fname );
-    GC_ASSERT(
-      file.good(),
-      "read_formatted_data, failed to open file: ``" << fname << "''"
-    )
-    return read_formatted_data( file, commentChars, delimiters );
-  }
-
-  GenericContainer &
-  GenericContainer::read_formatted_data2(
-    char const       fname[],
-    char const       commentChars[],
-    char const       delimiters[],
-    GenericContainer ptr_pars[]
-  ) {
-    std::ifstream file( fname );
-    GC_ASSERT(
-      file.good(),
-      "read_formatted_data2, failed to open file: ``" << fname << "''"
-    )
-    return read_formatted_data2( file, commentChars, delimiters, ptr_pars );
-  }
-
   void
   GenericContainer::exception( char const where[] ) {
     throw std::runtime_error(where);
