@@ -180,18 +180,18 @@ Compile and tests</h2>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md66"></a>
 Lua Support</h2>
 <p><code>GenericContainer</code> has an interfacing to exchange data with Lua. To use the interface include</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d76/_generic_container_lua_interface_8hh.html">GenericContainerLuaInterface.hh</a>&quot;</span></div>
-<div class="ttc" id="a_generic_container_lua_interface_8hh_html"><div class="ttname"><a href="../../d5/d76/_generic_container_lua_interface_8hh.html">GenericContainerLuaInterface.hh</a></div></div>
-</div><!-- fragment --><p>compile and link with <code>GenericContainerLuaInterface.cc</code>. The interface contains a set of functions to convert from <code>GenericContainer</code> to Lua global variables and the other way around.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d5/d76/_generic_container_lua_interface_8hh.html">GenericContainerInterface_lua.hh</a>&quot;</span></div>
+<div class="ttc" id="a_generic_container_lua_interface_8hh_html"><div class="ttname"><a href="../../d5/d76/_generic_container_lua_interface_8hh.html">GenericContainerInterface_lua.hh</a></div></div>
+</div><!-- fragment --><p>compile and link with <code>GenericContainerInterface_lua.cc</code>. The interface contains a set of functions to convert from <code>GenericContainer</code> to Lua global variables and the other way around.</p>
 <h2><a class="anchor" id="autotoc_md67"></a>
 Matlab Support</h2>
 <p><code>GenericContainer</code> has an interfacing to exchange data with matlab. To use the interface include</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerMatlabInterface.hh</a>&quot;</span></div>
-<div class="ttc" id="a_generic_container_matlab_interface_8hh_html"><div class="ttname"><a href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerMatlabInterface.hh</a></div></div>
-</div><!-- fragment --><p>compile and link with <code>GenericContainerMatlabInterface.cc</code>. The interface contains a set of functions to convert from <code>GenericContainer</code> to <code>mxArray</code> and the other way around.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerInterface_matlab.hh</a>&quot;</span></div>
+<div class="ttc" id="a_generic_container_matlab_interface_8hh_html"><div class="ttname"><a href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerInterface_matlab.hh</a></div></div>
+</div><!-- fragment --><p>compile and link with <code>GenericContainerInterface_matlab.cc</code>. The interface contains a set of functions to convert from <code>GenericContainer</code> to <code>mxArray</code> and the other way around.</p>
 <p>The following code stored in <code>mex_print_recursive.cc</code></p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerMatlabInterface.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d7/d89/_generic_container_matlab_interface_8hh.html">GenericContainerInterface_matlab.hh</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;mex.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#include &lt;sstream&gt;</span></div>
@@ -220,7 +220,7 @@ Matlab Support</h2>
 <div class="ttc" id="anamespace_g_c__namespace_html_a3cbf87f939fa62b3e7c59e789adbd651"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#a3cbf87f939fa62b3e7c59e789adbd651">GC_namespace::mexPrint</a></div><div class="ttdeci">void mexPrint(GenericContainer const &amp;gc)</div></div>
 <div class="ttc" id="anamespace_g_c__namespace_html_aa3f27a745bb26fc6841419833d940188"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#aa3f27a745bb26fc6841419833d940188">GC_namespace::mxArray_to_GenericContainer</a></div><div class="ttdeci">void mxArray_to_GenericContainer(mxArray const *mx, GenericContainer &amp;gc)</div></div>
 </div><!-- fragment --><p>Implement a mex command that print a Matlab structure recursively on the console after the conversion to a <code>mxArray_to_GenericContainer</code>. After the compilation</p>
-<div class="fragment"><div class="line">&gt; mex mex_print_recursive.cc GenericContainerMatlabInterface.cc -output print_recursive</div>
+<div class="fragment"><div class="line">&gt; mex mex_print_recursive.cc GenericContainerInterface_matlab.cc -output print_recursive</div>
 </div><!-- fragment --><p>Produce the <code>Matlab</code> command <code>print_recursive</code> so that the following MATLAB code:</p>
 <div class="fragment"><div class="line">S         = [ 1 0 2 9; 0 0 2 3; 2 0 0 0; 1 0 -2 -2 ];</div>
 <div class="line">S1        = [ 1 0 2 9; 0 0 2 3; 2+1i 0 0 0; 1 0 -2 -2 ];</div>

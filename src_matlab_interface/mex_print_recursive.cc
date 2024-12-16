@@ -4,7 +4,7 @@
 \****************************************************************************/
 
 #include "GenericContainer.hh"
-#include "GenericContainerMatlabInterface.hh"
+#include "GenericContainerInterface_matlab.hh"
 #include "mex.h"
 
 #include <sstream>

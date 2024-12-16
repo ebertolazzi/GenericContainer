@@ -106,7 +106,7 @@ To use the interface include
 #include "GenericContainerInterface_matlab.hh"
 ```
 
-compile and link with `GenericContainerMatlabInterface.cc`.
+compile and link with `GenericContainerInterface_matlab.cc`.
 The interface contains a set of functions to convert from `GenericContainer`
 to `mxArray` and the other way around.
 
@@ -114,7 +114,7 @@ The following code stored in `mex_print_recursive.cc`
 
 ```cpp
 #include "GenericContainer.hh"
-#include "GenericContainerMatlabInterface.hh"
+#include "GenericContainerInterface_matlab.hh"
 #include "mex.h"
 
 #include <sstream>
@@ -146,7 +146,7 @@ recursively on the console after the conversion to a
 After the compilation
 
 ```text
-  > mex mex_print_recursive.cc GenericContainerMatlabInterface.cc -output print_recursive
+  > mex mex_print_recursive.cc GenericContainerInterface_matlab.cc -output print_recursive
 ```
 
 Produce the `Matlab` command `print_recursive`
