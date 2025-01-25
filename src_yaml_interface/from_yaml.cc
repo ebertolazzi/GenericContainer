@@ -27,6 +27,7 @@
 #pragma clang diagnostic ignored "-Wcovered-switch-default"
 #pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
 #pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-dtor"
+#pragma clang diagnostic ignored "-Wshadow-field-in-constructor"
 #endif
 
 #include "GenericContainer/GenericContainerInterface_yaml.hh"
