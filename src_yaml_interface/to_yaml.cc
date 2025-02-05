@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------*\
  |                                                                          |
- |  Copyright (C) 2013                                                      |
+ |  Copyright (C) 2025                                                      |
  |                                                                          |
  |         , __                 , __                                        |
  |        /|/  \               /|/  \                                       |
@@ -18,7 +18,7 @@
 \*--------------------------------------------------------------------------*/
 
 //
-// file: GenericContainerYAML.cc
+// file: to_yaml.cc
 //
 
 #include "GenericContainer/GenericContainer.hh"
@@ -203,5 +203,5 @@ namespace GC_namespace {
 }
 
 //
-// eof: GenericContainerYAML.cc
+// eof: to_yaml.cc
 //

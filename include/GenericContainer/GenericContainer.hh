@@ -4059,14 +4059,13 @@ namespace GC_namespace {
     bool from_json( istream_type & stream );
     bool from_json2( istream_type & stream );
 
-#if 0
     //!
     //! Print the contents of the object in TOML syntax
     //!
     //! \param[in] stream output stream
     //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
     //!
-    void to_toml( ostream_type & stream, string_type const & prefix = "" ) const;
+    bool to_toml( ostream_type & stream ) const;
 
     //!
     //! Read the contents of stream in JSON syntax
@@ -4075,7 +4074,6 @@ namespace GC_namespace {
     //! \return true if conversion successful
     //!
     bool from_toml( istream_type & stream );
-#endif
 
     //!
     //! Collapse heterogeneous vectors into a unified type.

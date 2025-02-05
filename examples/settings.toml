@@ -1,0 +1,84 @@
+# ARD settings
+
+#1# Broker settings
+# These settings affect the behaviour of the broker and the logger.
+# Both the broker and the logger come from the DrivingSimulatorBroker
+# third-party library that is used to communicate between modules and to store
+# data.
+
+[broker]
+frontend_tcp = "tcp://127.0.0.1:5555"
+frontend_ipc = "ipc:///tmp/broker_frontend.ipc"
+backend_tcp = "tcp://127.0.0.1:5556"
+backend_ipc = "ipc:///tmp/broker_backend.ipc"
+capture_tcp = "tcp://127.0.0.1:5557"
+capture_ipc = "ipc:///tmp/broker_capture.ipc"
+io_threads = 1
+
+[logger]
+mongo_uri = "mongodb://127.0.0.1:27017"
+mongo_db = "ard"
+plotter_tcp = "tcp://127.0.0.1:9872"
+schemas_dir = "third_party/DrivingSimulatorInterfaces/schemas"
+capture_mode = "tcp"
+worker_threads = 1
+
+#1# Manager settings
+# These settings affect the behaviour of ARD's Python manager.
+
+[manager]
+high_level = { push = "tcp://127.0.0.1:5558", pull = "tcp://127.0.0.1:5559" } # high-level endpoints
+low_level = { push = "tcp://127.0.0.1:5560", pull = "tcp://127.0.0.1:5561" }  # low-level endpoints
+simulator = { push = "tcp://127.0.0.1:5562", pull = "tcp://127.0.0.1:5563" }  # simulator endpoints
+rcvtimeo = 1000                                                               # receive timeout in milliseconds
+sndtimeo = 1000                                                               # send timeout in milliseconds
+
+#1# Rerun settings
+# These setting affect the behaviour of the rerun logger
+
+[rerun]
+rerun_endpoint = "127.0.0.1:9876"
+rerun_app_id = "ard"
+# rerun_app_id = "ard_V"
+rerun_recording_id = "ard"
+stream = true              # if true stream logs over TCP, if false save them to file (you can still view them as they are being written)
+
+#1# ARD C++ settings
+# These settings affect the behaviour of ARD's C++ core.
+
+[ard]
+synchronous = true
+racetrack = "Mugello_3D"
+communication_mode = "tcp"
+laps = 10                  # how many laps should be simulated
+real_time_factor = -1.0    # how fast the simulation should run compared to real-time, values > 1.0 speed up the simulation, 0.0 < values < 1.0 slow it down, values <= 0.0 run the simulation as fast as possible
+
+#2# Agent settings
+# These settings affect the behaviour of ARD's C++ agent.
+
+[ard.agent.high_level]
+cycle_time_us = 50000
+closed_loop = false
+problem = "ard_3d_vx_vy_F142MFL_Mugello_3D"
+standalone = true
+
+[ard.agent.high_level.mpc]
+horizon = 300.0              # length of the horizon [m]
+virtual_horizon = 0.0        # length of the virtual horizon [m] used for smart final state estimation
+use_mlt_solution = false     # use MLT solution for the guess on the final conditions
+allow_non_convergence = true # allow the MPC to not converge and still keep going
+timeout_ms = 0               # time after which the single MPC step is considered unsolvable (0 == no timeout)
+
+[ard.agent.high_level.mlt]
+laps = 1.0 # how many laps should the MLT solution cover
+
+[ard.agent.low_level]
+cycle_time_us = 1000
+cockpit = true       # if true emulate a cockpit (emulate a human driver), otherwise act as an autonomous agent (can cooperate with a human driver)
+
+#2# Simulator settings
+# These settings affect the behaviour of the simulator. ARD provides both a
+# local C++ simulator and a third-party one through the Bumblebee library.
+
+[ard.simulator]
+cycle_time_us = 1000

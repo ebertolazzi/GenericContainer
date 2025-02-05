@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------*\
  |                                                                          |
- |  Copyright (C) 2013                                                      |
+ |  Copyright (C) 2025                                                      |
  |                                                                          |
  |         , __                 , __                                        |
  |        /|/  \               /|/  \                                       |
@@ -18,7 +18,7 @@
 \*--------------------------------------------------------------------------*/
 
 //
-// file: GenericContainerYaml.cc
+// file: from_yaml.cc
 //
 
 #ifdef __clang__
@@ -58,122 +58,6 @@ namespace GC_namespace {
   using std::stod;
   using std::numeric_limits;
   using std::size_t;
-
-#if 0
-
-  // Definizione della union per contenere diversi tipi
-  union MyValue {
-    bool            bool_value;
-    int32_t         int32_value;
-    int64_t         int64_value;
-    uint32_t        uint32_value;
-    uint64_t        uint64_value;
-    double          double_value;
-    complex<double> complex_value;
-    void *          pointer_value;
-    // Costruttore di default
-    MyValue() {}
-    // Distruttore
-    ~MyValue() {}
-  };
-
-  // Enum per indicare il tipo attualmente memorizzato nella union
-  enum class ValueType {
-    BOOL,
-    INT32,
-    INT64,
-    UINT32,
-    UINT64,
-    DOUBLE,
-    COMPLEX,
-    STRING,
-    POINTER
-  };
-
-  // Funzione per determinare il tipo e restituire il dato nella union
-  static
-  ValueType
-  parse_value( string const & input, MyValue & value ) {
-
-    if ( input.empty() ) return ValueType::STRING; // stringa vuota == stringa!
-
-    // Regex per riconoscere numeri complessi (es: "3.5+4.2i" o "-2.5-3.1i")
-    static regex complex_regex(R"(^([+-]?\d+(\.\d+)?)[+-](\d+(\.\d+)?)i$)");
-    static regex pointer_regex(R"(^0x(\d+)$)");
-
-    // Rimuovi spazi bianchi
-    string trimmed{input};
-    trimmed.erase(0, trimmed.find_first_not_of(" \t\n\r"));
-    trimmed.erase(trimmed.find_last_not_of(" \t\n\r") + 1);
-
-    // Controllo per bool
-    if ( trimmed == "true" || trimmed == "TRUE" || trimmed == "T" ) {
-      value.bool_value = true;
-      return ValueType::BOOL;
-    }
-    if ( trimmed == "false" || trimmed == "FALSE" || trimmed == "F"  ) {
-      value.bool_value = false;
-      return ValueType::BOOL;
-    }
-
-    // controllo per pointer
-    char * end{nullptr};
-    smatch match;
-    if ( regex_match(trimmed, match, pointer_regex) ) {
-      unsigned long long ptr = strtoull(trimmed.c_str()+2, &end, 16);
-      if ( *end == '\0' ) {
-        value.pointer_value = reinterpret_cast<void*>(ptr);
-        return ValueType::POINTER;
-      }
-    }
-
-    // Controllo per complex
-    if ( regex_match(trimmed, match, complex_regex) ) {
-      value.complex_value = complex<double>(
-        stod(match[1].str()),
-        stod(match[3].str())
-      );
-      return ValueType::COMPLEX;
-    }
-
-    if ( trimmed[0] != '-' ) { // provo unsigned
-      uint64_t uint64Val = strtoull(trimmed.c_str(), &end, 10);
-      if ( *end == '\0' ) {
-        if ( uint64Val <= numeric_limits<uint32_t>::max() ) {
-          value.uint32_value = uint32_t(uint64Val);
-          return ValueType::UINT32;
-        } else {
-          value.uint64_value = uint64Val;
-          return ValueType::UINT64;
-        }
-      }
-    }
-
-    // provo signed
-    int64_t int64Val = strtoll(trimmed.c_str(), &end, 10);
-    if (*end == '\0' ) {
-      if ( int64Val >= numeric_limits<int32_t>::min() &&
-           int64Val <= numeric_limits<int32_t>::max() ) {
-        value.int32_value = int32_t(int64Val);
-        return ValueType::INT32;
-      } else {
-        value.int64_value = int64Val;
-        return ValueType::INT64;
-      }
-    }
-
-    // Controllo per double
-    double double_value = std::strtod(trimmed.c_str(), &end);
-    if (*end == '\0') {
-      value.double_value = double_value;
-      return ValueType::DOUBLE;
-    }
-
-    // Se non ha riconosciuto nessun tipo valido
-    return ValueType::STRING;
-  }
-
-#endif
 
   static
   bool

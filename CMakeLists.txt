@@ -83,7 +83,6 @@ endforeach(F ${S})
 set( SOURCES_EXTRA )
 file(
   GLOB S
-  ${CMAKE_CURRENT_SOURCE_DIR}/src_yaml_interface/src/*.cpp
 )
 foreach(F ${S})
   # build relative path respect to source directory
@@ -207,7 +206,7 @@ if ( UTILS_ENABLE_TESTS )
     example01 example02 example03 example04 example05
     example07 example08 example09 example10 example11
     example12 example13 example14 example15 example16
-    example17
+    example17 example18
   )
 
   set( EXELISTC example06 )

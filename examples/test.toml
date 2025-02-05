@@ -1,0 +1,68 @@
+[ard]
+communication_mode = 'tcp'
+laps = 10
+racetrack = 'Mugello_3D'
+real_time_factor = -1.0
+synchronous = true
+
+    [ard.agent.high_level]
+    closed_loop = false
+    cycle_time_us = 50000
+    problem = 'ard_3d_vx_vy_F142MFL_Mugello_3D'
+    standalone = true
+
+        [ard.agent.high_level.mlt]
+        laps = 1.0
+
+        [ard.agent.high_level.mpc]
+        allow_non_convergence = true
+        horizon = 300.0
+        timeout_ms = 0
+        use_mlt_solution = false
+        virtual_horizon = 0.0
+
+    [ard.agent.low_level]
+    cockpit = true
+    cycle_time_us = 1000
+
+    [ard.simulator]
+    cycle_time_us = 1000
+
+[broker]
+backend_ipc = 'ipc:///tmp/broker_backend.ipc'
+backend_tcp = 'tcp://127.0.0.1:5556'
+capture_ipc = 'ipc:///tmp/broker_capture.ipc'
+capture_tcp = 'tcp://127.0.0.1:5557'
+frontend_ipc = 'ipc:///tmp/broker_frontend.ipc'
+frontend_tcp = 'tcp://127.0.0.1:5555'
+io_threads = 1
+
+[logger]
+capture_mode = 'tcp'
+mongo_db = 'ard'
+mongo_uri = 'mongodb://127.0.0.1:27017'
+plotter_tcp = 'tcp://127.0.0.1:9872'
+schemas_dir = 'third_party/DrivingSimulatorInterfaces/schemas'
+worker_threads = 1
+
+[manager]
+rcvtimeo = 1000
+sndtimeo = 1000
+
+    [manager.high_level]
+    pull = 'tcp://127.0.0.1:5559'
+    push = 'tcp://127.0.0.1:5558'
+
+    [manager.low_level]
+    pull = 'tcp://127.0.0.1:5561'
+    push = 'tcp://127.0.0.1:5560'
+
+    [manager.simulator]
+    pull = 'tcp://127.0.0.1:5563'
+    push = 'tcp://127.0.0.1:5562'
+
+[rerun]
+rerun_app_id = 'ard'
+rerun_endpoint = '127.0.0.1:9876'
+rerun_recording_id = 'ard'
+stream = true
