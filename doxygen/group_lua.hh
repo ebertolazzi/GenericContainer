@@ -23,7 +23,7 @@
  \code
  void Lua_global_to_GC(
      void * void_L,
-     char const * global_var,
+     string_view global_var,
      GenericContainer & gc
  );
  \endcode
@@ -49,7 +49,7 @@
  void Lua_GC_to_global(
      void * void_L,
      GenericContainer const & gc,
-     char const * global_var
+     string_view global_var
  );
  \endcode
 

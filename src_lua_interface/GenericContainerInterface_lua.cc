@@ -248,7 +248,7 @@ namespace GC_namespace {
       lua_pushnumber( L, gc.get_real() );
       break;
     case GC_type::STRING:
-      lua_pushstring( L, gc.get_string().c_str() );
+      lua_pushstring( L, gc.get_string().data() );
       break;
     case GC_type::VEC_POINTER:
       lua_pushnil(L);
@@ -398,11 +398,11 @@ namespace GC_namespace {
     lua_State *& L = *(reinterpret_cast<lua_State**>(&void_L));
 
     // args must be of type MAP
-    string_type      const & fname = fun_io("function").get_string();
-    GenericContainer const & args  = fun_io("args");
+    string_view            fname = fun_io("function").get_string();
+    GenericContainer const & args = fun_io("args");
 
     // push functions and arguments
-    lua_getglobal( L, fname.c_str() );  // function to be called
+    lua_getglobal( L, fname.data() );  // function to be called
     GC_to_lua( L, args );
 
     /* do the call (1 arguments, 1 result) */

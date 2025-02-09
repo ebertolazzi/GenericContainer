@@ -47,11 +47,11 @@ namespace GC_namespace {
 
   void
   GenericContainer::to_json(
-    ostream_type      & stream,
-    string_type const & prefix
+    ostream_type & stream,
+    string_view    prefix
   ) const {
     string_type indent{"  "};
-    string_type prefix1{prefix+indent};
+    string_type prefix1{prefix}; prefix1 += indent;
     switch (m_data_type) {
       case GC_type::NOTYPE:
         stream << "null";
@@ -76,7 +76,7 @@ namespace GC_namespace {
         break;
       case GC_type::VEC_BOOL: {
         vec_bool_type const & v{*m_data.v_b};
-        char const * pre{"[ "};
+        string_view pre{"[ "};
         for ( bool vi : v ) {
           stream << pre << (vi?"true":"false");
           pre = ", ";
@@ -84,9 +84,9 @@ namespace GC_namespace {
         stream << " ]";
         break;
       }
-      #define GC_PRINT_VECTOR(VDATA)           \
-        char const * pre = "[ ";               \
-        for ( auto const & vi : v )            \
+      #define GC_PRINT_VECTOR(VDATA)              \
+      string_view pre = "[ ";                     \
+        for ( auto const & vi : v )               \
           { stream << pre << VDATA; pre = ", "; } \
         stream << " ]"
 

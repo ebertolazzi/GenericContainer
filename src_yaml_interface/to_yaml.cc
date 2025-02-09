@@ -48,8 +48,8 @@ namespace GC_namespace {
 
   void
   GenericContainer::to_yaml(
-    ostream_type      & stream,
-    string_type const & prefix
+    ostream_type & stream,
+    string_view    prefix
   ) const {
     switch (m_data_type) {
       case GC_type::NOTYPE:
@@ -119,13 +119,14 @@ namespace GC_namespace {
       }
       case GC_type::VECTOR: {
         vector_type const & v{*m_data.v};
+        string prefix2{prefix}; prefix2 += "  ";
         if ( v.empty() ) {
           stream << "null\n";
         } else {
           stream << '\n';
           for ( auto const & vi : v ) {
             stream << prefix << "- ";
-            vi.to_yaml(stream,prefix+"  ");
+            vi.to_yaml(stream,prefix2);
           }
         }
         break;
@@ -136,9 +137,10 @@ namespace GC_namespace {
           stream << "null\n";
         } else {
           stream << '\n';
+          string prefix2{prefix}; prefix2 += "  ";
           for ( auto const & im : m ) {
             stream << prefix << im.first << ": ";
-            im.second.to_yaml(stream,prefix+"  ");
+            im.second.to_yaml(stream,prefix2);
           }
         }
         break;

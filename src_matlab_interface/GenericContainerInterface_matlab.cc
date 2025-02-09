@@ -367,7 +367,7 @@ namespace GC_namespace {
   }
 
   void
-  to_mxArray( string_type const & val, mxArray * & mx ) {
+  to_mxArray( string_view val, mxArray * & mx ) {
     mx = mxCreateString( val.c_str() );
   }
 
@@ -478,7 +478,7 @@ namespace GC_namespace {
 
   void
   GenericContainer_to_mxArray( GenericContainer const & gc, mxArray * & mx ) {
-    static char const where[] = "in GenericContainer_to_mxArray: ";
+    static string_view where{"in GenericContainer_to_mxArray: "};
     mwSize dims[2]{1,1};
     switch ( gc.get_type() ) {
     case GC_type::NOTYPE:
@@ -513,7 +513,7 @@ namespace GC_namespace {
       }
       break;
     case GC_type::STRING:
-      mx = mxCreateString( gc.get_string().c_str() );
+      mx = mxCreateString( gc.get_string().data() );
       break;
     case GC_type::VEC_BOOL:
       {
