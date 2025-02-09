@@ -3600,6 +3600,22 @@ namespace GC_namespace {
     //!
     //! \param[in] a string to be stored
     //!
+    GenericContainer & operator = ( const char * a )
+    { this->set_string(a); return * this; }
+
+    //!
+    //! Assign a string to the generic container.
+    //!
+    //! \param[in] a string to be stored
+    //!
+    GenericContainer & operator = ( string const & a )
+    { this->set_string(a); return * this; }
+
+    //!
+    //! Assign a string to the generic container.
+    //!
+    //! \param[in] a string to be stored
+    //!
     GenericContainer & operator = ( string_view a )
     { this->set_string(a); return * this; }
 
@@ -3772,6 +3788,20 @@ namespace GC_namespace {
     //! \param[in] a initializer data
     //!
     GenericContainer( complex<double> const & a )
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
+
+    //!
+    //! Construct a generic container storing a string or pointer
+    //! \param[in] a initializer data
+    //!
+    GenericContainer( char const * a )
+    : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
+
+    //!
+    //! Construct a generic container storing a string or pointer
+    //! \param[in] a initializer data
+    //!
+    GenericContainer( string const & a )
     : m_data_type(GC_type::NOTYPE) { this->operator=(a); }
 
     //!
