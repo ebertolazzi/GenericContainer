@@ -179,7 +179,7 @@ namespace GC_namespace {
   string_view
   GenericContainerExplorer::next_map_key() {
     if ( map_iterator != ptr_map->end() )
-      return map_iterator++->first.c_str();
+      return map_iterator++->first;
     else
       return nullptr;
   }

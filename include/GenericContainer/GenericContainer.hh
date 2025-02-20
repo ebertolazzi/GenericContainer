@@ -53,7 +53,7 @@
   #define GC_DO_ERROR(MSG) {                          \
     ostringstream ost;                                \
     ost << "in GenericContainer: " << MSG << '\n';    \
-    GenericContainer::exception( ost.str().c_str() ); \
+    GenericContainer::exception( ost.str().data() ); \
   }
 #endif
 

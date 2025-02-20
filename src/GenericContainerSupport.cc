@@ -135,8 +135,8 @@ namespace GC_namespace {
             if ( string::npos != startpos ) rhs = rhs.substr( startpos );
           }
           char * ptr;
-          (*ptr_pars)[lhs] = strtod(rhs.c_str(),&ptr);
-          if ( ptr == rhs.c_str() ) (*ptr_pars)[lhs] = rhs;
+          (*ptr_pars)[lhs] = strtod(rhs.data(),&ptr);
+          if ( ptr == rhs.data() ) (*ptr_pars)[lhs] = rhs;
         }
       }
       ++nl;
@@ -211,7 +211,7 @@ namespace GC_namespace {
 
       // store data in row vector
       for ( unsigned icol = 0; icol < ncol; ++icol )
-        data[icol].get_vec_real().push_back(atof(tokens[icol].c_str()) );
+        data[icol].get_vec_real().push_back(atof(tokens[icol].data()) );
     }
     return *this;
   }
@@ -264,7 +264,7 @@ namespace GC_namespace {
 
       // store data in row vector
       for ( unsigned icol = 0; icol < ncol; ++icol )
-        pcolumns[icol]->push_back(atof(tokens[icol].c_str()) );
+        pcolumns[icol]->push_back(atof(tokens[icol].data()) );
     }
     return *this;
   }

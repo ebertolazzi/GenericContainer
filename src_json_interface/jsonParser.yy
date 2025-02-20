@@ -157,5 +157,5 @@ yy::parser::error(
       << location.begin.line   << ", column "
       << location.begin.column << ": "
       << message << '\n';
-  GenericContainer::exception( ost.str().c_str() );
+  GenericContainer::exception( ost.str() );
 }

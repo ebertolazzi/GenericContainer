@@ -2357,7 +2357,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_bool(msg.c_str());
+    return p->get_bool(msg);
   }
 
   bool_type
@@ -2389,7 +2389,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_int(msg.c_str());
+    return p->get_int(msg);
   }
 
   int_type
@@ -2421,7 +2421,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_number(msg.c_str());
+    return p->get_number(msg);
   }
 
   real_type
@@ -2453,7 +2453,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_string(msg.c_str());
+    return p->get_string(msg);
   }
 
   string_view
@@ -2485,7 +2485,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_vec_real(msg.c_str());
+    return p->get_vec_real(msg);
   }
 
   vec_real_type const &
@@ -2517,7 +2517,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_vec_complex(msg.c_str());
+    return p->get_vec_complex(msg);
   }
 
   vec_complex_type const &
@@ -2549,7 +2549,7 @@ namespace GC_namespace {
       GC_ASSERT( p->exists(key), "in the map sequence: " << msg << " last key is missing" );
       p = &(*p)(key);
     }
-    return p->get_vec_string(msg.c_str());
+    return p->get_vec_string(msg);
   }
 
   vec_string_type const &
