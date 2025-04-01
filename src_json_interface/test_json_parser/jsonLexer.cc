@@ -4,6 +4,7 @@
 #include <sstream>
 #include <cctype>
 #include <iostream>
+#include <cstring>
 
 namespace yy {
 

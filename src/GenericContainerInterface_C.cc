@@ -41,6 +41,7 @@
 #include <map>
 #include <string>
 #include <deque>
+#include <algorithm>
 
 namespace GC_namespace {
 
