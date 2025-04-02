@@ -1,8 +1,7 @@
 *~
 /LibSources/switches.yaml
 /LibSources/Mechatronix-Info.plist
-/doc
-/doc/html
+/docs
 /lua-doc
 /bin/*
 !/bin/*.lua
