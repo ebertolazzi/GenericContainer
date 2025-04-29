@@ -478,6 +478,7 @@ namespace GC_namespace {
       case GC_type::REAL:
         if ( m_data.r != gc.m_data.r )
           data << from << "real: " << m_data.r << " <> " << gc.m_data.r << '\n';
+        break;
       case GC_type::POINTER:
         if ( m_data.p != gc.m_data.p )
           data << from << "pointer: 0x" << std::hex << m_data.p << " <> 0x" <<  std::hex << gc.m_data.p << '\n';
@@ -991,7 +992,7 @@ namespace GC_namespace {
 
   vec_pointer_type &
   GenericContainer::set_vec_pointer( vec_pointer_type const & v ) {
-    allocate_vec_pointer( v.size() );
+    allocate_vec_pointer( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_p->begin() );
     return *m_data.v_p;
   }
@@ -1003,7 +1004,7 @@ namespace GC_namespace {
 
   vec_bool_type &
   GenericContainer::set_vec_bool( vec_bool_type const & v ) {
-    allocate_vec_bool( v.size() );
+    allocate_vec_bool( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_b->begin() );
     return *m_data.v_b;
   }
@@ -1016,7 +1017,7 @@ namespace GC_namespace {
 
   vec_int_type &
   GenericContainer::set_vec_int( vec_int_type const & v ) {
-    allocate_vec_int( v.size() );
+    allocate_vec_int( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_i->begin() );
     return *m_data.v_i;
   }
@@ -1029,7 +1030,7 @@ namespace GC_namespace {
 
   vec_long_type &
   GenericContainer::set_vec_long( vec_long_type const & v ) {
-    allocate_vec_long( v.size() );
+    allocate_vec_long( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_l->begin() );
     return *m_data.v_l;
   }
@@ -1042,7 +1043,7 @@ namespace GC_namespace {
 
   vec_real_type &
   GenericContainer::set_vec_real( vec_real_type const & v ) {
-    allocate_vec_real( v.size() );
+    allocate_vec_real( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_r->begin() );
     return *m_data.v_r;
   }
@@ -1055,7 +1056,7 @@ namespace GC_namespace {
 
   vec_complex_type &
   GenericContainer::set_vec_complex( vec_complex_type const & v ) {
-    allocate_vec_complex( v.size() );
+    allocate_vec_complex( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_c->begin() );
     return *m_data.v_c;
   }
@@ -1120,7 +1121,7 @@ namespace GC_namespace {
 
   vec_string_type &
   GenericContainer::set_vec_string( vec_string_type const & v ) {
-    allocate_vec_string( v.size() );
+    allocate_vec_string( static_cast<unsigned>( v.size() ) );
     std::copy( v.begin(), v.end(), m_data.v_s->begin() );
     return *m_data.v_s;
   }
@@ -3734,7 +3735,7 @@ namespace GC_namespace {
     case GC_type::VECTOR:
       gc.set_vector();
       { vector_type const & v{*m_data.v};
-        vector_type       & vv = gc.set_vector(v.size());
+        vector_type       & vv = gc.set_vector( static_cast<unsigned>(v.size()) );
         for ( vector_type::size_type i{0}; i < v.size(); ++i )
           v[i].to_gc(vv[i]);
       }
@@ -3814,7 +3815,7 @@ namespace GC_namespace {
     case GC_type::VECTOR:
       this->set_vector();
       { vector_type const & v{*gc.m_data.v};
-        vector_type       & vv = this->set_vector(v.size());
+        vector_type       & vv = this->set_vector( static_cast<unsigned>(v.size()) );
         for ( vector_type::size_type i{0}; i < v.size(); ++i )
           vv[i].from_gc(v[i]);
       }

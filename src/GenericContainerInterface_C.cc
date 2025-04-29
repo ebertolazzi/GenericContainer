@@ -667,7 +667,7 @@ GC_set_vector_of_string( char const ** a, int const nelem ) {
 int
 GC_set_vector( int const nelem ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
-  GC_TRY( gc_active->top()->set_vector(nelem) );
+  GC_TRY( gc_active->top()->set_vector( static_cast<unsigned>( nelem ) ) );
   return GENERIC_CONTAINER_OK;
 }
 
@@ -699,7 +699,7 @@ GC_get_matrix_num_cols() {
 int
 GC_push_vector_position( int const pos ) {
   if ( gc_active == nullptr ) return GENERIC_CONTAINER_BAD_HEAD;
-  return gc_active->push_vector_position(pos);
+  return gc_active->push_vector_position( static_cast<unsigned>( pos ) );
 }
 
 //..............................................................................
