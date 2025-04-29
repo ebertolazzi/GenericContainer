@@ -618,8 +618,8 @@ handle_luainit (lua_State *L) {
   if ( init == nullptr ) {
     name = "=" LUA_INIT_VAR;
     #if defined(LUA_USE_WINDOWS) && !defined(__MINGW32__)
-    errno_t err = _dupenv_s( &buffer, &sz, name );
-    const char *init = err ? nullptr : buffer;
+    err  = _dupenv_s( &buffer, &sz, name );
+    init = err ? nullptr : buffer;
     #else
     init = getenv(name + 1);  /* try alternative name */
     #endif

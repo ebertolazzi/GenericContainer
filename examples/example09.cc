@@ -65,7 +65,7 @@ main() {
     int sz = gc.mem_size();
     cout << "Size: " << sz << '\n';
 
-    vector<uint8_t> buffer(sz);
+    vector<uint8_t> buffer( static_cast<size_t>( sz ) );
     int sz1 = gc.serialize( sz, &buffer.front() );
     cout << "Size1: " << sz1 << '\n';
 

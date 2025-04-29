@@ -40,6 +40,12 @@ if( UTILS_BUILD_SHARED )
   utils_artifacts_suffix(ARTIFACTS_DYNAMIC_SUFFIX FALSE)
 endif()
 
+if( CMAKE_CXX_COMPILER_ID MATCHES "Clang|AppleClang" )
+  add_compile_options( "$<$<COMPILE_LANGUAGE:C,CXX>:-Wno-poison-system-directories>" )
+  add_compile_options( "$<$<COMPILE_LANGUAGE:C,CXX>:-Wno-switch-default>" )
+  add_compile_options( "$<$<COMPILE_LANGUAGE:C,CXX>:-Wno-exit-time-destructors>" )
+endif()
+
 message( STATUS "Compiler used: ${CMAKE_CXX_COMPILER_ID}" )
 message( STATUS "BASE SUFFIXES = ${ARTIFACTS_STATIC_SUFFIX} ${ARTIFACTS_DYNAMIC_SUFFIX}" )
 
@@ -278,3 +284,23 @@ install(
 #include( "${HOME}/CMakeLists-cpack.txt" )
 
 utils_final_messages()
+
+#
+# Remove warning for 3rd
+#
+get_property(all_targets DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY BUILDSYSTEM_TARGETS)
+
+foreach(target IN LISTS all_targets)
+  if (TARGET ${target})
+    get_target_property(type ${target} TYPE)
+    if(type STREQUAL "EXECUTABLE" OR
+       type STREQUAL "STATIC_LIBRARY" OR
+       type STREQUAL "SHARED_LIBRARY" OR
+       type STREQUAL "MODULE_LIBRARY" OR
+       type STREQUAL "OBJECT_LIBRARY")
+      target_include_directories(${target} SYSTEM PRIVATE ${CMAKE_SOURCE_DIR}/lib/include/Utils/3rd)
+      target_include_directories(${target} SYSTEM PRIVATE ${CMAKE_SOURCE_DIR}/src_yaml_interface/)
+      target_include_directories(${target} SYSTEM PRIVATE ${CMAKE_SOURCE_DIR}/src_lua_interface/)
+    endif()
+  endif()
+endforeach()

@@ -189,7 +189,7 @@ int main() {
 
     // Serialize the GenericContainer
     int sz = gc.mem_size();
-    vector<uint8_t> buffer(sz);
+    vector<uint8_t> buffer( static_cast<size_t>( sz ) );
     int sz1 = gc.serialize(sz, buffer.data());
 
     cout << "Serialized size: " << sz1 << endl;

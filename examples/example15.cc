@@ -79,7 +79,7 @@ main() {
   cout << "COMPARE GC1 vs GC2: " << gc1.compare_content(gc2,">>> ");
 
   start = high_resolution_clock::now();
-  vector<uint8_t> buffer(gc1.mem_size());
+  vector<uint8_t> buffer( static_cast<size_t>( gc1.mem_size() ) );
   int32_t nb = gc1.serialize( buffer );
 
   end      = high_resolution_clock::now();

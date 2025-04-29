@@ -28,6 +28,8 @@
 #pragma clang diagnostic ignored "-Wdocumentation-unknown-command"
 #pragma clang diagnostic ignored "-Wdeprecated-copy-with-user-provided-dtor"
 #pragma clang diagnostic ignored "-Wshadow-field-in-constructor"
+#pragma clang diagnostic ignored "-Wsign-conversion"
+#pragma clang diagnostic ignored "-Wshorten-64-to-32"
 #endif
 
 #include "GenericContainer/GenericContainerInterface_yaml.hh"
@@ -92,7 +94,7 @@ namespace GC_namespace {
       }
       case fkyaml::node_type::SEQUENCE: {
         size_t N{node.size()};
-        vector_type & V{ gc.set_vector( N ) };
+        vector_type & V{ gc.set_vector( static_cast<unsigned>(N) ) };
         for ( size_t i{0}; ok && i < N; ++i )
           ok = YAML_to_GC( node[i], V[i] );
         break;
