@@ -155,7 +155,7 @@ namespace yy {
       m_cursor = start_pos;  // Ripristina la posizione iniziale
       return -1;             // Se nessuna corrispondenza
     } else {
-      m_colno += m_cursor-start_pos;
+      m_colno += static_cast<int>(m_cursor-start_pos);
       //yylloc->begin.line   = m_lineno;
       yylloc->begin.column = m_colno;
       (*yylval) = m_lexeme;

@@ -21,6 +21,11 @@
 // file: GenericContainer.cc
 //
 
+#ifdef _MSC_VER
+  #pragma warning(disable : 4661)
+  #pragma warning(disable : 4244)
+#endif
+
 #include "GenericContainer/GenericContainer.hh"
 #include <iomanip>
 #include <cmath>
@@ -1016,10 +1021,10 @@ namespace GC_namespace {
       { m.resize(1,1); m(0,0) = complex_type(m_data.b?1.0:0.0,0.0); }
       break;
     case GC_type::INTEGER:
-      { m.resize(1,1); m(0,0) = complex_type(m_data.i,0.0); }
+      { m.resize(1,1); m(0,0) = complex_type(static_cast<real_type>(m_data.i),0.0); }
       break;
     case GC_type::LONG:
-      { m.resize(1,1); m(0,0) = complex_type(m_data.l,0.0); }
+      { m.resize(1,1); m(0,0) = complex_type(static_cast<real_type>(m_data.l),0.0); }
       break;
     case GC_type::REAL:
       { m.resize(1,1); m(0,0) = complex_type(m_data.r,0.0); }

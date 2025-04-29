@@ -23,6 +23,10 @@
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
+#ifdef _MSC_VER
+  #pragma warning(disable : 4661)
+#endif
+
 /*
  \file GenericContainerCinterface.cc
  This file contains the sources for the C interface to `GenericContainer`

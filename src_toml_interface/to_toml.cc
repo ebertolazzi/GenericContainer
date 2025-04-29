@@ -21,6 +21,11 @@
 // file: to_toml.cc
 //
 
+#ifdef _MSC_VER
+  #pragma warning(disable : 4267)
+  #pragma warning(disable : 4244)
+#endif
+
 #include "GenericContainer/GenericContainer.hh"
 #include <iomanip>
 #include <cmath>

@@ -21,6 +21,10 @@
 // file: GenericContainer.cc
 //
 
+#ifdef _MSC_VER
+  #pragma warning(disable : 4661)
+#endif
+
 #include "GenericContainer/GenericContainer.hh"
 #include <iomanip>
 #include <cmath>
@@ -1875,8 +1879,8 @@ namespace GC_namespace {
   GenericContainer::get_number( string_view const where ) const {
     switch (m_data_type) {
     case GC_type::BOOL:    return m_data.b ? 1 : 0;
-    case GC_type::INTEGER: return m_data.i;
-    case GC_type::LONG:    return m_data.l;
+    case GC_type::INTEGER: return static_cast<real_type>(m_data.i);
+    case GC_type::LONG:    return static_cast<real_type>(m_data.l);
     case GC_type::REAL:    return m_data.r;
     case GC_type::NOTYPE:
     case GC_type::POINTER:
@@ -1943,11 +1947,11 @@ namespace GC_namespace {
   GenericContainer::get_number_at( unsigned const i, string_view const where ) const {
     switch (m_data_type) {
     case GC_type::VEC_BOOL:    return (*m_data.v_b)[i] ? 1 : 0;
-    case GC_type::VEC_INTEGER: return (*m_data.v_i)[i];
-    case GC_type::VEC_LONG:    return (*m_data.v_l)[i];
+    case GC_type::VEC_INTEGER: return static_cast<real_type>( (*m_data.v_i)[i] );
+    case GC_type::VEC_LONG:    return static_cast<real_type>( (*m_data.v_l)[i] );
     case GC_type::VEC_REAL:    return (*m_data.v_r)[i];
-    case GC_type::MAT_INTEGER: return (*m_data.m_i)[i];
-    case GC_type::MAT_LONG:    return (*m_data.m_l)[i];
+    case GC_type::MAT_INTEGER: return static_cast<real_type>( (*m_data.m_i)[i] );
+    case GC_type::MAT_LONG:    return static_cast<real_type>( (*m_data.m_l)[i] );
     case GC_type::MAT_REAL:    return (*m_data.m_r)[i];
     case GC_type::VECTOR:      return (*m_data.v)[i].get_number();
     case GC_type::NOTYPE:
@@ -2116,7 +2120,7 @@ namespace GC_namespace {
     return *m_data.s;
   }
 
-  string_view
+  string const &
   GenericContainer::get_string( string_view const where ) const {
     ck(where,GC_type::STRING);
     return *m_data.s;
@@ -2416,7 +2420,7 @@ namespace GC_namespace {
     return this->m_data.m->at(who).get_number( where );
   }
 
-  string_view
+  string const &
   GenericContainer::get_map_string(
     string_view const key,
     string_view const where
@@ -2425,7 +2429,7 @@ namespace GC_namespace {
     return this->m_data.m->at(key.data()).get_string( where );
   }
 
-  string_view
+  string const &
   GenericContainer::get_map_string( std::initializer_list<string> const args ) const {
     auto p{ this };
     string msg;
@@ -2439,7 +2443,7 @@ namespace GC_namespace {
     return p->get_string(msg);
   }
 
-  string_view
+  string const &
   GenericContainer::get_map_string(
     vec_string_type const & keys,
     string_view     const   where
@@ -3152,7 +3156,7 @@ namespace GC_namespace {
     return (*this)[i].set_string("");
   }
 
-  string_view
+  string const &
   GenericContainer::get_string_at( unsigned const i, string_view const where ) const {
     ck(where,GC_type::VEC_STRING);
     GC_ASSERT(

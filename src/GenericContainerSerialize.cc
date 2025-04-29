@@ -21,6 +21,10 @@
 // file: GenericContainerSerialize.cc
 //
 
+#ifdef _MSC_VER
+  #pragma warning(disable : 4661)
+#endif
+
 #include "GenericContainer/GenericContainer.hh"
 #include "GenericContainer/GenericContainerLibs.hh"
 #include <cstring>

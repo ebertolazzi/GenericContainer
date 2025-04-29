@@ -21,6 +21,11 @@
 // file: from_toml.cc
 //
 
+#ifdef _MSC_VER
+  #pragma warning(disable : 4267)
+  #pragma warning(disable : 4244)
+#endif
+
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
 #pragma clang diagnostic ignored "-Wglobal-constructors"
