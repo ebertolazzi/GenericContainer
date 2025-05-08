@@ -3764,7 +3764,7 @@ namespace GC_namespace {
     //! \param[in] a `GenericContainer` to be stored
     //!
     GenericContainer const & operator = ( GenericContainer const & a )
-    { this->from_gc( a ); return * this; }
+    { this->clear(); this->from_gc( a ); return * this; }
 
     //!
     //! Load a `GenericContainer` to the generic container (deep copy).
