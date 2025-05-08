@@ -4175,6 +4175,14 @@ namespace GC_namespace {
     void merge( GenericContainer const & gc, string_view const where );
 
     //!
+    //! Read the contents of stream from a file (YAML,JSON or TOML)
+    //!
+    //! \param[in] file_name file name of the data
+    //! \return true if conversion successful
+    //!
+    bool from_file( string_view file_name );
+
+    //!
     //! Print the contents of the object in YAML syntax
     //!
     //! \param[in] stream output stream
