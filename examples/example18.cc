@@ -31,6 +31,9 @@
 using namespace GC;
 using namespace std;
 
+#include <iostream>
+#include <sstream>
+
 int
 //main( int argc, const char * argv[] ) {
 main() {
@@ -54,15 +57,8 @@ main() {
     gc.from_toml( file );
     file.close();
   }
-  //std::cout << "\n\n\nWRITE GC\n";
-  //gc.print( std::cout );
   std::cout << "\n\n\nWRITE TOML\n";
   gc.to_toml( std::cout );
-  //{
-  //  ofstream file( "examples/settings.yml" );
-  //  gc.to_toml( file );
-  //  file.close();
-  //}
 
   cout << "\n\nAll done Folks!!!\n\n";
   return 0;

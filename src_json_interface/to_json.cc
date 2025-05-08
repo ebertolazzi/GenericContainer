@@ -129,6 +129,8 @@ namespace GC_namespace {
             pre = ",\n";
           }
           stream << '\n' << prefix << "]";
+        } else {
+          stream << "[]";
         }
         break;
       }
@@ -143,6 +145,8 @@ namespace GC_namespace {
             pre = ",\n";
           }
           stream << '\n' << prefix << "}";
+        } else {
+          stream << "{}";
         }
         break;
       }
