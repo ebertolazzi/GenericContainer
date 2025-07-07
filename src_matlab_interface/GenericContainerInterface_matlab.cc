@@ -236,14 +236,18 @@ namespace GC_namespace {
         }
         break;
       case 2:
-        if ( nx == 1 ) {
-          vec_complex_type & vec{ gc.set_vec_complex( total_num_of_elements ) };
-          for ( unsigned idx{0}; idx < total_num_of_elements; ++idx )
-            vec[idx] = complex_type(real_type(*pr++),real_type(*pi++));
-        } else {
-          mat_complex_type & mat{ gc.set_mat_complex( nx, ny ) };
-          for ( unsigned idx{0}; idx < total_num_of_elements; ++idx )
-            mat[idx] = complex_type(real_type(*pr++),real_type(*pi++));
+        {
+          unsigned nx{ static_cast<unsigned>(dims[0]) };
+          unsigned ny{ static_cast<unsigned>(dims[1]) };
+          if ( nx == 1 ) {
+            vec_complex_type & vec{ gc.set_vec_complex( total_num_of_elements ) };
+            for ( unsigned idx{0}; idx < total_num_of_elements; ++idx )
+              vec[idx] = complex_type(real_type(*pr++),real_type(*pi++));
+          } else {
+            mat_complex_type & mat{ gc.set_mat_complex( nx, ny ) };
+            for ( unsigned idx{0}; idx < total_num_of_elements; ++idx )
+              mat[idx] = complex_type(real_type(*pr++),real_type(*pi++));
+          }
         }
         break;
       default:
