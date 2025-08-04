@@ -4190,6 +4190,10 @@ namespace GC_namespace {
     //!
     void to_yaml( ostream_type & stream, string_view prefix = "" ) const;
 
+    string
+    to_yaml( string_view prefix = "" ) const
+    { ostringstream ss; this->to_yaml( ss, prefix ); return ss.str(); }
+
     //!
     //! Read the contents of stream in YAML syntax
     //!
@@ -4198,6 +4202,8 @@ namespace GC_namespace {
     //!
     bool from_yaml( istream_type & stream );
 
+    bool from_yaml( string const & data ) { istringstream ss(data); return this->from_yaml( ss ); }
+
     //!
     //! Print the contents of the object in JSON syntax
     //!
@@ -4205,6 +4211,10 @@ namespace GC_namespace {
     //! \param[in] prefix strig to be prepended to any field of the `GenericContainer`
     //!
     void to_json( ostream_type & stream, string_view prefix = "" ) const;
+
+    string
+    to_json( string_view prefix = "" ) const
+    { ostringstream ss; this->to_json( ss, prefix ); return ss.str();}
 
     //!
     //! Read the contents of stream in JSON syntax
@@ -4215,6 +4225,8 @@ namespace GC_namespace {
     bool from_json( istream_type & stream );
     bool from_json2( istream_type & stream );
 
+    bool from_json( string const & data ) { istringstream ss(data); return this->from_json( ss ); }
+
     //!
     //! Print the contents of the object in TOML syntax
     //!
@@ -4223,6 +4235,10 @@ namespace GC_namespace {
     //!
     bool to_toml( ostream_type & stream ) const;
 
+    string
+    to_toml() const
+    { ostringstream ss; this->to_toml( ss ); return ss.str();}
+
     //!
     //! Read the contents of stream in JSON syntax
     //!
@@ -4230,6 +4246,8 @@ namespace GC_namespace {
     //! \return true if conversion successful
     //!
     bool from_toml( istream_type & stream );
+
+    bool from_toml( string const & data ) { istringstream ss(data); return this->from_toml( ss ); }
 
     //!
     //! Collapse heterogeneous vectors into a unified type.

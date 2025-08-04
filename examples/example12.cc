@@ -58,9 +58,7 @@ main() {
     v3[1] = GenericContainer::complex_type(55,1);
     v3[2] = GenericContainer::complex_type(0,-2);
 
-    std::cout << "\n\n\n\nYAML\n\n";
-    gc.to_yaml( std::cout );
-    std::cout << "\n\n\n\n";
+    std::cout << "\n\n\n\nYAML\n\n" << gc.to_yaml() << "\n\n\n\n";
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';

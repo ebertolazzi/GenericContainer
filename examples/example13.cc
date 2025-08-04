@@ -48,11 +48,10 @@ main() {
     if ( !ok ) std::cerr << "Failed to parse: " << fname << '\n';
     std::cout << "\n\n\n\nGC\n\n";
     gc.print(std::cout);
-    std::cout << "\n\n\n\nYAML\n\n";
-    gc.to_yaml( std::cout );
-    std::cout << "\n\n\n\nJSON\n\n";
-    gc.to_json( std::cout );
-    std::cout << "\n\n\n\n";
+    std::cout
+      << "\n\n\n\nYAML\n\n" << gc.to_yaml()
+      << "\n\n\n\nJSON\n\n" << gc.to_json()
+      << "\n\n\n\n";
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';
