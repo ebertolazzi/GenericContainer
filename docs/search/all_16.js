@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['manipulation_20from_20files_0',['Example 10: Data Manipulation from Files',['../dc/dbb/_usage.html#autotoc_md21',1,'']]],
-  ['manipulation_3a_20vectors_20and_20maps_1',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md34',1,'']]],
-  ['map_2',['Creating a Map',['../db/de3/group___g_c.html#autotoc_md36',1,'']]],
+  ['manipulation_20from_20files_0',['Example 10: Data Manipulation from Files',['../dc/dbb/_usage.html#autotoc_md30',1,'']]],
+  ['manipulation_3a_20vectors_20and_20maps_1',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md52',1,'']]],
+  ['map_2',['Creating a Map',['../db/de3/group___g_c.html#autotoc_md54',1,'']]],
   ['map_5ftype_3',['map_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a2007c0c9184b399b1d9b6eef87ec102f',1,'GC_namespace::GenericContainer']]],
-  ['maps_4',['Maps',['../db/de3/group___g_c.html#autotoc_md34',1,'Advanced Manipulation: Vectors and Maps'],['../dc/dbb/_usage.html#autotoc_md14',1,'Example 3: Using Maps']]],
+  ['maps_4',['Maps',['../db/de3/group___g_c.html#autotoc_md52',1,'Advanced Manipulation: Vectors and Maps'],['../dc/dbb/_usage.html#autotoc_md16',1,'Example 3: Using Maps']]],
   ['mat_5fcomplex_5ftype_5',['mat_complex_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aec96419482887cec102393fefa83277a',1,'GC_namespace::GenericContainer::mat_complex_type'],['../d8/d51/namespace_g_c__namespace.html#a78b1dd4a53b6369660231f2aa3f39da4',1,'GC_namespace::mat_complex_type']]],
   ['mat_5fint_5ftype_6',['mat_int_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#addf9c141bd5852afacdf5458b15e542f',1,'GC_namespace::GenericContainer::mat_int_type'],['../d8/d51/namespace_g_c__namespace.html#a0af8d4ef7f1578c9ee717f82285a2bdd',1,'GC_namespace::mat_int_type']]],
   ['mat_5flong_5ftype_7',['mat_long_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a98812bcd86f0d97bf1eeaf1be6a80480',1,'GC_namespace::GenericContainer::mat_long_type'],['../d8/d51/namespace_g_c__namespace.html#a160b17e464aa5634213779e62efd841a',1,'GC_namespace::mat_long_type']]],
@@ -15,7 +15,7 @@ var searchData=
   ['mat_5ftype_3c_20long_5ftype_20_3e_12',['mat_type&lt; long_type &gt;',['../df/def/class_g_c__namespace_1_1mat__type.html',1,'GC_namespace']]],
   ['mat_5ftype_3c_20real_5ftype_20_3e_13',['mat_type&lt; real_type &gt;',['../df/def/class_g_c__namespace_1_1mat__type.html',1,'GC_namespace']]],
   ['matlab_20support_14',['Matlab Support',['../d0/d01/_matlab.html',1,'index']]],
-  ['matrix_20operations_15',['Example 8: Matrix Operations',['../dc/dbb/_usage.html#autotoc_md19',1,'']]],
+  ['matrix_20operations_15',['Example 8: Matrix Operations',['../dc/dbb/_usage.html#autotoc_md26',1,'']]],
   ['mem_5fsize_16',['mem_size',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a7cb07560f41eb190a0ed5c4a96654d99',1,'GC_namespace::GenericContainer']]],
   ['merge_17',['merge',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a6a70aae89a42d143ceddbcb50b3f7fda',1,'GC_namespace::GenericContainer']]],
   ['mexprint_18',['mexPrint',['../d8/d51/namespace_g_c__namespace.html#a3cbf87f939fa62b3e7c59e789adbd651',1,'GC_namespace']]],

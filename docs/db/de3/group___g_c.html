@@ -327,7 +327,7 @@ Functions</h2></td></tr>
 <li>Operations for vectors, matrices, and maps</li>
 <li>Support for complex numbers and serialization</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
 Basic Usage Pattern</h2>
 <ol type="1">
 <li><b>Initialization</b>: Create an empty container.</li>
@@ -336,7 +336,7 @@ Basic Usage Pattern</h2>
 <li><b>Manipulation</b>: Modify or update data within the container.</li>
 </ol>
 <p>Let's go through these steps in more detail.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Initialization of a <span class="tt">GenericContainer</span></h2>
 <p>To start using a <span class="tt">GenericContainer</span>, you need to initialize it using the <span class="tt">GC_init()</span> function. Once initialized, the container is ready to store any supported data type.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;GenericContainerCinterface.h&quot;</span></div>
@@ -351,49 +351,49 @@ Initialization of a <span class="tt">GenericContainer</span></h2>
 <div class="line">    GC_clear(&amp;gc);  <span class="comment">// Clear the container at the end</span></div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
 Setting Data in the <span class="tt">GenericContainer</span></h2>
 <p>The <span class="tt">GenericContainer</span> can store different types of data. Below are examples of how to set various types of data.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Set an Integer</h3>
 <p>To store an integer, use the <span class="tt"><a class="el" href="#gaefdbe7c4491e06d76ce6699b961055ed" title="Set the current element of the GenericContainer to an integer value.">GC_set_int()</a></span> function.</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(&amp;gc, 42);</div>
 <div class="ttc" id="agroup___g_c_html_gaefdbe7c4491e06d76ce6699b961055ed"><div class="ttname"><a href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a></div><div class="ttdeci">int GC_set_int(int a)</div><div class="ttdoc">Set the current element of the GenericContainer to an integer value.</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
 Set a Real Number</h3>
 <p>To store a floating-point number, use <span class="tt"><a class="el" href="#ga02e8daa89960a53e8d19d67e5595a3c0" title="Set the current element of the GenericContainer to a real number.">GC_set_real()</a></span>:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a>(&amp;gc, 3.14159);</div>
 <div class="ttc" id="agroup___g_c_html_ga02e8daa89960a53e8d19d67e5595a3c0"><div class="ttname"><a href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a></div><div class="ttdeci">int GC_set_real(double a)</div><div class="ttdoc">Set the current element of the GenericContainer to a real number.</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 Set a String</h3>
 <p>You can store a string using the <span class="tt"><a class="el" href="#ga620562c4b3400d365a7da44d799f1255" title="Set the current element of the GenericContainer to a string.">GC_set_string()</a></span> function:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a>(&amp;gc, <span class="stringliteral">&quot;Hello, GenericContainer!&quot;</span>);</div>
 <div class="ttc" id="agroup___g_c_html_ga620562c4b3400d365a7da44d799f1255"><div class="ttname"><a href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a></div><div class="ttdeci">int GC_set_string(char const a[])</div><div class="ttdoc">Set the current element of the GenericContainer to a string.</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Set a Vector of Integers</h3>
 <p>If you want to store an array of integers, use the <span class="tt"><a class="el" href="#gad7de94bfd0b1509b9eb9b2d78fc23817" title="Set the current element of the GenericContainer to a vector of integers, and copy the provided values...">GC_set_vector_of_int()</a></span> function:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> values[] = {1, 2, 3, 4, 5};</div>
 <div class="line"><a class="code hl_function" href="#gad7de94bfd0b1509b9eb9b2d78fc23817">GC_set_vector_of_int</a>(&amp;gc, values, 5);</div>
 <div class="ttc" id="agroup___g_c_html_gad7de94bfd0b1509b9eb9b2d78fc23817"><div class="ttname"><a href="#gad7de94bfd0b1509b9eb9b2d78fc23817">GC_set_vector_of_int</a></div><div class="ttdeci">int GC_set_vector_of_int(int const *a, int nelem)</div><div class="ttdoc">Set the current element of the GenericContainer to a vector of integers, and copy the provided values...</div></div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md47"></a>
 Accessing Data from the <span class="tt">GenericContainer</span></h2>
 <p>Once data is stored in the <span class="tt">GenericContainer</span>, you can retrieve it using the appropriate getter functions.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
 Retrieve an Integer</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> value = <a class="code hl_function" href="#gaf0e14b5c2fd60e0a15ec4cd5394404b2">GC_get_int</a>(&amp;gc);</div>
 <div class="line">printf(<span class="stringliteral">&quot;Integer value: %d\n&quot;</span>, value);</div>
 <div class="ttc" id="agroup___g_c_html_gaf0e14b5c2fd60e0a15ec4cd5394404b2"><div class="ttname"><a href="#gaf0e14b5c2fd60e0a15ec4cd5394404b2">GC_get_int</a></div><div class="ttdeci">int GC_get_int()</div><div class="ttdoc">Retrieve the integer value from the current element of the GenericContainer.</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
 Retrieve a Real Number</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> real_value = <a class="code hl_function" href="#ga0c9ffe201c3e1827921b02eaeee7460f">GC_get_real</a>(&amp;gc);</div>
 <div class="line">printf(<span class="stringliteral">&quot;Real value: %f\n&quot;</span>, real_value);</div>
 <div class="ttc" id="agroup___g_c_html_ga0c9ffe201c3e1827921b02eaeee7460f"><div class="ttname"><a href="#ga0c9ffe201c3e1827921b02eaeee7460f">GC_get_real</a></div><div class="ttdeci">double GC_get_real()</div><div class="ttdoc">Retrieve the real number value from the current element of the GenericContainer.</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md50"></a>
 Retrieve a String</h3>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* str = <a class="code hl_function" href="#gac92ba0a37ac212a3b103654baa7ce3a6">GC_get_string</a>(&amp;gc);</div>
 <div class="line">printf(<span class="stringliteral">&quot;String: %s\n&quot;</span>, str);</div>
 <div class="ttc" id="agroup___g_c_html_gac92ba0a37ac212a3b103654baa7ce3a6"><div class="ttname"><a href="#gac92ba0a37ac212a3b103654baa7ce3a6">GC_get_string</a></div><div class="ttdeci">char const * GC_get_string()</div><div class="ttdoc">Retrieve the string from the current element of the GenericContainer.</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
 Retrieve Elements from a Vector of Integers</h3>
 <p>To retrieve elements from a vector, use <span class="tt"><a class="el" href="#ga654c04d499921f0065bebcdf16ced97d" title="Retrieve the number of elements in the current vector of the GenericContainer.">GC_get_vector_size()</a></span> to get the size of the vector, and <span class="tt"><a class="el" href="#gaea7d09afcead1fc112a1fe24bc454fea" title="Retrieve an integer value at a specified position from a vector of integers in the GenericContainer.">GC_get_int_at_pos()</a></span> to access individual elements.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> size = <a class="code hl_function" href="#ga654c04d499921f0065bebcdf16ced97d">GC_get_vector_size</a>(&amp;gc);</div>
@@ -403,10 +403,10 @@ Retrieve Elements from a Vector of Integers</h3>
 <div class="line">}</div>
 <div class="ttc" id="agroup___g_c_html_ga654c04d499921f0065bebcdf16ced97d"><div class="ttname"><a href="#ga654c04d499921f0065bebcdf16ced97d">GC_get_vector_size</a></div><div class="ttdeci">int GC_get_vector_size()</div><div class="ttdoc">Retrieve the number of elements in the current vector of the GenericContainer.</div></div>
 <div class="ttc" id="agroup___g_c_html_gaea7d09afcead1fc112a1fe24bc454fea"><div class="ttname"><a href="#gaea7d09afcead1fc112a1fe24bc454fea">GC_get_int_at_pos</a></div><div class="ttdeci">int GC_get_int_at_pos(int pos)</div><div class="ttdoc">Retrieve an integer value at a specified position from a vector of integers in the GenericContainer.</div></div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
 Advanced Manipulation: Vectors and Maps</h2>
 <p>The <span class="tt">GenericContainer</span> also supports more complex structures like vectors of vectors or maps (key-value pairs). This allows you to represent hierarchical or complex data.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md53"></a>
 Creating a Vector of <span class="tt">GenericContainer</span></h3>
 <p>You can create a vector of <span class="tt">GenericContainer</span> objects, where each element may hold a different data type:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a>(&amp;gc, 3);  <span class="comment">// Initialize a vector of 3 elements</span></div>
@@ -418,7 +418,7 @@ Creating a Vector of <span class="tt">GenericContainer</span></h3>
 <div class="line"><a class="code hl_function" href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a>(&amp;gc, 2.718);     <span class="comment">// Set a real number in the second element</span></div>
 <div class="ttc" id="agroup___g_c_html_ga446e5e057707b59033f27ddcfb8a99ac"><div class="ttname"><a href="#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a></div><div class="ttdeci">int GC_push_vector_position(int pos)</div><div class="ttdoc">Set the insertion point in the current vector of the GenericContainer.</div></div>
 <div class="ttc" id="agroup___g_c_html_gaf14c1be318b456d250057cb5d5acb2cc"><div class="ttname"><a href="#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a></div><div class="ttdeci">int GC_set_vector(int nelem)</div><div class="ttdoc">Set the current element of the GenericContainer to a vector of GenericContainer elements with the spe...</div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md54"></a>
 Creating a Map</h3>
 <p>You can create a map where each key is associated with a value. For example, to map a string to another value:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a>(&amp;gc);                <span class="comment">// Initialize a map</span></div>
@@ -426,18 +426,18 @@ Creating a Map</h3>
 <div class="line"><a class="code hl_function" href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a>(&amp;gc, <span class="stringliteral">&quot;value&quot;</span>);    <span class="comment">// Set a string value for the key</span></div>
 <div class="ttc" id="agroup___g_c_html_ga466ad50bf43dcf4100e95d64f238900d"><div class="ttname"><a href="#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a></div><div class="ttdeci">int GC_push_map_position(char const pos[])</div><div class="ttdoc">Set the insertion point to the specified key in the current map of the GenericContainer.</div></div>
 <div class="ttc" id="agroup___g_c_html_gad0c3f19dcf90486ddc53116870c76d56"><div class="ttname"><a href="#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a></div><div class="ttdeci">int GC_set_map()</div><div class="ttdoc">Initialize the current element of the GenericContainer to a map.</div></div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
 Cleanup and Deallocation</h2>
 <p>At the end of the lifecycle of a <span class="tt">GenericContainer</span>, it's important to release the memory using <span class="tt">GC_clear()</span>:</p>
 <div class="fragment"><div class="line">GC_clear(&amp;gc);</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md56"></a>
 Error Handling</h2>
 <p>Many <span class="tt">GenericContainer</span> functions return an error code to help you detect and handle issues. For example, after setting an integer, check the return code:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> ret = <a class="code hl_function" href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(&amp;gc, 42);</div>
 <div class="line"><span class="keywordflow">if</span> (ret != 0) {</div>
 <div class="line">    printf(<span class="stringliteral">&quot;Error setting integer\n&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
 Key Functions</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">

@@ -174,157 +174,639 @@ Example Usage</h2>
 Example 1: Basic Operations</h3>
 <p>This example illustrates basic operations, including setting and retrieving integer values.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    GenericContainer gc;</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;     example N.1       \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line">  <span class="comment">// Simple example using simple data</span></div>
+<div class="line">  GenericContainer gc1 = 1;</div>
+<div class="line">  GenericContainer gc2 = 1.2;</div>
+<div class="line">  GenericContainer gc3 = <span class="keyword">true</span>;</div>
+<div class="line">  GenericContainer gc4 = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line">  GenericContainer gc5;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Setting an integer value</span></div>
-<div class="line">    gc[<span class="stringliteral">&quot;integerValue&quot;</span>] = 42;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;GenericContainer simple usage\n&quot;</span>;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc1: &quot;</span>; gc1.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc2: &quot;</span>; gc2.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc3: &quot;</span>; gc3.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc4: &quot;</span>; gc4.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc5: &quot;</span>; gc5.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Retrieving the integer value</span></div>
-<div class="line">    <span class="keywordtype">int</span> value = gc[<span class="stringliteral">&quot;integerValue&quot;</span>].get_int();</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;The integer value is: &quot;</span> &lt;&lt; value &lt;&lt; endl;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
 <div class="ttc" id="a_generic_container_8hh_html"><div class="ttname"><a href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a></div></div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example01.exe</div>
+<div class="line">./bin/example01.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">     example N.1</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">GenericContainer simple usage</div>
+<div class="line">gc1: Integer: 1</div>
+<div class="line">gc2: Floating Point: 1.2</div>
+<div class="line">gc3: Boolean: true</div>
+<div class="line">gc4: String: pippo</div>
+<div class="line">gc5: GenericContainer: No data stored</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Example 2: Working with Vectors</h3>
 <p>This example shows how to create and manipulate a vector within a <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    GenericContainer gc;</div>
-<div class="line">    gc.set_vec_real(5);  <span class="comment">// Create a vector of 5 real numbers</span></div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Assigning values to the vector</span></div>
-<div class="line">    gc[0] = 3.14;</div>
-<div class="line">    gc[1] = 2.71;</div>
-<div class="line">    gc[2] = 1.41;</div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.2      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Displaying vector contents</span></div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Vector contents: &quot;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; gc.get_vector_size(); i++) {</div>
-<div class="line">        cout &lt;&lt; gc[i].get_real() &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line">    }</div>
-<div class="line">    cout &lt;&lt; endl;</div>
+<div class="line">  <span class="comment">// Simple example using simple data</span></div>
+<div class="line">  GenericContainer gc1, gc2, gc3, gc4, gc5;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;GenericContainer simple usage\n&quot;</span>;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc1: &quot;</span>; gc1.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc2: &quot;</span>; gc2.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc3: &quot;</span>; gc3.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc4: &quot;</span>; gc4.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc5: &quot;</span>; gc5.info(cout);</div>
+<div class="line"> </div>
+<div class="line">  gc1 = 1;</div>
+<div class="line">  gc2 = 1.2;</div>
+<div class="line">  gc3 = <span class="keyword">true</span>;</div>
+<div class="line">  gc4 = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;After initialization\n&quot;</span>;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc1: &quot;</span>; gc1.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc2: &quot;</span>; gc2.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc3: &quot;</span>; gc3.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc4: &quot;</span>; gc4.info(cout);</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;gc5: &quot;</span>; gc5.info(cout);</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example02.exe</div>
+<div class="line">./bin/example02.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.2</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">GenericContainer simple usage</div>
+<div class="line">gc1: GenericContainer: No data stored</div>
+<div class="line">gc2: GenericContainer: No data stored</div>
+<div class="line">gc3: GenericContainer: No data stored</div>
+<div class="line">gc4: GenericContainer: No data stored</div>
+<div class="line">gc5: GenericContainer: No data stored</div>
+<div class="line">After initialization</div>
+<div class="line">gc1: Integer: 1</div>
+<div class="line">gc2: Floating Point: 1.2</div>
+<div class="line">gc3: Boolean: true</div>
+<div class="line">gc4: String: pippo</div>
+<div class="line">gc5: GenericContainer: No data stored</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 Example 3: Using Maps</h3>
 <p>Demonstrates how to create and manipulate maps within a <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.3      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Using complex data</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line"> </div>
 <div class="line">    GenericContainer gc;</div>
-<div class="line">    gc.set_map();  <span class="comment">// Create a map</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Setting values in the map</span></div>
-<div class="line">    gc[<span class="stringliteral">&quot;key1&quot;</span>] = 123;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;key2&quot;</span>] = <span class="stringliteral">&quot;example&quot;</span>;</div>
+<div class="line">    gc . set_vector();</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Retrieving values from the map</span></div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Key1: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;key1&quot;</span>].get_int() &lt;&lt; endl;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Key2: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;key2&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line">    GC::vector_type &amp; v = gc.get_vector();</div>
+<div class="line">    v.resize(10);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">    <span class="comment">// access using vector</span></div>
+<div class="line">    v[0] = 1;</div>
+<div class="line">    v[1] = 1.2;</div>
+<div class="line">    v[2] = <span class="keyword">true</span>;</div>
+<div class="line">    v[3] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// or using overloading</span></div>
+<div class="line">    gc[4] = 1;</div>
+<div class="line">    gc[5] = 1.2;</div>
+<div class="line">    gc[6] = <span class="keyword">true</span>;</div>
+<div class="line">    gc[7] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Print contents of gc:\n&quot;</span>;</div>
+<div class="line">    gc.dump(cout);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// issue an error!</span></div>
+<div class="line">    gc[15] = 1.2;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example03.exe</div>
+<div class="line">./bin/example03.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.3</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">gc: GenericContainer: No data stored</div>
+<div class="line">gc: Vector of generic data type of size 0</div>
+<div class="line">gc: Vector of generic data type of size 10</div>
+<div class="line">Print contents of gc:</div>
+<div class="line">0: 1</div>
+<div class="line">1: 1.2</div>
+<div class="line">2: true</div>
+<div class="line">3: &quot;pippo&quot;</div>
+<div class="line">4: 1</div>
+<div class="line">5: 1.2</div>
+<div class="line">6: true</div>
+<div class="line">7: &quot;pippo&quot;</div>
+<div class="line">8: null</div>
+<div class="line">9: null</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 Example 4: Nested Containers</h3>
 <p>Illustrates how to create nested containers with vectors and maps.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.4      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Using complex data</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line"> </div>
 <div class="line">    GenericContainer gc;</div>
-<div class="line">    gc.set_vec_real(2);  <span class="comment">// Create a vector of 2 elements</span></div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Create first element as a map</span></div>
-<div class="line">    gc[0].set_map();</div>
-<div class="line">    gc[0][<span class="stringliteral">&quot;innerKey1&quot;</span>] = 100;</div>
+<div class="line">    gc . set_map();</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Create second element as another vector</span></div>
-<div class="line">    gc[1].set_vec_real(3);</div>
-<div class="line">    gc[1][0] = 1.0;</div>
-<div class="line">    gc[1][1] = 2.0;</div>
-<div class="line">    gc[1][2] = 3.0;</div>
+<div class="line">    GC::map_type &amp; m = gc . set_map();</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Display contents</span></div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Inner Key1: &quot;</span> &lt;&lt; gc[0][<span class="stringliteral">&quot;innerKey1&quot;</span>].get_int() &lt;&lt; endl;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Vector contents of second element: &quot;</span>;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; gc[1].get_vector_size(); i++) {</div>
-<div class="line">        cout &lt;&lt; gc[1][i].get_real() &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line">    }</div>
-<div class="line">    cout &lt;&lt; endl;</div>
+<div class="line">    <span class="comment">// access using map and vector like syntax</span></div>
+<div class="line">    m[<span class="stringliteral">&quot;a&quot;</span>] = 1;</div>
+<div class="line">    m[<span class="stringliteral">&quot;b&quot;</span>] = 1.2;</div>
+<div class="line">    m[<span class="stringliteral">&quot;c&quot;</span>] = <span class="keyword">true</span>;</div>
+<div class="line">    m[<span class="stringliteral">&quot;d&quot;</span>] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">    <span class="comment">// or using overloading</span></div>
+<div class="line">    gc[<span class="stringliteral">&quot;e&quot;</span>] = 1;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;f&quot;</span>] = 1.2;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;g&quot;</span>] = <span class="keyword">true</span>;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;h&quot;</span>] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line">    gc[<span class="stringliteral">&quot;pointer&quot;</span>] = &amp;gc;</div>
+<div class="line"> </div>
+<div class="line">    gc.erase(<span class="stringliteral">&quot;h&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    GC::vec_real_type v;</div>
+<div class="line">    v.push_back(1);</div>
+<div class="line">    v.push_back(2);</div>
+<div class="line">    v.push_back(3);</div>
+<div class="line">    v.push_back(4);</div>
+<div class="line">    gc[<span class="stringliteral">&quot;vec_real&quot;</span>] = v;</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Print contents of gc:\n&quot;</span>;</div>
+<div class="line">    gc.dump(cout);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// issue an error!</span></div>
+<div class="line">    gc[0] = 1.2;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example04.exe</div>
+<div class="line">./bin/example04.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.4</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">gc: GenericContainer: No data stored</div>
+<div class="line">gc: Map</div>
+<div class="line">gc: Map</div>
+<div class="line">Print contents of gc:</div>
+<div class="line">a: 1</div>
+<div class="line">b: 1.2</div>
+<div class="line">c: true</div>
+<div class="line">d: &quot;pippo&quot;</div>
+<div class="line">e: 1</div>
+<div class="line">f: 1.2</div>
+<div class="line">g: true</div>
+<div class="line">pointer: 0x16f6663f0</div>
+<div class="line">vec_real:</div>
+<div class="line">    [ 1 2 3 4 ]</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 Example 5: Serialization</h3>
 <p>This example showcases how to serialize and deserialize a <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.5      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line"> </div>
 <div class="line">    GenericContainer gc;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;name&quot;</span>] = <span class="stringliteral">&quot;Doxygen&quot;</span>;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;version&quot;</span>] = 1.8;</div>
+<div class="line">    GC::vector_type &amp; v = gc.set_vector();</div>
+<div class="line">    v.resize(10);</div>
+<div class="line">    v[0] = 1;</div>
+<div class="line">    v[1].set_vec_real();</div>
+<div class="line">    v[2].set_map();</div>
+<div class="line">    v[3].set_vec_string();</div>
+<div class="line">    v[4] = 1.3;</div>
+<div class="line">    v[5] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line">    v[6].set_map();</div>
+<div class="line">    v[7].set_vector();</div>
+<div class="line">    v[8] = <span class="keyword">true</span>;</div>
+<div class="line">    GC::vec_real_type &amp; vv = v[1].get_vec_real();</div>
+<div class="line">    vv.resize(10);</div>
+<div class="line">    vv[2] = 123;</div>
+<div class="line">    GC::map_type &amp; mm = v[2].get_map();</div>
+<div class="line">    mm[<span class="stringliteral">&quot;pippo&quot;</span>]    = 13;</div>
+<div class="line">    mm[<span class="stringliteral">&quot;pluto&quot;</span>]    = 1;</div>
+<div class="line">    mm[<span class="stringliteral">&quot;paperino&quot;</span>] = 3;</div>
+<div class="line">    GenericContainer &amp; gmm = v[2]; <span class="comment">// access element 2 as GenericContainer</span></div>
+<div class="line">    gmm[<span class="stringliteral">&quot;aaa&quot;</span>]     = <span class="stringliteral">&quot;stringa1&quot;</span>;   <span class="comment">// is the same as mm[&quot;aaa&quot;] = &quot;stringa&quot;</span></div>
+<div class="line">    gmm[<span class="stringliteral">&quot;bbb&quot;</span>]     = <span class="stringliteral">&quot;stringa2&quot;</span>;   <span class="comment">// is the same as mm[&quot;aaa&quot;] = &quot;stringa&quot;</span></div>
+<div class="line">    GC::vec_string_type &amp; vs = v[3].get_vec_string();</div>
+<div class="line">    vs.push_back(<span class="stringliteral">&quot;string1&quot;</span>);</div>
+<div class="line">    vs.push_back(<span class="stringliteral">&quot;string2&quot;</span>);</div>
+<div class="line">    vs.push_back(<span class="stringliteral">&quot;string3&quot;</span>);</div>
+<div class="line">    vs.push_back(<span class="stringliteral">&quot;string4&quot;</span>);</div>
+<div class="line">    GC::map_type &amp; m = v[6].get_map();</div>
+<div class="line">    m[<span class="stringliteral">&quot;aaa&quot;</span>]    = 123;</div>
+<div class="line">    m[<span class="stringliteral">&quot;bbb&quot;</span>]    = 3.4;</div>
+<div class="line">    m[<span class="stringliteral">&quot;vector&quot;</span>].set_vec_int();</div>
+<div class="line">    GC::vec_int_type &amp; vi = m[<span class="stringliteral">&quot;vector&quot;</span>].get_vec_int();</div>
+<div class="line">    vi.push_back(12);</div>
+<div class="line">    vi.push_back(10);</div>
+<div class="line">    vi.push_back(1);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Serialize the GenericContainer</span></div>
-<div class="line">    <span class="keywordtype">int</span> sz = gc.mem_size();</div>
-<div class="line">    vector&lt;uint8_t&gt; buffer( <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>( sz ) );</div>
-<div class="line">    <span class="keywordtype">int</span> sz1 = gc.serialize(sz, buffer.data());</div>
+<div class="line">    GC::vector_type &amp; vg = v[7].get_vector();</div>
+<div class="line">    vg.resize(3);</div>
+<div class="line">    vg[0] = 123;</div>
+<div class="line">    vg[1] = 3.14;</div>
+<div class="line">    vg[2] = <span class="stringliteral">&quot;nonna papera&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Serialized size: &quot;</span> &lt;&lt; sz1 &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\n\nPrint gc:\n&quot;</span>;</div>
+<div class="line">    gc.dump(cout);</div>
+<div class="line">    <span class="comment">//gc.to_yaml(cout);</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Deserialize into a new GenericContainer</span></div>
-<div class="line">    GenericContainer gc_new;</div>
-<div class="line">    gc_new.de_serialize(sz, buffer.data());</div>
+<div class="line">    GenericContainer gc1 = gc; <span class="comment">// save a copy</span></div>
+<div class="line">    gc.clear();</div>
 <div class="line"> </div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Deserialized Name: &quot;</span> &lt;&lt; gc_new[<span class="stringliteral">&quot;name&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\n\nPrint gc:\n&quot;</span>;</div>
+<div class="line">    gc.dump(cout);</div>
+<div class="line">    <span class="comment">//gc.to_yaml(cout);</span></div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\n\nPrint gc1:\n&quot;</span>;</div>
+<div class="line">    gc1.dump(cout);</div>
+<div class="line">    <span class="comment">//gc1.to_yaml(cout);</span></div>
+<div class="line"> </div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
-Example 6: Complex Data Structures</h3>
-<p>Demonstrates the creation of a complex data structure with various data types.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example05.exe</div>
+<div class="line">./bin/example05.exe</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    GenericContainer gc;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Create a map with different data types</span></div>
-<div class="line">    gc.set_map();</div>
-<div class="line">    gc[<span class="stringliteral">&quot;intValue&quot;</span>] = 100;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;stringValue&quot;</span>] = <span class="stringliteral">&quot;Hello World&quot;</span>;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;realValue&quot;</span>] = 3.14159;</div>
+<div class="line">                       </div>
+<div class="line">      example N.5</div>
+<div class="line">                       </div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Accessing values</span></div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Integer: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;intValue&quot;</span>].get_int() &lt;&lt; endl;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;String: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;stringValue&quot;</span>].get_string() &lt;&lt; endl;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Real: &quot;</span> &lt;&lt; gc[<span class="stringliteral">&quot;realValue&quot;</span>].get_real() &lt;&lt; endl;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Print gc:</div>
+<div class="line">0: 1</div>
+<div class="line">1: [ 0 0 123 0 0 0 0 0 0 0 ]</div>
+<div class="line">2:</div>
+<div class="line">    aaa: &quot;stringa1&quot;</div>
+<div class="line">    bbb: &quot;stringa2&quot;</div>
+<div class="line">    paperino: 3</div>
+<div class="line">    pippo: 13</div>
+<div class="line">    pluto: 1</div>
+<div class="line">3:</div>
+<div class="line">    0: &quot;string1&quot;</div>
+<div class="line">    1: &quot;string2&quot;</div>
+<div class="line">    2: &quot;string3&quot;</div>
+<div class="line">    3: &quot;string4&quot;</div>
+<div class="line">4: 1.3</div>
+<div class="line">5: &quot;pippo&quot;</div>
+<div class="line">6:</div>
+<div class="line">    aaa: 123</div>
+<div class="line">    bbb: 3.4</div>
+<div class="line">    vector:</div>
+<div class="line">        [ 12 10 1 ]</div>
+<div class="line">7:</div>
+<div class="line">    0: 123</div>
+<div class="line">    1: 3.14</div>
+<div class="line">    2: &quot;nonna papera&quot;</div>
+<div class="line">8: true</div>
+<div class="line">9: null</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Print gc:</div>
+<div class="line">null</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">Print gc1:</div>
+<div class="line">0: 1</div>
+<div class="line">1: [ 0 0 123 0 0 0 0 0 0 0 ]</div>
+<div class="line">2:</div>
+<div class="line">    aaa: &quot;stringa1&quot;</div>
+<div class="line">    bbb: &quot;stringa2&quot;</div>
+<div class="line">    paperino: 3</div>
+<div class="line">    pippo: 13</div>
+<div class="line">    pluto: 1</div>
+<div class="line">3:</div>
+<div class="line">    0: &quot;string1&quot;</div>
+<div class="line">    1: &quot;string2&quot;</div>
+<div class="line">    2: &quot;string3&quot;</div>
+<div class="line">    3: &quot;string4&quot;</div>
+<div class="line">4: 1.3</div>
+<div class="line">5: &quot;pippo&quot;</div>
+<div class="line">6:</div>
+<div class="line">    aaa: 123</div>
+<div class="line">    bbb: 3.4</div>
+<div class="line">    vector:</div>
+<div class="line">        [ 12 10 1 ]</div>
+<div class="line">7:</div>
+<div class="line">    0: 123</div>
+<div class="line">    1: 3.14</div>
+<div class="line">    2: &quot;nonna papera&quot;</div>
+<div class="line">8: true</div>
+<div class="line">9: null</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+Example 6: C interface</h3>
+<p>Example of usage of the C interface.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../da/d4f/_generic_container_interface___c_8h.html">GenericContainer/GenericContainerInterface_C.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#define CK( A ) ok = A; if ( ok != GENERIC_CONTAINER_OK ) printf(&quot;Error = %d\n&quot;,ok )</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordtype">int</span> ok;</div>
+<div class="line"> </div>
+<div class="line">  printf(<span class="stringliteral">&quot;\n\n\n&quot;</span>);</div>
+<div class="line">  printf(<span class="stringliteral">&quot;***********************\n&quot;</span>);</div>
+<div class="line">  printf(<span class="stringliteral">&quot;      example N.6      \n&quot;</span>);</div>
+<div class="line">  printf(<span class="stringliteral">&quot;***********************\n\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga58e721f53614a628c86aa3192a10bda5">GC_select</a>( <span class="stringliteral">&quot;generic_container&quot;</span> ) );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a>(10) );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(0) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>( 1 ) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(1) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gacff492e97fc6dd33467002aa50c64ac6">GC_set_empty_vector_of_real</a>() );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(2) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a>() );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(3) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gab5c51d363602f1cbe42142c6cebb4a32">GC_set_empty_vector_of_string</a>() );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(4) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a>( 1.3 ) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(5) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a>( <span class="stringliteral">&quot;pippo&quot;</span> ) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(6) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a>() );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(7) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga9e6cda6086e95e66d82dd2f838285a60">GC_set_empty_vector</a>() );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(8) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga8ae675381c32aae8bc1a23c4682a4174">GC_set_bool</a>(1) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">/* return to element 1 of the vector */</span></div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(1) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a>(1.1) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a>(2.2) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a>(3.3) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a>(4.4) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(2) );</div>
+<div class="line"> </div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;pippo&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(13) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;pluto&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(1) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;paperino&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(3) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;aaa&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a>(<span class="stringliteral">&quot;stringa&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(3) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a>(<span class="stringliteral">&quot;string1&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a>(<span class="stringliteral">&quot;string2&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a>(<span class="stringliteral">&quot;string3&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a>(<span class="stringliteral">&quot;string4&quot;</span>) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(6) );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;aaa&quot;</span>) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(123) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;bbb&quot;</span>) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a>(3.4) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a>(<span class="stringliteral">&quot;vector&quot;</span>) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#gadacb4c8d6729aa59e14681eb099ab69b">GC_set_empty_vector_of_int</a>() );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga65554caf303396820550ec43f34f5dc9">GC_push_int</a>(12) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga65554caf303396820550ec43f34f5dc9">GC_push_int</a>(10) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga65554caf303396820550ec43f34f5dc9">GC_push_int</a>(1) );</div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() ); <span class="comment">/* return to vector */</span></div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(7) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga9e6cda6086e95e66d82dd2f838285a60">GC_set_empty_vector</a>() );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga65554caf303396820550ec43f34f5dc9">GC_push_int</a>(123) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a>(3.14) );</div>
+<div class="line">    CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a>(<span class="stringliteral">&quot;nonna papera&quot;</span>) );</div>
+<div class="line"> </div>
+<div class="line">  CK( <a class="code hl_function" href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a>() );</div>
+<div class="line"> </div>
+<div class="line">  <a class="code hl_function" href="../../db/de3/group___g_c.html#gab655420d208fed344ad592058e099e96">GC_dump</a>();</div>
+<div class="line"> </div>
+<div class="line">  printf(<span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+<div class="line"> <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_generic_container_interface___c_8h_html"><div class="ttname"><a href="../../da/d4f/_generic_container_interface___c_8h.html">GenericContainerInterface_C.h</a></div></div>
+<div class="ttc" id="agroup___g_c_html_ga02e8daa89960a53e8d19d67e5595a3c0"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a></div><div class="ttdeci">int GC_set_real(double a)</div><div class="ttdoc">Set the current element of the GenericContainer to a real number.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga04506ce2900be0d3122e67e1c0e65b39"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a></div><div class="ttdeci">int GC_pop_head()</div><div class="ttdoc">Move the head pointer up one level in the GenericContainer.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga2b76609cd898d84e6a381533407d9f63"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a></div><div class="ttdeci">int GC_push_real(double a)</div><div class="ttdoc">Append a floating-point value to the currently selected vector of real numbers in the GenericContaine...</div></div>
+<div class="ttc" id="agroup___g_c_html_ga3e65e06c95680394ae21d7ae14824dd7"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a></div><div class="ttdeci">int GC_push_string(char const a[])</div><div class="ttdoc">Append a string to the currently selected vector of strings in the GenericContainer.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga446e5e057707b59033f27ddcfb8a99ac"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a></div><div class="ttdeci">int GC_push_vector_position(int pos)</div><div class="ttdoc">Set the insertion point in the current vector of the GenericContainer.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga466ad50bf43dcf4100e95d64f238900d"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a></div><div class="ttdeci">int GC_push_map_position(char const pos[])</div><div class="ttdoc">Set the insertion point to the specified key in the current map of the GenericContainer.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga58e721f53614a628c86aa3192a10bda5"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga58e721f53614a628c86aa3192a10bda5">GC_select</a></div><div class="ttdeci">int GC_select(char const id[])</div><div class="ttdoc">Select an existing GenericContainer object.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga620562c4b3400d365a7da44d799f1255"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a></div><div class="ttdeci">int GC_set_string(char const a[])</div><div class="ttdoc">Set the current element of the GenericContainer to a string.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga65554caf303396820550ec43f34f5dc9"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga65554caf303396820550ec43f34f5dc9">GC_push_int</a></div><div class="ttdeci">int GC_push_int(int a)</div><div class="ttdoc">Append an integer value to the currently selected vector of integers in the GenericContainer.</div></div>
+<div class="ttc" id="agroup___g_c_html_ga8ae675381c32aae8bc1a23c4682a4174"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga8ae675381c32aae8bc1a23c4682a4174">GC_set_bool</a></div><div class="ttdeci">int GC_set_bool(int a)</div></div>
+<div class="ttc" id="agroup___g_c_html_ga9e6cda6086e95e66d82dd2f838285a60"><div class="ttname"><a href="../../db/de3/group___g_c.html#ga9e6cda6086e95e66d82dd2f838285a60">GC_set_empty_vector</a></div><div class="ttdeci">int GC_set_empty_vector()</div><div class="ttdoc">Set the current element of the GenericContainer to an empty vector of GenericContainer elements.</div></div>
+<div class="ttc" id="agroup___g_c_html_gab5c51d363602f1cbe42142c6cebb4a32"><div class="ttname"><a href="../../db/de3/group___g_c.html#gab5c51d363602f1cbe42142c6cebb4a32">GC_set_empty_vector_of_string</a></div><div class="ttdeci">int GC_set_empty_vector_of_string()</div><div class="ttdoc">Initialize the current element of the GenericContainer to an empty vector of strings.</div></div>
+<div class="ttc" id="agroup___g_c_html_gab655420d208fed344ad592058e099e96"><div class="ttname"><a href="../../db/de3/group___g_c.html#gab655420d208fed344ad592058e099e96">GC_dump</a></div><div class="ttdeci">int GC_dump()</div><div class="ttdoc">Dump the contents of the current GenericContainer.</div></div>
+<div class="ttc" id="agroup___g_c_html_gacff492e97fc6dd33467002aa50c64ac6"><div class="ttname"><a href="../../db/de3/group___g_c.html#gacff492e97fc6dd33467002aa50c64ac6">GC_set_empty_vector_of_real</a></div><div class="ttdeci">int GC_set_empty_vector_of_real()</div><div class="ttdoc">Initialize the current element of the GenericContainer to an empty vector of real numbers.</div></div>
+<div class="ttc" id="agroup___g_c_html_gad0c3f19dcf90486ddc53116870c76d56"><div class="ttname"><a href="../../db/de3/group___g_c.html#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a></div><div class="ttdeci">int GC_set_map()</div><div class="ttdoc">Initialize the current element of the GenericContainer to a map.</div></div>
+<div class="ttc" id="agroup___g_c_html_gadacb4c8d6729aa59e14681eb099ab69b"><div class="ttname"><a href="../../db/de3/group___g_c.html#gadacb4c8d6729aa59e14681eb099ab69b">GC_set_empty_vector_of_int</a></div><div class="ttdeci">int GC_set_empty_vector_of_int()</div><div class="ttdoc">Initialize the current element of the GenericContainer to an empty vector of integers.</div></div>
+<div class="ttc" id="agroup___g_c_html_gaefdbe7c4491e06d76ce6699b961055ed"><div class="ttname"><a href="../../db/de3/group___g_c.html#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a></div><div class="ttdeci">int GC_set_int(int a)</div><div class="ttdoc">Set the current element of the GenericContainer to an integer value.</div></div>
+<div class="ttc" id="agroup___g_c_html_gaf14c1be318b456d250057cb5d5acb2cc"><div class="ttname"><a href="../../db/de3/group___g_c.html#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a></div><div class="ttdeci">int GC_set_vector(int nelem)</div><div class="ttdoc">Set the current element of the GenericContainer to a vector of GenericContainer elements with the spe...</div></div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example06.exe</div>
+<div class="line">./bin/example06.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.6</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">0: 1</div>
+<div class="line">1: [ 1.1 2.2 3.3 4.4 ]</div>
+<div class="line">2:</div>
+<div class="line">    aaa: &quot;stringa&quot;</div>
+<div class="line">    paperino: 3</div>
+<div class="line">    pippo: 13</div>
+<div class="line">    pluto: 1</div>
+<div class="line">3:</div>
+<div class="line">    0: &quot;string1&quot;</div>
+<div class="line">    1: &quot;string2&quot;</div>
+<div class="line">    2: &quot;string3&quot;</div>
+<div class="line">    3: &quot;string4&quot;</div>
+<div class="line">4: 1.3</div>
+<div class="line">5: &quot;pippo&quot;</div>
+<div class="line">6:</div>
+<div class="line">    aaa: 123</div>
+<div class="line">    bbb: 3.4</div>
+<div class="line">    vector:</div>
+<div class="line">        [ 12 10 1 ]</div>
+<div class="line">7:</div>
+<div class="line">    0: 123</div>
+<div class="line">    1: 3.14</div>
+<div class="line">    2: &quot;nonna papera&quot;</div>
+<div class="line">8: true</div>
+<div class="line">9: null</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
 Example 7: File I/O</h3>
 <p>This example demonstrates the use of file I/O with <span class="tt">GenericContainer</span> to read and print formatted data.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -333,77 +815,208 @@ Example 7: File I/O</h3>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    GenericContainer gc;</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.7      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    GC::GenericContainer gc;</div>
 <div class="line">    ifstream file(<span class="stringliteral">&quot;data_example.txt&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">if</span> ( file.fail() ) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to open file&quot;</span>);</div>
+<div class="line">    gc.readFormattedData( file, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot;\t &quot;</span> );</div>
+<div class="line">    gc.dump(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\nData Read:\n&quot;</span>;</div>
+<div class="line">    gc.writeFormattedData( cout, <span class="charliteral">&#39;\t&#39;</span> );</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (file.fail()) {</div>
-<div class="line">        cerr &lt;&lt; <span class="stringliteral">&quot;Error opening file!&quot;</span> &lt;&lt; endl;</div>
-<div class="line">        <span class="keywordflow">return</span> 1;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    gc.readFormattedData(file, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot;\t &quot;</span>);</div>
-<div class="line">    gc.dump(cout);  <span class="comment">// Print contents</span></div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example07.exe</div>
+<div class="line">./bin/example07.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.7</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">failed to open file</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
 Example 8: Matrix Operations</h3>
 <p>This example shows how to create and manipulate a matrix using <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    GenericContainer gc;</div>
-<div class="line">    gc.set_mat_real(3, 3);  <span class="comment">// Create a 3x3 matrix</span></div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Assigning values to the matrix</span></div>
-<div class="line">    gc.get_real_at(0, 0) = 1.0;</div>
-<div class="line">    gc.get_real_at(1, 1) = 2.0;</div>
-<div class="line">    gc.get_real_at(2, 2) = 3.0;</div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.8      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Display matrix contents</span></div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Matrix contents:&quot;</span> &lt;&lt; endl;</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 3; ++i) {</div>
-<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; 3; ++j) {</div>
-<div class="line">            cout &lt;&lt; gc.get_real_at(i, j) &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line">        }</div>
-<div class="line">        cout &lt;&lt; endl;</div>
-<div class="line">    }</div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    GC::GenericContainer gc, gc_res;</div>
+<div class="line">    gc.set_mat_real(2,2);</div>
+<div class="line">    gc.get_real_at(1,1) = 2;</div>
+<div class="line">    gc.get_real_at(0,1) = 3;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Result:\n&quot;</span>;</div>
+<div class="line">    gc.dump(cout);</div>
+<div class="line">    gc.info(cout);</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example08.exe</div>
+<div class="line">./bin/example08.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.8</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">Result:</div>
+<div class="line">       0        3</div>
+<div class="line">       0        2</div>
+<div class="line">Matrix of floating point number of size 2 x 2</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Example 9: Advanced Serialization</h3>
 <p>This example illustrates advanced serialization and deserialization of <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    GenericContainer gc;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;item1&quot;</span>] = 45.67;</div>
-<div class="line">    gc[<span class="stringliteral">&quot;item2&quot;</span>] = <span class="stringliteral">&quot;OpenAI&quot;</span>;</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Serialize the GenericContainer</span></div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.9      \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    GC::GenericContainer gc, gc_new;</div>
+<div class="line">    GC::GenericContainer &amp; gc1 = gc[<span class="stringliteral">&quot;pippo&quot;</span>];</div>
+<div class="line">    GC::GenericContainer &amp; gc2 = gc[<span class="stringliteral">&quot;pluto&quot;</span>];</div>
+<div class="line">    GC::GenericContainer &amp; gc3 = gc[<span class="stringliteral">&quot;paperino&quot;</span>];</div>
+<div class="line">    GC::GenericContainer &amp; gc4 = gc[<span class="stringliteral">&quot;vector&quot;</span>];</div>
+<div class="line">    gc1.set_mat_real(2,2);</div>
+<div class="line">    gc1.get_real_at(0,0) = 22323;</div>
+<div class="line">    gc1.get_real_at(0,1) = 4443;</div>
+<div class="line">    gc1.get_real_at(1,0) = 432;</div>
+<div class="line">    gc1.get_real_at(1,1) = 433;</div>
+<div class="line">    gc2.set_vec_string();</div>
+<div class="line">    gc2.push_string(<span class="stringliteral">&quot;nonna&quot;</span>);</div>
+<div class="line">    gc2.push_string(<span class="stringliteral">&quot;papera&quot;</span>);</div>
+<div class="line">    gc3 = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line">    gc4[0] = 1.234;</div>
+<div class="line">    gc4[1] = <span class="keyword">true</span>;</div>
+<div class="line">    vec_real_type &amp; v = gc4[2].set_vec_real(4);</div>
+<div class="line">    v[0] = 1;</div>
+<div class="line">    v[1] = -1;</div>
+<div class="line">    v[2] = 2;</div>
+<div class="line">    v[3] = 4;</div>
+<div class="line">    gc4[3] = <span class="stringliteral">&quot;superkaly&quot;</span>;</div>
+<div class="line">    gc4[4] = complex_type(1,2);</div>
 <div class="line">    <span class="keywordtype">int</span> sz = gc.mem_size();</div>
-<div class="line">    vector&lt;uint8_t&gt; buffer(sz);</div>
-<div class="line">    gc.serialize(sz, buffer.data());</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Size: &quot;</span> &lt;&lt; sz &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Deserialize into a new GenericContainer</span></div>
-<div class="line">    GenericContainer gc_new;</div>
-<div class="line">    gc_new.de_serialize(sz, buffer.data());</div>
+<div class="line">    vector&lt;uint8_t&gt; buffer( <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>( sz ) );</div>
+<div class="line">    <span class="keywordtype">int</span> sz1 = gc.serialize( sz, &amp;buffer.front() );</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Size1: &quot;</span> &lt;&lt; sz1 &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
 <div class="line"> </div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Deserialized Item1: &quot;</span> &lt;&lt; gc_new[<span class="stringliteral">&quot;item1&quot;</span>].get_real() &lt;&lt; endl;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Deserialized Item2: &quot;</span> &lt;&lt; gc_new[<span class="stringliteral">&quot;item2&quot;</span>].get_string() &lt;&lt; endl;</div>
+<div class="line">    <span class="comment">//for ( auto c : buffer ) cout &lt;&lt; (int)c &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------------\n&quot;</span>;</div>
+<div class="line">    gc.print(std::cout);</div>
+<div class="line">    gc_new.de_serialize( sz, &amp;buffer.front() );</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;--------------------------\n&quot;</span>;</div>
+<div class="line">    gc_new.print(std::cout);</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example09.exe</div>
+<div class="line">./bin/example09.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.9</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">Size: 242</div>
+<div class="line">Size1: 242</div>
+<div class="line">--------------------------</div>
+<div class="line">paperino: &quot;pippo&quot;</div>
+<div class="line">pippo:</div>
+<div class="line">   22323     4443</div>
+<div class="line">     432      433</div>
+<div class="line">pluto:</div>
+<div class="line">    0: &quot;nonna&quot;</div>
+<div class="line">    1: &quot;papera&quot;</div>
+<div class="line">vector:</div>
+<div class="line">    0: 1.234</div>
+<div class="line">    1: true</div>
+<div class="line">    2: [ 1 -1 2 4 ]</div>
+<div class="line">    3: &quot;superkaly&quot;</div>
+<div class="line">    4: 1+2i</div>
+<div class="line">--------------------------</div>
+<div class="line">paperino: &quot;pippo&quot;</div>
+<div class="line">pippo:</div>
+<div class="line">   22323     4443</div>
+<div class="line">     432      433</div>
+<div class="line">pluto:</div>
+<div class="line">    0: &quot;nonna&quot;</div>
+<div class="line">    1: &quot;papera&quot;</div>
+<div class="line">vector:</div>
+<div class="line">    0: 1.234</div>
+<div class="line">    1: true</div>
+<div class="line">    2: [ 1 -1 2 4 ]</div>
+<div class="line">    3: &quot;superkaly&quot;</div>
+<div class="line">    4: 1+2i</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Example 10: Data Manipulation from Files</h3>
 <p>This example demonstrates reading formatted data from a file and displaying it using <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -411,44 +1024,369 @@ Example 10: Data Manipulation from Files</h3>
 <div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main() {</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
-<div class="line">         &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
-<div class="line">         &lt;&lt; <span class="stringliteral">&quot;      Example N.10     \n&quot;</span></div>
-<div class="line">         &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">try</span> {</div>
-<div class="line">        GenericContainer gc1, gc2, gc3, gc4, pars;</div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.10     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line">        <span class="comment">// Reading formatted data from a file</span></div>
-<div class="line">        gc1.readFormattedData(<span class="stringliteral">&quot;examples/example10_data.txt&quot;</span>);</div>
-<div class="line">        gc2.readFormattedData2(<span class="stringliteral">&quot;examples/example10_data.txt&quot;</span>, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot; \t&quot;</span>, &amp;pars);</div>
-<div class="line">        gc2.to_gc(gc3);</div>
-<div class="line">        gc4.from_gc(gc2);</div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    GenericContainer gc1, gc2, gc3, gc4, pars;</div>
+<div class="line">    gc1.readFormattedData( <span class="stringliteral">&quot;examples/example10_data.txt&quot;</span> );</div>
+<div class="line">    gc2.readFormattedData2( <span class="stringliteral">&quot;examples/example10_data.txt&quot;</span>, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot; \t&quot;</span>, &amp;pars );</div>
+<div class="line">    gc2.to_gc(gc3);</div>
+<div class="line">    gc4.from_gc(gc2);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;GC1 --------------------------\n&quot;</span>;</div>
+<div class="line">    gc1.print(std::cout);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;GC2 --------------------------\n&quot;</span>;</div>
+<div class="line">    gc2.print(std::cout);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;PARS --------------------------\n&quot;</span>;</div>
+<div class="line">    pars.print(std::cout);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;GC2 COPY ----------------------\n&quot;</span>;</div>
+<div class="line">    gc3.print(std::cout);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;GC2 COPY2 ---------------------\n&quot;</span>;</div>
+<div class="line">    gc4.print(std::cout);</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">        <span class="comment">// Print contents of the GenericContainers</span></div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC1 --------------------------\n&quot;</span>;</div>
-<div class="line">        gc1.print(cout);</div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC2 --------------------------\n&quot;</span>;</div>
-<div class="line">        gc2.print(cout);</div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;PARS --------------------------\n&quot;</span>;</div>
-<div class="line">        pars.print(cout);</div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC2 COPY ----------------------\n&quot;</span>;</div>
-<div class="line">        gc3.print(cout);</div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;GC2 COPY2 ---------------------\n&quot;</span>;</div>
-<div class="line">        gc4.print(cout);</div>
-<div class="line">    } <span class="keywordflow">catch</span> (std::exception &amp;exc) {</div>
-<div class="line">        cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line">    } <span class="keywordflow">catch</span> (...) {</div>
-<div class="line">        cout &lt;&lt; <span class="stringliteral">&quot;Unknown error\n&quot;</span>;</div>
-<div class="line">    }</div>
-<div class="line"> </div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
-<div class="line"> </div>
-<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- fragment --><p>File: <b>example10_dataa.txt</b></p>
+<div class="fragment"><div class="line"># Date:             23:37:39 2022-11-10</div>
+<div class="line"># MX Version:       1.5.1-d142dirty-osx_13.0 hash: f78c1e6a Thu Nov 10 00:49:36 2022</div>
+<div class="line"># Computation type: Optimal control solution</div>
+<div class="line"># Model name:       ICLOCS_MinimumFuelOrbitRaising</div>
+<div class="line">#</div>
+<div class="line">#! converged            = YES</div>
+<div class="line">#! num_equations        = 2411</div>
+<div class="line">#! Lagrange target      = -0.5252740061732518</div>
+<div class="line">#! Mayer target         = 0</div>
+<div class="line">#! Penalties            = 0</div>
+<div class="line">#! Control Penalties    = 0</div>
+<div class="line">#! max_iter             = 300</div>
+<div class="line">#! max_step_iter        = 40</div>
+<div class="line">#! max_accumulated_iter = 800</div>
+<div class="line">#! tolerance            = 9.999999999999999e-10</div>
+<div class="line">#! iterations           = 9</div>
+<div class="line">#! cpu_time             = 31.388 ms</div>
+<div class="line">#! solver_type          = CyclicReduction+LU and LastBlock LUPQ</div>
+<div class="line">#! lapack version       = Accelerate</div>
+<div class="line">#</div>
+<div class="line"># SOLUTION</div>
+<div class="line">i_segment   zeta    lagrange_target inequality_penalties    penalties   control_penalties   theta   theta_cell  r   vr  vt  lambda1__xo lambda2__xo lambda3__xo r_D vr_D    vt_D    mu0_D   mu1_D   mu2_D   THETA   MASS</div>
+<div class="line">0   0   3.83335121988244145e-24 0   0   0   0.431767195334314069    0.431767195334314069    1   -3.83335121988244145e-24    1   -0.877337087218752587   -0.928952238240128514   -2.02514653387216637    -3.83335121988244145e-24    0.058795944131343543    0.127605983220630825    0.928952238240128514    -0.14780944665341389    1.85790447648025703 0.431767195334314069    1</div>
+<div class="line">0   0.00830000000000000009  -0.000496945325703529732    0   0   0   0.433474050458908022    0.435180905583501976    1.00000206232310163 0.000496945325703529732 1.00105739556634288 -0.869625817994938433   -0.930155840503653852   -2.00971195520261903    0.000496945325703529732 0.0611683403197462242   0.127087287078375633    0.929179819089718584    -0.14220704866934053    1.8612762108157439  0.433474050458908022    0.999378329999999981</div>
+<div class="line">0   0.0166000000000000002   -0.00101537275813047578 0   0   0   0.436901655787864773    0.438622405992227626    1.00000833844314951 0.00101537275813047578  1.00210955412627545 -0.861912784227839124   -0.931312622368338672   -1.99424994705747882    0.00101537275813047578  0.0637562246986424219   0.126443388053484207    0.929377317323367813    -0.136527477153772336   1.86451409929345302 0.436901655787864773    0.998756659999999963</div>
+<div class="line">0   0.024900000000000002    -0.00155527572126624015 0   0   0   0.440357131765090393    0.442091857537953214    1.00001900663433907 0.00155527572126624015  1.0031562607964406  -0.854198242060344337   -0.93242194498679809    -1.97876162589924998    0.00155527572126624015  0.0663431620239074704   0.125773551919138943    0.929543176882371647    -0.130771143996937678   1.86761680661033846 0.440357131765090393    0.998134990000000055</div>
+<div class="line">0   0.0332000000000000003   -0.00211664505276475861 0   0   0   0.443840639360533529    0.445589421183113843    1.00003424510555128 0.00211664505276475861  1.00419729992056017 -0.846482460541043258   -0.933483173043368919   -1.96324811923792319    0.00211664505276475861  0.0689288380619269697   0.12507768765539265 0.929675844110318117    -0.124938488353316224   1.87058300605143679 0.443840639360533529    0.997513320000000037</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+output</h4>
+<div class="fragment"><div class="line">execute ./bin/example10.exe</div>
+<div class="line">./bin/example10.exe</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">                       </div>
+<div class="line">      example N.10</div>
+<div class="line">                       </div>
+<div class="line"> </div>
+<div class="line">GC1 --------------------------</div>
+<div class="line">data:</div>
+<div class="line">    0: [ 0 0 0 0 0 ]</div>
+<div class="line">    1: [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
+<div class="line">    2: [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
+<div class="line">    3: [ 0 0 0 0 0 ]</div>
+<div class="line">    4: [ 0 0 0 0 0 ]</div>
+<div class="line">    5: [ 0 0 0 0 0 ]</div>
+<div class="line">    6: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    7: [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
+<div class="line">    8: [ 1 1 1.00001 1.00002 1.00003 ]</div>
+<div class="line">    9: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    10: [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
+<div class="line">    11: [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
+<div class="line">    12: [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
+<div class="line">    13: [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
+<div class="line">    14: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    15: [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
+<div class="line">    16: [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
+<div class="line">    17: [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
+<div class="line">    18: [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
+<div class="line">    19: [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
+<div class="line">    20: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    21: [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
+<div class="line">headers:</div>
+<div class="line">    0: &quot;i_segment&quot;</div>
+<div class="line">    1: &quot;zeta&quot;</div>
+<div class="line">    2: &quot;lagrange_target&quot;</div>
+<div class="line">    3: &quot;inequality_penalties&quot;</div>
+<div class="line">    4: &quot;penalties&quot;</div>
+<div class="line">    5: &quot;control_penalties&quot;</div>
+<div class="line">    6: &quot;theta&quot;</div>
+<div class="line">    7: &quot;theta_cell&quot;</div>
+<div class="line">    8: &quot;r&quot;</div>
+<div class="line">    9: &quot;vr&quot;</div>
+<div class="line">    10: &quot;vt&quot;</div>
+<div class="line">    11: &quot;lambda1__xo&quot;</div>
+<div class="line">    12: &quot;lambda2__xo&quot;</div>
+<div class="line">    13: &quot;lambda3__xo&quot;</div>
+<div class="line">    14: &quot;r_D&quot;</div>
+<div class="line">    15: &quot;vr_D&quot;</div>
+<div class="line">    16: &quot;vt_D&quot;</div>
+<div class="line">    17: &quot;mu0_D&quot;</div>
+<div class="line">    18: &quot;mu1_D&quot;</div>
+<div class="line">    19: &quot;mu2_D&quot;</div>
+<div class="line">    20: &quot;THETA&quot;</div>
+<div class="line">    21: &quot;MASS&quot;</div>
+<div class="line">GC2 --------------------------</div>
+<div class="line">data:</div>
+<div class="line">    MASS:</div>
+<div class="line">        [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
+<div class="line">    THETA:</div>
+<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    control_penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    i_segment:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    inequality_penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    lagrange_target:</div>
+<div class="line">        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
+<div class="line">    lambda1__xo:</div>
+<div class="line">        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
+<div class="line">    lambda2__xo:</div>
+<div class="line">        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
+<div class="line">    lambda3__xo:</div>
+<div class="line">        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
+<div class="line">    mu0_D:</div>
+<div class="line">        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
+<div class="line">    mu1_D:</div>
+<div class="line">        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
+<div class="line">    mu2_D:</div>
+<div class="line">        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
+<div class="line">    penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    r:</div>
+<div class="line">        [ 1 1 1.00001 1.00002 1.00003 ]</div>
+<div class="line">    r_D:</div>
+<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    theta:</div>
+<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    theta_cell:</div>
+<div class="line">        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
+<div class="line">    vr:</div>
+<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    vr_D:</div>
+<div class="line">        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
+<div class="line">    vt:</div>
+<div class="line">        [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
+<div class="line">    vt_D:</div>
+<div class="line">        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
+<div class="line">    zeta:</div>
+<div class="line">        [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
+<div class="line">headers:</div>
+<div class="line">    0: &quot;i_segment&quot;</div>
+<div class="line">    1: &quot;zeta&quot;</div>
+<div class="line">    2: &quot;lagrange_target&quot;</div>
+<div class="line">    3: &quot;inequality_penalties&quot;</div>
+<div class="line">    4: &quot;penalties&quot;</div>
+<div class="line">    5: &quot;control_penalties&quot;</div>
+<div class="line">    6: &quot;theta&quot;</div>
+<div class="line">    7: &quot;theta_cell&quot;</div>
+<div class="line">    8: &quot;r&quot;</div>
+<div class="line">    9: &quot;vr&quot;</div>
+<div class="line">    10: &quot;vt&quot;</div>
+<div class="line">    11: &quot;lambda1__xo&quot;</div>
+<div class="line">    12: &quot;lambda2__xo&quot;</div>
+<div class="line">    13: &quot;lambda3__xo&quot;</div>
+<div class="line">    14: &quot;r_D&quot;</div>
+<div class="line">    15: &quot;vr_D&quot;</div>
+<div class="line">    16: &quot;vt_D&quot;</div>
+<div class="line">    17: &quot;mu0_D&quot;</div>
+<div class="line">    18: &quot;mu1_D&quot;</div>
+<div class="line">    19: &quot;mu2_D&quot;</div>
+<div class="line">    20: &quot;THETA&quot;</div>
+<div class="line">    21: &quot;MASS&quot;</div>
+<div class="line">PARS --------------------------</div>
+<div class="line">Control Penalties: 0</div>
+<div class="line">Lagrange target: -0.525274</div>
+<div class="line">Mayer target: 0</div>
+<div class="line">Penalties: 0</div>
+<div class="line">converged: &quot;YES&quot;</div>
+<div class="line">cpu_time: 31.388</div>
+<div class="line">iterations: 9</div>
+<div class="line">lapack version: &quot;Accelerate&quot;</div>
+<div class="line">max_accumulated_iter: 800</div>
+<div class="line">max_iter: 300</div>
+<div class="line">max_step_iter: 40</div>
+<div class="line">num_equations: 2411</div>
+<div class="line">solver_type: &quot;CyclicReduction+LU and LastBlock LUPQ&quot;</div>
+<div class="line">tolerance: 1e-09</div>
+<div class="line">GC2 COPY ----------------------</div>
+<div class="line">data:</div>
+<div class="line">    MASS:</div>
+<div class="line">        [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
+<div class="line">    THETA:</div>
+<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    control_penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    i_segment:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    inequality_penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    lagrange_target:</div>
+<div class="line">        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
+<div class="line">    lambda1__xo:</div>
+<div class="line">        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
+<div class="line">    lambda2__xo:</div>
+<div class="line">        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
+<div class="line">    lambda3__xo:</div>
+<div class="line">        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
+<div class="line">    mu0_D:</div>
+<div class="line">        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
+<div class="line">    mu1_D:</div>
+<div class="line">        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
+<div class="line">    mu2_D:</div>
+<div class="line">        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
+<div class="line">    penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    r:</div>
+<div class="line">        [ 1 1 1.00001 1.00002 1.00003 ]</div>
+<div class="line">    r_D:</div>
+<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    theta:</div>
+<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    theta_cell:</div>
+<div class="line">        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
+<div class="line">    vr:</div>
+<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    vr_D:</div>
+<div class="line">        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
+<div class="line">    vt:</div>
+<div class="line">        [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
+<div class="line">    vt_D:</div>
+<div class="line">        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
+<div class="line">    zeta:</div>
+<div class="line">        [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
+<div class="line">headers:</div>
+<div class="line">    0: &quot;i_segment&quot;</div>
+<div class="line">    1: &quot;zeta&quot;</div>
+<div class="line">    2: &quot;lagrange_target&quot;</div>
+<div class="line">    3: &quot;inequality_penalties&quot;</div>
+<div class="line">    4: &quot;penalties&quot;</div>
+<div class="line">    5: &quot;control_penalties&quot;</div>
+<div class="line">    6: &quot;theta&quot;</div>
+<div class="line">    7: &quot;theta_cell&quot;</div>
+<div class="line">    8: &quot;r&quot;</div>
+<div class="line">    9: &quot;vr&quot;</div>
+<div class="line">    10: &quot;vt&quot;</div>
+<div class="line">    11: &quot;lambda1__xo&quot;</div>
+<div class="line">    12: &quot;lambda2__xo&quot;</div>
+<div class="line">    13: &quot;lambda3__xo&quot;</div>
+<div class="line">    14: &quot;r_D&quot;</div>
+<div class="line">    15: &quot;vr_D&quot;</div>
+<div class="line">    16: &quot;vt_D&quot;</div>
+<div class="line">    17: &quot;mu0_D&quot;</div>
+<div class="line">    18: &quot;mu1_D&quot;</div>
+<div class="line">    19: &quot;mu2_D&quot;</div>
+<div class="line">    20: &quot;THETA&quot;</div>
+<div class="line">    21: &quot;MASS&quot;</div>
+<div class="line">GC2 COPY2 ---------------------</div>
+<div class="line">data:</div>
+<div class="line">    MASS:</div>
+<div class="line">        [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
+<div class="line">    THETA:</div>
+<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    control_penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    i_segment:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    inequality_penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    lagrange_target:</div>
+<div class="line">        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
+<div class="line">    lambda1__xo:</div>
+<div class="line">        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
+<div class="line">    lambda2__xo:</div>
+<div class="line">        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
+<div class="line">    lambda3__xo:</div>
+<div class="line">        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
+<div class="line">    mu0_D:</div>
+<div class="line">        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
+<div class="line">    mu1_D:</div>
+<div class="line">        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
+<div class="line">    mu2_D:</div>
+<div class="line">        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
+<div class="line">    penalties:</div>
+<div class="line">        [ 0 0 0 0 0 ]</div>
+<div class="line">    r:</div>
+<div class="line">        [ 1 1 1.00001 1.00002 1.00003 ]</div>
+<div class="line">    r_D:</div>
+<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    theta:</div>
+<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
+<div class="line">    theta_cell:</div>
+<div class="line">        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
+<div class="line">    vr:</div>
+<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
+<div class="line">    vr_D:</div>
+<div class="line">        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
+<div class="line">    vt:</div>
+<div class="line">        [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
+<div class="line">    vt_D:</div>
+<div class="line">        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
+<div class="line">    zeta:</div>
+<div class="line">        [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
+<div class="line">headers:</div>
+<div class="line">    0: &quot;i_segment&quot;</div>
+<div class="line">    1: &quot;zeta&quot;</div>
+<div class="line">    2: &quot;lagrange_target&quot;</div>
+<div class="line">    3: &quot;inequality_penalties&quot;</div>
+<div class="line">    4: &quot;penalties&quot;</div>
+<div class="line">    5: &quot;control_penalties&quot;</div>
+<div class="line">    6: &quot;theta&quot;</div>
+<div class="line">    7: &quot;theta_cell&quot;</div>
+<div class="line">    8: &quot;r&quot;</div>
+<div class="line">    9: &quot;vr&quot;</div>
+<div class="line">    10: &quot;vt&quot;</div>
+<div class="line">    11: &quot;lambda1__xo&quot;</div>
+<div class="line">    12: &quot;lambda2__xo&quot;</div>
+<div class="line">    13: &quot;lambda3__xo&quot;</div>
+<div class="line">    14: &quot;r_D&quot;</div>
+<div class="line">    15: &quot;vr_D&quot;</div>
+<div class="line">    16: &quot;vt_D&quot;</div>
+<div class="line">    17: &quot;mu0_D&quot;</div>
+<div class="line">    18: &quot;mu1_D&quot;</div>
+<div class="line">    19: &quot;mu2_D&quot;</div>
+<div class="line">    20: &quot;THETA&quot;</div>
+<div class="line">    21: &quot;MASS&quot;</div>
+<div class="line">ALL DONE!</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+Example 11</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+Example 12</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+Example 13</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+Example 14</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+Example 15</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+Example 16</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+Example 17</h3>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+Example 18</h3>
+</div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">

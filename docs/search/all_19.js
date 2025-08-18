@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pattern_0',['Basic Usage Pattern',['../db/de3/group___g_c.html#autotoc_md22',1,'']]],
+  ['pattern_0',['Basic Usage Pattern',['../db/de3/group___g_c.html#autotoc_md40',1,'']]],
   ['pointer_5ftype_1',['pointer_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa929267d08bd73db39bc3809c91f46b4',1,'GC_namespace::GenericContainer']]],
   ['print_2',['print',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ab7b95bb934b3f0cd37af2404abee6b23',1,'GC_namespace::GenericContainer::print(ostream_type &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ae412ca89caaa66f86b1d7ff3a313cc9f',1,'GC_namespace::GenericContainer::print(string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const']]],
   ['print_5fcontent_5ftypes_3',['print_content_types',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a6b212287a8a8bb274c1231c9aac04484',1,'GC_namespace::GenericContainer']]],

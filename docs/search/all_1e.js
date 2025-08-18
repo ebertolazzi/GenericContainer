@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['variables_0',['Converting GenericContainer to Lua Global Variables',['../d0/d27/group___l_u_a.html#autotoc_md52',1,'']]],
-  ['variables_20and_20genericcontainer_1',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md50',1,'']]],
-  ['variables_20to_20genericcontainer_2',['Converting Lua Global Variables to GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md51',1,'']]],
+  ['variables_0',['Converting GenericContainer to Lua Global Variables',['../d0/d27/group___l_u_a.html#autotoc_md70',1,'']]],
+  ['variables_20and_20genericcontainer_1',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md68',1,'']]],
+  ['variables_20to_20genericcontainer_2',['Converting Lua Global Variables to GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md69',1,'']]],
   ['vec_5fbool_5ftype_3',['vec_bool_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a2b6f6b3805ebb8a3ebd7f6302b3f624f',1,'GC_namespace::GenericContainer']]],
   ['vec_5fcomplex_5ftype_4',['vec_complex_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#af71be9851e191790596ee3d941c47c46',1,'GC_namespace::GenericContainer']]],
   ['vec_5fint_5ftype_5',['vec_int_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa4ceab2be01717c57b1402abe11f1bcd',1,'GC_namespace::GenericContainer']]],
@@ -12,12 +12,12 @@ var searchData=
   ['vec_5fstring_5ftype_9',['vec_string_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ac520fb49a0dcff2fbaf75ecb043ac8d1',1,'GC_namespace::GenericContainer']]],
   ['vec_5fuint_5ftype_10',['vec_uint_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a9b73faa4e20c83efe950e542daf559d4',1,'GC_namespace::GenericContainer']]],
   ['vec_5fulong_5ftype_11',['vec_ulong_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a036fb755afe4087940dfd25b327d59d1',1,'GC_namespace::GenericContainer']]],
-  ['vector_20of_20genericcontainer_12',['Creating a Vector of &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;',['../db/de3/group___g_c.html#autotoc_md35',1,'']]],
-  ['vector_20of_20integers_13',['Vector of Integers',['../db/de3/group___g_c.html#autotoc_md33',1,'Retrieve Elements from a Vector of Integers'],['../db/de3/group___g_c.html#autotoc_md28',1,'Set a Vector of Integers']]],
-  ['vector_20of_20json_20strings_14',['Converting to a Vector of JSON Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md47',1,'']]],
-  ['vector_20of_20strings_15',['Vector of Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md45',1,'Loading JSON from a Vector of Strings'],['../d2/ddf/group___t_o_m_l.html#autotoc_md63',1,'Loading TOML from a Vector of Strings'],['../d8/d2e/group___y_a_m_l.html#autotoc_md71',1,'Loading YAML from a Vector of Strings']]],
+  ['vector_20of_20genericcontainer_12',['Creating a Vector of &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;',['../db/de3/group___g_c.html#autotoc_md53',1,'']]],
+  ['vector_20of_20integers_13',['Vector of Integers',['../db/de3/group___g_c.html#autotoc_md51',1,'Retrieve Elements from a Vector of Integers'],['../db/de3/group___g_c.html#autotoc_md46',1,'Set a Vector of Integers']]],
+  ['vector_20of_20json_20strings_14',['Converting to a Vector of JSON Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md65',1,'']]],
+  ['vector_20of_20strings_15',['Vector of Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md63',1,'Loading JSON from a Vector of Strings'],['../d2/ddf/group___t_o_m_l.html#autotoc_md81',1,'Loading TOML from a Vector of Strings'],['../d8/d2e/group___y_a_m_l.html#autotoc_md89',1,'Loading YAML from a Vector of Strings']]],
   ['vector_5ftype_16',['vector_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a368eefe43f52bd43290d92c398634451',1,'GC_namespace::GenericContainer']]],
-  ['vectors_17',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md13',1,'']]],
-  ['vectors_20and_20maps_18',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md34',1,'']]],
+  ['vectors_17',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md14',1,'']]],
+  ['vectors_20and_20maps_18',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md52',1,'']]],
   ['verify_20the_20installation_19',['Verify the Installation',['../df/d70/_install.html#autotoc_md10',1,'']]]
 ];

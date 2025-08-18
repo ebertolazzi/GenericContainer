@@ -182,14 +182,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <p>This module provides interface with JSON files. </p>
 <p>The <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> (GC) module offers a flexible container for storing various data types such as booleans, integers, floating-point numbers, complex numbers, and strings. It also supports structured data types such as vectors and maps. The C++ interface allows for seamless interaction with the container, enabling users to perform operations like adding elements, retrieving data, and managing hierarchical structures.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md58"></a>
 Overview</h2>
 <p>This tutorial explains how to use the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> JSON interface for converting between JSON data and the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object.</p>
 <p>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> is a flexible structure that can store various data types like booleans, integers, floating-point numbers, complex numbers, strings, vectors, and maps. The interface provides multiple ways to convert JSON files, streams, or strings into <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> objects and vice versa.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
 Loading JSON Data into a GenericContainer</h2>
 <p>There are several ways to load JSON data into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
 Loading JSON from a File</h3>
 <p>The <span class="tt">file_JSON_to_GC</span> function reads JSON data from a file and populates a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. This is useful for handling configuration files or other data stored in JSON format.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gab60e4260de6231434d1af66b145fd632">file_JSON_to_GC</a>( std::string <span class="keyword">const</span> &amp; file_name_JSON, GenericContainer &amp; gc );</div>
@@ -203,7 +203,7 @@ Loading JSON from a File</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON file.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
 Loading JSON from an Input Stream</h3>
 <p>The <span class="tt">JSON_to_GC</span> function allows loading JSON data from an input stream, such as a file stream or a string stream.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>( <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp; file_JSON, GenericContainer &amp; gc );</div>
@@ -217,7 +217,7 @@ Loading JSON from an Input Stream</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON stream.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md62"></a>
 Loading JSON from a String</h3>
 <p>You can convert a JSON string directly into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">JSON_to_GC</span> function.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>( std::string <span class="keyword">const</span> &amp; JSON, GenericContainer &amp; gc );</div>
@@ -250,7 +250,7 @@ Loading JSON from a String</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON string.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
 Loading JSON from a Vector of Strings</h3>
 <p>If you have multiple JSON strings in a vector, you can load them into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">JSON_to_GC</span> function.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>( std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp; JSON, GenericContainer &amp; gc );</div>
@@ -283,10 +283,10 @@ Loading JSON from a Vector of Strings</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON fragments.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
 Converting a GenericContainer to JSON</h2>
 <p>You can also convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> back to JSON format.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md47"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md65"></a>
 Converting to a Vector of JSON Strings</h3>
 <p>The <span class="tt">GC_to_JSON</span> function converts the contents of a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a vector of JSON strings.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a>( GenericContainer <span class="keyword">const</span> &amp; gc, std::vector&lt;std::string&gt; &amp; JSON );</div>
@@ -301,7 +301,7 @@ Converting to a Vector of JSON Strings</h3>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;line : JSON_output) {</div>
 <div class="line">    std::cout &lt;&lt; line &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md66"></a>
 Converting to a JSON File Stream</h3>
 <p>You can write the contents of a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to an output stream (e.g., a file) in JSON format using the <span class="tt">GC_to_JSON</span> function.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a>( GenericContainer <span class="keyword">const</span> &amp; gc, <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; file_JSON );</div>

@@ -1,0 +1,1357 @@
+/*!
+
+\page Usage
+
+## Example Usage
+
+This section presents various examples demonstrating
+the functionalities of the `GenericContainer` class.
+
+### Example 1: Basic Operations
+
+This example illustrates basic operations,
+including setting and retrieving integer values.
+
+\code{.cc}
+#include "GenericContainer.hh"
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "     example N.1       \n"
+    << "***********************\n\n";
+  // Simple example using simple data
+  GenericContainer gc1 = 1;
+  GenericContainer gc2 = 1.2;
+  GenericContainer gc3 = true;
+  GenericContainer gc4 = "pippo";
+  GenericContainer gc5;
+
+  cout << "GenericContainer simple usage\n";
+  cout << "gc1: "; gc1.info(cout);
+  cout << "gc2: "; gc2.info(cout);
+  cout << "gc3: "; gc3.info(cout);
+  cout << "gc4: "; gc4.info(cout);
+  cout << "gc5: "; gc5.info(cout);
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+#### output
+
+\code{.shell}
+execute ./bin/example01.exe
+./bin/example01.exe
+
+
+
+***********************
+     example N.1
+***********************
+
+GenericContainer simple usage
+gc1: Integer: 1
+gc2: Floating Point: 1.2
+gc3: Boolean: true
+gc4: String: pippo
+gc5: GenericContainer: No data stored
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+
+
+### Example 2: Working with Vectors
+
+This example shows how to create and
+manipulate a vector within a `GenericContainer`.
+
+\code{.cc}
+#include "GenericContainer.hh"
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.2      \n"
+    << "***********************\n\n";
+
+  // Simple example using simple data
+  GenericContainer gc1, gc2, gc3, gc4, gc5;
+
+  cout << "GenericContainer simple usage\n";
+  cout << "gc1: "; gc1.info(cout);
+  cout << "gc2: "; gc2.info(cout);
+  cout << "gc3: "; gc3.info(cout);
+  cout << "gc4: "; gc4.info(cout);
+  cout << "gc5: "; gc5.info(cout);
+
+  gc1 = 1;
+  gc2 = 1.2;
+  gc3 = true;
+  gc4 = "pippo";
+
+  cout << "After initialization\n";
+  cout << "gc1: "; gc1.info(cout);
+  cout << "gc2: "; gc2.info(cout);
+  cout << "gc3: "; gc3.info(cout);
+  cout << "gc4: "; gc4.info(cout);
+  cout << "gc5: "; gc5.info(cout);
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example02.exe
+./bin/example02.exe
+
+
+
+***********************
+      example N.2
+***********************
+
+GenericContainer simple usage
+gc1: GenericContainer: No data stored
+gc2: GenericContainer: No data stored
+gc3: GenericContainer: No data stored
+gc4: GenericContainer: No data stored
+gc5: GenericContainer: No data stored
+After initialization
+gc1: Integer: 1
+gc2: Floating Point: 1.2
+gc3: Boolean: true
+gc4: String: pippo
+gc5: GenericContainer: No data stored
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+### Example 3: Using Maps
+
+Demonstrates how to create and manipulate
+maps within a `GenericContainer`.
+
+\code{.cc}
+
+#include "GenericContainer.hh"
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.3      \n"
+    << "***********************\n\n";
+
+  // Using complex data
+
+  try {
+
+    GenericContainer gc;
+    cout << "gc: "; gc.info(cout);
+
+    gc . set_vector();
+    cout << "gc: "; gc.info(cout);
+
+    GC::vector_type & v = gc.get_vector();
+    v.resize(10);
+    cout << "gc: "; gc.info(cout);
+
+    // access using vector
+    v[0] = 1;
+    v[1] = 1.2;
+    v[2] = true;
+    v[3] = "pippo";
+
+    // or using overloading
+    gc[4] = 1;
+    gc[5] = 1.2;
+    gc[6] = true;
+    gc[7] = "pippo";
+    cout << "Print contents of gc:\n";
+    gc.dump(cout);
+
+    // issue an error!
+    gc[15] = 1.2;
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example03.exe
+./bin/example03.exe
+
+
+
+***********************
+      example N.3
+***********************
+
+gc: GenericContainer: No data stored
+gc: Vector of generic data type of size 0
+gc: Vector of generic data type of size 10
+Print contents of gc:
+0: 1
+1: 1.2
+2: true
+3: "pippo"
+4: 1
+5: 1.2
+6: true
+7: "pippo"
+8: null
+9: null
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+
+
+### Example 4: Nested Containers
+
+Illustrates how to create nested containers with vectors and maps.
+
+\code{.cc}
+#include "GenericContainer.hh"
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.4      \n"
+    << "***********************\n\n";
+
+  // Using complex data
+
+  try {
+
+    GenericContainer gc;
+    cout << "gc: "; gc.info(cout);
+
+    gc . set_map();
+    cout << "gc: "; gc.info(cout);
+
+    GC::map_type & m = gc . set_map();
+    cout << "gc: "; gc.info(cout);
+
+    // access using map and vector like syntax
+    m["a"] = 1;
+    m["b"] = 1.2;
+    m["c"] = true;
+    m["d"] = "pippo";
+
+    // or using overloading
+    gc["e"] = 1;
+    gc["f"] = 1.2;
+    gc["g"] = true;
+    gc["h"] = "pippo";
+    gc["pointer"] = &gc;
+
+    gc.erase("h");
+
+    GC::vec_real_type v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3);
+    v.push_back(4);
+    gc["vec_real"] = v;
+
+    cout << "Print contents of gc:\n";
+    gc.dump(cout);
+
+    // issue an error!
+    gc[0] = 1.2;
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example04.exe
+./bin/example04.exe
+
+
+
+***********************
+      example N.4
+***********************
+
+gc: GenericContainer: No data stored
+gc: Map
+gc: Map
+Print contents of gc:
+a: 1
+b: 1.2
+c: true
+d: "pippo"
+e: 1
+f: 1.2
+g: true
+pointer: 0x16f6663f0
+vec_real:
+    [ 1 2 3 4 ]
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+### Example 5: Serialization
+
+This example showcases how to serialize and deserialize a `GenericContainer`.
+
+\code{.cc}
+#include "GenericContainer.hh"
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.5      \n"
+    << "***********************\n\n";
+
+  try {
+
+    GenericContainer gc;
+    GC::vector_type & v = gc.set_vector();
+    v.resize(10);
+    v[0] = 1;
+    v[1].set_vec_real();
+    v[2].set_map();
+    v[3].set_vec_string();
+    v[4] = 1.3;
+    v[5] = "pippo";
+    v[6].set_map();
+    v[7].set_vector();
+    v[8] = true;
+    GC::vec_real_type & vv = v[1].get_vec_real();
+    vv.resize(10);
+    vv[2] = 123;
+    GC::map_type & mm = v[2].get_map();
+    mm["pippo"]    = 13;
+    mm["pluto"]    = 1;
+    mm["paperino"] = 3;
+    GenericContainer & gmm = v[2]; // access element 2 as GenericContainer
+    gmm["aaa"]     = "stringa1";   // is the same as mm["aaa"] = "stringa"
+    gmm["bbb"]     = "stringa2";   // is the same as mm["aaa"] = "stringa"
+    GC::vec_string_type & vs = v[3].get_vec_string();
+    vs.push_back("string1");
+    vs.push_back("string2");
+    vs.push_back("string3");
+    vs.push_back("string4");
+    GC::map_type & m = v[6].get_map();
+    m["aaa"]    = 123;
+    m["bbb"]    = 3.4;
+    m["vector"].set_vec_int();
+    GC::vec_int_type & vi = m["vector"].get_vec_int();
+    vi.push_back(12);
+    vi.push_back(10);
+    vi.push_back(1);
+
+    GC::vector_type & vg = v[7].get_vector();
+    vg.resize(3);
+    vg[0] = 123;
+    vg[1] = 3.14;
+    vg[2] = "nonna papera";
+
+    cout << "\n\n\nPrint gc:\n";
+    gc.dump(cout);
+    //gc.to_yaml(cout);
+
+    GenericContainer gc1 = gc; // save a copy
+    gc.clear();
+
+    cout << "\n\n\nPrint gc:\n";
+    gc.dump(cout);
+    //gc.to_yaml(cout);
+
+    cout << "\n\n\nPrint gc1:\n";
+    gc1.dump(cout);
+    //gc1.to_yaml(cout);
+
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example05.exe
+./bin/example05.exe
+
+
+
+***********************
+      example N.5
+***********************
+
+
+
+
+Print gc:
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    aaa: "stringa1"
+    bbb: "stringa2"
+    paperino: 3
+    pippo: 13
+    pluto: 1
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+8: true
+9: null
+
+
+
+Print gc:
+null
+
+
+
+Print gc1:
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    aaa: "stringa1"
+    bbb: "stringa2"
+    paperino: 3
+    pippo: 13
+    pluto: 1
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+8: true
+9: null
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+
+
+### Example 6: C interface
+
+Example of usage of the C interface.
+
+\code{.cc}
+#include "GenericContainer/GenericContainerInterface_C.h"
+#include <stdio.h>
+
+#define CK( A ) ok = A; if ( ok != GENERIC_CONTAINER_OK ) printf("Error = %d\n",ok )
+
+int
+main() {
+
+  int ok;
+
+  printf("\n\n\n");
+  printf("***********************\n");
+  printf("      example N.6      \n");
+  printf("***********************\n\n");
+
+  CK( GC_select( "generic_container" ) );
+
+  CK( GC_set_vector(10) );
+
+  CK( GC_push_vector_position(0) );
+  CK( GC_set_int( 1 ) );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(1) );
+  CK( GC_set_empty_vector_of_real() );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(2) );
+  CK( GC_set_map() );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(3) );
+  CK( GC_set_empty_vector_of_string() );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(4) );
+  CK( GC_set_real( 1.3 ) );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(5) );
+  CK( GC_set_string( "pippo" ) );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(6) );
+  CK( GC_set_map() );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(7) );
+  CK( GC_set_empty_vector() );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(8) );
+  CK( GC_set_bool(1) );
+  CK( GC_pop_head() ); /* return to vector */
+
+  /* return to element 1 of the vector */
+  CK( GC_push_vector_position(1) );
+    CK( GC_push_real(1.1) );
+    CK( GC_push_real(2.2) );
+    CK( GC_push_real(3.3) );
+    CK( GC_push_real(4.4) );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(2) );
+
+    CK( GC_push_map_position("pippo") );
+    CK( GC_set_int(13) );
+    CK( GC_pop_head() );
+
+    CK( GC_push_map_position("pluto") );
+    CK( GC_set_int(1) );
+    CK( GC_pop_head() );
+
+    CK( GC_push_map_position("paperino") );
+    CK( GC_set_int(3) );
+    CK( GC_pop_head() );
+
+    CK( GC_push_map_position("aaa") );
+    CK( GC_set_string("stringa") );
+    CK( GC_pop_head() );
+
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(3) );
+    CK( GC_push_string("string1") );
+    CK( GC_push_string("string2") );
+    CK( GC_push_string("string3") );
+    CK( GC_push_string("string4") );
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(6) );
+
+  CK( GC_push_map_position("aaa") );
+  CK( GC_set_int(123) );
+  CK( GC_pop_head() );
+
+  CK( GC_push_map_position("bbb") );
+  CK( GC_set_real(3.4) );
+  CK( GC_pop_head() );
+
+  CK( GC_push_map_position("vector") );
+    CK( GC_set_empty_vector_of_int() );
+    CK( GC_push_int(12) );
+    CK( GC_push_int(10) );
+    CK( GC_push_int(1) );
+  CK( GC_pop_head() );
+
+  CK( GC_pop_head() ); /* return to vector */
+
+  CK( GC_push_vector_position(7) );
+    CK( GC_set_empty_vector() );
+    CK( GC_push_int(123) );
+    CK( GC_push_real(3.14) );
+    CK( GC_push_string("nonna papera") );
+
+  CK( GC_pop_head() );
+
+  GC_dump();
+
+  printf("ALL DONE!\n\n\n\n");
+
+  return 0;
+}
+ return 0;
+}
+\endcode
+
+#### output
+
+\code{.shell}
+execute ./bin/example06.exe
+./bin/example06.exe
+
+
+
+***********************
+      example N.6
+***********************
+
+0: 1
+1: [ 1.1 2.2 3.3 4.4 ]
+2:
+    aaa: "stringa"
+    paperino: 3
+    pippo: 13
+    pluto: 1
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+8: true
+9: null
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+### Example 7: File I/O
+
+This example demonstrates the use of file I/O with `GenericContainer` to read and print formatted data.
+
+\code{.cc}
+
+#include "GenericContainer.hh"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.7      \n"
+    << "***********************\n\n";
+
+  try {
+    GC::GenericContainer gc;
+    ifstream file("data_example.txt");
+    if ( file.fail() ) throw std::runtime_error("failed to open file");
+    gc.readFormattedData( file, "#", "\t " );
+    gc.dump(cout);
+    cout << "\n\nData Read:\n";
+    gc.writeFormattedData( cout, '\t' );
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example07.exe
+./bin/example07.exe
+
+
+
+***********************
+      example N.7
+***********************
+
+failed to open file
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+
+
+### Example 8: Matrix Operations
+
+This example shows how to create and manipulate a matrix using `GenericContainer`.
+
+\code{.cc}
+#include "GenericContainer.hh"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.8      \n"
+    << "***********************\n\n";
+
+  try {
+    GC::GenericContainer gc, gc_res;
+    gc.set_mat_real(2,2);
+    gc.get_real_at(1,1) = 2;
+    gc.get_real_at(0,1) = 3;
+    cout << "Result:\n";
+    gc.dump(cout);
+    gc.info(cout);
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example08.exe
+./bin/example08.exe
+
+
+
+***********************
+      example N.8
+***********************
+
+Result:
+       0        3
+       0        2
+Matrix of floating point number of size 2 x 2
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+
+
+### Example 9: Advanced Serialization
+
+This example illustrates advanced serialization
+and deserialization of `GenericContainer`.
+
+\code{.cc}
+#include "GenericContainer.hh"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.9      \n"
+    << "***********************\n\n";
+
+  try {
+    GC::GenericContainer gc, gc_new;
+    GC::GenericContainer & gc1 = gc["pippo"];
+    GC::GenericContainer & gc2 = gc["pluto"];
+    GC::GenericContainer & gc3 = gc["paperino"];
+    GC::GenericContainer & gc4 = gc["vector"];
+    gc1.set_mat_real(2,2);
+    gc1.get_real_at(0,0) = 22323;
+    gc1.get_real_at(0,1) = 4443;
+    gc1.get_real_at(1,0) = 432;
+    gc1.get_real_at(1,1) = 433;
+    gc2.set_vec_string();
+    gc2.push_string("nonna");
+    gc2.push_string("papera");
+    gc3 = "pippo";
+    gc4[0] = 1.234;
+    gc4[1] = true;
+    vec_real_type & v = gc4[2].set_vec_real(4);
+    v[0] = 1;
+    v[1] = -1;
+    v[2] = 2;
+    v[3] = 4;
+    gc4[3] = "superkaly";
+    gc4[4] = complex_type(1,2);
+    int sz = gc.mem_size();
+    cout << "Size: " << sz << '\n';
+
+    vector<uint8_t> buffer( static_cast<size_t>( sz ) );
+    int sz1 = gc.serialize( sz, &buffer.front() );
+    cout << "Size1: " << sz1 << '\n';
+
+    //for ( auto c : buffer ) cout << (int)c << '\n';
+    std::cout << "--------------------------\n";
+    gc.print(std::cout);
+    gc_new.de_serialize( sz, &buffer.front() );
+    std::cout << "--------------------------\n";
+    gc_new.print(std::cout);
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example09.exe
+./bin/example09.exe
+
+
+
+***********************
+      example N.9
+***********************
+
+Size: 242
+Size1: 242
+--------------------------
+paperino: "pippo"
+pippo:
+   22323     4443
+     432      433
+pluto:
+    0: "nonna"
+    1: "papera"
+vector:
+    0: 1.234
+    1: true
+    2: [ 1 -1 2 4 ]
+    3: "superkaly"
+    4: 1+2i
+--------------------------
+paperino: "pippo"
+pippo:
+   22323     4443
+     432      433
+pluto:
+    0: "nonna"
+    1: "papera"
+vector:
+    0: 1.234
+    1: true
+    2: [ 1 -1 2 4 ]
+    3: "superkaly"
+    4: 1+2i
+ALL DONE!
+\endcode
+
+
+
+
+
+
+
+
+
+### Example 10: Data Manipulation from Files
+
+This example demonstrates reading formatted
+data from a file and displaying it using `GenericContainer`.
+
+\code{.cc}
+
+#include "GenericContainer.hh"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.10     \n"
+    << "***********************\n\n";
+
+  try {
+    GenericContainer gc1, gc2, gc3, gc4, pars;
+    gc1.readFormattedData( "examples/example10_data.txt" );
+    gc2.readFormattedData2( "examples/example10_data.txt", "#", " \t", &pars );
+    gc2.to_gc(gc3);
+    gc4.from_gc(gc2);
+    std::cout << "GC1 --------------------------\n";
+    gc1.print(std::cout);
+    std::cout << "GC2 --------------------------\n";
+    gc2.print(std::cout);
+    std::cout << "PARS --------------------------\n";
+    pars.print(std::cout);
+    std::cout << "GC2 COPY ----------------------\n";
+    gc3.print(std::cout);
+    std::cout << "GC2 COPY2 ---------------------\n";
+    gc4.print(std::cout);
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+File: **example10_dataa.txt**
+
+\code{.text}
+# Date:             23:37:39 2022-11-10
+# MX Version:       1.5.1-d142dirty-osx_13.0 hash: f78c1e6a Thu Nov 10 00:49:36 2022
+# Computation type: Optimal control solution
+# Model name:       ICLOCS_MinimumFuelOrbitRaising
+#
+#! converged            = YES
+#! num_equations        = 2411
+#! Lagrange target      = -0.5252740061732518
+#! Mayer target         = 0
+#! Penalties            = 0
+#! Control Penalties    = 0
+#! max_iter             = 300
+#! max_step_iter        = 40
+#! max_accumulated_iter = 800
+#! tolerance            = 9.999999999999999e-10
+#! iterations           = 9
+#! cpu_time             = 31.388 ms
+#! solver_type          = CyclicReduction+LU and LastBlock LUPQ
+#! lapack version       = Accelerate
+#
+# SOLUTION
+i_segment	zeta	lagrange_target	inequality_penalties	penalties	control_penalties	theta	theta_cell	r	vr	vt	lambda1__xo	lambda2__xo	lambda3__xo	r_D	vr_D	vt_D	mu0_D	mu1_D	mu2_D	THETA	MASS
+0	0	3.83335121988244145e-24	0	0	0	0.431767195334314069	0.431767195334314069	1	-3.83335121988244145e-24	1	-0.877337087218752587	-0.928952238240128514	-2.02514653387216637	-3.83335121988244145e-24	0.058795944131343543	0.127605983220630825	0.928952238240128514	-0.14780944665341389	1.85790447648025703	0.431767195334314069	1
+0	0.00830000000000000009	-0.000496945325703529732	0	0	0	0.433474050458908022	0.435180905583501976	1.00000206232310163	0.000496945325703529732	1.00105739556634288	-0.869625817994938433	-0.930155840503653852	-2.00971195520261903	0.000496945325703529732	0.0611683403197462242	0.127087287078375633	0.929179819089718584	-0.14220704866934053	1.8612762108157439	0.433474050458908022	0.999378329999999981
+0	0.0166000000000000002	-0.00101537275813047578	0	0	0	0.436901655787864773	0.438622405992227626	1.00000833844314951	0.00101537275813047578	1.00210955412627545	-0.861912784227839124	-0.931312622368338672	-1.99424994705747882	0.00101537275813047578	0.0637562246986424219	0.126443388053484207	0.929377317323367813	-0.136527477153772336	1.86451409929345302	0.436901655787864773	0.998756659999999963
+0	0.024900000000000002	-0.00155527572126624015	0	0	0	0.440357131765090393	0.442091857537953214	1.00001900663433907	0.00155527572126624015	1.0031562607964406	-0.854198242060344337	-0.93242194498679809	-1.97876162589924998	0.00155527572126624015	0.0663431620239074704	0.125773551919138943	0.929543176882371647	-0.130771143996937678	1.86761680661033846	0.440357131765090393	0.998134990000000055
+0	0.0332000000000000003	-0.00211664505276475861	0	0	0	0.443840639360533529	0.445589421183113843	1.00003424510555128	0.00211664505276475861	1.00419729992056017	-0.846482460541043258	-0.933483173043368919	-1.96324811923792319	0.00211664505276475861	0.0689288380619269697	0.12507768765539265	0.929675844110318117	-0.124938488353316224	1.87058300605143679	0.443840639360533529	0.997513320000000037
+\endcode
+
+
+#### output
+
+\code{.shell}
+execute ./bin/example10.exe
+./bin/example10.exe
+
+
+
+***********************
+      example N.10
+***********************
+
+GC1 --------------------------
+data:
+    0: [ 0 0 0 0 0 ]
+    1: [ 0 0.0083 0.0166 0.0249 0.0332 ]
+    2: [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    3: [ 0 0 0 0 0 ]
+    4: [ 0 0 0 0 0 ]
+    5: [ 0 0 0 0 0 ]
+    6: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    7: [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    8: [ 1 1 1.00001 1.00002 1.00003 ]
+    9: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    10: [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    11: [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    12: [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    13: [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    14: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    15: [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    16: [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    17: [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    18: [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    19: [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    20: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    21: [ 1 0.999378 0.998757 0.998135 0.997513 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+GC2 --------------------------
+data:
+    MASS:
+        [ 1 0.999378 0.998757 0.998135 0.997513 ]
+    THETA:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    control_penalties:
+        [ 0 0 0 0 0 ]
+    i_segment:
+        [ 0 0 0 0 0 ]
+    inequality_penalties:
+        [ 0 0 0 0 0 ]
+    lagrange_target:
+        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    lambda1__xo:
+        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    lambda2__xo:
+        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    lambda3__xo:
+        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    mu0_D:
+        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    mu1_D:
+        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    mu2_D:
+        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    penalties:
+        [ 0 0 0 0 0 ]
+    r:
+        [ 1 1 1.00001 1.00002 1.00003 ]
+    r_D:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    theta:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    theta_cell:
+        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    vr:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    vr_D:
+        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    vt:
+        [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    vt_D:
+        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    zeta:
+        [ 0 0.0083 0.0166 0.0249 0.0332 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+PARS --------------------------
+Control Penalties: 0
+Lagrange target: -0.525274
+Mayer target: 0
+Penalties: 0
+converged: "YES"
+cpu_time: 31.388
+iterations: 9
+lapack version: "Accelerate"
+max_accumulated_iter: 800
+max_iter: 300
+max_step_iter: 40
+num_equations: 2411
+solver_type: "CyclicReduction+LU and LastBlock LUPQ"
+tolerance: 1e-09
+GC2 COPY ----------------------
+data:
+    MASS:
+        [ 1 0.999378 0.998757 0.998135 0.997513 ]
+    THETA:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    control_penalties:
+        [ 0 0 0 0 0 ]
+    i_segment:
+        [ 0 0 0 0 0 ]
+    inequality_penalties:
+        [ 0 0 0 0 0 ]
+    lagrange_target:
+        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    lambda1__xo:
+        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    lambda2__xo:
+        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    lambda3__xo:
+        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    mu0_D:
+        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    mu1_D:
+        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    mu2_D:
+        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    penalties:
+        [ 0 0 0 0 0 ]
+    r:
+        [ 1 1 1.00001 1.00002 1.00003 ]
+    r_D:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    theta:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    theta_cell:
+        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    vr:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    vr_D:
+        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    vt:
+        [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    vt_D:
+        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    zeta:
+        [ 0 0.0083 0.0166 0.0249 0.0332 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+GC2 COPY2 ---------------------
+data:
+    MASS:
+        [ 1 0.999378 0.998757 0.998135 0.997513 ]
+    THETA:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    control_penalties:
+        [ 0 0 0 0 0 ]
+    i_segment:
+        [ 0 0 0 0 0 ]
+    inequality_penalties:
+        [ 0 0 0 0 0 ]
+    lagrange_target:
+        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    lambda1__xo:
+        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    lambda2__xo:
+        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    lambda3__xo:
+        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    mu0_D:
+        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    mu1_D:
+        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    mu2_D:
+        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    penalties:
+        [ 0 0 0 0 0 ]
+    r:
+        [ 1 1 1.00001 1.00002 1.00003 ]
+    r_D:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    theta:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    theta_cell:
+        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    vr:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    vr_D:
+        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    vt:
+        [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    vt_D:
+        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    zeta:
+        [ 0 0.0083 0.0166 0.0249 0.0332 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+ALL DONE!
+\endcode
+
+### Example 11
+### Example 12
+### Example 13
+### Example 14
+### Example 15
+### Example 16
+### Example 17
+### Example 18
+
+*/

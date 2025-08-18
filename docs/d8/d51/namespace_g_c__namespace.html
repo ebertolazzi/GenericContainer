@@ -390,7 +390,7 @@ Variables</h2></td></tr>
 </div><!-- fragment -->
 <p>Enum class representing types allowed for the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. </p>
 <p>This enum class defines the types that are allowed to be used in the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. The types are categorized as simple types, vector types, matrix types, and complex types.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md74"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
 Example</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a810c7fa067633e379bc065e080f1de30">TypeAllowed</a> type = TypeAllowed::INTEGER;  <span class="comment">// Defines an integer type for GenericContainer</span></div>
 <div class="ttc" id="anamespace_g_c__namespace_html_a810c7fa067633e379bc065e080f1de30"><div class="ttname"><a href="#a810c7fa067633e379bc065e080f1de30">GC_namespace::TypeAllowed</a></div><div class="ttdeci">enum class GC_type :int_type { NOTYPE, POINTER, BOOL, INTEGER, LONG, REAL, COMPLEX, STRING, VEC_POINTER, VEC_BOOL, VEC_INTEGER, VEC_LONG, VEC_REAL, VEC_COMPLEX, VEC_STRING, MAT_INTEGER, MAT_LONG, MAT_REAL, MAT_COMPLEX, VECTOR, MAP } TypeAllowed</div><div class="ttdoc">Enum class representing types allowed for the GenericContainer.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:517</div></div>
@@ -982,7 +982,7 @@ template&lt;typename TYPE&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A constant C-string representing the type.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md75"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
 Example</h3>
 <div class="fragment"><div class="line">GC_type type = GC_type::INTEGER;</div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* typeStr = <a class="code hl_function" href="#a4aba9450df9cd3632321baa8f82ad631">to_string</a>(type);  <span class="comment">// Returns &quot;INTEGER&quot;</span></div>

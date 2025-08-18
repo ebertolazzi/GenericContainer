@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['with_20lua_20global_20variables_20and_20genericcontainer_0',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md50',1,'']]],
-  ['with_20vectors_1',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md13',1,'']]],
-  ['working_20with_20lua_20global_20variables_20and_20genericcontainer_2',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md50',1,'']]],
-  ['working_20with_20vectors_3',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md13',1,'']]],
+  ['with_20lua_20global_20variables_20and_20genericcontainer_0',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md68',1,'']]],
+  ['with_20vectors_1',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md14',1,'']]],
+  ['working_20with_20lua_20global_20variables_20and_20genericcontainer_2',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md68',1,'']]],
+  ['working_20with_20vectors_3',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md14',1,'']]],
   ['write_5fformatted_5fdata_4',['write_formatted_data',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#abbf75ebe2b15cc6b125a0118f30b70b7',1,'GC_namespace::GenericContainer']]],
   ['write_5ftable_5',['write_table',['../d8/d51/namespace_g_c__namespace.html#adb34d906e8b6bccf217ac35136a4f0f6',1,'GC_namespace::write_table(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)'],['../d8/d51/namespace_g_c__namespace.html#a4b4a3b32d8509066157342fdbc051ef2',1,'GC_namespace::write_table(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)']]],
   ['write_5ftable_5fformatted_6',['write_table_formatted',['../d8/d51/namespace_g_c__namespace.html#ae514a48d2611d4d10891f6e811efc9a3',1,'GC_namespace::write_table_formatted(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream)'],['../d8/d51/namespace_g_c__namespace.html#a122012a8f0ca23a02f49d2dc508f407b',1,'GC_namespace::write_table_formatted(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream)']]],
