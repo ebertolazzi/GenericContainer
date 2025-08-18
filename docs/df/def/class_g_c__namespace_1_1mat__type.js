@@ -4,8 +4,14 @@ var class_g_c__namespace_1_1mat__type =
     [ "mat_type", "df/def/class_g_c__namespace_1_1mat__type.html#a938990c1db1f67c9a8c3f82422efd2cf", null ],
     [ "data", "df/def/class_g_c__namespace_1_1mat__type.html#a8b26e379f929dce0e0e3ce0b680d089e", null ],
     [ "data", "df/def/class_g_c__namespace_1_1mat__type.html#afaf61ce7689dcbccbb25ebb13d2d964b", null ],
+    [ "get_column", "df/def/class_g_c__namespace_1_1mat__type.html#a170ecd6c63dc4eac1596c555fb4d4b8d", null ],
+    [ "get_column", "df/def/class_g_c__namespace_1_1mat__type.html#a212f4ef80050d25d1dc7a1d184c3122a", null ],
+    [ "get_column", "df/def/class_g_c__namespace_1_1mat__type.html#ad2455d6b8b80d256a3656c6801ca3f7e", null ],
     [ "get_column", "df/def/class_g_c__namespace_1_1mat__type.html#aa38120acdd16d87ba43cce158b12ca22", null ],
     [ "get_column", "df/def/class_g_c__namespace_1_1mat__type.html#abc4afb575fdf7f85261dc7805969b6d0", null ],
+    [ "get_row", "df/def/class_g_c__namespace_1_1mat__type.html#a7343e87b5a3faf1641f7c12c7a6a3789", null ],
+    [ "get_row", "df/def/class_g_c__namespace_1_1mat__type.html#ac7a9dee6fa3e0f576dfef121eeadc5e9", null ],
+    [ "get_row", "df/def/class_g_c__namespace_1_1mat__type.html#abfdc749512f9dd2139b7f7c1cd8541f0", null ],
     [ "get_row", "df/def/class_g_c__namespace_1_1mat__type.html#a5350a78ff6654121c591474722d306e2", null ],
     [ "get_row", "df/def/class_g_c__namespace_1_1mat__type.html#a7d883e04b55bc4ef1d2c597bb9b69e4c", null ],
     [ "getColumn", "df/def/class_g_c__namespace_1_1mat__type.html#a9e723c6584ee78777777a039b8abf752", null ],
@@ -20,5 +26,6 @@ var class_g_c__namespace_1_1mat__type =
     [ "numRows", "df/def/class_g_c__namespace_1_1mat__type.html#a06bddd449d06fe56ca2248f036aaf6db", null ],
     [ "operator()", "df/def/class_g_c__namespace_1_1mat__type.html#af31831450d406083c31ef31a84ea50cf", null ],
     [ "operator()", "df/def/class_g_c__namespace_1_1mat__type.html#afb33a80ca9949f3b0fcc7b21e1815082", null ],
-    [ "resize", "df/def/class_g_c__namespace_1_1mat__type.html#a0910662873d43456a100bebfa80637ca", null ]
+    [ "resize", "df/def/class_g_c__namespace_1_1mat__type.html#ab96aa65fe01765265b058dcf51856c0d", null ],
+    [ "resize", "df/def/class_g_c__namespace_1_1mat__type.html#a41358a1de7c901dc4dee49138d5ba2b1", null ]
 ];

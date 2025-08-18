@@ -1,0 +1,101 @@
+/*!
+  \page Install Installation guide
+
+  To compile the library, you'll need:
+  - A C++17 compiler (e.g., GCC, Clang, or MSVC)
+  - [cmake](https://cmake.org) for the compilation
+  - [Rake](https://ruby.github.io/rake/), a build automation tool (optional)
+
+  ### Compile the Library
+  
+  #### Using cmake
+  
+  Open a terminal in the project's root directory and run the following command:
+
+  \code{.bash}
+  mkdir build
+  cd build
+  cmake ..
+  make
+  make install
+  cd ..
+  \endcode
+  
+  after that you should find something like this
+  
+  \code{.bash}
+  lib
+    ├── dll
+    │   ├── libGenericContainer_osx.dylib
+    │   └── libLua_osx.dylib
+    ├── include
+    │   ├── GenericContainer
+    │   │   ├── GenericContainer.hh
+    │   │   ├── GenericContainerConfig.hh
+    │   │   ├── GenericContainerInterface_C.h
+    │   │   ├── GenericContainerInterface_json.hh
+    │   │   ├── GenericContainerInterface_lua.hh
+    │   │   ├── GenericContainerInterface_matlab.hh
+    │   │   ├── GenericContainerInterface_toml.hh
+    │   │   ├── GenericContainerInterface_yaml.hh
+    │   │   └── GenericContainerLibs.hh
+    │   ├── GenericContainer.hh
+    │   ├── lauxlib.h
+    │   ├── lua.h
+    │   ├── lua.hpp
+    │   ├── luaconf.h
+    │   └── lualib.h
+    └── lib
+        ├── libGenericContainer_osx_static.a
+        └── libLua_osx_static.a
+  \endcode
+  
+  which is the statiuc and dynamic libraries and its headers.
+  
+  To test the libray do
+  
+  \code{.bash}
+  make test
+  \endcode
+  
+  #### Using rake + cmake
+
+  Open a terminal in the project's root directory and run the following command:
+
+  \code{.bash}
+  rake
+  \endcode
+
+  or if the OS is not detected correctly
+
+  \code{bash}
+  rake build_osx   # compile for OSX
+  rake build_linux # compile for linux
+  rake build_win   # compile for WINDOWS
+  \endcode
+
+  ### check the library
+
+  To run the tests
+
+  \code{.bash}
+  rake run       # for linux/OSX
+  rake run_win   # for windows
+  \endcode
+
+  ### Integrate into Your Project
+
+  - **Include Headers**: Add the `include/` directory to your project's include path.
+    \code{.bash}
+    g++ -I/path/to/lib/include your_project.cpp -o your_project
+    \endcode
+
+  - **Link the Library**: Use the `-L` and `-l` flags to link against the library:
+    \code{.bash}
+    g++ -L/path/to/lib/lib -lyourlibrary your_project.cpp -o your_project
+    \endcode
+
+  ### Verify the Installation
+
+  Compile and run your project to verify that it works with the newly linked library.
+*/

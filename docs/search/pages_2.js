@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['installation_20guide_0',['Installation guide',['../df/d70/_install.html',1,'index']]]
+  ['3_3a_20using_20maps_0',['Example 3: Using Maps',['../dc/dbb/_usage.html#autotoc_md14',1,'']]]
 ];

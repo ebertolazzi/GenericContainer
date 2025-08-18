@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: GC_namespace Namespace Reference</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: GC_namespace Namespace Reference</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('d8/d51/namespace_g_c__namespace.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('d8/d51/namespace_g_c__namespace.html','../../',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,143 +164,99 @@ $(function(){initNavTree('d8/d51/namespace_g_c__namespace.html','../../'); initR
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">GC_namespace Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> class provides a flexible container for storing heterogeneous data types.  <a href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html">LuaInterpreter</a></td></tr>
+<tr class="memitem:GenericContainer" id="r_GenericContainer"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> class provides a flexible container for storing heterogeneous data types.  <a href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#details">More...</a><br /></td></tr>
+<tr class="memitem:LuaInterpreter" id="r_LuaInterpreter"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html">LuaInterpreter</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class implementing a simple Lua interpreter.  <a href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a></td></tr>
+<tr class="memitem:mat_5Ftype" id="r_mat_5Ftype"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic matrix storage type.  <a href="../../df/def/class_g_c__namespace_1_1mat__type.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:aba86b1e2daf9221d49718c3eedd4c4f4" id="r_aba86b1e2daf9221d49718c3eedd4c4f4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> = std::basic_ostream&lt;char&gt;</td></tr>
 <tr class="memdesc:aba86b1e2daf9221d49718c3eedd4c4f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for a character-based output stream.  <br /></td></tr>
-<tr class="separator:aba86b1e2daf9221d49718c3eedd4c4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc3dff4f02db495ebc457f02e89bc7de" id="r_afc3dff4f02db495ebc457f02e89bc7de"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> = std::basic_istream&lt;char&gt;</td></tr>
 <tr class="memdesc:afc3dff4f02db495ebc457f02e89bc7de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias for a character-based input stream.  <br /></td></tr>
-<tr class="separator:afc3dff4f02db495ebc457f02e89bc7de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0af8d4ef7f1578c9ee717f82285a2bdd" id="r_a0af8d4ef7f1578c9ee717f82285a2bdd"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0af8d4ef7f1578c9ee717f82285a2bdd">mat_int_type</a> = <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a>&lt;int_type&gt;</td></tr>
-<tr class="separator:a0af8d4ef7f1578c9ee717f82285a2bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a160b17e464aa5634213779e62efd841a" id="r_a160b17e464aa5634213779e62efd841a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a160b17e464aa5634213779e62efd841a">mat_long_type</a> = <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a>&lt;long_type&gt;</td></tr>
-<tr class="separator:a160b17e464aa5634213779e62efd841a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e60874c678fe38416bfa3bd9866e102" id="r_a2e60874c678fe38416bfa3bd9866e102"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> = <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a>&lt;real_type&gt;</td></tr>
-<tr class="separator:a2e60874c678fe38416bfa3bd9866e102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78b1dd4a53b6369660231f2aa3f39da4" id="r_a78b1dd4a53b6369660231f2aa3f39da4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78b1dd4a53b6369660231f2aa3f39da4">mat_complex_type</a> = <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a>&lt;complex_type&gt;</td></tr>
-<tr class="separator:a78b1dd4a53b6369660231f2aa3f39da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a810c7fa067633e379bc065e080f1de30" id="r_a810c7fa067633e379bc065e080f1de30"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a810c7fa067633e379bc065e080f1de30">TypeAllowed</a></td></tr>
-<tr class="memdesc:a810c7fa067633e379bc065e080f1de30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum class representing types allowed for the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.  <br /></td></tr>
-<tr class="separator:a810c7fa067633e379bc065e080f1de30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a810c7fa067633e379bc065e080f1de30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum class representing types allowed for the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.  <br /></td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac484f54a237789f72067dff5b5b0e7b1" id="r_ac484f54a237789f72067dff5b5b0e7b1"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac484f54a237789f72067dff5b5b0e7b1">to_string</a> (GC_type s)</td></tr>
-<tr class="memdesc:ac484f54a237789f72067dff5b5b0e7b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the <code>GC_type</code> enum value to a string representation.  <br /></td></tr>
-<tr class="separator:ac484f54a237789f72067dff5b5b0e7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aba9450df9cd3632321baa8f82ad631" id="r_a4aba9450df9cd3632321baa8f82ad631"><td class="memItemLeft" align="right" valign="top">string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4aba9450df9cd3632321baa8f82ad631">to_string</a> (GC_type s)</td></tr>
+<tr class="memdesc:a4aba9450df9cd3632321baa8f82ad631"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the <span class="tt">GC_type</span> enum value to a string representation.  <br /></td></tr>
 <tr class="memitem:a7a3af8625af37072df975e081dd5dfbb" id="r_a7a3af8625af37072df975e081dd5dfbb"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a3af8625af37072df975e081dd5dfbb">to_string</a> (complex_type const &amp;v)</td></tr>
-<tr class="separator:a7a3af8625af37072df975e081dd5dfbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb52384432cec67442ece53d305df98a" id="r_adb52384432cec67442ece53d305df98a"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:adb52384432cec67442ece53d305df98a"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#adb52384432cec67442ece53d305df98a">operator&lt;&lt;</a> (<a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;s, vector&lt; TYPE &gt; const &amp;v)</td></tr>
-<tr class="memdesc:adb52384432cec67442ece53d305df98a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the <code>operator&lt;&lt;</code> for printing a vector of elements of a generic type.  <br /></td></tr>
-<tr class="separator:adb52384432cec67442ece53d305df98a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1837b74911be99dc67fe2fff570d7a4c" id="r_a1837b74911be99dc67fe2fff570d7a4c"><td class="memTemplParams" colspan="2">template&lt;typename TYPE &gt; </td></tr>
-<tr class="memitem:a1837b74911be99dc67fe2fff570d7a4c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1837b74911be99dc67fe2fff570d7a4c">operator&lt;&lt;</a> (<a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;s, <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a>&lt; TYPE &gt; const &amp;mat)</td></tr>
-<tr class="memdesc:a1837b74911be99dc67fe2fff570d7a4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the <code>operator&lt;&lt;</code> for printing a matrix of elements of a generic type.  <br /></td></tr>
-<tr class="separator:a1837b74911be99dc67fe2fff570d7a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb52384432cec67442ece53d305df98a" id="r_adb52384432cec67442ece53d305df98a"><td class="memTemplParams" colspan="2">template&lt;typename TYPE&gt; </td></tr>
+<tr class="memitem:adb52384432cec67442ece53d305df98a template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb52384432cec67442ece53d305df98a">operator&lt;&lt;</a> (<a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;s, vector&lt; TYPE &gt; const &amp;v)</td></tr>
+<tr class="memdesc:adb52384432cec67442ece53d305df98a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the <span class="tt">operator&lt;&lt;</span> for printing a vector of elements of a generic type.  <br /></td></tr>
+<tr class="memitem:a1837b74911be99dc67fe2fff570d7a4c" id="r_a1837b74911be99dc67fe2fff570d7a4c"><td class="memTemplParams" colspan="2">template&lt;typename TYPE&gt; </td></tr>
+<tr class="memitem:a1837b74911be99dc67fe2fff570d7a4c template"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1837b74911be99dc67fe2fff570d7a4c">operator&lt;&lt;</a> (<a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;s, <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a>&lt; TYPE &gt; const &amp;mat)</td></tr>
+<tr class="memdesc:a1837b74911be99dc67fe2fff570d7a4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overload of the <span class="tt">operator&lt;&lt;</span> for printing a matrix of elements of a generic type.  <br /></td></tr>
+<tr class="memitem:adb34d906e8b6bccf217ac35136a4f0f6" id="r_adb34d906e8b6bccf217ac35136a4f0f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb34d906e8b6bccf217ac35136a4f0f6">write_table</a> (vec_string_type const &amp;headers, vector_type const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, char delimiter='\t')</td></tr>
 <tr class="memitem:a785fc031ffe7df58e202320a1df062d0" id="r_a785fc031ffe7df58e202320a1df062d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a785fc031ffe7df58e202320a1df062d0">writeTable</a> (vec_string_type const &amp;headers, vector_type const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, char delimiter='\t')</td></tr>
-<tr class="separator:a785fc031ffe7df58e202320a1df062d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b4a3b32d8509066157342fdbc051ef2" id="r_a4b4a3b32d8509066157342fdbc051ef2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b4a3b32d8509066157342fdbc051ef2">write_table</a> (vec_string_type const &amp;headers, <a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, char delimiter='\t')</td></tr>
 <tr class="memitem:a42e8f5a719b11d5289a8b4102cc92741" id="r_a42e8f5a719b11d5289a8b4102cc92741"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42e8f5a719b11d5289a8b4102cc92741">writeTable</a> (vec_string_type const &amp;headers, <a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, char delimiter='\t')</td></tr>
-<tr class="separator:a42e8f5a719b11d5289a8b4102cc92741"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae514a48d2611d4d10891f6e811efc9a3" id="r_ae514a48d2611d4d10891f6e811efc9a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae514a48d2611d4d10891f6e811efc9a3">write_table_formatted</a> (vec_string_type const &amp;headers, vector_type const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
 <tr class="memitem:ad7555973321ded648b809576e2eb5128" id="r_ad7555973321ded648b809576e2eb5128"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7555973321ded648b809576e2eb5128">writeTableFormatted</a> (vec_string_type const &amp;headers, vector_type const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
-<tr class="separator:ad7555973321ded648b809576e2eb5128"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a122012a8f0ca23a02f49d2dc508f407b" id="r_a122012a8f0ca23a02f49d2dc508f407b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a122012a8f0ca23a02f49d2dc508f407b">write_table_formatted</a> (vec_string_type const &amp;headers, <a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
 <tr class="memitem:a14b4cdaae994249f488dba2b2181a5ef" id="r_a14b4cdaae994249f488dba2b2181a5ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14b4cdaae994249f488dba2b2181a5ef">writeTableFormatted</a> (vec_string_type const &amp;headers, <a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;data, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
-<tr class="separator:a14b4cdaae994249f488dba2b2181a5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga703c265d1cc2f7038de7c53504c6558d" id="r_ga703c265d1cc2f7038de7c53504c6558d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#ga703c265d1cc2f7038de7c53504c6558d">file_JSON_to_GC</a> (string const &amp;file_name_JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga703c265d1cc2f7038de7c53504c6558d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9523608879940c8a5839cbd1a73e86fa" id="r_ga9523608879940c8a5839cbd1a73e86fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a> (<a class="el" href="#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;file_JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga9523608879940c8a5839cbd1a73e86fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee2dbd3ca3a5dec392ef680738aff4d9" id="r_gaee2dbd3ca3a5dec392ef680738aff4d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#gaee2dbd3ca3a5dec392ef680738aff4d9">JSON_to_GC</a> (string const &amp;JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:gaee2dbd3ca3a5dec392ef680738aff4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9d679555eac2b7fb77ce95a7fead97e0" id="r_ga9d679555eac2b7fb77ce95a7fead97e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#ga9d679555eac2b7fb77ce95a7fead97e0">JSON_to_GC</a> (vector&lt; string &gt; const &amp;JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga9d679555eac2b7fb77ce95a7fead97e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae922cc81b7f77e411d51cf6296a75946" id="r_gae922cc81b7f77e411d51cf6296a75946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#gae922cc81b7f77e411d51cf6296a75946">GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, vector&lt; string &gt; &amp;JSON)</td></tr>
-<tr class="separator:gae922cc81b7f77e411d51cf6296a75946"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabcf49837e9bf26090ca7b9ae20d256d6" id="r_gabcf49837e9bf26090ca7b9ae20d256d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#gabcf49837e9bf26090ca7b9ae20d256d6">GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;file_JSON)</td></tr>
-<tr class="separator:gabcf49837e9bf26090ca7b9ae20d256d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c3e9ed47725b5ae6865587230e78404" id="r_a5c3e9ed47725b5ae6865587230e78404"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c3e9ed47725b5ae6865587230e78404">string_escape</a> (<a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, string const &amp;s)</td></tr>
+<tr class="memitem:gab60e4260de6231434d1af66b145fd632" id="r_gab60e4260de6231434d1af66b145fd632"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#gab60e4260de6231434d1af66b145fd632">file_JSON_to_GC</a> (string const &amp;file_name, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga960a30ad6ecfdaf7135b39502cdf402c" id="r_ga960a30ad6ecfdaf7135b39502cdf402c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a> (<a class="el" href="#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga00419b308d6f066c98040e7604d7774a" id="r_ga00419b308d6f066c98040e7604d7774a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#ga00419b308d6f066c98040e7604d7774a">JSON_to_GC</a> (string const &amp;DATA, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga5fa9ac294469473a3615f6b727cddc0a" id="r_ga5fa9ac294469473a3615f6b727cddc0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, std::string &amp;res)</td></tr>
+<tr class="memitem:gaf5ca88b950517dcfc7bce066b19cdb13" id="r_gaf5ca88b950517dcfc7bce066b19cdb13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d2f/group___j_s_o_n.html#gaf5ca88b950517dcfc7bce066b19cdb13">GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
 <tr class="memitem:ga4d12752607c583a39860c5d23caf68e4" id="r_ga4d12752607c583a39860c5d23caf68e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d27/group___l_u_a.html#ga4d12752607c583a39860c5d23caf68e4">Lua_global_to_GC</a> (void *void_L, char const *global_var, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="memdesc:ga4d12752607c583a39860c5d23caf68e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Lua global variable to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.  <br /></td></tr>
-<tr class="separator:ga4d12752607c583a39860c5d23caf68e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga4d12752607c583a39860c5d23caf68e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Lua global variable to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.  <br /></td></tr>
 <tr class="memitem:gace50bbb9d1173c77e0c40a1c5e3fb5db" id="r_gace50bbb9d1173c77e0c40a1c5e3fb5db"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d27/group___l_u_a.html#gace50bbb9d1173c77e0c40a1c5e3fb5db">Lua_GC_to_global</a> (void *void_L, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, char const *global_var)</td></tr>
-<tr class="memdesc:gace50bbb9d1173c77e0c40a1c5e3fb5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to a Lua global variable.  <br /></td></tr>
-<tr class="separator:gace50bbb9d1173c77e0c40a1c5e3fb5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gace50bbb9d1173c77e0c40a1c5e3fb5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to a Lua global variable.  <br /></td></tr>
 <tr class="memitem:aa3f27a745bb26fc6841419833d940188" id="r_aa3f27a745bb26fc6841419833d940188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3f27a745bb26fc6841419833d940188">mxArray_to_GenericContainer</a> (mxArray const *mx, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:aa3f27a745bb26fc6841419833d940188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00be118805d71d19687ae48bb30e03ea" id="r_a00be118805d71d19687ae48bb30e03ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00be118805d71d19687ae48bb30e03ea">mxSparse_to_GenericContainer</a> (mxArray const *mx, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:a00be118805d71d19687ae48bb30e03ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdf54671107b3746d8cae27e2348a69a" id="r_abdf54671107b3746d8cae27e2348a69a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdf54671107b3746d8cae27e2348a69a">GenericContainer_to_mxArray</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, mxArray *&amp;mx)</td></tr>
-<tr class="separator:abdf54671107b3746d8cae27e2348a69a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cbf87f939fa62b3e7c59e789adbd651" id="r_a3cbf87f939fa62b3e7c59e789adbd651"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cbf87f939fa62b3e7c59e789adbd651">mexPrint</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc)</td></tr>
-<tr class="separator:a3cbf87f939fa62b3e7c59e789adbd651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1100d578b98c73acb2cad1ca51f5f0" id="r_abf1100d578b98c73acb2cad1ca51f5f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf1100d578b98c73acb2cad1ca51f5f0">to_mxArray</a> (bool const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:abf1100d578b98c73acb2cad1ca51f5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a45444d64604638b4af7d78ec52f2c824" id="r_a45444d64604638b4af7d78ec52f2c824"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45444d64604638b4af7d78ec52f2c824">to_mxArray</a> (int_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a45444d64604638b4af7d78ec52f2c824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1042d27ed2fe76c30b4d3a4e9eb3ff51" id="r_a1042d27ed2fe76c30b4d3a4e9eb3ff51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1042d27ed2fe76c30b4d3a4e9eb3ff51">to_mxArray</a> (long_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a1042d27ed2fe76c30b4d3a4e9eb3ff51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47fb87e041f8db4a447d841fc6387e35" id="r_a47fb87e041f8db4a447d841fc6387e35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47fb87e041f8db4a447d841fc6387e35">to_mxArray</a> (real_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a47fb87e041f8db4a447d841fc6387e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a442c11cb9bd6714bc49f3b9fa66923ae" id="r_a442c11cb9bd6714bc49f3b9fa66923ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a442c11cb9bd6714bc49f3b9fa66923ae">to_mxArray</a> (complex_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a442c11cb9bd6714bc49f3b9fa66923ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a639e63869cbe177343fb2faed9d27f7f" id="r_a639e63869cbe177343fb2faed9d27f7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a639e63869cbe177343fb2faed9d27f7f">to_mxArray</a> (string_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a639e63869cbe177343fb2faed9d27f7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaaa20e7b3add97705c278ef87d644d8" id="r_adaaa20e7b3add97705c278ef87d644d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adaaa20e7b3add97705c278ef87d644d8">to_mxArray</a> (string_view val, mxArray *&amp;mx)</td></tr>
 <tr class="memitem:a05bdeaf88752a2f8fc143eaa4c7183d1" id="r_a05bdeaf88752a2f8fc143eaa4c7183d1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05bdeaf88752a2f8fc143eaa4c7183d1">to_mxArray</a> (vec_bool_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a05bdeaf88752a2f8fc143eaa4c7183d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac25af9b08f9fa753806596b49aa35aa6" id="r_ac25af9b08f9fa753806596b49aa35aa6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac25af9b08f9fa753806596b49aa35aa6">to_mxArray</a> (vec_int_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:ac25af9b08f9fa753806596b49aa35aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a522eaedd39f6bbf7dbab80cd38febd5c" id="r_a522eaedd39f6bbf7dbab80cd38febd5c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a522eaedd39f6bbf7dbab80cd38febd5c">to_mxArray</a> (vec_long_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a522eaedd39f6bbf7dbab80cd38febd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe8cacdabe31239124336401ecffe2c4" id="r_afe8cacdabe31239124336401ecffe2c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe8cacdabe31239124336401ecffe2c4">to_mxArray</a> (vec_real_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:afe8cacdabe31239124336401ecffe2c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c4b45354c084fd9de13865c7ff38c29" id="r_a5c4b45354c084fd9de13865c7ff38c29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c4b45354c084fd9de13865c7ff38c29">to_mxArray</a> (vec_complex_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a5c4b45354c084fd9de13865c7ff38c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70d6cf0fb7b2a99f7b51606b6b7a64c3" id="r_a70d6cf0fb7b2a99f7b51606b6b7a64c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70d6cf0fb7b2a99f7b51606b6b7a64c3">to_mxArray</a> (vec_string_type const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a70d6cf0fb7b2a99f7b51606b6b7a64c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a7cd8da056c1856e1543e818e61fe69" id="r_a2a7cd8da056c1856e1543e818e61fe69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a7cd8da056c1856e1543e818e61fe69">to_mxArray</a> (<a class="el" href="#a0af8d4ef7f1578c9ee717f82285a2bdd">mat_int_type</a> const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a2a7cd8da056c1856e1543e818e61fe69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a26e25a291f8670cf385d14c8b37ce9" id="r_a3a26e25a291f8670cf385d14c8b37ce9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a26e25a291f8670cf385d14c8b37ce9">to_mxArray</a> (<a class="el" href="#a160b17e464aa5634213779e62efd841a">mat_long_type</a> const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a3a26e25a291f8670cf385d14c8b37ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ff3737f001a5978191d30e4bc90d8a8" id="r_a7ff3737f001a5978191d30e4bc90d8a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ff3737f001a5978191d30e4bc90d8a8">to_mxArray</a> (<a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a7ff3737f001a5978191d30e4bc90d8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6270ec33fe7f69b938bfadf26f98186b" id="r_a6270ec33fe7f69b938bfadf26f98186b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6270ec33fe7f69b938bfadf26f98186b">to_mxArray</a> (<a class="el" href="#a78b1dd4a53b6369660231f2aa3f39da4">mat_complex_type</a> const &amp;val, mxArray *&amp;mx)</td></tr>
-<tr class="separator:a6270ec33fe7f69b938bfadf26f98186b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga98fe8ebf6676160c18860575e9ddb6d9" id="r_ga98fe8ebf6676160c18860575e9ddb6d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga98fe8ebf6676160c18860575e9ddb6d9">file_YAML_to_GC</a> (string const &amp;file_name_YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga98fe8ebf6676160c18860575e9ddb6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa5d5b4eaf6dd4740dfd67838506d8a78" id="r_gaa5d5b4eaf6dd4740dfd67838506d8a78"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a> (<a class="el" href="#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;file_YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:gaa5d5b4eaf6dd4740dfd67838506d8a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0e48f20f7cb91d0efe10b5e4b393dac6" id="r_ga0e48f20f7cb91d0efe10b5e4b393dac6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga0e48f20f7cb91d0efe10b5e4b393dac6">YAML_to_GC</a> (string const &amp;YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga0e48f20f7cb91d0efe10b5e4b393dac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6c8091540c18a10b089c4d76f0c44037" id="r_ga6c8091540c18a10b089c4d76f0c44037"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga6c8091540c18a10b089c4d76f0c44037">YAML_to_GC</a> (vector&lt; string &gt; const &amp;YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga6c8091540c18a10b089c4d76f0c44037"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaebe6e15e231247d4ec065c73f8a2b3fe" id="r_gaebe6e15e231247d4ec065c73f8a2b3fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, vector&lt; string &gt; &amp;YAML)</td></tr>
-<tr class="separator:gaebe6e15e231247d4ec065c73f8a2b3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga420970b69b29c2d110b74f5641db4219" id="r_ga420970b69b29c2d110b74f5641db4219"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga420970b69b29c2d110b74f5641db4219">GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;file_YAML)</td></tr>
-<tr class="separator:ga420970b69b29c2d110b74f5641db4219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3ea6e1a2ce20dc535b889b4ebc4e5936" id="r_ga3ea6e1a2ce20dc535b889b4ebc4e5936"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/ddf/group___t_o_m_l.html#ga3ea6e1a2ce20dc535b889b4ebc4e5936">file_TOML_to_GC</a> (string_view file_name, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:gab7d007e1bd923171902d6dc06801fc51" id="r_gab7d007e1bd923171902d6dc06801fc51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/ddf/group___t_o_m_l.html#gab7d007e1bd923171902d6dc06801fc51">TOML_to_GC</a> (<a class="el" href="#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga6b8a9d6b00bb52ce232e14c7f73f9c52" id="r_ga6b8a9d6b00bb52ce232e14c7f73f9c52"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/ddf/group___t_o_m_l.html#ga6b8a9d6b00bb52ce232e14c7f73f9c52">TOML_to_GC</a> (string const &amp;DATA, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:gacdde28e58ddbd4c0a55466ba33d32376" id="r_gacdde28e58ddbd4c0a55466ba33d32376"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/ddf/group___t_o_m_l.html#gacdde28e58ddbd4c0a55466ba33d32376">GC_to_TOML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, std::string &amp;res)</td></tr>
+<tr class="memitem:ga64576cb11c543b9178ca7d2ea8d08009" id="r_ga64576cb11c543b9178ca7d2ea8d08009"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/ddf/group___t_o_m_l.html#ga64576cb11c543b9178ca7d2ea8d08009">GC_to_TOML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
+<tr class="memitem:ga39e421bb50e970288633ad737ba3dc67" id="r_ga39e421bb50e970288633ad737ba3dc67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga39e421bb50e970288633ad737ba3dc67">file_YAML_to_GC</a> (string_view file_name, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:gaeb69b1a8ba585b19ebb4950c4aa6a8db" id="r_gaeb69b1a8ba585b19ebb4950c4aa6a8db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a> (<a class="el" href="#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:gadad2fca170dcccfbd4edd61c9c20c5bf" id="r_gadad2fca170dcccfbd4edd61c9c20c5bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#gadad2fca170dcccfbd4edd61c9c20c5bf">YAML_to_GC</a> (string const &amp;DATA, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga2e90e8cc7fb30f589b0f93640ada0b49" id="r_ga2e90e8cc7fb30f589b0f93640ada0b49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga2e90e8cc7fb30f589b0f93640ada0b49">GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, std::string &amp;res)</td></tr>
+<tr class="memitem:ga46594be713c2f87e4a779919b6873149" id="r_ga46594be713c2f87e4a779919b6873149"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d2e/group___y_a_m_l.html#ga46594be713c2f87e4a779919b6873149">GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a62bbd2c86f991d348fadfbd4fd1c38a3" id="r_a62bbd2c86f991d348fadfbd4fd1c38a3"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62bbd2c86f991d348fadfbd4fd1c38a3">stream_number_precision</a> {12}</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Namespace for the Generic Container </p>
-</div><h2 class="groupheader">Typedef Documentation</h2>
+</div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedefs</h2>
 <a id="afc3dff4f02db495ebc457f02e89bc7de" name="afc3dff4f02db495ebc457f02e89bc7de"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afc3dff4f02db495ebc457f02e89bc7de">&#9670;&#160;</a></span>istream_type</h2>
 
@@ -268,7 +270,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Alias for a character-based input stream. </p>
-<p>This alias represents a <code>basic_istream</code> specialized for <code>char</code> types, which is typically used for standard input operations like <code>cin</code> or file input streams. </p>
+<p>This alias represents a <span class="tt">basic_istream</span> specialized for <span class="tt">char</span> types, which is typically used for standard input operations like <span class="tt">cin</span> or file input streams. </p>
 
 </div>
 </div>
@@ -341,7 +343,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Alias for a character-based output stream. </p>
-<p>This alias represents a <code>basic_ostream</code> specialized for <code>char</code> types, which is typically used for standard output operations like <code>cout</code> or file output streams. </p>
+<p>This alias represents a <span class="tt">basic_ostream</span> specialized for <span class="tt">char</span> types, which is typically used for standard output operations like <span class="tt">cout</span> or file output streams. </p>
 
 </div>
 </div>
@@ -386,16 +388,16 @@ Functions</h2></td></tr>
 <div class="line">    MAP          </div>
 <div class="line">  }</div>
 </div><!-- fragment -->
-<p>Enum class representing types allowed for the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. </p>
-<p>This enum class defines the types that are allowed to be used in the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. The types are categorized as simple types, vector types, matrix types, and complex types.</p>
-<h3><a class="anchor" id="autotoc_md68"></a>
+<p>Enum class representing types allowed for the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. </p>
+<p>This enum class defines the types that are allowed to be used in the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. The types are categorized as simple types, vector types, matrix types, and complex types.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md74"></a>
 Example</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a810c7fa067633e379bc065e080f1de30">TypeAllowed</a> type = TypeAllowed::INTEGER;  <span class="comment">// Defines an integer type for GenericContainer</span></div>
-<div class="ttc" id="anamespace_g_c__namespace_html_a810c7fa067633e379bc065e080f1de30"><div class="ttname"><a href="#a810c7fa067633e379bc065e080f1de30">GC_namespace::TypeAllowed</a></div><div class="ttdeci">enum class GC_type :int_type { NOTYPE, POINTER, BOOL, INTEGER, LONG, REAL, COMPLEX, STRING, VEC_POINTER, VEC_BOOL, VEC_INTEGER, VEC_LONG, VEC_REAL, VEC_COMPLEX, VEC_STRING, MAT_INTEGER, MAT_LONG, MAT_REAL, MAT_COMPLEX, VECTOR, MAP } TypeAllowed</div><div class="ttdoc">Enum class representing types allowed for the GenericContainer.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:475</div></div>
+<div class="ttc" id="anamespace_g_c__namespace_html_a810c7fa067633e379bc065e080f1de30"><div class="ttname"><a href="#a810c7fa067633e379bc065e080f1de30">GC_namespace::TypeAllowed</a></div><div class="ttdeci">enum class GC_type :int_type { NOTYPE, POINTER, BOOL, INTEGER, LONG, REAL, COMPLEX, STRING, VEC_POINTER, VEC_BOOL, VEC_INTEGER, VEC_LONG, VEC_REAL, VEC_COMPLEX, VEC_STRING, MAT_INTEGER, MAT_LONG, MAT_REAL, MAT_COMPLEX, VECTOR, MAP } TypeAllowed</div><div class="ttdoc">Enum class representing types allowed for the GenericContainer.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:517</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Functions</h2>
 <a id="abdf54671107b3746d8cae27e2348a69a" name="abdf54671107b3746d8cae27e2348a69a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdf54671107b3746d8cae27e2348a69a">&#9670;&#160;</a></span>GenericContainer_to_mxArray()</h2>
 
@@ -414,7 +416,7 @@ Example</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to an <code>mxArray</code> </p>
+<p>Convert <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to an <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -432,7 +434,7 @@ Example</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print the contents of <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to teh <code>MATLAB</code> console </p>
+<p>Print the contents of <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to teh <span class="tt">MATLAB</span> console </p>
 
 </div>
 </div>
@@ -454,7 +456,7 @@ Example</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert an <code>mxArray</code> to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> </p>
+<p>Convert an <span class="tt">mxArray</span> to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </p>
 
 </div>
 </div>
@@ -476,7 +478,7 @@ Example</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert an <code>mxArray</code> containing a sparse matrix to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> will constain a map with the sparse matrix in compressed column format (<a href="https://en.wikipedia.org/wiki/Sparse_matrix">https://en.wikipedia.org/wiki/Sparse_matrix</a>)</p>
+<p>Convert an <span class="tt">mxArray</span> containing a sparse matrix to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> will constain a map with the sparse matrix in compressed column format (<a href="https://en.wikipedia.org/wiki/Sparse_matrix">https://en.wikipedia.org/wiki/Sparse_matrix</a>)</p>
 <ul>
 <li>"jc" pointer to the columns</li>
 <li>"ir" index of the rows</li>
@@ -491,7 +493,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; GC_namespace::operator&lt;&lt; </td>
@@ -506,8 +508,8 @@ template&lt;typename TYPE &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Overload of the <code>operator&lt;&lt;</code> for printing a matrix of elements of a generic type. </p>
-<p>This function allows the printing of a <code><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html" title="Generic matrix storage type.">mat_type</a></code> object, which represents a matrix containing elements of type <code>TYPE</code>. The matrix is typically printed in a row-by-row format.</p>
+<p>Overload of the <span class="tt">operator&lt;&lt;</span> for printing a matrix of elements of a generic type. </p>
+<p>This function allows the printing of a <span class="tt"><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html" title="Generic matrix storage type.">mat_type</a></span> object, which represents a matrix containing elements of type <span class="tt">TYPE</span>. The matrix is typically printed in a row-by-row format.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TYPE</td><td>The type of the elements contained in the matrix. </td></tr>
@@ -516,8 +518,8 @@ template&lt;typename TYPE &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The output stream to write to (e.g., <code>cout</code> or a <code>ostringstream</code>). </td></tr>
-    <tr><td class="paramname">mat</td><td>The <code><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html" title="Generic matrix storage type.">mat_type</a></code> object to print, representing the matrix. </td></tr>
+    <tr><td class="paramname">s</td><td>The output stream to write to (e.g., <span class="tt">cout</span> or a <span class="tt">ostringstream</span>). </td></tr>
+    <tr><td class="paramname">mat</td><td>The <span class="tt"><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html" title="Generic matrix storage type.">mat_type</a></span> object to print, representing the matrix. </td></tr>
   </table>
   </dd>
 </dl>
@@ -531,7 +533,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; GC_namespace::operator&lt;&lt; </td>
@@ -546,8 +548,8 @@ template&lt;typename TYPE &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Overload of the <code>operator&lt;&lt;</code> for printing a vector of elements of a generic type. </p>
-<p>This function allows the printing of a <code>vector</code> containing elements of type <code>TYPE</code>. The elements are typically printed in a comma-separated format inside square brackets.</p>
+<p>Overload of the <span class="tt">operator&lt;&lt;</span> for printing a vector of elements of a generic type. </p>
+<p>This function allows the printing of a <span class="tt">vector</span> containing elements of type <span class="tt">TYPE</span>. The elements are typically printed in a comma-separated format inside square brackets.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TYPE</td><td>The type of the elements contained in the vector. </td></tr>
@@ -556,12 +558,34 @@ template&lt;typename TYPE &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The output stream to write to (e.g., <code>cout</code> or a <code>ostringstream</code>). </td></tr>
-    <tr><td class="paramname">v</td><td>The <code>vector</code> object to print. </td></tr>
+    <tr><td class="paramname">s</td><td>The output stream to write to (e.g., <span class="tt">cout</span> or a <span class="tt">ostringstream</span>). </td></tr>
+    <tr><td class="paramname">v</td><td>The <span class="tt">vector</span> object to print. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The modified output stream after writing the vector elements. </dd></dl>
+
+</div>
+</div>
+<a id="a5c3e9ed47725b5ae6865587230e78404" name="a5c3e9ed47725b5ae6865587230e78404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c3e9ed47725b5ae6865587230e78404">&#9670;&#160;</a></span>string_escape()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::string_escape </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>s</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Utrility to write sctring escaping non printable </p>
 
 </div>
 </div>
@@ -583,7 +607,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a boolean to a <code>mxArray</code> </p>
+<p>Convert a boolean to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -605,7 +629,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a complex number to a <code>mxArray</code> </p>
+<p>Convert a complex number to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -627,7 +651,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert an integer to a <code>mxArray</code> </p>
+<p>Convert an integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -649,7 +673,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a long integer to a <code>mxArray</code> </p>
+<p>Convert a long integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -671,7 +695,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a matrix of complex number to a <code>mxArray</code> </p>
+<p>Convert a matrix of complex number to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -693,7 +717,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a matrix of integer to a <code>mxArray</code> </p>
+<p>Convert a matrix of integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -715,7 +739,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a matrix of long integer to a <code>mxArray</code> </p>
+<p>Convert a matrix of long integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -737,7 +761,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a matrix of real number to a <code>mxArray</code> </p>
+<p>Convert a matrix of real number to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -759,12 +783,12 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a real number to a <code>mxArray</code> </p>
+<p>Convert a real number to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
-<a id="a639e63869cbe177343fb2faed9d27f7f" name="a639e63869cbe177343fb2faed9d27f7f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a639e63869cbe177343fb2faed9d27f7f">&#9670;&#160;</a></span>to_mxArray() <span class="overload">[10/16]</span></h2>
+<a id="adaaa20e7b3add97705c278ef87d644d8" name="adaaa20e7b3add97705c278ef87d644d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaaa20e7b3add97705c278ef87d644d8">&#9670;&#160;</a></span>to_mxArray() <span class="overload">[10/16]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -772,7 +796,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="memname">void GC_namespace::to_mxArray </td>
           <td>(</td>
-          <td class="paramtype">string_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
+          <td class="paramtype">string_view</td>          <td class="paramname"><span class="paramname"><em>val</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -781,7 +805,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a string integer to a <code>mxArray</code> </p>
+<p>Convert a string integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -803,7 +827,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a vector of boolean to a <code>mxArray</code> </p>
+<p>Convert a vector of boolean to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -825,7 +849,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a vector of complex number to a <code>mxArray</code> </p>
+<p>Convert a vector of complex number to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -847,7 +871,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a vector of integer to a <code>mxArray</code> </p>
+<p>Convert a vector of integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -869,7 +893,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a vector of long integer to a <code>mxArray</code> </p>
+<p>Convert a vector of long integer to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -891,7 +915,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a vector of real number to a <code>mxArray</code> </p>
+<p>Convert a vector of real number to a <span class="tt">mxArray</span> </p>
 
 </div>
 </div>
@@ -913,7 +937,7 @@ template&lt;typename TYPE &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Convert a vector of string to a <code>mxArray</code>. The data will be a cell array. </p>
+<p>Convert a vector of string to a <span class="tt">mxArray</span>. The data will be a cell array. </p>
 
 </div>
 </div>
@@ -934,14 +958,14 @@ template&lt;typename TYPE &gt; </div>
 
 </div>
 </div>
-<a id="ac484f54a237789f72067dff5b5b0e7b1" name="ac484f54a237789f72067dff5b5b0e7b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac484f54a237789f72067dff5b5b0e7b1">&#9670;&#160;</a></span>to_string() <span class="overload">[2/2]</span></h2>
+<a id="a4aba9450df9cd3632321baa8f82ad631" name="a4aba9450df9cd3632321baa8f82ad631"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aba9450df9cd3632321baa8f82ad631">&#9670;&#160;</a></span>to_string() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">char const  * GC_namespace::to_string </td>
+          <td class="memname">string_view GC_namespace::to_string </td>
           <td>(</td>
           <td class="paramtype">GC_type</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
           <td></td>
@@ -949,32 +973,32 @@ template&lt;typename TYPE &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Converts the <code>GC_type</code> enum value to a string representation. </p>
-<p>This function takes a <code>GC_type</code> enum value and returns a corresponding string representation for easier debugging and logging.</p>
+<p>Converts the <span class="tt">GC_type</span> enum value to a string representation. </p>
+<p>This function takes a <span class="tt">GC_type</span> enum value and returns a corresponding string representation for easier debugging and logging.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">s</td><td>The <code>GC_type</code> enum value to convert. </td></tr>
+    <tr><td class="paramname">s</td><td>The <span class="tt">GC_type</span> enum value to convert. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A constant C-string representing the type.</dd></dl>
-<h3><a class="anchor" id="autotoc_md69"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md75"></a>
 Example</h3>
 <div class="fragment"><div class="line">GC_type type = GC_type::INTEGER;</div>
-<div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* typeStr = <a class="code hl_function" href="#ac484f54a237789f72067dff5b5b0e7b1">to_string</a>(type);  <span class="comment">// Returns &quot;INTEGER&quot;</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* typeStr = <a class="code hl_function" href="#a4aba9450df9cd3632321baa8f82ad631">to_string</a>(type);  <span class="comment">// Returns &quot;INTEGER&quot;</span></div>
 <div class="line">cout &lt;&lt; <span class="stringliteral">&quot;Type: &quot;</span> &lt;&lt; typeStr &lt;&lt; endl;  <span class="comment">// Output: Type: INTEGER</span></div>
-<div class="ttc" id="anamespace_g_c__namespace_html_ac484f54a237789f72067dff5b5b0e7b1"><div class="ttname"><a href="#ac484f54a237789f72067dff5b5b0e7b1">GC_namespace::to_string</a></div><div class="ttdeci">char const * to_string(GC_type s)</div><div class="ttdoc">Converts the GC_type enum value to a string representation.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:269</div></div>
+<div class="ttc" id="anamespace_g_c__namespace_html_a4aba9450df9cd3632321baa8f82ad631"><div class="ttname"><a href="#a4aba9450df9cd3632321baa8f82ad631">GC_namespace::to_string</a></div><div class="ttdeci">string_view to_string(GC_type const s)</div><div class="ttdoc">Converts the GC_type enum value to a string representation.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:285</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a42e8f5a719b11d5289a8b4102cc92741" name="a42e8f5a719b11d5289a8b4102cc92741"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a42e8f5a719b11d5289a8b4102cc92741">&#9670;&#160;</a></span>writeTable() <span class="overload">[1/2]</span></h2>
+<a id="a4b4a3b32d8509066157342fdbc051ef2" name="a4b4a3b32d8509066157342fdbc051ef2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b4a3b32d8509066157342fdbc051ef2">&#9670;&#160;</a></span>write_table() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void GC_namespace::writeTable </td>
+          <td class="memname">void GC_namespace::write_table </td>
           <td>(</td>
           <td class="paramtype">vec_string_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
         </tr>
@@ -999,12 +1023,163 @@ Example</h3>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>matrix of <code>real_type</code> with the columns of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>matrix of <span class="tt">real_type</span> with the columns of the table </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">delimiter</td><td>delimiter character between columns </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="adb34d906e8b6bccf217ac35136a4f0f6" name="adb34d906e8b6bccf217ac35136a4f0f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb34d906e8b6bccf217ac35136a4f0f6">&#9670;&#160;</a></span>write_table() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::write_table </td>
+          <td>(</td>
+          <td class="paramtype">vec_string_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>delimiter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">'\t'</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Write data as a table</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>vector of <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the columns of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">delimiter</td><td>delimiter character between columns </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a122012a8f0ca23a02f49d2dc508f407b" name="a122012a8f0ca23a02f49d2dc508f407b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a122012a8f0ca23a02f49d2dc508f407b">&#9670;&#160;</a></span>write_table_formatted() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::write_table_formatted </td>
+          <td>(</td>
+          <td class="paramtype">vec_string_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Write data as a table</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>matrix of <span class="tt">real_type</span> with the columns of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae514a48d2611d4d10891f6e811efc9a3" name="ae514a48d2611d4d10891f6e811efc9a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae514a48d2611d4d10891f6e811efc9a3">&#9670;&#160;</a></span>write_table_formatted() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::write_table_formatted </td>
+          <td>(</td>
+          <td class="paramtype">vec_string_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Write data as a table</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>matrix of <span class="tt">real_type</span> with the columns of the table </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a42e8f5a719b11d5289a8b4102cc92741" name="a42e8f5a719b11d5289a8b4102cc92741"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e8f5a719b11d5289a8b4102cc92741">&#9670;&#160;</a></span>writeTable() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GC_namespace::writeTable </td>
+          <td>(</td>
+          <td class="paramtype">vec_string_type const &amp;</td>          <td class="paramname"><span class="paramname"><em>headers</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>delimiter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">'\t'</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd>use <span class="tt">write_table</span> </dd></dl>
 
 </div>
 </div>
@@ -1013,6 +1188,9 @@ Example</h3>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::writeTable </td>
@@ -1035,17 +1213,13 @@ Example</h3>
           <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>delimiter</em></span><span class="paramdefsep"> = </span><span class="paramdefval">'\t'</span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Write data as a table</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>vector of <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the columns of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">delimiter</td><td>delimiter character between columns </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000001">Deprecated</a></b></dt><dd>use <span class="tt">write_table</span> </dd></dl>
 
 </div>
 </div>
@@ -1054,6 +1228,9 @@ Example</h3>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::writeTableFormatted </td>
@@ -1071,16 +1248,13 @@ Example</h3>
           <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Write data as a table</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>matrix of <code>real_type</code> with the columns of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd>use <span class="tt">write_table_formatted</span> </dd></dl>
 
 </div>
 </div>
@@ -1089,6 +1263,9 @@ Example</h3>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::writeTableFormatted </td>
@@ -1106,26 +1283,47 @@ Example</h3>
           <td class="paramtype"><a class="el" href="#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Write data as a table</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>vector of string with the header of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>matrix of <code>real_type</code> with the columns of the table </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000003">Deprecated</a></b></dt><dd>use <span class="tt">write_table_formatted</span> </dd></dl>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variables</h2>
+<a id="a62bbd2c86f991d348fadfbd4fd1c38a3" name="a62bbd2c86f991d348fadfbd4fd1c38a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62bbd2c86f991d348fadfbd4fd1c38a3">&#9670;&#160;</a></span>stream_number_precision</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned GC_namespace::stream_number_precision {12}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>precision used in printing number </p>
 
 </div>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html">GC_namespace</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="navelem"><a href="../../d8/d51/namespace_g_c__namespace.html">GC_namespace</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

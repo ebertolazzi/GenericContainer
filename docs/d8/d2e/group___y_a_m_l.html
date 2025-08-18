@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: GenericContainer-YAML Interface</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: GenericContainer-YAML Interface</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('d8/d2e/group___y_a_m_l.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('d8/d2e/group___y_a_m_l.html','../../',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,72 +164,63 @@ $(function(){initNavTree('d8/d2e/group___y_a_m_l.html','../../'); initResizable(
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">GenericContainer-YAML Interface</div></div>
+  <div class="headertitle"><div class="title">GenericContainer-YAML Interface </div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>This module provides interface with YAML files.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga98fe8ebf6676160c18860575e9ddb6d9" id="r_ga98fe8ebf6676160c18860575e9ddb6d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga98fe8ebf6676160c18860575e9ddb6d9">GC_namespace::file_YAML_to_GC</a> (string const &amp;file_name_YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga98fe8ebf6676160c18860575e9ddb6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa5d5b4eaf6dd4740dfd67838506d8a78" id="r_gaa5d5b4eaf6dd4740dfd67838506d8a78"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">GC_namespace::YAML_to_GC</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;file_YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:gaa5d5b4eaf6dd4740dfd67838506d8a78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0e48f20f7cb91d0efe10b5e4b393dac6" id="r_ga0e48f20f7cb91d0efe10b5e4b393dac6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0e48f20f7cb91d0efe10b5e4b393dac6">GC_namespace::YAML_to_GC</a> (string const &amp;YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga0e48f20f7cb91d0efe10b5e4b393dac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6c8091540c18a10b089c4d76f0c44037" id="r_ga6c8091540c18a10b089c4d76f0c44037"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6c8091540c18a10b089c4d76f0c44037">GC_namespace::YAML_to_GC</a> (vector&lt; string &gt; const &amp;YAML, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga6c8091540c18a10b089c4d76f0c44037"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaebe6e15e231247d4ec065c73f8a2b3fe" id="r_gaebe6e15e231247d4ec065c73f8a2b3fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_namespace::GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, vector&lt; string &gt; &amp;YAML)</td></tr>
-<tr class="separator:gaebe6e15e231247d4ec065c73f8a2b3fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga420970b69b29c2d110b74f5641db4219" id="r_ga420970b69b29c2d110b74f5641db4219"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga420970b69b29c2d110b74f5641db4219">GC_namespace::GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;file_YAML)</td></tr>
-<tr class="separator:ga420970b69b29c2d110b74f5641db4219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39e421bb50e970288633ad737ba3dc67" id="r_ga39e421bb50e970288633ad737ba3dc67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga39e421bb50e970288633ad737ba3dc67">GC_namespace::file_YAML_to_GC</a> (string_view file_name, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:gaeb69b1a8ba585b19ebb4950c4aa6a8db" id="r_gaeb69b1a8ba585b19ebb4950c4aa6a8db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">GC_namespace::YAML_to_GC</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:gadad2fca170dcccfbd4edd61c9c20c5bf" id="r_gadad2fca170dcccfbd4edd61c9c20c5bf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gadad2fca170dcccfbd4edd61c9c20c5bf">GC_namespace::YAML_to_GC</a> (string const &amp;DATA, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga2e90e8cc7fb30f589b0f93640ada0b49" id="r_ga2e90e8cc7fb30f589b0f93640ada0b49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2e90e8cc7fb30f589b0f93640ada0b49">GC_namespace::GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, std::string &amp;res)</td></tr>
+<tr class="memitem:ga46594be713c2f87e4a779919b6873149" id="r_ga46594be713c2f87e4a779919b6873149"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga46594be713c2f87e4a779919b6873149">GC_namespace::GC_to_YAML</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <p>This module provides interface with YAML files. </p>
 <p>The <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> (GC) module offers a flexible container for storing various data types such as booleans, integers, floating-point numbers, complex numbers, and strings. It also supports structured data types such as vectors and maps. The C++ interface allows for seamless interaction with the container, enabling users to perform operations like adding elements, retrieving data, and managing hierarchical structures.</p>
-<h2><a class="anchor" id="autotoc_md36"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md66"></a>
 Overview</h2>
-<p>This tutorial explains how to use the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> YAML interface for converting between YAML data and the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> object.</p>
-<p>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> is a flexible structure that can store various data types like booleans, integers, floating-point numbers, complex numbers, strings, vectors, and maps. The interface provides multiple ways to convert YAML files, streams, or strings into <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> objects and vice versa.</p>
-<h2><a class="anchor" id="autotoc_md37"></a>
+<p>This tutorial explains how to use the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> YAML interface for converting between YAML data and the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object.</p>
+<p>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> is a flexible structure that can store various data types like booleans, integers, floating-point numbers, complex numbers, strings, vectors, and maps. The interface provides multiple ways to convert YAML files, streams, or strings into <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> objects and vice versa.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md67"></a>
 Loading YAML Data into a GenericContainer</h2>
-<p>There are several ways to load YAML data into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<h3><a class="anchor" id="autotoc_md38"></a>
+<p>There are several ways to load YAML data into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md68"></a>
 Loading YAML from a File</h3>
-<p>The <code>file_YAML_to_GC</code> function reads YAML data from a file and populates a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. This is useful for handling configuration files or other data stored in YAML format.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga98fe8ebf6676160c18860575e9ddb6d9">file_YAML_to_GC</a>( std::string <span class="keyword">const</span> &amp; file_name_YAML, GenericContainer &amp; gc );</div>
-<div class="ttc" id="agroup___y_a_m_l_html_ga98fe8ebf6676160c18860575e9ddb6d9"><div class="ttname"><a href="#ga98fe8ebf6676160c18860575e9ddb6d9">GC_namespace::file_YAML_to_GC</a></div><div class="ttdeci">bool file_YAML_to_GC(string const &amp;file_name_YAML, GenericContainer &amp;gc)</div></div>
+<p>The <span class="tt">file_YAML_to_GC</span> function reads YAML data from a file and populates a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. This is useful for handling configuration files or other data stored in YAML format.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga39e421bb50e970288633ad737ba3dc67">file_YAML_to_GC</a>( std::string <span class="keyword">const</span> &amp; file_name_YAML, GenericContainer &amp; gc );</div>
+<div class="ttc" id="agroup___y_a_m_l_html_ga39e421bb50e970288633ad737ba3dc67"><div class="ttname"><a href="#ga39e421bb50e970288633ad737ba3dc67">GC_namespace::file_YAML_to_GC</a></div><div class="ttdeci">bool file_YAML_to_GC(string_view file_name, GenericContainer &amp;gc)</div><div class="ttdef"><b>Definition</b> GenericContainerInterface_yaml.hh:54</div></div>
 </div><!-- fragment --><p>Example:</p>
 <div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::string file_name = <span class="stringliteral">&quot;config.yaml&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga98fe8ebf6676160c18860575e9ddb6d9">file_YAML_to_GC</a>(file_name, gc)) {</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga39e421bb50e970288633ad737ba3dc67">file_YAML_to_GC</a>(file_name, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;YAML file successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load YAML file.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md39"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md69"></a>
 Loading YAML from an Input Stream</h3>
-<p>The <code>YAML_to_GC</code> function allows loading YAML data from an input stream, such as a file stream or a string stream.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a>( <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp; file_YAML, GenericContainer &amp; gc );</div>
-<div class="ttc" id="agroup___y_a_m_l_html_gaa5d5b4eaf6dd4740dfd67838506d8a78"><div class="ttname"><a href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">GC_namespace::YAML_to_GC</a></div><div class="ttdeci">bool YAML_to_GC(istream_type &amp;file_YAML, GenericContainer &amp;gc)</div></div>
-<div class="ttc" id="anamespace_g_c__namespace_html_afc3dff4f02db495ebc457f02e89bc7de"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">GC_namespace::istream_type</a></div><div class="ttdeci">std::basic_istream&lt; char &gt; istream_type</div><div class="ttdoc">Alias for a character-based input stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:112</div></div>
+<p>The <span class="tt">YAML_to_GC</span> function allows loading YAML data from an input stream, such as a file stream or a string stream.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a>( <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp; file_YAML, GenericContainer &amp; gc );</div>
+<div class="ttc" id="agroup___y_a_m_l_html_gaeb69b1a8ba585b19ebb4950c4aa6a8db"><div class="ttname"><a href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">GC_namespace::YAML_to_GC</a></div><div class="ttdeci">bool YAML_to_GC(istream_type &amp;stream, GenericContainer &amp;gc)</div><div class="ttdef"><b>Definition</b> GenericContainerInterface_yaml.hh:75</div></div>
+<div class="ttc" id="anamespace_g_c__namespace_html_afc3dff4f02db495ebc457f02e89bc7de"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">GC_namespace::istream_type</a></div><div class="ttdeci">std::basic_istream&lt; char &gt; istream_type</div><div class="ttdoc">Alias for a character-based input stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:118</div></div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::ifstream file_stream(<span class="stringliteral">&quot;config.yaml&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a>(file_stream, gc)) {</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a>(file_stream, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;YAML stream successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load YAML stream.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md40"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md70"></a>
 Loading YAML from a String</h3>
-<p>You can convert a YAML string directly into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> using the <code>YAML_to_GC</code> function.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a>( std::string <span class="keyword">const</span> &amp; YAML, GenericContainer &amp; gc );</div>
+<p>You can convert a YAML string directly into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">YAML_to_GC</span> function.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a>( std::string <span class="keyword">const</span> &amp; YAML, GenericContainer &amp; gc );</div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::string yaml_data = R<span class="stringliteral">&quot;(</span></div>
 <div class="line"><span class="stringliteral">    key1: value1</span></div>
@@ -194,15 +231,15 @@ Loading YAML from a String</h3>
 <div class="line"><span class="stringliteral">      - 3</span></div>
 <div class="line"><span class="stringliteral">)&quot;;</span></div>
 <div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral"></span><span class="keywordflow">if</span> (<a class="code hl_function" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a>(yaml_data, gc)) {</div>
+<div class="line"><span class="stringliteral"></span><span class="keywordflow">if</span> (<a class="code hl_function" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a>(yaml_data, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;YAML string successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load YAML string.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md41"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md71"></a>
 Loading YAML from a Vector of Strings</h3>
-<p>If you have multiple YAML strings in a vector, you can load them into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> using the <code>YAML_to_GC</code> function.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a>( std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp; YAML, GenericContainer &amp; gc );</div>
+<p>If you have multiple YAML strings in a vector, you can load them into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">YAML_to_GC</span> function.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a>( std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp; YAML, GenericContainer &amp; gc );</div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::vector&lt;std::string&gt; yaml_fragments = {</div>
 <div class="line">    <span class="stringliteral">&quot;key1: value1&quot;</span>,</div>
@@ -210,53 +247,42 @@ Loading YAML from a Vector of Strings</h3>
 <div class="line">    <span class="stringliteral">&quot;key3:\n  - 1\n  - 2\n  - 3&quot;</span></div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">YAML_to_GC</a>(yaml_fragments, gc)) {</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">YAML_to_GC</a>(yaml_fragments, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;YAML fragments successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load YAML fragments.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md42"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md72"></a>
 Converting a GenericContainer to YAML</h2>
-<p>You can also convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> back to YAML format.</p>
-<h3><a class="anchor" id="autotoc_md43"></a>
-Converting to a Vector of YAML Strings</h3>
-<p>The <code>GC_to_YAML</code> function converts the contents of a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into a vector of YAML strings.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_to_YAML</a>( GenericContainer <span class="keyword">const</span> &amp; gc, std::vector&lt;std::string&gt; &amp; YAML );</div>
-<div class="ttc" id="agroup___y_a_m_l_html_gaebe6e15e231247d4ec065c73f8a2b3fe"><div class="ttname"><a href="#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_namespace::GC_to_YAML</a></div><div class="ttdeci">void GC_to_YAML(GenericContainer const &amp;gc, vector&lt; string &gt; &amp;YAML)</div></div>
-</div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
-<div class="line">gc[<span class="stringliteral">&quot;key1&quot;</span>] = <span class="stringliteral">&quot;value1&quot;</span>;</div>
-<div class="line">gc[<span class="stringliteral">&quot;key2&quot;</span>] = 42;</div>
-<div class="line"> </div>
-<div class="line">std::vector&lt;std::string&gt; yaml_output;</div>
-<div class="line"><a class="code hl_function" href="#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_to_YAML</a>(gc, yaml_output);</div>
-<div class="line"> </div>
-<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;line : yaml_output) {</div>
-<div class="line">    std::cout &lt;&lt; line &lt;&lt; std::endl;</div>
-<div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md44"></a>
+<p>You can also convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> back to YAML format.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md73"></a>
 Converting to a YAML File Stream</h3>
-<p>You can write the contents of a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to an output stream (e.g., a file) in YAML format using the <code>GC_to_YAML</code> function.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_to_YAML</a>( GenericContainer <span class="keyword">const</span> &amp; gc, <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; file_YAML );</div>
-<div class="ttc" id="anamespace_g_c__namespace_html_aba86b1e2daf9221d49718c3eedd4c4f4"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">GC_namespace::ostream_type</a></div><div class="ttdeci">std::basic_ostream&lt; char &gt; ostream_type</div><div class="ttdoc">Alias for a character-based output stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:103</div></div>
+<p>You can write the contents of a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to an output stream (e.g., a file) in YAML format using the <span class="tt">GC_to_YAML</span> function.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#ga2e90e8cc7fb30f589b0f93640ada0b49">GC_to_YAML</a>( GenericContainer <span class="keyword">const</span> &amp; gc, <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; file_YAML );</div>
+<div class="ttc" id="agroup___y_a_m_l_html_ga2e90e8cc7fb30f589b0f93640ada0b49"><div class="ttname"><a href="#ga2e90e8cc7fb30f589b0f93640ada0b49">GC_namespace::GC_to_YAML</a></div><div class="ttdeci">void GC_to_YAML(GenericContainer const &amp;gc, std::string &amp;res)</div><div class="ttdef"><b>Definition</b> GenericContainerInterface_yaml.hh:116</div></div>
+<div class="ttc" id="anamespace_g_c__namespace_html_aba86b1e2daf9221d49718c3eedd4c4f4"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">GC_namespace::ostream_type</a></div><div class="ttdeci">std::basic_ostream&lt; char &gt; ostream_type</div><div class="ttdoc">Alias for a character-based output stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:109</div></div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">gc[<span class="stringliteral">&quot;key1&quot;</span>] = <span class="stringliteral">&quot;value1&quot;</span>;</div>
 <div class="line">gc[<span class="stringliteral">&quot;key2&quot;</span>] = 42;</div>
 <div class="line"> </div>
 <div class="line">std::ofstream file_stream(<span class="stringliteral">&quot;output.yaml&quot;</span>);</div>
-<div class="line"><a class="code hl_function" href="#gaebe6e15e231247d4ec065c73f8a2b3fe">GC_to_YAML</a>(gc, file_stream);</div>
+<div class="line"><a class="code hl_function" href="#ga2e90e8cc7fb30f589b0f93640ada0b49">GC_to_YAML</a>(gc, file_stream);</div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;YAML data written to output.yaml&quot;</span> &lt;&lt; std::endl;</div>
-</div><!-- fragment --><h2 class="groupheader">Function Documentation</h2>
-<a id="ga98fe8ebf6676160c18860575e9ddb6d9" name="ga98fe8ebf6676160c18860575e9ddb6d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga98fe8ebf6676160c18860575e9ddb6d9">&#9670;&#160;</a></span>file_YAML_to_GC()</h2>
+</div><!-- fragment --><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Functions</h2>
+<a id="ga39e421bb50e970288633ad737ba3dc67" name="ga39e421bb50e970288633ad737ba3dc67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga39e421bb50e970288633ad737ba3dc67">&#9670;&#160;</a></span>file_YAML_to_GC()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool GC_namespace::file_YAML_to_GC </td>
           <td>(</td>
-          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name_YAML</em></span>, </td>
+          <td class="paramtype">string_view</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -264,13 +290,18 @@ Converting to a YAML File Stream</h3>
           <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a YAML file to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function reads YAML data from the provided input stream and populates the given <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the parsed data.</p>
+<p>Convert a YAML file to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function reads YAML data from the provided input stream and populates the given <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the parsed data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">file_name_YAML</td><td>Input file name containing YAML data. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_name</td><td>Input file name containing YAML data. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to be populated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -278,11 +309,14 @@ Converting to a YAML File Stream</h3>
 
 </div>
 </div>
-<a id="ga420970b69b29c2d110b74f5641db4219" name="ga420970b69b29c2d110b74f5641db4219"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga420970b69b29c2d110b74f5641db4219">&#9670;&#160;</a></span>GC_to_YAML() <span class="overload">[1/2]</span></h2>
+<a id="ga46594be713c2f87e4a779919b6873149" name="ga46594be713c2f87e4a779919b6873149"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46594be713c2f87e4a779919b6873149">&#9670;&#160;</a></span>GC_to_YAML() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::GC_to_YAML </td>
@@ -292,27 +326,35 @@ Converting to a YAML File Stream</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>file_YAML</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to a YAML file stream.</p>
-<p>This function converts the contents of the provided <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into YAML format and writes it to the specified output stream.</p>
+<p>Convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to a YAML file stream.</p>
+<p>This function converts the contents of the provided <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into YAML format and writes it to the specified output stream.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to convert. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">file_YAML</td><td>Output stream to write the YAML data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to convert. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">stream</td><td>Output stream to write the YAML data. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="gaebe6e15e231247d4ec065c73f8a2b3fe" name="gaebe6e15e231247d4ec065c73f8a2b3fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaebe6e15e231247d4ec065c73f8a2b3fe">&#9670;&#160;</a></span>GC_to_YAML() <span class="overload">[2/2]</span></h2>
+<a id="ga2e90e8cc7fb30f589b0f93640ada0b49" name="ga2e90e8cc7fb30f589b0f93640ada0b49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2e90e8cc7fb30f589b0f93640ada0b49">&#9670;&#160;</a></span>GC_to_YAML() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::GC_to_YAML </td>
@@ -322,32 +364,40 @@ Converting to a YAML File Stream</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>YAML</em></span>&#160;)</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>res</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to a vector of YAML strings.</p>
-<p>This function converts the contents of the provided <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into YAML format and stores it in the specified vector.</p>
+<p>Convert a vector of YAML strings to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function parses each string in the given vector as YAML and populates the specified <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the resulting data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to convert. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">YAML</td><td>Vector to store the resulting YAML strings. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to convert. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">DATA</td><td>String to store the YAML encoded <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="gaa5d5b4eaf6dd4740dfd67838506d8a78" name="gaa5d5b4eaf6dd4740dfd67838506d8a78"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa5d5b4eaf6dd4740dfd67838506d8a78">&#9670;&#160;</a></span>YAML_to_GC() <span class="overload">[1/3]</span></h2>
+<a id="gaeb69b1a8ba585b19ebb4950c4aa6a8db" name="gaeb69b1a8ba585b19ebb4950c4aa6a8db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeb69b1a8ba585b19ebb4950c4aa6a8db">&#9670;&#160;</a></span>YAML_to_GC() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool GC_namespace::YAML_to_GC </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>file_YAML</em></span>, </td>
+          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -355,44 +405,18 @@ Converting to a YAML File Stream</h3>
           <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a YAML file stream to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function reads YAML data from the provided input stream and populates the given <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the parsed data.</p>
+<p>Convert a YAML file stream to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function reads YAML data from the provided input stream and populates the given <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the parsed data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">file_YAML</td><td>Input stream containing YAML data. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the conversion was successful, false otherwise. </dd></dl>
-
-</div>
-</div>
-<a id="ga0e48f20f7cb91d0efe10b5e4b393dac6" name="ga0e48f20f7cb91d0efe10b5e4b393dac6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0e48f20f7cb91d0efe10b5e4b393dac6">&#9670;&#160;</a></span>YAML_to_GC() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool GC_namespace::YAML_to_GC </td>
-          <td>(</td>
-          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>YAML</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Convert a YAML string to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function parses the given YAML string and populates the specified <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the resulting data.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">YAML</td><td>The YAML string to parse. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Input stream containing YAML data. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to be populated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -400,16 +424,19 @@ Converting to a YAML File Stream</h3>
 
 </div>
 </div>
-<a id="ga6c8091540c18a10b089c4d76f0c44037" name="ga6c8091540c18a10b089c4d76f0c44037"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6c8091540c18a10b089c4d76f0c44037">&#9670;&#160;</a></span>YAML_to_GC() <span class="overload">[3/3]</span></h2>
+<a id="gadad2fca170dcccfbd4edd61c9c20c5bf" name="gadad2fca170dcccfbd4edd61c9c20c5bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadad2fca170dcccfbd4edd61c9c20c5bf">&#9670;&#160;</a></span>YAML_to_GC() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool GC_namespace::YAML_to_GC </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; string &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>YAML</em></span>, </td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>DATA</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -417,13 +444,18 @@ Converting to a YAML File Stream</h3>
           <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a vector of YAML strings to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function parses each string in the given vector as YAML and populates the specified <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the resulting data.</p>
+<p>Convert a YAML string to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function parses the given YAML string and populates the specified <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the resulting data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">YAML</td><td>Vector containing YAML strings to parse. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">DATA</td><td>The YAML string to parse. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to be populated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -433,10 +465,18 @@ Converting to a YAML File Stream</h3>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

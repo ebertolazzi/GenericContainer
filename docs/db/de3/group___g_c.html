@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: GenericContainer C Interface</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: GenericContainer C Interface</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('db/de3/group___g_c.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('db/de3/group___g_c.html','../../',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,225 +164,161 @@ $(function(){initNavTree('db/de3/group___g_c.html','../../'); initResizable(true
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">GenericContainer C Interface</div></div>
+  <div class="headertitle"><div class="title">GenericContainer C Interface </div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>This module provides the C interface for the GenericContainer class.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a></td></tr>
+<tr class="memitem:c_5Fcomplex_5Ftype" id="r_c_5Fcomplex_5Ftype"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A structure representing a complex number, with real and imaginary components.  <a href="../../d6/d33/structc__complex__type.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga88c4b35a9d93535636a5b6a8c9fa36cb" id="r_ga88c4b35a9d93535636a5b6a8c9fa36cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga88c4b35a9d93535636a5b6a8c9fa36cb">GENERIC_CONTAINER_INTERFACE_C_H</a></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:ga06fc87d81c62e9abb8790b6e5713c55b" id="r_ga06fc87d81c62e9abb8790b6e5713c55b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<a class="el" href="#gga06fc87d81c62e9abb8790b6e5713c55ba10cac9643f13d14a6340fde2ffb52862">GENERIC_CONTAINER_OK</a> = 0
-, <a class="el" href="#gga06fc87d81c62e9abb8790b6e5713c55bab4c3cc98ed3d5ca75eb8e0364a73559e">GENERIC_CONTAINER_BAD_TYPE</a>
-, <a class="el" href="#gga06fc87d81c62e9abb8790b6e5713c55ba818e2c729fe66ecef8c5640fdb66584e">GENERIC_CONTAINER_NO_DATA</a>
-, <a class="el" href="#gga06fc87d81c62e9abb8790b6e5713c55bac172ab4356b118118134320b824fc96c">GENERIC_CONTAINER_NOT_EMPTY</a>
+<tr class="memitem:gab4ba1503f0982157c990696abbf387e5" id="r_gab4ba1503f0982157c990696abbf387e5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="#ggab4ba1503f0982157c990696abbf387e5a10cac9643f13d14a6340fde2ffb52862">GENERIC_CONTAINER_OK</a> = 0
+, <a class="el" href="#ggab4ba1503f0982157c990696abbf387e5ab4c3cc98ed3d5ca75eb8e0364a73559e">GENERIC_CONTAINER_BAD_TYPE</a>
+, <a class="el" href="#ggab4ba1503f0982157c990696abbf387e5a818e2c729fe66ecef8c5640fdb66584e">GENERIC_CONTAINER_NO_DATA</a>
+, <a class="el" href="#ggab4ba1503f0982157c990696abbf387e5ac172ab4356b118118134320b824fc96c">GENERIC_CONTAINER_NOT_EMPTY</a>
 , <br />
-&#160;&#160;<a class="el" href="#gga06fc87d81c62e9abb8790b6e5713c55ba3879c1942c8b331b52936300ce4d6bac">GENERIC_CONTAINER_BAD_HEAD</a>
+&#160;&#160;<a class="el" href="#ggab4ba1503f0982157c990696abbf387e5a3879c1942c8b331b52936300ce4d6bac">GENERIC_CONTAINER_BAD_HEAD</a>
 <br />
  }</td></tr>
-<tr class="separator:ga06fc87d81c62e9abb8790b6e5713c55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:gabc5be84dd048a37ae7b391f1a5a2f798" id="r_gabc5be84dd048a37ae7b391f1a5a2f798"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabc5be84dd048a37ae7b391f1a5a2f798">GC_new</a> (char const id[])</td></tr>
 <tr class="memdesc:gabc5be84dd048a37ae7b391f1a5a2f798"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new GenericContainer object.  <br /></td></tr>
-<tr class="separator:gabc5be84dd048a37ae7b391f1a5a2f798"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga58e721f53614a628c86aa3192a10bda5" id="r_ga58e721f53614a628c86aa3192a10bda5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga58e721f53614a628c86aa3192a10bda5">GC_select</a> (char const id[])</td></tr>
 <tr class="memdesc:ga58e721f53614a628c86aa3192a10bda5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Select an existing GenericContainer object.  <br /></td></tr>
-<tr class="separator:ga58e721f53614a628c86aa3192a10bda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9ab1bd1155b5508ec3a00212ae354e2e" id="r_ga9ab1bd1155b5508ec3a00212ae354e2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9ab1bd1155b5508ec3a00212ae354e2e">GC_delete</a> (char const id[])</td></tr>
 <tr class="memdesc:ga9ab1bd1155b5508ec3a00212ae354e2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delete a GenericContainer object.  <br /></td></tr>
-<tr class="separator:ga9ab1bd1155b5508ec3a00212ae354e2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6f5d49dd5f593cb0ef29f3fc292a6ded" id="r_ga6f5d49dd5f593cb0ef29f3fc292a6ded"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga6f5d49dd5f593cb0ef29f3fc292a6ded">GC_fill_for_test</a> (char const id[])</td></tr>
 <tr class="memdesc:ga6f5d49dd5f593cb0ef29f3fc292a6ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fill a GenericContainer with test data.  <br /></td></tr>
-<tr class="separator:ga6f5d49dd5f593cb0ef29f3fc292a6ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga04506ce2900be0d3122e67e1c0e65b39" id="r_ga04506ce2900be0d3122e67e1c0e65b39"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga04506ce2900be0d3122e67e1c0e65b39">GC_pop_head</a> ()</td></tr>
 <tr class="memdesc:ga04506ce2900be0d3122e67e1c0e65b39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the head pointer up one level in the GenericContainer.  <br /></td></tr>
-<tr class="separator:ga04506ce2900be0d3122e67e1c0e65b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga96a0b00683696835357069a9b252cc77" id="r_ga96a0b00683696835357069a9b252cc77"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga96a0b00683696835357069a9b252cc77">GC_reset_head</a> ()</td></tr>
 <tr class="memdesc:ga96a0b00683696835357069a9b252cc77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the head pointer to the first level in the GenericContainer.  <br /></td></tr>
-<tr class="separator:ga96a0b00683696835357069a9b252cc77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab655420d208fed344ad592058e099e96" id="r_gab655420d208fed344ad592058e099e96"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab655420d208fed344ad592058e099e96">GC_dump</a> ()</td></tr>
 <tr class="memdesc:gab655420d208fed344ad592058e099e96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dump the contents of the current GenericContainer.  <br /></td></tr>
-<tr class="separator:gab655420d208fed344ad592058e099e96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacea3914c0b3c06e635817bd4ff37252f" id="r_gacea3914c0b3c06e635817bd4ff37252f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacea3914c0b3c06e635817bd4ff37252f">GC_print_content_types</a> ()</td></tr>
 <tr class="memdesc:gacea3914c0b3c06e635817bd4ff37252f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the content types of the current GenericContainer.  <br /></td></tr>
-<tr class="separator:gacea3914c0b3c06e635817bd4ff37252f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga85f3102cc4c8212ca7b4602505bb8086" id="r_ga85f3102cc4c8212ca7b4602505bb8086"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga85f3102cc4c8212ca7b4602505bb8086">GC_get_type</a> ()</td></tr>
 <tr class="memdesc:ga85f3102cc4c8212ca7b4602505bb8086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the type of the current element pointed by the head in the GenericContainer.  <br /></td></tr>
-<tr class="separator:ga85f3102cc4c8212ca7b4602505bb8086"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga703f0afe3529479357ec132cb2c75ad7" id="r_ga703f0afe3529479357ec132cb2c75ad7"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga703f0afe3529479357ec132cb2c75ad7">GC_get_type_name</a> ()</td></tr>
 <tr class="memdesc:ga703f0afe3529479357ec132cb2c75ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the name of the type of the current element in the GenericContainer.  <br /></td></tr>
-<tr class="separator:ga703f0afe3529479357ec132cb2c75ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga4a566d5451f6a76c8d065b6f1efc19f7" id="r_ga4a566d5451f6a76c8d065b6f1efc19f7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4a566d5451f6a76c8d065b6f1efc19f7">GC_mem_ptr</a> (char const id[])</td></tr>
 <tr class="memdesc:ga4a566d5451f6a76c8d065b6f1efc19f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a pointer to the internal memory of the GenericContainer object.  <br /></td></tr>
-<tr class="separator:ga4a566d5451f6a76c8d065b6f1efc19f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8ae675381c32aae8bc1a23c4682a4174" id="r_ga8ae675381c32aae8bc1a23c4682a4174"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8ae675381c32aae8bc1a23c4682a4174">GC_set_bool</a> (int a)</td></tr>
-<tr class="separator:ga8ae675381c32aae8bc1a23c4682a4174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaefdbe7c4491e06d76ce6699b961055ed" id="r_gaefdbe7c4491e06d76ce6699b961055ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a> (int a)</td></tr>
-<tr class="memdesc:gaefdbe7c4491e06d76ce6699b961055ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to an integer value.  <br /></td></tr>
-<tr class="separator:gaefdbe7c4491e06d76ce6699b961055ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaefdbe7c4491e06d76ce6699b961055ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to an integer value.  <br /></td></tr>
 <tr class="memitem:ga02e8daa89960a53e8d19d67e5595a3c0" id="r_ga02e8daa89960a53e8d19d67e5595a3c0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a> (double a)</td></tr>
-<tr class="memdesc:ga02e8daa89960a53e8d19d67e5595a3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a real number.  <br /></td></tr>
-<tr class="separator:ga02e8daa89960a53e8d19d67e5595a3c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga02e8daa89960a53e8d19d67e5595a3c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a real number.  <br /></td></tr>
 <tr class="memitem:ga876d695c75b7e4ada206895af4f5dbce" id="r_ga876d695c75b7e4ada206895af4f5dbce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga876d695c75b7e4ada206895af4f5dbce">GC_set_complex</a> (<a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a> const *a)</td></tr>
-<tr class="memdesc:ga876d695c75b7e4ada206895af4f5dbce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a complex number.  <br /></td></tr>
-<tr class="separator:ga876d695c75b7e4ada206895af4f5dbce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga876d695c75b7e4ada206895af4f5dbce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a complex number.  <br /></td></tr>
 <tr class="memitem:ga38fbe10d7dcfd37182c4a48036045a6b" id="r_ga38fbe10d7dcfd37182c4a48036045a6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga38fbe10d7dcfd37182c4a48036045a6b">GC_set_complex2</a> (double re, double im)</td></tr>
-<tr class="memdesc:ga38fbe10d7dcfd37182c4a48036045a6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a complex number using real and imaginary parts.  <br /></td></tr>
-<tr class="separator:ga38fbe10d7dcfd37182c4a48036045a6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga38fbe10d7dcfd37182c4a48036045a6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a complex number using real and imaginary parts.  <br /></td></tr>
 <tr class="memitem:ga620562c4b3400d365a7da44d799f1255" id="r_ga620562c4b3400d365a7da44d799f1255"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a> (char const a[])</td></tr>
-<tr class="memdesc:ga620562c4b3400d365a7da44d799f1255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a string.  <br /></td></tr>
-<tr class="separator:ga620562c4b3400d365a7da44d799f1255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga620562c4b3400d365a7da44d799f1255"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a string.  <br /></td></tr>
 <tr class="memitem:ga0d8384363f714f4778d1feaf6dfe70d4" id="r_ga0d8384363f714f4778d1feaf6dfe70d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0d8384363f714f4778d1feaf6dfe70d4">GC_get_bool</a> ()</td></tr>
-<tr class="memdesc:ga0d8384363f714f4778d1feaf6dfe70d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the boolean value from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga0d8384363f714f4778d1feaf6dfe70d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga0d8384363f714f4778d1feaf6dfe70d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the boolean value from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaf0e14b5c2fd60e0a15ec4cd5394404b2" id="r_gaf0e14b5c2fd60e0a15ec4cd5394404b2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf0e14b5c2fd60e0a15ec4cd5394404b2">GC_get_int</a> ()</td></tr>
-<tr class="memdesc:gaf0e14b5c2fd60e0a15ec4cd5394404b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the integer value from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaf0e14b5c2fd60e0a15ec4cd5394404b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaf0e14b5c2fd60e0a15ec4cd5394404b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the integer value from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaa79c2c4908b94e3c215bb93ef31b77d4" id="r_gaa79c2c4908b94e3c215bb93ef31b77d4"><td class="memItemLeft" align="right" valign="top">long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa79c2c4908b94e3c215bb93ef31b77d4">GC_get_long</a> ()</td></tr>
-<tr class="memdesc:gaa79c2c4908b94e3c215bb93ef31b77d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the long integer value from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaa79c2c4908b94e3c215bb93ef31b77d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaa79c2c4908b94e3c215bb93ef31b77d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the long integer value from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga0c9ffe201c3e1827921b02eaeee7460f" id="r_ga0c9ffe201c3e1827921b02eaeee7460f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga0c9ffe201c3e1827921b02eaeee7460f">GC_get_real</a> ()</td></tr>
-<tr class="memdesc:ga0c9ffe201c3e1827921b02eaeee7460f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the real number value from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga0c9ffe201c3e1827921b02eaeee7460f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga0c9ffe201c3e1827921b02eaeee7460f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the real number value from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga3d8fe535506f3e7a9ad2d25e0d3483ad" id="r_ga3d8fe535506f3e7a9ad2d25e0d3483ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3d8fe535506f3e7a9ad2d25e0d3483ad">GC_get_complex</a> ()</td></tr>
-<tr class="memdesc:ga3d8fe535506f3e7a9ad2d25e0d3483ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the complex number from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga3d8fe535506f3e7a9ad2d25e0d3483ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga3d8fe535506f3e7a9ad2d25e0d3483ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the complex number from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaefcec24004bbb7fdb8748ecc576e2307" id="r_gaefcec24004bbb7fdb8748ecc576e2307"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaefcec24004bbb7fdb8748ecc576e2307">GC_get_complex_re</a> ()</td></tr>
-<tr class="memdesc:gaefcec24004bbb7fdb8748ecc576e2307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the real part of a complex number from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaefcec24004bbb7fdb8748ecc576e2307"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaefcec24004bbb7fdb8748ecc576e2307"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the real part of a complex number from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaa52f6d35694c5cf331dd36ad6a7b8a63" id="r_gaa52f6d35694c5cf331dd36ad6a7b8a63"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa52f6d35694c5cf331dd36ad6a7b8a63">GC_get_complex_im</a> ()</td></tr>
-<tr class="memdesc:gaa52f6d35694c5cf331dd36ad6a7b8a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the imaginary part of a complex number from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaa52f6d35694c5cf331dd36ad6a7b8a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaa52f6d35694c5cf331dd36ad6a7b8a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the imaginary part of a complex number from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gac92ba0a37ac212a3b103654baa7ce3a6" id="r_gac92ba0a37ac212a3b103654baa7ce3a6"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gac92ba0a37ac212a3b103654baa7ce3a6">GC_get_string</a> ()</td></tr>
-<tr class="memdesc:gac92ba0a37ac212a3b103654baa7ce3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the string from the current element of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gac92ba0a37ac212a3b103654baa7ce3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gac92ba0a37ac212a3b103654baa7ce3a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the string from the current element of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaa94659cae7bd1ffff7ad7f70e21f4f83" id="r_gaa94659cae7bd1ffff7ad7f70e21f4f83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa94659cae7bd1ffff7ad7f70e21f4f83">GC_push_bool</a> (int a)</td></tr>
-<tr class="memdesc:gaa94659cae7bd1ffff7ad7f70e21f4f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a boolean value to the currently selected vector of booleans in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaa94659cae7bd1ffff7ad7f70e21f4f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaa94659cae7bd1ffff7ad7f70e21f4f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a boolean value to the currently selected vector of booleans in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga65554caf303396820550ec43f34f5dc9" id="r_ga65554caf303396820550ec43f34f5dc9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga65554caf303396820550ec43f34f5dc9">GC_push_int</a> (int a)</td></tr>
-<tr class="memdesc:ga65554caf303396820550ec43f34f5dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append an integer value to the currently selected vector of integers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga65554caf303396820550ec43f34f5dc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga65554caf303396820550ec43f34f5dc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append an integer value to the currently selected vector of integers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga2b76609cd898d84e6a381533407d9f63" id="r_ga2b76609cd898d84e6a381533407d9f63"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2b76609cd898d84e6a381533407d9f63">GC_push_real</a> (double a)</td></tr>
-<tr class="memdesc:ga2b76609cd898d84e6a381533407d9f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a floating-point value to the currently selected vector of real numbers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga2b76609cd898d84e6a381533407d9f63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga2b76609cd898d84e6a381533407d9f63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a floating-point value to the currently selected vector of real numbers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga94001ed7c98a02b145905f06f0594f95" id="r_ga94001ed7c98a02b145905f06f0594f95"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga94001ed7c98a02b145905f06f0594f95">GC_push_complex</a> (<a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a> const *a)</td></tr>
-<tr class="memdesc:ga94001ed7c98a02b145905f06f0594f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a complex number to the currently selected vector of complex numbers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga94001ed7c98a02b145905f06f0594f95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga94001ed7c98a02b145905f06f0594f95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a complex number to the currently selected vector of complex numbers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga17d331fdf8513fcc26ef34bd85255d88" id="r_ga17d331fdf8513fcc26ef34bd85255d88"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga17d331fdf8513fcc26ef34bd85255d88">GC_push_complex2</a> (double re, double im)</td></tr>
 <tr class="memdesc:ga17d331fdf8513fcc26ef34bd85255d88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a complex number to the currently selected vector using real and imaginary parts.  <br /></td></tr>
-<tr class="separator:ga17d331fdf8513fcc26ef34bd85255d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e65e06c95680394ae21d7ae14824dd7" id="r_ga3e65e06c95680394ae21d7ae14824dd7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3e65e06c95680394ae21d7ae14824dd7">GC_push_string</a> (char const a[])</td></tr>
-<tr class="memdesc:ga3e65e06c95680394ae21d7ae14824dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a string to the currently selected vector of strings in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga3e65e06c95680394ae21d7ae14824dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga3e65e06c95680394ae21d7ae14824dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Append a string to the currently selected vector of strings in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga63982106109a2aa082784931602998a5" id="r_ga63982106109a2aa082784931602998a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga63982106109a2aa082784931602998a5">GC_get_bool_at_pos</a> (int pos)</td></tr>
-<tr class="memdesc:ga63982106109a2aa082784931602998a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a boolean value at a specified position from a vector of booleans in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga63982106109a2aa082784931602998a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga63982106109a2aa082784931602998a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a boolean value at a specified position from a vector of booleans in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaea7d09afcead1fc112a1fe24bc454fea" id="r_gaea7d09afcead1fc112a1fe24bc454fea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaea7d09afcead1fc112a1fe24bc454fea">GC_get_int_at_pos</a> (int pos)</td></tr>
-<tr class="memdesc:gaea7d09afcead1fc112a1fe24bc454fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an integer value at a specified position from a vector of integers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaea7d09afcead1fc112a1fe24bc454fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaea7d09afcead1fc112a1fe24bc454fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve an integer value at a specified position from a vector of integers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gacc732ec460b0f400643269883b5a5319" id="r_gacc732ec460b0f400643269883b5a5319"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacc732ec460b0f400643269883b5a5319">GC_get_real_at_pos</a> (int pos)</td></tr>
-<tr class="memdesc:gacc732ec460b0f400643269883b5a5319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a real number at a specified position from a vector of real numbers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gacc732ec460b0f400643269883b5a5319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gacc732ec460b0f400643269883b5a5319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a real number at a specified position from a vector of real numbers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga94bb55c93d8ca227cc8c6b3d439e8d59" id="r_ga94bb55c93d8ca227cc8c6b3d439e8d59"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga94bb55c93d8ca227cc8c6b3d439e8d59">GC_get_complex_at_pos</a> (int pos)</td></tr>
-<tr class="memdesc:ga94bb55c93d8ca227cc8c6b3d439e8d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a complex number at a specified position from a vector of complex numbers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga94bb55c93d8ca227cc8c6b3d439e8d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga94bb55c93d8ca227cc8c6b3d439e8d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a complex number at a specified position from a vector of complex numbers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaad1ae490f3b8b0bbd8c38e08977f5103" id="r_gaad1ae490f3b8b0bbd8c38e08977f5103"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaad1ae490f3b8b0bbd8c38e08977f5103">GC_get_complex_real_at_pos</a> (int pos)</td></tr>
 <tr class="memdesc:gaad1ae490f3b8b0bbd8c38e08977f5103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the real part of a complex number at a specified position from a vector of complex numbers.  <br /></td></tr>
-<tr class="separator:gaad1ae490f3b8b0bbd8c38e08977f5103"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaea64019c8ef0d11042e411e367fcd517" id="r_gaea64019c8ef0d11042e411e367fcd517"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaea64019c8ef0d11042e411e367fcd517">GC_get_complex_imag_at_pos</a> (int pos)</td></tr>
 <tr class="memdesc:gaea64019c8ef0d11042e411e367fcd517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the imaginary part of a complex number at a specified position from a vector of complex numbers.  <br /></td></tr>
-<tr class="separator:gaea64019c8ef0d11042e411e367fcd517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga547ef26c07df88863664ec68656bcfe0" id="r_ga547ef26c07df88863664ec68656bcfe0"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga547ef26c07df88863664ec68656bcfe0">GC_get_string_at_pos</a> (int pos)</td></tr>
-<tr class="memdesc:ga547ef26c07df88863664ec68656bcfe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a string at a specified position from a vector of strings in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga547ef26c07df88863664ec68656bcfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga547ef26c07df88863664ec68656bcfe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a string at a specified position from a vector of strings in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga580b30b6b2cd870df70a7d63a4d1f90e" id="r_ga580b30b6b2cd870df70a7d63a4d1f90e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga580b30b6b2cd870df70a7d63a4d1f90e">GC_get_real_at_coor</a> (int i, int j)</td></tr>
-<tr class="memdesc:ga580b30b6b2cd870df70a7d63a4d1f90e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a real number at the specified row and column from a matrix of real numbers in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga580b30b6b2cd870df70a7d63a4d1f90e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga580b30b6b2cd870df70a7d63a4d1f90e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a real number at the specified row and column from a matrix of real numbers in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga86514ccb3da3dcf403a80631d4a09754" id="r_ga86514ccb3da3dcf403a80631d4a09754"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d6/d33/structc__complex__type.html">c_complex_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga86514ccb3da3dcf403a80631d4a09754">GC_get_complex_at_coor</a> (int i, int j)</td></tr>
 <tr class="memdesc:ga86514ccb3da3dcf403a80631d4a09754"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve a complex number at the specified row and column from a matrix of complex numbers.  <br /></td></tr>
-<tr class="separator:ga86514ccb3da3dcf403a80631d4a09754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga500e4630417332cdab4f9960177a3fe9" id="r_ga500e4630417332cdab4f9960177a3fe9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga500e4630417332cdab4f9960177a3fe9">GC_get_complex_real_at_coor</a> (int i, int j)</td></tr>
 <tr class="memdesc:ga500e4630417332cdab4f9960177a3fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the real part of a complex number at the specified row and column from a matrix.  <br /></td></tr>
-<tr class="separator:ga500e4630417332cdab4f9960177a3fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga59d484ae54ce67d3b2fd028ac1db90a4" id="r_ga59d484ae54ce67d3b2fd028ac1db90a4"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga59d484ae54ce67d3b2fd028ac1db90a4">GC_get_complex_imag_at_coor</a> (int i, int j)</td></tr>
 <tr class="memdesc:ga59d484ae54ce67d3b2fd028ac1db90a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the imaginary part of a complex number at the specified row and column from a matrix.  <br /></td></tr>
-<tr class="separator:ga59d484ae54ce67d3b2fd028ac1db90a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89e6cf707be706de926d137fb140828b" id="r_ga89e6cf707be706de926d137fb140828b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga89e6cf707be706de926d137fb140828b">GC_set_empty_vector_of_bool</a> ()</td></tr>
-<tr class="memdesc:ga89e6cf707be706de926d137fb140828b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <code>GenericContainer</code> to an empty vector of booleans.  <br /></td></tr>
-<tr class="separator:ga89e6cf707be706de926d137fb140828b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga89e6cf707be706de926d137fb140828b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of booleans.  <br /></td></tr>
 <tr class="memitem:gadacb4c8d6729aa59e14681eb099ab69b" id="r_gadacb4c8d6729aa59e14681eb099ab69b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gadacb4c8d6729aa59e14681eb099ab69b">GC_set_empty_vector_of_int</a> ()</td></tr>
-<tr class="memdesc:gadacb4c8d6729aa59e14681eb099ab69b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <code>GenericContainer</code> to an empty vector of integers.  <br /></td></tr>
-<tr class="separator:gadacb4c8d6729aa59e14681eb099ab69b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gadacb4c8d6729aa59e14681eb099ab69b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of integers.  <br /></td></tr>
 <tr class="memitem:gacff492e97fc6dd33467002aa50c64ac6" id="r_gacff492e97fc6dd33467002aa50c64ac6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacff492e97fc6dd33467002aa50c64ac6">GC_set_empty_vector_of_real</a> ()</td></tr>
-<tr class="memdesc:gacff492e97fc6dd33467002aa50c64ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <code>GenericContainer</code> to an empty vector of real numbers.  <br /></td></tr>
-<tr class="separator:gacff492e97fc6dd33467002aa50c64ac6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gacff492e97fc6dd33467002aa50c64ac6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of real numbers.  <br /></td></tr>
 <tr class="memitem:ga7beef25a3a19b509c44e3df6639b2ace" id="r_ga7beef25a3a19b509c44e3df6639b2ace"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga7beef25a3a19b509c44e3df6639b2ace">GC_set_empty_vector_of_complex</a> ()</td></tr>
-<tr class="memdesc:ga7beef25a3a19b509c44e3df6639b2ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <code>GenericContainer</code> to an empty vector of complex numbers.  <br /></td></tr>
-<tr class="separator:ga7beef25a3a19b509c44e3df6639b2ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga7beef25a3a19b509c44e3df6639b2ace"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of complex numbers.  <br /></td></tr>
 <tr class="memitem:gab5c51d363602f1cbe42142c6cebb4a32" id="r_gab5c51d363602f1cbe42142c6cebb4a32"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab5c51d363602f1cbe42142c6cebb4a32">GC_set_empty_vector_of_string</a> ()</td></tr>
-<tr class="memdesc:gab5c51d363602f1cbe42142c6cebb4a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <code>GenericContainer</code> to an empty vector of strings.  <br /></td></tr>
-<tr class="separator:gab5c51d363602f1cbe42142c6cebb4a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gab5c51d363602f1cbe42142c6cebb4a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of strings.  <br /></td></tr>
 <tr class="memitem:ga168a7fb8aef6c7ed28502b664296b623" id="r_ga168a7fb8aef6c7ed28502b664296b623"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga168a7fb8aef6c7ed28502b664296b623">GC_set_vector_of_bool</a> (int const *a, int nelem)</td></tr>
-<tr class="memdesc:ga168a7fb8aef6c7ed28502b664296b623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a vector of booleans, and copy the provided values.  <br /></td></tr>
-<tr class="separator:ga168a7fb8aef6c7ed28502b664296b623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga168a7fb8aef6c7ed28502b664296b623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a vector of booleans, and copy the provided values.  <br /></td></tr>
 <tr class="memitem:gad7de94bfd0b1509b9eb9b2d78fc23817" id="r_gad7de94bfd0b1509b9eb9b2d78fc23817"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad7de94bfd0b1509b9eb9b2d78fc23817">GC_set_vector_of_int</a> (int const *a, int nelem)</td></tr>
-<tr class="memdesc:gad7de94bfd0b1509b9eb9b2d78fc23817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a vector of integers, and copy the provided values.  <br /></td></tr>
-<tr class="separator:gad7de94bfd0b1509b9eb9b2d78fc23817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gad7de94bfd0b1509b9eb9b2d78fc23817"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a vector of integers, and copy the provided values.  <br /></td></tr>
 <tr class="memitem:ga8b6733d7a9042172ea688e83f13f0eb0" id="r_ga8b6733d7a9042172ea688e83f13f0eb0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8b6733d7a9042172ea688e83f13f0eb0">GC_set_vector_of_real</a> (double const *a, int nelem)</td></tr>
-<tr class="memdesc:ga8b6733d7a9042172ea688e83f13f0eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a vector of real numbers, and copy the provided values.  <br /></td></tr>
-<tr class="separator:ga8b6733d7a9042172ea688e83f13f0eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga8b6733d7a9042172ea688e83f13f0eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a vector of real numbers, and copy the provided values.  <br /></td></tr>
 <tr class="memitem:ga723e313191b8e9a33bb74aa9b4e51341" id="r_ga723e313191b8e9a33bb74aa9b4e51341"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga723e313191b8e9a33bb74aa9b4e51341">GC_set_vector_of_complex</a> (double const *re, double const *im, int nelem)</td></tr>
-<tr class="memdesc:ga723e313191b8e9a33bb74aa9b4e51341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a vector of complex numbers, and copy the provided values.  <br /></td></tr>
-<tr class="separator:ga723e313191b8e9a33bb74aa9b4e51341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga723e313191b8e9a33bb74aa9b4e51341"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a vector of complex numbers, and copy the provided values.  <br /></td></tr>
 <tr class="memitem:ga4f2d146b707e27102e8cc3b775de9b9c" id="r_ga4f2d146b707e27102e8cc3b775de9b9c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga4f2d146b707e27102e8cc3b775de9b9c">GC_set_vector_of_string</a> (char const **a, int nelem)</td></tr>
-<tr class="memdesc:ga4f2d146b707e27102e8cc3b775de9b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a vector of strings, and copy the provided values.  <br /></td></tr>
-<tr class="separator:ga4f2d146b707e27102e8cc3b775de9b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga4f2d146b707e27102e8cc3b775de9b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a vector of strings, and copy the provided values.  <br /></td></tr>
 <tr class="memitem:gaf14c1be318b456d250057cb5d5acb2cc" id="r_gaf14c1be318b456d250057cb5d5acb2cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a> (int nelem)</td></tr>
-<tr class="memdesc:gaf14c1be318b456d250057cb5d5acb2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to a vector of <code>GenericContainer</code> elements with the specified size.  <br /></td></tr>
-<tr class="separator:gaf14c1be318b456d250057cb5d5acb2cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaf14c1be318b456d250057cb5d5acb2cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to a vector of <span class="tt">GenericContainer</span> elements with the specified size.  <br /></td></tr>
 <tr class="memitem:ga9e6cda6086e95e66d82dd2f838285a60" id="r_ga9e6cda6086e95e66d82dd2f838285a60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9e6cda6086e95e66d82dd2f838285a60">GC_set_empty_vector</a> ()</td></tr>
-<tr class="memdesc:ga9e6cda6086e95e66d82dd2f838285a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <code>GenericContainer</code> to an empty vector of <code>GenericContainer</code> elements.  <br /></td></tr>
-<tr class="separator:ga9e6cda6086e95e66d82dd2f838285a60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga9e6cda6086e95e66d82dd2f838285a60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current element of the <span class="tt">GenericContainer</span> to an empty vector of <span class="tt">GenericContainer</span> elements.  <br /></td></tr>
 <tr class="memitem:ga654c04d499921f0065bebcdf16ced97d" id="r_ga654c04d499921f0065bebcdf16ced97d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga654c04d499921f0065bebcdf16ced97d">GC_get_vector_size</a> ()</td></tr>
-<tr class="memdesc:ga654c04d499921f0065bebcdf16ced97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the number of elements in the current vector of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga654c04d499921f0065bebcdf16ced97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga654c04d499921f0065bebcdf16ced97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the number of elements in the current vector of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga2e06a7d7f7bc39fe644b726f2c39f642" id="r_ga2e06a7d7f7bc39fe644b726f2c39f642"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2e06a7d7f7bc39fe644b726f2c39f642">GC_get_matrix_num_rows</a> ()</td></tr>
-<tr class="memdesc:ga2e06a7d7f7bc39fe644b726f2c39f642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the number of rows in the current matrix of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga2e06a7d7f7bc39fe644b726f2c39f642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga2e06a7d7f7bc39fe644b726f2c39f642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the number of rows in the current matrix of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gaa2d72c2e7aaf63f70b545d0998dd9767" id="r_gaa2d72c2e7aaf63f70b545d0998dd9767"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaa2d72c2e7aaf63f70b545d0998dd9767">GC_get_matrix_num_cols</a> ()</td></tr>
-<tr class="memdesc:gaa2d72c2e7aaf63f70b545d0998dd9767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the number of columns in the current matrix of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gaa2d72c2e7aaf63f70b545d0998dd9767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gaa2d72c2e7aaf63f70b545d0998dd9767"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the number of columns in the current matrix of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga446e5e057707b59033f27ddcfb8a99ac" id="r_ga446e5e057707b59033f27ddcfb8a99ac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a> (int pos)</td></tr>
-<tr class="memdesc:ga446e5e057707b59033f27ddcfb8a99ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the insertion point in the current vector of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga446e5e057707b59033f27ddcfb8a99ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga446e5e057707b59033f27ddcfb8a99ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the insertion point in the current vector of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gad0c3f19dcf90486ddc53116870c76d56" id="r_gad0c3f19dcf90486ddc53116870c76d56"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a> ()</td></tr>
-<tr class="memdesc:gad0c3f19dcf90486ddc53116870c76d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <code>GenericContainer</code> to a map.  <br /></td></tr>
-<tr class="separator:gad0c3f19dcf90486ddc53116870c76d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gad0c3f19dcf90486ddc53116870c76d56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element of the <span class="tt">GenericContainer</span> to a map.  <br /></td></tr>
 <tr class="memitem:ga05342ee80f13edc85aafe12ef9b841b3" id="r_ga05342ee80f13edc85aafe12ef9b841b3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga05342ee80f13edc85aafe12ef9b841b3">GC_init_map_key</a> ()</td></tr>
-<tr class="memdesc:ga05342ee80f13edc85aafe12ef9b841b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element as a map key in the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga05342ee80f13edc85aafe12ef9b841b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga05342ee80f13edc85aafe12ef9b841b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current element as a map key in the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:gacde674b88c7a12d216edba8ae270c1f8" id="r_gacde674b88c7a12d216edba8ae270c1f8"><td class="memItemLeft" align="right" valign="top">char const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gacde674b88c7a12d216edba8ae270c1f8">GC_get_next_key</a> (void)</td></tr>
-<tr class="memdesc:gacde674b88c7a12d216edba8ae270c1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the key of the next element in a map from the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:gacde674b88c7a12d216edba8ae270c1f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:gacde674b88c7a12d216edba8ae270c1f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieve the key of the next element in a map from the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 <tr class="memitem:ga466ad50bf43dcf4100e95d64f238900d" id="r_ga466ad50bf43dcf4100e95d64f238900d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a> (char const pos[])</td></tr>
-<tr class="memdesc:ga466ad50bf43dcf4100e95d64f238900d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the insertion point to the specified key in the current map of the <code>GenericContainer</code>.  <br /></td></tr>
-<tr class="separator:ga466ad50bf43dcf4100e95d64f238900d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:ga466ad50bf43dcf4100e95d64f238900d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the insertion point to the specified key in the current map of the <span class="tt">GenericContainer</span>.  <br /></td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <p>This module provides the C interface for the GenericContainer class. </p>
 <p>The GenericContainer (GC) module offers a flexible container for storing various data types such as booleans, integers, floating-point numbers, complex numbers, and strings. It also supports structured data types such as vectors and maps. The C interface allows for seamless interaction with the container, enabling users to perform operations like adding elements, retrieving data, and managing hierarchical structures.</p>
 <p>Functionality includes:</p><ul>
@@ -345,7 +327,7 @@ Functions</h2></td></tr>
 <li>Operations for vectors, matrices, and maps</li>
 <li>Support for complex numbers and serialization</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 Basic Usage Pattern</h2>
 <ol type="1">
 <li><b>Initialization</b>: Create an empty container.</li>
@@ -354,10 +336,10 @@ Basic Usage Pattern</h2>
 <li><b>Manipulation</b>: Modify or update data within the container.</li>
 </ol>
 <p>Let's go through these steps in more detail.</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
-Initialization of a <code>GenericContainer</code></h2>
-<p>To start using a <code>GenericContainer</code>, you need to initialize it using the <code>GC_init()</code> function. Once initialized, the container is ready to store any supported data type.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d1/d07/_generic_container_cinterface_8h.html">GenericContainerCinterface.h</a>&quot;</span></div>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+Initialization of a <span class="tt">GenericContainer</span></h2>
+<p>To start using a <span class="tt">GenericContainer</span>, you need to initialize it using the <span class="tt">GC_init()</span> function. Once initialized, the container is ready to store any supported data type.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;GenericContainerCinterface.h&quot;</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> main() {</div>
 <div class="line">    <span class="comment">// Initialize an empty container</span></div>
@@ -369,52 +351,51 @@ Initialization of a <code>GenericContainer</code></h2>
 <div class="line">    GC_clear(&amp;gc);  <span class="comment">// Clear the container at the end</span></div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-<div class="ttc" id="a_generic_container_cinterface_8h_html"><div class="ttname"><a href="../../d1/d07/_generic_container_cinterface_8h.html">GenericContainerCinterface.h</a></div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
-Setting Data in the <code>GenericContainer</code></h2>
-<p>The <code>GenericContainer</code> can store different types of data. Below are examples of how to set various types of data.</p>
-<h3><a class="anchor" id="autotoc_md21"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+Setting Data in the <span class="tt">GenericContainer</span></h2>
+<p>The <span class="tt">GenericContainer</span> can store different types of data. Below are examples of how to set various types of data.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
 Set an Integer</h3>
-<p>To store an integer, use the <code><a class="el" href="#gaefdbe7c4491e06d76ce6699b961055ed" title="Set the current element of the GenericContainer to an integer value.">GC_set_int()</a></code> function.</p>
+<p>To store an integer, use the <span class="tt"><a class="el" href="#gaefdbe7c4491e06d76ce6699b961055ed" title="Set the current element of the GenericContainer to an integer value.">GC_set_int()</a></span> function.</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(&amp;gc, 42);</div>
 <div class="ttc" id="agroup___g_c_html_gaefdbe7c4491e06d76ce6699b961055ed"><div class="ttname"><a href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a></div><div class="ttdeci">int GC_set_int(int a)</div><div class="ttdoc">Set the current element of the GenericContainer to an integer value.</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md22"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
 Set a Real Number</h3>
-<p>To store a floating-point number, use <code><a class="el" href="#ga02e8daa89960a53e8d19d67e5595a3c0" title="Set the current element of the GenericContainer to a real number.">GC_set_real()</a></code>:</p>
+<p>To store a floating-point number, use <span class="tt"><a class="el" href="#ga02e8daa89960a53e8d19d67e5595a3c0" title="Set the current element of the GenericContainer to a real number.">GC_set_real()</a></span>:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a>(&amp;gc, 3.14159);</div>
 <div class="ttc" id="agroup___g_c_html_ga02e8daa89960a53e8d19d67e5595a3c0"><div class="ttname"><a href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a></div><div class="ttdeci">int GC_set_real(double a)</div><div class="ttdoc">Set the current element of the GenericContainer to a real number.</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md23"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 Set a String</h3>
-<p>You can store a string using the <code><a class="el" href="#ga620562c4b3400d365a7da44d799f1255" title="Set the current element of the GenericContainer to a string.">GC_set_string()</a></code> function:</p>
+<p>You can store a string using the <span class="tt"><a class="el" href="#ga620562c4b3400d365a7da44d799f1255" title="Set the current element of the GenericContainer to a string.">GC_set_string()</a></span> function:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a>(&amp;gc, <span class="stringliteral">&quot;Hello, GenericContainer!&quot;</span>);</div>
 <div class="ttc" id="agroup___g_c_html_ga620562c4b3400d365a7da44d799f1255"><div class="ttname"><a href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a></div><div class="ttdeci">int GC_set_string(char const a[])</div><div class="ttdoc">Set the current element of the GenericContainer to a string.</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md24"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Set a Vector of Integers</h3>
-<p>If you want to store an array of integers, use the <code><a class="el" href="#gad7de94bfd0b1509b9eb9b2d78fc23817" title="Set the current element of the GenericContainer to a vector of integers, and copy the provided values...">GC_set_vector_of_int()</a></code> function:</p>
+<p>If you want to store an array of integers, use the <span class="tt"><a class="el" href="#gad7de94bfd0b1509b9eb9b2d78fc23817" title="Set the current element of the GenericContainer to a vector of integers, and copy the provided values...">GC_set_vector_of_int()</a></span> function:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> values[] = {1, 2, 3, 4, 5};</div>
 <div class="line"><a class="code hl_function" href="#gad7de94bfd0b1509b9eb9b2d78fc23817">GC_set_vector_of_int</a>(&amp;gc, values, 5);</div>
 <div class="ttc" id="agroup___g_c_html_gad7de94bfd0b1509b9eb9b2d78fc23817"><div class="ttname"><a href="#gad7de94bfd0b1509b9eb9b2d78fc23817">GC_set_vector_of_int</a></div><div class="ttdeci">int GC_set_vector_of_int(int const *a, int nelem)</div><div class="ttdoc">Set the current element of the GenericContainer to a vector of integers, and copy the provided values...</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
-Accessing Data from the <code>GenericContainer</code></h2>
-<p>Once data is stored in the <code>GenericContainer</code>, you can retrieve it using the appropriate getter functions.</p>
-<h3><a class="anchor" id="autotoc_md26"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+Accessing Data from the <span class="tt">GenericContainer</span></h2>
+<p>Once data is stored in the <span class="tt">GenericContainer</span>, you can retrieve it using the appropriate getter functions.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Retrieve an Integer</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> value = <a class="code hl_function" href="#gaf0e14b5c2fd60e0a15ec4cd5394404b2">GC_get_int</a>(&amp;gc);</div>
 <div class="line">printf(<span class="stringliteral">&quot;Integer value: %d\n&quot;</span>, value);</div>
 <div class="ttc" id="agroup___g_c_html_gaf0e14b5c2fd60e0a15ec4cd5394404b2"><div class="ttname"><a href="#gaf0e14b5c2fd60e0a15ec4cd5394404b2">GC_get_int</a></div><div class="ttdeci">int GC_get_int()</div><div class="ttdoc">Retrieve the integer value from the current element of the GenericContainer.</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 Retrieve a Real Number</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">double</span> real_value = <a class="code hl_function" href="#ga0c9ffe201c3e1827921b02eaeee7460f">GC_get_real</a>(&amp;gc);</div>
 <div class="line">printf(<span class="stringliteral">&quot;Real value: %f\n&quot;</span>, real_value);</div>
 <div class="ttc" id="agroup___g_c_html_ga0c9ffe201c3e1827921b02eaeee7460f"><div class="ttname"><a href="#ga0c9ffe201c3e1827921b02eaeee7460f">GC_get_real</a></div><div class="ttdeci">double GC_get_real()</div><div class="ttdoc">Retrieve the real number value from the current element of the GenericContainer.</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md28"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
 Retrieve a String</h3>
 <div class="fragment"><div class="line"><span class="keyword">const</span> <span class="keywordtype">char</span>* str = <a class="code hl_function" href="#gac92ba0a37ac212a3b103654baa7ce3a6">GC_get_string</a>(&amp;gc);</div>
 <div class="line">printf(<span class="stringliteral">&quot;String: %s\n&quot;</span>, str);</div>
 <div class="ttc" id="agroup___g_c_html_gac92ba0a37ac212a3b103654baa7ce3a6"><div class="ttname"><a href="#gac92ba0a37ac212a3b103654baa7ce3a6">GC_get_string</a></div><div class="ttdeci">char const * GC_get_string()</div><div class="ttdoc">Retrieve the string from the current element of the GenericContainer.</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Retrieve Elements from a Vector of Integers</h3>
-<p>To retrieve elements from a vector, use <code><a class="el" href="#ga654c04d499921f0065bebcdf16ced97d" title="Retrieve the number of elements in the current vector of the GenericContainer.">GC_get_vector_size()</a></code> to get the size of the vector, and <code><a class="el" href="#gaea7d09afcead1fc112a1fe24bc454fea" title="Retrieve an integer value at a specified position from a vector of integers in the GenericContainer.">GC_get_int_at_pos()</a></code> to access individual elements.</p>
+<p>To retrieve elements from a vector, use <span class="tt"><a class="el" href="#ga654c04d499921f0065bebcdf16ced97d" title="Retrieve the number of elements in the current vector of the GenericContainer.">GC_get_vector_size()</a></span> to get the size of the vector, and <span class="tt"><a class="el" href="#gaea7d09afcead1fc112a1fe24bc454fea" title="Retrieve an integer value at a specified position from a vector of integers in the GenericContainer.">GC_get_int_at_pos()</a></span> to access individual elements.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> size = <a class="code hl_function" href="#ga654c04d499921f0065bebcdf16ced97d">GC_get_vector_size</a>(&amp;gc);</div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; size; ++i) {</div>
 <div class="line">    <span class="keywordtype">int</span> elem = <a class="code hl_function" href="#gaea7d09afcead1fc112a1fe24bc454fea">GC_get_int_at_pos</a>(&amp;gc, i);</div>
@@ -422,12 +403,12 @@ Retrieve Elements from a Vector of Integers</h3>
 <div class="line">}</div>
 <div class="ttc" id="agroup___g_c_html_ga654c04d499921f0065bebcdf16ced97d"><div class="ttname"><a href="#ga654c04d499921f0065bebcdf16ced97d">GC_get_vector_size</a></div><div class="ttdeci">int GC_get_vector_size()</div><div class="ttdoc">Retrieve the number of elements in the current vector of the GenericContainer.</div></div>
 <div class="ttc" id="agroup___g_c_html_gaea7d09afcead1fc112a1fe24bc454fea"><div class="ttname"><a href="#gaea7d09afcead1fc112a1fe24bc454fea">GC_get_int_at_pos</a></div><div class="ttdeci">int GC_get_int_at_pos(int pos)</div><div class="ttdoc">Retrieve an integer value at a specified position from a vector of integers in the GenericContainer.</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md30"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 Advanced Manipulation: Vectors and Maps</h2>
-<p>The <code>GenericContainer</code> also supports more complex structures like vectors of vectors or maps (key-value pairs). This allows you to represent hierarchical or complex data.</p>
-<h3><a class="anchor" id="autotoc_md31"></a>
-Creating a Vector of <code>GenericContainer</code></h3>
-<p>You can create a vector of <code>GenericContainer</code> objects, where each element may hold a different data type:</p>
+<p>The <span class="tt">GenericContainer</span> also supports more complex structures like vectors of vectors or maps (key-value pairs). This allows you to represent hierarchical or complex data.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+Creating a Vector of <span class="tt">GenericContainer</span></h3>
+<p>You can create a vector of <span class="tt">GenericContainer</span> objects, where each element may hold a different data type:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a>(&amp;gc, 3);  <span class="comment">// Initialize a vector of 3 elements</span></div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_function" href="#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a>(0);  <span class="comment">// Select the first element</span></div>
@@ -437,7 +418,7 @@ Creating a Vector of <code>GenericContainer</code></h3>
 <div class="line"><a class="code hl_function" href="#ga02e8daa89960a53e8d19d67e5595a3c0">GC_set_real</a>(&amp;gc, 2.718);     <span class="comment">// Set a real number in the second element</span></div>
 <div class="ttc" id="agroup___g_c_html_ga446e5e057707b59033f27ddcfb8a99ac"><div class="ttname"><a href="#ga446e5e057707b59033f27ddcfb8a99ac">GC_push_vector_position</a></div><div class="ttdeci">int GC_push_vector_position(int pos)</div><div class="ttdoc">Set the insertion point in the current vector of the GenericContainer.</div></div>
 <div class="ttc" id="agroup___g_c_html_gaf14c1be318b456d250057cb5d5acb2cc"><div class="ttname"><a href="#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a></div><div class="ttdeci">int GC_set_vector(int nelem)</div><div class="ttdoc">Set the current element of the GenericContainer to a vector of GenericContainer elements with the spe...</div></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md32"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
 Creating a Map</h3>
 <p>You can create a map where each key is associated with a value. For example, to map a string to another value:</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a>(&amp;gc);                <span class="comment">// Initialize a map</span></div>
@@ -445,44 +426,59 @@ Creating a Map</h3>
 <div class="line"><a class="code hl_function" href="#ga620562c4b3400d365a7da44d799f1255">GC_set_string</a>(&amp;gc, <span class="stringliteral">&quot;value&quot;</span>);    <span class="comment">// Set a string value for the key</span></div>
 <div class="ttc" id="agroup___g_c_html_ga466ad50bf43dcf4100e95d64f238900d"><div class="ttname"><a href="#ga466ad50bf43dcf4100e95d64f238900d">GC_push_map_position</a></div><div class="ttdeci">int GC_push_map_position(char const pos[])</div><div class="ttdoc">Set the insertion point to the specified key in the current map of the GenericContainer.</div></div>
 <div class="ttc" id="agroup___g_c_html_gad0c3f19dcf90486ddc53116870c76d56"><div class="ttname"><a href="#gad0c3f19dcf90486ddc53116870c76d56">GC_set_map</a></div><div class="ttdeci">int GC_set_map()</div><div class="ttdoc">Initialize the current element of the GenericContainer to a map.</div></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md33"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 Cleanup and Deallocation</h2>
-<p>At the end of the lifecycle of a <code>GenericContainer</code>, it's important to release the memory using <code>GC_clear()</code>:</p>
+<p>At the end of the lifecycle of a <span class="tt">GenericContainer</span>, it's important to release the memory using <span class="tt">GC_clear()</span>:</p>
 <div class="fragment"><div class="line">GC_clear(&amp;gc);</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md34"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 Error Handling</h2>
-<p>Many <code>GenericContainer</code> functions return an error code to help you detect and handle issues. For example, after setting an integer, check the return code:</p>
+<p>Many <span class="tt">GenericContainer</span> functions return an error code to help you detect and handle issues. For example, after setting an integer, check the return code:</p>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> ret = <a class="code hl_function" href="#gaefdbe7c4491e06d76ce6699b961055ed">GC_set_int</a>(&amp;gc, 42);</div>
 <div class="line"><span class="keywordflow">if</span> (ret != 0) {</div>
 <div class="line">    printf(<span class="stringliteral">&quot;Error setting integer\n&quot;</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md35"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 Key Functions</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Function   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<th class="markdownTableHeadNone">Function  </th><th class="markdownTableHeadNone">Description  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>GC_init(GenericContainer*)</code>   </td><td class="markdownTableBodyNone">Initializes a <code>GenericContainer</code>.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_init(GenericContainer*)</span>  </td><td class="markdownTableBodyNone">Initializes a <span class="tt">GenericContainer</span>.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>GC_set_int(GenericContainer*, int)</code>   </td><td class="markdownTableBodyNone">Sets an integer in the container.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_set_int(GenericContainer*, int)</span>  </td><td class="markdownTableBodyNone">Sets an integer in the container.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>GC_set_real(GenericContainer*, double)</code>   </td><td class="markdownTableBodyNone">Sets a floating-point number in the container.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_set_real(GenericContainer*, double)</span>  </td><td class="markdownTableBodyNone">Sets a floating-point number in the container.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>GC_set_string(GenericContainer*, const char*)</code>   </td><td class="markdownTableBodyNone">Sets a string in the container.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_set_string(GenericContainer*, const char*)</span>  </td><td class="markdownTableBodyNone">Sets a string in the container.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>GC_set_vector_of_int(GenericContainer*, const int*, int)</code>   </td><td class="markdownTableBodyNone">Sets an integer vector.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_set_vector_of_int(GenericContainer*, const int*, int)</span>  </td><td class="markdownTableBodyNone">Sets an integer vector.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>GC_get_int(const GenericContainer*)</code>   </td><td class="markdownTableBodyNone">Retrieves an integer from the container.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_get_int(const GenericContainer*)</span>  </td><td class="markdownTableBodyNone">Retrieves an integer from the container.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>GC_get_real(const GenericContainer*)</code>   </td><td class="markdownTableBodyNone">Retrieves a floating-point number.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_get_real(const GenericContainer*)</span>  </td><td class="markdownTableBodyNone">Retrieves a floating-point number.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><code>GC_get_string(const GenericContainer*)</code>   </td><td class="markdownTableBodyNone">Retrieves a string.    </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_get_string(const GenericContainer*)</span>  </td><td class="markdownTableBodyNone">Retrieves a string.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>GC_clear(GenericContainer*)</code>   </td><td class="markdownTableBodyNone">Frees the memory used by the container.   </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">GC_clear(GenericContainer*)</span>  </td><td class="markdownTableBodyNone">Frees the memory used by the container.  </td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="ga06fc87d81c62e9abb8790b6e5713c55b" name="ga06fc87d81c62e9abb8790b6e5713c55b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga06fc87d81c62e9abb8790b6e5713c55b">&#9670;&#160;</a></span>anonymous enum</h2>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macros</h2>
+<a id="ga88c4b35a9d93535636a5b6a8c9fa36cb" name="ga88c4b35a9d93535636a5b6a8c9fa36cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga88c4b35a9d93535636a5b6a8c9fa36cb">&#9670;&#160;</a></span>GENERIC_CONTAINER_INTERFACE_C_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GENERIC_CONTAINER_INTERFACE_C_H</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumerations</h2>
+<a id="gab4ba1503f0982157c990696abbf387e5" name="gab4ba1503f0982157c990696abbf387e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab4ba1503f0982157c990696abbf387e5">&#9670;&#160;</a></span>anonymous enum</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -493,16 +489,16 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga06fc87d81c62e9abb8790b6e5713c55ba10cac9643f13d14a6340fde2ffb52862" name="gga06fc87d81c62e9abb8790b6e5713c55ba10cac9643f13d14a6340fde2ffb52862"></a>GENERIC_CONTAINER_OK&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga06fc87d81c62e9abb8790b6e5713c55bab4c3cc98ed3d5ca75eb8e0364a73559e" name="gga06fc87d81c62e9abb8790b6e5713c55bab4c3cc98ed3d5ca75eb8e0364a73559e"></a>GENERIC_CONTAINER_BAD_TYPE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga06fc87d81c62e9abb8790b6e5713c55ba818e2c729fe66ecef8c5640fdb66584e" name="gga06fc87d81c62e9abb8790b6e5713c55ba818e2c729fe66ecef8c5640fdb66584e"></a>GENERIC_CONTAINER_NO_DATA&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga06fc87d81c62e9abb8790b6e5713c55bac172ab4356b118118134320b824fc96c" name="gga06fc87d81c62e9abb8790b6e5713c55bac172ab4356b118118134320b824fc96c"></a>GENERIC_CONTAINER_NOT_EMPTY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="gga06fc87d81c62e9abb8790b6e5713c55ba3879c1942c8b331b52936300ce4d6bac" name="gga06fc87d81c62e9abb8790b6e5713c55ba3879c1942c8b331b52936300ce4d6bac"></a>GENERIC_CONTAINER_BAD_HEAD&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggab4ba1503f0982157c990696abbf387e5a10cac9643f13d14a6340fde2ffb52862" name="ggab4ba1503f0982157c990696abbf387e5a10cac9643f13d14a6340fde2ffb52862"></a>GENERIC_CONTAINER_OK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggab4ba1503f0982157c990696abbf387e5ab4c3cc98ed3d5ca75eb8e0364a73559e" name="ggab4ba1503f0982157c990696abbf387e5ab4c3cc98ed3d5ca75eb8e0364a73559e"></a>GENERIC_CONTAINER_BAD_TYPE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggab4ba1503f0982157c990696abbf387e5a818e2c729fe66ecef8c5640fdb66584e" name="ggab4ba1503f0982157c990696abbf387e5a818e2c729fe66ecef8c5640fdb66584e"></a>GENERIC_CONTAINER_NO_DATA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggab4ba1503f0982157c990696abbf387e5ac172ab4356b118118134320b824fc96c" name="ggab4ba1503f0982157c990696abbf387e5ac172ab4356b118118134320b824fc96c"></a>GENERIC_CONTAINER_NOT_EMPTY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggab4ba1503f0982157c990696abbf387e5a3879c1942c8b331b52936300ce4d6bac" name="ggab4ba1503f0982157c990696abbf387e5a3879c1942c8b331b52936300ce4d6bac"></a>GENERIC_CONTAINER_BAD_HEAD&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Functions</h2>
 <a id="ga9ab1bd1155b5508ec3a00212ae354e2e" name="ga9ab1bd1155b5508ec3a00212ae354e2e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9ab1bd1155b5508ec3a00212ae354e2e">&#9670;&#160;</a></span>GC_delete()</h2>
 
@@ -590,8 +586,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the boolean value from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the boolean value (stored as an integer) from the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the boolean value from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the boolean value (stored as an integer) from the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The boolean value (as integer, 0 = false, 1 = true). </dd></dl>
 
 </div>
@@ -611,8 +607,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve a boolean value at a specified position from a vector of booleans in the <code>GenericContainer</code>. </p>
-<p>This function retrieves the boolean value (stored as an integer) at position <code>pos</code> from a vector of booleans in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>Retrieve a boolean value at a specified position from a vector of booleans in the <span class="tt">GenericContainer</span>. </p>
+<p>This function retrieves the boolean value (stored as an integer) at position <span class="tt">pos</span> from a vector of booleans in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the value to be retrieved. </td></tr>
@@ -638,9 +634,9 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the complex number from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the complex number (as a <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code> structure) from the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
-<dl class="section return"><dt>Returns</dt><dd>The complex number value as <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code>. </dd></dl>
+<p>Retrieve the complex number from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the complex number (as a <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span> structure) from the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<dl class="section return"><dt>Returns</dt><dd>The complex number value as <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span>. </dd></dl>
 
 </div>
 </div>
@@ -664,7 +660,7 @@ Key Functions</h2>
 </div><div class="memdoc">
 
 <p>Retrieve a complex number at the specified row and column from a matrix of complex numbers. </p>
-<p>This function retrieves the complex number (as a <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code> structure) at the matrix coordinates (row <code>i</code>, column <code>j</code>) from a matrix of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
+<p>This function retrieves the complex number (as a <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span> structure) at the matrix coordinates (row <span class="tt">i</span>, column <span class="tt">j</span>) from a matrix of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>Row index of the value to be retrieved. </td></tr>
@@ -691,8 +687,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve a complex number at a specified position from a vector of complex numbers in the <code>GenericContainer</code>. </p>
-<p>This function retrieves the complex number (as a <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code> structure) at position <code>pos</code> from a vector of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>Retrieve a complex number at a specified position from a vector of complex numbers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function retrieves the complex number (as a <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span> structure) at position <span class="tt">pos</span> from a vector of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the value to be retrieved. </td></tr>
@@ -718,8 +714,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the imaginary part of a complex number from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the imaginary part of a complex number stored in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the imaginary part of a complex number from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the imaginary part of a complex number stored in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The imaginary part of the complex number. </dd></dl>
 
 </div>
@@ -744,7 +740,7 @@ Key Functions</h2>
 </div><div class="memdoc">
 
 <p>Retrieve the imaginary part of a complex number at the specified row and column from a matrix. </p>
-<p>This function retrieves the imaginary part of a complex number at the matrix coordinates (row <code>i</code>, column <code>j</code>) from a matrix of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
+<p>This function retrieves the imaginary part of a complex number at the matrix coordinates (row <span class="tt">i</span>, column <span class="tt">j</span>) from a matrix of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>Row index of the value to be retrieved. </td></tr>
@@ -772,7 +768,7 @@ Key Functions</h2>
 </div><div class="memdoc">
 
 <p>Retrieve the imaginary part of a complex number at a specified position from a vector of complex numbers. </p>
-<p>This function retrieves the imaginary part of a complex number at position <code>pos</code> from a vector of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>This function retrieves the imaginary part of a complex number at position <span class="tt">pos</span> from a vector of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the value to be retrieved. </td></tr>
@@ -798,8 +794,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the real part of a complex number from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the real part of a complex number stored in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the real part of a complex number from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the real part of a complex number stored in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The real part of the complex number. </dd></dl>
 
 </div>
@@ -824,7 +820,7 @@ Key Functions</h2>
 </div><div class="memdoc">
 
 <p>Retrieve the real part of a complex number at the specified row and column from a matrix. </p>
-<p>This function retrieves the real part of a complex number at the matrix coordinates (row <code>i</code>, column <code>j</code>) from a matrix of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
+<p>This function retrieves the real part of a complex number at the matrix coordinates (row <span class="tt">i</span>, column <span class="tt">j</span>) from a matrix of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>Row index of the value to be retrieved. </td></tr>
@@ -852,7 +848,7 @@ Key Functions</h2>
 </div><div class="memdoc">
 
 <p>Retrieve the real part of a complex number at a specified position from a vector of complex numbers. </p>
-<p>This function retrieves the real part of a complex number at position <code>pos</code> from a vector of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>This function retrieves the real part of a complex number at position <span class="tt">pos</span> from a vector of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the value to be retrieved. </td></tr>
@@ -878,8 +874,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the integer value from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the integer value from the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the integer value from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the integer value from the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The integer value. </dd></dl>
 
 </div>
@@ -899,8 +895,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve an integer value at a specified position from a vector of integers in the <code>GenericContainer</code>. </p>
-<p>This function retrieves the integer value at position <code>pos</code> from a vector of integers in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>Retrieve an integer value at a specified position from a vector of integers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function retrieves the integer value at position <span class="tt">pos</span> from a vector of integers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the value to be retrieved. </td></tr>
@@ -926,8 +922,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the long integer value from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the long integer value from the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the long integer value from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the long integer value from the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The long integer value. </dd></dl>
 
 </div>
@@ -947,8 +943,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the number of columns in the current matrix of the <code>GenericContainer</code>. </p>
-<p>This function returns the number of columns in the currently selected matrix of the <code>GenericContainer</code>. If the element is not a matrix, an error code or unexpected value may be returned.</p>
+<p>Retrieve the number of columns in the current matrix of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the number of columns in the currently selected matrix of the <span class="tt">GenericContainer</span>. If the element is not a matrix, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of columns in the current matrix, or an error code. </dd></dl>
 
 </div>
@@ -968,8 +964,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the number of rows in the current matrix of the <code>GenericContainer</code>. </p>
-<p>This function returns the number of rows in the currently selected matrix of the <code>GenericContainer</code>. If the element is not a matrix, an error code or unexpected value may be returned.</p>
+<p>Retrieve the number of rows in the current matrix of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the number of rows in the currently selected matrix of the <span class="tt">GenericContainer</span>. If the element is not a matrix, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of rows in the current matrix, or an error code. </dd></dl>
 
 </div>
@@ -989,8 +985,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the key of the next element in a map from the <code>GenericContainer</code>. </p>
-<p>This function returns the key of the next element in a map within the <code>GenericContainer</code>. If the element is not a map or there are no more keys, an error code or unexpected value may be returned.</p>
+<p>Retrieve the key of the next element in a map from the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the key of the next element in a map within the <span class="tt">GenericContainer</span>. If the element is not a map or there are no more keys, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The key as a C-string (null-terminated), or an error code. </dd></dl>
 
 </div>
@@ -1010,8 +1006,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the real number value from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the floating-point value from the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the real number value from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the floating-point value from the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The floating-point value. </dd></dl>
 
 </div>
@@ -1035,8 +1031,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve a real number at the specified row and column from a matrix of real numbers in the <code>GenericContainer</code>. </p>
-<p>This function retrieves a floating-point value at the matrix coordinates (row <code>i</code>, column <code>j</code>) from a matrix of real numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
+<p>Retrieve a real number at the specified row and column from a matrix of real numbers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function retrieves a floating-point value at the matrix coordinates (row <span class="tt">i</span>, column <span class="tt">j</span>) from a matrix of real numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a matrix or if the coordinates are out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>Row index of the value to be retrieved. </td></tr>
@@ -1063,8 +1059,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve a real number at a specified position from a vector of real numbers in the <code>GenericContainer</code>. </p>
-<p>This function retrieves the floating-point value at position <code>pos</code> from a vector of real numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>Retrieve a real number at a specified position from a vector of real numbers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function retrieves the floating-point value at position <span class="tt">pos</span> from a vector of real numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the value to be retrieved. </td></tr>
@@ -1090,8 +1086,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the string from the current element of the <code>GenericContainer</code>. </p>
-<p>This function returns the C-string stored in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
+<p>Retrieve the string from the current element of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the C-string stored in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The C-string (null-terminated). </dd></dl>
 
 </div>
@@ -1111,8 +1107,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve a string at a specified position from a vector of strings in the <code>GenericContainer</code>. </p>
-<p>This function retrieves the C-string stored at position <code>pos</code> from a vector of strings in the currently selected element of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code or unexpected value may be returned.</p>
+<p>Retrieve a string at a specified position from a vector of strings in the <span class="tt">GenericContainer</span>. </p>
+<p>This function retrieves the C-string stored at position <span class="tt">pos</span> from a vector of strings in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code or unexpected value may be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position of the string to be retrieved. </td></tr>
@@ -1178,8 +1174,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Retrieve the number of elements in the current vector of the <code>GenericContainer</code>. </p>
-<p>This function returns the number of elements in the currently selected vector of the <code>GenericContainer</code>. If the element is not a vector, an error code or unexpected value may be returned.</p>
+<p>Retrieve the number of elements in the current vector of the <span class="tt">GenericContainer</span>. </p>
+<p>This function returns the number of elements in the currently selected vector of the <span class="tt">GenericContainer</span>. If the element is not a vector, an error code or unexpected value may be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of elements in the current vector, or an error code. </dd></dl>
 
 </div>
@@ -1199,8 +1195,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element as a map key in the <code>GenericContainer</code>. </p>
-<p>This function sets the current element of the <code>GenericContainer</code> as a key for a map. If the element is not of the correct type, an error code will be returned.</p>
+<p>Initialize the current element as a map key in the <span class="tt">GenericContainer</span>. </p>
+<p>This function sets the current element of the <span class="tt">GenericContainer</span> as a key for a map. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1312,8 +1308,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Append a boolean value to the currently selected vector of booleans in the <code>GenericContainer</code>. </p>
-<p>This function pushes a boolean value (stored as an integer) to the end of the vector of booleans in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
+<p>Append a boolean value to the currently selected vector of booleans in the <span class="tt">GenericContainer</span>. </p>
+<p>This function pushes a boolean value (stored as an integer) to the end of the vector of booleans in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Boolean value (stored as an integer) to be appended. </td></tr>
@@ -1339,11 +1335,11 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Append a complex number to the currently selected vector of complex numbers in the <code>GenericContainer</code>. </p>
-<p>This function pushes a complex number <code>a</code> to the end of the vector of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
+<p>Append a complex number to the currently selected vector of complex numbers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function pushes a complex number <span class="tt">a</span> to the end of the vector of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Pointer to a <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code> structure containing the complex number. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Pointer to a <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span> structure containing the complex number. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1371,7 +1367,7 @@ Key Functions</h2>
 </div><div class="memdoc">
 
 <p>Append a complex number to the currently selected vector using real and imaginary parts. </p>
-<p>This function pushes a complex number, specified by its real (<code>re</code>) and imaginary (<code>im</code>) parts, to the end of the vector of complex numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
+<p>This function pushes a complex number, specified by its real (<span class="tt">re</span>) and imaginary (<span class="tt">im</span>) parts, to the end of the vector of complex numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">re</td><td>Real part of the complex number. </td></tr>
@@ -1398,8 +1394,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Append an integer value to the currently selected vector of integers in the <code>GenericContainer</code>. </p>
-<p>This function pushes an integer value <code>a</code> to the end of the vector of integers in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
+<p>Append an integer value to the currently selected vector of integers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function pushes an integer value <span class="tt">a</span> to the end of the vector of integers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Integer value to be appended. </td></tr>
@@ -1425,8 +1421,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the insertion point to the specified key in the current map of the <code>GenericContainer</code>. </p>
-<p>This function sets the insertion point to the map element associated with the specified key <code>pos</code>. If the element is not a map or the key does not exist, an error code will be returned.</p>
+<p>Set the insertion point to the specified key in the current map of the <span class="tt">GenericContainer</span>. </p>
+<p>This function sets the insertion point to the map element associated with the specified key <span class="tt">pos</span>. If the element is not a map or the key does not exist, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>C-string representing the key. </td></tr>
@@ -1452,8 +1448,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Append a floating-point value to the currently selected vector of real numbers in the <code>GenericContainer</code>. </p>
-<p>This function pushes a real number <code>a</code> (double precision) to the end of the vector of real numbers in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
+<p>Append a floating-point value to the currently selected vector of real numbers in the <span class="tt">GenericContainer</span>. </p>
+<p>This function pushes a real number <span class="tt">a</span> (double precision) to the end of the vector of real numbers in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Real number (double precision) to be appended. </td></tr>
@@ -1479,8 +1475,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Append a string to the currently selected vector of strings in the <code>GenericContainer</code>. </p>
-<p>This function pushes a string <code>a</code> to the end of the vector of strings in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
+<p>Append a string to the currently selected vector of strings in the <span class="tt">GenericContainer</span>. </p>
+<p>This function pushes a string <span class="tt">a</span> to the end of the vector of strings in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type or is not a vector, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>C-string (null-terminated) to be appended. </td></tr>
@@ -1506,8 +1502,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the insertion point in the current vector of the <code>GenericContainer</code>. </p>
-<p>This function sets the insertion point to the element at position <code>pos</code> in the currently selected vector of the <code>GenericContainer</code>. If the element is not a vector or if <code>pos</code> is out of range, an error code will be returned.</p>
+<p>Set the insertion point in the current vector of the <span class="tt">GenericContainer</span>. </p>
+<p>This function sets the insertion point to the element at position <span class="tt">pos</span> in the currently selected vector of the <span class="tt">GenericContainer</span>. If the element is not a vector or if <span class="tt">pos</span> is out of range, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>Index position where the insertion point is set. </td></tr>
@@ -1578,7 +1574,7 @@ Key Functions</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set actual pointed element of <code>GenericContainer</code> to <code>bool</code> with value <code>a</code></p>
+<p>Set actual pointed element of <span class="tt">GenericContainer</span> to <span class="tt">bool</span> with value <span class="tt">a</span></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>boolean to be stored </td></tr>
@@ -1604,11 +1600,11 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a complex number. </p>
-<p>This function stores a complex number represented by the structure <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code> in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code will be returned.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a complex number. </p>
+<p>This function stores a complex number represented by the structure <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span> in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Pointer to a <code><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></code> structure containing the real and imaginary parts of the complex number. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Pointer to a <span class="tt"><a class="el" href="../../d6/d33/structc__complex__type.html" title="A structure representing a complex number, with real and imaginary components.">c_complex_type</a></span> structure containing the real and imaginary parts of the complex number. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1635,8 +1631,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a complex number using real and imaginary parts. </p>
-<p>This function stores a complex number directly using its real (<code>re</code>) and imaginary (<code>im</code>) parts in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code will be returned.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a complex number using real and imaginary parts. </p>
+<p>This function stores a complex number directly using its real (<span class="tt">re</span>) and imaginary (<span class="tt">im</span>) parts in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">re</td><td>Real part of the complex number. </td></tr>
@@ -1663,8 +1659,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to an empty vector of <code>GenericContainer</code> elements. </p>
-<p>This function initializes the currently selected element of the <code>GenericContainer</code> to an empty vector of <code>GenericContainer</code> elements.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to an empty vector of <span class="tt">GenericContainer</span> elements. </p>
+<p>This function initializes the currently selected element of the <span class="tt">GenericContainer</span> to an empty vector of <span class="tt">GenericContainer</span> elements.</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1684,8 +1680,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element of the <code>GenericContainer</code> to an empty vector of booleans. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to an empty vector of booleans (size 0).</p>
+<p>Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of booleans. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to an empty vector of booleans (size 0).</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1705,8 +1701,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element of the <code>GenericContainer</code> to an empty vector of complex numbers. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to an empty vector of complex numbers (size 0).</p>
+<p>Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of complex numbers. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to an empty vector of complex numbers (size 0).</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1726,8 +1722,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element of the <code>GenericContainer</code> to an empty vector of integers. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to an empty vector of integers (size 0).</p>
+<p>Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of integers. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to an empty vector of integers (size 0).</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1747,8 +1743,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element of the <code>GenericContainer</code> to an empty vector of real numbers. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to an empty vector of real numbers (size 0).</p>
+<p>Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of real numbers. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to an empty vector of real numbers (size 0).</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1768,8 +1764,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element of the <code>GenericContainer</code> to an empty vector of strings. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to an empty vector of strings (size 0).</p>
+<p>Initialize the current element of the <span class="tt">GenericContainer</span> to an empty vector of strings. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to an empty vector of strings (size 0).</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1789,8 +1785,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to an integer value. </p>
-<p>This function assigns the integer value <code>a</code> to the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code will be returned.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to an integer value. </p>
+<p>This function assigns the integer value <span class="tt">a</span> to the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Integer value to be stored. </td></tr>
@@ -1816,8 +1812,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Initialize the current element of the <code>GenericContainer</code> to a map. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to an empty map. If the element is not of the correct type, an error code will be returned.</p>
+<p>Initialize the current element of the <span class="tt">GenericContainer</span> to a map. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to an empty map. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="section return"><dt>Returns</dt><dd>Error code: 0 = OK, other values indicate failure. </dd></dl>
 
 </div>
@@ -1837,8 +1833,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a real number. </p>
-<p>This function assigns the double-precision floating-point value <code>a</code> to the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code will be returned.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a real number. </p>
+<p>This function assigns the double-precision floating-point value <span class="tt">a</span> to the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Double value (real number) to be stored. </td></tr>
@@ -1864,8 +1860,8 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a string. </p>
-<p>This function stores a string <code>a</code> in the currently selected element of the <code>GenericContainer</code>. If the element is not of the correct type, an error code will be returned.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a string. </p>
+<p>This function stores a string <span class="tt">a</span> in the currently selected element of the <span class="tt">GenericContainer</span>. If the element is not of the correct type, an error code will be returned.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>C-string to be stored (null-terminated). </td></tr>
@@ -1891,11 +1887,11 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a vector of <code>GenericContainer</code> elements with the specified size. </p>
-<p>This function initializes the currently selected element of the <code>GenericContainer</code> to a vector of <code>GenericContainer</code> elements, with <code>nelem</code> elements. The insertion point is set to the first element.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a vector of <span class="tt">GenericContainer</span> elements with the specified size. </p>
+<p>This function initializes the currently selected element of the <span class="tt">GenericContainer</span> to a vector of <span class="tt">GenericContainer</span> elements, with <span class="tt">nelem</span> elements. The insertion point is set to the first element.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of <code>GenericContainer</code> elements to be created. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of <span class="tt">GenericContainer</span> elements to be created. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1922,12 +1918,12 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a vector of booleans, and copy the provided values. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to a vector of booleans with <code>nelem</code> elements, copying the boolean values from the provided array <code>a</code>.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a vector of booleans, and copy the provided values. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to a vector of booleans with <span class="tt">nelem</span> elements, copying the boolean values from the provided array <span class="tt">a</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Array of boolean values (stored as integers) to be copied. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <code>a</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <span class="tt">a</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1959,13 +1955,13 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a vector of complex numbers, and copy the provided values. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to a vector of complex numbers with <code>nelem</code> elements, copying the real and imaginary parts of each complex number from the provided arrays <code>re</code> and <code>im</code>.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a vector of complex numbers, and copy the provided values. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to a vector of complex numbers with <span class="tt">nelem</span> elements, copying the real and imaginary parts of each complex number from the provided arrays <span class="tt">re</span> and <span class="tt">im</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">re</td><td>Array of real parts of complex numbers to be copied. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">im</td><td>Array of imaginary parts of complex numbers to be copied. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the arrays <code>re</code> and <code>im</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the arrays <span class="tt">re</span> and <span class="tt">im</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1992,12 +1988,12 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a vector of integers, and copy the provided values. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to a vector of integers with <code>nelem</code> elements, copying the integer values from the provided array <code>a</code>.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a vector of integers, and copy the provided values. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to a vector of integers with <span class="tt">nelem</span> elements, copying the integer values from the provided array <span class="tt">a</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Array of integer values to be copied. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <code>a</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <span class="tt">a</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2024,12 +2020,12 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a vector of real numbers, and copy the provided values. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to a vector of real numbers (<code>double</code>) with <code>nelem</code> elements, copying the values from the provided array <code>a</code>.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a vector of real numbers, and copy the provided values. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to a vector of real numbers (<span class="tt">double</span>) with <span class="tt">nelem</span> elements, copying the values from the provided array <span class="tt">a</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Array of floating-point values to be copied. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <code>a</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <span class="tt">a</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2056,12 +2052,12 @@ Key Functions</h2>
       </table>
 </div><div class="memdoc">
 
-<p>Set the current element of the <code>GenericContainer</code> to a vector of strings, and copy the provided values. </p>
-<p>This function sets the currently selected element of the <code>GenericContainer</code> to a vector of strings with <code>nelem</code> elements, copying the strings from the provided array <code>a</code>.</p>
+<p>Set the current element of the <span class="tt">GenericContainer</span> to a vector of strings, and copy the provided values. </p>
+<p>This function sets the currently selected element of the <span class="tt">GenericContainer</span> to a vector of strings with <span class="tt">nelem</span> elements, copying the strings from the provided array <span class="tt">a</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">a</td><td>Array of C-strings (null-terminated) to be copied. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <code>a</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nelem</td><td>Number of elements in the array <span class="tt">a</span>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2071,10 +2067,18 @@ Key Functions</h2>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

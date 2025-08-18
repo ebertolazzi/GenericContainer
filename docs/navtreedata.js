@@ -25,24 +25,11 @@
 var NAVTREE =
 [
   [ "GenericContainer", "index.html", [
-    [ "Installation guide", "df/d70/_install.html", [
-      [ "Introduction", "index.html#autotoc_md0", null ],
-      [ "Features", "index.html#autotoc_md1", null ],
-      [ "Class Overview", "index.html#autotoc_md2", null ],
-      [ "Example Usage", "index.html#autotoc_md3", [
-        [ "Example 1: Basic Operations", "index.html#autotoc_md4", null ],
-        [ "Example 2: Working with Vectors", "index.html#autotoc_md5", null ],
-        [ "Example 3: Using Maps", "index.html#autotoc_md6", null ],
-        [ "Example 4: Nested Containers", "index.html#autotoc_md7", null ],
-        [ "Example 5: Serialization", "index.html#autotoc_md8", null ],
-        [ "Example 6: Complex Data Structures", "index.html#autotoc_md9", null ],
-        [ "Example 7: File I/O", "index.html#autotoc_md10", null ],
-        [ "Example 8: Matrix Operations", "index.html#autotoc_md11", null ],
-        [ "Example 9: Advanced Serialization", "index.html#autotoc_md12", null ],
-        [ "Example 10: Data Manipulation from Files", "index.html#autotoc_md13", null ]
-      ] ]
-    ] ],
+    [ "Introduction", "d4/d8e/_introduction.html", null ],
+    [ "Installation guide", "df/d70/_install.html", null ],
     [ "Usage", "dc/dbb/_usage.html", null ],
+    [ "Lua Support", "d3/d90/_lua.html", null ],
+    [ "Matlab Support", "d0/d01/_matlab.html", null ],
     [ "License", "d5/d8f/_license.html", null ],
     [ "Deprecated List", "da/d58/deprecated.html", null ],
     [ "Topics", "topics.html", "topics" ],
@@ -51,13 +38,14 @@ var NAVTREE =
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
         [ "Typedefs", "namespacemembers_type.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
+      [ "Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
@@ -67,7 +55,7 @@ var NAVTREE =
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
-      [ "File Members", "globals.html", [
+      [ "Globals", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
@@ -80,10 +68,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#a368263e47851907290efd718c4853fed",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#a9b73faa4e20c83efe950e542daf559d4",
-"db/de3/group___g_c.html#ga85f3102cc4c8212ca7b4602505bb8086"
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#a3851f3952172ad584d6f941ffb548267",
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#a9261137a070c0d479ca9e67ec6aaa819",
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#af3cb5437e64f1c310fff762942f22c21"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';

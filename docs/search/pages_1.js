@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['genericcontainer_0',['GenericContainer',['../index.html',1,'']]],
-  ['guide_1',['Installation guide',['../df/d70/_install.html',1,'index']]]
+  ['2_3a_20working_20with_20vectors_0',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md13',1,'']]]
 ];

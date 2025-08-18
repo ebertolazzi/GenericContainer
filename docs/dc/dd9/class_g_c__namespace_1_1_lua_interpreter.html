@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: GC_namespace::LuaInterpreter Class Reference</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: GC_namespace::LuaInterpreter Class Reference</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html','../../','d2/d16/class_g_c__namespace_1_1_lua_interpreter-members'); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,9 +164,6 @@ $(function(){initNavTree('dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html',
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="../../d2/d16/class_g_c__namespace_1_1_lua_interpreter-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">GC_namespace::LuaInterpreter Class Reference<div class="ingroups"><a class="el" href="../../d0/d27/group___l_u_a.html">GenericContainer-Lua Interface</a></div></div></div>
 </div><!--header-->
 <div class="contents">
@@ -128,39 +171,31 @@ $(function(){initNavTree('dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html',
 <p>A class implementing a simple Lua interpreter.  
  <a href="#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="../../d5/d76/_generic_container_lua_interface_8hh_source.html">GenericContainerInterface_lua.hh</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="../../db/dfe/_generic_container_interface__lua_8hh_source.html">GenericContainerInterface_lua.hh</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Methods</h2></td></tr>
 <tr class="memitem:a2c67dc333eb7557ae31c0548072d9215" id="r_a2c67dc333eb7557ae31c0548072d9215"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c67dc333eb7557ae31c0548072d9215">LuaInterpreter</a> ()</td></tr>
 <tr class="memdesc:a2c67dc333eb7557ae31c0548072d9215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the Lua interpreter.  <br /></td></tr>
-<tr class="separator:a2c67dc333eb7557ae31c0548072d9215"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a84401a9f69469a3888fdd80bf8c2f41e" id="r_a84401a9f69469a3888fdd80bf8c2f41e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84401a9f69469a3888fdd80bf8c2f41e">~LuaInterpreter</a> ()</td></tr>
 <tr class="memdesc:a84401a9f69469a3888fdd80bf8c2f41e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that closes the Lua interpreter.  <br /></td></tr>
-<tr class="separator:a84401a9f69469a3888fdd80bf8c2f41e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aceb0cfbc2635061987f1e9059d94467c" id="r_aceb0cfbc2635061987f1e9059d94467c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aceb0cfbc2635061987f1e9059d94467c">execute</a> (char const cmd[])</td></tr>
 <tr class="memdesc:aceb0cfbc2635061987f1e9059d94467c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a Lua command string.  <br /></td></tr>
-<tr class="separator:aceb0cfbc2635061987f1e9059d94467c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a186148c0e5ade70406e0b8d598c3f25e" id="r_a186148c0e5ade70406e0b8d598c3f25e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a186148c0e5ade70406e0b8d598c3f25e">call</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;arguments, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;res)</td></tr>
-<tr class="memdesc:a186148c0e5ade70406e0b8d598c3f25e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a Lua function with arguments from a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.  <br /></td></tr>
-<tr class="separator:a186148c0e5ade70406e0b8d598c3f25e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a186148c0e5ade70406e0b8d598c3f25e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a Lua function with arguments from a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.  <br /></td></tr>
 <tr class="memitem:acdc77aab9959d7a61c925873730a1163" id="r_acdc77aab9959d7a61c925873730a1163"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acdc77aab9959d7a61c925873730a1163">do_file</a> (char const fname[])</td></tr>
 <tr class="memdesc:acdc77aab9959d7a61c925873730a1163"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load and execute a Lua script file.  <br /></td></tr>
-<tr class="separator:acdc77aab9959d7a61c925873730a1163"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a954f6908998c24db8a3597dd6e4c9973" id="r_a954f6908998c24db8a3597dd6e4c9973"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a954f6908998c24db8a3597dd6e4c9973">GC_to_global</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, char const global_var[])</td></tr>
-<tr class="memdesc:a954f6908998c24db8a3597dd6e4c9973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> as a Lua global variable.  <br /></td></tr>
-<tr class="separator:a954f6908998c24db8a3597dd6e4c9973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a954f6908998c24db8a3597dd6e4c9973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> as a Lua global variable.  <br /></td></tr>
 <tr class="memitem:a4b9ef737cde0975ad5ee4dbdc613c19b" id="r_a4b9ef737cde0975ad5ee4dbdc613c19b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b9ef737cde0975ad5ee4dbdc613c19b">global_to_GC</a> (char const var[], <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="memdesc:a4b9ef737cde0975ad5ee4dbdc613c19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Lua global variable into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.  <br /></td></tr>
-<tr class="separator:a4b9ef737cde0975ad5ee4dbdc613c19b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memdesc:a4b9ef737cde0975ad5ee4dbdc613c19b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a Lua global variable into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.  <br /></td></tr>
 <tr class="memitem:a49a8963a83b5e9f75826007c6eba7b91" id="r_a49a8963a83b5e9f75826007c6eba7b91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49a8963a83b5e9f75826007c6eba7b91">interactive</a> (int argc, char const **argv, char const **messages, char const *prompt)</td></tr>
 <tr class="memdesc:a49a8963a83b5e9f75826007c6eba7b91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Launch an interactive Lua interpreter mode.  <br /></td></tr>
-<tr class="separator:a49a8963a83b5e9f75826007c6eba7b91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class implementing a simple Lua interpreter. </p>
-<p>The <code><a class="el" href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html" title="A class implementing a simple Lua interpreter.">LuaInterpreter</a></code> class provides an interface for loading and executing Lua scripts, as well as interacting with Lua global variables using the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p>The <span class="tt"><a class="el" href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html" title="A class implementing a simple Lua interpreter.">LuaInterpreter</a></span> class provides an interface for loading and executing Lua scripts, as well as interacting with Lua global variables using the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. </p>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructors</h2>
 <a id="a2c67dc333eb7557ae31c0548072d9215" name="a2c67dc333eb7557ae31c0548072d9215"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2c67dc333eb7557ae31c0548072d9215">&#9670;&#160;</a></span>LuaInterpreter()</h2>
 
@@ -199,7 +234,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Functions</h2>
 <a id="a186148c0e5ade70406e0b8d598c3f25e" name="a186148c0e5ade70406e0b8d598c3f25e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a186148c0e5ade70406e0b8d598c3f25e">&#9670;&#160;</a></span>call()</h2>
 
@@ -219,12 +254,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Call a Lua function with arguments from a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. </p>
-<p>This function invokes a Lua function and passes the arguments stored in a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. The result of the function is returned in another <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
+<p>Call a Lua function with arguments from a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. </p>
+<p>This function invokes a Lua function and passes the arguments stored in a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. The result of the function is returned in another <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">arguments</td><td><code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> containing the Lua function name and arguments. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">res</td><td><code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> where the result of the Lua function will be stored. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">arguments</td><td><span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> containing the Lua function name and arguments. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">res</td><td><span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> where the result of the Lua function will be stored. </td></tr>
   </table>
   </dd>
 </dl>
@@ -305,16 +340,16 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Store a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> as a Lua global variable. </p>
-<p>This function converts a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into a Lua global variable.</p>
+<p>Store a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> as a Lua global variable. </p>
+<p>This function converts a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a Lua global variable.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to convert. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to convert. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">global_var</td><td>Name of the Lua global variable. </td></tr>
   </table>
   </dd>
@@ -344,17 +379,17 @@ Public Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Convert a Lua global variable into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. </p>
-<p>This function retrieves a Lua global variable and converts it into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
+<p>Convert a Lua global variable into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. </p>
+<p>This function retrieves a Lua global variable and converts it into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">var</td><td>Name of the Lua global variable. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td><code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> where the Lua variable will be stored. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td><span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> where the Lua variable will be stored. </td></tr>
   </table>
   </dd>
 </dl>
@@ -406,15 +441,23 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/Users/enrico/Ricerca/develop/PINS/pins-WORKING/LibSources/submodules/GC/include/GenericContainer/<a class="el" href="../../d5/d76/_generic_container_lua_interface_8hh_source.html">GenericContainerInterface_lua.hh</a></li>
+<li>/Users/enricobertolazzi/Ricerca/PINS/PINS-submodules/GC/include/GenericContainer/<a class="el" href="../../db/dfe/_generic_container_interface__lua_8hh_source.html">GenericContainerInterface_lua.hh</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html">GC_namespace</a></li><li class="navelem"><a class="el" href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html">LuaInterpreter</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="navelem"><a href="../../d8/d51/namespace_g_c__namespace.html">GC_namespace</a></li><li class="navelem"><a href="../../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html">LuaInterpreter</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

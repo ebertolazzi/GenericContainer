@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: GenericContainer-JSON Interface</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: GenericContainer-JSON Interface</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('d7/d2f/group___j_s_o_n.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('d7/d2f/group___j_s_o_n.html','../../',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,72 +164,63 @@ $(function(){initNavTree('d7/d2f/group___j_s_o_n.html','../../'); initResizable(
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">GenericContainer-JSON Interface</div></div>
+  <div class="headertitle"><div class="title">GenericContainer-JSON Interface </div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>This module provides interface with JSON files.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga703c265d1cc2f7038de7c53504c6558d" id="r_ga703c265d1cc2f7038de7c53504c6558d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga703c265d1cc2f7038de7c53504c6558d">GC_namespace::file_JSON_to_GC</a> (string const &amp;file_name_JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga703c265d1cc2f7038de7c53504c6558d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9523608879940c8a5839cbd1a73e86fa" id="r_ga9523608879940c8a5839cbd1a73e86fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9523608879940c8a5839cbd1a73e86fa">GC_namespace::JSON_to_GC</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;file_JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga9523608879940c8a5839cbd1a73e86fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee2dbd3ca3a5dec392ef680738aff4d9" id="r_gaee2dbd3ca3a5dec392ef680738aff4d9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaee2dbd3ca3a5dec392ef680738aff4d9">GC_namespace::JSON_to_GC</a> (string const &amp;JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:gaee2dbd3ca3a5dec392ef680738aff4d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9d679555eac2b7fb77ce95a7fead97e0" id="r_ga9d679555eac2b7fb77ce95a7fead97e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga9d679555eac2b7fb77ce95a7fead97e0">GC_namespace::JSON_to_GC</a> (vector&lt; string &gt; const &amp;JSON, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
-<tr class="separator:ga9d679555eac2b7fb77ce95a7fead97e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae922cc81b7f77e411d51cf6296a75946" id="r_gae922cc81b7f77e411d51cf6296a75946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gae922cc81b7f77e411d51cf6296a75946">GC_namespace::GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, vector&lt; string &gt; &amp;JSON)</td></tr>
-<tr class="separator:gae922cc81b7f77e411d51cf6296a75946"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabcf49837e9bf26090ca7b9ae20d256d6" id="r_gabcf49837e9bf26090ca7b9ae20d256d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gabcf49837e9bf26090ca7b9ae20d256d6">GC_namespace::GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;file_JSON)</td></tr>
-<tr class="separator:gabcf49837e9bf26090ca7b9ae20d256d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab60e4260de6231434d1af66b145fd632" id="r_gab60e4260de6231434d1af66b145fd632"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gab60e4260de6231434d1af66b145fd632">GC_namespace::file_JSON_to_GC</a> (string const &amp;file_name, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga960a30ad6ecfdaf7135b39502cdf402c" id="r_ga960a30ad6ecfdaf7135b39502cdf402c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga960a30ad6ecfdaf7135b39502cdf402c">GC_namespace::JSON_to_GC</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga00419b308d6f066c98040e7604d7774a" id="r_ga00419b308d6f066c98040e7604d7774a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga00419b308d6f066c98040e7604d7774a">GC_namespace::JSON_to_GC</a> (string const &amp;DATA, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc)</td></tr>
+<tr class="memitem:ga5fa9ac294469473a3615f6b727cddc0a" id="r_ga5fa9ac294469473a3615f6b727cddc0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_namespace::GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, std::string &amp;res)</td></tr>
+<tr class="memitem:gaf5ca88b950517dcfc7bce066b19cdb13" id="r_gaf5ca88b950517dcfc7bce066b19cdb13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaf5ca88b950517dcfc7bce066b19cdb13">GC_namespace::GC_to_JSON</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream)</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <p>This module provides interface with JSON files. </p>
 <p>The <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> (GC) module offers a flexible container for storing various data types such as booleans, integers, floating-point numbers, complex numbers, and strings. It also supports structured data types such as vectors and maps. The C++ interface allows for seamless interaction with the container, enabling users to perform operations like adding elements, retrieving data, and managing hierarchical structures.</p>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
 Overview</h2>
-<p>This tutorial explains how to use the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> JSON interface for converting between JSON data and the <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> object.</p>
-<p>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> is a flexible structure that can store various data types like booleans, integers, floating-point numbers, complex numbers, strings, vectors, and maps. The interface provides multiple ways to convert JSON files, streams, or strings into <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> objects and vice versa.</p>
-<h2><a class="anchor" id="autotoc_md46"></a>
+<p>This tutorial explains how to use the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> JSON interface for converting between JSON data and the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object.</p>
+<p>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> is a flexible structure that can store various data types like booleans, integers, floating-point numbers, complex numbers, strings, vectors, and maps. The interface provides multiple ways to convert JSON files, streams, or strings into <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> objects and vice versa.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Loading JSON Data into a GenericContainer</h2>
-<p>There are several ways to load JSON data into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<h3><a class="anchor" id="autotoc_md47"></a>
+<p>There are several ways to load JSON data into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
 Loading JSON from a File</h3>
-<p>The <code>file_JSON_to_GC</code> function reads JSON data from a file and populates a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>. This is useful for handling configuration files or other data stored in JSON format.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga703c265d1cc2f7038de7c53504c6558d">file_JSON_to_GC</a>( std::string <span class="keyword">const</span> &amp; file_name_JSON, GenericContainer &amp; gc );</div>
-<div class="ttc" id="agroup___j_s_o_n_html_ga703c265d1cc2f7038de7c53504c6558d"><div class="ttname"><a href="#ga703c265d1cc2f7038de7c53504c6558d">GC_namespace::file_JSON_to_GC</a></div><div class="ttdeci">bool file_JSON_to_GC(string const &amp;file_name_JSON, GenericContainer &amp;gc)</div></div>
+<p>The <span class="tt">file_JSON_to_GC</span> function reads JSON data from a file and populates a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. This is useful for handling configuration files or other data stored in JSON format.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gab60e4260de6231434d1af66b145fd632">file_JSON_to_GC</a>( std::string <span class="keyword">const</span> &amp; file_name_JSON, GenericContainer &amp; gc );</div>
+<div class="ttc" id="agroup___j_s_o_n_html_gab60e4260de6231434d1af66b145fd632"><div class="ttname"><a href="#gab60e4260de6231434d1af66b145fd632">GC_namespace::file_JSON_to_GC</a></div><div class="ttdeci">bool file_JSON_to_GC(string const &amp;file_name, GenericContainer &amp;gc)</div><div class="ttdef"><b>Definition</b> GenericContainerInterface_json.hh:50</div></div>
 </div><!-- fragment --><p>Example:</p>
 <div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::string file_name = <span class="stringliteral">&quot;config.JSON&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga703c265d1cc2f7038de7c53504c6558d">file_JSON_to_GC</a>(file_name, gc)) {</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#gab60e4260de6231434d1af66b145fd632">file_JSON_to_GC</a>(file_name, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;JSON file successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON file.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md48"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Loading JSON from an Input Stream</h3>
-<p>The <code>JSON_to_GC</code> function allows loading JSON data from an input stream, such as a file stream or a string stream.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a>( <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp; file_JSON, GenericContainer &amp; gc );</div>
-<div class="ttc" id="agroup___j_s_o_n_html_ga9523608879940c8a5839cbd1a73e86fa"><div class="ttname"><a href="#ga9523608879940c8a5839cbd1a73e86fa">GC_namespace::JSON_to_GC</a></div><div class="ttdeci">bool JSON_to_GC(istream_type &amp;file_JSON, GenericContainer &amp;gc)</div></div>
-<div class="ttc" id="anamespace_g_c__namespace_html_afc3dff4f02db495ebc457f02e89bc7de"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">GC_namespace::istream_type</a></div><div class="ttdeci">std::basic_istream&lt; char &gt; istream_type</div><div class="ttdoc">Alias for a character-based input stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:112</div></div>
+<p>The <span class="tt">JSON_to_GC</span> function allows loading JSON data from an input stream, such as a file stream or a string stream.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>( <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp; file_JSON, GenericContainer &amp; gc );</div>
+<div class="ttc" id="agroup___j_s_o_n_html_ga960a30ad6ecfdaf7135b39502cdf402c"><div class="ttname"><a href="#ga960a30ad6ecfdaf7135b39502cdf402c">GC_namespace::JSON_to_GC</a></div><div class="ttdeci">bool JSON_to_GC(istream_type &amp;stream, GenericContainer &amp;gc)</div><div class="ttdef"><b>Definition</b> GenericContainerInterface_json.hh:71</div></div>
+<div class="ttc" id="anamespace_g_c__namespace_html_afc3dff4f02db495ebc457f02e89bc7de"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">GC_namespace::istream_type</a></div><div class="ttdeci">std::basic_istream&lt; char &gt; istream_type</div><div class="ttdoc">Alias for a character-based input stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:118</div></div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::ifstream file_stream(<span class="stringliteral">&quot;config.JSON&quot;</span>);</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a>(file_stream, gc)) {</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>(file_stream, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;JSON stream successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON stream.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md49"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
 Loading JSON from a String</h3>
-<p>You can convert a JSON string directly into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> using the <code>JSON_to_GC</code> function.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a>( std::string <span class="keyword">const</span> &amp; JSON, GenericContainer &amp; gc );</div>
+<p>You can convert a JSON string directly into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">JSON_to_GC</span> function.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>( std::string <span class="keyword">const</span> &amp; JSON, GenericContainer &amp; gc );</div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::string JSON_data = R<span class="stringliteral">&quot;(</span></div>
 <div class="line"><span class="stringliteral">{</span></div>
@@ -208,15 +245,15 @@ Loading JSON from a String</h3>
 <div class="line"><span class="stringliteral">}</span></div>
 <div class="line"><span class="stringliteral">)&quot;;</span></div>
 <div class="line"><span class="stringliteral"></span> </div>
-<div class="line"><span class="stringliteral"></span><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a>(JSON_data, gc)) {</div>
+<div class="line"><span class="stringliteral"></span><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>(JSON_data, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;JSON string successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON string.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md50"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
 Loading JSON from a Vector of Strings</h3>
-<p>If you have multiple JSON strings in a vector, you can load them into a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> using the <code>JSON_to_GC</code> function.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a>( std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp; JSON, GenericContainer &amp; gc );</div>
+<p>If you have multiple JSON strings in a vector, you can load them into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">JSON_to_GC</span> function.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>( std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp; JSON, GenericContainer &amp; gc );</div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">std::vector&lt;std::string&gt; JSON_fragments = {</div>
 <div class="line">  <span class="stringliteral">&quot;{&quot;</span>,</div>
@@ -241,53 +278,56 @@ Loading JSON from a Vector of Strings</h3>
 <div class="line">  <span class="stringliteral">&quot;}&quot;</span></div>
 <div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga9523608879940c8a5839cbd1a73e86fa">JSON_to_GC</a>(JSON_fragments, gc)) {</div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga960a30ad6ecfdaf7135b39502cdf402c">JSON_to_GC</a>(JSON_fragments, gc)) {</div>
 <div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;JSON fragments successfully loaded into GenericContainer.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load JSON fragments.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md51"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
 Converting a GenericContainer to JSON</h2>
-<p>You can also convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> back to JSON format.</p>
-<h3><a class="anchor" id="autotoc_md52"></a>
+<p>You can also convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> back to JSON format.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md47"></a>
 Converting to a Vector of JSON Strings</h3>
-<p>The <code>GC_to_JSON</code> function converts the contents of a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into a vector of JSON strings.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#gae922cc81b7f77e411d51cf6296a75946">GC_to_JSON</a>( GenericContainer <span class="keyword">const</span> &amp; gc, std::vector&lt;std::string&gt; &amp; JSON );</div>
-<div class="ttc" id="agroup___j_s_o_n_html_gae922cc81b7f77e411d51cf6296a75946"><div class="ttname"><a href="#gae922cc81b7f77e411d51cf6296a75946">GC_namespace::GC_to_JSON</a></div><div class="ttdeci">void GC_to_JSON(GenericContainer const &amp;gc, vector&lt; string &gt; &amp;JSON)</div></div>
+<p>The <span class="tt">GC_to_JSON</span> function converts the contents of a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a vector of JSON strings.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a>( GenericContainer <span class="keyword">const</span> &amp; gc, std::vector&lt;std::string&gt; &amp; JSON );</div>
+<div class="ttc" id="agroup___j_s_o_n_html_ga5fa9ac294469473a3615f6b727cddc0a"><div class="ttname"><a href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_namespace::GC_to_JSON</a></div><div class="ttdeci">void GC_to_JSON(GenericContainer const &amp;gc, std::string &amp;res)</div><div class="ttdef"><b>Definition</b> GenericContainerInterface_json.hh:111</div></div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">gc[<span class="stringliteral">&quot;key1&quot;</span>] = <span class="stringliteral">&quot;value1&quot;</span>;</div>
 <div class="line">gc[<span class="stringliteral">&quot;key2&quot;</span>] = 42;</div>
 <div class="line"> </div>
 <div class="line">std::vector&lt;std::string&gt; JSON_output;</div>
-<div class="line"><a class="code hl_function" href="#gae922cc81b7f77e411d51cf6296a75946">GC_to_JSON</a>(gc, JSON_output);</div>
+<div class="line"><a class="code hl_function" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a>(gc, JSON_output);</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;line : JSON_output) {</div>
 <div class="line">    std::cout &lt;&lt; line &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md53"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
 Converting to a JSON File Stream</h3>
-<p>You can write the contents of a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to an output stream (e.g., a file) in JSON format using the <code>GC_to_JSON</code> function.</p>
-<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#gae922cc81b7f77e411d51cf6296a75946">GC_to_JSON</a>( GenericContainer <span class="keyword">const</span> &amp; gc, <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; file_JSON );</div>
-<div class="ttc" id="anamespace_g_c__namespace_html_aba86b1e2daf9221d49718c3eedd4c4f4"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">GC_namespace::ostream_type</a></div><div class="ttdeci">std::basic_ostream&lt; char &gt; ostream_type</div><div class="ttdoc">Alias for a character-based output stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:103</div></div>
+<p>You can write the contents of a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to an output stream (e.g., a file) in JSON format using the <span class="tt">GC_to_JSON</span> function.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a>( GenericContainer <span class="keyword">const</span> &amp; gc, <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; file_JSON );</div>
+<div class="ttc" id="anamespace_g_c__namespace_html_aba86b1e2daf9221d49718c3eedd4c4f4"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">GC_namespace::ostream_type</a></div><div class="ttdeci">std::basic_ostream&lt; char &gt; ostream_type</div><div class="ttdoc">Alias for a character-based output stream.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:109</div></div>
 </div><!-- fragment --><p>Example: </p><div class="fragment"><div class="line">GenericContainer gc;</div>
 <div class="line">gc[<span class="stringliteral">&quot;key1&quot;</span>] = <span class="stringliteral">&quot;value1&quot;</span>;</div>
 <div class="line">gc[<span class="stringliteral">&quot;key2&quot;</span>] = 42;</div>
 <div class="line"> </div>
 <div class="line">std::ofstream file_stream(<span class="stringliteral">&quot;output.JSON&quot;</span>);</div>
-<div class="line"><a class="code hl_function" href="#gae922cc81b7f77e411d51cf6296a75946">GC_to_JSON</a>(gc, file_stream);</div>
+<div class="line"><a class="code hl_function" href="#ga5fa9ac294469473a3615f6b727cddc0a">GC_to_JSON</a>(gc, file_stream);</div>
 <div class="line"> </div>
 <div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;JSON data written to output.JSON&quot;</span> &lt;&lt; std::endl;</div>
-</div><!-- fragment --><h2 class="groupheader">Function Documentation</h2>
-<a id="ga703c265d1cc2f7038de7c53504c6558d" name="ga703c265d1cc2f7038de7c53504c6558d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga703c265d1cc2f7038de7c53504c6558d">&#9670;&#160;</a></span>file_JSON_to_GC()</h2>
+</div><!-- fragment --><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Functions</h2>
+<a id="gab60e4260de6231434d1af66b145fd632" name="gab60e4260de6231434d1af66b145fd632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab60e4260de6231434d1af66b145fd632">&#9670;&#160;</a></span>file_JSON_to_GC()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool GC_namespace::file_JSON_to_GC </td>
           <td>(</td>
-          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name_JSON</em></span>, </td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>file_name</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -295,13 +335,18 @@ Converting to a JSON File Stream</h3>
           <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a JSON file to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function reads JSON data from the provided input stream and populates the given <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the parsed data.</p>
+<p>Convert a JSON file to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function reads JSON data from the provided input stream and populates the given <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the parsed data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">file_name_JSON</td><td>Input file name containing JSON data. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_name</td><td>Input file name containing JSON data. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to be populated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -309,11 +354,14 @@ Converting to a JSON File Stream</h3>
 
 </div>
 </div>
-<a id="gabcf49837e9bf26090ca7b9ae20d256d6" name="gabcf49837e9bf26090ca7b9ae20d256d6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabcf49837e9bf26090ca7b9ae20d256d6">&#9670;&#160;</a></span>GC_to_JSON() <span class="overload">[1/2]</span></h2>
+<a id="gaf5ca88b950517dcfc7bce066b19cdb13" name="gaf5ca88b950517dcfc7bce066b19cdb13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf5ca88b950517dcfc7bce066b19cdb13">&#9670;&#160;</a></span>GC_to_JSON() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::GC_to_JSON </td>
@@ -323,27 +371,35 @@ Converting to a JSON File Stream</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>file_JSON</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to a JSON file stream.</p>
-<p>This function converts the contents of the provided <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into JSON format and writes it to the specified output stream.</p>
+<p>Convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to a JSON file stream.</p>
+<p>This function converts the contents of the provided <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into JSON format and writes it to the specified output stream.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to convert. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">file_JSON</td><td>Output stream to write the JSON data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to convert. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">stream</td><td>Output stream to write the JSON data. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="gae922cc81b7f77e411d51cf6296a75946" name="gae922cc81b7f77e411d51cf6296a75946"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gae922cc81b7f77e411d51cf6296a75946">&#9670;&#160;</a></span>GC_to_JSON() <span class="overload">[2/2]</span></h2>
+<a id="ga5fa9ac294469473a3615f6b727cddc0a" name="ga5fa9ac294469473a3615f6b727cddc0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5fa9ac294469473a3615f6b727cddc0a">&#9670;&#160;</a></span>GC_to_JSON() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GC_namespace::GC_to_JSON </td>
@@ -353,32 +409,40 @@ Converting to a JSON File Stream</h3>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; string &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>JSON</em></span>&#160;)</td>
+          <td class="paramtype">std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>res</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to a vector of JSON strings.</p>
-<p>This function converts the contents of the provided <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> into YAML format and stores it in the specified vector.</p>
+<p>Convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to a JSON string.</p>
+<p>This function converts the contents of the provided <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into JSON format and stores it in the specified string.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to convert. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">JSON</td><td>Vector to store the resulting JSON strings. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to convert. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">DATA</td><td>String to store the JSON encoded <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a>. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ga9523608879940c8a5839cbd1a73e86fa" name="ga9523608879940c8a5839cbd1a73e86fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9523608879940c8a5839cbd1a73e86fa">&#9670;&#160;</a></span>JSON_to_GC() <span class="overload">[1/3]</span></h2>
+<a id="ga960a30ad6ecfdaf7135b39502cdf402c" name="ga960a30ad6ecfdaf7135b39502cdf402c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga960a30ad6ecfdaf7135b39502cdf402c">&#9670;&#160;</a></span>JSON_to_GC() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool GC_namespace::JSON_to_GC </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>file_JSON</em></span>, </td>
+          <td class="paramtype"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stream</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -386,44 +450,18 @@ Converting to a JSON File Stream</h3>
           <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a JSON file stream to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function reads JSON data from the provided input stream and populates the given <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the parsed data.</p>
+<p>Convert a JSON file stream to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function reads JSON data from the provided input stream and populates the given <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the parsed data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">file_JSON</td><td>Input stream containing JSON data. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the conversion was successful, false otherwise. </dd></dl>
-
-</div>
-</div>
-<a id="gaee2dbd3ca3a5dec392ef680738aff4d9" name="gaee2dbd3ca3a5dec392ef680738aff4d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaee2dbd3ca3a5dec392ef680738aff4d9">&#9670;&#160;</a></span>JSON_to_GC() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool GC_namespace::JSON_to_GC </td>
-          <td>(</td>
-          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>JSON</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Convert a JSON string to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function parses the given JSON string and populates the specified <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the resulting data.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">JSON</td><td>The JSON string to parse. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Input stream containing JSON data. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to be populated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -431,16 +469,19 @@ Converting to a JSON File Stream</h3>
 
 </div>
 </div>
-<a id="ga9d679555eac2b7fb77ce95a7fead97e0" name="ga9d679555eac2b7fb77ce95a7fead97e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9d679555eac2b7fb77ce95a7fead97e0">&#9670;&#160;</a></span>JSON_to_GC() <span class="overload">[3/3]</span></h2>
+<a id="ga00419b308d6f066c98040e7604d7774a" name="ga00419b308d6f066c98040e7604d7774a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga00419b308d6f066c98040e7604d7774a">&#9670;&#160;</a></span>JSON_to_GC() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool GC_namespace::JSON_to_GC </td>
           <td>(</td>
-          <td class="paramtype">vector&lt; string &gt; const &amp;</td>          <td class="paramname"><span class="paramname"><em>JSON</em></span>, </td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>DATA</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -448,13 +489,18 @@ Converting to a JSON File Stream</h3>
           <td class="paramtype"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>gc</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Convert a vector of JSON strings to a <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code>.</p>
-<p>This function parses each string in the given vector as YAML and populates the specified <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> with the resulting data.</p>
+<p>Convert a JSON string to a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
+<p>This function parses the given JSON string and populates the specified <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with the resulting data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">JSON</td><td>Vector containing JSON strings to parse. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <code><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></code> to be populated. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">DATA</td><td>The JSON string to parse. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to be populated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -464,10 +510,18 @@ Converting to a JSON File Stream</h3>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

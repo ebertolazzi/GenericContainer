@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['9_3a_20advanced_20serialization_0',['Example 9: Advanced Serialization',['../index.html#autotoc_md12',1,'']]]
+  ['8_3a_20matrix_20operations_0',['Example 8: Matrix Operations',['../dc/dbb/_usage.html#autotoc_md19',1,'']]]
 ];

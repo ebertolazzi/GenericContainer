@@ -4,17 +4,19 @@
 PROJECT_NAME           = "GenericContainer"
 
 # Imposta la descrizione del progetto
-PROJECT_BRIEF          = "GenericContaine a tool for C++ programming"
+PROJECT_BRIEF          = "GenericContainer a tool for C++ programming"
 
-PROJECT_LOGO           = logo.png
-
+PROJECT_LOGO           = GC.png
+LOGO_WIDTH             = 100
+LOGO_HEIGHT            = 100
 # Imposta la directory in cui sono contenuti i file sorgente
-INPUT                  = main.hh group_GC.hh group_yaml.hh group_json.hh group_lua.hh Usage.hh ../src ../include/GenericContainer
+INPUT                  = chap ../src ../include/GenericContainer
 
 #../src
 USE_MDFILE_AS_MAINPAGE = main.md
 
-FILE_PATTERNS          = *.c \
+FILE_PATTERNS          = *.dox \
+                         *.c \
                          *.cc \
                          *.cpp \
                          *.c++ \
@@ -36,6 +38,7 @@ MATHJAX_EXTENSIONS     = TeX/AMSmath TeX/AMSsymbols
 OUTPUT_DIRECTORY       = ./docs
 
 PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS
+SEARCHENGINE           = YES
 
 #
 # PER AWESOME
@@ -43,8 +46,9 @@ PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS
 GENERATE_TREEVIEW      = YES # optional. Also works without treeview
 DISABLE_INDEX          = NO
 FULL_SIDEBAR           = NO
-HTML_EXTRA_STYLESHEET  = doxygen-awesome/doxygen-awesome.css \
-                         doxygen-awesome/doxygen-awesome-sidebar-only-darkmode-toggle.css
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css-main/doxygen-awesome.css \
+                         doxygen-awesome-css-main/doxygen-awesome-sidebar-only-darkmode-toggle.css \
+                         custom.css
 
 #                         workaround.css
 

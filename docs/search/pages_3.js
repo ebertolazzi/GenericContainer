@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['license_0',['License',['../d5/d8f/_license.html',1,'index']]],
-  ['list_1',['Deprecated List',['../da/d58/deprecated.html',1,'']]]
+  ['4_3a_20nested_20containers_0',['Example 4: Nested Containers',['../dc/dbb/_usage.html#autotoc_md15',1,'']]]
 ];

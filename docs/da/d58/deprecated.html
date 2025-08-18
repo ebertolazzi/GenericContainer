@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: Deprecated List</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: Deprecated List</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('da/d58/deprecated.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('da/d58/deprecated.html','../../',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,34 +164,53 @@ $(function(){initNavTree('da/d58/deprecated.html','../../'); initResizable(true)
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Deprecated List</div></div>
+  <div class="headertitle"><div class="title">Deprecated List </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
 <dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#af85592bdd5114566a25cceb26606e277">GC_namespace::GenericContainer::get_numCols</a>  () const</dt>
-<dd><a class="anchor" id="_deprecated000008"></a>  </dd>
+<dd><a class="anchor" id="_deprecated000012"></a>  </dd>
 <dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#ae47d8abbc097daf9aa13eae1babd7345">GC_namespace::GenericContainer::get_numRows</a>  () const</dt>
-<dd><a class="anchor" id="_deprecated000007"></a>  </dd>
+<dd><a class="anchor" id="_deprecated000011"></a>  </dd>
+<dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa563c8487e1a4003e2117582090c6c1d">GC_namespace::GenericContainer::readFormattedData</a>  (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de" title="Alias for a character-based input stream.">istream_type</a> &amp;stream, char const commentChars[]="#%", char const delimiters[]=" \\t")</dt>
+<dd><a class="anchor" id="_deprecated000014"></a>use <span class="tt">read_formatted_data</span>  </dd>
+<dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#a508f7d80af5ec95b48e650be20ad8c62">GC_namespace::GenericContainer::readFormattedData</a>  (char const fname[], char const commentChars[]="#%", char const delimiters[]=" \\t")</dt>
+<dd><a class="anchor" id="_deprecated000015"></a>use <span class="tt">read_formatted_data</span>  </dd>
+<dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#a380d31ee71bc8f0083819c87d401a7d8">GC_namespace::GenericContainer::readFormattedData2</a>  (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de" title="Alias for a character-based input stream.">istream_type</a> &amp;stream, char const commentChars[]="#%", char const delimiters[]=" \\t", <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> ptr_pars[]=nullptr)</dt>
+<dd><a class="anchor" id="_deprecated000016"></a>use <span class="tt">read_formatted_data2</span>  </dd>
+<dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#a61512a442494e55521f330f92c8a04ca">GC_namespace::GenericContainer::readFormattedData2</a>  (char const fname[], char const commentChars[]="#%", char const delimiters[]=" \\t", <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> ptr_pars[]=nullptr)</dt>
+<dd><a class="anchor" id="_deprecated000017"></a>use <span class="tt">read_formatted_data2</span>  </dd>
+<dt>Member <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html#ad38b734f6d9ba54d48ccc07eefaf34df">GC_namespace::GenericContainer::writeFormattedData</a>  (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4" title="Alias for a character-based output stream.">ostream_type</a> &amp;stream, char const delimiter='\t') const</dt>
+<dd><a class="anchor" id="_deprecated000013"></a>use <span class="tt">write_formatted_data</span>  </dd>
 <dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#a1c4dd15080e768b74b6bee28d4d35ce6">GC_namespace::mat_type&lt; TYPE &gt;::getColumn</a>  (unsigned nc, vector&lt; TYPE &gt; &amp;C) const</dt>
-<dd><a class="anchor" id="_deprecated000001"></a>  </dd>
+<dd><a class="anchor" id="_deprecated000005"></a>  </dd>
 <dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#a9e723c6584ee78777777a039b8abf752">GC_namespace::mat_type&lt; TYPE &gt;::getColumn</a>  (unsigned nc, TYPE *C) const</dt>
-<dd><a class="anchor" id="_deprecated000003"></a>  </dd>
+<dd><a class="anchor" id="_deprecated000007"></a>  </dd>
 <dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#af27445bbcc7bb94d577de037590ca61d">GC_namespace::mat_type&lt; TYPE &gt;::getRow</a>  (unsigned nr, vector&lt; TYPE &gt; &amp;R) const</dt>
-<dd><a class="anchor" id="_deprecated000002"></a>  </dd>
-<dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#a4eabb4d41cfdd2edb604c4172be3ed06">GC_namespace::mat_type&lt; TYPE &gt;::getRow</a>  (unsigned nr, TYPE *R) const</dt>
-<dd><a class="anchor" id="_deprecated000004"></a>  </dd>
-<dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#af6a476d14f5a4ab06d9e3f7fa2e166c0">GC_namespace::mat_type&lt; TYPE &gt;::numCols</a>  () const</dt>
 <dd><a class="anchor" id="_deprecated000006"></a>  </dd>
+<dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#a4eabb4d41cfdd2edb604c4172be3ed06">GC_namespace::mat_type&lt; TYPE &gt;::getRow</a>  (unsigned nr, TYPE *R) const</dt>
+<dd><a class="anchor" id="_deprecated000008"></a>  </dd>
+<dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#af6a476d14f5a4ab06d9e3f7fa2e166c0">GC_namespace::mat_type&lt; TYPE &gt;::numCols</a>  () const</dt>
+<dd><a class="anchor" id="_deprecated000010"></a>  </dd>
 <dt>Member <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html#a06bddd449d06fe56ca2248f036aaf6db">GC_namespace::mat_type&lt; TYPE &gt;::numRows</a>  () const</dt>
-<dd><a class="anchor" id="_deprecated000005"></a> </dd>
+<dd><a class="anchor" id="_deprecated000009"></a>  </dd>
+<dt>Member <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#a785fc031ffe7df58e202320a1df062d0">GC_namespace::writeTable</a>  (vec_string_type const &amp;headers, vector_type const &amp;data, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4" title="Alias for a character-based output stream.">ostream_type</a> &amp;stream, char delimiter='\t')</dt>
+<dd><a class="anchor" id="_deprecated000001"></a>use <span class="tt">write_table</span>  </dd>
+<dt>Member <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#a42e8f5a719b11d5289a8b4102cc92741">GC_namespace::writeTable</a>  (vec_string_type const &amp;headers, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;data, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4" title="Alias for a character-based output stream.">ostream_type</a> &amp;stream, char delimiter='\t')</dt>
+<dd><a class="anchor" id="_deprecated000002"></a>use <span class="tt">write_table</span>  </dd>
+<dt>Member <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#ad7555973321ded648b809576e2eb5128">GC_namespace::writeTableFormatted</a>  (vec_string_type const &amp;headers, vector_type const &amp;data, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4" title="Alias for a character-based output stream.">ostream_type</a> &amp;stream)</dt>
+<dd><a class="anchor" id="_deprecated000003"></a>use <span class="tt">write_table_formatted</span>  </dd>
+<dt>Member <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#a14b4cdaae994249f488dba2b2181a5ef">GC_namespace::writeTableFormatted</a>  (vec_string_type const &amp;headers, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> const &amp;data, <a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4" title="Alias for a character-based output stream.">ostream_type</a> &amp;stream)</dt>
+<dd><a class="anchor" id="_deprecated000004"></a>use <span class="tt">write_table_formatted</span> </dd>
 </dl>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

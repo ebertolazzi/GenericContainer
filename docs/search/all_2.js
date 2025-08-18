@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['3_3a_20using_20maps_0',['Example 3: Using Maps',['../index.html#autotoc_md6',1,'']]]
+  ['2_3a_20working_20with_20vectors_0',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md13',1,'']]]
 ];
