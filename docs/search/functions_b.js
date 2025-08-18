@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['print_0',['print',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a13189751e5ceef1e110aed0ae4151920',1,'GC_namespace::GenericContainer::print(ostream_type &amp;stream, string_type const &amp;prefix=&quot;&quot;, string_type const &amp;indent=&quot;    &quot;) const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ac7838f12ec0a51ba16f9725903278c90',1,'GC_namespace::GenericContainer::print(string_type const &amp;prefix=&quot;&quot;, string_type const &amp;indent=&quot;    &quot;) const']]],
-  ['print_5fcontent_5ftypes_1',['print_content_types',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a74f10a81b354c1678ed6b7480d2dcd4f',1,'GC_namespace::GenericContainer']]],
+  ['print_0',['print',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ab7b95bb934b3f0cd37af2404abee6b23',1,'GC_namespace::GenericContainer::print(ostream_type &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ae412ca89caaa66f86b1d7ff3a313cc9f',1,'GC_namespace::GenericContainer::print(string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const']]],
+  ['print_5fcontent_5ftypes_1',['print_content_types',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a6b212287a8a8bb274c1231c9aac04484',1,'GC_namespace::GenericContainer']]],
   ['promote_5fto_5fcomplex_2',['promote_to_complex',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a2f18cbc74c83714efac2625157cce59c',1,'GC_namespace::GenericContainer']]],
   ['promote_5fto_5fint_3',['promote_to_int',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ada923f341b0ee5690501da13a31b8eeb',1,'GC_namespace::GenericContainer']]],
   ['promote_5fto_5flong_4',['promote_to_long',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a80815d1ee682440fdb7a3a1f07869d4c',1,'GC_namespace::GenericContainer']]],
@@ -15,10 +15,10 @@ var searchData=
   ['promote_5fto_5fvec_5flong_12',['promote_to_vec_long',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a59e9a723e498c0f4ff78102a41d0b265',1,'GC_namespace::GenericContainer']]],
   ['promote_5fto_5fvec_5freal_13',['promote_to_vec_real',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#acca3e95074743748da30afe2daa9fce6',1,'GC_namespace::GenericContainer']]],
   ['promote_5fto_5fvector_14',['promote_to_vector',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa164849b96d187832d66815428033ef8',1,'GC_namespace::GenericContainer']]],
-  ['push_5fbool_15',['push_bool',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a131729d5fbe8629996308042b810766c',1,'GC_namespace::GenericContainer']]],
+  ['push_5fbool_15',['push_bool',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ae30948b7088b292c13faebf0f8689be1',1,'GC_namespace::GenericContainer']]],
   ['push_5fcomplex_16',['push_complex',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a2507add24fab63e32b4dc9f2a7b8421a',1,'GC_namespace::GenericContainer::push_complex(complex_type &amp;c)'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a19305b0ed3022aee44e7078694de0c62',1,'GC_namespace::GenericContainer::push_complex(real_type re, real_type im)']]],
   ['push_5fint_17',['push_int',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a65351f34a0bbbccbdc6fff60013bcc3f',1,'GC_namespace::GenericContainer']]],
   ['push_5flong_18',['push_long',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#add4f57b9fd5f1c85b6ab27f2386ce1cd',1,'GC_namespace::GenericContainer']]],
   ['push_5freal_19',['push_real',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a92ce2b5d20a5508709d2e8fc7642a7f1',1,'GC_namespace::GenericContainer']]],
-  ['push_5fstring_20',['push_string',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a138015e23feff4ae3f14f74749c33376',1,'GC_namespace::GenericContainer']]]
+  ['push_5fstring_20',['push_string',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a93f96d714287b27912909fa1bbf08981',1,'GC_namespace::GenericContainer']]]
 ];

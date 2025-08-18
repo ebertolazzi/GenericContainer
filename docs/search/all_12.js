@@ -1,13 +1,21 @@
 var searchData=
 [
-  ['json_0',['Converting a GenericContainer to JSON',['../d7/d2f/group___j_s_o_n.html#autotoc_md51',1,'']]],
-  ['json_20data_20into_20a_20genericcontainer_1',['Loading JSON Data into a GenericContainer',['../d7/d2f/group___j_s_o_n.html#autotoc_md46',1,'']]],
-  ['json_20file_20stream_2',['Converting to a JSON File Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md53',1,'']]],
-  ['json_20from_20a_20file_3',['Loading JSON from a File',['../d7/d2f/group___j_s_o_n.html#autotoc_md47',1,'']]],
-  ['json_20from_20a_20string_4',['Loading JSON from a String',['../d7/d2f/group___j_s_o_n.html#autotoc_md49',1,'']]],
-  ['json_20from_20a_20vector_20of_20strings_5',['Loading JSON from a Vector of Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md50',1,'']]],
-  ['json_20from_20an_20input_20stream_6',['Loading JSON from an Input Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md48',1,'']]],
-  ['json_20interface_7',['GenericContainer-JSON Interface',['../d7/d2f/group___j_s_o_n.html',1,'']]],
-  ['json_20strings_8',['Converting to a Vector of JSON Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md52',1,'']]],
-  ['json_5fto_5fgc_9',['JSON_to_GC',['../d7/d2f/group___j_s_o_n.html#ga9523608879940c8a5839cbd1a73e86fa',1,'GC_namespace::JSON_to_GC(istream_type &amp;file_JSON, GenericContainer &amp;gc)'],['../d7/d2f/group___j_s_o_n.html#gaee2dbd3ca3a5dec392ef680738aff4d9',1,'GC_namespace::JSON_to_GC(string const &amp;JSON, GenericContainer &amp;gc)'],['../d7/d2f/group___j_s_o_n.html#ga9d679555eac2b7fb77ce95a7fead97e0',1,'GC_namespace::JSON_to_GC(vector&lt; string &gt; const &amp;JSON, GenericContainer &amp;gc)']]]
+  ['i_20o_0',['Example 7: File I/O',['../dc/dbb/_usage.html#autotoc_md18',1,'']]],
+  ['imag_1',['imag',['../d6/d33/structc__complex__type.html#a60cc2b4f15b1b518c75d65c1fc90cd6a',1,'c_complex_type']]],
+  ['in_20the_20genericcontainer_2',['Setting Data in the &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;',['../db/de3/group___g_c.html#autotoc_md24',1,'']]],
+  ['info_3',['info',['../df/def/class_g_c__namespace_1_1mat__type.html#a712e3e72ee4ecf43374f5ea0cfd1dd43',1,'GC_namespace::mat_type::info(ostream_type &amp;stream) const'],['../df/def/class_g_c__namespace_1_1mat__type.html#ae713c804755b629195e7cf29ad471ebb',1,'GC_namespace::mat_type::info() const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a376568f61e3eaf7312fd37d6fe3142ba',1,'GC_namespace::GenericContainer::info(ostream_type &amp;stream) const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a6e38aa217bef748249719f8eb3f611e0',1,'GC_namespace::GenericContainer::info() const']]],
+  ['initialization_20of_20a_20genericcontainer_4',['Initialization of a &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;',['../db/de3/group___g_c.html#autotoc_md23',1,'']]],
+  ['input_20stream_5',['Input Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md43',1,'Loading JSON from an Input Stream'],['../d2/ddf/group___t_o_m_l.html#autotoc_md61',1,'Loading TOML from an Input Stream'],['../d8/d2e/group___y_a_m_l.html#autotoc_md69',1,'Loading YAML from an Input Stream']]],
+  ['installation_6',['Verify the Installation',['../df/d70/_install.html#autotoc_md10',1,'']]],
+  ['installation_20guide_7',['Installation guide',['../df/d70/_install.html',1,'index']]],
+  ['int_5ftype_8',['int_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a905f6a92bebd382dcfe12afd33bb8990',1,'GC_namespace::GenericContainer']]],
+  ['integer_9',['Integer',['../db/de3/group___g_c.html#autotoc_md30',1,'Retrieve an Integer'],['../db/de3/group___g_c.html#autotoc_md25',1,'Set an Integer']]],
+  ['integers_10',['Integers',['../db/de3/group___g_c.html#autotoc_md33',1,'Retrieve Elements from a Vector of Integers'],['../db/de3/group___g_c.html#autotoc_md28',1,'Set a Vector of Integers']]],
+  ['integrate_20into_20your_20project_11',['Integrate into Your Project',['../df/d70/_install.html#autotoc_md9',1,'']]],
+  ['interactive_12',['interactive',['../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html#a49a8963a83b5e9f75826007c6eba7b91',1,'GC_namespace::LuaInterpreter']]],
+  ['interface_13',['Interface',['../db/de3/group___g_c.html',1,'GenericContainer C Interface'],['../d7/d2f/group___j_s_o_n.html',1,'GenericContainer-JSON Interface'],['../d0/d27/group___l_u_a.html',1,'GenericContainer-Lua Interface'],['../d2/ddf/group___t_o_m_l.html',1,'GenericContainer-TOML Interface'],['../d8/d2e/group___y_a_m_l.html',1,'GenericContainer-YAML Interface']]],
+  ['into_20a_20genericcontainer_14',['into a GenericContainer',['../d7/d2f/group___j_s_o_n.html#autotoc_md41',1,'Loading JSON Data into a GenericContainer'],['../d2/ddf/group___t_o_m_l.html#autotoc_md59',1,'Loading TOML Data into a GenericContainer'],['../d8/d2e/group___y_a_m_l.html#autotoc_md67',1,'Loading YAML Data into a GenericContainer']]],
+  ['into_20your_20project_15',['Integrate into Your Project',['../df/d70/_install.html#autotoc_md9',1,'']]],
+  ['introduction_16',['Introduction',['../d4/d8e/_introduction.html',1,'index']]],
+  ['istream_5ftype_17',['istream_type',['../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de',1,'GC_namespace']]]
 ];

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['the_20class_20and_20features_0',['Brief description of the class and features',['../d4/d8e/_introduction.html#autotoc_md0',1,'']]],
+  ['the_20genericcontainer_1',['the GenericContainer',['../db/de3/group___g_c.html#autotoc_md29',1,'Accessing Data from the <span class="tt">GenericContainer</span>'],['../db/de3/group___g_c.html#autotoc_md24',1,'Setting Data in the <span class="tt">GenericContainer</span>']]],
+  ['the_20installation_2',['Verify the Installation',['../df/d70/_install.html#autotoc_md10',1,'']]],
+  ['the_20library_3',['Compile the Library',['../df/d70/_install.html#autotoc_md5',1,'']]],
+  ['the_20library_4',['check the library',['../df/d70/_install.html#autotoc_md8',1,'']]],
+  ['the_20luainterpreter_20class_5',['Using the LuaInterpreter Class',['../d0/d27/group___l_u_a.html#autotoc_md53',1,'']]],
+  ['to_20a_20json_20file_20stream_6',['Converting to a JSON File Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md48',1,'']]],
+  ['to_20a_20toml_20file_20stream_7',['Converting to a TOML File Stream',['../d2/ddf/group___t_o_m_l.html#autotoc_md65',1,'']]],
+  ['to_20a_20vector_20of_20json_20strings_8',['Converting to a Vector of JSON Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md47',1,'']]],
+  ['to_20a_20yaml_20file_20stream_9',['Converting to a YAML File Stream',['../d8/d2e/group___y_a_m_l.html#autotoc_md73',1,'']]],
+  ['to_20genericcontainer_10',['Converting Lua Global Variables to GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md51',1,'']]],
+  ['to_20json_11',['Converting a GenericContainer to JSON',['../d7/d2f/group___j_s_o_n.html#autotoc_md46',1,'']]],
+  ['to_20lua_20global_20variables_12',['Converting GenericContainer to Lua Global Variables',['../d0/d27/group___l_u_a.html#autotoc_md52',1,'']]],
+  ['to_20toml_13',['Converting a GenericContainer to TOML',['../d2/ddf/group___t_o_m_l.html#autotoc_md64',1,'']]],
+  ['to_20yaml_14',['Converting a GenericContainer to YAML',['../d8/d2e/group___y_a_m_l.html#autotoc_md72',1,'']]],
+  ['toml_15',['Converting a GenericContainer to TOML',['../d2/ddf/group___t_o_m_l.html#autotoc_md64',1,'']]],
+  ['toml_20data_20into_20a_20genericcontainer_16',['Loading TOML Data into a GenericContainer',['../d2/ddf/group___t_o_m_l.html#autotoc_md59',1,'']]],
+  ['toml_20file_20stream_17',['Converting to a TOML File Stream',['../d2/ddf/group___t_o_m_l.html#autotoc_md65',1,'']]],
+  ['toml_20from_20a_20file_18',['Loading TOML from a File',['../d2/ddf/group___t_o_m_l.html#autotoc_md60',1,'']]],
+  ['toml_20from_20a_20string_19',['Loading TOML from a String',['../d2/ddf/group___t_o_m_l.html#autotoc_md62',1,'']]],
+  ['toml_20from_20a_20vector_20of_20strings_20',['Loading TOML from a Vector of Strings',['../d2/ddf/group___t_o_m_l.html#autotoc_md63',1,'']]],
+  ['toml_20from_20an_20input_20stream_21',['Loading TOML from an Input Stream',['../d2/ddf/group___t_o_m_l.html#autotoc_md61',1,'']]],
+  ['types_22',['Supported types',['../d4/d8e/_introduction.html#autotoc_md3',1,'']]],
+  ['types_3a_23',['Supported Data Types:',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#autotoc_md76',1,'']]]
+];

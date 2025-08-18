@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: GC_namespace::mat_type&lt; TYPE &gt; Class Template Reference</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: GC_namespace::mat_type&lt; TYPE &gt; Class Template Reference</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('df/def/class_g_c__namespace_1_1mat__type.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('df/def/class_g_c__namespace_1_1mat__type.html','../../','d5/d9f/class_g_c__namespace_1_1mat__type-members'); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,9 +164,6 @@ $(function(){initNavTree('df/def/class_g_c__namespace_1_1mat__type.html','../../
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="../../d5/d9f/class_g_c__namespace_1_1mat__type-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">GC_namespace::mat_type&lt; TYPE &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -136,70 +179,63 @@ Inheritance diagram for GC_namespace::mat_type&lt; TYPE &gt;:</div>
   <img src="../../df/def/class_g_c__namespace_1_1mat__type.png" alt=""/>
  </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Methods</h2></td></tr>
 <tr class="memitem:ae4a5cfc977faae8b45caf6859697f777" id="r_ae4a5cfc977faae8b45caf6859697f777"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type</a> ()=default</td></tr>
 <tr class="memdesc:ae4a5cfc977faae8b45caf6859697f777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor that creates an empty matrix.  <br /></td></tr>
-<tr class="separator:ae4a5cfc977faae8b45caf6859697f777"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a938990c1db1f67c9a8c3f82422efd2cf" id="r_a938990c1db1f67c9a8c3f82422efd2cf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a938990c1db1f67c9a8c3f82422efd2cf">mat_type</a> (unsigned nr, unsigned nc)</td></tr>
-<tr class="separator:a938990c1db1f67c9a8c3f82422efd2cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0910662873d43456a100bebfa80637ca" id="r_a0910662873d43456a100bebfa80637ca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0910662873d43456a100bebfa80637ca">resize</a> (unsigned nr, unsigned nc)</td></tr>
-<tr class="separator:a0910662873d43456a100bebfa80637ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41358a1de7c901dc4dee49138d5ba2b1" id="r_a41358a1de7c901dc4dee49138d5ba2b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41358a1de7c901dc4dee49138d5ba2b1">resize</a> (unsigned const nr, unsigned const nc)</td></tr>
+<tr class="memitem:ab96aa65fe01765265b058dcf51856c0d" id="r_ab96aa65fe01765265b058dcf51856c0d"><td class="memTemplParams" colspan="2">template&lt;typename T1, typename T2&gt; </td></tr>
+<tr class="memitem:ab96aa65fe01765265b058dcf51856c0d template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab96aa65fe01765265b058dcf51856c0d">resize</a> (T1 const nr, T2 const nc)</td></tr>
 <tr class="memitem:abc4afb575fdf7f85261dc7805969b6d0" id="r_abc4afb575fdf7f85261dc7805969b6d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc4afb575fdf7f85261dc7805969b6d0">get_column</a> (unsigned nc, vector&lt; TYPE &gt; &amp;C) const</td></tr>
-<tr class="separator:abc4afb575fdf7f85261dc7805969b6d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a212f4ef80050d25d1dc7a1d184c3122a" id="r_a212f4ef80050d25d1dc7a1d184c3122a"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a212f4ef80050d25d1dc7a1d184c3122a template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a212f4ef80050d25d1dc7a1d184c3122a">get_column</a> (T const nc, vector&lt; TYPE &gt; &amp;C) const</td></tr>
 <tr class="memitem:a1c4dd15080e768b74b6bee28d4d35ce6" id="r_a1c4dd15080e768b74b6bee28d4d35ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c4dd15080e768b74b6bee28d4d35ce6">getColumn</a> (unsigned nc, vector&lt; TYPE &gt; &amp;C) const</td></tr>
-<tr class="separator:a1c4dd15080e768b74b6bee28d4d35ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d883e04b55bc4ef1d2c597bb9b69e4c" id="r_a7d883e04b55bc4ef1d2c597bb9b69e4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d883e04b55bc4ef1d2c597bb9b69e4c">get_row</a> (unsigned nr, vector&lt; TYPE &gt; &amp;R) const</td></tr>
-<tr class="separator:a7d883e04b55bc4ef1d2c597bb9b69e4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7a9dee6fa3e0f576dfef121eeadc5e9" id="r_ac7a9dee6fa3e0f576dfef121eeadc5e9"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:ac7a9dee6fa3e0f576dfef121eeadc5e9 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7a9dee6fa3e0f576dfef121eeadc5e9">get_row</a> (T const nr, vector&lt; TYPE &gt; &amp;R) const</td></tr>
 <tr class="memitem:af27445bbcc7bb94d577de037590ca61d" id="r_af27445bbcc7bb94d577de037590ca61d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af27445bbcc7bb94d577de037590ca61d">getRow</a> (unsigned nr, vector&lt; TYPE &gt; &amp;R) const</td></tr>
-<tr class="separator:af27445bbcc7bb94d577de037590ca61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa38120acdd16d87ba43cce158b12ca22" id="r_aa38120acdd16d87ba43cce158b12ca22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa38120acdd16d87ba43cce158b12ca22">get_column</a> (unsigned nc, TYPE *C) const</td></tr>
-<tr class="separator:aa38120acdd16d87ba43cce158b12ca22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a170ecd6c63dc4eac1596c555fb4d4b8d" id="r_a170ecd6c63dc4eac1596c555fb4d4b8d"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a170ecd6c63dc4eac1596c555fb4d4b8d template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a170ecd6c63dc4eac1596c555fb4d4b8d">get_column</a> (T const nc, TYPE *C) const</td></tr>
 <tr class="memitem:a9e723c6584ee78777777a039b8abf752" id="r_a9e723c6584ee78777777a039b8abf752"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e723c6584ee78777777a039b8abf752">getColumn</a> (unsigned nc, TYPE *C) const</td></tr>
-<tr class="separator:a9e723c6584ee78777777a039b8abf752"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5350a78ff6654121c591474722d306e2" id="r_a5350a78ff6654121c591474722d306e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5350a78ff6654121c591474722d306e2">get_row</a> (unsigned nr, TYPE *R) const</td></tr>
-<tr class="separator:a5350a78ff6654121c591474722d306e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7343e87b5a3faf1641f7c12c7a6a3789" id="r_a7343e87b5a3faf1641f7c12c7a6a3789"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
+<tr class="memitem:a7343e87b5a3faf1641f7c12c7a6a3789 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7343e87b5a3faf1641f7c12c7a6a3789">get_row</a> (T const nr, TYPE *R) const</td></tr>
 <tr class="memitem:a4eabb4d41cfdd2edb604c4172be3ed06" id="r_a4eabb4d41cfdd2edb604c4172be3ed06"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eabb4d41cfdd2edb604c4172be3ed06">getRow</a> (unsigned nr, TYPE *R) const</td></tr>
-<tr class="separator:a4eabb4d41cfdd2edb604c4172be3ed06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af210071c8d5b4482c1db6b78291b11de" id="r_af210071c8d5b4482c1db6b78291b11de"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af210071c8d5b4482c1db6b78291b11de">num_rows</a> () const</td></tr>
-<tr class="separator:af210071c8d5b4482c1db6b78291b11de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06bddd449d06fe56ca2248f036aaf6db" id="r_a06bddd449d06fe56ca2248f036aaf6db"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06bddd449d06fe56ca2248f036aaf6db">numRows</a> () const</td></tr>
-<tr class="separator:a06bddd449d06fe56ca2248f036aaf6db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89a7a394406c6b25ef940370e5a16e15" id="r_a89a7a394406c6b25ef940370e5a16e15"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89a7a394406c6b25ef940370e5a16e15">num_cols</a> () const</td></tr>
-<tr class="separator:a89a7a394406c6b25ef940370e5a16e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6a476d14f5a4ab06d9e3f7fa2e166c0" id="r_af6a476d14f5a4ab06d9e3f7fa2e166c0"><td class="memItemLeft" align="right" valign="top">unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6a476d14f5a4ab06d9e3f7fa2e166c0">numCols</a> () const</td></tr>
-<tr class="separator:af6a476d14f5a4ab06d9e3f7fa2e166c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb33a80ca9949f3b0fcc7b21e1815082" id="r_afb33a80ca9949f3b0fcc7b21e1815082"><td class="memItemLeft" align="right" valign="top">TYPE const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb33a80ca9949f3b0fcc7b21e1815082">operator()</a> (unsigned i, unsigned j) const</td></tr>
-<tr class="separator:afb33a80ca9949f3b0fcc7b21e1815082"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af31831450d406083c31ef31a84ea50cf" id="r_af31831450d406083c31ef31a84ea50cf"><td class="memItemLeft" align="right" valign="top">TYPE &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af31831450d406083c31ef31a84ea50cf">operator()</a> (unsigned i, unsigned j)</td></tr>
-<tr class="separator:af31831450d406083c31ef31a84ea50cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a712e3e72ee4ecf43374f5ea0cfd1dd43" id="r_a712e3e72ee4ecf43374f5ea0cfd1dd43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a712e3e72ee4ecf43374f5ea0cfd1dd43">info</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream) const</td></tr>
-<tr class="separator:a712e3e72ee4ecf43374f5ea0cfd1dd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae713c804755b629195e7cf29ad471ebb" id="r_ae713c804755b629195e7cf29ad471ebb"><td class="memItemLeft" align="right" valign="top">string_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae713c804755b629195e7cf29ad471ebb">info</a> () const</td></tr>
-<tr class="separator:ae713c804755b629195e7cf29ad471ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b26e379f929dce0e0e3ce0b680d089e" id="r_a8b26e379f929dce0e0e3ce0b680d089e"><td class="memItemLeft" align="right" valign="top">TYPE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b26e379f929dce0e0e3ce0b680d089e">data</a> ()</td></tr>
-<tr class="separator:a8b26e379f929dce0e0e3ce0b680d089e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afaf61ce7689dcbccbb25ebb13d2d964b" id="r_afaf61ce7689dcbccbb25ebb13d2d964b"><td class="memItemLeft" align="right" valign="top">TYPE const *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afaf61ce7689dcbccbb25ebb13d2d964b">data</a> () const</td></tr>
-<tr class="separator:afaf61ce7689dcbccbb25ebb13d2d964b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2455d6b8b80d256a3656c6801ca3f7e" id="r_ad2455d6b8b80d256a3656c6801ca3f7e"><td class="memTemplParams" colspan="2">template&lt;typename TYPE&gt; </td></tr>
+<tr class="memitem:ad2455d6b8b80d256a3656c6801ca3f7e template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2455d6b8b80d256a3656c6801ca3f7e">get_column</a> (unsigned nc, std::vector&lt; TYPE &gt; &amp;C) const</td></tr>
+<tr class="memitem:abfdc749512f9dd2139b7f7c1cd8541f0" id="r_abfdc749512f9dd2139b7f7c1cd8541f0"><td class="memTemplParams" colspan="2">template&lt;typename TYPE&gt; </td></tr>
+<tr class="memitem:abfdc749512f9dd2139b7f7c1cd8541f0 template"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfdc749512f9dd2139b7f7c1cd8541f0">get_row</a> (unsigned nr, std::vector&lt; TYPE &gt; &amp;R) const</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename TYPE&gt;<br />
 class GC_namespace::mat_type&lt; TYPE &gt;</div><p>Generic matrix storage type. </p>
-<p>This template class defines a matrix type that extends vector&lt;TYPE&gt; to store and manipulate a 2D matrix of elements of type TYPE. The matrix is stored internally as a 1D vector in row-major order.</p>
+<p>This template class defines a matrix type that extends vector&lt;TYPE&gt; to store and manipulate a 2D matrix of elements of type <span class="tt">TYPE</span>. The matrix is stored internally as a 1D vector in row-major order.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">TYPE</td><td>The type of elements stored in the matrix. </td></tr>
   </table>
   </dd>
 </dl>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructors</h2>
 <a id="ae4a5cfc977faae8b45caf6859697f777" name="ae4a5cfc977faae8b45caf6859697f777"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae4a5cfc977faae8b45caf6859697f777">&#9670;&#160;</a></span>mat_type() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -213,7 +249,7 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -228,7 +264,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -246,7 +282,7 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -258,21 +294,21 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md72"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 4);  <span class="comment">// Creates a 3x4 matrix</span></div>
-<div class="ttc" id="aclass_g_c__namespace_1_1mat__type_html"><div class="ttname"><a href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a></div><div class="ttdoc">Generic matrix storage type.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:163</div></div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 4);  <span class="comment">// Creates a 3x4 matrix</span></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1mat__type_html_ae4a5cfc977faae8b45caf6859697f777"><div class="ttname"><a href="#ae4a5cfc977faae8b45caf6859697f777">GC_namespace::mat_type::mat_type</a></div><div class="ttdeci">mat_type()=default</div><div class="ttdoc">Default constructor that creates an empty matrix.</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Functions</h2>
 <a id="a8b26e379f929dce0e0e3ce0b680d089e" name="a8b26e379f929dce0e0e3ce0b680d089e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8b26e379f929dce0e0e3ce0b680d089e">&#9670;&#160;</a></span>data() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -286,15 +322,15 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Returns a pointer to the underlying data block of the matrix.</p>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the first element of the matrix data array.</dd></dl>
-<h3><a class="anchor" id="autotoc_md84"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keywordtype">int</span> *dataPtr = matrix.data();  <span class="comment">// Pointer to matrix data</span></div>
 </div><!-- fragment --> 
 </div>
@@ -305,7 +341,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -319,26 +355,117 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Returns a constant pointer to the underlying data block of the matrix.</p>
 <dl class="section return"><dt>Returns</dt><dd>A constant pointer to the first element of the matrix data array.</dd></dl>
-<h3><a class="anchor" id="autotoc_md85"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> *dataPtr = matrix.data();  <span class="comment">// Constant pointer to matrix data</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="aa38120acdd16d87ba43cce158b12ca22" name="aa38120acdd16d87ba43cce158b12ca22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa38120acdd16d87ba43cce158b12ca22">&#9670;&#160;</a></span>get_column() <span class="overload">[1/2]</span></h2>
+<a id="a170ecd6c63dc4eac1596c555fb4d4b8d" name="a170ecd6c63dc4eac1596c555fb4d4b8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a170ecd6c63dc4eac1596c555fb4d4b8d">&#9670;&#160;</a></span>get_column() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_column </td>
+          <td>(</td>
+          <td class="paramtype">T const</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TYPE *</td>          <td class="paramname"><span class="paramname"><em>C</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a212f4ef80050d25d1dc7a1d184c3122a" name="a212f4ef80050d25d1dc7a1d184c3122a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a212f4ef80050d25d1dc7a1d184c3122a">&#9670;&#160;</a></span>get_column() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_column </td>
+          <td>(</td>
+          <td class="paramtype">T const</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>C</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2455d6b8b80d256a3656c6801ca3f7e" name="ad2455d6b8b80d256a3656c6801ca3f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2455d6b8b80d256a3656c6801ca3f7e">&#9670;&#160;</a></span>get_column() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_column </td>
+          <td>(</td>
+          <td class="paramtype">unsigned</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>C</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa38120acdd16d87ba43cce158b12ca22" name="aa38120acdd16d87ba43cce158b12ca22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa38120acdd16d87ba43cce158b12ca22">&#9670;&#160;</a></span>get_column() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_column </td>
@@ -360,21 +487,21 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md76"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keywordtype">int</span> column[3];</div>
 <div class="line">matrix.get_column(1, column);  <span class="comment">// Copies the second column into `column`</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
 <a id="abc4afb575fdf7f85261dc7805969b6d0" name="abc4afb575fdf7f85261dc7805969b6d0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc4afb575fdf7f85261dc7805969b6d0">&#9670;&#160;</a></span>get_column() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abc4afb575fdf7f85261dc7805969b6d0">&#9670;&#160;</a></span>get_column() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_column </td>
@@ -384,7 +511,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>C</em></span>&#160;) const</td>
+          <td class="paramtype">vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>C</em></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -396,21 +523,112 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md74"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line">vector&lt;int&gt; column;</div>
 <div class="line">matrix.get_column(1, column);  <span class="comment">// Copies the second column into `column`</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a5350a78ff6654121c591474722d306e2" name="a5350a78ff6654121c591474722d306e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5350a78ff6654121c591474722d306e2">&#9670;&#160;</a></span>get_row() <span class="overload">[1/2]</span></h2>
+<a id="a7343e87b5a3faf1641f7c12c7a6a3789" name="a7343e87b5a3faf1641f7c12c7a6a3789"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7343e87b5a3faf1641f7c12c7a6a3789">&#9670;&#160;</a></span>get_row() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_row </td>
+          <td>(</td>
+          <td class="paramtype">T const</td>          <td class="paramname"><span class="paramname"><em>nr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TYPE *</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac7a9dee6fa3e0f576dfef121eeadc5e9" name="ac7a9dee6fa3e0f576dfef121eeadc5e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7a9dee6fa3e0f576dfef121eeadc5e9">&#9670;&#160;</a></span>get_row() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_row </td>
+          <td>(</td>
+          <td class="paramtype">T const</td>          <td class="paramname"><span class="paramname"><em>nr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;) const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abfdc749512f9dd2139b7f7c1cd8541f0" name="abfdc749512f9dd2139b7f7c1cd8541f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfdc749512f9dd2139b7f7c1cd8541f0">&#9670;&#160;</a></span>get_row() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_row </td>
+          <td>(</td>
+          <td class="paramtype">unsigned</td>          <td class="paramname"><span class="paramname"><em>nr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5350a78ff6654121c591474722d306e2" name="a5350a78ff6654121c591474722d306e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5350a78ff6654121c591474722d306e2">&#9670;&#160;</a></span>get_row() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_row </td>
@@ -432,21 +650,21 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md77"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keywordtype">int</span> row[3];</div>
 <div class="line">matrix.get_row(0, row);  <span class="comment">// Copies the first row into `row`</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
 <a id="a7d883e04b55bc4ef1d2c597bb9b69e4c" name="a7d883e04b55bc4ef1d2c597bb9b69e4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d883e04b55bc4ef1d2c597bb9b69e4c">&#9670;&#160;</a></span>get_row() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d883e04b55bc4ef1d2c597bb9b69e4c">&#9670;&#160;</a></span>get_row() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::get_row </td>
@@ -456,7 +674,7 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;) const</td>
+          <td class="paramtype">vector&lt; TYPE &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>R</em></span>&#160;) const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -468,9 +686,9 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md75"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line">vector&lt;int&gt; row;</div>
 <div class="line">matrix.get_row(0, row);  <span class="comment">// Copies the first row into `row`</span></div>
 </div><!-- fragment --> 
@@ -482,7 +700,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -500,11 +718,11 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000003">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000007">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -514,7 +732,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -532,11 +750,11 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000001">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -546,7 +764,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -564,11 +782,11 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000004">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000008">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -578,7 +796,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -596,11 +814,11 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000002">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -610,7 +828,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -624,17 +842,17 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Returns a string containing matrix information (dimensions and content).</p>
 <dl class="section return"><dt>Returns</dt><dd>A string with matrix information.</dd></dl>
-<h3><a class="anchor" id="autotoc_md83"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
-<div class="line"><span class="keywordtype">string</span> <a class="code hl_function" href="#ae713c804755b629195e7cf29ad471ebb">info</a> = matrix.info();  <span class="comment">// Returns matrix info as string</span></div>
-<div class="ttc" id="aclass_g_c__namespace_1_1mat__type_html_ae713c804755b629195e7cf29ad471ebb"><div class="ttname"><a href="#ae713c804755b629195e7cf29ad471ebb">GC_namespace::mat_type::info</a></div><div class="ttdeci">string_type info() const</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:386</div></div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="line"><span class="keywordtype">string</span> <a class="code hl_function" href="#a712e3e72ee4ecf43374f5ea0cfd1dd43">info</a> = matrix.info();  <span class="comment">// Returns matrix info as string</span></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1mat__type_html_a712e3e72ee4ecf43374f5ea0cfd1dd43"><div class="ttname"><a href="#a712e3e72ee4ecf43374f5ea0cfd1dd43">GC_namespace::mat_type::info</a></div><div class="ttdeci">void info(ostream_type &amp;stream) const</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:212</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -644,7 +862,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::info </td>
@@ -661,9 +879,9 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md82"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line">matrix.info(cout);  <span class="comment">// Prints matrix info to standard output</span></div>
 </div><!-- fragment --> 
 </div>
@@ -674,7 +892,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -688,15 +906,15 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Returns the number of columns in the matrix.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of columns.</dd></dl>
-<h3><a class="anchor" id="autotoc_md79"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keywordtype">unsigned</span> cols = matrix.num_cols();  <span class="comment">// Returns 3</span></div>
 </div><!-- fragment --> 
 </div>
@@ -707,7 +925,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -721,15 +939,15 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 <p>Returns the number of rows in the matrix.</p>
 <dl class="section return"><dt>Returns</dt><dd>The number of rows.</dd></dl>
-<h3><a class="anchor" id="autotoc_md78"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keywordtype">unsigned</span> rows = matrix.num_rows();  <span class="comment">// Returns 3</span></div>
 </div><!-- fragment --> 
 </div>
@@ -740,7 +958,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -754,11 +972,11 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000006">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000010">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -768,7 +986,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -782,11 +1000,11 @@ template&lt;typename TYPE &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000005">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000009">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -796,7 +1014,7 @@ template&lt;typename TYPE &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">TYPE &amp; <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::operator() </td>
@@ -819,9 +1037,9 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the element at (i, j).</dd></dl>
-<h3><a class="anchor" id="autotoc_md81"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line">matrix(1, 1) = 42;  <span class="comment">// Sets the element at (1,1) to 42</span></div>
 </div><!-- fragment --> 
 </div>
@@ -832,7 +1050,7 @@ Example</h3>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">TYPE const  &amp; <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::operator() </td>
@@ -855,20 +1073,22 @@ template&lt;typename TYPE &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A constant reference to the element at (i, j).</dd></dl>
-<h3><a class="anchor" id="autotoc_md80"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(3, 3);</div>
 <div class="line"><span class="keyword">const</span> <span class="keywordtype">int</span> &amp;value = matrix(1, 1);  <span class="comment">// Accesses element at (1,1)</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="a0910662873d43456a100bebfa80637ca" name="a0910662873d43456a100bebfa80637ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0910662873d43456a100bebfa80637ca">&#9670;&#160;</a></span>resize()</h2>
+<a id="ab96aa65fe01765265b058dcf51856c0d" name="ab96aa65fe01765265b058dcf51856c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab96aa65fe01765265b058dcf51856c0d">&#9670;&#160;</a></span>resize() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename TYPE &gt; </div>
+template&lt;typename TYPE&gt; </div>
+<div class="memtemplate">
+template&lt;typename T1, typename T2&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -876,17 +1096,48 @@ template&lt;typename TYPE &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::resize </td>
           <td>(</td>
-          <td class="paramtype">unsigned</td>          <td class="paramname"><span class="paramname"><em>nr</em></span>, </td>
+          <td class="paramtype">T1 const</td>          <td class="paramname"><span class="paramname"><em>nr</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>&#160;)</td>
+          <td class="paramtype">T2 const</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41358a1de7c901dc4dee49138d5ba2b1" name="a41358a1de7c901dc4dee49138d5ba2b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41358a1de7c901dc4dee49138d5ba2b1">&#9670;&#160;</a></span>resize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TYPE&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">GC_namespace::mat_type</a>&lt; TYPE &gt;::resize </td>
+          <td>(</td>
+          <td class="paramtype">unsigned const</td>          <td class="paramname"><span class="paramname"><em>nr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned const</td>          <td class="paramname"><span class="paramname"><em>nc</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -898,24 +1149,32 @@ template&lt;typename TYPE &gt; </div>
   </table>
   </dd>
 </dl>
-<h3><a class="anchor" id="autotoc_md73"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
 Example</h3>
-<div class="fragment"><div class="line"><a class="code hl_class" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type&lt;int&gt;</a> matrix(2, 3);</div>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ae4a5cfc977faae8b45caf6859697f777">mat_type&lt;int&gt;</a> matrix(2, 3);</div>
 <div class="line">matrix.resize(4, 5);  <span class="comment">// Resizes the matrix to 4x5</span></div>
 </div><!-- fragment --> 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>/Users/enrico/Ricerca/develop/PINS/pins-WORKING/LibSources/submodules/GC/include/GenericContainer/<a class="el" href="../../d8/d68/_generic_container_8hh_source.html">GenericContainer.hh</a></li>
-<li>/Users/enrico/Ricerca/develop/PINS/pins-WORKING/LibSources/submodules/GC/src/<a class="el" href="../../df/d5f/_generic_container_8cc.html">GenericContainer.cc</a></li>
+<li>/Users/enricobertolazzi/Ricerca/PINS/PINS-submodules/GC/include/GenericContainer/<a class="el" href="../../d8/d68/_generic_container_8hh_source.html">GenericContainer.hh</a></li>
+<li>/Users/enricobertolazzi/Ricerca/PINS/PINS-submodules/GC/src/<a class="el" href="../../df/d5f/_generic_container_8cc.html">GenericContainer.cc</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../d8/d51/namespace_g_c__namespace.html">GC_namespace</a></li><li class="navelem"><a class="el" href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="navelem"><a href="../../d8/d51/namespace_g_c__namespace.html">GC_namespace</a></li><li class="navelem"><a href="../../df/def/class_g_c__namespace_1_1mat__type.html">mat_type</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

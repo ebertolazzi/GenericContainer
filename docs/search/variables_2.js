@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['real_0',['real',['../d6/d33/structc__complex__type.html#a06b2e270defec54e86329de269f2c96e',1,'c_complex_type']]]
+  ['stream_5fnumber_5fprecision_0',['stream_number_precision',['../d8/d51/namespace_g_c__namespace.html#a62bbd2c86f991d348fadfbd4fd1c38a3',1,'GC_namespace']]]
 ];

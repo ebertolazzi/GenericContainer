@@ -1,0 +1,148 @@
+/*!
+
+ \defgroup TOML GenericContainer-TOML Interface
+
+ \brief This module provides interface with TOML files.
+
+ The GenericContainer (GC) module offers a flexible container for storing various data types
+ such as booleans, integers, floating-point numbers, complex numbers, and strings.
+ It also supports structured data types such as vectors and maps. The C++ interface
+ allows for seamless interaction with the container, enabling users to perform operations
+ like adding elements, retrieving data, and managing hierarchical structures.
+
+ ## Overview
+
+ This tutorial explains how to use the `GenericContainer` TOML interface for
+ converting between TOML data and the `GenericContainer` object.
+
+ The `GenericContainer` is a flexible structure that can store various data types
+ like booleans, integers, floating-point numbers, complex numbers, strings, vectors,
+ and maps. The interface provides multiple ways to convert TOML files, streams, or strings
+ into `GenericContainer` objects and vice versa.
+
+ ## Loading TOML Data into a GenericContainer
+
+ There are several ways to load TOML data into a `GenericContainer`.
+
+ ### Loading TOML from a File
+
+ The `file_TOML_to_GC` function reads TOML data from a file and populates
+ a `GenericContainer`. This is useful for handling configuration files or other
+ data stored in TOML format.
+
+ \code
+ bool file_TOML_to_GC( std::string const & file_name_TOML, GenericContainer & gc );
+ \endcode
+
+ Example:
+
+ \code
+ GenericContainer gc;
+ std::string file_name = "config.toml";
+
+ if (file_TOML_to_GC(file_name, gc)) {
+   std::cout << "TOML file successfully loaded into GenericContainer." << std::endl;
+ } else {
+   std::cerr << "Failed to load TOML file." << std::endl;
+ }
+ \endcode
+
+ ### Loading TOML from an Input Stream
+
+ The `TOML_to_GC` function allows loading TOML data from an input stream,
+ such as a file stream or a string stream.
+
+ \code
+ bool TOML_to_GC( istream_type & file_TOML, GenericContainer & gc );
+ \endcode
+
+ Example:
+ \code
+ GenericContainer gc;
+ std::ifstream file_stream("config.toml");
+
+ if (TOML_to_GC(file_stream, gc)) {
+   std::cout << "TOML stream successfully loaded into GenericContainer." << std::endl;
+ } else {
+   std::cerr << "Failed to load TOML stream." << std::endl;
+ }
+ \endcode
+
+ ### Loading TOML from a String
+
+ You can convert a TOML string directly into a `GenericContainer` using the `TOML_to_GC` function.
+
+ \code
+ bool TOML_to_GC( std::string const & TOML, GenericContainer & gc );
+ \endcode
+
+ Example:
+ \code
+ GenericContainer gc;
+ std::string toml_data = R"(
+     key1: value1
+     key2: 42
+     key3:
+       - 1
+       - 2
+       - 3
+ )";
+
+ if (TOML_to_GC(toml_data, gc)) {
+   std::cout << "TOML string successfully loaded into GenericContainer." << std::endl;
+ } else {
+   std::cerr << "Failed to load TOML string." << std::endl;
+ }
+ \endcode
+
+ ### Loading TOML from a Vector of Strings
+
+ If you have multiple TOML strings in a vector,
+ you can load them into a `GenericContainer` using the `TOML_to_GC` function.
+
+ \code
+ bool TOML_to_GC( std::vector<std::string> const & TOML, GenericContainer & gc );
+ \endcode
+
+ Example:
+ \code
+ GenericContainer gc;
+ std::vector<std::string> toml_fragments = {
+   "key1 = \"value1\"",
+   "key2 = 42",
+   "key3 = [1, 2, 3]"
+ };
+
+ if (TOML_to_GC(toml_fragments, gc)) {
+   std::cout << "TOML fragments successfully loaded into GenericContainer." << std::endl;
+ } else {
+   std::cerr << "Failed to load TOML fragments." << std::endl;
+ }
+ \endcode
+
+ ## Converting a GenericContainer to TOML
+
+ You can also convert a `GenericContainer` back to TOML format.
+
+ ### Converting to a TOML File Stream
+
+ You can write the contents of a `GenericContainer` to an
+ output stream (e.g., a file) in TOML format using the `GC_to_TOML` function.
+
+ \code
+ void GC_to_TOML( GenericContainer const & gc, ostream_type & file_TOML );
+ \endcode
+
+ Example:
+ \code
+ GenericContainer gc;
+ gc["key1"] = "value1";
+ gc["key2"] = 42;
+
+ std::ofstream file_stream("output.toml");
+ GC_to_TOML(gc, file_stream);
+
+ std::cout << "TOML data written to output.toml" << std::endl;
+ \endcode
+
+*/

@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: Class Members</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: Class Members</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="jquery.js"></script>
+  <script src="dynsections.js"></script>
+  <script src="clipboard.js"></script>
+  <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
-<script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="doxygen.css" rel="stylesheet" type="text/css" />
-<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="doxygen-awesome-interactive-toc.js"></script>
+  <script src="doxygen-awesome-tabs.js"></script>
+  <script src="doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(0); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('functions_c.html',''); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('functions_c.html','',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -120,25 +166,31 @@ $(function(){initNavTree('functions_c.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
-<h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
 <li>call()&#160;:&#160;<a class="el" href="dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html#a186148c0e5ade70406e0b8d598c3f25e">GC_namespace::LuaInterpreter</a></li>
 <li>clear()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#ab25f77c8b243d5716743f02c12b4091a">GC_namespace::GenericContainer</a></li>
 <li>collapse()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#aadd8164a8850bd5756d5fa51a6a41481">GC_namespace::GenericContainer</a></li>
+<li>compare_content()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#ac85c7668a752dc2810a804a8c1116107">GC_namespace::GenericContainer</a></li>
 <li>complex_type&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a3902c64644897a833c71f23000337ce7">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_complex()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a2614bcd6f9c88be8c3fbfd8f1d466e46">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_int()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#aa5f1e1890df8f6e8ac157416bd6ca5d9">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_long()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a8e07335e97d8bd1af2b921da1d5f2e38">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_real()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a4d0d775e6fd26a38272d1f5608071b87">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_string()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a7a4d654dbdfa90dfdb68b13f51f1314b">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_uint()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#af55f1eeb6a66c139b5f490563bf5eef1">GC_namespace::GenericContainer</a></li>
-<li>copyto_vec_ulong()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#abe464f166e0854904cf63627591b16ca">GC_namespace::GenericContainer</a></li>
+<li>copyto_mat_complex()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a3672619e028af8e0e866c98d594a2145">GC_namespace::GenericContainer</a></li>
+<li>copyto_mat_int()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a1955d6765426c3ba1c1ead9a8dd86bbd">GC_namespace::GenericContainer</a></li>
+<li>copyto_mat_long()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a4eb5890cb93773d1dde5ca9f0d0b00d6">GC_namespace::GenericContainer</a></li>
+<li>copyto_mat_real()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#afa999c9c92326b34cc8edb4598c64b14">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_complex()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#ace3bd13d2f7529eef455887e77de6b77">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_int()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#aa895d2127c1045413ad60d5baf236a62">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_long()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#acfd26847020f7a56b8ae5a289980fa37">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_real()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a839f5cb27ef8582d32180bb7169befcc">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_string()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#aeece628ba8c03fa38cef79845b37b5a5">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_uint()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#a0882ea7501f0c7112bf61aaa9747bcf5">GC_namespace::GenericContainer</a></li>
+<li>copyto_vec_ulong()&#160;:&#160;<a class="el" href="d9/d35/class_g_c__namespace_1_1_generic_container.html#ad5c5cd42fdf92b4baa2cbe896b912743">GC_namespace::GenericContainer</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

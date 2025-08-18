@@ -1,82 +1,129 @@
-<!-- HTML header for doxygen 1.12.0-->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!-- Modern HTML header for Doxygen 1.12.0 -->
+<!DOCTYPE html>
+<html lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.12.0"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GenericContainer: Installation guide</title>
-<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../dynsections.js"></script>
-<script type="text/javascript" src="../../clipboard.js"></script>
-<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="generator" content="Doxygen 1.14.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Title -->
+  <title>GenericContainer: Installation guide</title>
+  <!-- Favicon -->
+  <!-- Core CSS -->
+  <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+  <link href="../../doxygen.css" rel="stylesheet" type="text/css"/>
+  <link href="../../custom.css" rel="stylesheet" type="text/css"/>
+  <!-- Core JS -->
+  <script src="../../jquery.js"></script>
+  <script src="../../dynsections.js"></script>
+  <script src="../../clipboard.js"></script>
+  <link href="../../navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../navtreedata.js"></script>
 <script type="text/javascript" src="../../navtree.js"></script>
-<script type="text/javascript" src="../../resize.js"></script>
 <script type="text/javascript" src="../../cookie.js"></script>
-<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+  <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
+  <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
   jax: ["input/TeX","output/HTML-CSS"],
 });
 </script>
 <script type="text/javascript" async="async" src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js"></script>
-<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
-<link href="../../doxygen-awesome.css" rel="stylesheet" type="text/css"/>
-<link href="../../doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="../../doxygen-awesome-darkmode-toggle.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-interactive-toc.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-tabs.js"></script>
-<script type="text/javascript" src="../../doxygen-awesome-paragraph-link.js"></script>
-<script type="text/javascript">
-  DoxygenAwesomeDarkModeToggle.init()
-  DoxygenAwesomeInteractiveToc.init()
-  DoxygenAwesomeTabs.init()
-  DoxygenAwesomeParagraphLink.init()
-</script>
+  <!-- Doxygen Awesome scripts -->
+  <script src="../../doxygen-awesome-darkmode-toggle.js"></script>
+  <script src="../../doxygen-awesome-interactive-toc.js"></script>
+  <script src="../../doxygen-awesome-tabs.js"></script>
+  <script src="../../doxygen-awesome-paragraph-link.js"></script>
+  <script>
+    DoxygenAwesomeDarkModeToggle.init();
+    DoxygenAwesomeInteractiveToc.init();
+    DoxygenAwesomeTabs.init();
+    DoxygenAwesomeParagraphLink.init();
+  </script>
+  <style>
+    /* --- Modern header styling --- */
+    #titlearea {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0.8rem 1rem;
+      background: var(--page-background);
+      border-bottom: 1px solid var(--separator-color);
+      gap: 1rem;
+    }
+    #projectlogo img {
+      max-height: 100px;
+      width: auto;
+    }
+    #projectinfo {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem; /* Aggiunge spazio tra gli elementi figli */
+    }
+    #projectname {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    #projectnumber {
+      font-size: 0.9rem;
+      margin-left: 0.4rem;
+      opacity: 0.7;
+    }
+    #projectbrief {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    #searchbox {
+      margin-left: auto;
+      max-width: 260px;
+    }
+  </style>
 </head>
 <body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="../../logo.png"/></td>
-  <td id="projectalign">
-   <div id="projectname">GenericContainer
-   </div>
-   <div id="projectbrief">GenericContaine a tool for C++ programming</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<div id="top"><!-- do not remove -->
+  <header id="titlearea">
+    <!-- Logo -->
+    <div id="projectlogo">
+      <img alt="Logo" src="../../GC.png" />
+    </div>
+    <!-- Project info -->
+    <div id="projectinfo">
+      <div id="projectname">
+        GenericContainer
+      </div>
+      <div id="projectbrief">GenericContainer a tool for C++ programming</div>
+    </div>
+    <!-- Search -->
+    <!-- <div id="searchbox">        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</div> -->
+  </header>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.12.0 -->
+<!-- Generated by Doxygen 1.14.0 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "../../search/",'.html');
-/* @license-end */
 </script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function() { codefold.init(1); });
-/* @license-end */
+$(function() { codefold.init(); });
 </script>
 <script type="text/javascript" src="../../menudata.js"></script>
 <script type="text/javascript" src="../../menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('../../',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
-/* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
@@ -91,10 +138,9 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('df/d70/_install.html','../../'); initResizable(true); });
-/* @license-end */
+$(function(){initNavTree('df/d70/_install.html','../../',''); });
 </script>
+<div id="container">
 <div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -118,49 +164,93 @@ $(function(){initNavTree('df/d70/_install.html','../../'); initResizable(true); 
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Installation guide</div></div>
+  <div class="headertitle"><div class="title">Installation guide </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>To compile the library, you'll need:</p><ul>
-<li>A C++ compiler (e.g., GCC, Clang, or MSVC)</li>
-<li><a href="https://ruby.github.io/rake/">Rake</a>, a build automation tool.</li>
+<li>A C++17 compiler (e.g., GCC, Clang, or MSVC)</li>
+<li><a href="https://cmake.org">cmake</a> for the compilation</li>
+<li><a href="https://ruby.github.io/rake/">Rake</a>, a build automation tool (optional)</li>
 </ul>
-<h3><a class="anchor" id="autotoc_md14"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
 Compile the Library</h3>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Using cmake</h4>
+<p>Open a terminal in the project's root directory and run the following command:</p>
+<div class="fragment"><div class="line">mkdir build</div>
+<div class="line">cd build</div>
+<div class="line">cmake ..</div>
+<div class="line">make</div>
+<div class="line">make install</div>
+<div class="line">cd ..</div>
+</div><!-- fragment --><p>after that you should find something like this</p>
+<div class="fragment"><div class="line">lib</div>
+<div class="line">  ├── dll</div>
+<div class="line">  │   ├── libGenericContainer_osx.dylib</div>
+<div class="line">  │   └── libLua_osx.dylib</div>
+<div class="line">  ├── include</div>
+<div class="line">  │   ├── GenericContainer</div>
+<div class="line">  │   │   ├── GenericContainer.hh</div>
+<div class="line">  │   │   ├── GenericContainerConfig.hh</div>
+<div class="line">  │   │   ├── GenericContainerInterface_C.h</div>
+<div class="line">  │   │   ├── GenericContainerInterface_json.hh</div>
+<div class="line">  │   │   ├── GenericContainerInterface_lua.hh</div>
+<div class="line">  │   │   ├── GenericContainerInterface_matlab.hh</div>
+<div class="line">  │   │   ├── GenericContainerInterface_toml.hh</div>
+<div class="line">  │   │   ├── GenericContainerInterface_yaml.hh</div>
+<div class="line">  │   │   └── GenericContainerLibs.hh</div>
+<div class="line">  │   ├── GenericContainer.hh</div>
+<div class="line">  │   ├── lauxlib.h</div>
+<div class="line">  │   ├── lua.h</div>
+<div class="line">  │   ├── lua.hpp</div>
+<div class="line">  │   ├── luaconf.h</div>
+<div class="line">  │   └── lualib.h</div>
+<div class="line">  └── lib</div>
+<div class="line">      ├── libGenericContainer_osx_static.a</div>
+<div class="line">      └── libLua_osx_static.a</div>
+</div><!-- fragment --><p>which is the statiuc and dynamic libraries and its headers.</p>
+<p>To test the libray do</p>
+<div class="fragment"><div class="line">make test</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Using rake + cmake</h4>
 <p>Open a terminal in the project's root directory and run the following command:</p>
 <div class="fragment"><div class="line">rake</div>
 </div><!-- fragment --><p>or if the OS is not detected correctly</p>
 <div class="fragment"><div class="line">rake build_osx   # compile for OSX</div>
 <div class="line">rake build_linux # compile for linux</div>
 <div class="line">rake build_win   # compile for WINDOWS</div>
-</div><!-- fragment --><p>This will compile the source files and generate the library files in the following structure:</p>
-<div class="fragment"><div class="line">lib/</div>
-<div class="line">  ├── include/  # Header files</div>
-<div class="line">  └── lib/      # Compiled library files</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md15"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
 check the library</h3>
 <p>To run the tests</p>
 <div class="fragment"><div class="line">rake run       # for linux/OSX</div>
 <div class="line">rake run_win   # for windows</div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md16"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Integrate into Your Project</h3>
 <ul>
-<li><b>Include Headers</b>: Add the <code>include/</code> directory to your project's include path. <div class="fragment"><div class="line">g++ -I/path/to/lib/include your_project.cpp -o your_project</div>
+<li><b>Include Headers</b>: Add the <span class="tt">include/</span> directory to your project's include path. <div class="fragment"><div class="line">g++ -I/path/to/lib/include your_project.cpp -o your_project</div>
 </div><!-- fragment --></li>
-<li><b>Link the Library</b>: Use the <code>-L</code> and <code>-l</code> flags to link against the library: <div class="fragment"><div class="line">g++ -L/path/to/lib/lib -lyourlibrary your_project.cpp -o your_project</div>
+<li><b>Link the Library</b>: Use the <span class="tt">-L</span> and <span class="tt">-l</span> flags to link against the library: <div class="fragment"><div class="line">g++ -L/path/to/lib/lib -lyourlibrary your_project.cpp -o your_project</div>
 </div><!-- fragment --></li>
 </ul>
-<h3><a class="anchor" id="autotoc_md17"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Verify the Installation</h3>
 <p>Compile and run your project to verify that it works with the newly linked library. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="../../index.html">GenericContainer</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+    <li class="navelem"><a href="../../index.html">GenericContainer</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>
 </body>

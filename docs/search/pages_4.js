@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['usage_0',['Usage',['../dc/dbb/_usage.html',1,'index']]]
+  ['5_3a_20serialization_0',['Example 5: Serialization',['../dc/dbb/_usage.html#autotoc_md16',1,'']]]
 ];

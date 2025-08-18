@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['8_3a_20matrix_20operations_0',['Example 8: Matrix Operations',['../index.html#autotoc_md11',1,'']]]
+  ['7_3a_20file_20i_20o_0',['Example 7: File I/O',['../dc/dbb/_usage.html#autotoc_md18',1,'']]]
 ];

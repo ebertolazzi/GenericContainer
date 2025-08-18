@@ -1,10 +1,23 @@
 var searchData=
 [
-  ['with_20lua_20global_20variables_20and_20genericcontainer_0',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md55',1,'']]],
-  ['with_20vectors_1',['Example 2: Working with Vectors',['../index.html#autotoc_md5',1,'']]],
-  ['working_20with_20lua_20global_20variables_20and_20genericcontainer_2',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md55',1,'']]],
-  ['working_20with_20vectors_3',['Example 2: Working with Vectors',['../index.html#autotoc_md5',1,'']]],
-  ['writeformatteddata_4',['writeFormattedData',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ad38b734f6d9ba54d48ccc07eefaf34df',1,'GC_namespace::GenericContainer']]],
-  ['writetable_5',['writeTable',['../d8/d51/namespace_g_c__namespace.html#a785fc031ffe7df58e202320a1df062d0',1,'GC_namespace::writeTable(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)'],['../d8/d51/namespace_g_c__namespace.html#a42e8f5a719b11d5289a8b4102cc92741',1,'GC_namespace::writeTable(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)']]],
-  ['writetableformatted_6',['writeTableFormatted',['../d8/d51/namespace_g_c__namespace.html#ad7555973321ded648b809576e2eb5128',1,'GC_namespace::writeTableFormatted(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream)'],['../d8/d51/namespace_g_c__namespace.html#a14b4cdaae994249f488dba2b2181a5ef',1,'GC_namespace::writeTableFormatted(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream)']]]
+  ['variables_0',['Converting GenericContainer to Lua Global Variables',['../d0/d27/group___l_u_a.html#autotoc_md52',1,'']]],
+  ['variables_20and_20genericcontainer_1',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md50',1,'']]],
+  ['variables_20to_20genericcontainer_2',['Converting Lua Global Variables to GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md51',1,'']]],
+  ['vec_5fbool_5ftype_3',['vec_bool_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a2b6f6b3805ebb8a3ebd7f6302b3f624f',1,'GC_namespace::GenericContainer']]],
+  ['vec_5fcomplex_5ftype_4',['vec_complex_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#af71be9851e191790596ee3d941c47c46',1,'GC_namespace::GenericContainer']]],
+  ['vec_5fint_5ftype_5',['vec_int_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa4ceab2be01717c57b1402abe11f1bcd',1,'GC_namespace::GenericContainer']]],
+  ['vec_5flong_5ftype_6',['vec_long_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a15b49eda5d1dcd1097bf21b6a7d85963',1,'GC_namespace::GenericContainer']]],
+  ['vec_5fpointer_5ftype_7',['vec_pointer_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#abf3d57ef8deefda178f9a1072ed40cbc',1,'GC_namespace::GenericContainer']]],
+  ['vec_5freal_5ftype_8',['vec_real_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a028c4cdc82b05ff544b8f5865da941d1',1,'GC_namespace::GenericContainer']]],
+  ['vec_5fstring_5ftype_9',['vec_string_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ac520fb49a0dcff2fbaf75ecb043ac8d1',1,'GC_namespace::GenericContainer']]],
+  ['vec_5fuint_5ftype_10',['vec_uint_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a9b73faa4e20c83efe950e542daf559d4',1,'GC_namespace::GenericContainer']]],
+  ['vec_5fulong_5ftype_11',['vec_ulong_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a036fb755afe4087940dfd25b327d59d1',1,'GC_namespace::GenericContainer']]],
+  ['vector_20of_20genericcontainer_12',['Creating a Vector of &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;',['../db/de3/group___g_c.html#autotoc_md35',1,'']]],
+  ['vector_20of_20integers_13',['Vector of Integers',['../db/de3/group___g_c.html#autotoc_md33',1,'Retrieve Elements from a Vector of Integers'],['../db/de3/group___g_c.html#autotoc_md28',1,'Set a Vector of Integers']]],
+  ['vector_20of_20json_20strings_14',['Converting to a Vector of JSON Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md47',1,'']]],
+  ['vector_20of_20strings_15',['Vector of Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md45',1,'Loading JSON from a Vector of Strings'],['../d2/ddf/group___t_o_m_l.html#autotoc_md63',1,'Loading TOML from a Vector of Strings'],['../d8/d2e/group___y_a_m_l.html#autotoc_md71',1,'Loading YAML from a Vector of Strings']]],
+  ['vector_5ftype_16',['vector_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a368eefe43f52bd43290d92c398634451',1,'GC_namespace::GenericContainer']]],
+  ['vectors_17',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md13',1,'']]],
+  ['vectors_20and_20maps_18',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md34',1,'']]],
+  ['verify_20the_20installation_19',['Verify the Installation',['../df/d70/_install.html#autotoc_md10',1,'']]]
 ];
