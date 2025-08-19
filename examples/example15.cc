@@ -100,7 +100,7 @@ main() {
   cout << "COMPARE GC1 vs GC3: " << gc1.compare_content(gc2);
 
 
-  cout << "\n\nAll done Folks!!!\n\n";
+  cout << "\n\nAll done Folks!\n\n";
   return 0;
 }
 

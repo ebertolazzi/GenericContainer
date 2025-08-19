@@ -1,6 +1,6 @@
 /*!
 
- \page Introduction Introduction
+\page Introduction Introduction
 
 ## Brief description of the class and features
 
@@ -14,8 +14,6 @@ and descriptions of various functionalities.
 
 ## Features
 
-- **Data Types**:     Supports **integers**, **floating-point numbers**, **strings**, **vectors**, **matrices**,
-                      **maps**, and **complex numbers**.
 - **I/O**:            Allows reading and writing formatted data from and to files.
 - **Interfacing**:    Read and save to **JSON**, **YAML** and **TOML** files.
                       SUpport for interfacing with **MATLAB**, **RUBY** and **PYTHON**.
@@ -32,35 +30,31 @@ to perform various operations, including:
 
 - Setting and getting values.
 - Managing collections of data with vectors and maps.
-- Reading from and writing to files.
+- Read/write to string and files.
 - Serializing and deserializing of the container.
-
-
-`GenericContainer` is a `C++` class that permit to store eterogeneous
-data:
 
 ## Supported types
 
-- pointer
-- boolean
-- integer
-- long integer
-- floating point
-- complex floating point
-- string
-- vector of pointer
-- vector of boolean
-- vector of integer
-- vector of floating point
-- vector of complex floating point
-- vector of string
-- matrix of floating point
-- matrix of complex floating point
+- `pointer`
+- `boolean`
+- `integer`
+- `long integer`
+- `floating point`
+- `complex floating point`
+- `string`
+- `vector` of `pointer`
+- `vector` of `boolean`
+- `vector` of `integer`
+- `vector` of `floating point`
+- `vector` of `complex floating point`
+- `vector` of `string`
+- `matrix` of `floating point`
+- `matrix` of `complex floating point`
 
 in addition to this data type the following two container data are avaiable
 
--  vector of `GenericContainer`
--  map of `GenericContainer`
+-  `vector` of `GenericContainer`
+-  `map` of `GenericContainer`
 
 this permits to build complex recursive data. The main usage of the
 class is in interchange data with scripting language like `Ruby`,
@@ -91,7 +85,7 @@ GenericContainer::vec_int_type & v = gc["five"].get_vec_int();
 cout << v[1] << '\n';
 \endcode
 
-For more complex emxamples and recursive data see example test files in
+For more complex examples and recursive data see example test files in
 the distribution or the \ref Usage "Usage" section of the manual.
 
 */

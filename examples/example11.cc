@@ -43,7 +43,7 @@ main() {
   try {
     // read YAML file and convert to generic container
     GenericContainer gc;
-    string fname{ "examples/data.yml" };
+    string fname{ "../examples/data2.yaml" };
     bool ok = file_YAML_to_GC( fname, gc );
     if ( !ok ) std::cerr << "Failed to parse: " << fname << '\n';
     std::cout << "\n\n\n\nGC\n\n";

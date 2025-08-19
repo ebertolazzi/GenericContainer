@@ -45,12 +45,7 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example01.exe
-./bin/example01.exe
-
-
-
+\verbatim
 ***********************
      example N.1
 ***********************
@@ -62,7 +57,7 @@ gc3: Boolean: true
 gc4: String: pippo
 gc5: GenericContainer: No data stored
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -122,12 +117,7 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example02.exe
-./bin/example02.exe
-
-
-
+\verbatim
 ***********************
       example N.2
 ***********************
@@ -145,7 +135,7 @@ gc3: Boolean: true
 gc4: String: pippo
 gc5: GenericContainer: No data stored
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -179,14 +169,14 @@ main() {
   try {
 
     GenericContainer gc;
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP1 gc: "; gc.info(cout);
 
     gc . set_vector();
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP2 gc: "; gc.info(cout);
 
     GC::vector_type & v = gc.get_vector();
     v.resize(10);
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP3 gc: "; gc.info(cout);
 
     // access using vector
     v[0] = 1;
@@ -199,11 +189,13 @@ main() {
     gc[5] = 1.2;
     gc[6] = true;
     gc[7] = "pippo";
-    cout << "Print contents of gc:\n";
+
+    cout << "STEP4 gc:\n";
+    gc.info(cout);
     gc.dump(cout);
 
     // issue an error!
-    gc[15] = 1.2;
+    gc(15) = 1.2;
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';
@@ -218,20 +210,16 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example03.exe
-./bin/example03.exe
-
-
-
+\verbatim
 ***********************
       example N.3
 ***********************
 
-gc: GenericContainer: No data stored
-gc: Vector of generic data type of size 0
-gc: Vector of generic data type of size 10
-Print contents of gc:
+STEP1 gc: GenericContainer: No data stored
+STEP2 gc: Vector of generic data type of size 0
+STEP3 gc: Vector of generic data type of size 10
+STEP4 gc:
+Vector of generic data type of size 10
 0: 1
 1: 1.2
 2: true
@@ -242,8 +230,10 @@ Print contents of gc:
 7: "pippo"
 8: null
 9: null
+in GenericContainer:  operator () const, index 15 out of range
+
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -277,13 +267,13 @@ main() {
   try {
 
     GenericContainer gc;
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP1 gc: "; gc.info(cout);
 
     gc . set_map();
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP2 gc: "; gc.info(cout);
 
     GC::map_type & m = gc . set_map();
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP3 gc: "; gc.info(cout);
 
     // access using map and vector like syntax
     m["a"] = 1;
@@ -307,11 +297,12 @@ main() {
     v.push_back(4);
     gc["vec_real"] = v;
 
-    cout << "Print contents of gc:\n";
+    cout << "STEP4 gc:\n";
+    gc.info(cout);
     gc.dump(cout);
 
     // issue an error!
-    gc[0] = 1.2;
+    gc(0) = 1.2;
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';
@@ -327,20 +318,16 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example04.exe
-./bin/example04.exe
-
-
-
+\verbatim
 ***********************
       example N.4
 ***********************
 
-gc: GenericContainer: No data stored
-gc: Map
-gc: Map
-Print contents of gc:
+STEP1 gc: GenericContainer: No data stored
+STEP2 gc: Map
+STEP3 gc: Map
+STEP4 gc:
+Map
 a: 1
 b: 1.2
 c: true
@@ -348,11 +335,13 @@ d: "pippo"
 e: 1
 f: 1.2
 g: true
-pointer: 0x16f6663f0
+pointer: 0x16f0a6a00
 vec_real:
     [ 1 2 3 4 ]
+in GenericContainer:  bad data type, expect: vector_type but data stored is of type: map_type
+
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -453,12 +442,7 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example05.exe
-./bin/example05.exe
-
-
-
+\verbatim
 ***********************
       example N.5
 ***********************
@@ -529,7 +513,7 @@ Print gc1:
 8: true
 9: null
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -673,12 +657,7 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example06.exe
-./bin/example06.exe
-
-
-
+\verbatim
 ***********************
       example N.6
 ***********************
@@ -709,7 +688,7 @@ execute ./bin/example06.exe
 8: true
 9: null
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -740,8 +719,9 @@ main() {
 
   try {
     GC::GenericContainer gc;
-    ifstream file("data_example.txt");
-    if ( file.fail() ) throw std::runtime_error("failed to open file");
+    std::string fname{"../examples/example07_data.txt"};
+    ifstream file(fname);
+    if ( file.fail() ) throw std::runtime_error( "file to open file: " + fname);
     gc.readFormattedData( file, "#", "\t " );
     gc.dump(cout);
     cout << "\n\nData Read:\n";
@@ -758,22 +738,105 @@ main() {
 }
 \endcode
 
+#### file `example07_data.txt`
+
+\verbatim
+# Date:             23:37:39 2022-11-10
+# MX Version:       1.5.1-d142dirty-osx_13.0 hash: f78c1e6a Thu Nov 10 00:49:36 2022
+# Computation type: Optimal control solution
+# Model name:       ICLOCS_MinimumFuelOrbitRaising
+#
+#! converged            = YES
+#! num_equations        = 2411
+#! Lagrange target      = -0.5252740061732518
+#! Mayer target         = 0
+#! Penalties            = 0
+#! Control Penalties    = 0
+#! max_iter             = 300
+#! max_step_iter        = 40
+#! max_accumulated_iter = 800
+#! tolerance            = 9.999999999999999e-10
+#! iterations           = 9
+#! cpu_time             = 31.388 ms
+#! solver_type          = CyclicReduction+LU and LastBlock LUPQ
+#! lapack version       = Accelerate
+#
+# SOLUTION
+i_segment	zeta	lagrange_target	inequality_penalties	penalties	control_penalties	theta	theta_cell	r	vr	vt	lambda1__xo	lambda2__xo	lambda3__xo	r_D	vr_D	vt_D	mu0_D	mu1_D	mu2_D	THETA	MASS
+0	0	3.83335121988244145e-24	0	0	0	0.431767195334314069	0.431767195334314069	1	-3.83335121988244145e-24	1	-0.877337087218752587	-0.928952238240128514	-2.02514653387216637	-3.83335121988244145e-24	0.058795944131343543	0.127605983220630825	0.928952238240128514	-0.14780944665341389	1.85790447648025703	0.431767195334314069	1
+0	0.00830000000000000009	-0.000496945325703529732	0	0	0	0.433474050458908022	0.435180905583501976	1.00000206232310163	0.000496945325703529732	1.00105739556634288	-0.869625817994938433	-0.930155840503653852	-2.00971195520261903	0.000496945325703529732	0.0611683403197462242	0.127087287078375633	0.929179819089718584	-0.14220704866934053	1.8612762108157439	0.433474050458908022	0.999378329999999981
+0	0.0166000000000000002	-0.00101537275813047578	0	0	0	0.436901655787864773	0.438622405992227626	1.00000833844314951	0.00101537275813047578	1.00210955412627545	-0.861912784227839124	-0.931312622368338672	-1.99424994705747882	0.00101537275813047578	0.0637562246986424219	0.126443388053484207	0.929377317323367813	-0.136527477153772336	1.86451409929345302	0.436901655787864773	0.998756659999999963
+0	0.024900000000000002	-0.00155527572126624015	0	0	0	0.440357131765090393	0.442091857537953214	1.00001900663433907	0.00155527572126624015	1.0031562607964406	-0.854198242060344337	-0.93242194498679809	-1.97876162589924998	0.00155527572126624015	0.0663431620239074704	0.125773551919138943	0.929543176882371647	-0.130771143996937678	1.86761680661033846	0.440357131765090393	0.998134990000000055
+0	0.0332000000000000003	-0.00211664505276475861	0	0	0	0.443840639360533529	0.445589421183113843	1.00003424510555128	0.00211664505276475861	1.00419729992056017	-0.846482460541043258	-0.933483173043368919	-1.96324811923792319	0.00211664505276475861	0.0689288380619269697	0.12507768765539265	0.929675844110318117	-0.124938488353316224	1.87058300605143679	0.443840639360533529	0.997513320000000037
+\endverbatim
+
+notice that `#` introduce a comment, the first line that start without  `#`  is the header line and
+the lines staring with `#!` are assignment `A = B` that are stored in the `GenericContainer`.
 
 #### output
 
-\code{.shell}
-execute ./bin/example07.exe
-./bin/example07.exe
-
-
-
+\verbatim
 ***********************
       example N.7
 ***********************
 
-failed to open file
+data:
+    0: [ 0 0 0 0 0 ]
+    1: [ 0 0.0083 0.0166 0.0249 0.0332 ]
+    2: [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    3: [ 0 0 0 0 0 ]
+    4: [ 0 0 0 0 0 ]
+    5: [ 0 0 0 0 0 ]
+    6: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    7: [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    8: [ 1 1 1.00001 1.00002 1.00003 ]
+    9: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    10: [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    11: [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    12: [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    13: [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    14: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    15: [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    16: [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    17: [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    18: [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    19: [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    20: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    21: [ 1 0.999378 0.998757 0.998135 0.997513 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+
+
+Data Read:
+i_segment	zeta	lagrange_target	inequality_penalties	penalties	control_penalties	theta	theta_cell	r	vr	vt	lambda1__xo	lambda2__xo	lambda3__xo	r_D	vr_D	vt_D	mu0_D	mu1_D	mu2_D	THETA	MASS
+0	0	3.83335e-24	0	0	0	0.431767	0.431767	1	-3.83335e-24	1	-0.877337	-0.928952	-2.02515	-3.83335e-24	0.0587959	0.127606	0.928952	-0.147809	1.8579	0.431767	1
+0	0.0083	-0.000496945	0	0	0	0.433474	0.435181	1	0.000496945	1.00106	-0.869626	-0.930156	-2.00971	0.000496945	0.0611683	0.127087	0.92918	-0.142207	1.86128	0.433474	0.999378
+0	0.0166	-0.00101537	0	0	0	0.436902	0.438622	1.00001	0.00101537	1.00211	-0.861913	-0.931313	-1.99425	0.00101537	0.0637562	0.126443	0.929377	-0.136527	1.86451	0.436902	0.998757
+0	0.0249	-0.00155528	0	0	0	0.440357	0.442092	1.00002	0.00155528	1.00316	-0.854198	-0.932422	-1.97876	0.00155528	0.0663432	0.125774	0.929543	-0.130771	1.86762	0.440357	0.998135
+0	0.0332	-0.00211665	0	0	0	0.443841	0.445589	1.00003	0.00211665	1.0042	-0.846482	-0.933483	-1.96325	0.00211665	0.0689288	0.125078	0.929676	-0.124938	1.87058	0.443841	0.997513
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -827,12 +890,7 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example08.exe
-./bin/example08.exe
-
-
-
+\verbatim
 ***********************
       example N.8
 ***********************
@@ -842,7 +900,7 @@ Result:
        0        2
 Matrix of floating point number of size 2 x 2
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -926,12 +984,7 @@ main() {
 
 #### output
 
-\code{.shell}
-execute ./bin/example09.exe
-./bin/example09.exe
-
-
-
+\verbatim
 ***********************
       example N.9
 ***********************
@@ -967,7 +1020,7 @@ vector:
     3: "superkaly"
     4: 1+2i
 ALL DONE!
-\endcode
+\endverbatim
 
 
 
@@ -991,6 +1044,7 @@ data from a file and displaying it using `GenericContainer`.
 using namespace std;
 using namespace GC;
 
+
 int
 main() {
 
@@ -1002,8 +1056,9 @@ main() {
 
   try {
     GenericContainer gc1, gc2, gc3, gc4, pars;
-    gc1.readFormattedData( "examples/example10_data.txt" );
-    gc2.readFormattedData2( "examples/example10_data.txt", "#", " \t", &pars );
+    std::string fname{"../examples/example07_data.txt"};
+    gc1.readFormattedData( fname.c_str() );
+    gc2.readFormattedData2( fname.c_str(), "#", " \t", &pars );
     gc2.to_gc(gc3);
     gc4.from_gc(gc2);
     std::cout << "GC1 --------------------------\n";
@@ -1028,47 +1083,9 @@ main() {
 }
 \endcode
 
-File: **example10_dataa.txt**
-
-\code{.text}
-# Date:             23:37:39 2022-11-10
-# MX Version:       1.5.1-d142dirty-osx_13.0 hash: f78c1e6a Thu Nov 10 00:49:36 2022
-# Computation type: Optimal control solution
-# Model name:       ICLOCS_MinimumFuelOrbitRaising
-#
-#! converged            = YES
-#! num_equations        = 2411
-#! Lagrange target      = -0.5252740061732518
-#! Mayer target         = 0
-#! Penalties            = 0
-#! Control Penalties    = 0
-#! max_iter             = 300
-#! max_step_iter        = 40
-#! max_accumulated_iter = 800
-#! tolerance            = 9.999999999999999e-10
-#! iterations           = 9
-#! cpu_time             = 31.388 ms
-#! solver_type          = CyclicReduction+LU and LastBlock LUPQ
-#! lapack version       = Accelerate
-#
-# SOLUTION
-i_segment	zeta	lagrange_target	inequality_penalties	penalties	control_penalties	theta	theta_cell	r	vr	vt	lambda1__xo	lambda2__xo	lambda3__xo	r_D	vr_D	vt_D	mu0_D	mu1_D	mu2_D	THETA	MASS
-0	0	3.83335121988244145e-24	0	0	0	0.431767195334314069	0.431767195334314069	1	-3.83335121988244145e-24	1	-0.877337087218752587	-0.928952238240128514	-2.02514653387216637	-3.83335121988244145e-24	0.058795944131343543	0.127605983220630825	0.928952238240128514	-0.14780944665341389	1.85790447648025703	0.431767195334314069	1
-0	0.00830000000000000009	-0.000496945325703529732	0	0	0	0.433474050458908022	0.435180905583501976	1.00000206232310163	0.000496945325703529732	1.00105739556634288	-0.869625817994938433	-0.930155840503653852	-2.00971195520261903	0.000496945325703529732	0.0611683403197462242	0.127087287078375633	0.929179819089718584	-0.14220704866934053	1.8612762108157439	0.433474050458908022	0.999378329999999981
-0	0.0166000000000000002	-0.00101537275813047578	0	0	0	0.436901655787864773	0.438622405992227626	1.00000833844314951	0.00101537275813047578	1.00210955412627545	-0.861912784227839124	-0.931312622368338672	-1.99424994705747882	0.00101537275813047578	0.0637562246986424219	0.126443388053484207	0.929377317323367813	-0.136527477153772336	1.86451409929345302	0.436901655787864773	0.998756659999999963
-0	0.024900000000000002	-0.00155527572126624015	0	0	0	0.440357131765090393	0.442091857537953214	1.00001900663433907	0.00155527572126624015	1.0031562607964406	-0.854198242060344337	-0.93242194498679809	-1.97876162589924998	0.00155527572126624015	0.0663431620239074704	0.125773551919138943	0.929543176882371647	-0.130771143996937678	1.86761680661033846	0.440357131765090393	0.998134990000000055
-0	0.0332000000000000003	-0.00211664505276475861	0	0	0	0.443840639360533529	0.445589421183113843	1.00003424510555128	0.00211664505276475861	1.00419729992056017	-0.846482460541043258	-0.933483173043368919	-1.96324811923792319	0.00211664505276475861	0.0689288380619269697	0.12507768765539265	0.929675844110318117	-0.124938488353316224	1.87058300605143679	0.443840639360533529	0.997513320000000037
-\endcode
-
-
 #### output
 
-\code{.shell}
-execute ./bin/example10.exe
-./bin/example10.exe
-
-
-
+\verbatim
 ***********************
       example N.10
 ***********************
@@ -1343,15 +1360,2229 @@ headers:
     20: "THETA"
     21: "MASS"
 ALL DONE!
-\endcode
+\endverbatim
+
+
 
 ### Example 11
+
+\code{.cc}
+#include "GenericContainer.hh"
+#include "GenericContainer/GenericContainerInterface_yaml.hh"
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.11     \n"
+    << "***********************\n\n";
+
+  try {
+    // read YAML file and convert to generic container
+    GenericContainer gc;
+    string fname{ "../examples/data2.yaml" };
+    bool ok = file_YAML_to_GC( fname, gc );
+    if ( !ok ) std::cerr << "Failed to parse: " << fname << '\n';
+    std::cout << "\n\n\n\nGC\n\n";
+    gc.print(std::cout);
+    std::cout << "\n\n\n\nYAML\n\n" << gc.to_yaml() << "\n\n\n\n";
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+#### file `data2.yaml`
+
+\verbatim
+address: 
+  city: "Springfield"
+  coordinates: 
+    latitude: 39.7817
+    longitude: -89.6501
+  postalCode: 62704
+  state: "IL"
+  street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children: 
+  - 
+    age: 10
+    hobbies: 
+      - "reading"
+      - "drawing"
+      - "cycling"
+    name: "Jane Doe"
+  - 
+    age: 8
+    hobbies: 
+      - "video games"
+      - "swimming"
+      - "football"
+    name: "Johnny Doe"
+float_example: 12345.7
+history: 
+  - "created account"
+  - "updated profile"
+  - "added new property"
+  - "made a purchase"
+  - "joined newsletter"
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences: 
+  languages: 
+    - "en"
+    - "es"
+    - "fr"
+  newsletter: false
+  notifications: 
+    email: true
+    push: true
+    sms: false
+properties: 
+  - 
+    garden: true
+    rooms: 
+      - 
+        height: 15
+        name: "Living Room"
+        width: 20
+      - 
+        height: 12
+        name: "Kitchen"
+        width: 15
+      - 
+        height: 16
+        name: "Master Bedroom"
+        width: 18
+    size: 2400
+    swimmingPool: null
+    type: "House"
+  - 
+    features: 
+      - "Autopilot"
+      - "Electric"
+      - "Touchscreen"
+    make: "Tesla"
+    model: "Model S"
+    type: "Car"
+    year: 2020
+transactions: 
+  - 
+    amount: 450.75
+    completed: true
+    currency: "USD"
+    id: "txn_001"
+    items: 
+      - 
+        name: "Laptop"
+        price: 1200
+        quantity: 1
+      - 
+        name: "Mouse"
+        price: 25.5
+        quantity: 2
+  - 
+    amount: 99.99
+    completed: false
+    currency: "USD"
+    id: "txn_002"
+    items: 
+      - 
+        name: "Headphones"
+        price: 99.99
+        quantity: 1
+work: 
+  position: "Software Engineer"
+  remote: false
+  skills: 
+    - 
+      experience: 10
+      name: "C++"
+      projects: 
+        - "Compiler"
+        - "Game Engine"
+    - 
+      experience: 7
+      name: "Python"
+      projects: 
+        - "Machine Learning"
+        - "Web Scraping"
+\endverbatim
+
+#### output
+
+
+\verbatim
+***********************
+      example N.11
+***********************
+
+
+
+
+
+GC
+
+address:
+    city: "Springfield"
+    coordinates:
+        latitude: 39.7817
+        longitude: -89.6501
+    postalCode: 62704
+    state: "IL"
+    street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+    0:
+        age: 10
+        hobbies:
+            0: "reading"
+            1: "drawing"
+            2: "cycling"
+        name: "Jane Doe"
+    1:
+        age: 8
+        hobbies:
+            0: "video games"
+            1: "swimming"
+            2: "football"
+        name: "Johnny Doe"
+float_example: 12345.7
+history:
+    0: "created account"
+    1: "updated profile"
+    2: "added new property"
+    3: "made a purchase"
+    4: "joined newsletter"
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+    languages:
+        0: "en"
+        1: "es"
+        2: "fr"
+    newsletter: false
+    notifications:
+        email: true
+        push: true
+        sms: false
+properties:
+    0:
+        garden: true
+        rooms:
+            0:
+                height: 15
+                name: "Living Room"
+                width: 20
+            1:
+                height: 12
+                name: "Kitchen"
+                width: 15
+            2:
+                height: 16
+                name: "Master Bedroom"
+                width: 18
+        size: 2400
+        swimmingPool: null
+        type: "House"
+    1:
+        features:
+            0: "Autopilot"
+            1: "Electric"
+            2: "Touchscreen"
+        make: "Tesla"
+        model: "Model S"
+        type: "Car"
+        year: 2020
+transactions:
+    0:
+        amount: 450.75
+        completed: true
+        currency: "USD"
+        id: "txn_001"
+        items:
+            0:
+                name: "Laptop"
+                price: 1200
+                quantity: 1
+            1:
+                name: "Mouse"
+                price: 25.5
+                quantity: 2
+    1:
+        amount: 99.99
+        completed: false
+        currency: "USD"
+        id: "txn_002"
+        items:
+            0:
+                name: "Headphones"
+                price: 99.99
+                quantity: 1
+work:
+    position: "Software Engineer"
+    remote: false
+    skills:
+        0:
+            experience: 10
+            name: "C++"
+            projects:
+                0: "Compiler"
+                1: "Game Engine"
+        1:
+            experience: 7
+            name: "Python"
+            projects:
+                0: "Machine Learning"
+                1: "Web Scraping"
+
+
+
+
+YAML
+
+
+address:
+  city: "Springfield"
+  coordinates:
+    latitude: 39.7817
+    longitude: -89.6501
+  postalCode: 62704
+  state: "IL"
+  street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+  -
+    age: 10
+    hobbies: [ "reading", "drawing", "cycling" ]
+    name: "Jane Doe"
+  -
+    age: 8
+    hobbies: [ "video games", "swimming", "football" ]
+    name: "Johnny Doe"
+float_example: 12345.7
+history: [ "created account", "updated profile", "added new property", "made a purchase", "joined newsletter" ]
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+  languages: [ "en", "es", "fr" ]
+  newsletter: false
+  notifications:
+    email: true
+    push: true
+    sms: false
+properties:
+  -
+    garden: true
+    rooms:
+      -
+        height: 15
+        name: "Living Room"
+        width: 20
+      -
+        height: 12
+        name: "Kitchen"
+        width: 15
+      -
+        height: 16
+        name: "Master Bedroom"
+        width: 18
+    size: 2400
+    swimmingPool: null
+    type: "House"
+  -
+    features: [ "Autopilot", "Electric", "Touchscreen" ]
+    make: "Tesla"
+    model: "Model S"
+    type: "Car"
+    year: 2020
+transactions:
+  -
+    amount: 450.75
+    completed: true
+    currency: "USD"
+    id: "txn_001"
+    items:
+      -
+        name: "Laptop"
+        price: 1200
+        quantity: 1
+      -
+        name: "Mouse"
+        price: 25.5
+        quantity: 2
+  -
+    amount: 99.99
+    completed: false
+    currency: "USD"
+    id: "txn_002"
+    items:
+      -
+        name: "Headphones"
+        price: 99.99
+        quantity: 1
+work:
+  position: "Software Engineer"
+  remote: false
+  skills:
+    -
+      experience: 10
+      name: "C++"
+      projects: [ "Compiler", "Game Engine" ]
+    -
+      experience: 7
+      name: "Python"
+      projects: [ "Machine Learning", "Web Scraping" ]
+
+
+
+
+ALL DONE!
+\endverbatim
+
 ### Example 12
+
+\code{.cc}
+#include "GenericContainer.hh"
+#include "GenericContainer/GenericContainerInterface_yaml.hh"
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.12     \n"
+    << "***********************\n\n";
+
+  try {
+    // real yaml file to generic container
+    GenericContainer gc;
+
+    auto & m1 = gc["matrix_int"].set_mat_int(3, 4);
+    auto & m2 = gc["matrix_real"].set_mat_real(3, 2);
+    auto & m3 = gc["matrix_complex"].set_mat_complex(4, 2);
+    auto & v3 = gc["vector_complex"].set_vec_complex(3);
+
+    m1(2,1) = 4;
+    m2(2,1) = 2;
+    m3(2,1) = 1;
+    m3(0,0) = GenericContainer::complex_type(4,5);
+
+    v3[0] = 1;
+    v3[1] = GenericContainer::complex_type(55,1);
+    v3[2] = GenericContainer::complex_type(0,-2);
+
+    std::cout << "\n\n\n\nYAML\n\n" << gc.to_yaml() << "\n\n\n\n";
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+\verbatim
+***********************
+      example N.12
+***********************
+
+
+
+
+
+YAML
+
+
+matrix_complex:
+  - [ (4,5), (0,0), (0,0), (0,0) ]
+  - [ (0,0), (0,0), (1,0), (0,0) ]
+matrix_int:
+  - [ 0, 0, 0 ]
+  - [ 0, 0, 4 ]
+  - [ 0, 0, 0 ]
+  - [ 0, 0, 0 ]
+matrix_real:
+  - [ 0, 0, 0 ]
+  - [ 0, 0, 2 ]
+vector_complex: [ (1,0), (55,1), (0,-2) ]
+
+
+
+
+ALL DONE!
+\endverbatim
+
 ### Example 13
+
+
+\code{.cc}
+
+#include "GenericContainer.hh"
+#include "GenericContainer/GenericContainerInterface_json.hh"
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+using namespace GC;
+
+int
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.13     \n"
+    << "***********************\n\n";
+
+  try {
+    // read JSON file and convert to generic container
+    GenericContainer gc;
+    string fname{ "examples/data.json" };
+    bool ok = file_JSON_to_GC( fname, gc );
+    if ( !ok ) std::cerr << "Failed to parse: " << fname << '\n';
+    std::cout << "\n\n\n\nGC\n\n";
+    gc.print(std::cout);
+    std::cout
+      << "\n\n\n\nYAML\n\n" << gc.to_yaml()
+      << "\n\n\n\nJSON\n\n" << gc.to_json()
+      << "\n\n\n\n";
+  }
+  catch ( std::exception & exc ) {
+    cout << exc.what() << '\n';
+  }
+  catch (...) {
+    cout << "Unknonwn error\n";
+  }
+
+  cout << "ALL DONE!\n\n\n\n";
+}
+\endcode
+
+\verbatim
+***********************
+      example N.13
+***********************
+
+
+
+
+
+GC
+
+address:
+    city: "Springfield"
+    coordinates:
+        latitude: 39.7817
+        longitude: -89.6501
+    postalCode: 62704
+    state: "IL"
+    street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+    0:
+        age: 10
+        hobbies:
+            0: "reading"
+            1: "drawing"
+            2: "cycling"
+        name: "Jane Doe"
+    1:
+        age: 8
+        hobbies:
+            0: "video games"
+            1: "swimming"
+            2: "football"
+        name: "Johnny Doe"
+float_example: 12345.7
+history:
+    0: "created account"
+    1: "updated profile"
+    2: "added new property"
+    3: "made a purchase"
+    4: "joined newsletter"
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+    languages:
+        0: "en"
+        1: "es"
+        2: "fr"
+    newsletter: false
+    notifications:
+        email: true
+        push: true
+        sms: false
+properties:
+    0:
+        garden: true
+        rooms:
+            0:
+                height: 15
+                name: "Living Room"
+                width: 20
+            1:
+                height: 12
+                name: "Kitchen"
+                width: 15
+            2:
+                height: 16
+                name: "Master Bedroom"
+                width: 18
+        size: 2400
+        swimmingPool: null
+        type: "House"
+    1:
+        features:
+            0: "Autopilot"
+            1: "Electric"
+            2: "Touchscreen"
+        make: "Tesla"
+        model: "Model S"
+        type: "Car"
+        year: 2020
+transactions:
+    0:
+        amount: 450.75
+        completed: true
+        currency: "USD"
+        id: "txn_001"
+        items:
+            0:
+                name: "Laptop"
+                price: 1200
+                quantity: 1
+            1:
+                name: "Mouse"
+                price: 25.5
+                quantity: 2
+    1:
+        amount: 99.99
+        completed: false
+        currency: "USD"
+        id: "txn_002"
+        items:
+            0:
+                name: "Headphones"
+                price: 99.99
+                quantity: 1
+work:
+    position: "Software Engineer"
+    remote: false
+    skills:
+        0:
+            experience: 10
+            name: "C++"
+            projects:
+                0: "Compiler"
+                1: "Game Engine"
+        1:
+            experience: 7
+            name: "Python"
+            projects:
+                0: "Machine Learning"
+                1: "Web Scraping"
+
+
+
+
+YAML
+
+
+address:
+  city: "Springfield"
+  coordinates:
+    latitude: 39.7817
+    longitude: -89.6501
+  postalCode: 62704
+  state: "IL"
+  street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+  -
+    age: 10
+    hobbies: [ "reading", "drawing", "cycling" ]
+    name: "Jane Doe"
+  -
+    age: 8
+    hobbies: [ "video games", "swimming", "football" ]
+    name: "Johnny Doe"
+float_example: 12345.7
+history: [ "created account", "updated profile", "added new property", "made a purchase", "joined newsletter" ]
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+  languages: [ "en", "es", "fr" ]
+  newsletter: false
+  notifications:
+    email: true
+    push: true
+    sms: false
+properties:
+  -
+    garden: true
+    rooms:
+      -
+        height: 15
+        name: "Living Room"
+        width: 20
+      -
+        height: 12
+        name: "Kitchen"
+        width: 15
+      -
+        height: 16
+        name: "Master Bedroom"
+        width: 18
+    size: 2400
+    swimmingPool: null
+    type: "House"
+  -
+    features: [ "Autopilot", "Electric", "Touchscreen" ]
+    make: "Tesla"
+    model: "Model S"
+    type: "Car"
+    year: 2020
+transactions:
+  -
+    amount: 450.75
+    completed: true
+    currency: "USD"
+    id: "txn_001"
+    items:
+      -
+        name: "Laptop"
+        price: 1200
+        quantity: 1
+      -
+        name: "Mouse"
+        price: 25.5
+        quantity: 2
+  -
+    amount: 99.99
+    completed: false
+    currency: "USD"
+    id: "txn_002"
+    items:
+      -
+        name: "Headphones"
+        price: 99.99
+        quantity: 1
+work:
+  position: "Software Engineer"
+  remote: false
+  skills:
+    -
+      experience: 10
+      name: "C++"
+      projects: [ "Compiler", "Game Engine" ]
+    -
+      experience: 7
+      name: "Python"
+      projects: [ "Machine Learning", "Web Scraping" ]
+
+
+
+
+JSON
+
+
+{
+  "address":
+  {
+    "city": "Springfield",
+    "coordinates":
+    {
+      "latitude": 39.7817,
+      "longitude": -89.6501
+    },
+    "postalCode": 62704,
+    "state": "IL",
+    "street": "1234 Elm Street"
+  },
+  "age": 35,
+  "boolean_false": false,
+  "boolean_true": true,
+  "children":
+  [
+
+    {
+      "age": 10,
+      "hobbies": [ "reading", "drawing", "cycling" ],
+      "name": "Jane Doe"
+    },
+
+    {
+      "age": 8,
+      "hobbies": [ "video games", "swimming", "football" ],
+      "name": "Johnny Doe"
+    }
+  ],
+  "float_example": 12345.7,
+  "history": [ "created account", "updated profile", "added new property", "made a purchase", "joined newsletter" ],
+  "large_number": 1234567890123456789,
+  "married": true,
+  "name": "John Doe",
+  "null_example": null,
+  "preferences":
+  {
+    "languages": [ "en", "es", "fr" ],
+    "newsletter": false,
+    "notifications":
+    {
+      "email": true,
+      "push": true,
+      "sms": false
+    }
+  },
+  "properties":
+  [
+
+    {
+      "garden": true,
+      "rooms":
+      [
+
+        {
+          "height": 15,
+          "name": "Living Room",
+          "width": 20
+        },
+
+        {
+          "height": 12,
+          "name": "Kitchen",
+          "width": 15
+        },
+
+        {
+          "height": 16,
+          "name": "Master Bedroom",
+          "width": 18
+        }
+      ],
+      "size": 2400,
+      "swimmingPool": null,
+      "type": "House"
+    },
+
+    {
+      "features": [ "Autopilot", "Electric", "Touchscreen" ],
+      "make": "Tesla",
+      "model": "Model S",
+      "type": "Car",
+      "year": 2020
+    }
+  ],
+  "transactions":
+  [
+
+    {
+      "amount": 450.75,
+      "completed": true,
+      "currency": "USD",
+      "id": "txn_001",
+      "items":
+      [
+
+        {
+          "name": "Laptop",
+          "price": 1200,
+          "quantity": 1
+        },
+
+        {
+          "name": "Mouse",
+          "price": 25.5,
+          "quantity": 2
+        }
+      ]
+    },
+
+    {
+      "amount": 99.99,
+      "completed": false,
+      "currency": "USD",
+      "id": "txn_002",
+      "items":
+      [
+
+        {
+          "name": "Headphones",
+          "price": 99.99,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "work":
+  {
+    "position": "Software Engineer",
+    "remote": false,
+    "skills":
+    [
+
+      {
+        "experience": 10,
+        "name": "C++",
+        "projects": [ "Compiler", "Game Engine" ]
+      },
+
+      {
+        "experience": 7,
+        "name": "Python",
+        "projects": [ "Machine Learning", "Web Scraping" ]
+      }
+    ]
+  }
+}
+
+
+
+ALL DONE!
+\endverbatim
+
+
 ### Example 14
+
+\code{.cc}
+
+#include "GenericContainer/GenericContainerInterface_json.hh"
+#include <iostream>
+#include <string>
+
+#ifndef DOXYGEN_SHOULD_SKIP_THIS
+
+using namespace GC;
+using namespace std;
+
+int
+//main( int argc, const char * argv[] ) {
+main() {
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.14     \n"
+    << "***********************\n\n";
+
+  GenericContainer gc;
+
+  for ( int test = 1; test <= 2; ++test ) {
+
+    cout << "\n\n\nTEST N." << test << "\n\n\n";
+
+    switch ( test ) {
+    case 1: {
+      gc["a"] = 2;
+      gc["b"] = vector<int>( {1, 2, 3, 4, 5} );
+      gc["bb"].set_vec_string();
+      gc["bb"] = vector<real_type>( {4.5, 0.000000000000000000009086954454768098980679} );
+      gc["c"] = false;
+      GenericContainer gc2;
+      gc2["asd"].set_vector();
+      gc2["asd"].get_vector().push_back( GenericContainer() );
+      gc2["asd"].get_vector().push_back( GenericContainer() );
+      gc2["asd"][0].set_vec_int( {0, 1, 2, 4} );
+      gc2["asd"][1].set_vec_string( {"1+2i", "3.4", "34i"} );
+      gc["d"] = gc2;
+      gc2["eee"] = vector<bool>( {false, true} );
+      mat_real_type mat( 2, 2 );
+      mat( 0, 0 ) = 0;
+      mat( 1, 0 ) = 1;
+      mat( 0, 1 ) = 2.2;
+      mat( 1, 1 ) = 3;
+      gc["e"].set_mat_real( mat );
+      gc["f"];
+      GenericContainer ff;
+      ff.set_vector();
+      ff.push_int( 3 );
+      ff.push_bool( true );
+      gc["g"] = ff;
+      break;
+    }
+    case 2: {
+      GC::vector_type & v = gc.set_vector();
+      v.resize( 10 );
+      v[0] = 1;
+      v[1].set_vec_real();
+      v[2].set_map();
+      v[3].set_vec_string();
+      v[4] = 1.3;
+      v[5] = "pippo";
+      v[6].set_map();
+      v[7].set_vector();
+      v[8] = true;
+      GC::vec_real_type & vv = v[1].get_vec_real();
+      vv.resize( 10 );
+      vv[2] = 123;
+      GC::map_type & mm = v[2].get_map();
+      mm["pippo"]    = 13;
+      mm["pluto"]    = 1;
+      mm["paperino"] = 3;
+      GenericContainer & gmm = v[2]; // access element 2 as GenericContainer
+      gmm["aaa"]     = "stringa1";   // is the same as mm["aaa"] = "stringa"
+      gmm["bbb"]     = "stringa2";   // is the same as mm["aaa"] = "stringa"
+      GC::vec_string_type & vs = v[3].get_vec_string();
+      vs.push_back( "string1" );
+      vs.push_back( "string2" );
+      vs.push_back( "string3" );
+      vs.push_back( "string4" );
+      GC::map_type & m = v[6].get_map();
+      m["aaa"]    = 123;
+      m["bbb"]    = 3.4;
+      m["vector"].set_vec_int();
+      GC::vec_int_type & vi = m["vector"].get_vec_int();
+      vi.push_back( 12 );
+      vi.push_back( 10 );
+      vi.push_back( 1 );
+
+      GC::vector_type & vg = v[7].get_vector();
+      vg.resize( 4 );
+      vg[0] = 123;
+      vg[1] = 3.14;
+      vg[2] = "nonna papera";
+      break;
+    }
+    default:
+      break;
+    }
+
+    cout << "Original container is:" << endl;
+    gc.dump( cout );
+    cout << endl << endl;
+
+    string out_str;
+    GC::GC_to_JSON( gc, out_str );
+    cout << "Json string is:\n" << out_str << '\n';
+
+    //string out_str1 = gc.to_yaml();
+    //cout << "YAML string is:\n" << out_str1 << '\n';
+
+    GenericContainer gc_back;
+    GC::JSON_to_GC( out_str, gc_back );
+
+    cout << "Re-converted container is (note complex string are converted to complex numbers):" << endl;
+    gc_back.print( cout );
+    cout << endl << endl;
+
+    // test a generic json string
+    string a_json = "[  {    \"_id\": \"5a0ae30d8419c393f642fec3\",    \"index\": 0,    \"guid\": \"d0268ff7-cde2-48e4-9c75-5740c53c3b23\",    \"isActive\": true,    \"balance\": \"$1,949.87\",    \"picture\": \"http://placehold.it/32x32\",    \"age\": 26,    \"eyeColor\": \"green\",    \"name\": \"Sargent Frazier\",    \"gender\": \"male\",    \"company\": \"MANGLO\",    \"email\": \"sargentfrazier@manglo.com\",    \"phone\": \"+1 (894) 561-3896\",    \"address\": \"769 Prospect Avenue, Snyderville, North Dakota, 3198\",    \"about\": \"Qui ad eu officia commodo aute dolor proident ea esse fugiat deserunt sint anim incididunt. Cupidatat ipsum tempor ipsum cillum laborum eu culpa eiusmod laborum quis irure in proident. Amet ipsum aute nulla et. Ipsum sit velit cillum in consequat. Est exercitation deserunt ad Lorem laborum occaecat mollit cupidatat fugiat quis sunt elit voluptate.\",    \"registered\": \"2016-01-07T03:21:06 -01:00\",    \"latitude\": -38.243575,    \"longitude\": -0.862908,    \"tags\": [      \"sunt\",      \"voluptate\",      \"labore\",      \"sunt\",      \"elit\",      \"cupidatat\",      \"nulla\"    ],    \"friends\": [      {        \"id\": 0,        \"name\": \"April Dunlap\"      },      {        \"id\": 1,        \"name\": \"Deirdre Mayer\"      },      {        \"id\": 2,        \"name\": \"Bernadette Durham\"      }    ],    \"greeting\": \"Hello, Sargent Frazier! You have 7 unread messages.\",    \"favoriteFruit\": \"strawberry\"  },  {    \"_id\": \"5a0ae30da2e6848d6f374bba\",    \"index\": 1,    \"guid\": \"578ab333-ea26-40c2-a130-04d47aa9000d\",    \"isActive\": true,    \"balance\": \"$2,690.13\",    \"picture\": \"http://placehold.it/32x32\",    \"age\": 26,    \"eyeColor\": \"blue\",    \"name\": \"Vickie Roy\",    \"gender\": \"female\",    \"company\": \"INSOURCE\",    \"email\": \"vickieroy@insource.com\",    \"phone\": \"+1 (996) 421-2072\",    \"address\": \"922 Dahill Road, Byrnedale, Marshall Islands, 1410\",    \"about\": \"Adipisicing amet veniam dolore in exercitation consequat consectetur cupidatat enim non. Sint minim velit deserunt in aliqua excepteur nostrud ea cupidatat fugiat excepteur mollit consequat. Tempor do minim qui qui labore cupidatat.\",    \"registered\": \"2016-12-20T05:28:05 -01:00\",    \"latitude\": -13.097375,    \"longitude\": -144.934101,    \"tags\": [      \"quis\",      \"duis\",      \"do\",      \"magna\",      \"qui\",      \"deserunt\",      \"nostrud\"    ],    \"friends\": [      {        \"id\": 0,        \"name\": \"Riddle Burt\"      },      {        \"id\": 1,        \"name\": \"Hughes Howell\"      },      {        \"id\": 2,        \"name\": \"Mcbride Tyson\"      }    ],    \"greeting\": \"Hello, Vickie Roy! You have 3 unread messages.\",    \"favoriteFruit\": \"banana\"  },  {    \"_id\": \"5a0ae30df49a05d7a259f116\",    \"index\": 2,    \"guid\": \"84f91917-7331-441d-aa3c-da08994bc1a9\",    \"isActive\": true,    \"balance\": \"$3,503.13\",    \"picture\": \"http://placehold.it/32x32\",    \"age\": 25,    \"eyeColor\": \"brown\",    \"name\": \"Delacruz Schultz\",    \"gender\": \"male\",    \"company\": \"ISOLOGIA\",    \"email\": \"delacruzschultz@isologia.com\",    \"phone\": \"+1 (949) 553-3319\",    \"address\": \"240 Homecrest Avenue, Groveville, Alaska, 3106\",    \"about\": \"Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur.\",    \"registered\": \"2016-02-14T03:02:53 -01:00\",    \"latitude\": -7.842765,    \"longitude\": -166.808559,    \"tags\": [      \"velit\",      \"esse\",      \"ad\",      \"laborum\",      \"incididunt\",      \"ex\",      \"fugiat\"    ],    \"friends\": [      {        \"id\": 0,        \"name\": \"Romero Hodge\"      },      {        \"id\": 1,        \"name\": \"Dona Reilly\"      },      {        \"id\": 2,        \"name\": \"Earlene Richards\"      }    ],    \"greeting\": \"Hello, Delacruz Schultz! You have 9 unread messages.\",    \"favoriteFruit\": \"strawberry\"  },  {    \"_id\": \"5a0ae30d47367b43a9f4e819\",    \"index\": 3,    \"guid\": \"8192649f-8fc0-481d-a32a-50c6919d10c0\",    \"isActive\": true,    \"balance\": \"$3,221.56\",    \"picture\": \"http://placehold.it/32x32\",    \"age\": 28,    \"eyeColor\": \"blue\",    \"name\": \"Cash Cannon\",    \"gender\": \"male\",    \"company\": \"ACCUPRINT\",    \"email\": \"cashcannon@accuprint.com\",    \"phone\": \"+1 (990) 410-3156\",    \"address\": \"454 George Street, Austinburg, Iowa, 8682\",    \"about\": \"Consequat consectetur minim est in incididunt. Sunt enim voluptate amet consectetur voluptate enim id. Laborum incididunt pariatur consequat qui sint nisi aliquip aliquip consequat nostrud excepteur. Commodo ipsum officia sint pariatur voluptate officia minim occaecat eiusmod commodo ut ipsum consequat excepteur.\",    \"registered\": \"2015-07-11T02:59:53 -02:00\",    \"latitude\": 33.528547,    \"longitude\": 57.927556,    \"tags\": [      \"officia\",      \"labore\",      \"sit\",      \"mollit\",      \"dolore\",      \"labore\",      \"elit\"    ],    \"friends\": [      {        \"id\": 0,        \"name\": \"Burch Cherry\"      },      {        \"id\": 1,        \"name\": \"Bray Roberts\"      },      {        \"id\": 2,        \"name\": \"Bridgette Hester\"      }    ],    \"greeting\": \"Hello, Cash Cannon! You have 3 unread messages.\",    \"favoriteFruit\": \"strawberry\"  },  {    \"_id\": \"5a0ae30d97744a9d693c381b\",    \"index\": 4,    \"guid\": \"71e9af8c-8c30-4810-b4d0-92a4c6fd434c\",    \"isActive\": true,    \"balance\": \"$3,717.56\",    \"picture\": \"http://placehold.it/32x32\",    \"age\": 29,    \"eyeColor\": \"brown\",    \"name\": \"Jenny Mendoza\",    \"gender\": \"female\",    \"company\": \"DUFLEX\",    \"email\": \"jennymendoza@duflex.com\",    \"phone\": \"+1 (864) 549-3766\",    \"address\": \"578 Autumn Avenue, Stagecoach, California, 1739\",    \"about\": \"Ipsum ut aliqua qui nisi quis incididunt dolore fugiat. Lorem qui pariatur occaecat reprehenderit laboris nulla eiusmod. Ut sunt sint nostrud incididunt anim sint. Aliquip magna velit enim exercitation proident qui enim amet ullamco pariatur commodo Lorem. Veniam amet in aliqua mollit sint sit ex.\",    \"registered\": \"2014-09-25T09:34:35 -02:00\",    \"latitude\": -1.133185,    \"longitude\": -77.004934,    \"tags\": [      \"laborum\",      \"officia\",      \"eu\",      \"aute\",      \"et\",      \"aliqua\",      \"eu\"    ],    \"friends\": [      {        \"id\": 0,        \"name\": \"Marla Macias\"      },      {        \"id\": 1,        \"name\": \"Lauri Adkins\"      },      {        \"id\": 2,        \"name\": \"Coleman Keller\"      }    ],    \"greeting\": \"Hello, Jenny Mendoza! You have 1 unread messages.\",    \"favoriteFruit\": \"banana\"  }]";
+    GC::JSON_to_GC( a_json, gc );
+    cout << "The container from the json string is:\n";
+    gc.dump( cout );
+  }
+
+  cout << "\n\nAll done Folks!\n\n";
+  return 0;
+}
+\endcode
+
+\verbatim
+***********************
+      example N.14
+***********************
+
+
+
+
+TEST N.1
+
+
+Original container is:
+a: 2
+b:
+    [ 1 2 3 4 5 ]
+bb:
+    [ 4.5 9.08695e-21 ]
+c: false
+d:
+    asd:
+        0: [ 0 1 2 4 ]
+        1:
+            0: "1+2i"
+            1: "3.4"
+            2: "34i"
+e:
+       0      2.2
+       1        3
+f: null
+g:
+    0: 3
+    1: true
+
+
+Json string is:
+
+{
+  "a": 2,
+  "b": [ 1, 2, 3, 4, 5 ],
+  "bb": [ 4.5, 9.08695e-21 ],
+  "c": false,
+  "d":
+  {
+    "asd":
+    [
+      [ 0, 1, 2, 4 ],
+      [ "1+2i", "3.4", "34i" ]
+    ]
+  },
+  "e": [
+    [ 0, 1 ],
+    [ 2.2, 3 ]
+  ],
+  "f": null,
+  "g":
+  [
+    3,
+    true
+  ]
+}
+Re-converted container is (note complex string are converted to complex numbers):
+a: 2
+b:
+    [ 1 2 3 4 5 ]
+bb:
+    [ 4.5 9.08695e-21 ]
+c: false
+d:
+    asd:
+        0: [ 0 1 2 4 ]
+        1:
+            0: "1+2i"
+            1: "3.4"
+            2: "34i"
+e:
+       0      2.2
+       1        3
+f: null
+g:
+    [ 3 1 ]
+
+
+The container from the json string is:
+0:
+    _id: "5a0ae30d8419c393f642fec3"
+    about: "Qui ad eu officia commodo aute dolor proident ea esse fugiat deserunt sint anim incididunt. Cupidatat ipsum tempor ipsum cillum laborum eu culpa eiusmod laborum quis irure in proident. Amet ipsum aute nulla et. Ipsum sit velit cillum in consequat. Est exercitation deserunt ad Lorem laborum occaecat mollit cupidatat fugiat quis sunt elit voluptate."
+    address: "769 Prospect Avenue, Snyderville, North Dakota, 3198"
+    age: 26
+    balance: "$1,949.87"
+    company: "MANGLO"
+    email: "sargentfrazier@manglo.com"
+    eyeColor: "green"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "April Dunlap"
+        1:
+            id: 1
+            name: "Deirdre Mayer"
+        2:
+            id: 2
+            name: "Bernadette Durham"
+    gender: "male"
+    greeting: "Hello, Sargent Frazier! You have 7 unread messages."
+    guid: "d0268ff7-cde2-48e4-9c75-5740c53c3b23"
+    index: 0
+    isActive: true
+    latitude: -38.2436
+    longitude: -0.862908
+    name: "Sargent Frazier"
+    phone: "+1 (894) 561-3896"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-01-07T03:21:06 -01:00"
+    tags:
+        0: "sunt"
+        1: "voluptate"
+        2: "labore"
+        3: "sunt"
+        4: "elit"
+        5: "cupidatat"
+        6: "nulla"
+1:
+    _id: "5a0ae30da2e6848d6f374bba"
+    about: "Adipisicing amet veniam dolore in exercitation consequat consectetur cupidatat enim non. Sint minim velit deserunt in aliqua excepteur nostrud ea cupidatat fugiat excepteur mollit consequat. Tempor do minim qui qui labore cupidatat."
+    address: "922 Dahill Road, Byrnedale, Marshall Islands, 1410"
+    age: 26
+    balance: "$2,690.13"
+    company: "INSOURCE"
+    email: "vickieroy@insource.com"
+    eyeColor: "blue"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Riddle Burt"
+        1:
+            id: 1
+            name: "Hughes Howell"
+        2:
+            id: 2
+            name: "Mcbride Tyson"
+    gender: "female"
+    greeting: "Hello, Vickie Roy! You have 3 unread messages."
+    guid: "578ab333-ea26-40c2-a130-04d47aa9000d"
+    index: 1
+    isActive: true
+    latitude: -13.0974
+    longitude: -144.934
+    name: "Vickie Roy"
+    phone: "+1 (996) 421-2072"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-12-20T05:28:05 -01:00"
+    tags:
+        0: "quis"
+        1: "duis"
+        2: "do"
+        3: "magna"
+        4: "qui"
+        5: "deserunt"
+        6: "nostrud"
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    _id: "5a0ae30d47367b43a9f4e819"
+    about: "Consequat consectetur minim est in incididunt. Sunt enim voluptate amet consectetur voluptate enim id. Laborum incididunt pariatur consequat qui sint nisi aliquip aliquip consequat nostrud excepteur. Commodo ipsum officia sint pariatur voluptate officia minim occaecat eiusmod commodo ut ipsum consequat excepteur."
+    address: "454 George Street, Austinburg, Iowa, 8682"
+    age: 28
+    balance: "$3,221.56"
+    company: "ACCUPRINT"
+    email: "cashcannon@accuprint.com"
+    eyeColor: "blue"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Burch Cherry"
+        1:
+            id: 1
+            name: "Bray Roberts"
+        2:
+            id: 2
+            name: "Bridgette Hester"
+    gender: "male"
+    greeting: "Hello, Cash Cannon! You have 3 unread messages."
+    guid: "8192649f-8fc0-481d-a32a-50c6919d10c0"
+    index: 3
+    isActive: true
+    latitude: 33.5285
+    longitude: 57.9276
+    name: "Cash Cannon"
+    phone: "+1 (990) 410-3156"
+    picture: "http://placehold.it/32x32"
+    registered: "2015-07-11T02:59:53 -02:00"
+    tags:
+        0: "officia"
+        1: "labore"
+        2: "sit"
+        3: "mollit"
+        4: "dolore"
+        5: "labore"
+        6: "elit"
+4:
+    _id: "5a0ae30d97744a9d693c381b"
+    about: "Ipsum ut aliqua qui nisi quis incididunt dolore fugiat. Lorem qui pariatur occaecat reprehenderit laboris nulla eiusmod. Ut sunt sint nostrud incididunt anim sint. Aliquip magna velit enim exercitation proident qui enim amet ullamco pariatur commodo Lorem. Veniam amet in aliqua mollit sint sit ex."
+    address: "578 Autumn Avenue, Stagecoach, California, 1739"
+    age: 29
+    balance: "$3,717.56"
+    company: "DUFLEX"
+    email: "jennymendoza@duflex.com"
+    eyeColor: "brown"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Marla Macias"
+        1:
+            id: 1
+            name: "Lauri Adkins"
+        2:
+            id: 2
+            name: "Coleman Keller"
+    gender: "female"
+    greeting: "Hello, Jenny Mendoza! You have 1 unread messages."
+    guid: "71e9af8c-8c30-4810-b4d0-92a4c6fd434c"
+    index: 4
+    isActive: true
+    latitude: -1.13319
+    longitude: -77.0049
+    name: "Jenny Mendoza"
+    phone: "+1 (864) 549-3766"
+    picture: "http://placehold.it/32x32"
+    registered: "2014-09-25T09:34:35 -02:00"
+    tags:
+        0: "laborum"
+        1: "officia"
+        2: "eu"
+        3: "aute"
+        4: "et"
+        5: "aliqua"
+        6: "eu"
+
+
+
+TEST N.2
+
+
+Original container is:
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    aaa: "stringa1"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    bbb: "stringa2"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    paperino: 3
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    pippo: 13
+    pluto: 1
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+    3: null
+8: true
+9: null
+
+
+Json string is:
+
+[
+  1,
+  [ 0, 0, 123, 0, 0, 0, 0, 0, 0, 0 ],
+
+  {
+    "_id": "5a0ae30df49a05d7a259f116",
+    "aaa": "stringa1",
+    "about": "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur.",
+    "address": "240 Homecrest Avenue, Groveville, Alaska, 3106",
+    "age": 25,
+    "balance": "$3,503.13",
+    "bbb": "stringa2",
+    "company": "ISOLOGIA",
+    "email": "delacruzschultz@isologia.com",
+    "eyeColor": "brown",
+    "favoriteFruit": "strawberry",
+    "friends":
+    [
+
+      {
+        "id": 0,
+        "name": "Romero Hodge"
+      },
+
+      {
+        "id": 1,
+        "name": "Dona Reilly"
+      },
+
+      {
+        "id": 2,
+        "name": "Earlene Richards"
+      }
+    ],
+    "gender": "male",
+    "greeting": "Hello, Delacruz Schultz! You have 9 unread messages.",
+    "guid": "84f91917-7331-441d-aa3c-da08994bc1a9",
+    "index": 2,
+    "isActive": true,
+    "latitude": -7.84276,
+    "longitude": -166.809,
+    "name": "Delacruz Schultz",
+    "paperino": 3,
+    "phone": "+1 (949) 553-3319",
+    "picture": "http://placehold.it/32x32",
+    "pippo": 13,
+    "pluto": 1,
+    "registered": "2016-02-14T03:02:53 -01:00",
+    "tags": [ "velit", "esse", "ad", "laborum", "incididunt", "ex", "fugiat" ]
+  },
+  [ "string1", "string2", "string3", "string4" ],
+  1.3,
+  "pippo",
+
+  {
+    "aaa": 123,
+    "bbb": 3.4,
+    "vector": [ 12, 10, 1 ]
+  },
+
+  [
+    123,
+    3.14,
+    "nonna papera",
+    null
+  ],
+  true,
+  null
+]
+Re-converted container is (note complex string are converted to complex numbers):
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    aaa: "stringa1"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    bbb: "stringa2"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    paperino: 3
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    pippo: 13
+    pluto: 1
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+    3: null
+8: true
+9: null
+
+
+The container from the json string is:
+0:
+    _id: "5a0ae30d8419c393f642fec3"
+    about: "Qui ad eu officia commodo aute dolor proident ea esse fugiat deserunt sint anim incididunt. Cupidatat ipsum tempor ipsum cillum laborum eu culpa eiusmod laborum quis irure in proident. Amet ipsum aute nulla et. Ipsum sit velit cillum in consequat. Est exercitation deserunt ad Lorem laborum occaecat mollit cupidatat fugiat quis sunt elit voluptate."
+    address: "769 Prospect Avenue, Snyderville, North Dakota, 3198"
+    age: 26
+    balance: "$1,949.87"
+    company: "MANGLO"
+    email: "sargentfrazier@manglo.com"
+    eyeColor: "green"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "April Dunlap"
+        1:
+            id: 1
+            name: "Deirdre Mayer"
+        2:
+            id: 2
+            name: "Bernadette Durham"
+    gender: "male"
+    greeting: "Hello, Sargent Frazier! You have 7 unread messages."
+    guid: "d0268ff7-cde2-48e4-9c75-5740c53c3b23"
+    index: 0
+    isActive: true
+    latitude: -38.2436
+    longitude: -0.862908
+    name: "Sargent Frazier"
+    phone: "+1 (894) 561-3896"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-01-07T03:21:06 -01:00"
+    tags:
+        0: "sunt"
+        1: "voluptate"
+        2: "labore"
+        3: "sunt"
+        4: "elit"
+        5: "cupidatat"
+        6: "nulla"
+1:
+    _id: "5a0ae30da2e6848d6f374bba"
+    about: "Adipisicing amet veniam dolore in exercitation consequat consectetur cupidatat enim non. Sint minim velit deserunt in aliqua excepteur nostrud ea cupidatat fugiat excepteur mollit consequat. Tempor do minim qui qui labore cupidatat."
+    address: "922 Dahill Road, Byrnedale, Marshall Islands, 1410"
+    age: 26
+    balance: "$2,690.13"
+    company: "INSOURCE"
+    email: "vickieroy@insource.com"
+    eyeColor: "blue"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Riddle Burt"
+        1:
+            id: 1
+            name: "Hughes Howell"
+        2:
+            id: 2
+            name: "Mcbride Tyson"
+    gender: "female"
+    greeting: "Hello, Vickie Roy! You have 3 unread messages."
+    guid: "578ab333-ea26-40c2-a130-04d47aa9000d"
+    index: 1
+    isActive: true
+    latitude: -13.0974
+    longitude: -144.934
+    name: "Vickie Roy"
+    phone: "+1 (996) 421-2072"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-12-20T05:28:05 -01:00"
+    tags:
+        0: "quis"
+        1: "duis"
+        2: "do"
+        3: "magna"
+        4: "qui"
+        5: "deserunt"
+        6: "nostrud"
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    _id: "5a0ae30d47367b43a9f4e819"
+    about: "Consequat consectetur minim est in incididunt. Sunt enim voluptate amet consectetur voluptate enim id. Laborum incididunt pariatur consequat qui sint nisi aliquip aliquip consequat nostrud excepteur. Commodo ipsum officia sint pariatur voluptate officia minim occaecat eiusmod commodo ut ipsum consequat excepteur."
+    address: "454 George Street, Austinburg, Iowa, 8682"
+    age: 28
+    balance: "$3,221.56"
+    company: "ACCUPRINT"
+    email: "cashcannon@accuprint.com"
+    eyeColor: "blue"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Burch Cherry"
+        1:
+            id: 1
+            name: "Bray Roberts"
+        2:
+            id: 2
+            name: "Bridgette Hester"
+    gender: "male"
+    greeting: "Hello, Cash Cannon! You have 3 unread messages."
+    guid: "8192649f-8fc0-481d-a32a-50c6919d10c0"
+    index: 3
+    isActive: true
+    latitude: 33.5285
+    longitude: 57.9276
+    name: "Cash Cannon"
+    phone: "+1 (990) 410-3156"
+    picture: "http://placehold.it/32x32"
+    registered: "2015-07-11T02:59:53 -02:00"
+    tags:
+        0: "officia"
+        1: "labore"
+        2: "sit"
+        3: "mollit"
+        4: "dolore"
+        5: "labore"
+        6: "elit"
+4:
+    _id: "5a0ae30d97744a9d693c381b"
+    about: "Ipsum ut aliqua qui nisi quis incididunt dolore fugiat. Lorem qui pariatur occaecat reprehenderit laboris nulla eiusmod. Ut sunt sint nostrud incididunt anim sint. Aliquip magna velit enim exercitation proident qui enim amet ullamco pariatur commodo Lorem. Veniam amet in aliqua mollit sint sit ex."
+    address: "578 Autumn Avenue, Stagecoach, California, 1739"
+    age: 29
+    balance: "$3,717.56"
+    company: "DUFLEX"
+    email: "jennymendoza@duflex.com"
+    eyeColor: "brown"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Marla Macias"
+        1:
+            id: 1
+            name: "Lauri Adkins"
+        2:
+            id: 2
+            name: "Coleman Keller"
+    gender: "female"
+    greeting: "Hello, Jenny Mendoza! You have 1 unread messages."
+    guid: "71e9af8c-8c30-4810-b4d0-92a4c6fd434c"
+    index: 4
+    isActive: true
+    latitude: -1.13319
+    longitude: -77.0049
+    name: "Jenny Mendoza"
+    phone: "+1 (864) 549-3766"
+    picture: "http://placehold.it/32x32"
+    registered: "2014-09-25T09:34:35 -02:00"
+    tags:
+        0: "laborum"
+        1: "officia"
+        2: "eu"
+        3: "aute"
+        4: "et"
+        5: "aliqua"
+        6: "eu"
+
+
+All done Folks!
+\endverbatim
+
+
+
 ### Example 15
+
+\code{.cc}
+#include "GenericContainer/GenericContainerInterface_json.hh"
+#include <iostream>
+#include <string>
+#include <chrono>
+
+using namespace GC;
+using namespace std;
+
+int
+//main( int argc, const char * argv[] ) {
+main() {
+
+  // Definizione dei tipi di tempo
+  using std::chrono::high_resolution_clock;
+  using std::chrono::duration_cast;
+  using std::chrono::milliseconds;
+
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.15     \n"
+    << "***********************\n\n";
+
+  GenericContainer gc1;
+  GenericContainer gc2;
+  GenericContainer gc3;
+
+  // Memorizza il tempo iniziale
+  auto start = high_resolution_clock::now();
+  {
+    //ifstream file( "examples/large-file.json" );
+    ifstream file( "examples/data2.json" );
+    gc1.from_json( file );
+    file.close();
+  }
+
+  auto end      = high_resolution_clock::now();
+  auto duration = duration_cast<milliseconds>(end - start);
+  std::cout << "READ JSON to GC1 " << duration.count() << " millisecondi." << std::endl;
+
+  start = high_resolution_clock::now();
+  {
+    //ifstream file( "examples/large-file.json" );
+    ifstream file( "examples/data2.json" );
+    gc2.from_json2( file );
+    file.close();
+  }
+
+  end      = high_resolution_clock::now();
+  duration = duration_cast<milliseconds>(end - start);
+  std::cout << "READ JSON to GC2 " << duration.count() << " millisecondi." << std::endl;
+
+  cout << "COMPARE GC1 vs GC2: " << gc1.compare_content(gc2,">>> ");
+
+  start = high_resolution_clock::now();
+  vector<uint8_t> buffer( static_cast<size_t>( gc1.mem_size() ) );
+  int32_t nb = gc1.serialize( buffer );
+
+  end      = high_resolution_clock::now();
+  duration = duration_cast<milliseconds>(end - start);
+  std::cout << "SERIALIZE [" << nb << "] bytes " << duration.count() << " millisecondi." << std::endl;
+
+
+
+  start = high_resolution_clock::now();
+  gc3.clear();
+  int32_t nb2 = gc3.de_serialize( buffer );
+
+  end      = high_resolution_clock::now();
+  duration = duration_cast<milliseconds>(end - start);
+  std::cout << "DE-SERIALIZE to GC3 [" << nb2 << "] bytes " << duration.count() << " millisecondi." << std::endl;
+
+
+  cout << "COMPARE GC1 vs GC3: " << gc1.compare_content(gc2);
+
+
+  cout << "\n\nAll done Folks!\n\n";
+  return 0;
+}
+\endcode
+
+#### output
+
+\verbatim
+***********************
+      example N.15
+***********************
+
+READ JSON to GC1 0 millisecondi.
+READ JSON to GC2 0 millisecondi.
+COMPARE GC1 vs GC2: SERIALIZE [111] bytes 0 millisecondi.
+DE-SERIALIZE to GC3 [111] bytes 0 millisecondi.
+COMPARE GC1 vs GC3:
+
+All done Folks!
+\endverbatim
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Example 16
+
+
+\code{.cc}
+#include "GenericContainer/GenericContainerInterface_json.hh"
+#include <iostream>
+#include <string>
+#include <chrono>
+
+using namespace GC;
+using namespace std;
+
+int
+//main( int argc, const char * argv[] ) {
+main() {
+
+  // Definizione dei tipi di tempo
+  using std::chrono::high_resolution_clock;
+  using std::chrono::duration_cast;
+  using std::chrono::milliseconds;
+
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.16     \n"
+    << "***********************\n\n";
+
+  GenericContainer gc1;
+  GenericContainer gc2;
+
+  std::cout << "READ JSON\n";
+  {
+    ifstream file( "examples/test.json" );
+    gc1.from_json( file );
+    file.close();
+  }
+  std::cout << "WRITE YAML\n";
+  {
+    ofstream file( "examples/test.yml" );
+    gc1.to_yaml( file );
+    file.close();
+  }
+  std::cout << "READ YAML\n";
+  {
+    ifstream file( "examples/test.yml" );
+    gc2.from_yaml( file );
+    file.close();
+  }
+  std::cout << "WRITE YAML\n";
+  {
+    ofstream file( "examples/test2.yml" );
+    gc2.to_yaml( file );
+    file.close();
+  }
+  std::cout << "READ YAML\n";
+  {
+    ifstream file( "examples/test3.yml" );
+    gc2.from_yaml( file );
+    file.close();
+  }
+
+  //std::cout << "GC1\n";
+  //gc1.print(cout);
+  //std::cout << "GC2\n";
+  //gc2.print(cout);
+
+  cout << "\n\nAll done Folks!!!\n\n";
+  return 0;
+}
+\endcode
+
+\verbatim
+***********************
+      example N.16
+***********************
+
+READ JSON
+WRITE YAML
+READ YAML
+WRITE YAML
+READ YAML
+
+
+All done Folks!
+\endverbatim
+
+
+
+
+
+
+
+
 ### Example 17
+
+
+\code{.cc}
+#include "GenericContainer/GenericContainer.hh"
+#include <iostream>
+#include <string>
+#include <chrono>
+
+using namespace GC;
+using namespace std;
+
+int
+//main( int argc, const char * argv[] ) {
+main() {
+
+
+  cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.17     \n"
+    << "***********************\n\n";
+
+  GenericContainer gc1;
+  GenericContainer gc2;
+  GenericContainer gc3;
+  GenericContainer gc4;
+  
+  gc3["pippo"] = true;
+  gc2["pluto"] = gc3;
+
+  gc1["paperino"] = gc2;
+  gc4["blue"] = 23;
+  gc1["aabb"] = gc4;
+  
+  std::cout << "gc --> " << gc1.get_map_bool( {"paperino","pluto","pippo"} ) << "\n";
+  std::cout << "gc --> " << gc1.get_map_number( {"aabb","blue"} ) << "\n";
+
+  cout << "\n\nAll done Folks!!!\n\n";
+  return 0;
+}
+\endcode
+
+\verbatim
+***********************
+      example N.17
+***********************
+
+gc --> 1
+gc --> 23
+
+
+All done Folks!
+\endverbatim
+
+
+
+
+
+
+
+
 ### Example 18
+
+\code{.cc}
+#include "GenericContainer/GenericContainerInterface_toml.hh"
+#include <iostream>
+#include <string>
+#include <chrono>
+
+using namespace GC;
+using namespace std;
+
+int
+//main( int argc, const char * argv[] ) {
+main() {
+
+  // Definizione dei tipi di tempo
+  using std::chrono::high_resolution_clock;
+  using std::chrono::duration_cast;
+  using std::chrono::milliseconds;
+
+  std::cout
+    << "\n\n\n"
+    << "***********************\n"
+    << "      example N.18     \n"
+    << "***********************\n\n";
+
+  GenericContainer gc;
+
+  std::cout << "READ TOML\n";
+  {
+    ifstream file( "examples/settings.toml" );
+    gc.from_toml( file );
+    file.close();
+  }
+  std::cout << "\n\n\nWRITE TOML\n";
+  gc.to_toml( std::cout );
+  
+  GC::GenericContainer gc_copy_from;
+  gc_copy_from["Pippo"]    = 9.0;
+  gc_copy_from["Paperino"] = 32.9;
+  gc_copy_from["Pluto"]    = 7.7;
+
+  std::cout << "Assume we have this GC to copy from:\n\n";
+  gc_copy_from.dump(std::cout);
+
+  GC::GenericContainer gc_copy_to;
+  gc_copy_to["Pippo"]                  = 3.0;
+  gc_copy_to["Paperino"]               = 2.9;
+  gc_copy_to["Pluto"]                  = 0.7;
+  gc_copy_to["KeyNotPresentInOtherGC"] = "ciao";
+
+  std::cout << "\nmerge:\n";
+  gc_copy_from.dump(std::cout);
+
+  std::cout << "\ninto:\n";
+  gc_copy_to.dump(std::cout);
+
+  std::cout << "\nresult:\n";
+  gc_copy_to.merge(gc_copy_from,"merge gc_copy_from->gc_copy_to");
+  gc_copy_to.dump(std::cout);
+
+  std::cout << "\ncopy:\n";
+  gc_copy_from.dump(std::cout);
+
+  std::cout << "\ninto:\n";
+  gc_copy_to.dump(std::cout);
+
+  std::cout << "\nresult:\n";
+  gc_copy_to = gc_copy_from;
+  gc_copy_to.dump(std::cout);
+
+  cout << "\n\nAll done Folks!!!\n\n";
+  return 0;
+}
+\endcode
+
+\verbatim
+***********************
+      example N.18
+***********************
+
+READ TOML
+
+
+
+WRITE TOML
+[ard]
+communication_mode = 'tcp'
+laps = 10
+racetrack = 'Mugello_3D'
+real_time_factor = -1.0
+synchronous = true
+
+    [ard.agent.high_level]
+    closed_loop = false
+    cycle_time_us = 50000
+    problem = 'ard_3d_vx_vy_F142MFL_Mugello_3D'
+    standalone = true
+
+        [ard.agent.high_level.mlt]
+        laps = 1.0
+
+        [ard.agent.high_level.mpc]
+        allow_non_convergence = true
+        horizon = 300.0
+        timeout_ms = 0
+        use_mlt_solution = false
+        virtual_horizon = 0.0
+
+    [ard.agent.low_level]
+    cockpit = true
+    cycle_time_us = 1000
+
+    [ard.simulator]
+    cycle_time_us = 1000
+
+[broker]
+backend_ipc = 'ipc:///tmp/broker_backend.ipc'
+backend_tcp = 'tcp://127.0.0.1:5556'
+capture_ipc = 'ipc:///tmp/broker_capture.ipc'
+capture_tcp = 'tcp://127.0.0.1:5557'
+frontend_ipc = 'ipc:///tmp/broker_frontend.ipc'
+frontend_tcp = 'tcp://127.0.0.1:5555'
+io_threads = 1
+
+[logger]
+capture_mode = 'tcp'
+mongo_db = 'ard'
+mongo_uri = 'mongodb://127.0.0.1:27017'
+plotter_tcp = 'tcp://127.0.0.1:9872'
+schemas_dir = 'third_party/DrivingSimulatorInterfaces/schemas'
+worker_threads = 1
+
+[manager]
+rcvtimeo = 1000
+sndtimeo = 1000
+
+    [manager.high_level]
+    pull = 'tcp://127.0.0.1:5559'
+    push = 'tcp://127.0.0.1:5558'
+
+    [manager.low_level]
+    pull = 'tcp://127.0.0.1:5561'
+    push = 'tcp://127.0.0.1:5560'
+
+    [manager.simulator]
+    pull = 'tcp://127.0.0.1:5563'
+    push = 'tcp://127.0.0.1:5562'
+
+[rerun]
+rerun_app_id = 'ard'
+rerun_endpoint = '127.0.0.1:9876'
+rerun_recording_id = 'ard'
+stream = trueAssume we have this GC to copy from:
+
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+merge:
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+into:
+KeyNotPresentInOtherGC: "ciao"
+Paperino: 2.9
+Pippo: 3
+Pluto: 0.7
+
+result:
+KeyNotPresentInOtherGC: "ciao"
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+copy:
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+into:
+KeyNotPresentInOtherGC: "ciao"
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+result:
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+
+All done Folks!
+\endverbatim
 
 */

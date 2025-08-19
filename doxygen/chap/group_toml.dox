@@ -1,6 +1,6 @@
 /*!
 
- \defgroup TOML GenericContainer-TOML Interface
+ \defgroup TOML GenericContainer TOML Interface
 
  \brief This module provides interface with TOML files.
 

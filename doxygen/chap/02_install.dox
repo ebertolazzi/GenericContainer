@@ -1,12 +1,12 @@
 /*!
   \page Install Installation guide
 
+  ### Compile the Library
+
   To compile the library, you'll need:
   - A C++17 compiler (e.g., GCC, Clang, or MSVC)
   - [cmake](https://cmake.org) for the compilation
   - [Rake](https://ruby.github.io/rake/), a build automation tool (optional)
-
-  ### Compile the Library
   
   #### Using cmake
   
