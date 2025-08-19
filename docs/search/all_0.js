@@ -5,6 +5,5 @@ var searchData=
   ['02_5finstall_2edox_2',['02_install.dox',['../d4/d14/02__install_8dox.html',1,'']]],
   ['03_5fusage_2edox_3',['03_usage.dox',['../da/d19/03__usage_8dox.html',1,'']]],
   ['04_5flua_2edox_4',['04_lua.dox',['../df/d6f/04__lua_8dox.html',1,'']]],
-  ['05_5fmatlab_2edox_5',['05_matlab.dox',['../d3/d9b/05__matlab_8dox.html',1,'']]],
-  ['06_5flicense_2edox_6',['06_license.dox',['../dd/d26/06__license_8dox.html',1,'']]]
+  ['05_5fmatlab_2edox_5',['05_matlab.dox',['../d3/d9b/05__matlab_8dox.html',1,'']]]
 ];
