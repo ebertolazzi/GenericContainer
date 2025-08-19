@@ -1,6 +1,7 @@
 /*!
 
-  \mainpage GenericContainer Library Documentation
+  \mainpage GenericContainer
+
   \brief Type-safe generic container for heterogeneous data in C++
 
   \author Enrico Bertolazzi

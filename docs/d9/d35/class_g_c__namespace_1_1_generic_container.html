@@ -688,7 +688,7 @@ Static Public Methods</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> class provides a flexible container for storing heterogeneous data types. </p>
 <p>This class allows storage of various data types, including primitive types (e.g., integer, floating-point), complex types, and containers like vectors and maps. It supports recursive structures where elements of the container can themselves be other <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> objects.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md117"></a>
 Supported Data Types:</h3>
 <ul>
 <li><b>Primitive types:</b><ul>
@@ -725,10 +725,10 @@ Supported Data Types:</h3>
 </li>
 </ul>
 <p>These capabilities make <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> a highly versatile container for managing mixed-type data in C++.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md118"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
-<div class="line">gc.set_integer(42);  <span class="comment">// Store an integer</span></div>
+<div class="line">gc.<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);  <span class="comment">// Store an integer</span></div>
 <div class="line">gc.<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Hello, World!&quot;</span>);  <span class="comment">// Store a string</span></div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> vec_gc;</div>
@@ -738,6 +738,7 @@ Example:</h3>
 <div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a1f050e7197d75d7e9ae2440d45dd9dc5"><div class="ttname"><a href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GC_namespace::GenericContainer::GenericContainer</a></div><div class="ttdeci">GenericContainer()</div><div class="ttdoc">Constructs a GenericContainer with an initial empty state.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:761</div></div>
 <div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a697e9ecce2fdf5cb99bdd0bb4c35f23b"><div class="ttname"><a href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">GC_namespace::GenericContainer::set_string</a></div><div class="ttdeci">string_type &amp; set_string(string_view value)</div><div class="ttdoc">Set the data type to string_type, allocate memory, and assign a string value.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:986</div></div>
 <div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a7559655d864651705fd6946c5b915d29"><div class="ttname"><a href="#a7559655d864651705fd6946c5b915d29">GC_namespace::GenericContainer::set_vector</a></div><div class="ttdeci">vector_type &amp; set_vector(unsigned sz=0)</div><div class="ttdoc">Initializes a generic vector.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:1134</div></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a7b40f3aa0b5fcf0319cee69c8be182e2"><div class="ttname"><a href="#a7b40f3aa0b5fcf0319cee69c8be182e2">GC_namespace::GenericContainer::set_int</a></div><div class="ttdeci">int_type &amp; set_int(int_type value)</div><div class="ttdoc">Set the data type to int_type and assign an integer value.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:949</div></div>
 </div><!-- fragment --> </div><a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedefs</h2>
 <a id="a335bb79ef0fdf2a57d2d664ea3e33515" name="a335bb79ef0fdf2a57d2d664ea3e33515"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a335bb79ef0fdf2a57d2d664ea3e33515">&#9670;&#160;</a></span>bool_type</h2>
@@ -1149,7 +1150,7 @@ Example:</h3>
 
 <p>Constructs a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with an initial empty state. </p>
 <p>This constructor initializes a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object with no data. The internal data type is set to <span class="tt">NOTYPE</span>, indicating that no data is currently stored in the container.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md114"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md133"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line"><span class="comment">// gc is now an empty container with no type assigned</span></div>
@@ -1181,7 +1182,7 @@ Example:</h3>
 
 <p>Destroys the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> and releases any allocated resources. </p>
 <p>This destructor ensures that any dynamically allocated memory or resources associated with the data stored in the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> are properly freed. It automatically calls the <span class="tt"><a class="el" href="#ab25f77c8b243d5716743f02c12b4091a" title="Clears the content of the GenericContainer, resetting it to an empty state.">clear()</a></span> method to ensure the object is fully cleaned up before destruction.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md115"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md134"></a>
 Example:</h3>
 <div class="fragment"><div class="line">{</div>
 <div class="line">  <a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -1644,7 +1645,7 @@ Example:</h3>
 <p>Clears the content of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>, resetting it to an empty state. </p>
 <p>This method frees any memory or resources associated with the data currently stored in the container. After calling <span class="tt"><a class="el" href="#ab25f77c8b243d5716743f02c12b4091a" title="Clears the content of the GenericContainer, resetting it to an empty state.">clear()</a></span>, the container's data type is set back to <span class="tt">NOTYPE</span>.</p>
 <p>This function is particularly useful when the container is no longer needed or when you want to reuse the same <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object for different data.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md116"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md135"></a>
 Example:</h3>
 <div class="fragment"><div class="line">gc.set_integer(42);  <span class="comment">// Store an integer</span></div>
 <div class="line">gc.clear();          <span class="comment">// Clear the container, now it is empty</span></div>
@@ -1691,6 +1692,7 @@ Example:</h3>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>to object to compare </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>message issued in case of error </td></tr>
   </table>
   </dd>
 </dl>
@@ -2190,7 +2192,7 @@ Example:</h3>
   </table>
   </dd>
 </dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md117"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md136"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a937e83bc83a06f3cbc086037c7e92103">set_map</a>();  <span class="comment">// Initialize as a map</span></div>
@@ -2297,7 +2299,7 @@ Example:</h3>
 <p>Free the pointer and reset the container to an empty state. </p>
 <p>This method deallocates any memory or resources associated with the current pointer, resets the container's type to <span class="tt">NOTYPE</span>, and returns a reference to the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> instance itself.</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> after the pointer has been freed.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md119"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md138"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#afe1caa3bd75e5facdef8cac0b5352cc0">set_pointer</a>(malloc(100));  <span class="comment">// Allocate memory and store the pointer</span></div>
@@ -3858,7 +3860,7 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md121"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md140"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a937e83bc83a06f3cbc086037c7e92103">set_map</a>();</div>
@@ -3866,7 +3868,6 @@ Example:</h3>
 <div class="line">gc[<span class="stringliteral">&quot;key2&quot;</span>].<a class="code hl_function" href="#a07035218689932cfca8040b0b3534a52">set_real</a>(3.14);</div>
 <div class="line"><span class="keywordtype">string</span> keys = gc.<a class="code hl_function" href="#a4a128b4084f57e187eeac754be70ef01">get_keys</a>();  <span class="comment">// &quot;key1, key2&quot;</span></div>
 <div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a4a128b4084f57e187eeac754be70ef01"><div class="ttname"><a href="#a4a128b4084f57e187eeac754be70ef01">GC_namespace::GenericContainer::get_keys</a></div><div class="ttdeci">void get_keys(vec_string_type &amp;keys) const</div><div class="ttdoc">Extracts the keys of the map stored in the GenericContainer into a vector of strings.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:324</div></div>
-<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a7b40f3aa0b5fcf0319cee69c8be182e2"><div class="ttname"><a href="#a7b40f3aa0b5fcf0319cee69c8be182e2">GC_namespace::GenericContainer::set_int</a></div><div class="ttdeci">int_type &amp; set_int(int_type value)</div><div class="ttdoc">Set the data type to int_type and assign an integer value.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:949</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -3899,7 +3900,7 @@ Example:</h3>
   </table>
   </dd>
 </dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md139"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a937e83bc83a06f3cbc086037c7e92103">set_map</a>();</div>
@@ -5186,7 +5187,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000012">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000017">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -5212,7 +5213,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000011">Deprecated</a></b></dt><dd></dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd></dd></dl>
 
 </div>
 </div>
@@ -6524,7 +6525,7 @@ template&lt;typename T&gt; </div>
 <p>The data stored musty be a <span class="tt">map</span>. Search the </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">`vs`</td><td>vector of string with the keys to be searched </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">where</td><td>position added to the error message </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">where</td><td>error message if fails </td></tr>
   </table>
   </dd>
 </dl>
@@ -8319,7 +8320,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000015">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data</span> </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000020">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data</span> </dd></dl>
 
 </div>
 </div>
@@ -8354,7 +8355,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000014">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data</span> </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000019">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data</span> </dd></dl>
 
 </div>
 </div>
@@ -8394,7 +8395,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000017">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data2</span> </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000022">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data2</span> </dd></dl>
 
 </div>
 </div>
@@ -8434,7 +8435,7 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000016">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data2</span> </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000021">Deprecated</a></b></dt><dd>use <span class="tt">read_formatted_data2</span> </dd></dl>
 
 </div>
 </div>
@@ -8941,7 +8942,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored boolean value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md122"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md141"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a9725806d85094fd17c37670c412309ad">set_bool</a>(<span class="keyword">true</span>);  <span class="comment">// Store a boolean value</span></div>
@@ -8973,7 +8974,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored complex value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md126"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md145"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">complex&lt;double&gt; c(1.0, 2.0);</div>
@@ -9005,13 +9006,13 @@ Example:</h3>
 <p>This method initializes the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to hold a complex number. It takes two real numbers (representing the real and imaginary components), stores the complex number, and returns a reference to the stored complex value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r</td><td>The real part of the complex number. </td></tr>
-    <tr><td class="paramname">i</td><td>The imaginary part of the complex number. </td></tr>
+    <tr><td class="paramname">re</td><td>The real part of the complex number. </td></tr>
+    <tr><td class="paramname">im</td><td>The imaginary part of the complex number. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored complex value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md127"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md146"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a947d714f1aa138e73298d4805897da5e">set_complex</a>(1.0, 2.0);  <span class="comment">// Store a complex number (1.0 + 2.0i)</span></div>
@@ -9042,7 +9043,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored integer value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md123"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md142"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);  <span class="comment">// Store an integer value</span></div>
@@ -9073,7 +9074,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored long integer value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md124"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md143"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a64fdc82d799d31e8257a7f29734d7e50">set_long</a>(123456789L);  <span class="comment">// Store a long integer value</span></div>
@@ -9128,7 +9129,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md150"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md169"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#aec96419482887cec102393fefa83277a">mat_complex_type</a> m = {{{1.0, 2.0}, {3.0, 4.0}}, {{5.0, 6.0}, {7.0, 8.0}}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9165,7 +9166,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md149"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md168"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a54ab1bde5ca3631423438e8a2286a928">set_mat_complex</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of complex numbers</span></div>
@@ -9197,7 +9198,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md144"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md163"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#addf9c141bd5852afacdf5458b15e542f">mat_int_type</a> m{{1, 2}, {3, 4}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9234,7 +9235,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md143"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md162"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#af7e0cd61280f150e0f6640208623908a">set_mat_int</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of integers</span></div>
@@ -9266,7 +9267,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md146"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md165"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a98812bcd86f0d97bf1eeaf1be6a80480">mat_long_type</a> m = {{100000L, 200000L}, {300000L, 400000L}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9303,7 +9304,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md145"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md164"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a776ec6712d6f3ef16f93a4e6cc7f1ec3">set_mat_long</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of long integers</span></div>
@@ -9335,7 +9336,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of <span class="tt"><a class="el" href="#a66af3632ff5d6b2aba12c02d59da0016" title="Alias for real (floating point) type.">real_type</a></span> numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md148"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md167"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a2e2c80f81633031c115b204df7fdc418">mat_real_type</a> m = {{1.1, 2.2}, {3.3, 4.4}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9372,7 +9373,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of <span class="tt"><a class="el" href="#a66af3632ff5d6b2aba12c02d59da0016" title="Alias for real (floating point) type.">real_type</a></span> numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md147"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md166"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a6ad656be2b8f2a83afd0f48409dafec2">set_mat_real</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of real numbers</span></div>
@@ -9404,7 +9405,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored pointer value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md118"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md137"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> x = 42;</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9436,7 +9437,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored floating-point value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md125"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md144"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a07035218689932cfca8040b0b3534a52">set_real</a>(3.14);  <span class="comment">// Store a floating-point value</span></div>
@@ -9467,7 +9468,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored string.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md128"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md147"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Hello, World!&quot;</span>);  <span class="comment">// Store a string</span></div>
@@ -9525,7 +9526,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of booleans.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md131"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md150"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a45d399ad916e9ef6649d2aa6fa1d2c79">set_vec_bool</a>(5);  <span class="comment">// Allocates a vector of 5 booleans</span></div>
@@ -9557,7 +9558,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of booleans.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md132"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md151"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a2b6f6b3805ebb8a3ebd7f6302b3f624f">vec_bool_type</a> v = {<span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9616,7 +9617,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md139"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md158"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a58def5a020d4832372b48d5e1c2092fd">set_vec_complex</a>(10);  <span class="comment">// Allocates a vector of 10 complex numbers</span></div>
@@ -9648,7 +9649,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md140"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md159"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#af71be9851e191790596ee3d941c47c46">vec_complex_type</a> v{ {1.0, 2.0}, {3.0, 4.0} };</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9707,7 +9708,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md133"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md152"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a767bc2435b705ffd676d33dee9c246bb">set_vec_int</a>(10);  <span class="comment">// Allocates a vector of 10 integers</span></div>
@@ -9739,7 +9740,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md134"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md153"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#aa4ceab2be01717c57b1402abe11f1bcd">vec_int_type</a> v{1, 2, 3};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9798,7 +9799,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md135"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md154"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a5ea3ceefc0ed15029ada214e50926b83">set_vec_long</a>(10);  <span class="comment">// Allocates a vector of 10 long integers</span></div>
@@ -9830,7 +9831,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md136"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md155"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a15b49eda5d1dcd1097bf21b6a7d85963">vec_long_type</a> v{100000L, 200000L};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9889,7 +9890,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of pointers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md129"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md148"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a368263e47851907290efd718c4853fed">set_vec_pointer</a>(10);  <span class="comment">// Allocates a vector of 10 pointers</span></div>
@@ -9921,7 +9922,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of pointers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md130"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md149"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#abf3d57ef8deefda178f9a1072ed40cbc">vec_pointer_type</a> v = {ptr1, ptr2, ptr3};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9980,7 +9981,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of real numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md137"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md156"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#ab3ef9eb8d3fe22ca46d68e183e9b479d">set_vec_real</a>(5);  <span class="comment">// Allocates a vector of 5 real numbers</span></div>
@@ -10012,7 +10013,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of <span class="tt"><a class="el" href="#a66af3632ff5d6b2aba12c02d59da0016" title="Alias for real (floating point) type.">real_type</a></span> numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md138"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md157"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a028c4cdc82b05ff544b8f5865da941d1">vec_real_type</a> v = {1.5, 2.5, 3.5};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -10071,7 +10072,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of strings.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md141"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md160"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#aa8c18d37b5df4f60a904664be3e94bec">set_vec_string</a>(5);  <span class="comment">// Allocates a vector of 5 strings</span></div>
@@ -10103,7 +10104,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of strings.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md142"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md161"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#ac520fb49a0dcff2fbaf75ecb043ac8d1">vec_string_type</a> v{<span class="stringliteral">&quot;Hello&quot;</span>, <span class="stringliteral">&quot;World&quot;</span>};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -10388,7 +10389,7 @@ Example:</h3>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000013">Deprecated</a></b></dt><dd>use <span class="tt">write_formatted_data</span> </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="../../da/d58/deprecated.html#_deprecated000018">Deprecated</a></b></dt><dd>use <span class="tt">write_formatted_data</span> </dd></dl>
 
 </div>
 </div>

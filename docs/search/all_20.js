@@ -1,14 +1,15 @@
 var searchData=
 [
-  ['yaml_0',['Converting a GenericContainer to YAML',['../d8/d2e/group___y_a_m_l.html#autotoc_md94',1,'']]],
-  ['yaml_1',['file &lt;span class=&quot;tt&quot;&gt;data2.yaml&lt;/span&gt;',['../dc/dbb/_usage.html#autotoc_md34',1,'']]],
-  ['yaml_20data_20into_20a_20genericcontainer_2',['Loading YAML Data into a GenericContainer',['../d8/d2e/group___y_a_m_l.html#autotoc_md89',1,'']]],
-  ['yaml_20file_20stream_3',['Converting to a YAML File Stream',['../d8/d2e/group___y_a_m_l.html#autotoc_md95',1,'']]],
-  ['yaml_20from_20a_20file_4',['Loading YAML from a File',['../d8/d2e/group___y_a_m_l.html#autotoc_md90',1,'']]],
-  ['yaml_20from_20a_20string_5',['Loading YAML from a String',['../d8/d2e/group___y_a_m_l.html#autotoc_md92',1,'']]],
-  ['yaml_20from_20a_20vector_20of_20strings_6',['Loading YAML from a Vector of Strings',['../d8/d2e/group___y_a_m_l.html#autotoc_md93',1,'']]],
-  ['yaml_20from_20an_20input_20stream_7',['Loading YAML from an Input Stream',['../d8/d2e/group___y_a_m_l.html#autotoc_md91',1,'']]],
-  ['yaml_20interface_8',['GenericContainer YAML Interface',['../d8/d2e/group___y_a_m_l.html',1,'']]],
-  ['yaml_5fto_5fgc_9',['YAML_to_GC',['../d8/d2e/group___y_a_m_l.html#gaeb69b1a8ba585b19ebb4950c4aa6a8db',1,'GC_namespace::YAML_to_GC(istream_type &amp;stream, GenericContainer &amp;gc)'],['../d8/d2e/group___y_a_m_l.html#gadad2fca170dcccfbd4edd61c9c20c5bf',1,'GC_namespace::YAML_to_GC(string const &amp;DATA, GenericContainer &amp;gc)']]],
-  ['your_20project_10',['Integrate into Your Project',['../df/d70/_install.html#autotoc_md9',1,'']]]
+  ['with_20lua_20global_20variables_20and_20genericcontainer_0',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md91',1,'']]],
+  ['with_20vectors_1',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md14',1,'']]],
+  ['working_20with_20lua_20global_20variables_20and_20genericcontainer_2',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md91',1,'']]],
+  ['working_20with_20vectors_3',['Example 2: Working with Vectors',['../dc/dbb/_usage.html#autotoc_md14',1,'']]],
+  ['write_4',['Write',['../dc/d2e/_quick.html#autotoc_md61',1,'']]],
+  ['write_5',['write',['../dc/d2e/_quick.html#autotoc_md53',1,'Map write'],['../dc/d2e/_quick.html#autotoc_md54',1,'Matrix write'],['../dc/d2e/_quick.html#autotoc_md46',1,'Scalars write'],['../dc/d2e/_quick.html#autotoc_md48',1,'Scalars write'],['../dc/d2e/_quick.html#autotoc_md50',1,'Vector write']]],
+  ['write_5fformatted_5fdata_6',['write_formatted_data',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#abbf75ebe2b15cc6b125a0118f30b70b7',1,'GC_namespace::GenericContainer::write_formatted_data()'],['../d3/df7/04__quick_8dox.html#ad1dd8606a714d9a3642995ff14e8c252',1,'write_formatted_data():&#160;04_quick.dox']]],
+  ['write_5ftable_7',['write_table',['../d8/d51/namespace_g_c__namespace.html#adb34d906e8b6bccf217ac35136a4f0f6',1,'GC_namespace::write_table(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)'],['../d8/d51/namespace_g_c__namespace.html#a4b4a3b32d8509066157342fdbc051ef2',1,'GC_namespace::write_table(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)']]],
+  ['write_5ftable_5fformatted_8',['write_table_formatted',['../d8/d51/namespace_g_c__namespace.html#ae514a48d2611d4d10891f6e811efc9a3',1,'GC_namespace::write_table_formatted(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream)'],['../d8/d51/namespace_g_c__namespace.html#a122012a8f0ca23a02f49d2dc508f407b',1,'GC_namespace::write_table_formatted(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream)']]],
+  ['writeformatteddata_9',['writeFormattedData',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ad38b734f6d9ba54d48ccc07eefaf34df',1,'GC_namespace::GenericContainer::writeFormattedData()'],['../d3/df7/04__quick_8dox.html#a353e7416e1c15a0526c01cc94916b9da',1,'writeFormattedData():&#160;04_quick.dox']]],
+  ['writetable_10',['writeTable',['../d8/d51/namespace_g_c__namespace.html#a785fc031ffe7df58e202320a1df062d0',1,'GC_namespace::writeTable(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)'],['../d8/d51/namespace_g_c__namespace.html#a42e8f5a719b11d5289a8b4102cc92741',1,'GC_namespace::writeTable(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream, char delimiter=&apos;\t&apos;)']]],
+  ['writetableformatted_11',['writeTableFormatted',['../d8/d51/namespace_g_c__namespace.html#ad7555973321ded648b809576e2eb5128',1,'GC_namespace::writeTableFormatted(vec_string_type const &amp;headers, vector_type const &amp;data, ostream_type &amp;stream)'],['../d8/d51/namespace_g_c__namespace.html#a14b4cdaae994249f488dba2b2181a5ef',1,'GC_namespace::writeTableFormatted(vec_string_type const &amp;headers, mat_real_type const &amp;data, ostream_type &amp;stream)']]]
 ];

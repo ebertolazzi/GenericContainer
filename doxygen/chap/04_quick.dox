@@ -1,0 +1,884 @@
+/*!
+
+\page Quick Quick Reference
+
+## Initialize GenericContainer
+
+\code{.cc}
+using string           = string;
+using bool_type        = bool;
+using int_type         = int32_t;
+using long_type        = int64_t;
+using uint_type        = uint32_t;
+using ulong_type       = uint64_t;
+using real_type        = double;
+using complex_type     = complex<real_type>;
+using string_type      = string;
+using vec_pointer_type = vector<pointer_type>;
+using vec_bool_type    = vector<bool_type>;
+using vec_int_type     = vector<int_type>;
+using vec_long_type    = vector<long_type>;
+using vec_real_type    = vector<real_type>;
+using vec_complex_type = vector<complex_type>;
+using vec_string_type  = vector<string_type>;
+using vector_type      = vector<GenericContainer>;
+using map_type         = map<string_type,GenericContainer>;
+using vec_uint_type    = vector<uint_type>;
+using vec_ulong_type   = vector<ulong_type>;
+using mat_int_type     = mat_type<int_type>;
+using mat_long_type    = mat_type<long_type>;
+using mat_real_type    = mat_type<real_type>;
+using mat_complex_type = mat_type<complex_type>;
+\endcode
+
+
+\code{.cc}
+gc.clear();          // Clears the content of the `GenericContainer`, resetting it to an empty state.
+gc.erase( "pippo" ); // Removes an item from the map stored in the `GenericContainer` by its key.
+\endcode
+
+
+\code{.cc}
+GC::vec_string_type keys;
+gc.get_keys( keys ); // Extracts the keys of the map stored in the `GenericContainer` into a vector of strings
+
+string keys = gc.get_keys(); // Extracts the keys of the map stored in the `GenericContainer` as a comma-separated string
+\endcode
+
+### ENUM
+
+This enum class defines the types that are allowed to be used in the `GenericContainer`.
+The types are categorized as simple types, vector types, matrix types, and complex types.
+
+\code{.cc}
+NOTYPE,      //!< No type assigned
+POINTER,     //!< Pointer type
+BOOL,        //!< Boolean type
+INTEGER,     //!< Integer type
+LONG,        //!< Long integer type
+REAL,        //!< Real number (floating-point) type
+COMPLEX,     //!< Complex number type
+STRING,      //!< String type
+
+// Vector types
+VEC_POINTER, //!< Vector of pointers
+VEC_BOOL,    //!< Vector of booleans
+VEC_INTEGER, //!< Vector of integers
+VEC_LONG,    //!< Vector of long integers
+VEC_REAL,    //!< Vector of real numbers
+VEC_COMPLEX, //!< Vector of complex numbers
+VEC_STRING,  //!< Vector of strings
+
+// Matrix types
+MAT_INTEGER, //!< Matrix of integers
+MAT_LONG,    //!< Matrix of long integers
+MAT_REAL,    //!< Matrix of real numbers
+MAT_COMPLEX, //!< Matrix of complex numbers
+
+// Complex types
+VECTOR,      //!< Vector container
+MAP          //!< Map (key-value container)
+\endcode
+
+
+\code{.cc}
+
+TypeAllowed t = gc.get_type();
+
+string s = gc.get_type_name(); // Return a string representing the type of data stored.
+
+gc.info( std::cout ); // Print information about the kind of data stored to a stream.
+
+string res = gc.info(); // Print information about the kind of data stored as a string.
+
+unsigned ne = gc.get_num_elements(); // Return the number of elements in the first level of the generic container.
+                                     // For scalar elements (e.g., boolean, integer, double), it returns 1.
+                                     // For vector types, it returns the size of the vector.
+                                     // For maps, it returns the number of keys.
+
+unsigned nr = gc.num_rows(); // Return the number of rows in the internally stored matrix. Return 1 for scalar.
+
+unsigned nr = gc.num_cols(); // Return the number of columns in the internally stored matrix. Return 1 for scalar.
+
+\endcode
+
+## Scalars write
+
+\code{.cc}
+GenericContainer gc;
+gc = 12;
+gc.set_int(1);
+gc.set_long(1);
+
+\endcode
+
+
+\code{.cc}
+gc.set(  value ); // value can be bool, int, double etc.
+\endcode
+
+
+
+
+## Matrix
+
+\code{.cc}
+GC::mat_type m;
+
+m.resize( num_row, num_col );
+
+vector<double> C; 
+m.get_column( nc, C ); // Copy the specified column of the matrix to a vector.
+
+vector<double> R; 
+m.get_row( nr, R ); // Copy the specified row of the matrix to a vector.
+
+unsigned rows = m.num_rows();
+unsigned cols = m.num_cols();
+
+unsigned i=0, j=1;
+double mij = m(i,j); // Provides constant access to the element at position (i, j).
+
+m.info( std::cout );
+
+string res = m.info();
+
+double * ptr = m.data();
+\endcode
+
+## Scalars write
+
+\code{.cc}
+int a{1};
+gc.set_pointer( & a ); // Set the data type to `pointer_type` and assign a value
+
+gc.free_pointer(); // Free the pointer and reset the container to an empty state.
+\endcode
+
+\code{.cc}
+gc.set_bool( true );  // Set the data type to `bool_type` and assign a boolean value.
+gc.set_int( 12 );     // Set the data type to `int_type` and assign an integer value.
+gc.set_long( 2345 );  // Set the data type to `long_type` and assign a long integer value.
+gc.set_real( 12.34 ); // Set the data type to `real_type` and assign a floating-point value.
+
+GC::complex_type c(2,3.4);
+gc.set_complex( c ); // Set the data type to `complex_type` and assign a complex value.
+
+GC::real_type re{1.2}, im{2.1} 
+gc.set_complex( re, im );
+
+gc.set_string( "pippo" ); // Set the data type to `string_type`, allocate memory, and assign a string value.
+
+
+\endcode
+
+## Scalars read
+
+\code{.cc}
+
+GC::real_type res = gc.get_number( "message if fail" ); // Get a stored numeric value if the data is boolean, integer, or real type.
+
+GC::complex_type res = gc.get_complex_number( "message if fail" ); // Get a stored complex number if the data is boolean, integer, real, or complex type.
+
+real_type re, im;
+GC::complex_type res = gc.get_complex_number( re, im ); // Get a stored complex number if the data is boolean, integer, real, or complex type.
+
+void * p = gc.get_pvoid( "message if fail" ); // Return the stored data as a generic pointer.
+
+void ** p = gc.get_ppvoid( "message if fail" ); // Return the stored data as a generic double pointer.
+
+int_type * p = gc.get_int_pointer(); // Return the stored data as a pointer to integer
+
+long_type * p = gc.get_long_pointer(); // Return the stored data as a pointer to long
+
+real_type * p = gc.get_real_pointer(); // Return the stored data as a pointer to real_type.
+
+complex_type * p = gc.get_complex_pointer(); // Return the stored data as a pointer to complex_type.
+\endcode
+
+\code{.cc}
+int    res1;
+double res2;
+long   res3;
+gc1.get_value<int>   ( res1, "message if fail" ); // Get the stored value.
+gc2.get_value<double>( res2, "message if fail" ); // Get the stored value.
+gc3.get_value<long>  ( res3, "message if fail" ); // Get the stored value.
+\endcode
+
+\code{.cc}
+int    res1;
+double res2;
+long   res3;
+int    * res1 = gc1.get_pointer<int>   ( res1, "message if fail" ); // Get the stored value.
+double * res2 = gc2.get_pointer<double>( res2, "message if fail" ); // Get the stored value.
+long   * res3 = gc3.get_pointer<int>   ( res3, "message if fail" ); // Get the stored value.
+\endcode
+
+
+\code{.cc}
+bool_type res = gc.get_bool( "message if fail" ); // Get the stored value as a boolean.
+int_type  res = gc.get_int( "message if fail" );  // Get the stored value as an integer.
+long_type res = gc.get_long( "message if fail" );  // Get the stored value as a long integer.
+
+int_type   res = gc.get_as_int( "message if fail" );  // Get the stored value that can bve converted as an integer.
+uint_type  res = gc.get_as_uint( "message if fail" );
+long_type  res = gc.get_as_long( "message if fail" );
+ulong_type res = gc.get_as_ulong( "message if fail" );
+
+real_type    res = gc.get_real( "message if fail" );
+complex_type res = gc.get_complex( "message if fail" );
+string_type  res = gc.get_string( "message if fail" );
+\endcode
+
+
+## Vector write
+
+\code{.cc}
+gc.set_vector( 200 ); // Initializes a vector of GenericContainer of 200 elements
+\endcode
+
+
+\code{.cc}
+gc.set_vec_pointer( 100 ); // Set the data to `vec_pointer_type`, allocate and initialize.
+
+vec_pointer_type v;
+gc.set_vec_pointer( v ); // SSet the data to `vec_pointer_type` by copying from another vector.
+
+gc.set_vec_bool( 100 );  // Set the data to `vec_bool_type`, allocate and initialize.
+
+vec_bool_type v;
+gc.set_vec_bool( v ); // Set the data to `vec_bool_type` by copying from another vector
+
+gc.set_vec_int( 100 ); // Set the data to `vec_int_type`, allocate and initialize.
+
+vec_int_type v;
+gc.set_vec_int( v ); // Set the data to `vec_int_type` by copying from another vector.
+
+gc.set_vec_long( 100 ); // Set the data to `vec_long_type`, allocate and initialize.
+
+vec_long_type v;
+gc.set_vec_long( v ); // Set the data to `vec_long_type` by copying from another vector.
+
+gc.set_vec_real( 100 );
+
+vec_real_type v;
+gc.set_vec_real( v ); // Set the data to `vec_real_type` by copying from another vector.
+
+gc.set_vec_complex( 100 ); // Set the data to `vec_complex_type`, allocate and initialize.
+
+vec_complex_type v;
+gc.set_vec_complex( v ); // Set the data to `vec_complex_type` by copying from another vector.
+
+gc.set_vec_string( 100 );
+
+vec_string_type v;
+gc.set_vec_string( v ); // Set the data to `vec_string_type` by copying from another vector.
+\endcode
+
+### Push
+
+\code{.cc}
+gc.push_bool( true ); // Add a boolean value to `vec_bool_type` or a general `vector_type`.
+
+gc.push_int( 23 );   // Add an integer value to `vec_int_type` or a general `vector_type`.
+
+gc.push_long( 2345678998 ); // Add a long integer value to `vec_long_type` or a general `vector_type`.
+
+gc.push_real( 12.34 ); // Add a real number to `vec_real_type` or a general `vector_type`.
+
+complex_type c;
+gc.push_complex( c ); // Add a complex number to `vec_complex_type` or a general `vector_type`.
+
+gc.push_complex( 23.0, 34.0 ); // Add a complex number to `vec_complex_type` or a general `vector_type`.
+
+gc.push_string("pippo"); // Add a string to `vec_string_type` or a general `vector_type`.
+\endcode
+
+
+## Vector read
+
+\code{.cc}
+vector_type      & res = gc.get_vector( "message if fail" ); // Get the stored value as a vector of `GenericoContainer`
+vec_pointer_type & res = gc.get_vec_pointer( "message if fail" );
+vec_bool_type    & res = gc.get_vec_bool( "message if fail" );
+vec_int_type     & res = gc.get_vec_int( "message if fail" );
+vec_long_type    & res = gc.get_vec_long( "message if fail" );
+vec_real_type    & res = gc.get_vec_real( "message if fail" );
+vec_complex_type & res = gc.get_vec_complex( "message if fail" );
+vec_string_type  & res = gc.get_vec_string( "message if fail" );
+\endcode
+
+
+\code{.cc}
+integer i{ 2 };
+GenericContainer & GC = gc[i];                   // Get the `i`-th `GenericContainer` of the stored data, create if not exixts.
+GenericContainer & GC = gc(i,"message if fail"); // Get the `i`-th `GenericContainer` of the stored data.
+\endcode
+
+
+## Map write
+
+\code{.cc}
+map_type & m = gc.set_map(); // Initializes a map of GenericContainer.
+\endcode
+
+\code{.cc}
+GenericContainer & GC = gc["key"]; // create GenericContainer if key do not exists
+GenericContainer & GC = gc("key", "message if fail" );
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+GenericContainer & GC = gc(keys, "message if fail" );
+
+## Map read
+
+\code{.cc}
+map_type & m = gc.get_map( "message if fail" ); // Get the stored data as a map of `GenericContainer`.
+\endcode
+
+\code{.cc}
+bool_type res = gc.get_map_bool( "key", "message if fail" ); // Get the stored value in the map as boolean.
+
+bool_type res = gc.get_map_bool( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_bool();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+bool_type res = gc.get_map_bool( keys, , "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_bool("message if fail");
+\endcode
+
+
+\code{.cc}
+int_type res = gc.get_map_int( "key", "message if fail" ); // Get the stored value in the map as integer.
+
+int_type res = gc.get_map_int( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_bool();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+int_type res = gc.get_map_int( keys, , "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_int("message if fail");
+\endcode
+
+
+\code{.cc}
+real_type res = gc.get_map_number( "key", "message if fail" ); // Get the stored value in the map as real number.
+
+real_type res = gc.get_map_int( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_number();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+real_type res = gc.get_map_number( keys, , "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_int("message if fail");
+\endcode
+
+\code{.cc}
+string res = gc.get_map_string( "key", "message if fail" ); // Get the stored value in the map as string.
+
+string res = gc.get_map_int( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_string();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+string res = gc.get_map_string( keys, , "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_string("message if fail");
+\endcode
+
+
+\code{.cc}
+vec_real_type const & res = gc.get_map_vec_real( "key", "message if fail" ); // Get the stored value in the map as vector of reals.
+
+vec_real_type const & res = gc.get_map_vec_real( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_vec_real();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+vec_real_type const & res = gc.get_map_vec_real( keys, "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_vec_real("message if fail");
+\endcode
+
+\code{.cc}
+vec_complex_type const & res = gc.get_map_vec_complex( "key", "message if fail" ); // Get the stored value in the map as vector of complex number.
+
+vec_complex_type const & res = gc.get_map_vec_complex( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_vec_real();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+vec_complex_type const & res = gc.get_map_vec_complex( keys, , "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_vec_real("message if fail");
+\endcode
+
+\code{.cc}
+vec_string_type const & res = gc.get_map_vec_string( "key", "message if fail" ); // Get the stored value in the map as vector of strings.
+
+vec_complex_type const & res = gc.get_map_vec_string( std::initializer_list<string>{"pippo","pluto"});
+// equivalent to: bool_type res = gc("pippo")("pluto").get_vec_real();
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+vec_string_type const & res = gc.get_map_vec_string( keys, "message if fail" );
+// equivalent to: bool_type res = gc("pippo")("pluto").get_vec_real("message if fail");
+\endcode
+
+
+## Matrix write
+
+\code{.cc}
+unsigned nr{2}, nc{3};
+gc.set_mat_int( nr, nc ); // Set the data to `mat_int_type`, allocate and initialize.
+
+mat_int_type m;
+gc.set_mat_int( m ); // Set the data to `mat_int_type` by copying from another matrix.
+
+gc.set_mat_long( nr, nc ); // Set the data to `mat_long_type`, allocate and initialize.
+
+mat_long_type m;
+gc.set_mat_long( m ); // Set the data to `mat_long_type` by copying from another matrix.
+
+gc.set_mat_real( nr, nc ); // Set the data to `mat_real_type`, allocate and initialize.
+
+mat_real_type m;
+gc.set_mat_real( m ); // Set the data to `mat_real_type` by copying from another matrix.
+
+gc.set_mat_complex( nr, nc ); // Set the data to `mat_complex_type`, allocate and initialize.
+
+mat_complex_type m;
+gc.set_mat_complex( m ); // Set the data to `mat_complex_type` by copying from another matrix.
+\endcode
+
+## Matrix read
+
+\code{.cc}
+mat_int_type     & m = gc.get_mat_int( "message if fail" ); // Get the stored value as a matrix of integers
+mat_long_type    & m = gc.get_mat_long( "message if fail" );
+mat_real_type    & m = gc.get_mat_real( "message if fail" );
+mat_complex_type & m = gc.get_mat_complex( "message if fail" );
+\endcode
+
+
+
+## Conversion
+
+
+\code{.cc}
+vec_int_type v;
+gc.copyto_vec_int( v, "message if fail" );
+
+vec_uint_type v;
+gc.copyto_vec_uint( v, "message if fail" );
+
+vec_long_type v;
+gc.copyto_vec_long( v, "message if fail" );
+
+vec_ulong_type v;
+gc.copyto_vec_ulong( v, "message if fail" );
+
+vec_real_type v;
+gc.copyto_vec_real( v, "message if fail" );
+
+vec_complex_type v;
+gc.copyto_vec_complex( v, "message if fail" );
+
+vec_string_type v;
+gc.copyto_vec_string( v, "message if fail" );
+\endcode
+
+\code{.cc}
+mat_int_type m;
+gc.copyto_mat_int( m, "message if fail" );
+
+mat_long_type m;
+gc.copyto_mat_long( m, "message if fail" );
+
+mat_real_type m;
+gc.copyto_mat_real( m, "message if fail" );
+
+mat_complex_type m;
+gc.copyto_mat_complex( m, "message if fail" );
+
+\endcode
+
+## get at position
+
+\code{.cc}
+integer i;
+real_type res = gc.get_number_at( i, "message if fail" );
+
+complex_type res = gc.get_complex_number_at( i, "message if fail" );
+
+complex_type re, im;
+gc.get_complex_number_at( i, re, im, "message if fail" );
+
+int * ip = gc.get_pointer_at<int>( i );
+
+bool_type    res = gc.get_bool_at( i, "message if fail" );
+int_type     res = gc.get_int_at( i, "message if fail" );
+long_type    res = gc.get_long_at( i, "message if fail" );
+real_type    res = gc.get_real_at( i, "message if fail" );
+complex_type res = gc.get_complex_at( i, "message if fail" );
+string       res = gc.get_string_at( i, "message if fail" );
+
+int_type     res = gc.get_int_at( i, j, "message if fail" );
+long_type    res = gc.get_long_at( i, j, "message if fail" );
+real_type    res = gc.get_real_at( i, j, "message if fail" );
+complex_type res = gc.get_complex_at( i, j, "message if fail" );
+
+GC::GenericContainer GC = gc.get_gc_at( i, "message if fail" );
+
+\endcode
+
+## promotion
+
+\code{.cc}
+gc.promote_to_int();
+gc.promote_to_long();
+gc.promote_to_real();
+gc.promote_to_complex();
+gc.promote_to_vec_int();
+gc.promote_to_vec_long();
+gc.promote_to_vec_real();
+gc.promote_to_vec_complex();
+gc.promote_to_mat_int();
+gc.promote_to_mat_long();
+gc.promote_to_mat_real();
+gc.promote_to_mat_complex();
+gc.promote_to_vector();
+\endcode
+
+
+## Check
+
+\code{.cc}
+
+bool ok = gc.exists( "key" ); // true if is a map and the key exists.
+
+vec_string_type keys;
+keys.push_back("pippo");
+keys.push_back("pluto");
+bool ok = gc.exists( keys ); // true if is a map and any of the keys exists.
+
+string key = gc.must_exists( keys, "message if fail" ); // return founded key
+
+
+bool ok = get_if_exists( "key", value ); // value any of bool, int, etc
+bool ok = get_if_exists( keys, value ); // value any of bool, int, etc
+
+
+## print and copy
+
+\code{.cc}
+
+// print content of gc
+gc.dump( std::cout );
+gc.print( std::cout ); // alias of dump
+
+// print content of gc without values
+gc.print_content_types( std::cout );
+
+// return a string with the first difference found, if the string is empty the containers are identical.
+string diff = gc.compare_content( gc1, "message if fail" );
+
+gc.to_gc(gc1);   // Copy the contents of gc int gc1
+gc.from_gc(gc1); // Copy the contents of gc1 int gc
+gc.merge(gc1);   // make a union of gc and gc1
+
+\endcode
+
+
+
+
+
+## Serialization
+
+\code{.cc}
+int32_t gc.mem_size(); // Returns the size, in bytes, required to store the serialized version of the GenericContainer.
+\endcode
+
+\code{.cc}
+int32_t buffer_dim{10000};
+uint8_t bugger[buffer_dim];
+int32_t byte_written = gc.serialize( buffer_dim, buffer ); // Serializes the GenericContainer into the provided buffer.
+\endcode
+
+\code{.cc}
+vector<uint8_t> buffer(10000); 
+int32_t byte_written = gc.serialize( buffer ); // Serializes the GenericContainer into the provided vector buffer.
+\endcode
+
+\code{.cc}
+int32_t buffer_dim{10000};
+uint8_t bugger[buffer_dim];
+int32_t byte_readed = de_serialize( buffer_dim, buffer ); // Deserializes the GenericContainer from the provided buffer.
+\endcode
+
+\code{.cc}
+vector<uint8_t> buffer(10000); 
+int32_t byte_readed = de_serialize( buffer ); // Deserializes the GenericContainer from the provided vector buffer.
+\endcode 
+
+
+## Write
+
+\code{.cc}
+
+vec_string_type headers;
+vector_type     data;
+gc.write_table( headers, data, std::cout, '\t' );
+
+mat_real_type   mat;
+gc.write_table( headers, mat, std::cout, '\t' );
+\endcode
+
+## I/O
+
+\code{.cc}
+
+bool ok = gc.from_file( "file.json" ); // Read the contents of stream from a file (YAML,JSON or TOML)
+
+ofstream file("out.yaml);
+gc.to_yaml( file ); // Print the contents of the object in YAML syntax
+file.close();
+
+string yaml = gc.to_yaml();
+
+ifstream file("in.yaml);
+bool ok = gc.from_yaml( file ); // Read the contents of stream in YAML syntax
+file.close();
+
+string data = "....";
+bool ok = gc.from_yaml( data );
+\endcode
+
+
+\code{.cc}
+ofstream file("out.json);
+gc.to_json( file ); // Print the contents of the object in JSON syntax
+file.close();
+
+string json = gc.to_json();
+
+ifstream file("in.json);
+bool ok = gc.from_json( file ); // Read the contents of stream in JSON syntax
+file.close();
+
+string data = "....";
+bool ok = gc.from_json( data ); 
+\endcode
+
+
+\code{.cc}
+ofstream file("out.toml);
+gc.to_toml( file ); // Print the contents of the object in TOML syntax
+file.close();
+
+string toml = gc.to_toml();
+
+ifstream file("in.toml);
+bool ok = gc.from_toml( file ); // Read the contents of stream in TOML syntax
+file.close();
+
+string data = "....";
+bool ok = gc.from_toml( data ); 
+\endcode
+
+*/
+
+
+    //!
+    //! Collapse heterogeneous vectors into a unified type.
+    //! Attempts to collapse nested vectors into a matrix when possible.
+    //!
+    void collapse();
+
+    //!
+    //! Write `GenericContainer` as regular formatted data to stream.
+    //!
+    //! `GenericContainer` must be a map which contains the fields:
+    //!
+    //! - "headers" this element must be a `vec_string_type` which contains
+    //!             the strings of the headers of the columns of the data
+    //!
+    //! - "data"    this element must be a `vector_type` which contais the
+    //!             vectors which are the columns of the data to be saved.
+    //!             Each column can be of type
+    //!
+    //!             1. `vec_bool_type`
+    //!             2. `vec_int_type`
+    //!             3. `vec_real_type`
+    //!
+    //!             all the vector must have the same size.
+    //!
+    //! \param stream     stream to write the output
+    //! \param delimiter  desired delimiter (optional). Default is tab.
+    //!
+    GenericContainer const &
+    write_formatted_data( ostream_type & stream, char const delimiter = '\t' ) const;
+
+    //!
+    //! \deprecated use `write_formatted_data`
+    //!
+    GenericContainer const &
+    writeFormattedData( ostream_type & stream, char const delimiter = '\t' ) const {
+      return this->write_formatted_data( stream, delimiter );
+    }
+
+    //!
+    //! Read regular formatted data from `stream` to `GenericContainer`.
+    //!
+    //! After successful read `GenericContainer` will be a map
+    //! which contains the fields:
+    //!
+    //! - "headers"  a `vec_string_type` which contains
+    //!              the strings of the headers of the columns of the data
+    //!
+    //! - "data"     a `vector_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
+    //!
+    //! \param stream       stream to write the output
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
+    //!                     Default are `#` and `%`
+    //! \param delimiters   characters used as delimiter for headers
+    //!
+    GenericContainer &
+    read_formatted_data(
+      istream_type & stream,
+      char const commentChars[] = "#%",
+      char const delimiters[]   = " \t"
+    );
+
+    //!
+    //! \deprecated use `read_formatted_data`
+    //!
+    GenericContainer &
+    readFormattedData(
+      istream_type & stream,
+      char const commentChars[] = "#%",
+      char const delimiters[]   = " \t"
+    ) {
+      return read_formatted_data( stream, commentChars, delimiters );
+    }
+
+    //!
+    //! Read regular formatted data from file `fname` to `GenericContainer`.
+    //!
+    //! After successful read `GenericContainer` will be a map which contains the fields:
+    //!
+    //! - "headers"  a `vec_string_type` which contains
+    //!              the strings of the headers of the columns of the data
+    //!
+    //! - "data"     a `vector_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
+    //!
+    //! \param fname        file name to be read
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
+    //!                     Default are `#` and `%`
+    //! \param delimiters   characters used as delimiter for headers
+    //!
+    GenericContainer &
+    read_formatted_data(
+      char const fname[],
+      char const commentChars[] = "#%",
+      char const delimiters[]   = " \t"
+    );
+
+    //!
+    //! \deprecated use `read_formatted_data`
+    //!
+    GenericContainer &
+    readFormattedData(
+      char const fname[],
+      char const commentChars[] = "#%",
+      char const delimiters[]   = " \t"
+    ) {
+      return read_formatted_data( fname, commentChars, delimiters );
+    }
+
+    //!
+    //! Read regular formatted data from `stream` to `GenericContainer`.
+    //!
+    //! After successful read `GenericContainer` will be a map
+    //! which contains the fields:
+    //!
+    //! - "headers"  a `vec_string_type` which contains
+    //!              the strings of the headers of the columns of the data
+    //!
+    //! - "data"     a `map_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
+    //!
+    //! \param stream       stream to write the output
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
+    //!                     Default are `#` and `%`
+    //! \param delimiters   characters used as delimiter for headers
+    //! \param ptr_pars     pointer to a `GenericContainer` which store poarameter parsed in the comment part of the file
+    //!
+    GenericContainer &
+    read_formatted_data2(
+      istream_type   & stream,
+      char const       commentChars[] = "#%",
+      char const       delimiters[]   = " \t",
+      GenericContainer ptr_pars[]     = nullptr
+    );
+
+    //!
+    //! \deprecated use `read_formatted_data2`
+    //!
+    GenericContainer &
+    readFormattedData2(
+      istream_type   & stream,
+      char const       commentChars[] = "#%",
+      char const       delimiters[]   = " \t",
+      GenericContainer ptr_pars[]     = nullptr
+    ) {
+      return read_formatted_data2( stream, commentChars, delimiters, ptr_pars );
+    }
+
+    //!
+    //! Read regular formatted data from file `fname` to `GenericContainer`.
+    //!
+    //! After successful read `GenericContainer` will be a map which contains the fields:
+    //!
+    //! - "headers"  a `vec_string_type` which contains
+    //!              the strings of the headers of the columns of the data
+    //!
+    //! - "data"     a `map_type` which contains the vectors which are the
+    //!              columns of the data red of type `vec_real_type`.
+    //!
+    //! \param fname        file name to be read
+    //! \param commentChars lines beginning with one of this chars are treated as comments.
+    //!                     Default are `#` and `%`
+    //! \param delimiters   characters used as delimiter for headers
+    //! \param ptr_pars     pointer to a `GenericContainer` which store the parameter parsed in the comment part of the file
+    //!
+    GenericContainer &
+    read_formatted_data2(
+      char const       fname[],
+      char const       commentChars[] = "#%",
+      char const       delimiters[]   = " \t",
+      GenericContainer ptr_pars[]     = nullptr
+    );
+
+    //!
+    //! \deprecated use `read_formatted_data2`
+    //!
+    GenericContainer &
+    readFormattedData2(
+      char const       fname[],
+      char const       commentChars[] = "#%",
+      char const       delimiters[]   = " \t",
+      GenericContainer ptr_pars[]     = nullptr
+    ) {
+      return read_formatted_data2( fname, commentChars, delimiters, ptr_pars );
+    }
+    ///@}
+

@@ -219,7 +219,7 @@ namespace GC_namespace {
     }
 
     //!
-    //! Copies the specified column of the matrix to a vector.
+    //! Copy the specified column of the matrix to a vector.
     //!
     //! \param nc The index of the column to be copied (0-based).
     //! \param C The vector that will be filled with the column elements.
@@ -248,7 +248,7 @@ namespace GC_namespace {
     { this->get_column( nc, C ); }
 
     //!
-    //! Copies the specified row of the matrix to a vector.
+    //! Copy the specified row of the matrix to a vector.
     //!
     //! \param nr The index of the row to be copied (0-based).
     //! \param R The vector that will be filled with the row elements.
@@ -603,7 +603,7 @@ namespace GC_namespace {
   //! ### Example:
   //! \code
   //! GenericContainer gc;
-  //! gc.set_integer(42);  // Store an integer
+  //! gc.set_int(42);  // Store an integer
   //! gc.set_string("Hello, World!");  // Store a string
   //!
   //! GenericContainer vec_gc;
@@ -992,9 +992,9 @@ namespace GC_namespace {
     //! (representing the real and imaginary components), stores the complex number, and returns a reference
     //! to the stored complex value.
     //!
-    //! \param r The real part of the complex number.
-    //! \param i The imaginary part of the complex number.
-    //! \return A reference to the stored complex value.
+    //! \param re The real part of the complex number.
+    //! \param im The imaginary part of the complex number.
+    //! \return   A reference to the stored complex value.
     //!
     //! ### Example:
     //! \code
@@ -3980,7 +3980,7 @@ namespace GC_namespace {
     //! The data stored musty be a `map`.
     //! Search the
     //! \param[in] `vs` vector of string with the keys to be searched
-    //! \param[in]  where position added to the error message
+    //! \param[in]  where error message if fails
     //!
     string must_exists( vec_string_type const & vs, string_view const where ) const;
 
@@ -4099,7 +4099,8 @@ namespace GC_namespace {
     //!
     //! Compare the contents of the object with `gc`
     //!
-    //! \param[in] gc to object to compare
+    //! \param[in] gc   to object to compare
+    //! \param[in] from message issued in case of error
     //! \return a string with the first difference found, if the string is empty the containers are identical.
     //!
     string

@@ -1,14 +1,14 @@
 /*!
   \page Install Installation guide
 
-  ### Compile the Library
+  ## Compile the Library
 
   To compile the library, you'll need:
   - A C++17 compiler (e.g., GCC, Clang, or MSVC)
   - [cmake](https://cmake.org) for the compilation
   - [Rake](https://ruby.github.io/rake/), a build automation tool (optional)
   
-  #### Using cmake
+  ### Using cmake
   
   Open a terminal in the project's root directory and run the following command:
 
@@ -58,7 +58,7 @@
   make test
   \endcode
   
-  #### Using rake + cmake
+  ### Using rake + cmake
 
   Open a terminal in the project's root directory and run the following command:
 
@@ -74,7 +74,7 @@
   rake build_win   # compile for WINDOWS
   \endcode
 
-  ### check the library
+  ## check the library
 
   To run the tests
 
@@ -83,7 +83,7 @@
   rake run_win   # for windows
   \endcode
 
-  ### Integrate into Your Project
+  ## Integrate into Your Project
 
   - **Include Headers**: Add the `include/` directory to your project's include path.
     \code{.bash}

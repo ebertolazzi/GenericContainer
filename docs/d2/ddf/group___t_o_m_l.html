@@ -182,14 +182,14 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <p>This module provides interface with TOML files. </p>
 <p>The <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> (GC) module offers a flexible container for storing various data types such as booleans, integers, floating-point numbers, complex numbers, and strings. It also supports structured data types such as vectors and maps. The C++ interface allows for seamless interaction with the container, enabling users to perform operations like adding elements, retrieving data, and managing hierarchical structures.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
 Overview</h2>
 <p>This tutorial explains how to use the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> TOML interface for converting between TOML data and the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object.</p>
 <p>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> is a flexible structure that can store various data types like booleans, integers, floating-point numbers, complex numbers, strings, vectors, and maps. The interface provides multiple ways to convert TOML files, streams, or strings into <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> objects and vice versa.</p>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md100"></a>
 Loading TOML Data into a GenericContainer</h2>
 <p>There are several ways to load TOML data into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
 Loading TOML from a File</h3>
 <p>The <span class="tt">file_TOML_to_GC</span> function reads TOML data from a file and populates a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. This is useful for handling configuration files or other data stored in TOML format.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#ga3ea6e1a2ce20dc535b889b4ebc4e5936">file_TOML_to_GC</a>( std::string <span class="keyword">const</span> &amp; file_name_TOML, GenericContainer &amp; gc );</div>
@@ -203,7 +203,7 @@ Loading TOML from a File</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load TOML file.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
 Loading TOML from an Input Stream</h3>
 <p>The <span class="tt">TOML_to_GC</span> function allows loading TOML data from an input stream, such as a file stream or a string stream.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gab7d007e1bd923171902d6dc06801fc51">TOML_to_GC</a>( <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp; file_TOML, GenericContainer &amp; gc );</div>
@@ -217,7 +217,7 @@ Loading TOML from an Input Stream</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load TOML stream.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md103"></a>
 Loading TOML from a String</h3>
 <p>You can convert a TOML string directly into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">TOML_to_GC</span> function.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gab7d007e1bd923171902d6dc06801fc51">TOML_to_GC</a>( std::string <span class="keyword">const</span> &amp; TOML, GenericContainer &amp; gc );</div>
@@ -236,7 +236,7 @@ Loading TOML from a String</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load TOML string.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
 Loading TOML from a Vector of Strings</h3>
 <p>If you have multiple TOML strings in a vector, you can load them into a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> using the <span class="tt">TOML_to_GC</span> function.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="#gab7d007e1bd923171902d6dc06801fc51">TOML_to_GC</a>( std::vector&lt;std::string&gt; <span class="keyword">const</span> &amp; TOML, GenericContainer &amp; gc );</div>
@@ -252,10 +252,10 @@ Loading TOML from a Vector of Strings</h3>
 <div class="line">} <span class="keywordflow">else</span> {</div>
 <div class="line">  std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load TOML fragments.&quot;</span> &lt;&lt; std::endl;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md105"></a>
 Converting a GenericContainer to TOML</h2>
 <p>You can also convert a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> back to TOML format.</p>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md106"></a>
 Converting to a TOML File Stream</h3>
 <p>You can write the contents of a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> to an output stream (e.g., a file) in TOML format using the <span class="tt">GC_to_TOML</span> function.</p>
 <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#gacdde28e58ddbd4c0a55466ba33d32376">GC_to_TOML</a>( GenericContainer <span class="keyword">const</span> &amp; gc, <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp; file_TOML );</div>

@@ -167,15 +167,15 @@ $(function(){initNavTree('df/d70/_install.html','../../',''); });
   <div class="headertitle"><div class="title">Installation guide </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h3 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-Compile the Library</h3>
+<div class="textblock"><h2 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
+Compile the Library</h2>
 <p>To compile the library, you'll need:</p><ul>
 <li>A C++17 compiler (e.g., GCC, Clang, or MSVC)</li>
 <li><a href="https://cmake.org">cmake</a> for the compilation</li>
 <li><a href="https://ruby.github.io/rake/">Rake</a>, a build automation tool (optional)</li>
 </ul>
-<h4 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-Using cmake</h4>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
+Using cmake</h3>
 <p>Open a terminal in the project's root directory and run the following command:</p>
 <div class="fragment"><div class="line">mkdir build</div>
 <div class="line">cd build</div>
@@ -211,21 +211,21 @@ Using cmake</h4>
 </div><!-- fragment --><p>which is the statiuc and dynamic libraries and its headers.</p>
 <p>To test the libray do</p>
 <div class="fragment"><div class="line">make test</div>
-</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
-Using rake + cmake</h4>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md7"></a>
+Using rake + cmake</h3>
 <p>Open a terminal in the project's root directory and run the following command:</p>
 <div class="fragment"><div class="line">rake</div>
 </div><!-- fragment --><p>or if the OS is not detected correctly</p>
 <div class="fragment"><div class="line">rake build_osx   # compile for OSX</div>
 <div class="line">rake build_linux # compile for linux</div>
 <div class="line">rake build_win   # compile for WINDOWS</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
-check the library</h3>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+check the library</h2>
 <p>To run the tests</p>
 <div class="fragment"><div class="line">rake run       # for linux/OSX</div>
 <div class="line">rake run_win   # for windows</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
-Integrate into Your Project</h3>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Integrate into Your Project</h2>
 <ul>
 <li><b>Include Headers</b>: Add the <span class="tt">include/</span> directory to your project's include path. <div class="fragment"><div class="line">g++ -I/path/to/lib/include your_project.cpp -o your_project</div>
 </div><!-- fragment --></li>
