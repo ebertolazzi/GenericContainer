@@ -1,6 +1,6 @@
 /*!
 
- \defgroup YAML GenericContainer-YAML Interface
+ \defgroup YAML GenericContainer YAML Interface
 
  \brief This module provides interface with YAML files.
 

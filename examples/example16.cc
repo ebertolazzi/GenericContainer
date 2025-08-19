@@ -86,7 +86,7 @@ main() {
   //std::cout << "GC2\n";
   //gc2.print(cout);
 
-  cout << "\n\nAll done Folks!!!\n\n";
+  cout << "\n\nAll done Folks!\n\n";
   return 0;
 }
 

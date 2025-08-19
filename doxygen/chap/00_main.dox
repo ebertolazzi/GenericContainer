@@ -1,24 +1,16 @@
 /*!
 
- \mainpage GenericContainer
+  \mainpage GenericContainer Library Documentation
+  \brief Type-safe generic container for heterogeneous data in C++
 
- \author Enrico Bertolazzi
+  \author Enrico Bertolazzi
+  \n Dipartimento di Ingegneria Industriale
+  \n Università degli Studi di Trento
+  \n \b Contact: [Personal Homepage](https://e.bertolazzi.dii.unitn.it)
+  \n \b Repositoy: [Github repository](https://github.com/ebertolazzi/GenericContainer)
 
- - Dipartimento di Ingegneria Industriale
- - Università degli Studi di Trento
- - [personal homepage](https://e.bertolazzi.dii.unitn.it)
-
- \copyright [The 2-Clause BSD License](https://opensource.org/license/bsd-2-clause)
-
-
- - [Github repository](https://github.com/ebertolazzi/GenericContainer)
-
- - \subpage Introduction
- - \subpage Install
- - \subpage Usage
- - \subpage Lua
- - \subpage Matlab
- - \subpage License
-
+  \copyright Copyright © 2025 Enrico Bertolazzi. All rights reserved.
+  \n Distributed under the \b [2-Clause BSD License](https://opensource.org/license/bsd-2-clause)
+  \verbinclude "../LICENSE.md"
 
 */

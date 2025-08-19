@@ -25,12 +25,12 @@
 var NAVTREE =
 [
   [ "GenericContainer", "index.html", [
+    [ "GenericContainer Library Documentation", "index.html", null ],
     [ "Introduction", "d4/d8e/_introduction.html", null ],
     [ "Installation guide", "df/d70/_install.html", null ],
     [ "Usage", "dc/dbb/_usage.html", null ],
     [ "Lua Support", "d3/d90/_lua.html", null ],
     [ "Matlab Support", "d0/d01/_matlab.html", null ],
-    [ "License", "d5/d8f/_license.html", null ],
     [ "Deprecated List", "da/d58/deprecated.html", null ],
     [ "Topics", "topics.html", "topics" ],
     [ "Namespaces", "namespaces.html", [

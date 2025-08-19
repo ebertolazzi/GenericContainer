@@ -47,14 +47,14 @@ main() {
   try {
 
     GenericContainer gc;
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP1 gc: "; gc.info(cout);
 
     gc . set_vector();
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP2 gc: "; gc.info(cout);
 
     GC::vector_type & v = gc.get_vector();
     v.resize(10);
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP3 gc: "; gc.info(cout);
 
     // access using vector
     v[0] = 1;
@@ -67,11 +67,13 @@ main() {
     gc[5] = 1.2;
     gc[6] = true;
     gc[7] = "pippo";
-    cout << "Print contents of gc:\n";
+
+    cout << "STEP4 gc:\n";
+    gc.info(cout);
     gc.dump(cout);
 
     // issue an error!
-    gc[15] = 1.2;
+    gc(15) = 1.2;
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';

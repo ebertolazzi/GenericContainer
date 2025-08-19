@@ -148,7 +148,7 @@ main() {
     gc.dump( cout );
   }
 
-  cout << "\n\nAll done Folks!!!\n\n";
+  cout << "\n\nAll done Folks!\n\n";
   return 0;
 }
 

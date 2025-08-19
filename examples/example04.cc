@@ -46,13 +46,13 @@ main() {
   try {
 
     GenericContainer gc;
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP1 gc: "; gc.info(cout);
 
     gc . set_map();
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP2 gc: "; gc.info(cout);
 
     GC::map_type & m = gc . set_map();
-    cout << "gc: "; gc.info(cout);
+    cout << "STEP3 gc: "; gc.info(cout);
 
     // access using map and vector like syntax
     m["a"] = 1;
@@ -76,11 +76,12 @@ main() {
     v.push_back(4);
     gc["vec_real"] = v;
 
-    cout << "Print contents of gc:\n";
+    cout << "STEP4 gc:\n";
+    gc.info(cout);
     gc.dump(cout);
 
     // issue an error!
-    gc[0] = 1.2;
+    gc(0) = 1.2;
   }
   catch ( std::exception & exc ) {
     cout << exc.what() << '\n';

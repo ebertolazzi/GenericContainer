@@ -4100,7 +4100,7 @@ namespace GC_namespace {
     //! Compare the contents of the object with `gc`
     //!
     //! \param[in] gc to object to compare
-    //! \return a string with the first difference found
+    //! \return a string with the first difference found, if the string is empty the containers are identical.
     //!
     string
     compare_content( GenericContainer const & gc, string_view from = "" ) const;

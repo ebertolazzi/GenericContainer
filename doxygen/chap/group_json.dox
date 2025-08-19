@@ -1,6 +1,6 @@
 /*!
 
- \defgroup JSON GenericContainer-JSON Interface
+ \defgroup JSON GenericContainer JSON Interface
 
  \brief This module provides interface with JSON files.
 

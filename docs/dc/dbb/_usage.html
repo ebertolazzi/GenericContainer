@@ -204,23 +204,18 @@ Example 1: Basic Operations</h3>
 <div class="ttc" id="a_generic_container_8hh_html"><div class="ttname"><a href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a></div></div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example01.exe</div>
-<div class="line">./bin/example01.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">     example N.1</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">GenericContainer simple usage</div>
-<div class="line">gc1: Integer: 1</div>
-<div class="line">gc2: Floating Point: 1.2</div>
-<div class="line">gc3: Boolean: true</div>
-<div class="line">gc4: String: pippo</div>
-<div class="line">gc5: GenericContainer: No data stored</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
+<pre class="fragment">***********************
+     example N.1
+***********************
+
+GenericContainer simple usage
+gc1: Integer: 1
+gc2: Floating Point: 1.2
+gc3: Boolean: true
+gc4: String: pippo
+gc5: GenericContainer: No data stored
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md14"></a>
 Example 2: Working with Vectors</h3>
 <p>This example shows how to create and manipulate a vector within a <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -263,29 +258,24 @@ Example 2: Working with Vectors</h3>
 <div class="line">}</div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md15"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example02.exe</div>
-<div class="line">./bin/example02.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.2</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">GenericContainer simple usage</div>
-<div class="line">gc1: GenericContainer: No data stored</div>
-<div class="line">gc2: GenericContainer: No data stored</div>
-<div class="line">gc3: GenericContainer: No data stored</div>
-<div class="line">gc4: GenericContainer: No data stored</div>
-<div class="line">gc5: GenericContainer: No data stored</div>
-<div class="line">After initialization</div>
-<div class="line">gc1: Integer: 1</div>
-<div class="line">gc2: Floating Point: 1.2</div>
-<div class="line">gc3: Boolean: true</div>
-<div class="line">gc4: String: pippo</div>
-<div class="line">gc5: GenericContainer: No data stored</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
+<pre class="fragment">***********************
+      example N.2
+***********************
+
+GenericContainer simple usage
+gc1: GenericContainer: No data stored
+gc2: GenericContainer: No data stored
+gc3: GenericContainer: No data stored
+gc4: GenericContainer: No data stored
+gc5: GenericContainer: No data stored
+After initialization
+gc1: Integer: 1
+gc2: Floating Point: 1.2
+gc3: Boolean: true
+gc4: String: pippo
+gc5: GenericContainer: No data stored
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
 Example 3: Using Maps</h3>
 <p>Demonstrates how to create and manipulate maps within a <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -307,14 +297,14 @@ Example 3: Using Maps</h3>
 <div class="line">  <span class="keywordflow">try</span> {</div>
 <div class="line"> </div>
 <div class="line">    GenericContainer gc;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP1 gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
 <div class="line">    gc . set_vector();</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP2 gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
 <div class="line">    GC::vector_type &amp; v = gc.get_vector();</div>
 <div class="line">    v.resize(10);</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP3 gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// access using vector</span></div>
 <div class="line">    v[0] = 1;</div>
@@ -327,11 +317,13 @@ Example 3: Using Maps</h3>
 <div class="line">    gc[5] = 1.2;</div>
 <div class="line">    gc[6] = <span class="keyword">true</span>;</div>
 <div class="line">    gc[7] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Print contents of gc:\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP4 gc:\n&quot;</span>;</div>
+<div class="line">    gc.info(cout);</div>
 <div class="line">    gc.dump(cout);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// issue an error!</span></div>
-<div class="line">    gc[15] = 1.2;</div>
+<div class="line">    gc(15) = 1.2;</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
 <div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
@@ -343,31 +335,29 @@ Example 3: Using Maps</h3>
 <div class="line">}</div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md17"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example03.exe</div>
-<div class="line">./bin/example03.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.3</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">gc: GenericContainer: No data stored</div>
-<div class="line">gc: Vector of generic data type of size 0</div>
-<div class="line">gc: Vector of generic data type of size 10</div>
-<div class="line">Print contents of gc:</div>
-<div class="line">0: 1</div>
-<div class="line">1: 1.2</div>
-<div class="line">2: true</div>
-<div class="line">3: &quot;pippo&quot;</div>
-<div class="line">4: 1</div>
-<div class="line">5: 1.2</div>
-<div class="line">6: true</div>
-<div class="line">7: &quot;pippo&quot;</div>
-<div class="line">8: null</div>
-<div class="line">9: null</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
+<pre class="fragment">***********************
+      example N.3
+***********************
+
+STEP1 gc: GenericContainer: No data stored
+STEP2 gc: Vector of generic data type of size 0
+STEP3 gc: Vector of generic data type of size 10
+STEP4 gc:
+Vector of generic data type of size 10
+0: 1
+1: 1.2
+2: true
+3: "pippo"
+4: 1
+5: 1.2
+6: true
+7: "pippo"
+8: null
+9: null
+in GenericContainer:  operator () const, index 15 out of range
+
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md18"></a>
 Example 4: Nested Containers</h3>
 <p>Illustrates how to create nested containers with vectors and maps.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -389,13 +379,13 @@ Example 4: Nested Containers</h3>
 <div class="line">  <span class="keywordflow">try</span> {</div>
 <div class="line"> </div>
 <div class="line">    GenericContainer gc;</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP1 gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
 <div class="line">    gc . set_map();</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP2 gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
 <div class="line">    GC::map_type &amp; m = gc . set_map();</div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;gc: &quot;</span>; gc.info(cout);</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP3 gc: &quot;</span>; gc.info(cout);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// access using map and vector like syntax</span></div>
 <div class="line">    m[<span class="stringliteral">&quot;a&quot;</span>] = 1;</div>
@@ -419,11 +409,12 @@ Example 4: Nested Containers</h3>
 <div class="line">    v.push_back(4);</div>
 <div class="line">    gc[<span class="stringliteral">&quot;vec_real&quot;</span>] = v;</div>
 <div class="line"> </div>
-<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Print contents of gc:\n&quot;</span>;</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;STEP4 gc:\n&quot;</span>;</div>
+<div class="line">    gc.info(cout);</div>
 <div class="line">    gc.dump(cout);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// issue an error!</span></div>
-<div class="line">    gc[0] = 1.2;</div>
+<div class="line">    gc(0) = 1.2;</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
 <div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
@@ -435,31 +426,29 @@ Example 4: Nested Containers</h3>
 <div class="line">}</div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example04.exe</div>
-<div class="line">./bin/example04.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.4</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">gc: GenericContainer: No data stored</div>
-<div class="line">gc: Map</div>
-<div class="line">gc: Map</div>
-<div class="line">Print contents of gc:</div>
-<div class="line">a: 1</div>
-<div class="line">b: 1.2</div>
-<div class="line">c: true</div>
-<div class="line">d: &quot;pippo&quot;</div>
-<div class="line">e: 1</div>
-<div class="line">f: 1.2</div>
-<div class="line">g: true</div>
-<div class="line">pointer: 0x16f6663f0</div>
-<div class="line">vec_real:</div>
-<div class="line">    [ 1 2 3 4 ]</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+<pre class="fragment">***********************
+      example N.4
+***********************
+
+STEP1 gc: GenericContainer: No data stored
+STEP2 gc: Map
+STEP3 gc: Map
+STEP4 gc:
+Map
+a: 1
+b: 1.2
+c: true
+d: "pippo"
+e: 1
+f: 1.2
+g: true
+pointer: 0x16f0a6a00
+vec_real:
+    [ 1 2 3 4 ]
+in GenericContainer:  bad data type, expect: vector_type but data stored is of type: map_type
+
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
 Example 5: Serialization</h3>
 <p>This example showcases how to serialize and deserialize a <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -547,82 +536,77 @@ Example 5: Serialization</h3>
 <div class="line">}</div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example05.exe</div>
-<div class="line">./bin/example05.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.5</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Print gc:</div>
-<div class="line">0: 1</div>
-<div class="line">1: [ 0 0 123 0 0 0 0 0 0 0 ]</div>
-<div class="line">2:</div>
-<div class="line">    aaa: &quot;stringa1&quot;</div>
-<div class="line">    bbb: &quot;stringa2&quot;</div>
-<div class="line">    paperino: 3</div>
-<div class="line">    pippo: 13</div>
-<div class="line">    pluto: 1</div>
-<div class="line">3:</div>
-<div class="line">    0: &quot;string1&quot;</div>
-<div class="line">    1: &quot;string2&quot;</div>
-<div class="line">    2: &quot;string3&quot;</div>
-<div class="line">    3: &quot;string4&quot;</div>
-<div class="line">4: 1.3</div>
-<div class="line">5: &quot;pippo&quot;</div>
-<div class="line">6:</div>
-<div class="line">    aaa: 123</div>
-<div class="line">    bbb: 3.4</div>
-<div class="line">    vector:</div>
-<div class="line">        [ 12 10 1 ]</div>
-<div class="line">7:</div>
-<div class="line">    0: 123</div>
-<div class="line">    1: 3.14</div>
-<div class="line">    2: &quot;nonna papera&quot;</div>
-<div class="line">8: true</div>
-<div class="line">9: null</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Print gc:</div>
-<div class="line">null</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">Print gc1:</div>
-<div class="line">0: 1</div>
-<div class="line">1: [ 0 0 123 0 0 0 0 0 0 0 ]</div>
-<div class="line">2:</div>
-<div class="line">    aaa: &quot;stringa1&quot;</div>
-<div class="line">    bbb: &quot;stringa2&quot;</div>
-<div class="line">    paperino: 3</div>
-<div class="line">    pippo: 13</div>
-<div class="line">    pluto: 1</div>
-<div class="line">3:</div>
-<div class="line">    0: &quot;string1&quot;</div>
-<div class="line">    1: &quot;string2&quot;</div>
-<div class="line">    2: &quot;string3&quot;</div>
-<div class="line">    3: &quot;string4&quot;</div>
-<div class="line">4: 1.3</div>
-<div class="line">5: &quot;pippo&quot;</div>
-<div class="line">6:</div>
-<div class="line">    aaa: 123</div>
-<div class="line">    bbb: 3.4</div>
-<div class="line">    vector:</div>
-<div class="line">        [ 12 10 1 ]</div>
-<div class="line">7:</div>
-<div class="line">    0: 123</div>
-<div class="line">    1: 3.14</div>
-<div class="line">    2: &quot;nonna papera&quot;</div>
-<div class="line">8: true</div>
-<div class="line">9: null</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+<pre class="fragment">***********************
+      example N.5
+***********************
+
+
+
+
+Print gc:
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    aaa: "stringa1"
+    bbb: "stringa2"
+    paperino: 3
+    pippo: 13
+    pluto: 1
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+8: true
+9: null
+
+
+
+Print gc:
+null
+
+
+
+Print gc1:
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    aaa: "stringa1"
+    bbb: "stringa2"
+    paperino: 3
+    pippo: 13
+    pluto: 1
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+8: true
+9: null
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
 Example 6: C interface</h3>
 <p>Example of usage of the C interface.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../da/d4f/_generic_container_interface___c_8h.html">GenericContainer/GenericContainerInterface_C.h</a>&quot;</span></div>
@@ -771,42 +755,37 @@ Example 6: C interface</h3>
 <div class="ttc" id="agroup___g_c_html_gaf14c1be318b456d250057cb5d5acb2cc"><div class="ttname"><a href="../../db/de3/group___g_c.html#gaf14c1be318b456d250057cb5d5acb2cc">GC_set_vector</a></div><div class="ttdeci">int GC_set_vector(int nelem)</div><div class="ttdoc">Set the current element of the GenericContainer to a vector of GenericContainer elements with the spe...</div></div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example06.exe</div>
-<div class="line">./bin/example06.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.6</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">0: 1</div>
-<div class="line">1: [ 1.1 2.2 3.3 4.4 ]</div>
-<div class="line">2:</div>
-<div class="line">    aaa: &quot;stringa&quot;</div>
-<div class="line">    paperino: 3</div>
-<div class="line">    pippo: 13</div>
-<div class="line">    pluto: 1</div>
-<div class="line">3:</div>
-<div class="line">    0: &quot;string1&quot;</div>
-<div class="line">    1: &quot;string2&quot;</div>
-<div class="line">    2: &quot;string3&quot;</div>
-<div class="line">    3: &quot;string4&quot;</div>
-<div class="line">4: 1.3</div>
-<div class="line">5: &quot;pippo&quot;</div>
-<div class="line">6:</div>
-<div class="line">    aaa: 123</div>
-<div class="line">    bbb: 3.4</div>
-<div class="line">    vector:</div>
-<div class="line">        [ 12 10 1 ]</div>
-<div class="line">7:</div>
-<div class="line">    0: 123</div>
-<div class="line">    1: 3.14</div>
-<div class="line">    2: &quot;nonna papera&quot;</div>
-<div class="line">8: true</div>
-<div class="line">9: null</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+<pre class="fragment">***********************
+      example N.6
+***********************
+
+0: 1
+1: [ 1.1 2.2 3.3 4.4 ]
+2:
+    aaa: "stringa"
+    paperino: 3
+    pippo: 13
+    pluto: 1
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+8: true
+9: null
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
 Example 7: File I/O</h3>
 <p>This example demonstrates the use of file I/O with <span class="tt">GenericContainer</span> to read and print formatted data.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -826,8 +805,9 @@ Example 7: File I/O</h3>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">try</span> {</div>
 <div class="line">    GC::GenericContainer gc;</div>
-<div class="line">    ifstream file(<span class="stringliteral">&quot;data_example.txt&quot;</span>);</div>
-<div class="line">    <span class="keywordflow">if</span> ( file.fail() ) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to open file&quot;</span>);</div>
+<div class="line">    std::string fname{<span class="stringliteral">&quot;../examples/example07_data.txt&quot;</span>};</div>
+<div class="line">    ifstream file(fname);</div>
+<div class="line">    <span class="keywordflow">if</span> ( file.fail() ) <span class="keywordflow">throw</span> std::runtime_error( <span class="stringliteral">&quot;file to open file: &quot;</span> + fname);</div>
 <div class="line">    gc.readFormattedData( file, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot;\t &quot;</span> );</div>
 <div class="line">    gc.dump(cout);</div>
 <div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\nData Read:\n&quot;</span>;</div>
@@ -843,19 +823,98 @@ Example 7: File I/O</h3>
 <div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
 </div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+file <span class="tt">example07_data.txt</span></h4>
+<pre class="fragment"># Date:             23:37:39 2022-11-10
+# MX Version:       1.5.1-d142dirty-osx_13.0 hash: f78c1e6a Thu Nov 10 00:49:36 2022
+# Computation type: Optimal control solution
+# Model name:       ICLOCS_MinimumFuelOrbitRaising
+#
+#! converged            = YES
+#! num_equations        = 2411
+#! Lagrange target      = -0.5252740061732518
+#! Mayer target         = 0
+#! Penalties            = 0
+#! Control Penalties    = 0
+#! max_iter             = 300
+#! max_step_iter        = 40
+#! max_accumulated_iter = 800
+#! tolerance            = 9.999999999999999e-10
+#! iterations           = 9
+#! cpu_time             = 31.388 ms
+#! solver_type          = CyclicReduction+LU and LastBlock LUPQ
+#! lapack version       = Accelerate
+#
+# SOLUTION
+i_segment   zeta    lagrange_target inequality_penalties    penalties   control_penalties   theta   theta_cell  r   vr  vt  lambda1__xo lambda2__xo lambda3__xo r_D vr_D    vt_D    mu0_D   mu1_D   mu2_D   THETA   MASS
+0   0   3.83335121988244145e-24 0   0   0   0.431767195334314069    0.431767195334314069    1   -3.83335121988244145e-24    1   -0.877337087218752587   -0.928952238240128514   -2.02514653387216637    -3.83335121988244145e-24    0.058795944131343543    0.127605983220630825    0.928952238240128514    -0.14780944665341389    1.85790447648025703 0.431767195334314069    1
+0   0.00830000000000000009  -0.000496945325703529732    0   0   0   0.433474050458908022    0.435180905583501976    1.00000206232310163 0.000496945325703529732 1.00105739556634288 -0.869625817994938433   -0.930155840503653852   -2.00971195520261903    0.000496945325703529732 0.0611683403197462242   0.127087287078375633    0.929179819089718584    -0.14220704866934053    1.8612762108157439  0.433474050458908022    0.999378329999999981
+0   0.0166000000000000002   -0.00101537275813047578 0   0   0   0.436901655787864773    0.438622405992227626    1.00000833844314951 0.00101537275813047578  1.00210955412627545 -0.861912784227839124   -0.931312622368338672   -1.99424994705747882    0.00101537275813047578  0.0637562246986424219   0.126443388053484207    0.929377317323367813    -0.136527477153772336   1.86451409929345302 0.436901655787864773    0.998756659999999963
+0   0.024900000000000002    -0.00155527572126624015 0   0   0   0.440357131765090393    0.442091857537953214    1.00001900663433907 0.00155527572126624015  1.0031562607964406  -0.854198242060344337   -0.93242194498679809    -1.97876162589924998    0.00155527572126624015  0.0663431620239074704   0.125773551919138943    0.929543176882371647    -0.130771143996937678   1.86761680661033846 0.440357131765090393    0.998134990000000055
+0   0.0332000000000000003   -0.00211664505276475861 0   0   0   0.443840639360533529    0.445589421183113843    1.00003424510555128 0.00211664505276475861  1.00419729992056017 -0.846482460541043258   -0.933483173043368919   -1.96324811923792319    0.00211664505276475861  0.0689288380619269697   0.12507768765539265 0.929675844110318117    -0.124938488353316224   1.87058300605143679 0.443840639360533529    0.997513320000000037
+</pre><p>notice that <span class="tt">#</span> introduce a comment, the first line that start without <span class="tt">#</span> is the header line and the lines staring with <span class="tt">#!</span> are assignment <span class="tt">A = B</span> that are stored in the <span class="tt">GenericContainer</span>.</p>
+<h4 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example07.exe</div>
-<div class="line">./bin/example07.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.7</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">failed to open file</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+<pre class="fragment">***********************
+      example N.7
+***********************
+
+data:
+    0: [ 0 0 0 0 0 ]
+    1: [ 0 0.0083 0.0166 0.0249 0.0332 ]
+    2: [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    3: [ 0 0 0 0 0 ]
+    4: [ 0 0 0 0 0 ]
+    5: [ 0 0 0 0 0 ]
+    6: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    7: [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    8: [ 1 1 1.00001 1.00002 1.00003 ]
+    9: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    10: [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    11: [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    12: [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    13: [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    14: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    15: [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    16: [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    17: [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    18: [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    19: [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    20: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    21: [ 1 0.999378 0.998757 0.998135 0.997513 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+
+
+Data Read:
+i_segment   zeta    lagrange_target inequality_penalties    penalties   control_penalties   theta   theta_cell  r   vr  vt  lambda1__xo lambda2__xo lambda3__xo r_D vr_D    vt_D    mu0_D   mu1_D   mu2_D   THETA   MASS
+0   0   3.83335e-24 0   0   0   0.431767    0.431767    1   -3.83335e-24    1   -0.877337   -0.928952   -2.02515    -3.83335e-24    0.0587959   0.127606    0.928952    -0.147809   1.8579  0.431767    1
+0   0.0083  -0.000496945    0   0   0   0.433474    0.435181    1   0.000496945 1.00106 -0.869626   -0.930156   -2.00971    0.000496945 0.0611683   0.127087    0.92918 -0.142207   1.86128 0.433474    0.999378
+0   0.0166  -0.00101537 0   0   0   0.436902    0.438622    1.00001 0.00101537  1.00211 -0.861913   -0.931313   -1.99425    0.00101537  0.0637562   0.126443    0.929377    -0.136527   1.86451 0.436902    0.998757
+0   0.0249  -0.00155528 0   0   0   0.440357    0.442092    1.00002 0.00155528  1.00316 -0.854198   -0.932422   -1.97876    0.00155528  0.0663432   0.125774    0.929543    -0.130771   1.86762 0.440357    0.998135
+0   0.0332  -0.00211665 0   0   0   0.443841    0.445589    1.00003 0.00211665  1.0042  -0.846482   -0.933483   -1.96325    0.00211665  0.0689288   0.125078    0.929676    -0.124938   1.87058 0.443841    0.997513
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 Example 8: Matrix Operations</h3>
 <p>This example shows how to create and manipulate a matrix using <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -892,23 +951,18 @@ Example 8: Matrix Operations</h3>
 <div class="line"> </div>
 <div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example08.exe</div>
-<div class="line">./bin/example08.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.8</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">Result:</div>
-<div class="line">       0        3</div>
-<div class="line">       0        2</div>
-<div class="line">Matrix of floating point number of size 2 x 2</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+<pre class="fragment">***********************
+      example N.8
+***********************
+
+Result:
+       0        3
+       0        2
+Matrix of floating point number of size 2 x 2
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Example 9: Advanced Serialization</h3>
 <p>This example illustrates advanced serialization and deserialization of <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -974,49 +1028,44 @@ Example 9: Advanced Serialization</h3>
 <div class="line"> </div>
 <div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example09.exe</div>
-<div class="line">./bin/example09.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.9</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">Size: 242</div>
-<div class="line">Size1: 242</div>
-<div class="line">--------------------------</div>
-<div class="line">paperino: &quot;pippo&quot;</div>
-<div class="line">pippo:</div>
-<div class="line">   22323     4443</div>
-<div class="line">     432      433</div>
-<div class="line">pluto:</div>
-<div class="line">    0: &quot;nonna&quot;</div>
-<div class="line">    1: &quot;papera&quot;</div>
-<div class="line">vector:</div>
-<div class="line">    0: 1.234</div>
-<div class="line">    1: true</div>
-<div class="line">    2: [ 1 -1 2 4 ]</div>
-<div class="line">    3: &quot;superkaly&quot;</div>
-<div class="line">    4: 1+2i</div>
-<div class="line">--------------------------</div>
-<div class="line">paperino: &quot;pippo&quot;</div>
-<div class="line">pippo:</div>
-<div class="line">   22323     4443</div>
-<div class="line">     432      433</div>
-<div class="line">pluto:</div>
-<div class="line">    0: &quot;nonna&quot;</div>
-<div class="line">    1: &quot;papera&quot;</div>
-<div class="line">vector:</div>
-<div class="line">    0: 1.234</div>
-<div class="line">    1: true</div>
-<div class="line">    2: [ 1 -1 2 4 ]</div>
-<div class="line">    3: &quot;superkaly&quot;</div>
-<div class="line">    4: 1+2i</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+<pre class="fragment">***********************
+      example N.9
+***********************
+
+Size: 242
+Size1: 242
+--------------------------
+paperino: "pippo"
+pippo:
+   22323     4443
+     432      433
+pluto:
+    0: "nonna"
+    1: "papera"
+vector:
+    0: 1.234
+    1: true
+    2: [ 1 -1 2 4 ]
+    3: "superkaly"
+    4: 1+2i
+--------------------------
+paperino: "pippo"
+pippo:
+   22323     4443
+     432      433
+pluto:
+    0: "nonna"
+    1: "papera"
+vector:
+    0: 1.234
+    1: true
+    2: [ 1 -1 2 4 ]
+    3: "superkaly"
+    4: 1+2i
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 Example 10: Data Manipulation from Files</h3>
 <p>This example demonstrates reading formatted data from a file and displaying it using <span class="tt">GenericContainer</span>.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
@@ -1025,6 +1074,7 @@ Example 10: Data Manipulation from Files</h3>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std;</div>
 <div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span></div>
 <div class="line">main() {</div>
@@ -1037,8 +1087,9 @@ Example 10: Data Manipulation from Files</h3>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">try</span> {</div>
 <div class="line">    GenericContainer gc1, gc2, gc3, gc4, pars;</div>
-<div class="line">    gc1.readFormattedData( <span class="stringliteral">&quot;examples/example10_data.txt&quot;</span> );</div>
-<div class="line">    gc2.readFormattedData2( <span class="stringliteral">&quot;examples/example10_data.txt&quot;</span>, <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot; \t&quot;</span>, &amp;pars );</div>
+<div class="line">    std::string fname{<span class="stringliteral">&quot;../examples/example07_data.txt&quot;</span>};</div>
+<div class="line">    gc1.readFormattedData( fname.c_str() );</div>
+<div class="line">    gc2.readFormattedData2( fname.c_str(), <span class="stringliteral">&quot;#&quot;</span>, <span class="stringliteral">&quot; \t&quot;</span>, &amp;pars );</div>
 <div class="line">    gc2.to_gc(gc3);</div>
 <div class="line">    gc4.from_gc(gc2);</div>
 <div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;GC1 --------------------------\n&quot;</span>;</div>
@@ -1061,332 +1112,2419 @@ Example 10: Data Manipulation from Files</h3>
 <div class="line"> </div>
 <div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
 <div class="line">}</div>
-</div><!-- fragment --><p>File: <b>example10_dataa.txt</b></p>
-<div class="fragment"><div class="line"># Date:             23:37:39 2022-11-10</div>
-<div class="line"># MX Version:       1.5.1-d142dirty-osx_13.0 hash: f78c1e6a Thu Nov 10 00:49:36 2022</div>
-<div class="line"># Computation type: Optimal control solution</div>
-<div class="line"># Model name:       ICLOCS_MinimumFuelOrbitRaising</div>
-<div class="line">#</div>
-<div class="line">#! converged            = YES</div>
-<div class="line">#! num_equations        = 2411</div>
-<div class="line">#! Lagrange target      = -0.5252740061732518</div>
-<div class="line">#! Mayer target         = 0</div>
-<div class="line">#! Penalties            = 0</div>
-<div class="line">#! Control Penalties    = 0</div>
-<div class="line">#! max_iter             = 300</div>
-<div class="line">#! max_step_iter        = 40</div>
-<div class="line">#! max_accumulated_iter = 800</div>
-<div class="line">#! tolerance            = 9.999999999999999e-10</div>
-<div class="line">#! iterations           = 9</div>
-<div class="line">#! cpu_time             = 31.388 ms</div>
-<div class="line">#! solver_type          = CyclicReduction+LU and LastBlock LUPQ</div>
-<div class="line">#! lapack version       = Accelerate</div>
-<div class="line">#</div>
-<div class="line"># SOLUTION</div>
-<div class="line">i_segment   zeta    lagrange_target inequality_penalties    penalties   control_penalties   theta   theta_cell  r   vr  vt  lambda1__xo lambda2__xo lambda3__xo r_D vr_D    vt_D    mu0_D   mu1_D   mu2_D   THETA   MASS</div>
-<div class="line">0   0   3.83335121988244145e-24 0   0   0   0.431767195334314069    0.431767195334314069    1   -3.83335121988244145e-24    1   -0.877337087218752587   -0.928952238240128514   -2.02514653387216637    -3.83335121988244145e-24    0.058795944131343543    0.127605983220630825    0.928952238240128514    -0.14780944665341389    1.85790447648025703 0.431767195334314069    1</div>
-<div class="line">0   0.00830000000000000009  -0.000496945325703529732    0   0   0   0.433474050458908022    0.435180905583501976    1.00000206232310163 0.000496945325703529732 1.00105739556634288 -0.869625817994938433   -0.930155840503653852   -2.00971195520261903    0.000496945325703529732 0.0611683403197462242   0.127087287078375633    0.929179819089718584    -0.14220704866934053    1.8612762108157439  0.433474050458908022    0.999378329999999981</div>
-<div class="line">0   0.0166000000000000002   -0.00101537275813047578 0   0   0   0.436901655787864773    0.438622405992227626    1.00000833844314951 0.00101537275813047578  1.00210955412627545 -0.861912784227839124   -0.931312622368338672   -1.99424994705747882    0.00101537275813047578  0.0637562246986424219   0.126443388053484207    0.929377317323367813    -0.136527477153772336   1.86451409929345302 0.436901655787864773    0.998756659999999963</div>
-<div class="line">0   0.024900000000000002    -0.00155527572126624015 0   0   0   0.440357131765090393    0.442091857537953214    1.00001900663433907 0.00155527572126624015  1.0031562607964406  -0.854198242060344337   -0.93242194498679809    -1.97876162589924998    0.00155527572126624015  0.0663431620239074704   0.125773551919138943    0.929543176882371647    -0.130771143996937678   1.86761680661033846 0.440357131765090393    0.998134990000000055</div>
-<div class="line">0   0.0332000000000000003   -0.00211664505276475861 0   0   0   0.443840639360533529    0.445589421183113843    1.00003424510555128 0.00211664505276475861  1.00419729992056017 -0.846482460541043258   -0.933483173043368919   -1.96324811923792319    0.00211664505276475861  0.0689288380619269697   0.12507768765539265 0.929675844110318117    -0.124938488353316224   1.87058300605143679 0.443840639360533529    0.997513320000000037</div>
-</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
 output</h4>
-<div class="fragment"><div class="line">execute ./bin/example10.exe</div>
-<div class="line">./bin/example10.exe</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line">                       </div>
-<div class="line">      example N.10</div>
-<div class="line">                       </div>
-<div class="line"> </div>
-<div class="line">GC1 --------------------------</div>
-<div class="line">data:</div>
-<div class="line">    0: [ 0 0 0 0 0 ]</div>
-<div class="line">    1: [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
-<div class="line">    2: [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
-<div class="line">    3: [ 0 0 0 0 0 ]</div>
-<div class="line">    4: [ 0 0 0 0 0 ]</div>
-<div class="line">    5: [ 0 0 0 0 0 ]</div>
-<div class="line">    6: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    7: [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
-<div class="line">    8: [ 1 1 1.00001 1.00002 1.00003 ]</div>
-<div class="line">    9: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    10: [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
-<div class="line">    11: [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
-<div class="line">    12: [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
-<div class="line">    13: [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
-<div class="line">    14: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    15: [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
-<div class="line">    16: [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
-<div class="line">    17: [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
-<div class="line">    18: [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
-<div class="line">    19: [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
-<div class="line">    20: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    21: [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
-<div class="line">headers:</div>
-<div class="line">    0: &quot;i_segment&quot;</div>
-<div class="line">    1: &quot;zeta&quot;</div>
-<div class="line">    2: &quot;lagrange_target&quot;</div>
-<div class="line">    3: &quot;inequality_penalties&quot;</div>
-<div class="line">    4: &quot;penalties&quot;</div>
-<div class="line">    5: &quot;control_penalties&quot;</div>
-<div class="line">    6: &quot;theta&quot;</div>
-<div class="line">    7: &quot;theta_cell&quot;</div>
-<div class="line">    8: &quot;r&quot;</div>
-<div class="line">    9: &quot;vr&quot;</div>
-<div class="line">    10: &quot;vt&quot;</div>
-<div class="line">    11: &quot;lambda1__xo&quot;</div>
-<div class="line">    12: &quot;lambda2__xo&quot;</div>
-<div class="line">    13: &quot;lambda3__xo&quot;</div>
-<div class="line">    14: &quot;r_D&quot;</div>
-<div class="line">    15: &quot;vr_D&quot;</div>
-<div class="line">    16: &quot;vt_D&quot;</div>
-<div class="line">    17: &quot;mu0_D&quot;</div>
-<div class="line">    18: &quot;mu1_D&quot;</div>
-<div class="line">    19: &quot;mu2_D&quot;</div>
-<div class="line">    20: &quot;THETA&quot;</div>
-<div class="line">    21: &quot;MASS&quot;</div>
-<div class="line">GC2 --------------------------</div>
-<div class="line">data:</div>
-<div class="line">    MASS:</div>
-<div class="line">        [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
-<div class="line">    THETA:</div>
-<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    control_penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    i_segment:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    inequality_penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    lagrange_target:</div>
-<div class="line">        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
-<div class="line">    lambda1__xo:</div>
-<div class="line">        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
-<div class="line">    lambda2__xo:</div>
-<div class="line">        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
-<div class="line">    lambda3__xo:</div>
-<div class="line">        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
-<div class="line">    mu0_D:</div>
-<div class="line">        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
-<div class="line">    mu1_D:</div>
-<div class="line">        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
-<div class="line">    mu2_D:</div>
-<div class="line">        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
-<div class="line">    penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    r:</div>
-<div class="line">        [ 1 1 1.00001 1.00002 1.00003 ]</div>
-<div class="line">    r_D:</div>
-<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    theta:</div>
-<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    theta_cell:</div>
-<div class="line">        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
-<div class="line">    vr:</div>
-<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    vr_D:</div>
-<div class="line">        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
-<div class="line">    vt:</div>
-<div class="line">        [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
-<div class="line">    vt_D:</div>
-<div class="line">        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
-<div class="line">    zeta:</div>
-<div class="line">        [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
-<div class="line">headers:</div>
-<div class="line">    0: &quot;i_segment&quot;</div>
-<div class="line">    1: &quot;zeta&quot;</div>
-<div class="line">    2: &quot;lagrange_target&quot;</div>
-<div class="line">    3: &quot;inequality_penalties&quot;</div>
-<div class="line">    4: &quot;penalties&quot;</div>
-<div class="line">    5: &quot;control_penalties&quot;</div>
-<div class="line">    6: &quot;theta&quot;</div>
-<div class="line">    7: &quot;theta_cell&quot;</div>
-<div class="line">    8: &quot;r&quot;</div>
-<div class="line">    9: &quot;vr&quot;</div>
-<div class="line">    10: &quot;vt&quot;</div>
-<div class="line">    11: &quot;lambda1__xo&quot;</div>
-<div class="line">    12: &quot;lambda2__xo&quot;</div>
-<div class="line">    13: &quot;lambda3__xo&quot;</div>
-<div class="line">    14: &quot;r_D&quot;</div>
-<div class="line">    15: &quot;vr_D&quot;</div>
-<div class="line">    16: &quot;vt_D&quot;</div>
-<div class="line">    17: &quot;mu0_D&quot;</div>
-<div class="line">    18: &quot;mu1_D&quot;</div>
-<div class="line">    19: &quot;mu2_D&quot;</div>
-<div class="line">    20: &quot;THETA&quot;</div>
-<div class="line">    21: &quot;MASS&quot;</div>
-<div class="line">PARS --------------------------</div>
-<div class="line">Control Penalties: 0</div>
-<div class="line">Lagrange target: -0.525274</div>
-<div class="line">Mayer target: 0</div>
-<div class="line">Penalties: 0</div>
-<div class="line">converged: &quot;YES&quot;</div>
-<div class="line">cpu_time: 31.388</div>
-<div class="line">iterations: 9</div>
-<div class="line">lapack version: &quot;Accelerate&quot;</div>
-<div class="line">max_accumulated_iter: 800</div>
-<div class="line">max_iter: 300</div>
-<div class="line">max_step_iter: 40</div>
-<div class="line">num_equations: 2411</div>
-<div class="line">solver_type: &quot;CyclicReduction+LU and LastBlock LUPQ&quot;</div>
-<div class="line">tolerance: 1e-09</div>
-<div class="line">GC2 COPY ----------------------</div>
-<div class="line">data:</div>
-<div class="line">    MASS:</div>
-<div class="line">        [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
-<div class="line">    THETA:</div>
-<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    control_penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    i_segment:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    inequality_penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    lagrange_target:</div>
-<div class="line">        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
-<div class="line">    lambda1__xo:</div>
-<div class="line">        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
-<div class="line">    lambda2__xo:</div>
-<div class="line">        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
-<div class="line">    lambda3__xo:</div>
-<div class="line">        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
-<div class="line">    mu0_D:</div>
-<div class="line">        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
-<div class="line">    mu1_D:</div>
-<div class="line">        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
-<div class="line">    mu2_D:</div>
-<div class="line">        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
-<div class="line">    penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    r:</div>
-<div class="line">        [ 1 1 1.00001 1.00002 1.00003 ]</div>
-<div class="line">    r_D:</div>
-<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    theta:</div>
-<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    theta_cell:</div>
-<div class="line">        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
-<div class="line">    vr:</div>
-<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    vr_D:</div>
-<div class="line">        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
-<div class="line">    vt:</div>
-<div class="line">        [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
-<div class="line">    vt_D:</div>
-<div class="line">        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
-<div class="line">    zeta:</div>
-<div class="line">        [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
-<div class="line">headers:</div>
-<div class="line">    0: &quot;i_segment&quot;</div>
-<div class="line">    1: &quot;zeta&quot;</div>
-<div class="line">    2: &quot;lagrange_target&quot;</div>
-<div class="line">    3: &quot;inequality_penalties&quot;</div>
-<div class="line">    4: &quot;penalties&quot;</div>
-<div class="line">    5: &quot;control_penalties&quot;</div>
-<div class="line">    6: &quot;theta&quot;</div>
-<div class="line">    7: &quot;theta_cell&quot;</div>
-<div class="line">    8: &quot;r&quot;</div>
-<div class="line">    9: &quot;vr&quot;</div>
-<div class="line">    10: &quot;vt&quot;</div>
-<div class="line">    11: &quot;lambda1__xo&quot;</div>
-<div class="line">    12: &quot;lambda2__xo&quot;</div>
-<div class="line">    13: &quot;lambda3__xo&quot;</div>
-<div class="line">    14: &quot;r_D&quot;</div>
-<div class="line">    15: &quot;vr_D&quot;</div>
-<div class="line">    16: &quot;vt_D&quot;</div>
-<div class="line">    17: &quot;mu0_D&quot;</div>
-<div class="line">    18: &quot;mu1_D&quot;</div>
-<div class="line">    19: &quot;mu2_D&quot;</div>
-<div class="line">    20: &quot;THETA&quot;</div>
-<div class="line">    21: &quot;MASS&quot;</div>
-<div class="line">GC2 COPY2 ---------------------</div>
-<div class="line">data:</div>
-<div class="line">    MASS:</div>
-<div class="line">        [ 1 0.999378 0.998757 0.998135 0.997513 ]</div>
-<div class="line">    THETA:</div>
-<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    control_penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    i_segment:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    inequality_penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    lagrange_target:</div>
-<div class="line">        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]</div>
-<div class="line">    lambda1__xo:</div>
-<div class="line">        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]</div>
-<div class="line">    lambda2__xo:</div>
-<div class="line">        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]</div>
-<div class="line">    lambda3__xo:</div>
-<div class="line">        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]</div>
-<div class="line">    mu0_D:</div>
-<div class="line">        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]</div>
-<div class="line">    mu1_D:</div>
-<div class="line">        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]</div>
-<div class="line">    mu2_D:</div>
-<div class="line">        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]</div>
-<div class="line">    penalties:</div>
-<div class="line">        [ 0 0 0 0 0 ]</div>
-<div class="line">    r:</div>
-<div class="line">        [ 1 1 1.00001 1.00002 1.00003 ]</div>
-<div class="line">    r_D:</div>
-<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    theta:</div>
-<div class="line">        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]</div>
-<div class="line">    theta_cell:</div>
-<div class="line">        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]</div>
-<div class="line">    vr:</div>
-<div class="line">        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]</div>
-<div class="line">    vr_D:</div>
-<div class="line">        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]</div>
-<div class="line">    vt:</div>
-<div class="line">        [ 1 1.00106 1.00211 1.00316 1.0042 ]</div>
-<div class="line">    vt_D:</div>
-<div class="line">        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]</div>
-<div class="line">    zeta:</div>
-<div class="line">        [ 0 0.0083 0.0166 0.0249 0.0332 ]</div>
-<div class="line">headers:</div>
-<div class="line">    0: &quot;i_segment&quot;</div>
-<div class="line">    1: &quot;zeta&quot;</div>
-<div class="line">    2: &quot;lagrange_target&quot;</div>
-<div class="line">    3: &quot;inequality_penalties&quot;</div>
-<div class="line">    4: &quot;penalties&quot;</div>
-<div class="line">    5: &quot;control_penalties&quot;</div>
-<div class="line">    6: &quot;theta&quot;</div>
-<div class="line">    7: &quot;theta_cell&quot;</div>
-<div class="line">    8: &quot;r&quot;</div>
-<div class="line">    9: &quot;vr&quot;</div>
-<div class="line">    10: &quot;vt&quot;</div>
-<div class="line">    11: &quot;lambda1__xo&quot;</div>
-<div class="line">    12: &quot;lambda2__xo&quot;</div>
-<div class="line">    13: &quot;lambda3__xo&quot;</div>
-<div class="line">    14: &quot;r_D&quot;</div>
-<div class="line">    15: &quot;vr_D&quot;</div>
-<div class="line">    16: &quot;vt_D&quot;</div>
-<div class="line">    17: &quot;mu0_D&quot;</div>
-<div class="line">    18: &quot;mu1_D&quot;</div>
-<div class="line">    19: &quot;mu2_D&quot;</div>
-<div class="line">    20: &quot;THETA&quot;</div>
-<div class="line">    21: &quot;MASS&quot;</div>
-<div class="line">ALL DONE!</div>
-</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+<pre class="fragment">***********************
+      example N.10
+***********************
+
+GC1 --------------------------
+data:
+    0: [ 0 0 0 0 0 ]
+    1: [ 0 0.0083 0.0166 0.0249 0.0332 ]
+    2: [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    3: [ 0 0 0 0 0 ]
+    4: [ 0 0 0 0 0 ]
+    5: [ 0 0 0 0 0 ]
+    6: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    7: [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    8: [ 1 1 1.00001 1.00002 1.00003 ]
+    9: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    10: [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    11: [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    12: [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    13: [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    14: [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    15: [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    16: [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    17: [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    18: [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    19: [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    20: [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    21: [ 1 0.999378 0.998757 0.998135 0.997513 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+GC2 --------------------------
+data:
+    MASS:
+        [ 1 0.999378 0.998757 0.998135 0.997513 ]
+    THETA:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    control_penalties:
+        [ 0 0 0 0 0 ]
+    i_segment:
+        [ 0 0 0 0 0 ]
+    inequality_penalties:
+        [ 0 0 0 0 0 ]
+    lagrange_target:
+        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    lambda1__xo:
+        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    lambda2__xo:
+        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    lambda3__xo:
+        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    mu0_D:
+        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    mu1_D:
+        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    mu2_D:
+        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    penalties:
+        [ 0 0 0 0 0 ]
+    r:
+        [ 1 1 1.00001 1.00002 1.00003 ]
+    r_D:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    theta:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    theta_cell:
+        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    vr:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    vr_D:
+        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    vt:
+        [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    vt_D:
+        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    zeta:
+        [ 0 0.0083 0.0166 0.0249 0.0332 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+PARS --------------------------
+Control Penalties: 0
+Lagrange target: -0.525274
+Mayer target: 0
+Penalties: 0
+converged: "YES"
+cpu_time: 31.388
+iterations: 9
+lapack version: "Accelerate"
+max_accumulated_iter: 800
+max_iter: 300
+max_step_iter: 40
+num_equations: 2411
+solver_type: "CyclicReduction+LU and LastBlock LUPQ"
+tolerance: 1e-09
+GC2 COPY ----------------------
+data:
+    MASS:
+        [ 1 0.999378 0.998757 0.998135 0.997513 ]
+    THETA:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    control_penalties:
+        [ 0 0 0 0 0 ]
+    i_segment:
+        [ 0 0 0 0 0 ]
+    inequality_penalties:
+        [ 0 0 0 0 0 ]
+    lagrange_target:
+        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    lambda1__xo:
+        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    lambda2__xo:
+        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    lambda3__xo:
+        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    mu0_D:
+        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    mu1_D:
+        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    mu2_D:
+        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    penalties:
+        [ 0 0 0 0 0 ]
+    r:
+        [ 1 1 1.00001 1.00002 1.00003 ]
+    r_D:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    theta:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    theta_cell:
+        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    vr:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    vr_D:
+        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    vt:
+        [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    vt_D:
+        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    zeta:
+        [ 0 0.0083 0.0166 0.0249 0.0332 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+GC2 COPY2 ---------------------
+data:
+    MASS:
+        [ 1 0.999378 0.998757 0.998135 0.997513 ]
+    THETA:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    control_penalties:
+        [ 0 0 0 0 0 ]
+    i_segment:
+        [ 0 0 0 0 0 ]
+    inequality_penalties:
+        [ 0 0 0 0 0 ]
+    lagrange_target:
+        [ 3.83335e-24 -0.000496945 -0.00101537 -0.00155528 -0.00211665 ]
+    lambda1__xo:
+        [ -0.877337 -0.869626 -0.861913 -0.854198 -0.846482 ]
+    lambda2__xo:
+        [ -0.928952 -0.930156 -0.931313 -0.932422 -0.933483 ]
+    lambda3__xo:
+        [ -2.02515 -2.00971 -1.99425 -1.97876 -1.96325 ]
+    mu0_D:
+        [ 0.928952 0.92918 0.929377 0.929543 0.929676 ]
+    mu1_D:
+        [ -0.147809 -0.142207 -0.136527 -0.130771 -0.124938 ]
+    mu2_D:
+        [ 1.8579 1.86128 1.86451 1.86762 1.87058 ]
+    penalties:
+        [ 0 0 0 0 0 ]
+    r:
+        [ 1 1 1.00001 1.00002 1.00003 ]
+    r_D:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    theta:
+        [ 0.431767 0.433474 0.436902 0.440357 0.443841 ]
+    theta_cell:
+        [ 0.431767 0.435181 0.438622 0.442092 0.445589 ]
+    vr:
+        [ -3.83335e-24 0.000496945 0.00101537 0.00155528 0.00211665 ]
+    vr_D:
+        [ 0.0587959 0.0611683 0.0637562 0.0663432 0.0689288 ]
+    vt:
+        [ 1 1.00106 1.00211 1.00316 1.0042 ]
+    vt_D:
+        [ 0.127606 0.127087 0.126443 0.125774 0.125078 ]
+    zeta:
+        [ 0 0.0083 0.0166 0.0249 0.0332 ]
+headers:
+    0: "i_segment"
+    1: "zeta"
+    2: "lagrange_target"
+    3: "inequality_penalties"
+    4: "penalties"
+    5: "control_penalties"
+    6: "theta"
+    7: "theta_cell"
+    8: "r"
+    9: "vr"
+    10: "vt"
+    11: "lambda1__xo"
+    12: "lambda2__xo"
+    13: "lambda3__xo"
+    14: "r_D"
+    15: "vr_D"
+    16: "vt_D"
+    17: "mu0_D"
+    18: "mu1_D"
+    19: "mu2_D"
+    20: "THETA"
+    21: "MASS"
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
 Example 11</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d30/_generic_container_interface__yaml_8hh.html">GenericContainer/GenericContainerInterface_yaml.hh</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.11     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    <span class="comment">// read YAML file and convert to generic container</span></div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    <span class="keywordtype">string</span> fname{ <span class="stringliteral">&quot;../examples/data2.yaml&quot;</span> };</div>
+<div class="line">    <span class="keywordtype">bool</span> ok = file_YAML_to_GC( fname, gc );</div>
+<div class="line">    <span class="keywordflow">if</span> ( !ok ) std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to parse: &quot;</span> &lt;&lt; fname &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;\n\n\n\nGC\n\n&quot;</span>;</div>
+<div class="line">    gc.print(std::cout);</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;\n\n\n\nYAML\n\n&quot;</span> &lt;&lt; gc.to_yaml() &lt;&lt; <span class="stringliteral">&quot;\n\n\n\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_generic_container_interface__yaml_8hh_html"><div class="ttname"><a href="../../d8/d30/_generic_container_interface__yaml_8hh.html">GenericContainerInterface_yaml.hh</a></div></div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+file <span class="tt">data2.yaml</span></h4>
+<pre class="fragment">address: 
+  city: "Springfield"
+  coordinates: 
+    latitude: 39.7817
+    longitude: -89.6501
+  postalCode: 62704
+  state: "IL"
+  street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children: 
+  - 
+    age: 10
+    hobbies: 
+      - "reading"
+      - "drawing"
+      - "cycling"
+    name: "Jane Doe"
+  - 
+    age: 8
+    hobbies: 
+      - "video games"
+      - "swimming"
+      - "football"
+    name: "Johnny Doe"
+float_example: 12345.7
+history: 
+  - "created account"
+  - "updated profile"
+  - "added new property"
+  - "made a purchase"
+  - "joined newsletter"
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences: 
+  languages: 
+    - "en"
+    - "es"
+    - "fr"
+  newsletter: false
+  notifications: 
+    email: true
+    push: true
+    sms: false
+properties: 
+  - 
+    garden: true
+    rooms: 
+      - 
+        height: 15
+        name: "Living Room"
+        width: 20
+      - 
+        height: 12
+        name: "Kitchen"
+        width: 15
+      - 
+        height: 16
+        name: "Master Bedroom"
+        width: 18
+    size: 2400
+    swimmingPool: null
+    type: "House"
+  - 
+    features: 
+      - "Autopilot"
+      - "Electric"
+      - "Touchscreen"
+    make: "Tesla"
+    model: "Model S"
+    type: "Car"
+    year: 2020
+transactions: 
+  - 
+    amount: 450.75
+    completed: true
+    currency: "USD"
+    id: "txn_001"
+    items: 
+      - 
+        name: "Laptop"
+        price: 1200
+        quantity: 1
+      - 
+        name: "Mouse"
+        price: 25.5
+        quantity: 2
+  - 
+    amount: 99.99
+    completed: false
+    currency: "USD"
+    id: "txn_002"
+    items: 
+      - 
+        name: "Headphones"
+        price: 99.99
+        quantity: 1
+work: 
+  position: "Software Engineer"
+  remote: false
+  skills: 
+    - 
+      experience: 10
+      name: "C++"
+      projects: 
+        - "Compiler"
+        - "Game Engine"
+    - 
+      experience: 7
+      name: "Python"
+      projects: 
+        - "Machine Learning"
+        - "Web Scraping"
+</pre><h4 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+output</h4>
+<pre class="fragment">***********************
+      example N.11
+***********************
+
+
+
+
+
+GC
+
+address:
+    city: "Springfield"
+    coordinates:
+        latitude: 39.7817
+        longitude: -89.6501
+    postalCode: 62704
+    state: "IL"
+    street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+    0:
+        age: 10
+        hobbies:
+            0: "reading"
+            1: "drawing"
+            2: "cycling"
+        name: "Jane Doe"
+    1:
+        age: 8
+        hobbies:
+            0: "video games"
+            1: "swimming"
+            2: "football"
+        name: "Johnny Doe"
+float_example: 12345.7
+history:
+    0: "created account"
+    1: "updated profile"
+    2: "added new property"
+    3: "made a purchase"
+    4: "joined newsletter"
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+    languages:
+        0: "en"
+        1: "es"
+        2: "fr"
+    newsletter: false
+    notifications:
+        email: true
+        push: true
+        sms: false
+properties:
+    0:
+        garden: true
+        rooms:
+            0:
+                height: 15
+                name: "Living Room"
+                width: 20
+            1:
+                height: 12
+                name: "Kitchen"
+                width: 15
+            2:
+                height: 16
+                name: "Master Bedroom"
+                width: 18
+        size: 2400
+        swimmingPool: null
+        type: "House"
+    1:
+        features:
+            0: "Autopilot"
+            1: "Electric"
+            2: "Touchscreen"
+        make: "Tesla"
+        model: "Model S"
+        type: "Car"
+        year: 2020
+transactions:
+    0:
+        amount: 450.75
+        completed: true
+        currency: "USD"
+        id: "txn_001"
+        items:
+            0:
+                name: "Laptop"
+                price: 1200
+                quantity: 1
+            1:
+                name: "Mouse"
+                price: 25.5
+                quantity: 2
+    1:
+        amount: 99.99
+        completed: false
+        currency: "USD"
+        id: "txn_002"
+        items:
+            0:
+                name: "Headphones"
+                price: 99.99
+                quantity: 1
+work:
+    position: "Software Engineer"
+    remote: false
+    skills:
+        0:
+            experience: 10
+            name: "C++"
+            projects:
+                0: "Compiler"
+                1: "Game Engine"
+        1:
+            experience: 7
+            name: "Python"
+            projects:
+                0: "Machine Learning"
+                1: "Web Scraping"
+
+
+
+
+YAML
+
+
+address:
+  city: "Springfield"
+  coordinates:
+    latitude: 39.7817
+    longitude: -89.6501
+  postalCode: 62704
+  state: "IL"
+  street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+  -
+    age: 10
+    hobbies: [ "reading", "drawing", "cycling" ]
+    name: "Jane Doe"
+  -
+    age: 8
+    hobbies: [ "video games", "swimming", "football" ]
+    name: "Johnny Doe"
+float_example: 12345.7
+history: [ "created account", "updated profile", "added new property", "made a purchase", "joined newsletter" ]
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+  languages: [ "en", "es", "fr" ]
+  newsletter: false
+  notifications:
+    email: true
+    push: true
+    sms: false
+properties:
+  -
+    garden: true
+    rooms:
+      -
+        height: 15
+        name: "Living Room"
+        width: 20
+      -
+        height: 12
+        name: "Kitchen"
+        width: 15
+      -
+        height: 16
+        name: "Master Bedroom"
+        width: 18
+    size: 2400
+    swimmingPool: null
+    type: "House"
+  -
+    features: [ "Autopilot", "Electric", "Touchscreen" ]
+    make: "Tesla"
+    model: "Model S"
+    type: "Car"
+    year: 2020
+transactions:
+  -
+    amount: 450.75
+    completed: true
+    currency: "USD"
+    id: "txn_001"
+    items:
+      -
+        name: "Laptop"
+        price: 1200
+        quantity: 1
+      -
+        name: "Mouse"
+        price: 25.5
+        quantity: 2
+  -
+    amount: 99.99
+    completed: false
+    currency: "USD"
+    id: "txn_002"
+    items:
+      -
+        name: "Headphones"
+        price: 99.99
+        quantity: 1
+work:
+  position: "Software Engineer"
+  remote: false
+  skills:
+    -
+      experience: 10
+      name: "C++"
+      projects: [ "Compiler", "Game Engine" ]
+    -
+      experience: 7
+      name: "Python"
+      projects: [ "Machine Learning", "Web Scraping" ]
+
+
+
+
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
 Example 12</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d30/_generic_container_interface__yaml_8hh.html">GenericContainer/GenericContainerInterface_yaml.hh</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.12     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    <span class="comment">// real yaml file to generic container</span></div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">auto</span> &amp; m1 = gc[<span class="stringliteral">&quot;matrix_int&quot;</span>].set_mat_int(3, 4);</div>
+<div class="line">    <span class="keyword">auto</span> &amp; m2 = gc[<span class="stringliteral">&quot;matrix_real&quot;</span>].set_mat_real(3, 2);</div>
+<div class="line">    <span class="keyword">auto</span> &amp; m3 = gc[<span class="stringliteral">&quot;matrix_complex&quot;</span>].set_mat_complex(4, 2);</div>
+<div class="line">    <span class="keyword">auto</span> &amp; v3 = gc[<span class="stringliteral">&quot;vector_complex&quot;</span>].set_vec_complex(3);</div>
+<div class="line"> </div>
+<div class="line">    m1(2,1) = 4;</div>
+<div class="line">    m2(2,1) = 2;</div>
+<div class="line">    m3(2,1) = 1;</div>
+<div class="line">    m3(0,0) = GenericContainer::complex_type(4,5);</div>
+<div class="line"> </div>
+<div class="line">    v3[0] = 1;</div>
+<div class="line">    v3[1] = GenericContainer::complex_type(55,1);</div>
+<div class="line">    v3[2] = GenericContainer::complex_type(0,-2);</div>
+<div class="line"> </div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;\n\n\n\nYAML\n\n&quot;</span> &lt;&lt; gc.to_yaml() &lt;&lt; <span class="stringliteral">&quot;\n\n\n\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment --><pre class="fragment">***********************
+      example N.12
+***********************
+
+
+
+
+
+YAML
+
+
+matrix_complex:
+  - [ (4,5), (0,0), (0,0), (0,0) ]
+  - [ (0,0), (0,0), (1,0), (0,0) ]
+matrix_int:
+  - [ 0, 0, 0 ]
+  - [ 0, 0, 4 ]
+  - [ 0, 0, 0 ]
+  - [ 0, 0, 0 ]
+matrix_real:
+  - [ 0, 0, 0 ]
+  - [ 0, 0, 2 ]
+vector_complex: [ (1,0), (55,1), (0,-2) ]
+
+
+
+
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
 Example 13</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d00/_generic_container_interface__json_8hh.html">GenericContainer/GenericContainerInterface_json.hh</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.13     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">try</span> {</div>
+<div class="line">    <span class="comment">// read JSON file and convert to generic container</span></div>
+<div class="line">    GenericContainer gc;</div>
+<div class="line">    <span class="keywordtype">string</span> fname{ <span class="stringliteral">&quot;examples/data.json&quot;</span> };</div>
+<div class="line">    <span class="keywordtype">bool</span> ok = file_JSON_to_GC( fname, gc );</div>
+<div class="line">    <span class="keywordflow">if</span> ( !ok ) std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to parse: &quot;</span> &lt;&lt; fname &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;\n\n\n\nGC\n\n&quot;</span>;</div>
+<div class="line">    gc.print(std::cout);</div>
+<div class="line">    std::cout</div>
+<div class="line">      &lt;&lt; <span class="stringliteral">&quot;\n\n\n\nYAML\n\n&quot;</span> &lt;&lt; gc.to_yaml()</div>
+<div class="line">      &lt;&lt; <span class="stringliteral">&quot;\n\n\n\nJSON\n\n&quot;</span> &lt;&lt; gc.to_json()</div>
+<div class="line">      &lt;&lt; <span class="stringliteral">&quot;\n\n\n\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> ( std::exception &amp; exc ) {</div>
+<div class="line">    cout &lt;&lt; exc.what() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line">  }</div>
+<div class="line">  <span class="keywordflow">catch</span> (...) {</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Unknonwn error\n&quot;</span>;</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;ALL DONE!\n\n\n\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_generic_container_interface__json_8hh_html"><div class="ttname"><a href="../../d3/d00/_generic_container_interface__json_8hh.html">GenericContainerInterface_json.hh</a></div></div>
+</div><!-- fragment --><pre class="fragment">***********************
+      example N.13
+***********************
+
+
+
+
+
+GC
+
+address:
+    city: "Springfield"
+    coordinates:
+        latitude: 39.7817
+        longitude: -89.6501
+    postalCode: 62704
+    state: "IL"
+    street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+    0:
+        age: 10
+        hobbies:
+            0: "reading"
+            1: "drawing"
+            2: "cycling"
+        name: "Jane Doe"
+    1:
+        age: 8
+        hobbies:
+            0: "video games"
+            1: "swimming"
+            2: "football"
+        name: "Johnny Doe"
+float_example: 12345.7
+history:
+    0: "created account"
+    1: "updated profile"
+    2: "added new property"
+    3: "made a purchase"
+    4: "joined newsletter"
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+    languages:
+        0: "en"
+        1: "es"
+        2: "fr"
+    newsletter: false
+    notifications:
+        email: true
+        push: true
+        sms: false
+properties:
+    0:
+        garden: true
+        rooms:
+            0:
+                height: 15
+                name: "Living Room"
+                width: 20
+            1:
+                height: 12
+                name: "Kitchen"
+                width: 15
+            2:
+                height: 16
+                name: "Master Bedroom"
+                width: 18
+        size: 2400
+        swimmingPool: null
+        type: "House"
+    1:
+        features:
+            0: "Autopilot"
+            1: "Electric"
+            2: "Touchscreen"
+        make: "Tesla"
+        model: "Model S"
+        type: "Car"
+        year: 2020
+transactions:
+    0:
+        amount: 450.75
+        completed: true
+        currency: "USD"
+        id: "txn_001"
+        items:
+            0:
+                name: "Laptop"
+                price: 1200
+                quantity: 1
+            1:
+                name: "Mouse"
+                price: 25.5
+                quantity: 2
+    1:
+        amount: 99.99
+        completed: false
+        currency: "USD"
+        id: "txn_002"
+        items:
+            0:
+                name: "Headphones"
+                price: 99.99
+                quantity: 1
+work:
+    position: "Software Engineer"
+    remote: false
+    skills:
+        0:
+            experience: 10
+            name: "C++"
+            projects:
+                0: "Compiler"
+                1: "Game Engine"
+        1:
+            experience: 7
+            name: "Python"
+            projects:
+                0: "Machine Learning"
+                1: "Web Scraping"
+
+
+
+
+YAML
+
+
+address:
+  city: "Springfield"
+  coordinates:
+    latitude: 39.7817
+    longitude: -89.6501
+  postalCode: 62704
+  state: "IL"
+  street: "1234 Elm Street"
+age: 35
+boolean_false: false
+boolean_true: true
+children:
+  -
+    age: 10
+    hobbies: [ "reading", "drawing", "cycling" ]
+    name: "Jane Doe"
+  -
+    age: 8
+    hobbies: [ "video games", "swimming", "football" ]
+    name: "Johnny Doe"
+float_example: 12345.7
+history: [ "created account", "updated profile", "added new property", "made a purchase", "joined newsletter" ]
+large_number: 1234567890123456789
+married: true
+name: "John Doe"
+null_example: null
+preferences:
+  languages: [ "en", "es", "fr" ]
+  newsletter: false
+  notifications:
+    email: true
+    push: true
+    sms: false
+properties:
+  -
+    garden: true
+    rooms:
+      -
+        height: 15
+        name: "Living Room"
+        width: 20
+      -
+        height: 12
+        name: "Kitchen"
+        width: 15
+      -
+        height: 16
+        name: "Master Bedroom"
+        width: 18
+    size: 2400
+    swimmingPool: null
+    type: "House"
+  -
+    features: [ "Autopilot", "Electric", "Touchscreen" ]
+    make: "Tesla"
+    model: "Model S"
+    type: "Car"
+    year: 2020
+transactions:
+  -
+    amount: 450.75
+    completed: true
+    currency: "USD"
+    id: "txn_001"
+    items:
+      -
+        name: "Laptop"
+        price: 1200
+        quantity: 1
+      -
+        name: "Mouse"
+        price: 25.5
+        quantity: 2
+  -
+    amount: 99.99
+    completed: false
+    currency: "USD"
+    id: "txn_002"
+    items:
+      -
+        name: "Headphones"
+        price: 99.99
+        quantity: 1
+work:
+  position: "Software Engineer"
+  remote: false
+  skills:
+    -
+      experience: 10
+      name: "C++"
+      projects: [ "Compiler", "Game Engine" ]
+    -
+      experience: 7
+      name: "Python"
+      projects: [ "Machine Learning", "Web Scraping" ]
+
+
+
+
+JSON
+
+
+{
+  "address":
+  {
+    "city": "Springfield",
+    "coordinates":
+    {
+      "latitude": 39.7817,
+      "longitude": -89.6501
+    },
+    "postalCode": 62704,
+    "state": "IL",
+    "street": "1234 Elm Street"
+  },
+  "age": 35,
+  "boolean_false": false,
+  "boolean_true": true,
+  "children":
+  [
+
+    {
+      "age": 10,
+      "hobbies": [ "reading", "drawing", "cycling" ],
+      "name": "Jane Doe"
+    },
+
+    {
+      "age": 8,
+      "hobbies": [ "video games", "swimming", "football" ],
+      "name": "Johnny Doe"
+    }
+  ],
+  "float_example": 12345.7,
+  "history": [ "created account", "updated profile", "added new property", "made a purchase", "joined newsletter" ],
+  "large_number": 1234567890123456789,
+  "married": true,
+  "name": "John Doe",
+  "null_example": null,
+  "preferences":
+  {
+    "languages": [ "en", "es", "fr" ],
+    "newsletter": false,
+    "notifications":
+    {
+      "email": true,
+      "push": true,
+      "sms": false
+    }
+  },
+  "properties":
+  [
+
+    {
+      "garden": true,
+      "rooms":
+      [
+
+        {
+          "height": 15,
+          "name": "Living Room",
+          "width": 20
+        },
+
+        {
+          "height": 12,
+          "name": "Kitchen",
+          "width": 15
+        },
+
+        {
+          "height": 16,
+          "name": "Master Bedroom",
+          "width": 18
+        }
+      ],
+      "size": 2400,
+      "swimmingPool": null,
+      "type": "House"
+    },
+
+    {
+      "features": [ "Autopilot", "Electric", "Touchscreen" ],
+      "make": "Tesla",
+      "model": "Model S",
+      "type": "Car",
+      "year": 2020
+    }
+  ],
+  "transactions":
+  [
+
+    {
+      "amount": 450.75,
+      "completed": true,
+      "currency": "USD",
+      "id": "txn_001",
+      "items":
+      [
+
+        {
+          "name": "Laptop",
+          "price": 1200,
+          "quantity": 1
+        },
+
+        {
+          "name": "Mouse",
+          "price": 25.5,
+          "quantity": 2
+        }
+      ]
+    },
+
+    {
+      "amount": 99.99,
+      "completed": false,
+      "currency": "USD",
+      "id": "txn_002",
+      "items":
+      [
+
+        {
+          "name": "Headphones",
+          "price": 99.99,
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "work":
+  {
+    "position": "Software Engineer",
+    "remote": false,
+    "skills":
+    [
+
+      {
+        "experience": 10,
+        "name": "C++",
+        "projects": [ "Compiler", "Game Engine" ]
+      },
+
+      {
+        "experience": 7,
+        "name": "Python",
+        "projects": [ "Machine Learning", "Web Scraping" ]
+      }
+    ]
+  }
+}
+
+
+
+ALL DONE!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
 Example 14</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md36"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d00/_generic_container_interface__json_8hh.html">GenericContainer/GenericContainerInterface_json.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#ifndef DOXYGEN_SHOULD_SKIP_THIS</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line"><span class="comment">//main( int argc, const char * argv[] ) {</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.14     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  GenericContainer gc;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> test = 1; test &lt;= 2; ++test ) {</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;\n\n\nTEST N.&quot;</span> &lt;&lt; test &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">switch</span> ( test ) {</div>
+<div class="line">    <span class="keywordflow">case</span> 1: {</div>
+<div class="line">      gc[<span class="stringliteral">&quot;a&quot;</span>] = 2;</div>
+<div class="line">      gc[<span class="stringliteral">&quot;b&quot;</span>] = vector&lt;int&gt;( {1, 2, 3, 4, 5} );</div>
+<div class="line">      gc[<span class="stringliteral">&quot;bb&quot;</span>].set_vec_string();</div>
+<div class="line">      gc[<span class="stringliteral">&quot;bb&quot;</span>] = vector&lt;real_type&gt;( {4.5, 0.000000000000000000009086954454768098980679} );</div>
+<div class="line">      gc[<span class="stringliteral">&quot;c&quot;</span>] = <span class="keyword">false</span>;</div>
+<div class="line">      GenericContainer gc2;</div>
+<div class="line">      gc2[<span class="stringliteral">&quot;asd&quot;</span>].set_vector();</div>
+<div class="line">      gc2[<span class="stringliteral">&quot;asd&quot;</span>].get_vector().push_back( GenericContainer() );</div>
+<div class="line">      gc2[<span class="stringliteral">&quot;asd&quot;</span>].get_vector().push_back( GenericContainer() );</div>
+<div class="line">      gc2[<span class="stringliteral">&quot;asd&quot;</span>][0].set_vec_int( {0, 1, 2, 4} );</div>
+<div class="line">      gc2[<span class="stringliteral">&quot;asd&quot;</span>][1].set_vec_string( {<span class="stringliteral">&quot;1+2i&quot;</span>, <span class="stringliteral">&quot;3.4&quot;</span>, <span class="stringliteral">&quot;34i&quot;</span>} );</div>
+<div class="line">      gc[<span class="stringliteral">&quot;d&quot;</span>] = gc2;</div>
+<div class="line">      gc2[<span class="stringliteral">&quot;eee&quot;</span>] = vector&lt;bool&gt;( {<span class="keyword">false</span>, <span class="keyword">true</span>} );</div>
+<div class="line">      <a class="code hl_typedef" href="../../d8/d51/namespace_g_c__namespace.html#a2e60874c678fe38416bfa3bd9866e102">mat_real_type</a> mat( 2, 2 );</div>
+<div class="line">      mat( 0, 0 ) = 0;</div>
+<div class="line">      mat( 1, 0 ) = 1;</div>
+<div class="line">      mat( 0, 1 ) = 2.2;</div>
+<div class="line">      mat( 1, 1 ) = 3;</div>
+<div class="line">      gc[<span class="stringliteral">&quot;e&quot;</span>].set_mat_real( mat );</div>
+<div class="line">      gc[<span class="stringliteral">&quot;f&quot;</span>];</div>
+<div class="line">      GenericContainer ff;</div>
+<div class="line">      ff.set_vector();</div>
+<div class="line">      ff.push_int( 3 );</div>
+<div class="line">      ff.push_bool( <span class="keyword">true</span> );</div>
+<div class="line">      gc[<span class="stringliteral">&quot;g&quot;</span>] = ff;</div>
+<div class="line">      <span class="keywordflow">break</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">case</span> 2: {</div>
+<div class="line">      GC::vector_type &amp; v = gc.set_vector();</div>
+<div class="line">      v.resize( 10 );</div>
+<div class="line">      v[0] = 1;</div>
+<div class="line">      v[1].set_vec_real();</div>
+<div class="line">      v[2].set_map();</div>
+<div class="line">      v[3].set_vec_string();</div>
+<div class="line">      v[4] = 1.3;</div>
+<div class="line">      v[5] = <span class="stringliteral">&quot;pippo&quot;</span>;</div>
+<div class="line">      v[6].set_map();</div>
+<div class="line">      v[7].set_vector();</div>
+<div class="line">      v[8] = <span class="keyword">true</span>;</div>
+<div class="line">      GC::vec_real_type &amp; vv = v[1].get_vec_real();</div>
+<div class="line">      vv.resize( 10 );</div>
+<div class="line">      vv[2] = 123;</div>
+<div class="line">      GC::map_type &amp; mm = v[2].get_map();</div>
+<div class="line">      mm[<span class="stringliteral">&quot;pippo&quot;</span>]    = 13;</div>
+<div class="line">      mm[<span class="stringliteral">&quot;pluto&quot;</span>]    = 1;</div>
+<div class="line">      mm[<span class="stringliteral">&quot;paperino&quot;</span>] = 3;</div>
+<div class="line">      GenericContainer &amp; gmm = v[2]; <span class="comment">// access element 2 as GenericContainer</span></div>
+<div class="line">      gmm[<span class="stringliteral">&quot;aaa&quot;</span>]     = <span class="stringliteral">&quot;stringa1&quot;</span>;   <span class="comment">// is the same as mm[&quot;aaa&quot;] = &quot;stringa&quot;</span></div>
+<div class="line">      gmm[<span class="stringliteral">&quot;bbb&quot;</span>]     = <span class="stringliteral">&quot;stringa2&quot;</span>;   <span class="comment">// is the same as mm[&quot;aaa&quot;] = &quot;stringa&quot;</span></div>
+<div class="line">      GC::vec_string_type &amp; vs = v[3].get_vec_string();</div>
+<div class="line">      vs.push_back( <span class="stringliteral">&quot;string1&quot;</span> );</div>
+<div class="line">      vs.push_back( <span class="stringliteral">&quot;string2&quot;</span> );</div>
+<div class="line">      vs.push_back( <span class="stringliteral">&quot;string3&quot;</span> );</div>
+<div class="line">      vs.push_back( <span class="stringliteral">&quot;string4&quot;</span> );</div>
+<div class="line">      GC::map_type &amp; m = v[6].get_map();</div>
+<div class="line">      m[<span class="stringliteral">&quot;aaa&quot;</span>]    = 123;</div>
+<div class="line">      m[<span class="stringliteral">&quot;bbb&quot;</span>]    = 3.4;</div>
+<div class="line">      m[<span class="stringliteral">&quot;vector&quot;</span>].set_vec_int();</div>
+<div class="line">      GC::vec_int_type &amp; vi = m[<span class="stringliteral">&quot;vector&quot;</span>].get_vec_int();</div>
+<div class="line">      vi.push_back( 12 );</div>
+<div class="line">      vi.push_back( 10 );</div>
+<div class="line">      vi.push_back( 1 );</div>
+<div class="line"> </div>
+<div class="line">      GC::vector_type &amp; vg = v[7].get_vector();</div>
+<div class="line">      vg.resize( 4 );</div>
+<div class="line">      vg[0] = 123;</div>
+<div class="line">      vg[1] = 3.14;</div>
+<div class="line">      vg[2] = <span class="stringliteral">&quot;nonna papera&quot;</span>;</div>
+<div class="line">      <span class="keywordflow">break</span>;</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordflow">default</span>:</div>
+<div class="line">      <span class="keywordflow">break</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Original container is:&quot;</span> &lt;&lt; endl;</div>
+<div class="line">    gc.dump( cout );</div>
+<div class="line">    cout &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">string</span> out_str;</div>
+<div class="line">    GC::GC_to_JSON( gc, out_str );</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Json string is:\n&quot;</span> &lt;&lt; out_str &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">//string out_str1 = gc.to_yaml();</span></div>
+<div class="line">    <span class="comment">//cout &lt;&lt; &quot;YAML string is:\n&quot; &lt;&lt; out_str1 &lt;&lt; &#39;\n&#39;;</span></div>
+<div class="line"> </div>
+<div class="line">    GenericContainer gc_back;</div>
+<div class="line">    GC::JSON_to_GC( out_str, gc_back );</div>
+<div class="line"> </div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;Re-converted container is (note complex string are converted to complex numbers):&quot;</span> &lt;&lt; endl;</div>
+<div class="line">    gc_back.print( cout );</div>
+<div class="line">    cout &lt;&lt; endl &lt;&lt; endl;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// test a generic json string</span></div>
+<div class="line">    <span class="keywordtype">string</span> a_json = <span class="stringliteral">&quot;[  {    \&quot;_id\&quot;: \&quot;5a0ae30d8419c393f642fec3\&quot;,    \&quot;index\&quot;: 0,    \&quot;guid\&quot;: \&quot;d0268ff7-cde2-48e4-9c75-5740c53c3b23\&quot;,    \&quot;isActive\&quot;: true,    \&quot;balance\&quot;: \&quot;$1,949.87\&quot;,    \&quot;picture\&quot;: \&quot;http://placehold.it/32x32\&quot;,    \&quot;age\&quot;: 26,    \&quot;eyeColor\&quot;: \&quot;green\&quot;,    \&quot;name\&quot;: \&quot;Sargent Frazier\&quot;,    \&quot;gender\&quot;: \&quot;male\&quot;,    \&quot;company\&quot;: \&quot;MANGLO\&quot;,    \&quot;email\&quot;: \&quot;sargentfrazier@manglo.com\&quot;,    \&quot;phone\&quot;: \&quot;+1 (894) 561-3896\&quot;,    \&quot;address\&quot;: \&quot;769 Prospect Avenue, Snyderville, North Dakota, 3198\&quot;,    \&quot;about\&quot;: \&quot;Qui ad eu officia commodo aute dolor proident ea esse fugiat deserunt sint anim incididunt. Cupidatat ipsum tempor ipsum cillum laborum eu culpa eiusmod laborum quis irure in proident. Amet ipsum aute nulla et. Ipsum sit velit cillum in consequat. Est exercitation deserunt ad Lorem laborum occaecat mollit cupidatat fugiat quis sunt elit voluptate.\&quot;,    \&quot;registered\&quot;: \&quot;2016-01-07T03:21:06 -01:00\&quot;,    \&quot;latitude\&quot;: -38.243575,    \&quot;longitude\&quot;: -0.862908,    \&quot;tags\&quot;: [      \&quot;sunt\&quot;,      \&quot;voluptate\&quot;,      \&quot;labore\&quot;,      \&quot;sunt\&quot;,      \&quot;elit\&quot;,      \&quot;cupidatat\&quot;,      \&quot;nulla\&quot;    ],    \&quot;friends\&quot;: [      {        \&quot;id\&quot;: 0,        \&quot;name\&quot;: \&quot;April Dunlap\&quot;      },      {        \&quot;id\&quot;: 1,        \&quot;name\&quot;: \&quot;Deirdre Mayer\&quot;      },      {        \&quot;id\&quot;: 2,        \&quot;name\&quot;: \&quot;Bernadette Durham\&quot;      }    ],    \&quot;greeting\&quot;: \&quot;Hello, Sargent Frazier! You have 7 unread messages.\&quot;,    \&quot;favoriteFruit\&quot;: \&quot;strawberry\&quot;  },  {    \&quot;_id\&quot;: \&quot;5a0ae30da2e6848d6f374bba\&quot;,    \&quot;index\&quot;: 1,    \&quot;guid\&quot;: \&quot;578ab333-ea26-40c2-a130-04d47aa9000d\&quot;,    \&quot;isActive\&quot;: true,    \&quot;balance\&quot;: \&quot;$2,690.13\&quot;,    \&quot;picture\&quot;: \&quot;http://placehold.it/32x32\&quot;,    \&quot;age\&quot;: 26,    \&quot;eyeColor\&quot;: \&quot;blue\&quot;,    \&quot;name\&quot;: \&quot;Vickie Roy\&quot;,    \&quot;gender\&quot;: \&quot;female\&quot;,    \&quot;company\&quot;: \&quot;INSOURCE\&quot;,    \&quot;email\&quot;: \&quot;vickieroy@insource.com\&quot;,    \&quot;phone\&quot;: \&quot;+1 (996) 421-2072\&quot;,    \&quot;address\&quot;: \&quot;922 Dahill Road, Byrnedale, Marshall Islands, 1410\&quot;,    \&quot;about\&quot;: \&quot;Adipisicing amet veniam dolore in exercitation consequat consectetur cupidatat enim non. Sint minim velit deserunt in aliqua excepteur nostrud ea cupidatat fugiat excepteur mollit consequat. Tempor do minim qui qui labore cupidatat.\&quot;,    \&quot;registered\&quot;: \&quot;2016-12-20T05:28:05 -01:00\&quot;,    \&quot;latitude\&quot;: -13.097375,    \&quot;longitude\&quot;: -144.934101,    \&quot;tags\&quot;: [      \&quot;quis\&quot;,      \&quot;duis\&quot;,      \&quot;do\&quot;,      \&quot;magna\&quot;,      \&quot;qui\&quot;,      \&quot;deserunt\&quot;,      \&quot;nostrud\&quot;    ],    \&quot;friends\&quot;: [      {        \&quot;id\&quot;: 0,        \&quot;name\&quot;: \&quot;Riddle Burt\&quot;      },      {        \&quot;id\&quot;: 1,        \&quot;name\&quot;: \&quot;Hughes Howell\&quot;      },      {        \&quot;id\&quot;: 2,        \&quot;name\&quot;: \&quot;Mcbride Tyson\&quot;      }    ],    \&quot;greeting\&quot;: \&quot;Hello, Vickie Roy! You have 3 unread messages.\&quot;,    \&quot;favoriteFruit\&quot;: \&quot;banana\&quot;  },  {    \&quot;_id\&quot;: \&quot;5a0ae30df49a05d7a259f116\&quot;,    \&quot;index\&quot;: 2,    \&quot;guid\&quot;: \&quot;84f91917-7331-441d-aa3c-da08994bc1a9\&quot;,    \&quot;isActive\&quot;: true,    \&quot;balance\&quot;: \&quot;$3,503.13\&quot;,    \&quot;picture\&quot;: \&quot;http://placehold.it/32x32\&quot;,    \&quot;age\&quot;: 25,    \&quot;eyeColor\&quot;: \&quot;brown\&quot;,    \&quot;name\&quot;: \&quot;Delacruz Schultz\&quot;,    \&quot;gender\&quot;: \&quot;male\&quot;,    \&quot;company\&quot;: \&quot;ISOLOGIA\&quot;,    \&quot;email\&quot;: \&quot;delacruzschultz@isologia.com\&quot;,    \&quot;phone\&quot;: \&quot;+1 (949) 553-3319\&quot;,    \&quot;address\&quot;: \&quot;240 Homecrest Avenue, Groveville, Alaska, 3106\&quot;,    \&quot;about\&quot;: \&quot;Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur.\&quot;,    \&quot;registered\&quot;: \&quot;2016-02-14T03:02:53 -01:00\&quot;,    \&quot;latitude\&quot;: -7.842765,    \&quot;longitude\&quot;: -166.808559,    \&quot;tags\&quot;: [      \&quot;velit\&quot;,      \&quot;esse\&quot;,      \&quot;ad\&quot;,      \&quot;laborum\&quot;,      \&quot;incididunt\&quot;,      \&quot;ex\&quot;,      \&quot;fugiat\&quot;    ],    \&quot;friends\&quot;: [      {        \&quot;id\&quot;: 0,        \&quot;name\&quot;: \&quot;Romero Hodge\&quot;      },      {        \&quot;id\&quot;: 1,        \&quot;name\&quot;: \&quot;Dona Reilly\&quot;      },      {        \&quot;id\&quot;: 2,        \&quot;name\&quot;: \&quot;Earlene Richards\&quot;      }    ],    \&quot;greeting\&quot;: \&quot;Hello, Delacruz Schultz! You have 9 unread messages.\&quot;,    \&quot;favoriteFruit\&quot;: \&quot;strawberry\&quot;  },  {    \&quot;_id\&quot;: \&quot;5a0ae30d47367b43a9f4e819\&quot;,    \&quot;index\&quot;: 3,    \&quot;guid\&quot;: \&quot;8192649f-8fc0-481d-a32a-50c6919d10c0\&quot;,    \&quot;isActive\&quot;: true,    \&quot;balance\&quot;: \&quot;$3,221.56\&quot;,    \&quot;picture\&quot;: \&quot;http://placehold.it/32x32\&quot;,    \&quot;age\&quot;: 28,    \&quot;eyeColor\&quot;: \&quot;blue\&quot;,    \&quot;name\&quot;: \&quot;Cash Cannon\&quot;,    \&quot;gender\&quot;: \&quot;male\&quot;,    \&quot;company\&quot;: \&quot;ACCUPRINT\&quot;,    \&quot;email\&quot;: \&quot;cashcannon@accuprint.com\&quot;,    \&quot;phone\&quot;: \&quot;+1 (990) 410-3156\&quot;,    \&quot;address\&quot;: \&quot;454 George Street, Austinburg, Iowa, 8682\&quot;,    \&quot;about\&quot;: \&quot;Consequat consectetur minim est in incididunt. Sunt enim voluptate amet consectetur voluptate enim id. Laborum incididunt pariatur consequat qui sint nisi aliquip aliquip consequat nostrud excepteur. Commodo ipsum officia sint pariatur voluptate officia minim occaecat eiusmod commodo ut ipsum consequat excepteur.\&quot;,    \&quot;registered\&quot;: \&quot;2015-07-11T02:59:53 -02:00\&quot;,    \&quot;latitude\&quot;: 33.528547,    \&quot;longitude\&quot;: 57.927556,    \&quot;tags\&quot;: [      \&quot;officia\&quot;,      \&quot;labore\&quot;,      \&quot;sit\&quot;,      \&quot;mollit\&quot;,      \&quot;dolore\&quot;,      \&quot;labore\&quot;,      \&quot;elit\&quot;    ],    \&quot;friends\&quot;: [      {        \&quot;id\&quot;: 0,        \&quot;name\&quot;: \&quot;Burch Cherry\&quot;      },      {        \&quot;id\&quot;: 1,        \&quot;name\&quot;: \&quot;Bray Roberts\&quot;      },      {        \&quot;id\&quot;: 2,        \&quot;name\&quot;: \&quot;Bridgette Hester\&quot;      }    ],    \&quot;greeting\&quot;: \&quot;Hello, Cash Cannon! You have 3 unread messages.\&quot;,    \&quot;favoriteFruit\&quot;: \&quot;strawberry\&quot;  },  {    \&quot;_id\&quot;: \&quot;5a0ae30d97744a9d693c381b\&quot;,    \&quot;index\&quot;: 4,    \&quot;guid\&quot;: \&quot;71e9af8c-8c30-4810-b4d0-92a4c6fd434c\&quot;,    \&quot;isActive\&quot;: true,    \&quot;balance\&quot;: \&quot;$3,717.56\&quot;,    \&quot;picture\&quot;: \&quot;http://placehold.it/32x32\&quot;,    \&quot;age\&quot;: 29,    \&quot;eyeColor\&quot;: \&quot;brown\&quot;,    \&quot;name\&quot;: \&quot;Jenny Mendoza\&quot;,    \&quot;gender\&quot;: \&quot;female\&quot;,    \&quot;company\&quot;: \&quot;DUFLEX\&quot;,    \&quot;email\&quot;: \&quot;jennymendoza@duflex.com\&quot;,    \&quot;phone\&quot;: \&quot;+1 (864) 549-3766\&quot;,    \&quot;address\&quot;: \&quot;578 Autumn Avenue, Stagecoach, California, 1739\&quot;,    \&quot;about\&quot;: \&quot;Ipsum ut aliqua qui nisi quis incididunt dolore fugiat. Lorem qui pariatur occaecat reprehenderit laboris nulla eiusmod. Ut sunt sint nostrud incididunt anim sint. Aliquip magna velit enim exercitation proident qui enim amet ullamco pariatur commodo Lorem. Veniam amet in aliqua mollit sint sit ex.\&quot;,    \&quot;registered\&quot;: \&quot;2014-09-25T09:34:35 -02:00\&quot;,    \&quot;latitude\&quot;: -1.133185,    \&quot;longitude\&quot;: -77.004934,    \&quot;tags\&quot;: [      \&quot;laborum\&quot;,      \&quot;officia\&quot;,      \&quot;eu\&quot;,      \&quot;aute\&quot;,      \&quot;et\&quot;,      \&quot;aliqua\&quot;,      \&quot;eu\&quot;    ],    \&quot;friends\&quot;: [      {        \&quot;id\&quot;: 0,        \&quot;name\&quot;: \&quot;Marla Macias\&quot;      },      {        \&quot;id\&quot;: 1,        \&quot;name\&quot;: \&quot;Lauri Adkins\&quot;      },      {        \&quot;id\&quot;: 2,        \&quot;name\&quot;: \&quot;Coleman Keller\&quot;      }    ],    \&quot;greeting\&quot;: \&quot;Hello, Jenny Mendoza! You have 1 unread messages.\&quot;,    \&quot;favoriteFruit\&quot;: \&quot;banana\&quot;  }]&quot;</span>;</div>
+<div class="line">    GC::JSON_to_GC( a_json, gc );</div>
+<div class="line">    cout &lt;&lt; <span class="stringliteral">&quot;The container from the json string is:\n&quot;</span>;</div>
+<div class="line">    gc.dump( cout );</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;\n\nAll done Folks!\n\n&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespace_g_c__namespace_html_a2e60874c678fe38416bfa3bd9866e102"><div class="ttname"><a href="../../d8/d51/namespace_g_c__namespace.html#a2e60874c678fe38416bfa3bd9866e102">GC_namespace::mat_real_type</a></div><div class="ttdeci">mat_type&lt; real_type &gt; mat_real_type</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:471</div></div>
+</div><!-- fragment --><pre class="fragment">***********************
+      example N.14
+***********************
+
+
+
+
+TEST N.1
+
+
+Original container is:
+a: 2
+b:
+    [ 1 2 3 4 5 ]
+bb:
+    [ 4.5 9.08695e-21 ]
+c: false
+d:
+    asd:
+        0: [ 0 1 2 4 ]
+        1:
+            0: "1+2i"
+            1: "3.4"
+            2: "34i"
+e:
+       0      2.2
+       1        3
+f: null
+g:
+    0: 3
+    1: true
+
+
+Json string is:
+
+{
+  "a": 2,
+  "b": [ 1, 2, 3, 4, 5 ],
+  "bb": [ 4.5, 9.08695e-21 ],
+  "c": false,
+  "d":
+  {
+    "asd":
+    [
+      [ 0, 1, 2, 4 ],
+      [ "1+2i", "3.4", "34i" ]
+    ]
+  },
+  "e": [
+    [ 0, 1 ],
+    [ 2.2, 3 ]
+  ],
+  "f": null,
+  "g":
+  [
+    3,
+    true
+  ]
+}
+Re-converted container is (note complex string are converted to complex numbers):
+a: 2
+b:
+    [ 1 2 3 4 5 ]
+bb:
+    [ 4.5 9.08695e-21 ]
+c: false
+d:
+    asd:
+        0: [ 0 1 2 4 ]
+        1:
+            0: "1+2i"
+            1: "3.4"
+            2: "34i"
+e:
+       0      2.2
+       1        3
+f: null
+g:
+    [ 3 1 ]
+
+
+The container from the json string is:
+0:
+    _id: "5a0ae30d8419c393f642fec3"
+    about: "Qui ad eu officia commodo aute dolor proident ea esse fugiat deserunt sint anim incididunt. Cupidatat ipsum tempor ipsum cillum laborum eu culpa eiusmod laborum quis irure in proident. Amet ipsum aute nulla et. Ipsum sit velit cillum in consequat. Est exercitation deserunt ad Lorem laborum occaecat mollit cupidatat fugiat quis sunt elit voluptate."
+    address: "769 Prospect Avenue, Snyderville, North Dakota, 3198"
+    age: 26
+    balance: "$1,949.87"
+    company: "MANGLO"
+    email: "sargentfrazier@manglo.com"
+    eyeColor: "green"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "April Dunlap"
+        1:
+            id: 1
+            name: "Deirdre Mayer"
+        2:
+            id: 2
+            name: "Bernadette Durham"
+    gender: "male"
+    greeting: "Hello, Sargent Frazier! You have 7 unread messages."
+    guid: "d0268ff7-cde2-48e4-9c75-5740c53c3b23"
+    index: 0
+    isActive: true
+    latitude: -38.2436
+    longitude: -0.862908
+    name: "Sargent Frazier"
+    phone: "+1 (894) 561-3896"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-01-07T03:21:06 -01:00"
+    tags:
+        0: "sunt"
+        1: "voluptate"
+        2: "labore"
+        3: "sunt"
+        4: "elit"
+        5: "cupidatat"
+        6: "nulla"
+1:
+    _id: "5a0ae30da2e6848d6f374bba"
+    about: "Adipisicing amet veniam dolore in exercitation consequat consectetur cupidatat enim non. Sint minim velit deserunt in aliqua excepteur nostrud ea cupidatat fugiat excepteur mollit consequat. Tempor do minim qui qui labore cupidatat."
+    address: "922 Dahill Road, Byrnedale, Marshall Islands, 1410"
+    age: 26
+    balance: "$2,690.13"
+    company: "INSOURCE"
+    email: "vickieroy@insource.com"
+    eyeColor: "blue"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Riddle Burt"
+        1:
+            id: 1
+            name: "Hughes Howell"
+        2:
+            id: 2
+            name: "Mcbride Tyson"
+    gender: "female"
+    greeting: "Hello, Vickie Roy! You have 3 unread messages."
+    guid: "578ab333-ea26-40c2-a130-04d47aa9000d"
+    index: 1
+    isActive: true
+    latitude: -13.0974
+    longitude: -144.934
+    name: "Vickie Roy"
+    phone: "+1 (996) 421-2072"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-12-20T05:28:05 -01:00"
+    tags:
+        0: "quis"
+        1: "duis"
+        2: "do"
+        3: "magna"
+        4: "qui"
+        5: "deserunt"
+        6: "nostrud"
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    _id: "5a0ae30d47367b43a9f4e819"
+    about: "Consequat consectetur minim est in incididunt. Sunt enim voluptate amet consectetur voluptate enim id. Laborum incididunt pariatur consequat qui sint nisi aliquip aliquip consequat nostrud excepteur. Commodo ipsum officia sint pariatur voluptate officia minim occaecat eiusmod commodo ut ipsum consequat excepteur."
+    address: "454 George Street, Austinburg, Iowa, 8682"
+    age: 28
+    balance: "$3,221.56"
+    company: "ACCUPRINT"
+    email: "cashcannon@accuprint.com"
+    eyeColor: "blue"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Burch Cherry"
+        1:
+            id: 1
+            name: "Bray Roberts"
+        2:
+            id: 2
+            name: "Bridgette Hester"
+    gender: "male"
+    greeting: "Hello, Cash Cannon! You have 3 unread messages."
+    guid: "8192649f-8fc0-481d-a32a-50c6919d10c0"
+    index: 3
+    isActive: true
+    latitude: 33.5285
+    longitude: 57.9276
+    name: "Cash Cannon"
+    phone: "+1 (990) 410-3156"
+    picture: "http://placehold.it/32x32"
+    registered: "2015-07-11T02:59:53 -02:00"
+    tags:
+        0: "officia"
+        1: "labore"
+        2: "sit"
+        3: "mollit"
+        4: "dolore"
+        5: "labore"
+        6: "elit"
+4:
+    _id: "5a0ae30d97744a9d693c381b"
+    about: "Ipsum ut aliqua qui nisi quis incididunt dolore fugiat. Lorem qui pariatur occaecat reprehenderit laboris nulla eiusmod. Ut sunt sint nostrud incididunt anim sint. Aliquip magna velit enim exercitation proident qui enim amet ullamco pariatur commodo Lorem. Veniam amet in aliqua mollit sint sit ex."
+    address: "578 Autumn Avenue, Stagecoach, California, 1739"
+    age: 29
+    balance: "$3,717.56"
+    company: "DUFLEX"
+    email: "jennymendoza@duflex.com"
+    eyeColor: "brown"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Marla Macias"
+        1:
+            id: 1
+            name: "Lauri Adkins"
+        2:
+            id: 2
+            name: "Coleman Keller"
+    gender: "female"
+    greeting: "Hello, Jenny Mendoza! You have 1 unread messages."
+    guid: "71e9af8c-8c30-4810-b4d0-92a4c6fd434c"
+    index: 4
+    isActive: true
+    latitude: -1.13319
+    longitude: -77.0049
+    name: "Jenny Mendoza"
+    phone: "+1 (864) 549-3766"
+    picture: "http://placehold.it/32x32"
+    registered: "2014-09-25T09:34:35 -02:00"
+    tags:
+        0: "laborum"
+        1: "officia"
+        2: "eu"
+        3: "aute"
+        4: "et"
+        5: "aliqua"
+        6: "eu"
+
+
+
+TEST N.2
+
+
+Original container is:
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    aaa: "stringa1"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    bbb: "stringa2"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    paperino: 3
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    pippo: 13
+    pluto: 1
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+    3: null
+8: true
+9: null
+
+
+Json string is:
+
+[
+  1,
+  [ 0, 0, 123, 0, 0, 0, 0, 0, 0, 0 ],
+
+  {
+    "_id": "5a0ae30df49a05d7a259f116",
+    "aaa": "stringa1",
+    "about": "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur.",
+    "address": "240 Homecrest Avenue, Groveville, Alaska, 3106",
+    "age": 25,
+    "balance": "$3,503.13",
+    "bbb": "stringa2",
+    "company": "ISOLOGIA",
+    "email": "delacruzschultz@isologia.com",
+    "eyeColor": "brown",
+    "favoriteFruit": "strawberry",
+    "friends":
+    [
+
+      {
+        "id": 0,
+        "name": "Romero Hodge"
+      },
+
+      {
+        "id": 1,
+        "name": "Dona Reilly"
+      },
+
+      {
+        "id": 2,
+        "name": "Earlene Richards"
+      }
+    ],
+    "gender": "male",
+    "greeting": "Hello, Delacruz Schultz! You have 9 unread messages.",
+    "guid": "84f91917-7331-441d-aa3c-da08994bc1a9",
+    "index": 2,
+    "isActive": true,
+    "latitude": -7.84276,
+    "longitude": -166.809,
+    "name": "Delacruz Schultz",
+    "paperino": 3,
+    "phone": "+1 (949) 553-3319",
+    "picture": "http://placehold.it/32x32",
+    "pippo": 13,
+    "pluto": 1,
+    "registered": "2016-02-14T03:02:53 -01:00",
+    "tags": [ "velit", "esse", "ad", "laborum", "incididunt", "ex", "fugiat" ]
+  },
+  [ "string1", "string2", "string3", "string4" ],
+  1.3,
+  "pippo",
+
+  {
+    "aaa": 123,
+    "bbb": 3.4,
+    "vector": [ 12, 10, 1 ]
+  },
+
+  [
+    123,
+    3.14,
+    "nonna papera",
+    null
+  ],
+  true,
+  null
+]
+Re-converted container is (note complex string are converted to complex numbers):
+0: 1
+1: [ 0 0 123 0 0 0 0 0 0 0 ]
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    aaa: "stringa1"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    bbb: "stringa2"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    paperino: 3
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    pippo: 13
+    pluto: 1
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    0: "string1"
+    1: "string2"
+    2: "string3"
+    3: "string4"
+4: 1.3
+5: "pippo"
+6:
+    aaa: 123
+    bbb: 3.4
+    vector:
+        [ 12 10 1 ]
+7:
+    0: 123
+    1: 3.14
+    2: "nonna papera"
+    3: null
+8: true
+9: null
+
+
+The container from the json string is:
+0:
+    _id: "5a0ae30d8419c393f642fec3"
+    about: "Qui ad eu officia commodo aute dolor proident ea esse fugiat deserunt sint anim incididunt. Cupidatat ipsum tempor ipsum cillum laborum eu culpa eiusmod laborum quis irure in proident. Amet ipsum aute nulla et. Ipsum sit velit cillum in consequat. Est exercitation deserunt ad Lorem laborum occaecat mollit cupidatat fugiat quis sunt elit voluptate."
+    address: "769 Prospect Avenue, Snyderville, North Dakota, 3198"
+    age: 26
+    balance: "$1,949.87"
+    company: "MANGLO"
+    email: "sargentfrazier@manglo.com"
+    eyeColor: "green"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "April Dunlap"
+        1:
+            id: 1
+            name: "Deirdre Mayer"
+        2:
+            id: 2
+            name: "Bernadette Durham"
+    gender: "male"
+    greeting: "Hello, Sargent Frazier! You have 7 unread messages."
+    guid: "d0268ff7-cde2-48e4-9c75-5740c53c3b23"
+    index: 0
+    isActive: true
+    latitude: -38.2436
+    longitude: -0.862908
+    name: "Sargent Frazier"
+    phone: "+1 (894) 561-3896"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-01-07T03:21:06 -01:00"
+    tags:
+        0: "sunt"
+        1: "voluptate"
+        2: "labore"
+        3: "sunt"
+        4: "elit"
+        5: "cupidatat"
+        6: "nulla"
+1:
+    _id: "5a0ae30da2e6848d6f374bba"
+    about: "Adipisicing amet veniam dolore in exercitation consequat consectetur cupidatat enim non. Sint minim velit deserunt in aliqua excepteur nostrud ea cupidatat fugiat excepteur mollit consequat. Tempor do minim qui qui labore cupidatat."
+    address: "922 Dahill Road, Byrnedale, Marshall Islands, 1410"
+    age: 26
+    balance: "$2,690.13"
+    company: "INSOURCE"
+    email: "vickieroy@insource.com"
+    eyeColor: "blue"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Riddle Burt"
+        1:
+            id: 1
+            name: "Hughes Howell"
+        2:
+            id: 2
+            name: "Mcbride Tyson"
+    gender: "female"
+    greeting: "Hello, Vickie Roy! You have 3 unread messages."
+    guid: "578ab333-ea26-40c2-a130-04d47aa9000d"
+    index: 1
+    isActive: true
+    latitude: -13.0974
+    longitude: -144.934
+    name: "Vickie Roy"
+    phone: "+1 (996) 421-2072"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-12-20T05:28:05 -01:00"
+    tags:
+        0: "quis"
+        1: "duis"
+        2: "do"
+        3: "magna"
+        4: "qui"
+        5: "deserunt"
+        6: "nostrud"
+2:
+    _id: "5a0ae30df49a05d7a259f116"
+    about: "Eu eiusmod nulla incididunt eu mollit et id elit nisi velit Lorem. Id Lorem in fugiat proident dolor. Exercitation elit Lorem ipsum pariatur duis do consectetur ex laboris incididunt. Exercitation nisi sit ea ea ullamco. Excepteur ipsum duis et id excepteur."
+    address: "240 Homecrest Avenue, Groveville, Alaska, 3106"
+    age: 25
+    balance: "$3,503.13"
+    company: "ISOLOGIA"
+    email: "delacruzschultz@isologia.com"
+    eyeColor: "brown"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Romero Hodge"
+        1:
+            id: 1
+            name: "Dona Reilly"
+        2:
+            id: 2
+            name: "Earlene Richards"
+    gender: "male"
+    greeting: "Hello, Delacruz Schultz! You have 9 unread messages."
+    guid: "84f91917-7331-441d-aa3c-da08994bc1a9"
+    index: 2
+    isActive: true
+    latitude: -7.84276
+    longitude: -166.809
+    name: "Delacruz Schultz"
+    phone: "+1 (949) 553-3319"
+    picture: "http://placehold.it/32x32"
+    registered: "2016-02-14T03:02:53 -01:00"
+    tags:
+        0: "velit"
+        1: "esse"
+        2: "ad"
+        3: "laborum"
+        4: "incididunt"
+        5: "ex"
+        6: "fugiat"
+3:
+    _id: "5a0ae30d47367b43a9f4e819"
+    about: "Consequat consectetur minim est in incididunt. Sunt enim voluptate amet consectetur voluptate enim id. Laborum incididunt pariatur consequat qui sint nisi aliquip aliquip consequat nostrud excepteur. Commodo ipsum officia sint pariatur voluptate officia minim occaecat eiusmod commodo ut ipsum consequat excepteur."
+    address: "454 George Street, Austinburg, Iowa, 8682"
+    age: 28
+    balance: "$3,221.56"
+    company: "ACCUPRINT"
+    email: "cashcannon@accuprint.com"
+    eyeColor: "blue"
+    favoriteFruit: "strawberry"
+    friends:
+        0:
+            id: 0
+            name: "Burch Cherry"
+        1:
+            id: 1
+            name: "Bray Roberts"
+        2:
+            id: 2
+            name: "Bridgette Hester"
+    gender: "male"
+    greeting: "Hello, Cash Cannon! You have 3 unread messages."
+    guid: "8192649f-8fc0-481d-a32a-50c6919d10c0"
+    index: 3
+    isActive: true
+    latitude: 33.5285
+    longitude: 57.9276
+    name: "Cash Cannon"
+    phone: "+1 (990) 410-3156"
+    picture: "http://placehold.it/32x32"
+    registered: "2015-07-11T02:59:53 -02:00"
+    tags:
+        0: "officia"
+        1: "labore"
+        2: "sit"
+        3: "mollit"
+        4: "dolore"
+        5: "labore"
+        6: "elit"
+4:
+    _id: "5a0ae30d97744a9d693c381b"
+    about: "Ipsum ut aliqua qui nisi quis incididunt dolore fugiat. Lorem qui pariatur occaecat reprehenderit laboris nulla eiusmod. Ut sunt sint nostrud incididunt anim sint. Aliquip magna velit enim exercitation proident qui enim amet ullamco pariatur commodo Lorem. Veniam amet in aliqua mollit sint sit ex."
+    address: "578 Autumn Avenue, Stagecoach, California, 1739"
+    age: 29
+    balance: "$3,717.56"
+    company: "DUFLEX"
+    email: "jennymendoza@duflex.com"
+    eyeColor: "brown"
+    favoriteFruit: "banana"
+    friends:
+        0:
+            id: 0
+            name: "Marla Macias"
+        1:
+            id: 1
+            name: "Lauri Adkins"
+        2:
+            id: 2
+            name: "Coleman Keller"
+    gender: "female"
+    greeting: "Hello, Jenny Mendoza! You have 1 unread messages."
+    guid: "71e9af8c-8c30-4810-b4d0-92a4c6fd434c"
+    index: 4
+    isActive: true
+    latitude: -1.13319
+    longitude: -77.0049
+    name: "Jenny Mendoza"
+    phone: "+1 (864) 549-3766"
+    picture: "http://placehold.it/32x32"
+    registered: "2014-09-25T09:34:35 -02:00"
+    tags:
+        0: "laborum"
+        1: "officia"
+        2: "eu"
+        3: "aute"
+        4: "et"
+        5: "aliqua"
+        6: "eu"
+
+
+All done Folks!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 Example 15</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md37"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d00/_generic_container_interface__json_8hh.html">GenericContainer/GenericContainerInterface_json.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line"><span class="comment">//main( int argc, const char * argv[] ) {</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Definizione dei tipi di tempo</span></div>
+<div class="line">  <span class="keyword">using </span>std::chrono::high_resolution_clock;</div>
+<div class="line">  <span class="keyword">using </span>std::chrono::duration_cast;</div>
+<div class="line">  <span class="keyword">using </span>std::chrono::milliseconds;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.15     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  GenericContainer gc1;</div>
+<div class="line">  GenericContainer gc2;</div>
+<div class="line">  GenericContainer gc3;</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Memorizza il tempo iniziale</span></div>
+<div class="line">  <span class="keyword">auto</span> start = high_resolution_clock::now();</div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">//ifstream file( &quot;examples/large-file.json&quot; );</span></div>
+<div class="line">    ifstream file( <span class="stringliteral">&quot;examples/data2.json&quot;</span> );</div>
+<div class="line">    gc1.from_json( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="keyword">auto</span> end      = high_resolution_clock::now();</div>
+<div class="line">  <span class="keyword">auto</span> duration = duration_cast&lt;milliseconds&gt;(end - start);</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;READ JSON to GC1 &quot;</span> &lt;&lt; duration.count() &lt;&lt; <span class="stringliteral">&quot; millisecondi.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">  start = high_resolution_clock::now();</div>
+<div class="line">  {</div>
+<div class="line">    <span class="comment">//ifstream file( &quot;examples/large-file.json&quot; );</span></div>
+<div class="line">    ifstream file( <span class="stringliteral">&quot;examples/data2.json&quot;</span> );</div>
+<div class="line">    gc2.from_json2( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  end      = high_resolution_clock::now();</div>
+<div class="line">  duration = duration_cast&lt;milliseconds&gt;(end - start);</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;READ JSON to GC2 &quot;</span> &lt;&lt; duration.count() &lt;&lt; <span class="stringliteral">&quot; millisecondi.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;COMPARE GC1 vs GC2: &quot;</span> &lt;&lt; gc1.compare_content(gc2,<span class="stringliteral">&quot;&gt;&gt;&gt; &quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">  start = high_resolution_clock::now();</div>
+<div class="line">  vector&lt;uint8_t&gt; buffer( <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>( gc1.mem_size() ) );</div>
+<div class="line">  int32_t nb = gc1.serialize( buffer );</div>
+<div class="line"> </div>
+<div class="line">  end      = high_resolution_clock::now();</div>
+<div class="line">  duration = duration_cast&lt;milliseconds&gt;(end - start);</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;SERIALIZE [&quot;</span> &lt;&lt; nb &lt;&lt; <span class="stringliteral">&quot;] bytes &quot;</span> &lt;&lt; duration.count() &lt;&lt; <span class="stringliteral">&quot; millisecondi.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  start = high_resolution_clock::now();</div>
+<div class="line">  gc3.clear();</div>
+<div class="line">  int32_t nb2 = gc3.de_serialize( buffer );</div>
+<div class="line"> </div>
+<div class="line">  end      = high_resolution_clock::now();</div>
+<div class="line">  duration = duration_cast&lt;milliseconds&gt;(end - start);</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;DE-SERIALIZE to GC3 [&quot;</span> &lt;&lt; nb2 &lt;&lt; <span class="stringliteral">&quot;] bytes &quot;</span> &lt;&lt; duration.count() &lt;&lt; <span class="stringliteral">&quot; millisecondi.&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;COMPARE GC1 vs GC3: &quot;</span> &lt;&lt; gc1.compare_content(gc2);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;\n\nAll done Folks!\n\n&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><h4 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
+output</h4>
+<pre class="fragment">***********************
+      example N.15
+***********************
+
+READ JSON to GC1 0 millisecondi.
+READ JSON to GC2 0 millisecondi.
+COMPARE GC1 vs GC2: SERIALIZE [111] bytes 0 millisecondi.
+DE-SERIALIZE to GC3 [111] bytes 0 millisecondi.
+COMPARE GC1 vs GC3:
+
+All done Folks!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Example 16</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md38"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d3/d00/_generic_container_interface__json_8hh.html">GenericContainer/GenericContainerInterface_json.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line"><span class="comment">//main( int argc, const char * argv[] ) {</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Definizione dei tipi di tempo</span></div>
+<div class="line">  <span class="keyword">using </span>std::chrono::high_resolution_clock;</div>
+<div class="line">  <span class="keyword">using </span>std::chrono::duration_cast;</div>
+<div class="line">  <span class="keyword">using </span>std::chrono::milliseconds;</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.16     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  GenericContainer gc1;</div>
+<div class="line">  GenericContainer gc2;</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;READ JSON\n&quot;</span>;</div>
+<div class="line">  {</div>
+<div class="line">    ifstream file( <span class="stringliteral">&quot;examples/test.json&quot;</span> );</div>
+<div class="line">    gc1.from_json( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;WRITE YAML\n&quot;</span>;</div>
+<div class="line">  {</div>
+<div class="line">    ofstream file( <span class="stringliteral">&quot;examples/test.yml&quot;</span> );</div>
+<div class="line">    gc1.to_yaml( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;READ YAML\n&quot;</span>;</div>
+<div class="line">  {</div>
+<div class="line">    ifstream file( <span class="stringliteral">&quot;examples/test.yml&quot;</span> );</div>
+<div class="line">    gc2.from_yaml( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;WRITE YAML\n&quot;</span>;</div>
+<div class="line">  {</div>
+<div class="line">    ofstream file( <span class="stringliteral">&quot;examples/test2.yml&quot;</span> );</div>
+<div class="line">    gc2.to_yaml( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;READ YAML\n&quot;</span>;</div>
+<div class="line">  {</div>
+<div class="line">    ifstream file( <span class="stringliteral">&quot;examples/test3.yml&quot;</span> );</div>
+<div class="line">    gc2.from_yaml( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">//std::cout &lt;&lt; &quot;GC1\n&quot;;</span></div>
+<div class="line">  <span class="comment">//gc1.print(cout);</span></div>
+<div class="line">  <span class="comment">//std::cout &lt;&lt; &quot;GC2\n&quot;;</span></div>
+<div class="line">  <span class="comment">//gc2.print(cout);</span></div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;\n\nAll done Folks!!!\n\n&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><pre class="fragment">***********************
+      example N.16
+***********************
+
+READ JSON
+WRITE YAML
+READ YAML
+WRITE YAML
+READ YAML
+
+
+All done Folks!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
 Example 17</h3>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d8/d68/_generic_container_8hh.html">GenericContainer/GenericContainer.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line"><span class="comment">//main( int argc, const char * argv[] ) {</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">  cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.17     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  GenericContainer gc1;</div>
+<div class="line">  GenericContainer gc2;</div>
+<div class="line">  GenericContainer gc3;</div>
+<div class="line">  GenericContainer gc4;</div>
+<div class="line">  </div>
+<div class="line">  gc3[<span class="stringliteral">&quot;pippo&quot;</span>] = <span class="keyword">true</span>;</div>
+<div class="line">  gc2[<span class="stringliteral">&quot;pluto&quot;</span>] = gc3;</div>
+<div class="line"> </div>
+<div class="line">  gc1[<span class="stringliteral">&quot;paperino&quot;</span>] = gc2;</div>
+<div class="line">  gc4[<span class="stringliteral">&quot;blue&quot;</span>] = 23;</div>
+<div class="line">  gc1[<span class="stringliteral">&quot;aabb&quot;</span>] = gc4;</div>
+<div class="line">  </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;gc --&gt; &quot;</span> &lt;&lt; gc1.get_map_bool( {<span class="stringliteral">&quot;paperino&quot;</span>,<span class="stringliteral">&quot;pluto&quot;</span>,<span class="stringliteral">&quot;pippo&quot;</span>} ) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;gc --&gt; &quot;</span> &lt;&lt; gc1.get_map_number( {<span class="stringliteral">&quot;aabb&quot;</span>,<span class="stringliteral">&quot;blue&quot;</span>} ) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;\n\nAll done Folks!!!\n\n&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+</div><!-- fragment --><pre class="fragment">***********************
+      example N.17
+***********************
+
+gc --&gt; 1
+gc --&gt; 23
+
+
+All done Folks!
+</pre><h3 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Example 18</h3>
-</div></div><!-- contents -->
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="../../d0/dcf/_generic_container_interface__toml_8hh.html">GenericContainer/GenericContainerInterface_toml.hh</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">using namespace </span>GC;</div>
+<div class="line"><span class="keyword">using namespace </span>std;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span></div>
+<div class="line"><span class="comment">//main( int argc, const char * argv[] ) {</span></div>
+<div class="line">main() {</div>
+<div class="line"> </div>
+<div class="line">  <span class="comment">// Definizione dei tipi di tempo</span></div>
+<div class="line">  <span class="keyword">using </span>std::chrono::high_resolution_clock;</div>
+<div class="line">  <span class="keyword">using </span>std::chrono::duration_cast;</div>
+<div class="line">  <span class="keyword">using </span>std::chrono::milliseconds;</div>
+<div class="line"> </div>
+<div class="line">  std::cout</div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;\n\n\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;      example N.18     \n&quot;</span></div>
+<div class="line">    &lt;&lt; <span class="stringliteral">&quot;***********************\n\n&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  GenericContainer gc;</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;READ TOML\n&quot;</span>;</div>
+<div class="line">  {</div>
+<div class="line">    ifstream file( <span class="stringliteral">&quot;examples/settings.toml&quot;</span> );</div>
+<div class="line">    gc.from_toml( file );</div>
+<div class="line">    file.close();</div>
+<div class="line">  }</div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\n\n\nWRITE TOML\n&quot;</span>;</div>
+<div class="line">  gc.to_toml( std::cout );</div>
+<div class="line">  </div>
+<div class="line">  GC::GenericContainer gc_copy_from;</div>
+<div class="line">  gc_copy_from[<span class="stringliteral">&quot;Pippo&quot;</span>]    = 9.0;</div>
+<div class="line">  gc_copy_from[<span class="stringliteral">&quot;Paperino&quot;</span>] = 32.9;</div>
+<div class="line">  gc_copy_from[<span class="stringliteral">&quot;Pluto&quot;</span>]    = 7.7;</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;Assume we have this GC to copy from:\n\n&quot;</span>;</div>
+<div class="line">  gc_copy_from.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  GC::GenericContainer gc_copy_to;</div>
+<div class="line">  gc_copy_to[<span class="stringliteral">&quot;Pippo&quot;</span>]                  = 3.0;</div>
+<div class="line">  gc_copy_to[<span class="stringliteral">&quot;Paperino&quot;</span>]               = 2.9;</div>
+<div class="line">  gc_copy_to[<span class="stringliteral">&quot;Pluto&quot;</span>]                  = 0.7;</div>
+<div class="line">  gc_copy_to[<span class="stringliteral">&quot;KeyNotPresentInOtherGC&quot;</span>] = <span class="stringliteral">&quot;ciao&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\nmerge:\n&quot;</span>;</div>
+<div class="line">  gc_copy_from.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\ninto:\n&quot;</span>;</div>
+<div class="line">  gc_copy_to.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\nresult:\n&quot;</span>;</div>
+<div class="line">  gc_copy_to.merge(gc_copy_from,<span class="stringliteral">&quot;merge gc_copy_from-&gt;gc_copy_to&quot;</span>);</div>
+<div class="line">  gc_copy_to.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\ncopy:\n&quot;</span>;</div>
+<div class="line">  gc_copy_from.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\ninto:\n&quot;</span>;</div>
+<div class="line">  gc_copy_to.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  std::cout &lt;&lt; <span class="stringliteral">&quot;\nresult:\n&quot;</span>;</div>
+<div class="line">  gc_copy_to = gc_copy_from;</div>
+<div class="line">  gc_copy_to.dump(std::cout);</div>
+<div class="line"> </div>
+<div class="line">  cout &lt;&lt; <span class="stringliteral">&quot;\n\nAll done Folks!!!\n\n&quot;</span>;</div>
+<div class="line">  <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_generic_container_interface__toml_8hh_html"><div class="ttname"><a href="../../d0/dcf/_generic_container_interface__toml_8hh.html">GenericContainerInterface_toml.hh</a></div></div>
+</div><!-- fragment --><pre class="fragment">***********************
+      example N.18
+***********************
+
+READ TOML
+
+
+
+WRITE TOML
+[ard]
+communication_mode = 'tcp'
+laps = 10
+racetrack = 'Mugello_3D'
+real_time_factor = -1.0
+synchronous = true
+
+    [ard.agent.high_level]
+    closed_loop = false
+    cycle_time_us = 50000
+    problem = 'ard_3d_vx_vy_F142MFL_Mugello_3D'
+    standalone = true
+
+        [ard.agent.high_level.mlt]
+        laps = 1.0
+
+        [ard.agent.high_level.mpc]
+        allow_non_convergence = true
+        horizon = 300.0
+        timeout_ms = 0
+        use_mlt_solution = false
+        virtual_horizon = 0.0
+
+    [ard.agent.low_level]
+    cockpit = true
+    cycle_time_us = 1000
+
+    [ard.simulator]
+    cycle_time_us = 1000
+
+[broker]
+backend_ipc = 'ipc:///tmp/broker_backend.ipc'
+backend_tcp = 'tcp://127.0.0.1:5556'
+capture_ipc = 'ipc:///tmp/broker_capture.ipc'
+capture_tcp = 'tcp://127.0.0.1:5557'
+frontend_ipc = 'ipc:///tmp/broker_frontend.ipc'
+frontend_tcp = 'tcp://127.0.0.1:5555'
+io_threads = 1
+
+[logger]
+capture_mode = 'tcp'
+mongo_db = 'ard'
+mongo_uri = 'mongodb://127.0.0.1:27017'
+plotter_tcp = 'tcp://127.0.0.1:9872'
+schemas_dir = 'third_party/DrivingSimulatorInterfaces/schemas'
+worker_threads = 1
+
+[manager]
+rcvtimeo = 1000
+sndtimeo = 1000
+
+    [manager.high_level]
+    pull = 'tcp://127.0.0.1:5559'
+    push = 'tcp://127.0.0.1:5558'
+
+    [manager.low_level]
+    pull = 'tcp://127.0.0.1:5561'
+    push = 'tcp://127.0.0.1:5560'
+
+    [manager.simulator]
+    pull = 'tcp://127.0.0.1:5563'
+    push = 'tcp://127.0.0.1:5562'
+
+[rerun]
+rerun_app_id = 'ard'
+rerun_endpoint = '127.0.0.1:9876'
+rerun_recording_id = 'ard'
+stream = trueAssume we have this GC to copy from:
+
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+merge:
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+into:
+KeyNotPresentInOtherGC: "ciao"
+Paperino: 2.9
+Pippo: 3
+Pluto: 0.7
+
+result:
+KeyNotPresentInOtherGC: "ciao"
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+copy:
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+into:
+KeyNotPresentInOtherGC: "ciao"
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+result:
+Paperino: 32.9
+Pippo: 9
+Pluto: 7.7
+
+
+All done Folks!
+</pre> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <div id="page-nav" class="page-nav-panel">
@@ -1400,7 +3538,6 @@ Example 18</h3>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a href="../../index.html">GenericContainer</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.14.0 </li>
   </ul>
 </div>

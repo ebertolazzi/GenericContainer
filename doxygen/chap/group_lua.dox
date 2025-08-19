@@ -1,5 +1,5 @@
 /*!
- \defgroup LUA GenericContainer-Lua Interface
+ \defgroup LUA GenericContainer Lua Interface
  \brief This module provides integration between the `GenericContainer` and Lua.
 
  The `GC_namespace` offers functionality to convert Lua global variables to and from

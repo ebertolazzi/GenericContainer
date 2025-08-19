@@ -57,7 +57,7 @@ main() {
   std::cout << "gc --> " << gc1.get_map_bool( {"paperino","pluto","pippo"} ) << "\n";
   std::cout << "gc --> " << gc1.get_map_number( {"aabb","blue"} ) << "\n";
 
-  cout << "\n\nAll done Folks!!!\n\n";
+  cout << "\n\nAll done Folks!\n\n";
   return 0;
 }
 

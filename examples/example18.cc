@@ -92,7 +92,7 @@ main() {
   gc_copy_to = gc_copy_from;
   gc_copy_to.dump(std::cout);
 
-  cout << "\n\nAll done Folks!!!\n\n";
+  cout << "\n\nAll done Folks!\n\n";
   return 0;
 }
 
