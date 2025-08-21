@@ -234,6 +234,8 @@ Public Methods</h2></td></tr>
 <tr class="memdesc:ab25f77c8b243d5716743f02c12b4091a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the content of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>, resetting it to an empty state.  <br /></td></tr>
 <tr class="memitem:ad8a37d499bb755de89f0dba9b1dd3f85" id="r_ad8a37d499bb755de89f0dba9b1dd3f85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8a37d499bb755de89f0dba9b1dd3f85">erase</a> (string_view name) const</td></tr>
 <tr class="memdesc:ad8a37d499bb755de89f0dba9b1dd3f85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an item from the map stored in the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> by its key.  <br /></td></tr>
+<tr class="memitem:a33fe8d3287385ab4d85df93462ef9b08" id="r_a33fe8d3287385ab4d85df93462ef9b08"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33fe8d3287385ab4d85df93462ef9b08">empty</a> () const</td></tr>
+<tr class="memdesc:a33fe8d3287385ab4d85df93462ef9b08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> is empty.  <br /></td></tr>
 <tr id="pub-methods-0" class="groupHeader"><td colspan="2"><div class="groupHeader">Methods for Initializing Simple Data Types</div></td></tr>
 <tr><td colspan="2" class="ititle"><div class="groupText"><p>This group of methods allows setting simple data types (e.g., pointer, boolean, integer, etc.) within a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. Each method initializes the container to the specified type, sets the value, and returns a reference to the stored data. </p>
 </div></td></tr>
@@ -640,29 +642,65 @@ Public Methods</h2></td></tr>
 <tr class="memitem:a0f7a51d92268d80e353f119b4d237612 template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f7a51d92268d80e353f119b4d237612">get_if_exists</a> (<a class="el" href="#ac520fb49a0dcff2fbaf75ecb043ac8d1">vec_string_type</a> const &amp;fields, T &amp;value) const</td></tr>
 <tr class="memitem:aca65e36dd20fef4e778da5dd9f3d436c" id="r_aca65e36dd20fef4e778da5dd9f3d436c"><td class="memTemplParams" colspan="2">template&lt;typename T&gt; </td></tr>
 <tr class="memitem:aca65e36dd20fef4e778da5dd9f3d436c template"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca65e36dd20fef4e778da5dd9f3d436c">get_if_exists</a> (char const field[], T &amp;value) const</td></tr>
-<tr id="pub-methods-15" class="groupHeader"><td colspan="2"><div class="groupHeader">I/O for GenericContainer objects.</div></td></tr>
+<tr id="pub-methods-15" class="groupHeader"><td colspan="2"><div class="groupHeader">Serialization.</div></td></tr>
+<tr class="memitem:a7cb07560f41eb190a0ed5c4a96654d99" id="r_a7cb07560f41eb190a0ed5c4a96654d99"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cb07560f41eb190a0ed5c4a96654d99">mem_size</a> () const</td></tr>
+<tr class="memitem:a3851f3952172ad584d6f941ffb548267" id="r_a3851f3952172ad584d6f941ffb548267"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3851f3952172ad584d6f941ffb548267">serialize</a> (int32_t buffer_dim, uint8_t *buffer) const</td></tr>
+<tr class="memdesc:a3851f3952172ad584d6f941ffb548267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a raw memory buffer.  <br /></td></tr>
+<tr class="memitem:a58cbfd42301c5cda0f7b61edf01c0944" id="r_a58cbfd42301c5cda0f7b61edf01c0944"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58cbfd42301c5cda0f7b61edf01c0944">serialize</a> (vector&lt; uint8_t &gt; &amp;buffer) const</td></tr>
+<tr class="memdesc:a58cbfd42301c5cda0f7b61edf01c0944"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a byte vector.  <br /></td></tr>
+<tr class="memitem:a6ae31f59896ad9e4e03006813254bcce" id="r_a6ae31f59896ad9e4e03006813254bcce"><td class="memItemLeft" align="right" valign="top">std::vector&lt; uint8_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ae31f59896ad9e4e03006813254bcce">serialize</a> () const</td></tr>
+<tr class="memdesc:a6ae31f59896ad9e4e03006813254bcce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> and returns a byte vector.  <br /></td></tr>
+<tr class="memitem:acec6686d7d7aab3cc68d02b7d9897c6e" id="r_acec6686d7d7aab3cc68d02b7d9897c6e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acec6686d7d7aab3cc68d02b7d9897c6e">de_serialize</a> (int32_t buffer_dim, uint8_t const *buffer)</td></tr>
+<tr class="memdesc:acec6686d7d7aab3cc68d02b7d9897c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a raw memory buffer.  <br /></td></tr>
+<tr class="memitem:a3d25fa0f0526d422ff0e804f56ca1aaa" id="r_a3d25fa0f0526d422ff0e804f56ca1aaa"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d25fa0f0526d422ff0e804f56ca1aaa">de_serialize</a> (vector&lt; uint8_t &gt; const &amp;buffer)</td></tr>
+<tr class="memdesc:a3d25fa0f0526d422ff0e804f56ca1aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a byte vector.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Methods</h2></td></tr>
+<tr class="memitem:a1ae88bafc5ec9d231c8958f67f89b965" id="r_a1ae88bafc5ec9d231c8958f67f89b965"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae88bafc5ec9d231c8958f67f89b965">exception</a> (string_view const where) GC_NO_RETURN</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-member-group" class="groupheader"><a id="member-group" name="member-group"></a>
+I/O for GenericContainer objects.</h2></td></tr>
 <tr class="memitem:a6b212287a8a8bb274c1231c9aac04484" id="r_a6b212287a8a8bb274c1231c9aac04484"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b212287a8a8bb274c1231c9aac04484">print_content_types</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</td></tr>
+<tr class="memdesc:a6b212287a8a8bb274c1231c9aac04484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the structure of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in a human-readable form.  <br /></td></tr>
 <tr class="memitem:ac85c7668a752dc2810a804a8c1116107" id="r_ac85c7668a752dc2810a804a8c1116107"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac85c7668a752dc2810a804a8c1116107">compare_content</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, string_view from=&quot;&quot;) const</td></tr>
+<tr class="memdesc:ac85c7668a752dc2810a804a8c1116107"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the contents of this <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with another.  <br /></td></tr>
 <tr class="memitem:a9384fed526d18e9370d7106a1f916a7f" id="r_a9384fed526d18e9370d7106a1f916a7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9384fed526d18e9370d7106a1f916a7f">dump</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</td></tr>
+<tr class="memdesc:a9384fed526d18e9370d7106a1f916a7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dumps the full contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in a human-readable format.  <br /></td></tr>
 <tr class="memitem:ab7b95bb934b3f0cd37af2404abee6b23" id="r_ab7b95bb934b3f0cd37af2404abee6b23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7b95bb934b3f0cd37af2404abee6b23">print</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</td></tr>
+<tr class="memdesc:ab7b95bb934b3f0cd37af2404abee6b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in a human-readable format.  <br /></td></tr>
 <tr class="memitem:ae412ca89caaa66f86b1d7ff3a313cc9f" id="r_ae412ca89caaa66f86b1d7ff3a313cc9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#aa6861286e9da5aecb25acf14bb902ac8">string_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae412ca89caaa66f86b1d7ff3a313cc9f">print</a> (string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</td></tr>
+<tr class="memdesc:ae412ca89caaa66f86b1d7ff3a313cc9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a human-readable string representation of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>.  <br /></td></tr>
 <tr class="memitem:ac127d42ee3d25136f123c7c2c6b00e51" id="r_ac127d42ee3d25136f123c7c2c6b00e51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac127d42ee3d25136f123c7c2c6b00e51">to_gc</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;gc) const</td></tr>
+<tr class="memdesc:ac127d42ee3d25136f123c7c2c6b00e51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the contents of this <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into another container.  <br /></td></tr>
 <tr class="memitem:a2eb79b37fc8396d1896f2b99dbec03dd" id="r_a2eb79b37fc8396d1896f2b99dbec03dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2eb79b37fc8396d1896f2b99dbec03dd">from_gc</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc)</td></tr>
+<tr class="memdesc:a2eb79b37fc8396d1896f2b99dbec03dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies the contents from another <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into this object.  <br /></td></tr>
 <tr class="memitem:a6a70aae89a42d143ceddbcb50b3f7fda" id="r_a6a70aae89a42d143ceddbcb50b3f7fda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a70aae89a42d143ceddbcb50b3f7fda">merge</a> (<a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;gc, string_view const where)</td></tr>
+<tr class="memdesc:a6a70aae89a42d143ceddbcb50b3f7fda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merges the contents of another <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into this one.  <br /></td></tr>
 <tr class="memitem:ac5623c3ef17b8f332f2147f609a893da" id="r_ac5623c3ef17b8f332f2147f609a893da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5623c3ef17b8f332f2147f609a893da">from_file</a> (string_view file_name)</td></tr>
+<tr class="memdesc:ac5623c3ef17b8f332f2147f609a893da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a file.  <br /></td></tr>
 <tr class="memitem:a3ed262cdc274c6128a088b4d8fd754b5" id="r_a3ed262cdc274c6128a088b4d8fd754b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ed262cdc274c6128a088b4d8fd754b5">to_yaml</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, string_view prefix=&quot;&quot;) const</td></tr>
+<tr class="memdesc:a3ed262cdc274c6128a088b4d8fd754b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into YAML format and writes it to the provided output stream.  <br /></td></tr>
 <tr class="memitem:ab09a76575d59fead7f452f04a00a395a" id="r_ab09a76575d59fead7f452f04a00a395a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab09a76575d59fead7f452f04a00a395a">to_yaml</a> (string_view prefix=&quot;&quot;) const</td></tr>
+<tr class="memdesc:ab09a76575d59fead7f452f04a00a395a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string containing the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in YAML format.  <br /></td></tr>
 <tr class="memitem:ac7ce84e0ea2cc67dc1344b25fd46ac81" id="r_ac7ce84e0ea2cc67dc1344b25fd46ac81"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac7ce84e0ea2cc67dc1344b25fd46ac81">from_yaml</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream)</td></tr>
+<tr class="memdesc:ac7ce84e0ea2cc67dc1344b25fd46ac81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a YAML-formatted stream.  <br /></td></tr>
 <tr class="memitem:ad48f858df387984b1483697d5b606f84" id="r_ad48f858df387984b1483697d5b606f84"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad48f858df387984b1483697d5b606f84">from_yaml</a> (string const &amp;data)</td></tr>
+<tr class="memdesc:ad48f858df387984b1483697d5b606f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a YAML-formatted string.  <br /></td></tr>
 <tr class="memitem:a814dc4ef7f9843ca38633a360d7231f9" id="r_a814dc4ef7f9843ca38633a360d7231f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a814dc4ef7f9843ca38633a360d7231f9">to_json</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, string_view prefix=&quot;&quot;) const</td></tr>
+<tr class="memdesc:a814dc4ef7f9843ca38633a360d7231f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into JSON format and writes it to the provided output stream.  <br /></td></tr>
 <tr class="memitem:a4773b60d9db71de58c0d0e45908ada6c" id="r_a4773b60d9db71de58c0d0e45908ada6c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4773b60d9db71de58c0d0e45908ada6c">to_json</a> (string_view prefix=&quot;&quot;) const</td></tr>
 <tr class="memitem:a3c9a1cdb5d518a0b2f49ecc7aa3c537f" id="r_a3c9a1cdb5d518a0b2f49ecc7aa3c537f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c9a1cdb5d518a0b2f49ecc7aa3c537f">from_json</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream)</td></tr>
+<tr class="memdesc:a3c9a1cdb5d518a0b2f49ecc7aa3c537f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string containing the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in JSON format.  <br /></td></tr>
 <tr class="memitem:ac057f958bda4935feb891b3f10843065" id="r_ac057f958bda4935feb891b3f10843065"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac057f958bda4935feb891b3f10843065">from_json2</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream)</td></tr>
 <tr class="memitem:a51f12e3e6768ae23d50f192b4b62b350" id="r_a51f12e3e6768ae23d50f192b4b62b350"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51f12e3e6768ae23d50f192b4b62b350">from_json</a> (string const &amp;data)</td></tr>
 <tr class="memitem:a06da5c5ed56ed58214a58a5899ba72b9" id="r_a06da5c5ed56ed58214a58a5899ba72b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06da5c5ed56ed58214a58a5899ba72b9">to_toml</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream) const</td></tr>
+<tr class="memdesc:a06da5c5ed56ed58214a58a5899ba72b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into TOML format and writes it to the provided output stream.  <br /></td></tr>
 <tr class="memitem:a721ed818dce22bd361576cbd6a632863" id="r_a721ed818dce22bd361576cbd6a632863"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a721ed818dce22bd361576cbd6a632863">to_toml</a> () const</td></tr>
 <tr class="memitem:ae33c9c91aa3aea285af79b8050ddb0d2" id="r_ae33c9c91aa3aea285af79b8050ddb0d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae33c9c91aa3aea285af79b8050ddb0d2">from_toml</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream)</td></tr>
+<tr class="memdesc:ae33c9c91aa3aea285af79b8050ddb0d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string containing the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in TOML format.  <br /></td></tr>
 <tr class="memitem:a02c2f155d439b1f4845c9a96f54b58c6" id="r_a02c2f155d439b1f4845c9a96f54b58c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a02c2f155d439b1f4845c9a96f54b58c6">from_toml</a> (string const &amp;data)</td></tr>
+<tr class="memdesc:a02c2f155d439b1f4845c9a96f54b58c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a TOML-formatted stream.  <br /></td></tr>
 <tr class="memitem:aadd8164a8850bd5756d5fa51a6a41481" id="r_aadd8164a8850bd5756d5fa51a6a41481"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aadd8164a8850bd5756d5fa51a6a41481">collapse</a> ()</td></tr>
 <tr class="memitem:abbf75ebe2b15cc6b125a0118f30b70b7" id="r_abbf75ebe2b15cc6b125a0118f30b70b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbf75ebe2b15cc6b125a0118f30b70b7">write_formatted_data</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, char const delimiter='\t') const</td></tr>
 <tr class="memitem:ad38b734f6d9ba54d48ccc07eefaf34df" id="r_ad38b734f6d9ba54d48ccc07eefaf34df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad38b734f6d9ba54d48ccc07eefaf34df">writeFormattedData</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4">ostream_type</a> &amp;stream, char const delimiter='\t') const</td></tr>
@@ -674,16 +712,12 @@ Public Methods</h2></td></tr>
 <tr class="memitem:a380d31ee71bc8f0083819c87d401a7d8" id="r_a380d31ee71bc8f0083819c87d401a7d8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a380d31ee71bc8f0083819c87d401a7d8">readFormattedData2</a> (<a class="el" href="../../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de">istream_type</a> &amp;stream, char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> ptr_pars[]=nullptr)</td></tr>
 <tr class="memitem:a24144c9b4e82406a6751a89bd1638c0e" id="r_a24144c9b4e82406a6751a89bd1638c0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24144c9b4e82406a6751a89bd1638c0e">read_formatted_data2</a> (char const fname[], char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> ptr_pars[]=nullptr)</td></tr>
 <tr class="memitem:a61512a442494e55521f330f92c8a04ca" id="r_a61512a442494e55521f330f92c8a04ca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61512a442494e55521f330f92c8a04ca">readFormattedData2</a> (char const fname[], char const commentChars[]=&quot;#%&quot;, char const delimiters[]=&quot; \t&quot;, <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> ptr_pars[]=nullptr)</td></tr>
-<tr id="pub-methods-16" class="groupHeader"><td colspan="2"><div class="groupHeader">Serialization.</div></td></tr>
-<tr class="memitem:a7cb07560f41eb190a0ed5c4a96654d99" id="r_a7cb07560f41eb190a0ed5c4a96654d99"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cb07560f41eb190a0ed5c4a96654d99">mem_size</a> () const</td></tr>
-<tr class="memitem:a3851f3952172ad584d6f941ffb548267" id="r_a3851f3952172ad584d6f941ffb548267"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3851f3952172ad584d6f941ffb548267">serialize</a> (int32_t buffer_dim, uint8_t *buffer) const</td></tr>
-<tr class="memitem:a58cbfd42301c5cda0f7b61edf01c0944" id="r_a58cbfd42301c5cda0f7b61edf01c0944"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58cbfd42301c5cda0f7b61edf01c0944">serialize</a> (vector&lt; uint8_t &gt; &amp;buffer) const</td></tr>
-<tr class="memitem:acec6686d7d7aab3cc68d02b7d9897c6e" id="r_acec6686d7d7aab3cc68d02b7d9897c6e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acec6686d7d7aab3cc68d02b7d9897c6e">de_serialize</a> (int32_t buffer_dim, uint8_t const *buffer)</td></tr>
-<tr class="memitem:a3d25fa0f0526d422ff0e804f56ca1aaa" id="r_a3d25fa0f0526d422ff0e804f56ca1aaa"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d25fa0f0526d422ff0e804f56ca1aaa">de_serialize</a> (vector&lt; uint8_t &gt; const &amp;buffer)</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 id="header-pub-static-methods" class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Methods</h2></td></tr>
-<tr class="memitem:a1ae88bafc5ec9d231c8958f67f89b965" id="r_a1ae88bafc5ec9d231c8958f67f89b965"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ae88bafc5ec9d231c8958f67f89b965">exception</a> (string_view const where) GC_NO_RETURN</td></tr>
+<tr class="memitem:a581f623ef9658a6b249f73cb4c63b58d" id="r_a581f623ef9658a6b249f73cb4c63b58d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a581f623ef9658a6b249f73cb4c63b58d">gc_from_yaml</a> (string const &amp;yaml)</td></tr>
+<tr class="memdesc:a581f623ef9658a6b249f73cb4c63b58d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object from a JSON string.  <br /></td></tr>
+<tr class="memitem:ae65d9a9decfbdd52e0673039a26355e9" id="r_ae65d9a9decfbdd52e0673039a26355e9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae65d9a9decfbdd52e0673039a26355e9">gc_from_json</a> (string const &amp;json)</td></tr>
+<tr class="memdesc:ae65d9a9decfbdd52e0673039a26355e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object from a JSON string.  <br /></td></tr>
+<tr class="memitem:a664aa2e67bfb5b04cdc3f7ae3546eb25" id="r_a664aa2e67bfb5b04cdc3f7ae3546eb25"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a664aa2e67bfb5b04cdc3f7ae3546eb25">gc_from_toml</a> (string const &amp;toml)</td></tr>
+<tr class="memdesc:a664aa2e67bfb5b04cdc3f7ae3546eb25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object from a TOML string.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> class provides a flexible container for storing heterogeneous data types. </p>
@@ -1688,16 +1722,29 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compare the contents of the object with <span class="tt">gc</span></p>
+
+<p>Compares the contents of this <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> with another. </p>
+<p>This method performs a deep comparison between the current container and the one provided as argument. If a difference is found, a descriptive string indicating the mismatch is returned; otherwise, an empty string is returned to indicate that the two containers are identical.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>to object to compare </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>message issued in case of error </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The container to compare against. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">from</td><td>An optional prefix or context message that will be included in the error description (useful for debugging and tracing). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>a string with the first difference found, if the string is empty the containers are identical. </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>A string describing the first difference found. Returns an empty string if the two containers are identical.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md173"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> a, b;</div>
+<div class="line">a.set_integer(42);</div>
+<div class="line">b.set_integer(43);</div>
+<div class="line"> </div>
+<div class="line">std::string diff = a.<a class="code hl_function" href="#ac85c7668a752dc2810a804a8c1116107">compare_content</a>(b, <span class="stringliteral">&quot;TestCase1&quot;</span>);</div>
+<div class="line"><span class="keywordflow">if</span> (!diff.empty()) {</div>
+<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Difference found: &quot;</span> &lt;&lt; diff &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_ac85c7668a752dc2810a804a8c1116107"><div class="ttname"><a href="#ac85c7668a752dc2810a804a8c1116107">GC_namespace::GenericContainer::compare_content</a></div><div class="ttdeci">string compare_content(GenericContainer const &amp;gc, string_view from=&quot;&quot;) const</div><div class="ttdoc">Compares the contents of this GenericContainer with another.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:458</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a3672619e028af8e0e866c98d594a2145" name="a3672619e028af8e0e866c98d594a2145"></a>
@@ -2091,16 +2138,26 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deserializes the <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> from the provided buffer. Reconstructs the container from its serialized version contained within the buffer.</p>
+
+<p>Deserializes a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a raw memory buffer. </p>
+<p>This method reconstructs the contents of the container from its serialized binary representation stored in the provided buffer.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer_dim</td><td>Size of the buffer containing the serialized data, in bytes. </td></tr>
-    <tr><td class="paramname">buffer</td><td>Pointer to the buffer containing the serialized data. </td></tr>
+    <tr><td class="paramname">buffer_dim</td><td>The size of the buffer containing the serialized data, in bytes. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Pointer to the buffer holding the serialized data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes readed from the buffer. </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes successfully read from the buffer.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md196"></a>
+Example:</h3>
+<div class="fragment"><div class="line">std::vector&lt;uint8_t&gt; buf;</div>
+<div class="line">gc.serialize(buf);             <span class="comment">// First serialize</span></div>
+<div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc2;</div>
+<div class="line">int32_t used = gc2.<a class="code hl_function" href="#acec6686d7d7aab3cc68d02b7d9897c6e">de_serialize</a>(buf.size(), buf.data());</div>
+<div class="line">assert(used &gt; 0);</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_acec6686d7d7aab3cc68d02b7d9897c6e"><div class="ttname"><a href="#acec6686d7d7aab3cc68d02b7d9897c6e">GC_namespace::GenericContainer::de_serialize</a></div><div class="ttdeci">int32_t de_serialize(int32_t buffer_dim, uint8_t const *buffer)</div><div class="ttdoc">Deserializes a GenericContainer from a raw memory buffer.</div><div class="ttdef"><b>Definition</b> GenericContainerSerialize.cc:381</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a3d25fa0f0526d422ff0e804f56ca1aaa" name="a3d25fa0f0526d422ff0e804f56ca1aaa"></a>
@@ -2117,15 +2174,24 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deserializes the <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> from the provided vector buffer. Reconstructs the container from its serialized version contained within the vector.</p>
+
+<p>Deserializes a <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a byte vector. </p>
+<p>This method reconstructs the contents of the container from its serialized binary representation stored in the provided <span class="tt">std::vector&lt;uint8_t&gt;</span>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>A vector of bytes containing the serialized data. </td></tr>
+    <tr><td class="paramname">buffer</td><td>A vector of bytes containing the serialized data. Its content must match the format produced by <a class="el" href="#a3851f3952172ad584d6f941ffb548267">serialize()</a>. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes readed from the buffer. </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes successfully read from the vector.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md197"></a>
+Example:</h3>
+<div class="fragment"><div class="line">std::vector&lt;uint8_t&gt; buf;</div>
+<div class="line">gc.serialize(buf);             <span class="comment">// Serialize into vector</span></div>
+<div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc2;</div>
+<div class="line">int32_t used = gc2.<a class="code hl_function" href="#acec6686d7d7aab3cc68d02b7d9897c6e">de_serialize</a>(buf);</div>
+<div class="line">assert(used &gt; 0);</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a9384fed526d18e9370d7106a1f916a7f" name="a9384fed526d18e9370d7106a1f916a7f"></a>
@@ -2151,16 +2217,66 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Dump the contents of the object in a human readable way</p>
+
+<p>Dumps the full contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in a human-readable format. </p>
+<p>This function prints both the structure and the actual data stored in the container. It is useful for debugging or inspecting the contents of the container in a readable way.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>strig to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>indentation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Output stream where the formatted data will be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (e.g., for labeling or nesting). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>String used for indentation of nested structures (default: four spaces).</td></tr>
   </table>
   </dd>
 </dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md174"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">gc.<a class="code hl_function" href="#a9384fed526d18e9370d7106a1f916a7f">dump</a>(std::cout, <span class="stringliteral">&quot;&gt;&gt; &quot;</span>, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a9384fed526d18e9370d7106a1f916a7f"><div class="ttname"><a href="#a9384fed526d18e9370d7106a1f916a7f">GC_namespace::GenericContainer::dump</a></div><div class="ttdeci">void dump(ostream_type &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</div><div class="ttdoc">Dumps the full contents of the GenericContainer in a human-readable format.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:3429</div></div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md175"></a>
+Output:</h3>
+<pre class="fragment">//! &gt;&gt; id: 42
+//! &gt;&gt; name: "Alice"
+//! </pre> 
+</div>
+</div>
+<a id="a33fe8d3287385ab4d85df93462ef9b08" name="a33fe8d3287385ab4d85df93462ef9b08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33fe8d3287385ab4d85df93462ef9b08">&#9670;&#160;</a></span>empty()</h2>
 
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GC_namespace::GenericContainer::empty </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Checks whether the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> is empty. </p>
+<p>Returns <span class="tt">true</span> if the container does not hold any data (i.e. its type is <span class="tt">NOTYPE</span>), and <span class="tt">false</span> otherwise.</p>
+<p>This method is useful to quickly verify if the container has been cleared or not initialized yet.</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md137"></a>
+Example:</h3>
+<div class="fragment"><div class="line">gc.set_integer(42);    <span class="comment">// Store an integer</span></div>
+<div class="line"><span class="keywordflow">if</span> (!gc.empty()) {     <span class="comment">// Check if container is not empty</span></div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;Container holds data.\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="line">gc.clear();            <span class="comment">// Clear the container</span></div>
+<div class="line">assert(gc.empty());    <span class="comment">// Now it&#39;s empty</span></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ad8a37d499bb755de89f0dba9b1dd3f85" name="ad8a37d499bb755de89f0dba9b1dd3f85"></a>
@@ -2299,7 +2415,7 @@ Example:</h3>
 <p>Free the pointer and reset the container to an empty state. </p>
 <p>This method deallocates any memory or resources associated with the current pointer, resets the container's type to <span class="tt">NOTYPE</span>, and returns a reference to the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> instance itself.</p>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> after the pointer has been freed.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md138"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md139"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#afe1caa3bd75e5facdef8cac0b5352cc0">set_pointer</a>(malloc(100));  <span class="comment">// Allocate memory and store the pointer</span></div>
@@ -2323,15 +2439,26 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Read the contents of stream from a file (YAML,JSON or TOML)</p>
+
+<p>Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a file. </p>
+<p>The file can be in YAML, JSON, or TOML format. This function reads the file, parses its content, and populates the container accordingly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">file_name</td><td>file name of the data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">file_name</td><td>The path to the file to be read. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if conversion successful </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the file was successfully read and parsed; <span class="tt">false</span> otherwise.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md183"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line"><span class="keywordflow">if</span> (gc.<a class="code hl_function" href="#ac5623c3ef17b8f332f2147f609a893da">from_file</a>(<span class="stringliteral">&quot;config.yaml&quot;</span>)) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;File loaded successfully.\n&quot;</span>;</div>
+<div class="line">} <span class="keywordflow">else</span> {</div>
+<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load file.\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_ac5623c3ef17b8f332f2147f609a893da"><div class="ttname"><a href="#ac5623c3ef17b8f332f2147f609a893da">GC_namespace::GenericContainer::from_file</a></div><div class="ttdeci">bool from_file(string_view file_name)</div><div class="ttdoc">Loads the contents of the GenericContainer from a file.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:3884</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a2eb79b37fc8396d1896f2b99dbec03dd" name="a2eb79b37fc8396d1896f2b99dbec03dd"></a>
@@ -2348,14 +2475,23 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Copy the contents of the object into another object</p>
+
+<p>Copies the contents from another <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into this object. </p>
+<p>This method performs a deep copy of the provided container’s data and structure into the current <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> instance.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>input <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The source container from which to copy the contents.</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md181"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> source, target;</div>
+<div class="line">source.<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">target.<a class="code hl_function" href="#a2eb79b37fc8396d1896f2b99dbec03dd">from_gc</a>(source);</div>
+<div class="line">assert(target.<a class="code hl_function" href="#ac85c7668a752dc2810a804a8c1116107">compare_content</a>(source).empty()); <span class="comment">// containers are identical</span></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a2eb79b37fc8396d1896f2b99dbec03dd"><div class="ttname"><a href="#a2eb79b37fc8396d1896f2b99dbec03dd">GC_namespace::GenericContainer::from_gc</a></div><div class="ttdeci">void from_gc(GenericContainer const &amp;gc)</div><div class="ttdoc">Copies the contents from another GenericContainer into this object.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:3780</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a3c9a1cdb5d518a0b2f49ecc7aa3c537f" name="a3c9a1cdb5d518a0b2f49ecc7aa3c537f"></a>
@@ -2372,15 +2508,25 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Read the contents of stream in JSON syntax</p>
+
+<p>Returns a string containing the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in JSON format. </p>
+<p>This is a convenience overload that captures the JSON output into a <span class="tt">string</span> instead of writing to a stream.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>input stream </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (useful for nesting or labeling). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if conversion successful </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>A string containing the JSON representation of the container.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md189"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">std::string json_str = gc.<a class="code hl_function" href="#a814dc4ef7f9843ca38633a360d7231f9">to_json</a>(<span class="stringliteral">&quot;&gt;&gt; &quot;</span>);</div>
+<div class="line">std::cout &lt;&lt; json_str;</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a814dc4ef7f9843ca38633a360d7231f9"><div class="ttname"><a href="#a814dc4ef7f9843ca38633a360d7231f9">GC_namespace::GenericContainer::to_json</a></div><div class="ttdeci">void to_json(ostream_type &amp;stream, string_view prefix=&quot;&quot;) const</div><div class="ttdoc">Serializes the contents of the GenericContainer into JSON format and writes it to the provided output...</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a51f12e3e6768ae23d50f192b4b62b350" name="a51f12e3e6768ae23d50f192b4b62b350"></a>
@@ -2439,15 +2585,19 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Read the contents of stream in JSON syntax</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>input stream </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true if conversion successful </dd></dl>
 
+<p>Returns a string containing the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in TOML format. </p>
+<p>This is a convenience overload that captures the TOML output into a <span class="tt">string</span> instead of writing to a stream.</p>
+<dl class="section return"><dt>Returns</dt><dd>A string containing the TOML representation of the container.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md191"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">std::string toml_str = gc.<a class="code hl_function" href="#a06da5c5ed56ed58214a58a5899ba72b9">to_toml</a>();</div>
+<div class="line">std::cout &lt;&lt; toml_str;</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a06da5c5ed56ed58214a58a5899ba72b9"><div class="ttname"><a href="#a06da5c5ed56ed58214a58a5899ba72b9">GC_namespace::GenericContainer::to_toml</a></div><div class="ttdeci">bool to_toml(ostream_type &amp;stream) const</div><div class="ttdoc">Serializes the contents of the GenericContainer into TOML format and writes it to the provided output...</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a02c2f155d439b1f4845c9a96f54b58c6" name="a02c2f155d439b1f4845c9a96f54b58c6"></a>
@@ -2473,6 +2623,24 @@ Example:</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a TOML-formatted stream. </p>
+<p>This function parses TOML data from the provided input stream and populates the container with the corresponding structure and values.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Input stream containing TOML data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the data was successfully parsed and loaded; <span class="tt">false</span> otherwise.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md192"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">std::ifstream file(<span class="stringliteral">&quot;config.toml&quot;</span>);</div>
+<div class="line"><span class="keywordflow">if</span> (gc.<a class="code hl_function" href="#ae33c9c91aa3aea285af79b8050ddb0d2">from_toml</a>(file)) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;TOML loaded successfully.\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_ae33c9c91aa3aea285af79b8050ddb0d2"><div class="ttname"><a href="#ae33c9c91aa3aea285af79b8050ddb0d2">GC_namespace::GenericContainer::from_toml</a></div><div class="ttdeci">bool from_toml(istream_type &amp;stream)</div><div class="ttdoc">Returns a string containing the contents of the GenericContainer in TOML format.</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ac7ce84e0ea2cc67dc1344b25fd46ac81" name="ac7ce84e0ea2cc67dc1344b25fd46ac81"></a>
@@ -2489,15 +2657,27 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Read the contents of stream in YAML syntax</p>
+
+<p>Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a YAML-formatted stream. </p>
+<p>This function parses the YAML data from the provided input stream and populates the container with the corresponding structure and values.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>input stream </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Input stream containing YAML data. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if conversion successful </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the data was successfully parsed and loaded; <span class="tt">false</span> otherwise.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md186"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">std::ifstream file(<span class="stringliteral">&quot;config.yaml&quot;</span>);</div>
+<div class="line"><span class="keywordflow">if</span> (gc.<a class="code hl_function" href="#ac7ce84e0ea2cc67dc1344b25fd46ac81">from_yaml</a>(file)) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;YAML loaded successfully.\n&quot;</span>;</div>
+<div class="line">} <span class="keywordflow">else</span> {</div>
+<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Failed to load YAML.\n&quot;</span>;</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_ac7ce84e0ea2cc67dc1344b25fd46ac81"><div class="ttname"><a href="#ac7ce84e0ea2cc67dc1344b25fd46ac81">GC_namespace::GenericContainer::from_yaml</a></div><div class="ttdeci">bool from_yaml(istream_type &amp;stream)</div><div class="ttdoc">Loads the contents of the GenericContainer from a YAML-formatted stream.</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ad48f858df387984b1483697d5b606f84" name="ad48f858df387984b1483697d5b606f84"></a>
@@ -2522,6 +2702,135 @@ Example:</h3>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Loads the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> from a YAML-formatted string. </p>
+<p>This is a convenience overload that parses YAML data directly from a <span class="tt">std::string</span> by internally using an <span class="tt">istringstream</span>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>String containing YAML-formatted data. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the data was successfully parsed and loaded; <span class="tt">false</span> otherwise.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md187"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">std::string yaml_data = <span class="stringliteral">&quot;id: 42\nname: Alice\n&quot;</span>;</div>
+<div class="line"><span class="keywordflow">if</span> (gc.<a class="code hl_function" href="#ac7ce84e0ea2cc67dc1344b25fd46ac81">from_yaml</a>(yaml_data)) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;YAML loaded successfully.\n&quot;</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="ae65d9a9decfbdd52e0673039a26355e9" name="ae65d9a9decfbdd52e0673039a26355e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae65d9a9decfbdd52e0673039a26355e9">&#9670;&#160;</a></span>gc_from_json()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> GC_namespace::GenericContainer::gc_from_json </td>
+          <td>(</td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>json</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object from a JSON string. </p>
+<p>This static function constructs and returns a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object populated with the data contained in the provided JSON string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>The string containing the JSON representation of the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> A <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object populated with the JSON data.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>This is a static function, so it can be called without an instance of <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a>. <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc = <a class="code hl_function" href="#a3c9a1cdb5d518a0b2f49ecc7aa3c537f">GenericContainer::from_json</a>(json_string);</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a3c9a1cdb5d518a0b2f49ecc7aa3c537f"><div class="ttname"><a href="#a3c9a1cdb5d518a0b2f49ecc7aa3c537f">GC_namespace::GenericContainer::from_json</a></div><div class="ttdeci">bool from_json(istream_type &amp;stream)</div><div class="ttdoc">Returns a string containing the contents of the GenericContainer in JSON format.</div></div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a664aa2e67bfb5b04cdc3f7ae3546eb25" name="a664aa2e67bfb5b04cdc3f7ae3546eb25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a664aa2e67bfb5b04cdc3f7ae3546eb25">&#9670;&#160;</a></span>gc_from_toml()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> GC_namespace::GenericContainer::gc_from_toml </td>
+          <td>(</td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>toml</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object from a TOML string. </p>
+<p>This static function allows you to obtain a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object populated with the data contained in the provided TOML string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">toml</td><td>The string containing the TOML representation of the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> The <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object populated with the TOML data.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Being static, it can be called without an instance of <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a>. <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc = <a class="code hl_function" href="#ae33c9c91aa3aea285af79b8050ddb0d2">GenericContainer::from_toml</a>(toml_string);</div>
+</div><!-- fragment --> </dd></dl>
+
+</div>
+</div>
+<a id="a581f623ef9658a6b249f73cb4c63b58d" name="a581f623ef9658a6b249f73cb4c63b58d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a581f623ef9658a6b249f73cb4c63b58d">&#9670;&#160;</a></span>gc_from_yaml()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> GC_namespace::GenericContainer::gc_from_yaml </td>
+          <td>(</td>
+          <td class="paramtype">string const &amp;</td>          <td class="paramname"><span class="paramname"><em>yaml</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Creates a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object from a JSON string. </p>
+<p>This static function allows you to obtain a <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object populated with the data contained in the provided JSON string.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>The string containing the JSON representation of the object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> The <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> object populated with the JSON data.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Being static, it can be called without an instance of <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a>. <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc = <a class="code hl_function" href="#a3c9a1cdb5d518a0b2f49ecc7aa3c537f">GenericContainer::from_json</a>(json_string);</div>
+</div><!-- fragment --> </dd></dl>
 
 </div>
 </div>
@@ -3860,7 +4169,7 @@ template&lt;typename T&gt; </div>
   </table>
   </dd>
 </dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md140"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md141"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a937e83bc83a06f3cbc086037c7e92103">set_map</a>();</div>
@@ -3900,7 +4209,7 @@ Example:</h3>
   </table>
   </dd>
 </dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md139"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md140"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a937e83bc83a06f3cbc086037c7e92103">set_map</a>();</div>
@@ -6493,15 +6802,25 @@ template&lt;typename T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Merge two generic container</p>
+
+<p>Merges the contents of another <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into this one. </p>
+<p>This method combines the data and structure of the provided container with the current container. In case of conflicts or errors during the merge, the <span class="tt">where</span> parameter is used to provide context in the error messages.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>input <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">where</td><td>position added to the error message </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gc</td><td>The container whose contents will be merged into this one. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">where</td><td>Context string to indicate the position or source for error reporting.</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md182"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> a, b;</div>
+<div class="line">a[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">b[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">a.<a class="code hl_function" href="#a6a70aae89a42d143ceddbcb50b3f7fda">merge</a>(b, <span class="stringliteral">&quot;failed to merge a with b&quot;</span>);</div>
+<div class="line"><span class="comment">// Now &#39;a&#39; contains both &quot;id&quot; and &quot;name&quot; fields</span></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a6a70aae89a42d143ceddbcb50b3f7fda"><div class="ttname"><a href="#a6a70aae89a42d143ceddbcb50b3f7fda">GC_namespace::GenericContainer::merge</a></div><div class="ttdeci">void merge(GenericContainer const &amp;gc, string_view const where)</div><div class="ttdoc">Merges the contents of another GenericContainer into this one.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:3867</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="aab2a43078d00e3522a2d1410bec91e55" name="aab2a43078d00e3522a2d1410bec91e55"></a>
@@ -7612,16 +7931,29 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Dump the contents of the object in a human readable way (aliad of dump)</p>
+
+<p>Prints the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in a human-readable format. </p>
+<p>This is an alias for <a class="el" href="#a9384fed526d18e9370d7106a1f916a7f">dump()</a>, providing the same functionality. It outputs both the structure and the data of the container to the specified stream.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>strig to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>indentation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Output stream where the formatted content will be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (useful for labeling or nesting). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>String used for indentation of nested structures (default: four spaces).</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md176"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">gc.<a class="code hl_function" href="#ab7b95bb934b3f0cd37af2404abee6b23">print</a>(std::cout, <span class="stringliteral">&quot;&gt;&gt; &quot;</span>, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_ab7b95bb934b3f0cd37af2404abee6b23"><div class="ttname"><a href="#ab7b95bb934b3f0cd37af2404abee6b23">GC_namespace::GenericContainer::print</a></div><div class="ttdeci">void print(ostream_type &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</div><div class="ttdoc">Prints the contents of the GenericContainer in a human-readable format.</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:4229</div></div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md177"></a>
+Output:</h3>
+<pre class="fragment">//! &gt;&gt; id: 42
+//! &gt;&gt; name: "Alice"
+//! </pre> 
 </div>
 </div>
 <a id="ae412ca89caaa66f86b1d7ff3a313cc9f" name="ae412ca89caaa66f86b1d7ff3a313cc9f"></a>
@@ -7650,15 +7982,29 @@ template&lt;typename T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Dump the contents of the object in a human readable way (aliad of dump)</p>
+
+<p>Returns a human-readable string representation of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span>. </p>
+<p>This is a convenience overload of <a class="el" href="#ab7b95bb934b3f0cd37af2404abee6b23">print()</a> that captures the output into a <span class="tt"><a class="el" href="#aa6861286e9da5aecb25acf14bb902ac8" title="Alias for string type.">string_type</a></span> instead of writing to a stream. It includes both the structure and the data of the container in a readable format.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>strig to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>indentation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (useful for labeling or nesting). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>String used for indentation of nested structures (default: four spaces). </td></tr>
   </table>
   </dd>
 </dl>
-
+<dl class="section return"><dt>Returns</dt><dd>A <span class="tt"><a class="el" href="#aa6861286e9da5aecb25acf14bb902ac8" title="Alias for string type.">string_type</a></span> containing the formatted content of the container.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md178"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">std::string output = gc.<a class="code hl_function" href="#ab7b95bb934b3f0cd37af2404abee6b23">print</a>(<span class="stringliteral">&quot;&gt;&gt; &quot;</span>, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="line">std::cout &lt;&lt; output;</div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md179"></a>
+Output:</h3>
+<pre class="fragment">//! &gt;&gt; id: 42
+//! &gt;&gt; name: "Alice"
+//! </pre> 
 </div>
 </div>
 <a id="a6b212287a8a8bb274c1231c9aac04484" name="a6b212287a8a8bb274c1231c9aac04484"></a>
@@ -7684,16 +8030,30 @@ template&lt;typename T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print the contents of the object in a human readable way (without data)</p>
+
+<p>Prints the structure of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in a human-readable form. </p>
+<p>This function outputs the container’s content types (schema/structure) without printing the actual stored data values. It is useful for debugging or inspecting the layout of the container in a concise way.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>strig to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>indentation </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Output stream where the formatted description will be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string prepended to each field (e.g., for labeling or nesting). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">indent</td><td>Indentation string used to format nested structures (default: four spaces).</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md171"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc.<a class="code hl_function" href="#a937e83bc83a06f3cbc086037c7e92103">set_map</a>();</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].set_integer(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">gc.<a class="code hl_function" href="#a6b212287a8a8bb274c1231c9aac04484">print_content_types</a>(std::cout, <span class="stringliteral">&quot;&gt;&gt; &quot;</span>, <span class="stringliteral">&quot;  &quot;</span>);</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a6b212287a8a8bb274c1231c9aac04484"><div class="ttname"><a href="#a6b212287a8a8bb274c1231c9aac04484">GC_namespace::GenericContainer::print_content_types</a></div><div class="ttdeci">void print_content_types(ostream_type &amp;stream, string_view prefix=&quot;&quot;, string_view indent=&quot;    &quot;) const</div><div class="ttdoc">Prints the structure of the GenericContainer in a human-readable form.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:3576</div></div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md172"></a>
+Output:</h3>
+<pre class="fragment">//! &gt;&gt; id: int
+//! &gt;&gt; name: string
+//! </pre> 
 </div>
 </div>
 <a id="a2f18cbc74c83714efac2625157cce59c" name="a2f18cbc74c83714efac2625157cce59c"></a>
@@ -8439,8 +8799,44 @@ template&lt;typename T&gt; </div>
 
 </div>
 </div>
+<a id="a6ae31f59896ad9e4e03006813254bcce" name="a6ae31f59896ad9e4e03006813254bcce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae31f59896ad9e4e03006813254bcce">&#9670;&#160;</a></span>serialize() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; uint8_t &gt; GC_namespace::GenericContainer::serialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> and returns a byte vector. </p>
+<p>This convenience overload creates a <span class="tt">std::vector&lt;uint8_t&gt;</span>, resizes it to the exact number of bytes required (using <a class="el" href="#a7cb07560f41eb190a0ed5c4a96654d99">mem_size()</a>), and fills it with the serialized data.</p>
+<dl class="section return"><dt>Returns</dt><dd>A <span class="tt">std::vector&lt;uint8_t&gt;</span> containing the serialized representation of the container.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md195"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc.set_integer(123);</div>
+<div class="line">std::vector&lt;uint8_t&gt; data = gc.<a class="code hl_function" href="#a3851f3952172ad584d6f941ffb548267">serialize</a>();</div>
+<div class="line"><span class="comment">// &#39;data&#39; now holds the serialized form of &#39;gc&#39;</span></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a3851f3952172ad584d6f941ffb548267"><div class="ttname"><a href="#a3851f3952172ad584d6f941ffb548267">GC_namespace::GenericContainer::serialize</a></div><div class="ttdeci">int32_t serialize(int32_t buffer_dim, uint8_t *buffer) const</div><div class="ttdoc">Serializes the contents of the GenericContainer into a raw memory buffer.</div><div class="ttdef"><b>Definition</b> GenericContainerSerialize.cc:199</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
 <a id="a3851f3952172ad584d6f941ffb548267" name="a3851f3952172ad584d6f941ffb548267"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3851f3952172ad584d6f941ffb548267">&#9670;&#160;</a></span>serialize() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3851f3952172ad584d6f941ffb548267">&#9670;&#160;</a></span>serialize() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -8457,20 +8853,29 @@ template&lt;typename T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Serializes the <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> into the provided buffer. The buffer must have enough space to store the serialized data (use <a class="el" href="#a7cb07560f41eb190a0ed5c4a96654d99">mem_size()</a> to determine the required size).</p>
+
+<p>Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a raw memory buffer. </p>
+<p>This method writes the serialized representation of the container into the user-provided buffer. The buffer must be large enough to hold the data; use <a class="el" href="#a7cb07560f41eb190a0ed5c4a96654d99">mem_size()</a> to query the exact number of bytes required.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer_dim</td><td>Size of the provided buffer, in bytes. </td></tr>
+    <tr><td class="paramname">buffer_dim</td><td>The size of the provided buffer, in bytes. </td></tr>
     <tr><td class="paramname">buffer</td><td>Pointer to the buffer where the serialized data will be written. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes written into the buffer, or -1 if an error occurs (e.g., insufficient buffer size). </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes successfully written, or -1 if serialization fails (for example, if the buffer size is insufficient).</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md193"></a>
+Example:</h3>
+<div class="fragment"><div class="line">std::vector&lt;uint8_t&gt; buf(gc.mem_size());</div>
+<div class="line">int32_t written = gc.serialize(buf.size(), buf.data());</div>
+<div class="line"><span class="keywordflow">if</span> (written &lt; 0) {</div>
+<div class="line">    std::cerr &lt;&lt; <span class="stringliteral">&quot;Serialization failed.\n&quot;</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a58cbfd42301c5cda0f7b61edf01c0944" name="a58cbfd42301c5cda0f7b61edf01c0944"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58cbfd42301c5cda0f7b61edf01c0944">&#9670;&#160;</a></span>serialize() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a58cbfd42301c5cda0f7b61edf01c0944">&#9670;&#160;</a></span>serialize() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -8483,15 +8888,22 @@ template&lt;typename T&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Serializes the <a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a> into the provided vector buffer. The buffer will be resized if necessary to accommodate the serialized data.</p>
+
+<p>Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into a byte vector. </p>
+<p>This method produces a serialized representation of the container and writes it into the provided <span class="tt">std::vector&lt;uint8_t&gt;</span>. If the current capacity of the vector is insufficient, it will be automatically resized to fit the serialized data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>A vector of bytes that will be filled with the serialized data. </td></tr>
+    <tr><td class="paramname">buffer</td><td>Reference to a vector of bytes that will receive the serialized data. Its contents will be overwritten. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of bytes written into the buffer. </dd></dl>
-
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes written into the vector.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md194"></a>
+Example:</h3>
+<div class="fragment"><div class="line">std::vector&lt;uint8_t&gt; buf;</div>
+<div class="line">int32_t written = gc.serialize(buf);</div>
+<div class="line">std::cout &lt;&lt; <span class="stringliteral">&quot;Serialized size: &quot;</span> &lt;&lt; written &lt;&lt; <span class="stringliteral">&quot; bytes\n&quot;</span>;</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a51140ecdddfcefdc20886ed3329e1be2" name="a51140ecdddfcefdc20886ed3329e1be2"></a>
@@ -8526,7 +8938,7 @@ template&lt;typename T&gt; </div>
 <div class="fragment"><div class="line"><span class="comment">// Example usage of setting a boolean</span></div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> container;</div>
 <div class="line">container.<a class="code hl_function" href="#a51140ecdddfcefdc20886ed3329e1be2">set</a>(<span class="keyword">true</span>); <span class="comment">// Store true in the container</span></div>
-<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a51140ecdddfcefdc20886ed3329e1be2"><div class="ttname"><a href="#a51140ecdddfcefdc20886ed3329e1be2">GC_namespace::GenericContainer::set</a></div><div class="ttdeci">void set(bool const &amp;a)</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:3422</div></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a51140ecdddfcefdc20886ed3329e1be2"><div class="ttname"><a href="#a51140ecdddfcefdc20886ed3329e1be2">GC_namespace::GenericContainer::set</a></div><div class="ttdeci">void set(bool const &amp;a)</div><div class="ttdef"><b>Definition</b> GenericContainer.hh:3443</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -8942,7 +9354,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored boolean value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md141"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md142"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a9725806d85094fd17c37670c412309ad">set_bool</a>(<span class="keyword">true</span>);  <span class="comment">// Store a boolean value</span></div>
@@ -8974,7 +9386,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored complex value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md145"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md146"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">complex&lt;double&gt; c(1.0, 2.0);</div>
@@ -9012,7 +9424,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored complex value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md146"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md147"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a947d714f1aa138e73298d4805897da5e">set_complex</a>(1.0, 2.0);  <span class="comment">// Store a complex number (1.0 + 2.0i)</span></div>
@@ -9043,7 +9455,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored integer value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md142"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md143"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);  <span class="comment">// Store an integer value</span></div>
@@ -9074,7 +9486,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored long integer value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md143"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md144"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a64fdc82d799d31e8257a7f29734d7e50">set_long</a>(123456789L);  <span class="comment">// Store a long integer value</span></div>
@@ -9129,7 +9541,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md169"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md170"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#aec96419482887cec102393fefa83277a">mat_complex_type</a> m = {{{1.0, 2.0}, {3.0, 4.0}}, {{5.0, 6.0}, {7.0, 8.0}}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9166,7 +9578,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md168"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md169"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a54ab1bde5ca3631423438e8a2286a928">set_mat_complex</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of complex numbers</span></div>
@@ -9198,7 +9610,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md163"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md164"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#addf9c141bd5852afacdf5458b15e542f">mat_int_type</a> m{{1, 2}, {3, 4}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9235,7 +9647,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md162"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md163"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#af7e0cd61280f150e0f6640208623908a">set_mat_int</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of integers</span></div>
@@ -9267,7 +9679,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md165"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md166"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a98812bcd86f0d97bf1eeaf1be6a80480">mat_long_type</a> m = {{100000L, 200000L}, {300000L, 400000L}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9304,7 +9716,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md164"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md165"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a776ec6712d6f3ef16f93a4e6cc7f1ec3">set_mat_long</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of long integers</span></div>
@@ -9336,7 +9748,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of <span class="tt"><a class="el" href="#a66af3632ff5d6b2aba12c02d59da0016" title="Alias for real (floating point) type.">real_type</a></span> numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md167"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md168"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a2e2c80f81633031c115b204df7fdc418">mat_real_type</a> m = {{1.1, 2.2}, {3.3, 4.4}};</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9373,7 +9785,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated matrix of <span class="tt"><a class="el" href="#a66af3632ff5d6b2aba12c02d59da0016" title="Alias for real (floating point) type.">real_type</a></span> numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md166"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md167"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a6ad656be2b8f2a83afd0f48409dafec2">set_mat_real</a>(3, 4);  <span class="comment">// Allocates a 3x4 matrix of real numbers</span></div>
@@ -9405,7 +9817,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored pointer value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md137"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md138"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><span class="keywordtype">int</span> x = 42;</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9437,7 +9849,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored floating-point value.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md144"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md145"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a07035218689932cfca8040b0b3534a52">set_real</a>(3.14);  <span class="comment">// Store a floating-point value</span></div>
@@ -9468,7 +9880,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the stored string.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md147"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md148"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Hello, World!&quot;</span>);  <span class="comment">// Store a string</span></div>
@@ -9526,7 +9938,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of booleans.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md150"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md151"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a45d399ad916e9ef6649d2aa6fa1d2c79">set_vec_bool</a>(5);  <span class="comment">// Allocates a vector of 5 booleans</span></div>
@@ -9558,7 +9970,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of booleans.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md151"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md152"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a2b6f6b3805ebb8a3ebd7f6302b3f624f">vec_bool_type</a> v = {<span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9617,7 +10029,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md158"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md159"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a58def5a020d4832372b48d5e1c2092fd">set_vec_complex</a>(10);  <span class="comment">// Allocates a vector of 10 complex numbers</span></div>
@@ -9649,7 +10061,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of complex numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md159"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md160"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#af71be9851e191790596ee3d941c47c46">vec_complex_type</a> v{ {1.0, 2.0}, {3.0, 4.0} };</div>
 <div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
@@ -9708,7 +10120,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md152"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md153"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a767bc2435b705ffd676d33dee9c246bb">set_vec_int</a>(10);  <span class="comment">// Allocates a vector of 10 integers</span></div>
@@ -9740,7 +10152,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md153"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md154"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#aa4ceab2be01717c57b1402abe11f1bcd">vec_int_type</a> v{1, 2, 3};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9799,7 +10211,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md154"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md155"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a5ea3ceefc0ed15029ada214e50926b83">set_vec_long</a>(10);  <span class="comment">// Allocates a vector of 10 long integers</span></div>
@@ -9831,7 +10243,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of long integers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md155"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md156"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a15b49eda5d1dcd1097bf21b6a7d85963">vec_long_type</a> v{100000L, 200000L};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9890,7 +10302,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of pointers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md148"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md149"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#a368263e47851907290efd718c4853fed">set_vec_pointer</a>(10);  <span class="comment">// Allocates a vector of 10 pointers</span></div>
@@ -9922,7 +10334,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of pointers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md149"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md150"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#abf3d57ef8deefda178f9a1072ed40cbc">vec_pointer_type</a> v = {ptr1, ptr2, ptr3};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -9981,7 +10393,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of real numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md156"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md157"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#ab3ef9eb8d3fe22ca46d68e183e9b479d">set_vec_real</a>(5);  <span class="comment">// Allocates a vector of 5 real numbers</span></div>
@@ -10013,7 +10425,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of <span class="tt"><a class="el" href="#a66af3632ff5d6b2aba12c02d59da0016" title="Alias for real (floating point) type.">real_type</a></span> numbers.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md157"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md158"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#a028c4cdc82b05ff544b8f5865da941d1">vec_real_type</a> v = {1.5, 2.5, 3.5};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -10072,7 +10484,7 @@ template&lt;typename T&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of strings.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md160"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md161"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
 <div class="line">gc.<a class="code hl_function" href="#aa8c18d37b5df4f60a904664be3e94bec">set_vec_string</a>(5);  <span class="comment">// Allocates a vector of 5 strings</span></div>
@@ -10104,7 +10516,7 @@ Example:</h3>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the internally allocated vector of strings.</dd></dl>
-<h3 class="doxsection"><a class="anchor" id="autotoc_md161"></a>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md162"></a>
 Example:</h3>
 <div class="fragment"><div class="line"><a class="code hl_typedef" href="#ac520fb49a0dcff2fbaf75ecb043ac8d1">vec_string_type</a> v{<span class="stringliteral">&quot;Hello&quot;</span>, <span class="stringliteral">&quot;World&quot;</span>};</div>
 <div class="line"><a class="code hl_class" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html">GenericContainer</a> gc;</div>
@@ -10155,14 +10567,23 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Copy the contents of the object into another object</p>
+
+<p>Copies the contents of this <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into another container. </p>
+<p>This method performs a deep copy of the current container’s data and structure into the provided <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> object.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>output <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">gc</td><td>The target container where the contents will be copied.</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md180"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> source, target;</div>
+<div class="line">source.<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">source.<a class="code hl_function" href="#ac127d42ee3d25136f123c7c2c6b00e51">to_gc</a>(target);</div>
+<div class="line">assert(target.<a class="code hl_function" href="#ac85c7668a752dc2810a804a8c1116107">compare_content</a>(source).empty()); <span class="comment">// containers are identical</span></div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_ac127d42ee3d25136f123c7c2c6b00e51"><div class="ttname"><a href="#ac127d42ee3d25136f123c7c2c6b00e51">GC_namespace::GenericContainer::to_gc</a></div><div class="ttdeci">void to_gc(GenericContainer &amp;gc) const</div><div class="ttdoc">Copies the contents of this GenericContainer into another container.</div><div class="ttdef"><b>Definition</b> GenericContainer.cc:3724</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a814dc4ef7f9843ca38633a360d7231f9" name="a814dc4ef7f9843ca38633a360d7231f9"></a>
@@ -10183,15 +10604,23 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print the contents of the object in JSON syntax</p>
+
+<p>Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into JSON format and writes it to the provided output stream. </p>
+<p>This function outputs the container’s structure and data in valid JSON syntax. It is useful for exporting the container for configuration, debugging, or interoperability with other tools that support JSON.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>strig to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Output stream where the JSON content will be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (useful for nesting or labeling).</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md188"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">gc.<a class="code hl_function" href="#a814dc4ef7f9843ca38633a360d7231f9">to_json</a>(std::cout);</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a4773b60d9db71de58c0d0e45908ada6c" name="a4773b60d9db71de58c0d0e45908ada6c"></a>
@@ -10258,15 +10687,23 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print the contents of the object in TOML syntax</p>
+
+<p>Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into TOML format and writes it to the provided output stream. </p>
+<p>This function outputs the container’s structure and data in valid TOML syntax. It is useful for exporting configuration or interoperability with TOML-compatible tools.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>strig to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Output stream where the TOML content will be written. </td></tr>
   </table>
   </dd>
 </dl>
-
+<dl class="section return"><dt>Returns</dt><dd><span class="tt">true</span> if the serialization was successful; <span class="tt">false</span> otherwise.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md190"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">gc.<a class="code hl_function" href="#a06da5c5ed56ed58214a58a5899ba72b9">to_toml</a>(std::cout);</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="a3ed262cdc274c6128a088b4d8fd754b5" name="a3ed262cdc274c6128a088b4d8fd754b5"></a>
@@ -10287,15 +10724,24 @@ Example:</h3>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Print the contents of the object in YAML syntax</p>
+
+<p>Serializes the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> into YAML format and writes it to the provided output stream. </p>
+<p>This function outputs the container’s structure and data in valid YAML syntax. It is useful for exporting the container for configuration, debugging, or interoperability with other tools that support YAML.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>output stream </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>string to be prepended to any field of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">stream</td><td>Output stream where the YAML content will be written. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (useful for nesting or labeling).</td></tr>
   </table>
   </dd>
 </dl>
-
+<h3 class="doxsection"><a class="anchor" id="autotoc_md184"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">gc.<a class="code hl_function" href="#a3ed262cdc274c6128a088b4d8fd754b5">to_yaml</a>(std::cout);</div>
+<div class="ttc" id="aclass_g_c__namespace_1_1_generic_container_html_a3ed262cdc274c6128a088b4d8fd754b5"><div class="ttname"><a href="#a3ed262cdc274c6128a088b4d8fd754b5">GC_namespace::GenericContainer::to_yaml</a></div><div class="ttdeci">void to_yaml(ostream_type &amp;stream, string_view prefix=&quot;&quot;) const</div><div class="ttdoc">Serializes the contents of the GenericContainer into YAML format and writes it to the provided output...</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ab09a76575d59fead7f452f04a00a395a" name="ab09a76575d59fead7f452f04a00a395a"></a>
@@ -10321,6 +10767,23 @@ Example:</h3>
 </table>
 </div><div class="memdoc">
 
+<p>Returns a string containing the contents of the <span class="tt"><a class="el" href="../../d9/d35/class_g_c__namespace_1_1_generic_container.html" title="The GenericContainer class provides a flexible container for storing heterogeneous data types.">GenericContainer</a></span> in YAML format. </p>
+<p>This is a convenience overload that captures the YAML output into a <span class="tt">string</span> instead of writing to a stream.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">prefix</td><td>Optional string to prepend to each field (useful for nesting or labeling). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A string containing the YAML representation of the container.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md185"></a>
+Example:</h3>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#a1f050e7197d75d7e9ae2440d45dd9dc5">GenericContainer</a> gc;</div>
+<div class="line">gc[<span class="stringliteral">&quot;id&quot;</span>].<a class="code hl_function" href="#a7b40f3aa0b5fcf0319cee69c8be182e2">set_int</a>(42);</div>
+<div class="line">gc[<span class="stringliteral">&quot;name&quot;</span>].<a class="code hl_function" href="#a697e9ecce2fdf5cb99bdd0bb4c35f23b">set_string</a>(<span class="stringliteral">&quot;Alice&quot;</span>);</div>
+<div class="line">std::string yaml_str = gc.<a class="code hl_function" href="#a3ed262cdc274c6128a088b4d8fd754b5">to_yaml</a>();</div>
+<div class="line">std::cout &lt;&lt; yaml_str;</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="abbf75ebe2b15cc6b125a0118f30b70b7" name="abbf75ebe2b15cc6b125a0118f30b70b7"></a>
