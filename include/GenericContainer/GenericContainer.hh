@@ -835,7 +835,7 @@ namespace GC_namespace {
     //! assert(gc.empty());    // Now it's empty
     //! \endcode
     //!
-    bool empty() const { return this->m_data_type != GC_type::NOTYPE; }
+    bool empty() const { return this->m_data_type == GC_type::NOTYPE; }
 
     //!
     //! \name Methods for Initializing Simple Data Types
