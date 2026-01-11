@@ -22,8 +22,8 @@
 //
 
 #ifdef _MSC_VER
-  #pragma warning(disable : 4267)
-  #pragma warning(disable : 4244)
+#pragma warning( disable : 4267 )
+#pragma warning( disable : 4244 )
 #endif
 
 #ifdef __clang__
@@ -51,20 +51,21 @@
 
 #include "toml++/toml.hpp"
 
-namespace GC_namespace {
+namespace GC_namespace
+{
 
-  using std::istreambuf_iterator;
   using std::complex;
-  using std::regex;
-  using std::smatch;
-  using std::regex_match;
-  using std::strtoull;
-  using std::strtoll;
-  using std::strtod;
-  using std::stod;
+  using std::istreambuf_iterator;
   using std::numeric_limits;
+  using std::regex;
+  using std::regex_match;
   using std::size_t;
-  
+  using std::smatch;
+  using std::stod;
+  using std::strtod;
+  using std::strtoll;
+  using std::strtoull;
+
   /*
   //
   //    __                        _                  _
@@ -75,140 +76,138 @@ namespace GC_namespace {
   //                         |_____|
   */
 
-  static
-  bool
-  TOML_to_GC( toml::node const & node, GenericContainer & gc ) {
+  static bool TOML_to_GC( toml::node const & node, GenericContainer & gc )
+  {
     // Controlla il tipo di nodo
-    bool ok{true};
-    
-    if ( node.is_string() ) {
+    bool ok{ true };
 
-      gc.set_string(node.as_string()->get());
-
-    } else if ( node.is_integer() ) {
-
+    if ( node.is_string() ) { gc.set_string( node.as_string()->get() ); }
+    else if ( node.is_integer() )
+    {
       std::int64_t tmp{ node.as_integer()->get() };
-      if ( tmp >= numeric_limits<int32_t>::min() && tmp <= numeric_limits<int32_t>::max() ) {
-        gc.set_int( std::int32_t(tmp) );
-      } else {
+      if ( tmp >= numeric_limits<int32_t>::min() && tmp <= numeric_limits<int32_t>::max() )
+      {
+        gc.set_int( std::int32_t( tmp ) );
+      }
+      else
+      {
         gc.set_long( tmp );
       }
-
-    } else if ( node.is_floating_point() ) {
-
-      gc.set_real( node.as_floating_point()->get() );
-
-    } else if ( node.is_boolean() ) {
-
-      gc.set_bool( node.as_boolean()->get() );
-
-    } else if ( node.is_date() ) {
-
+    }
+    else if ( node.is_floating_point() ) { gc.set_real( node.as_floating_point()->get() ); }
+    else if ( node.is_boolean() ) { gc.set_bool( node.as_boolean()->get() ); }
+    else if ( node.is_date() )
+    {
       std::ostringstream oss;
       oss << node.as_date()->get();
       gc["$date"] = oss.str();
-
-    } else if ( node.is_time() ) {
-
+    }
+    else if ( node.is_time() )
+    {
       std::ostringstream oss;
       oss << node.as_time()->get();
       gc["$time"] = oss.str();
-
-    } else if ( node.is_date_time() ) {
-
+    }
+    else if ( node.is_date_time() )
+    {
       std::ostringstream oss;
       oss << node.as_date_time()->get();
       gc["$date_time"] = oss.str();
-
-    } else if ( node.is_table() ) {
-
+    }
+    else if ( node.is_table() )
+    {
       GC::map_type & gc_map{ gc.set_map() };
-      for ( const auto& [key, value] : *node.as_table() ) {
-        GenericContainer & gc1{ gc_map[std::string(key.str())] };
+      for ( const auto & [key, value] : *node.as_table() )
+      {
+        GenericContainer & gc1{ gc_map[std::string( key.str() )] };
         ok = TOML_to_GC( value, gc1 );
         if ( !ok ) break;
       }
-
-    } else if ( node.is_array_of_tables() ) {
-
+    }
+    else if ( node.is_array_of_tables() )
+    {
       gc.set_vector();
-      unsigned i{0};
-      for ( const auto & value : *node.as_array() ) {
+      unsigned i{ 0 };
+      for ( const auto & value : *node.as_array() )
+      {
         ok = TOML_to_GC( value, gc[i++] );
         if ( !ok ) break;
       }
-
-    } else if ( node.is_array() ) {
-    
+    }
+    else if ( node.is_array() )
+    {
       auto ary = node.as_array();
 
-      bool is_string_array  { true };
-      bool is_integer_array { true };
-      bool is_float_array   { true };
-      for ( const auto & value : *ary ) {
-        if ( !value.is_string()         ) is_string_array  = false;
-        if ( !value.is_integer()        ) is_integer_array = false;
-        if ( !value.is_floating_point() ) is_float_array   = false;
+      bool is_string_array{ true };
+      bool is_integer_array{ true };
+      bool is_float_array{ true };
+      for ( const auto & value : *ary )
+      {
+        if ( !value.is_string() ) is_string_array = false;
+        if ( !value.is_integer() ) is_integer_array = false;
+        if ( !value.is_floating_point() ) is_float_array = false;
       }
       size_t N{ ary->size() };
-      if ( is_string_array ) {
-
+      if ( is_string_array )
+      {
         GC::vec_string_type & V{ gc.set_vec_string() };
         V.reserve( N );
         for ( const auto & value : *ary ) V.emplace_back( value.as_string()->get() );
-
-      } else if (is_integer_array) {
-
+      }
+      else if ( is_integer_array )
+      {
         GC::vec_int_type & V{ gc.set_vec_int() };
         V.reserve( N );
         for ( const auto & value : *ary ) V.emplace_back( value.as_integer()->get() );
-
-      } else if (is_float_array) {
-
+      }
+      else if ( is_float_array )
+      {
         GC::vec_real_type & V{ gc.set_vec_real() };
         V.reserve( N );
         for ( const auto & value : *ary ) V.emplace_back( value.as_floating_point()->get() );
-
-      } else {
-
+      }
+      else
+      {
         gc.set_vector();
-        unsigned i{0};
-        for ( const auto& value : *ary ) {
+        unsigned i{ 0 };
+        for ( const auto & value : *ary )
+        {
           ok = TOML_to_GC( value, gc[i++] );
           if ( !ok ) break;
         }
-
       }
-
-    } else {
-
+    }
+    else
+    {
       gc.clear();
       ok = false;
-
     }
     return ok;
   }
 
-  bool
-  GenericContainer::from_toml( istream_type & stream ) {
-    bool ok{true};
-    try {
+  bool GenericContainer::from_toml( istream_type & stream )
+  {
+    bool ok{ true };
+    try
+    {
       // deserialize the loaded file contents.
-      ok = TOML_to_GC( toml::parse(stream), *this );
+      ok = TOML_to_GC( toml::parse( stream ), *this );
       if ( ok ) this->collapse();
     }
-    catch ( std::exception const & e ) {
+    catch ( std::exception const & e )
+    {
       std::cerr << "GenericContainer::from_toml: " << e.what() << '\n';
       ok = false;
     }
-    catch ( ... ) {
+    catch ( ... )
+    {
       std::cerr << "GenericContainer::from_toml: failed\n";
       ok = false;
     }
     return ok;
   }
 
-}
+}  // namespace GC_namespace
 
 //
 // eof: from_toml.cc

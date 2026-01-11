@@ -31,29 +31,30 @@
 using namespace std;
 using namespace GC;
 
-int
-main() {
+int main()
+{
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "      example N.11     \n"
+       << "***********************\n\n";
 
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "      example N.11     \n"
-    << "***********************\n\n";
-
-  try {
+  try
+  {
     // read YAML file and convert to generic container
     GenericContainer gc;
-    string fname{ "../examples/data2.yaml" };
-    bool ok = file_YAML_to_GC( fname, gc );
+    string           fname{ "../examples/data2.yaml" };
+    bool             ok = file_YAML_to_GC( fname, gc );
     if ( !ok ) std::cerr << "Failed to parse: " << fname << '\n';
     std::cout << "\n\n\n\nGC\n\n";
-    gc.print(std::cout);
+    gc.print( std::cout );
     std::cout << "\n\n\n\nYAML\n\n" << gc.to_yaml() << "\n\n\n\n";
   }
-  catch ( std::exception & exc ) {
+  catch ( std::exception & exc )
+  {
     cout << exc.what() << '\n';
   }
-  catch (...) {
+  catch ( ... )
+  {
     cout << "Unknonwn error\n";
   }
 

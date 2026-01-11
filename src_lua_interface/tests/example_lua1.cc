@@ -30,27 +30,28 @@
 using namespace std;
 using namespace GC;
 
-int
-main() {
+int main()
+{
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "   lua example N.1     \n"
+       << "***********************\n\n";
 
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "   lua example N.1     \n"
-    << "***********************\n\n";
-
-  try {
+  try
+  {
     GenericContainer gc;
     LuaInterpreter   lua;
-    lua.do_file("./src_lua_interface/tests/test.lua");
-    lua.global_to_GC("DATA",gc);
+    lua.do_file( "./src_lua_interface/tests/test.lua" );
+    lua.global_to_GC( "DATA", gc );
     cout << "\n\n\n\nConverted in GenericContainer\n\n";
-    gc.dump(cout);
+    gc.dump( cout );
   }
-  catch ( std::exception & exc ) {
+  catch ( std::exception & exc )
+  {
     cout << exc.what() << '\n';
   }
-  catch (...) {
+  catch ( ... )
+  {
     cout << "Unknonwn error\n";
   }
 

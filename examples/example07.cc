@@ -30,29 +30,30 @@
 
 using namespace std;
 
-int
-main() {
+int main()
+{
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "      example N.7      \n"
+       << "***********************\n\n";
 
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "      example N.7      \n"
-    << "***********************\n\n";
-
-  try {
+  try
+  {
     GC::GenericContainer gc;
-    std::string fname{"../examples/example07_data.txt"};
-    ifstream file(fname);
-    if ( file.fail() ) throw std::runtime_error( "file to open file: " + fname);
+    std::string          fname{ "../examples/example07_data.txt" };
+    ifstream             file( fname );
+    if ( file.fail() ) throw std::runtime_error( "file to open file: " + fname );
     gc.readFormattedData( file, "#", "\t " );
-    gc.dump(cout);
+    gc.dump( cout );
     cout << "\n\nData Read:\n";
     gc.writeFormattedData( cout, '\t' );
   }
-  catch ( std::exception & exc ) {
+  catch ( std::exception & exc )
+  {
     cout << exc.what() << '\n';
   }
-  catch (...) {
+  catch ( ... )
+  {
     cout << "Unknonwn error\n";
   }
 

@@ -33,28 +33,29 @@
 using namespace std;
 using namespace GC;
 
-int
-main() {
-
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "      example N.3      \n"
-    << "***********************\n\n";
+int main()
+{
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "      example N.3      \n"
+       << "***********************\n\n";
 
   // Using complex data
 
-  try {
-
+  try
+  {
     GenericContainer gc;
-    cout << "STEP1 gc: "; gc.info(cout);
+    cout << "STEP1 gc: ";
+    gc.info( cout );
 
-    gc . set_vector();
-    cout << "STEP2 gc: "; gc.info(cout);
+    gc.set_vector();
+    cout << "STEP2 gc: ";
+    gc.info( cout );
 
     GC::vector_type & v = gc.get_vector();
-    v.resize(10);
-    cout << "STEP3 gc: "; gc.info(cout);
+    v.resize( 10 );
+    cout << "STEP3 gc: ";
+    gc.info( cout );
 
     // access using vector
     v[0] = 1;
@@ -69,16 +70,18 @@ main() {
     gc[7] = "pippo";
 
     cout << "STEP4 gc:\n";
-    gc.info(cout);
-    gc.dump(cout);
+    gc.info( cout );
+    gc.dump( cout );
 
     // issue an error!
-    gc(15) = 1.2;
+    gc( 15 ) = 1.2;
   }
-  catch ( std::exception & exc ) {
+  catch ( std::exception & exc )
+  {
     cout << exc.what() << '\n';
   }
-  catch (...) {
+  catch ( ... )
+  {
     cout << "Unknonwn error\n";
   }
   cout << "ALL DONE!\n\n\n\n";

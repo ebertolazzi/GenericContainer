@@ -29,28 +29,29 @@
 using namespace std;
 using namespace GC;
 
-int
-main() {
+int main()
+{
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "      example N.8      \n"
+       << "***********************\n\n";
 
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "      example N.8      \n"
-    << "***********************\n\n";
-
-  try {
+  try
+  {
     GC::GenericContainer gc, gc_res;
-    gc.set_mat_real(2,2);
-    gc.get_real_at(1,1) = 2;
-    gc.get_real_at(0,1) = 3;
+    gc.set_mat_real( 2, 2 );
+    gc.get_real_at( 1, 1 ) = 2;
+    gc.get_real_at( 0, 1 ) = 3;
     cout << "Result:\n";
-    gc.dump(cout);
-    gc.info(cout);
+    gc.dump( cout );
+    gc.info( cout );
   }
-  catch ( std::exception & exc ) {
+  catch ( std::exception & exc )
+  {
     cout << exc.what() << '\n';
   }
-  catch (...) {
+  catch ( ... )
+  {
     cout << "Unknonwn error\n";
   }
 

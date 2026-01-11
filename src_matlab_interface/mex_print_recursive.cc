@@ -9,22 +9,24 @@
 
 #include <sstream>
 
-namespace GC_namespace {
+namespace GC_namespace
+{
 
-  extern "C"
-  void
-  mexFunction( int nlhs, mxArray       *plhs[],
-               int nrhs, mxArray const *prhs[] ) {
-    try {
+  extern "C" void mexFunction( int nlhs, mxArray * plhs[], int nrhs, mxArray const * prhs[] )
+  {
+    try
+    {
       GenericContainer gc;
       mxArray_to_GenericContainer( prhs[0], gc );
-      mexPrint(gc);
+      mexPrint( gc );
     }
-    catch ( std::exception & exc ) {
-      mexPrintf("Error: %s\n", exc.what() );
+    catch ( std::exception & exc )
+    {
+      mexPrintf( "Error: %s\n", exc.what() );
     }
-    catch (...) {
-      mexPrintf("Unknown erroe\n");
+    catch ( ... )
+    {
+      mexPrintf( "Unknown erroe\n" );
     }
   }
-}
+}  // namespace GC_namespace

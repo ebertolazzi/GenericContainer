@@ -30,30 +30,31 @@
 #include <cctype>
 #include <sstream>
 
-namespace yy {
-  class jsonLexer {
+namespace yy
+{
+  class jsonLexer
+  {
   public:
-    jsonLexer() { m_lexeme.reserve(1023); }
+    jsonLexer() { m_lexeme.reserve( 1023 ); }
     int yylex( std::string * yylval, yy::location * yylloc );
 
-    void
-    set_stream( std::istream * file ) {
+    void set_stream( std::istream * file )
+    {
       // Utilizziamo un buffer di stringa per leggere tutto il contenuto dello stream
       std::ostringstream oss;
-      oss << file->rdbuf(); // Leggiamo tutto il contenuto nel buffer della stringa
+      oss << file->rdbuf();  // Leggiamo tutto il contenuto nel buffer della stringa
       m_input  = oss.str();
       m_cursor = m_input.begin();
     }
 
   private:
-
     std::string                 m_lexeme;
     std::istringstream          m_input_local;
     std::string                 m_input;
     std::string::const_iterator m_cursor;
-    int                         m_lineno{1};
-    int                         m_colno{1};
+    int                         m_lineno{ 1 };
+    int                         m_colno{ 1 };
   };
-}
+}  // namespace yy
 
 #endif

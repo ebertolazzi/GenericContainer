@@ -134,3 +134,4 @@ large-file.json
 prog
 cmake-build-debug/.cmake
 cmake-build-debug
+.cache

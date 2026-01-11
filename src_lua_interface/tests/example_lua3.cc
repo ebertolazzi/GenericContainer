@@ -31,40 +31,41 @@
 using namespace std;
 using namespace GC;
 
-int
-main() {
+int main()
+{
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "   lua example N.3     \n"
+       << "***********************\n\n";
 
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "   lua example N.3     \n"
-    << "***********************\n\n";
-
-  try {
+  try
+  {
     LuaInterpreter lua;
-    lua.do_file("./src_lua_interface/tests/test_call.lua");
+    lua.do_file( "./src_lua_interface/tests/test_call.lua" );
 
     GC::GenericContainer gc, gc_res;
-    gc["function"] = "pippo";
-    GC::GenericContainer & vec = gc["args"];
-    vec[0] = 12;
-    vec[1] = 13;
-    vec[2] = "aaa";
-    GC::GenericContainer & map = vec[3];
-    map["nonna"] = "papera";
+    gc["function"]              = "pippo";
+    GC::GenericContainer & vec  = gc["args"];
+    vec[0]                      = 12;
+    vec[1]                      = 13;
+    vec[2]                      = "aaa";
+    GC::GenericContainer & map  = vec[3];
+    map["nonna"]                = "papera";
     GC::GenericContainer & vec1 = map["abc123"];
-    vec1[0] = 12.3;
-    vec1[1] = "a string";
-    vec1[2] = 1;
-    //dump(cout);
+    vec1[0]                     = 12.3;
+    vec1[1]                     = "a string";
+    vec1[2]                     = 1;
+    // dump(cout);
     lua.call( gc, gc_res );
     cout << "Result:\n";
-    gc_res.dump(cout);
+    gc_res.dump( cout );
   }
-  catch ( std::exception & exc ) {
+  catch ( std::exception & exc )
+  {
     cout << exc.what() << '\n';
   }
-  catch (...) {
+  catch ( ... )
+  {
     cout << "Unknonwn error\n";
   }
 

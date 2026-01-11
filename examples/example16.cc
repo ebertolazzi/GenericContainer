@@ -32,20 +32,19 @@ using namespace GC;
 using namespace std;
 
 int
-//main( int argc, const char * argv[] ) {
-main() {
-
+// main( int argc, const char * argv[] ) {
+main()
+{
   // Definizione dei tipi di tempo
-  using std::chrono::high_resolution_clock;
   using std::chrono::duration_cast;
+  using std::chrono::high_resolution_clock;
   using std::chrono::milliseconds;
 
 
-  cout
-    << "\n\n\n"
-    << "***********************\n"
-    << "      example N.16     \n"
-    << "***********************\n\n";
+  cout << "\n\n\n"
+       << "***********************\n"
+       << "      example N.16     \n"
+       << "***********************\n\n";
 
   GenericContainer gc1;
   GenericContainer gc2;
@@ -81,10 +80,10 @@ main() {
     file.close();
   }
 
-  //std::cout << "GC1\n";
-  //gc1.print(cout);
-  //std::cout << "GC2\n";
-  //gc2.print(cout);
+  // std::cout << "GC1\n";
+  // gc1.print(cout);
+  // std::cout << "GC2\n";
+  // gc2.print(cout);
 
   cout << "\n\nAll done Folks!\n\n";
   return 0;

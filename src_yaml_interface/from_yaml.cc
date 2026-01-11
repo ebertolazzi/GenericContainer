@@ -44,67 +44,78 @@
 #include <limits>
 #include <cstdlib>
 
-//#include "yaml-cpp/yaml.h"
+// #include "yaml-cpp/yaml.h"
 #include "fkYAML/node.hpp"
 
-namespace GC_namespace {
+namespace GC_namespace
+{
 
-  using std::istreambuf_iterator;
   using std::complex;
-  using std::regex;
-  using std::smatch;
-  using std::regex_match;
-  using std::strtoull;
-  using std::strtoll;
-  using std::strtod;
-  using std::stod;
+  using std::istreambuf_iterator;
   using std::numeric_limits;
+  using std::regex;
+  using std::regex_match;
   using std::size_t;
+  using std::smatch;
+  using std::stod;
+  using std::strtod;
+  using std::strtoll;
+  using std::strtoull;
 
-  static
-  bool
-  YAML_to_GC( fkyaml::node const & node, GenericContainer & gc ) {
+  static bool YAML_to_GC( fkyaml::node const & node, GenericContainer & gc )
+  {
     // Controlla il tipo di nodo
-    bool ok{true};
-    switch (node.get_type()) {
-      case fkyaml::node_type::NULL_OBJECT: {
+    bool ok{ true };
+    switch ( node.get_type() )
+    {
+      case fkyaml::node_type::NULL_OBJECT:
+      {
         gc.clear();
         break;
       }
-      case fkyaml::node_type::BOOLEAN: {
+      case fkyaml::node_type::BOOLEAN:
+      {
         gc.set_bool( node.get_value<bool>() );
         break;
       }
-      case fkyaml::node_type::INTEGER: {
+      case fkyaml::node_type::INTEGER:
+      {
         std::int64_t tmp{ node.get_value<std::int64_t>() };
-        if ( tmp >= numeric_limits<int32_t>::min() && tmp <= numeric_limits<int32_t>::max() ) {
-          gc.set_int( std::int32_t(tmp) );
-        } else {
+        if ( tmp >= numeric_limits<int32_t>::min() && tmp <= numeric_limits<int32_t>::max() )
+        {
+          gc.set_int( std::int32_t( tmp ) );
+        }
+        else
+        {
           gc.set_long( tmp );
         }
         break;
       }
-      case fkyaml::node_type::FLOAT: {
+      case fkyaml::node_type::FLOAT:
+      {
         gc = node.get_value<double>();
         break;
       }
-      case fkyaml::node_type::STRING: {
+      case fkyaml::node_type::STRING:
+      {
         gc.set_string( node.get_value<string>() );
         break;
       }
-      case fkyaml::node_type::SEQUENCE: {
-        size_t N{node.size()};
-        vector_type & V{ gc.set_vector( static_cast<unsigned>(N) ) };
-        for ( size_t i{0}; ok && i < N; ++i )
-          ok = YAML_to_GC( node[i], V[i] );
+      case fkyaml::node_type::SEQUENCE:
+      {
+        size_t        N{ node.size() };
+        vector_type & V{ gc.set_vector( static_cast<unsigned>( N ) ) };
+        for ( size_t i{ 0 }; ok && i < N; ++i ) ok = YAML_to_GC( node[i], V[i] );
         break;
       }
-      case fkyaml::node_type::MAPPING: {
+      case fkyaml::node_type::MAPPING:
+      {
         map_type & M{ gc.set_map() };
-        auto & mapping = node.get_value_ref<const fkyaml::node::mapping_type&>();
-        for ( auto & it : mapping ) {
+        auto &     mapping = node.get_value_ref<const fkyaml::node::mapping_type &>();
+        for ( auto & it : mapping )
+        {
           GenericContainer & gcm = M[it.first.get_value<string>()];
-          ok = YAML_to_GC( it.second, gcm );
+          ok                     = YAML_to_GC( it.second, gcm );
           if ( !ok ) break;
         }
         break;
@@ -113,27 +124,30 @@ namespace GC_namespace {
     return ok;
   }
 
-  bool
-  GenericContainer::from_yaml( istream_type & stream ) {
-    bool ok{true};
-    try {
+  bool GenericContainer::from_yaml( istream_type & stream )
+  {
+    bool ok{ true };
+    try
+    {
       // deserialize the loaded file contents.
-      fkyaml::node root = fkyaml::node::deserialize(stream);
-      ok = YAML_to_GC( root, *this );
+      fkyaml::node root = fkyaml::node::deserialize( stream );
+      ok                = YAML_to_GC( root, *this );
       if ( ok ) this->collapse();
     }
-    catch ( std::exception const & e ) {
+    catch ( std::exception const & e )
+    {
       std::cerr << "GenericContainer::from_yaml: " << e.what() << '\n';
       ok = false;
     }
-    catch ( ... ) {
+    catch ( ... )
+    {
       std::cerr << "GenericContainer::from_yaml: failed\n";
       ok = false;
     }
     return ok;
   }
 
-}
+}  // namespace GC_namespace
 
 //
 // eof: from_yaml.cc
