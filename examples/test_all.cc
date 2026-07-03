@@ -23,6 +23,7 @@
  */
 
 #include "GenericContainer.hh"
+#include <algorithm>
 #include <cstdio>
 #include <chrono>
 #include <fstream>
@@ -3125,8 +3126,8 @@ void test_api_surface_systematic()
     gc_mat_int.get_int_at( 1, 0 ) = 7;
     GenericContainer const & cgc_mat_int = gc_mat_int;
     passed &= cgc_mat_int.get_int_at( 1, 0, "const mat int" ) == 7;
-    passed &= gc_mat_int.get_numRows() == 2;
-    passed &= gc_mat_int.get_numCols() == 2;
+    passed &= gc_mat_int.num_rows() == 2;
+    passed &= gc_mat_int.num_cols() == 2;
 
     GenericContainer gc_mat_long;
     gc_mat_long.set_mat_long( 2, 2 );
@@ -3162,8 +3163,8 @@ void test_api_surface_systematic()
 
     vector<real_type> col;
     vector<real_type> row;
-    mat.getColumn( 1, col );
-    mat.getRow( 1, row );
+    mat.get_column( 1, col );
+    mat.get_row( 1, row );
     string info = mat.info();
 
     GenericContainer toml_gc;
@@ -3178,7 +3179,7 @@ void test_api_surface_systematic()
     string data_stream = "A B\n1 2\n3 4\n";
     istringstream iss( data_stream );
     GenericContainer formatted_alias;
-    formatted_alias.readFormattedData( iss, "#", " " );
+    formatted_alias.read_formatted_data( iss, "#", " " );
 
     string file_name = "gc_readFormattedData2_alias.txt";
     ofstream out( file_name );
@@ -3189,7 +3190,7 @@ void test_api_surface_systematic()
 
     GenericContainer formatted_alias2;
     GenericContainer params;
-    formatted_alias2.readFormattedData2( file_name.c_str(), "#", " \t", &params );
+    formatted_alias2.read_formatted_data2( file_name.c_str(), "#", " \t", &params );
     std::remove( file_name.c_str() );
 
     bool passed = col.size() == 2;
@@ -3211,7 +3212,7 @@ void test_api_surface_systematic()
     passed &= params.exists( "scale" );
     passed &= abs( params["scale"].get_number() - 2.0 ) < 1e-12;
 
-    print_test_case("related helpers / TOML / readFormattedData*", passed);
+    print_test_case("related helpers / TOML / read_formatted_data*", passed);
     all_passed &= passed;
   }
 
@@ -3346,7 +3347,7 @@ void test_type_compatibility()
     vector<pair<string, GenericContainer>> test_cases = {
       {"bool", GenericContainer(true)},
       {"int", GenericContainer(42)},
-      {"long", GenericContainer(1234567890123LL)},
+      {"long", GenericContainer(GenericContainer::long_type(1234567890123LL))},
       {"real", GenericContainer(3.141592653589793)},
       {"complex", GenericContainer(complex<double>(1.0, 2.0))},
       {"string", GenericContainer("Hello, World!")}

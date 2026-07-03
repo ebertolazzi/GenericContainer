@@ -43,10 +43,10 @@ int main()
     std::string          fname{ "../examples/example07_data.txt" };
     ifstream             file( fname );
     if ( file.fail() ) throw std::runtime_error( "file to open file: " + fname );
-    gc.readFormattedData( file, "#", "\t " );
+    gc.read_formatted_data( file, "#", "\t " );
     gc.dump( cout );
     cout << "\n\nData Read:\n";
-    gc.writeFormattedData( cout, '\t' );
+    gc.write_formatted_data( cout, '\t' );
   }
   catch ( std::exception & exc )
   {

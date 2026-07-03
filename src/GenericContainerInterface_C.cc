@@ -35,6 +35,8 @@
 #include "GenericContainer/GenericContainer.hh"
 #include "GenericContainer/GenericContainerInterface_C.h"
 
+#include <memory>
+
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wc++98-compat"
 #pragma clang diagnostic ignored "-Wexit-time-destructors"
@@ -203,8 +205,9 @@ namespace GC_namespace
 
 using namespace ::GC_namespace;
 
-typedef std::map<string_type, GenericContainerExplorer *>  MAP;
-typedef std::pair<string_type, GenericContainerExplorer *> MAP_DATA;
+// the map OWNS the explorers: erasing an entry frees it (the raw-pointer
+// version leaked every GC_new/GC_delete cycle)
+typedef std::map<string_type, std::unique_ptr<GenericContainerExplorer>> MAP;
 
 static MAP                        gc_explorer;
 static GenericContainerExplorer * gc_active = nullptr;
@@ -216,11 +219,8 @@ extern "C"
     // ckeck if exists
     auto pos = gc_explorer.find( id );
     if ( pos == gc_explorer.end() )
-    {
-      gc_explorer.insert( MAP_DATA( id, new GenericContainerExplorer() ) );
-      pos = gc_explorer.find( id );
-    }
-    gc_active = pos->second;
+      pos = gc_explorer.emplace( id, std::make_unique<GenericContainerExplorer>() ).first;
+    gc_active = pos->second.get();
     return GENERIC_CONTAINER_OK;
   }
 
@@ -229,11 +229,8 @@ extern "C"
     // ckeck if exists
     auto pos{ gc_explorer.find( id ) };
     if ( pos == gc_explorer.end() )
-    {
-      gc_explorer.insert( MAP_DATA( id, new GenericContainerExplorer() ) );
-      pos = gc_explorer.find( id );
-    }
-    gc_active = pos->second;
+      pos = gc_explorer.emplace( id, std::make_unique<GenericContainerExplorer>() ).first;
+    gc_active = pos->second.get();
     return GENERIC_CONTAINER_OK;
   }
 
@@ -246,7 +243,12 @@ extern "C"
 
   int GC_delete( char const id[] )
   {
-    gc_explorer.erase( id );
+    // do not leave the active pointer dangling when its container goes away
+    if ( auto pos{ gc_explorer.find( id ) }; pos != gc_explorer.end() )
+    {
+      if ( gc_active == pos->second.get() ) gc_active = nullptr;
+      gc_explorer.erase( pos );
+    }
     return GENERIC_CONTAINER_OK;
   }
 

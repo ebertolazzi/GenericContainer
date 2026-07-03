@@ -49,12 +49,32 @@ namespace GC_namespace
     auto ends_with = []( string_view str, string_view suffix ) -> bool
     { return str.size() >= suffix.size() && str.compare( str.size() - suffix.size(), suffix.size(), suffix ) == 0; };
 
-    bool success{ false };
-    if ( ends_with( file_name, ".yaml" ) || ends_with( file_name, ".yml" ) ) { success = this->from_yaml( file ); }
-    else if ( ends_with( file_name, ".json" ) ) { success = this->from_json( file ); }
-    else if ( ends_with( file_name, ".toml" ) ) { success = this->from_toml( file ); }
+    // JSON support was dropped from the core library: nlohmann::json (via
+    // include/GenericContainer/GenericContainerInterface_nlohmann.hh) is the
+    // replacement for C++ callers -- j.get<GenericContainer>() / j = gc --
+    // but there's no FFI/file-dispatch equivalent, so a ".json" file is
+    // simply not handled here.
+    //
+    // from_yaml/from_toml ARE implemented, but as separate opt-in libraries
+    // (src_yaml_interface/, src_toml_interface/, built as GenericContainer::
+    // Yaml / GenericContainer::Toml -- see their CMakeLists.txt) rather than
+    // linked into this core library, precisely so the core stays a
+    // self-contained, standalone-linkable target (a shared build must
+    // resolve every symbol its object files reference at link time; calling
+    // through to a backend this library doesn't itself link would break
+    // that regardless of whether the branch is ever taken). Callers who
+    // need yaml/toml should link the relevant optional library and call
+    // gc.from_yaml()/gc.from_toml() directly instead of going through this
+    // extension-sniffing convenience dispatch.
+    if ( ends_with( file_name, ".yaml" ) || ends_with( file_name, ".yml" ) || ends_with( file_name, ".toml" ) )
+    {
+      file.close();
+      throw GenericError(
+        "GenericContainer::from_file: yaml/toml support is not linked into this library; "
+        "link GenericContainer::Yaml or GenericContainer::Toml and call from_yaml()/from_toml() directly" );
+    }
     file.close();
-    return success;
+    return false;
   }
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -101,12 +121,12 @@ namespace GC_namespace
   //  |___/_/  \___/   \__,_|\__|_|_|___/
   */
 
-  static unsigned get_line_and_skip_comments(
+  static std::size_t get_line_and_skip_comments(
     istream_type &    stream,
     string_type &     line,
     string_view const commentchars )
   {
-    unsigned nl = 0;
+    std::size_t nl = 0;
     do
     {
       if ( stream.fail() ) return 0;
@@ -116,13 +136,13 @@ namespace GC_namespace
     return nl;
   }
 
-  static unsigned get_line_and_skip_comments2(
+  static std::size_t get_line_and_skip_comments2(
     istream_type &     stream,
     string_type &      line,
     string_view const  commentchars,
     GenericContainer * ptr_pars )
   {
-    unsigned nl      = 0;
+    std::size_t nl      = 0;
     bool     comment = true;
     while ( comment )
     {
@@ -192,15 +212,15 @@ namespace GC_namespace
     vec_string_type &  headers = tmp.set_vec_string();
 
     // reading header line
-    unsigned nline{ get_line_and_skip_comments( stream, line, commentChars ) };  // read  line
+    std::size_t nline{ get_line_and_skip_comments( stream, line, commentChars ) };  // read  line
     tokenizeString( line, headers, delimiters );                                 // tokenize line
-    unsigned const ncol{ static_cast<unsigned>( headers.size() ) };
+    std::size_t const ncol{ static_cast<std::size_t>( headers.size() ) };
 
     vector_type & data{ ( *this )["data"].set_vector( ncol ) };
-    for ( unsigned icol{ 0 }; icol < ncol; ++icol ) data[icol].set_vec_real();
+    for ( std::size_t icol{ 0 }; icol < ncol; ++icol ) data[icol].set_vec_real();
 
     // read data by line
-    unsigned        nread;
+    std::size_t        nread;
     vec_string_type tokens;
     while ( ( nread = get_line_and_skip_comments( stream, line, commentChars ) ) > 0 )
     {
@@ -211,11 +231,11 @@ namespace GC_namespace
       if ( tokens.empty() ) break;  // riga vuota!
 
       GC_ASSERT(
-        static_cast<unsigned>( tokens.size() ) == ncol,
+        static_cast<std::size_t>( tokens.size() ) == ncol,
         "read_formatted_data, in reading line: " << nline << " expected " << ncol << " found: " << tokens.size() );
 
       // store data in row vector
-      for ( unsigned icol = 0; icol < ncol; ++icol ) data[icol].get_vec_real().push_back( atof( tokens[icol].data() ) );
+      for ( std::size_t icol = 0; icol < ncol; ++icol ) data[icol].get_vec_real().push_back( atof( tokens[icol].data() ) );
     }
     return *this;
   }
@@ -238,12 +258,12 @@ namespace GC_namespace
     // reading header line
     auto nline{ get_line_and_skip_comments2( stream, line, commentChars, ptr_pars ) };  // read  line
     tokenizeString( line, headers, delimiters );                                        // tokenize line
-    auto const ncol{ static_cast<unsigned>( headers.size() ) };
+    auto const ncol{ static_cast<std::size_t>( headers.size() ) };
 
     vector<vec_real_type *> pcolumns( ncol );
 
     GenericContainer & data = ( *this )["data"];
-    for ( unsigned icol = 0; icol < ncol; ++icol )
+    for ( std::size_t icol = 0; icol < ncol; ++icol )
     {
       GenericContainer & ICOL = data[headers[icol]];
       ICOL.set_vec_real();
@@ -251,7 +271,7 @@ namespace GC_namespace
     }
 
     // read data by line
-    unsigned        nread;
+    std::size_t        nread;
     vec_string_type tokens;
     while ( ( nread = get_line_and_skip_comments2( stream, line, commentChars, ptr_pars ) ) > 0 )
     {
@@ -262,11 +282,11 @@ namespace GC_namespace
       if ( tokens.empty() ) break;  // riga vuota!
 
       GC_ASSERT(
-        static_cast<unsigned>( tokens.size() ) == ncol,
+        static_cast<std::size_t>( tokens.size() ) == ncol,
         "read_formatted_data2, in reading line: " << nline << " expected " << ncol << " found: " << tokens.size() );
 
       // store data in row vector
-      for ( unsigned icol = 0; icol < ncol; ++icol ) pcolumns[icol]->push_back( atof( tokens[icol].data() ) );
+      for ( std::size_t icol = 0; icol < ncol; ++icol ) pcolumns[icol]->push_back( atof( tokens[icol].data() ) );
     }
     return *this;
   }

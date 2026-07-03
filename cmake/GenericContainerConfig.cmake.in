@@ -1,0 +1,8 @@
+@PACKAGE_INIT@
+
+include( CMakeFindDependencyMacro )
+find_dependency( Eigen3 3.4 )
+
+include( "${CMAKE_CURRENT_LIST_DIR}/GenericContainerTargets.cmake" )
+
+check_required_components( GenericContainer )

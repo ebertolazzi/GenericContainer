@@ -41,17 +41,17 @@ namespace GC_namespace
     ostream_type &          stream,
     char const              delimiter )
   {
-    auto const ncol{ static_cast<unsigned>( headers.size() ) };
+    auto const ncol{ static_cast<std::size_t>( headers.size() ) };
     auto const nrow{ ( data[0].get_num_elements() ) };
 
     stream << headers[0];
-    for ( unsigned icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << headers[icol];
+    for ( std::size_t icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << headers[icol];
     stream << '\n';
 
-    for ( unsigned row{ 0 }; row < nrow; ++row )
+    for ( std::size_t row{ 0 }; row < nrow; ++row )
     {
       stream << data[0].get_number_at( row );
-      for ( unsigned icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << data[icol].get_number_at( row );
+      for ( std::size_t icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << data[icol].get_number_at( row );
       stream << '\n';
     }
   }
@@ -66,29 +66,29 @@ namespace GC_namespace
     auto const nrow{ ( data.num_rows() ) };
 
     stream << headers[0];
-    for ( unsigned icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << headers[icol];
+    for ( std::size_t icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << headers[icol];
     stream << '\n';
 
-    for ( unsigned row{ 0 }; row < nrow; ++row )
+    for ( std::size_t row{ 0 }; row < nrow; ++row )
     {
       stream << data( row, 0 );
-      for ( unsigned icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << data( row, icol );
+      for ( std::size_t icol{ 1 }; icol < ncol; ++icol ) stream << delimiter << data( row, icol );
       stream << '\n';
     }
   }
 
   void write_table_formatted( vec_string_type const & headers, vector_type const & data, ostream_type & stream )
   {
-    auto const ncol{ static_cast<unsigned>( headers.size() ) };
+    auto const ncol{ static_cast<std::size_t>( headers.size() ) };
     auto const nrow{ ( data[0].get_num_elements() ) };
 
     if ( ncol == 0 ) return;
 
     // calcolo lunghezza massima stringhe headers
-    unsigned ml{ 0 };
+    std::size_t ml{ 0 };
     auto     is{ headers.begin() };
     for ( ; is != headers.end(); ++is )
-      if ( ml < is->length() ) ml = static_cast<unsigned>( is->length() );
+      if ( ml < is->length() ) ml = static_cast<std::size_t>( is->length() );
     // taglio a lunghezza min/max
     if ( ml < 8 )
       ml = 8;
@@ -102,10 +102,10 @@ namespace GC_namespace
     for ( ++is; is != headers.end(); ++is ) stream << " " << std::setw( static_cast<int>( ml ) ) << is->c_str();
     stream << '\n' << line << '\n';
 
-    for ( unsigned row{ 0 }; row < nrow; ++row )
+    for ( std::size_t row{ 0 }; row < nrow; ++row )
     {
       stream << std::setw( static_cast<int>( ml ) ) << data[0].get_number_at( row );
-      for ( unsigned icol{ 1 }; icol < ncol; ++icol )
+      for ( std::size_t icol{ 1 }; icol < ncol; ++icol )
         stream << " " << std::setw( static_cast<int>( ml ) ) << data[icol].get_number_at( row );
       stream << '\n';
     }
@@ -120,10 +120,10 @@ namespace GC_namespace
     if ( ncol == 0 ) return;
 
     // calcolo lunghezza massima stringhe headers
-    unsigned ml{ 0 };
+    std::size_t ml{ 0 };
     auto     is{ headers.begin() };
     for ( ; is != headers.end(); ++is )
-      if ( ml < is->length() ) ml = static_cast<unsigned>( is->length() );
+      if ( ml < is->length() ) ml = static_cast<std::size_t>( is->length() );
     // taglio a lunghezza min/max
     if ( ml < 8 )
       ml = 8;
@@ -137,10 +137,10 @@ namespace GC_namespace
     for ( ++is; is != headers.end(); ++is ) stream << " " << std::setw( static_cast<int>( ml ) ) << is->c_str();
     stream << '\n' << line << '\n';
 
-    for ( unsigned row{ 0 }; row < nrow; ++row )
+    for ( std::size_t row{ 0 }; row < nrow; ++row )
     {
       stream << std::setw( static_cast<int>( ml ) ) << data( row, 0 );
-      for ( unsigned icol{ 1 }; icol < ncol; ++icol )
+      for ( std::size_t icol{ 1 }; icol < ncol; ++icol )
         stream << " " << std::setw( static_cast<int>( ml ) ) << data( row, icol );
       stream << '\n';
     }

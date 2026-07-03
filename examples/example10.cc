@@ -40,8 +40,8 @@ int main()
   {
     GenericContainer gc1, gc2, gc3, gc4, pars;
     std::string      fname{ "../examples/example07_data.txt" };
-    gc1.readFormattedData( fname.c_str() );
-    gc2.readFormattedData2( fname.c_str(), "#", " \t", &pars );
+    gc1.read_formatted_data( fname.c_str() );
+    gc2.read_formatted_data2( fname.c_str(), "#", " \t", &pars );
     gc2.to_gc( gc3 );
     gc4.from_gc( gc2 );
     std::cout << "GC1 --------------------------\n";
