@@ -3,15 +3,12 @@
 #  GenericContainer -- modern, idiomatic CMake build.                     #
 #                                                                          #
 #  Covers the core library (src/, include/), its Catch2 test battery      #
-#  (tests/), and the yaml/toml/lua format-backend interfaces, each built  #
-#  as a separate opt-in library (GenericContainer::Yaml/Toml/Lua) rather  #
-#  than linked into the core, so the core stays self-contained and        #
-#  standalone-linkable regardless of which backends a consumer needs.     #
-#  JSON is covered by the header-only nlohmann::json adapter (see         #
-#  include/GenericContainer/GenericContainerInterface_nlohmann.hh)        #
-#  instead of a dedicated backend. src_matlab_interface/ and examples/    #
-#  are not part of this build for now; they need their own                #
-#  restructuring pass before rejoining it.                                #
+#  (tests/), and the optional json/yaml/toml/lua bridges. JSON/YAML/TOML  #
+#  are compiled directly into GenericContainer; Lua stays as its own       #
+#  runtime library, linked by GenericContainer when the Lua bridge is      #
+#  enabled. The real library names stay standard (libGenericContainer.*    #
+#  and libLua.*), and extra alias files such as libGenericContainer_osx.*  #
+#  and libLua_osx.* are generated alongside them.                          #
 #                                                                          #
 ############################################################################
 
@@ -38,8 +35,8 @@ endif()
 option( BUILD_SHARED_LIBS "Build GenericContainer as a shared library" OFF )
 option( GENERIC_CONTAINER_INSTALL "Generate the install target" ${PROJECT_IS_TOP_LEVEL} )
 
-# Each format backend is its own opt-in library; turn one off to skip
-# fetching/building its (sole) third-party dependency entirely.
+# Each format bridge is opt-in; turn one off to skip fetching/building its
+# third-party dependency entirely.
 option( GENERIC_CONTAINER_ENABLE_JSON "Build GenericContainer::Json (nlohmann::json-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_YAML "Build GenericContainer::Yaml (fkYAML-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_TOML "Build GenericContainer::Toml (toml++-backed)" ON )
@@ -66,6 +63,26 @@ set(
 include( GNUInstallDirs )
 include( FetchContent )
 
+if ( APPLE )
+  set( GENERIC_CONTAINER_PLATFORM_SUFFIX osx )
+elseif ( WIN32 )
+  if ( MINGW )
+    if ( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+      set( GENERIC_CONTAINER_PLATFORM_SUFFIX mingw64 )
+    else()
+      set( GENERIC_CONTAINER_PLATFORM_SUFFIX mingw32 )
+    endif()
+  elseif ( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+    set( GENERIC_CONTAINER_PLATFORM_SUFFIX win64 )
+  else()
+    set( GENERIC_CONTAINER_PLATFORM_SUFFIX win32 )
+  endif()
+elseif ( UNIX )
+  set( GENERIC_CONTAINER_PLATFORM_SUFFIX linux )
+else()
+  string( TOLOWER "${CMAKE_SYSTEM_NAME}" GENERIC_CONTAINER_PLATFORM_SUFFIX )
+endif()
+
 # Collected during configuration and printed once near the end.
 set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "disabled" )
 set( GENERIC_CONTAINER_FKYAML_SOURCE "disabled" )
@@ -91,6 +108,7 @@ add_library(
   src/GenericContainer_ffi.cc
 )
 add_library( GenericContainer::GenericContainer ALIAS GenericContainer )
+set( GENERIC_CONTAINER_EXPORTED_TARGETS GenericContainer )
 
 target_compile_features( GenericContainer PUBLIC cxx_std_20 )
 target_include_directories(
@@ -116,15 +134,10 @@ endif()
 #  | |_) | (_| | (__|   <  __/ | | | (_| \__ \
 #  |____/ \__,_|\___|_|\_\___|_| |_|\__,_|___/
 #
-# Optional format-backend libraries, each fetching its own single
-# dependency. toml++/fkYAML are header-only and never appear in either
-# backend's public headers, so their effects are fully baked into
-# GenericContainerToml/Yaml's compiled code once built ($<BUILD_INTERFACE:...>
-# in their target_link_libraries keeps that dependency out of the installed
-# package's metadata entirely -- see each subdirectory's CMakeLists.txt).
-# Lua is different: it has real compiled code that must reach whatever
-# finally links GenericContainer::Lua, so the "lua" target itself also
-# joins the export set below (as GenericContainer::LuaVM).
+# Optional format bridges, each fetching its own dependency. JSON/YAML/TOML
+# compile directly into GenericContainer. Lua keeps its own runtime library,
+# exported as GenericContainer::LuaVM, while GenericContainer::Lua remains a
+# compatibility interface target that links the full bridge stack.
 #
 # FetchContent has a standard escape hatch: if
 # FETCHCONTENT_SOURCE_DIR_<NAME> is set, MakeAvailable(<name>) uses that
@@ -163,6 +176,152 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
   endif()
 endfunction()
 
+function( generic_container_append_exported_target TARGET_NAME )
+  set( updated_exported_targets ${GENERIC_CONTAINER_EXPORTED_TARGETS} )
+  list( APPEND updated_exported_targets ${TARGET_NAME} )
+  set( GENERIC_CONTAINER_EXPORTED_TARGETS "${updated_exported_targets}" PARENT_SCOPE )
+endfunction()
+
+function( generic_container_apply_standard_library_name TARGET_NAME BASE_NAME )
+  if ( WIN32 )
+    set( TARGET_OUTPUT_NAME "lib${BASE_NAME}" )
+    set_target_properties( ${TARGET_NAME} PROPERTIES PREFIX "" IMPORT_PREFIX "" )
+  else()
+    set( TARGET_OUTPUT_NAME "${BASE_NAME}" )
+  endif()
+
+  set_target_properties(
+    ${TARGET_NAME} PROPERTIES
+    OUTPUT_NAME         "${TARGET_OUTPUT_NAME}"
+    ARCHIVE_OUTPUT_NAME "${TARGET_OUTPUT_NAME}"
+    LIBRARY_OUTPUT_NAME "${TARGET_OUTPUT_NAME}"
+    RUNTIME_OUTPUT_NAME "${TARGET_OUTPUT_NAME}"
+  )
+endfunction()
+
+function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
+  set( TARGET_ALIAS_BASE "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
+
+  if ( BUILD_SHARED_LIBS AND WIN32 )
+    set( TARGET_RUNTIME_FILENAME "lib${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+    set( TARGET_IMPORT_FILENAME  "lib${BASE_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
+    set( TARGET_ALIAS_RUNTIME    "${TARGET_ALIAS_BASE}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+    set( TARGET_ALIAS_IMPORT     "${TARGET_ALIAS_BASE}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
+
+    add_custom_command(
+      TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_FILE:${TARGET_NAME}>"
+        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_RUNTIME}"
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "$<TARGET_LINKER_FILE:${TARGET_NAME}>"
+        "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_IMPORT}"
+      VERBATIM
+    )
+
+    install(
+      FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_RUNTIME}"
+      DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+    install(
+      FILES "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_IMPORT}"
+      DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+  elseif ( BUILD_SHARED_LIBS )
+    set( TARGET_LINK_FILENAME "${CMAKE_SHARED_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+    set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+
+    add_custom_command(
+      TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E rm -f
+        "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+      COMMAND ${CMAKE_COMMAND} -E create_symlink
+        "${TARGET_LINK_FILENAME}"
+        "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+      VERBATIM
+    )
+
+    install(
+      CODE
+      "file(
+        MAKE_DIRECTORY
+        \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
+      )
+      execute_process(
+        COMMAND \"${CMAKE_COMMAND}\" -E rm -f
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
+      )
+      execute_process(
+        COMMAND \"${CMAKE_COMMAND}\" -E create_symlink
+          \"${TARGET_LINK_FILENAME}\"
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
+      )"
+    )
+  else()
+    if ( WIN32 )
+      set( TARGET_LINK_FILENAME "lib${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+    else()
+      set( TARGET_LINK_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+    endif()
+
+    if ( WIN32 )
+      add_custom_command(
+        TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "$<TARGET_FILE:${TARGET_NAME}>"
+          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+        VERBATIM
+      )
+
+      install(
+        FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}
+      )
+      return()
+    endif()
+
+    add_custom_command(
+      TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E rm -f
+        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+      COMMAND ${CMAKE_COMMAND} -E create_symlink
+        "${TARGET_LINK_FILENAME}"
+        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+      VERBATIM
+    )
+
+    install(
+      CODE
+      "file(
+        MAKE_DIRECTORY
+        \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
+      )
+      execute_process(
+        COMMAND \"${CMAKE_COMMAND}\" -E rm -f
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
+      )
+      execute_process(
+        COMMAND \"${CMAKE_COMMAND}\" -E create_symlink
+          \"${TARGET_LINK_FILENAME}\"
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
+      )"
+    )
+  endif()
+endfunction()
+
+function( generic_container_add_backend_alias TARGET_NAME EXPORT_NAME )
+  add_library( ${TARGET_NAME} INTERFACE )
+  add_library( GenericContainer::${EXPORT_NAME} ALIAS ${TARGET_NAME} )
+  set_target_properties( ${TARGET_NAME} PROPERTIES EXPORT_NAME ${EXPORT_NAME} )
+  target_link_libraries( ${TARGET_NAME} INTERFACE GenericContainer::GenericContainer )
+
+  set( updated_exported_targets ${GENERIC_CONTAINER_EXPORTED_TARGETS} )
+  list( APPEND updated_exported_targets ${TARGET_NAME} )
+  set( GENERIC_CONTAINER_EXPORTED_TARGETS "${updated_exported_targets}" PARENT_SCOPE )
+endfunction()
+
 function( generic_container_ensure_nlohmann_json )
   if ( TARGET nlohmann_json::nlohmann_json )
     set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "existing target: nlohmann_json::nlohmann_json" PARENT_SCOPE )
@@ -199,33 +358,103 @@ if ( GENERIC_CONTAINER_ENABLE_TOML )
   generic_container_prefer_local_fetchcontent( tomlplusplus "${GENERIC_CONTAINER_TOMLPLUSPLUS_LOCAL_DIR}" GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE )
 endif()
 if ( GENERIC_CONTAINER_ENABLE_LUA )
-  generic_container_prefer_local_fetchcontent( lua "${GENERIC_CONTAINER_LUA_LOCAL_DIR}" GENERIC_CONTAINER_LUA_SOURCE )
+  generic_container_prefer_local_fetchcontent( lua54 "${GENERIC_CONTAINER_LUA_LOCAL_DIR}" GENERIC_CONTAINER_LUA_SOURCE )
 endif()
 
-set( GENERIC_CONTAINER_BACKEND_TARGETS )
+generic_container_apply_standard_library_name( GenericContainer GenericContainer )
+generic_container_add_platform_library_alias( GenericContainer GenericContainer )
+
 if ( GENERIC_CONTAINER_ENABLE_JSON )
-  add_library( GenericContainerJson interfaces/json/GenericContainerJson.cc )
-  add_library( GenericContainer::Json ALIAS GenericContainerJson )
-  set_target_properties( GenericContainerJson PROPERTIES EXPORT_NAME Json )
-  target_compile_features( GenericContainerJson PUBLIC cxx_std_20 )
-  target_link_libraries(
-    GenericContainerJson
-    PUBLIC  GenericContainer::GenericContainer
-    PRIVATE $<BUILD_INTERFACE:nlohmann_json::nlohmann_json>
-  )
-  list( APPEND GENERIC_CONTAINER_BACKEND_TARGETS GenericContainerJson )
+  target_sources( GenericContainer PRIVATE interfaces/json/GenericContainerJson.cc )
+  target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:nlohmann_json::nlohmann_json> )
+  generic_container_add_backend_alias( GenericContainerJson Json )
 endif()
 if ( GENERIC_CONTAINER_ENABLE_YAML )
-  add_subdirectory( interfaces/yaml )
-  list( APPEND GENERIC_CONTAINER_BACKEND_TARGETS GenericContainerYaml )
+  find_package( fkYAML 0.4 QUIET )
+  if ( NOT TARGET fkYAML::fkYAML )
+    FetchContent_Declare(
+      fkYAML
+      GIT_REPOSITORY https://github.com/fktn-k/fkYAML.git
+      GIT_TAG        v0.4.2
+    )
+    FetchContent_MakeAvailable( fkYAML )
+  endif()
+
+  target_sources(
+    GenericContainer PRIVATE
+    interfaces/yaml/from_yaml.cc
+    interfaces/yaml/to_yaml.cc
+  )
+  target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:fkYAML::fkYAML> )
+  generic_container_add_backend_alias( GenericContainerYaml Yaml )
 endif()
 if ( GENERIC_CONTAINER_ENABLE_TOML )
-  add_subdirectory( interfaces/toml )
-  list( APPEND GENERIC_CONTAINER_BACKEND_TARGETS GenericContainerToml )
+  find_package( tomlplusplus 3.4 QUIET )
+  if ( NOT TARGET tomlplusplus::tomlplusplus )
+    FetchContent_Declare(
+      tomlplusplus
+      GIT_REPOSITORY https://github.com/marzer/tomlplusplus.git
+      GIT_TAG        v3.4.0
+    )
+    FetchContent_MakeAvailable( tomlplusplus )
+  endif()
+
+  target_sources(
+    GenericContainer PRIVATE
+    interfaces/toml/from_toml.cc
+    interfaces/toml/to_toml.cc
+  )
+  target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:tomlplusplus::tomlplusplus> )
+  generic_container_add_backend_alias( GenericContainerToml Toml )
 endif()
 if ( GENERIC_CONTAINER_ENABLE_LUA )
-  add_subdirectory( interfaces/lua )
-  list( APPEND GENERIC_CONTAINER_BACKEND_TARGETS GenericContainerLua lua )
+  enable_language( C )
+
+  FetchContent_Declare(
+    lua54
+    URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
+    SOURCE_SUBDIR doc
+  )
+  FetchContent_MakeAvailable( lua54 )
+
+  if ( EXISTS "${lua54_SOURCE_DIR}/src/lua.h" )
+    set( GENERIC_CONTAINER_LUA_SOURCE_DIR "${lua54_SOURCE_DIR}/src" )
+  else()
+    set( GENERIC_CONTAINER_LUA_SOURCE_DIR "${lua54_SOURCE_DIR}" )
+  endif()
+
+  file( GLOB LUA_SOURCES CONFIGURE_DEPENDS "${GENERIC_CONTAINER_LUA_SOURCE_DIR}/*.c" )
+  list( FILTER LUA_SOURCES EXCLUDE REGEX "/lua\\.c$" )
+  list( FILTER LUA_SOURCES EXCLUDE REGEX "/luac\\.c$" )
+  list( FILTER LUA_SOURCES EXCLUDE REGEX "/onelua\\.c$" )
+
+  add_library( Lua ${LUA_SOURCES} )
+  add_library( GenericContainer::LuaVM ALIAS Lua )
+  set_target_properties( Lua PROPERTIES EXPORT_NAME LuaVM )
+  target_include_directories(
+    Lua PUBLIC
+    "$<BUILD_INTERFACE:${GENERIC_CONTAINER_LUA_SOURCE_DIR}>"
+  )
+
+  if ( APPLE )
+    target_compile_definitions( Lua PRIVATE LUA_USE_MACOSX )
+  elseif ( UNIX )
+    target_compile_definitions( Lua PRIVATE LUA_USE_LINUX )
+    target_link_libraries( Lua PUBLIC m ${CMAKE_DL_LIBS} )
+  endif()
+
+  generic_container_apply_standard_library_name( Lua Lua )
+  generic_container_add_platform_library_alias( Lua Lua )
+  generic_container_append_exported_target( Lua )
+
+  target_sources(
+    GenericContainer PRIVATE
+    interfaces/lua/GenericContainerInterface_lua.cc
+    interfaces/lua/GenericContainerLuaPmain.cc
+  )
+  target_link_libraries( GenericContainer PUBLIC Lua )
+
+  generic_container_add_backend_alias( GenericContainerLua Lua )
 endif()
 
 #   _____         _
@@ -369,7 +598,7 @@ check_required_components( GenericContainer )
   )
 
   install(
-    TARGETS GenericContainer ${GENERIC_CONTAINER_BACKEND_TARGETS}
+    TARGETS ${GENERIC_CONTAINER_EXPORTED_TARGETS}
     EXPORT GenericContainerTargets
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}

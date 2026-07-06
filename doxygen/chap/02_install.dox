@@ -36,6 +36,9 @@
     │   ├── GenericContainer.hh
     └── lib
         ├── libGenericContainer.a
+        ├── libLua.a
+        ├── libGenericContainer_<platform>.a
+        ├── libLua_<platform>.a
         └── cmake
   \endcode
   

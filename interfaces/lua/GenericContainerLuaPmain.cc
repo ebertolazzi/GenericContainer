@@ -40,7 +40,16 @@
 #ifdef USE_SYSTEM_LUA
 #include <lua.hpp>
 #else
-#include "lua.hpp"
+extern "C"
+{
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+}
+#endif
+
+#ifndef lua_assert
+#define lua_assert(c) ((void)0)
 #endif
 
 /* print a string */

@@ -67,7 +67,12 @@
 #ifdef USE_SYSTEM_LUA
 #include <lua.hpp>
 #else
-#include "lua.hpp"
+extern "C"
+{
+#include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
+}
 #endif
 
 // load string.h for strlen

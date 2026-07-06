@@ -400,7 +400,11 @@ The test suite uses [Catch2](https://github.com/catchorg/Catch2) v3,
 fetched automatically. Example executables are built into [`bin/`](bin/)
 when `GENERIC_CONTAINER_BUILD_EXAMPLES=ON`, and `rake build` also installs
 headers and libraries into [`lib/include`](lib/include/) and
-[`lib/lib`](lib/lib/):
+[`lib/lib`](lib/lib/). Each build now installs both the standard names
+(`libGenericContainer.*`, `libLua.*`) and platform-tagged aliases such as
+`libGenericContainer_osx.*`/`libLua_osx.*` on macOS,
+`libGenericContainer_linux.*`/`libLua_linux.*` on Linux, and the matching
+`win32`/`win64`/`mingw32`/`mingw64` variants on Windows:
 
 ```sh
 cmake -S . -B build
