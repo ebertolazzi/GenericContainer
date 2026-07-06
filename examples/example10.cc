@@ -39,7 +39,7 @@ int main()
   try
   {
     GenericContainer gc1, gc2, gc3, gc4, pars;
-    std::string      fname{ "../examples/example07_data.txt" };
+    std::string      fname{ "examples/example07_data.txt" };
     gc1.read_formatted_data( fname.c_str() );
     gc2.read_formatted_data2( fname.c_str(), "#", " \t", &pars );
     gc2.to_gc( gc3 );

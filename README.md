@@ -6,7 +6,7 @@
 [![License: BSD 2-Clause](https://img.shields.io/badge/License-BSD--2--Clause-brightgreen.svg)](LICENSE.md)
 
 **A single C++ type that holds anything** — booleans, numbers, strings,
-Eigen matrices, and arbitrarily nested vectors/maps of itself — with typed
+dense matrices, and arbitrarily nested vectors/maps of itself — with typed
 accessors, deep copies that are actually safe, and opt-in bridges to
 **JSON** (via `nlohmann::json`), **TOML**, **YAML**, and **Lua**.
 
@@ -56,8 +56,9 @@ unions, no manual memory management), with:
 - **Safe by construction.** Copy assignment is copy-and-swap (safe under
   self-assignment and aliasing); numeric conversions are range-checked and
   throw `GenericError` instead of silently truncating.
-- **Real matrices.** `mat_type<T>` *is* an `Eigen::Matrix<T, Dynamic,
-  Dynamic>` — no copying out to use linear algebra on stored data.
+- **Real matrices.** `mat_type<T>` is a column-major dense matrix backed by
+  `std::vector<T>`, preserving the historical storage layout and binary
+  serialization format.
 - **Modular format support.** JSON/TOML/YAML/Lua bridges are separate,
   opt-in libraries. Link only what you need; the core has no format
   dependencies at all.
@@ -99,12 +100,13 @@ for ( auto const & item : gc["items"].get_vector() )
   std::cout << item["id"].get_int() << '\n';
 ```
 
-Matrices are Eigen matrices — use them directly:
+Matrices are dense column-major containers:
 
 ```cpp
 mat_real_type & M = gc["M"].set_mat_real( 3, 3 );
-M.setIdentity();
-Eigen::Vector3d x = M * Eigen::Vector3d{ 1, 2, 3 };
+for ( std::size_t j = 0; j < M.num_cols(); ++j )
+  for ( std::size_t i = 0; i < M.num_rows(); ++i )
+    M(i, j) = ( i == j ) ? 1.0 : 0.0;
 ```
 
 See [`examples/`](examples/) for complete, compilable programs.
@@ -112,14 +114,12 @@ See [`examples/`](examples/) for complete, compilable programs.
 ## Building
 
 Requires **CMake ≥ 3.25** and a **C++20** compiler (Clang, GCC, or MSVC).
-All dependencies are fetched automatically via `FetchContent`:
-[Eigen](https://eigen.tuxfamily.org) 5.0.0 is always fetched fresh (pinned,
-for version consistency — it's never looked up as an installed package);
-[toml++](https://github.com/marzer/tomlplusplus) and
-[fkYAML](https://github.com/fktn-k/fkYAML) prefer an already-installed
-package and only fetch as a fallback; [Lua](https://www.lua.org) has no
-CMake package story upstream, so it's always built from the official
-source tarball.
+Optional dependencies are fetched automatically via `FetchContent` when
+their backend is enabled:
+[nlohmann/json](https://github.com/nlohmann/json),
+[toml++](https://github.com/marzer/tomlplusplus),
+[fkYAML](https://github.com/fktn-k/fkYAML), and
+[Lua](https://www.lua.org).
 
 ```sh
 cmake -S . -B build                             # configure (Release by default)
@@ -127,6 +127,8 @@ cmake --build build                             # build
 ctest --test-dir build                          # run the test suite
 cmake --install build --prefix /path/to/prefix  # install
 cmake --build build --target package            # cpack: .tar.gz / .zip
+rake tests                                      # run tests/ via CTest labels
+rake run                                        # run the executables built from examples/
 ```
 
 > **NOTE**: the `build.sh` and `build.ps1` scripts provide easier single command builds for the lazy 🫣.
@@ -138,9 +140,11 @@ Useful configure-time options:
 | `BUILD_SHARED_LIBS` | `OFF` | Build shared (`.so`/`.dylib`/`.dll`) instead of static libraries |
 | `BUILD_TESTING` | `ON` | Build the Catch2 test suite |
 | `GENERIC_CONTAINER_INSTALL` | `ON` (top-level) | Generate install/export/package rules |
+| `GENERIC_CONTAINER_ENABLE_JSON` | `ON` | Build `GenericContainer::Json` |
 | `GENERIC_CONTAINER_ENABLE_YAML` | `ON` | Build `GenericContainer::Yaml` |
 | `GENERIC_CONTAINER_ENABLE_TOML` | `ON` | Build `GenericContainer::Toml` |
 | `GENERIC_CONTAINER_ENABLE_LUA` | `ON` | Build `GenericContainer::Lua` |
+| `GENERIC_CONTAINER_BUILD_EXAMPLES` | `ON` (top-level) | Build runnable executables from `examples/` into `bin/` |
 
 Turning a backend off skips fetching its dependency entirely:
 
@@ -169,21 +173,8 @@ target_link_libraries( my_app PRIVATE
 )
 ```
 
-Eigen comes along for free — `GenericContainer` always fetches its own
-pinned copy and exposes it globally as `Eigen3::Eigen`. If your own code
-only touches Eigen types *through* `GenericContainer` (e.g. `mat_real_type`
-returned from a container), you don't need to reference Eigen at all: the
-include path already reaches you transitively through
-`GenericContainer::GenericContainer`'s public link. If you use Eigen
-directly in a target that doesn't otherwise depend on `GenericContainer`,
-link it explicitly:
-
-```cmake
-target_link_libraries( my_app PRIVATE Eigen3::Eigen )
-```
-
-(must come after `FetchContent_MakeAvailable( GenericContainer )`, which is
-what defines the target.)
+`mat_type<T>` is fully defined in `GenericContainer.hh`, so consumers do not
+need any extra matrix dependency.
 
 ### If other subprojects also fetch GenericContainer
 
@@ -192,10 +183,7 @@ other subprojects that *also* `FetchContent_Declare(GenericContainer ...)`
 (directly or transitively), it's fetched, configured, and built exactly
 once no matter how many times `FetchContent_MakeAvailable(GenericContainer)`
 is called — confirmed with a real three-level build (a top project plus two
-sub-libraries, each independently fetching `GenericContainer`). Eigen is
-deduplicated the same way, as a consequence: its own `FetchContent_Declare`
-call lives inside `GenericContainer`'s `CMakeLists.txt`, which only
-actually runs once.
+sub-libraries, each independently fetching `GenericContainer`).
 
 Two things worth knowing about this:
 
@@ -255,7 +243,7 @@ Point CMake at a non-system install with
 |---|---|
 | Scalar | pointer, boolean, integer, long integer, real, complex, string |
 | Vector | of pointer, boolean, integer, real, complex, string |
-| Matrix | of integer, long integer, real, complex (Eigen-backed) |
+| Matrix | of integer, long integer, real, complex (column-major `mat_type<T>`) |
 | Recursive | vector of `GenericContainer`, map of `GenericContainer` |
 
 The recursive types are what let you model arbitrary tree-shaped data —
@@ -409,12 +397,16 @@ either builds again.
 ## Testing
 
 The test suite uses [Catch2](https://github.com/catchorg/Catch2) v3,
-fetched automatically:
+fetched automatically. Example executables are built into [`bin/`](bin/)
+when `GENERIC_CONTAINER_BUILD_EXAMPLES=ON`, and `rake build` also installs
+headers and libraries into [`lib/include`](lib/include/) and
+[`lib/lib`](lib/lib/):
 
 ```sh
 cmake -S . -B build
 cmake --build build
-ctest --test-dir build --output-on-failure
+ctest --test-dir build --output-on-failure -L unit
+ctest --test-dir build --output-on-failure -L examples
 ```
 
 ## License

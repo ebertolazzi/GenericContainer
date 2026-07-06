@@ -127,8 +127,7 @@ TEST_CASE( "wire format golden pin", "[serialize][golden]" )
 {
   // Captured from the pre-rewrite (tagged-union) implementation. The wire
   // format is little-endian with int32 tags/sizes and column-major matrix
-  // payloads; it must stay byte-identical through the variant and Eigen
-  // migrations.
+  // payloads; it must stay byte-identical through internal storage changes.
   static char const golden_hex[] =
     "140000001200000005000000626f6f6c00020000000108000000636f6d706c657800060000000000"
     "00000000f03f00000000000000c004000000696e7400030000002a000000050000006c6f6e670004"

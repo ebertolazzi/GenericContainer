@@ -1,6 +1,6 @@
 /*--------------------------------------------------------------------------*\
  |                                                                          |
- |  Copyright (C) 2021                                                      |
+ |  Copyright (C) 2013                                                      |
  |                                                                          |
  |         , __                 , __                                        |
  |        /|/  \               /|/  \                                       |
@@ -16,47 +16,63 @@
  |      email: enrico.bertolazzi@unitn.it                                   |
  |                                                                          |
 \*--------------------------------------------------------------------------*/
-/*!
 
- \example example11.cc
+#pragma once
 
- */
+#ifndef GENERIC_CONTAINER_INTERFACE_JSON_HH
+#define GENERIC_CONTAINER_INTERFACE_JSON_HH
 
 #include "GenericContainer.hh"
-#include "GenericContainer/GenericContainerInterface_yaml.hh"
 
-#include <iostream>
 #include <fstream>
 
-using namespace std;
-using namespace GC;
-
-int main()
+namespace GC_namespace
 {
-  cout << "\n\n\n"
-       << "***********************\n"
-       << "      example N.11     \n"
-       << "***********************\n\n";
 
-  try
+  using std::ifstream;
+
+  inline bool file_JSON_to_GC( string_view file_name, GenericContainer & gc )
   {
-    // read YAML file and convert to generic container
-    GenericContainer gc;
-    string           fname{ "examples/data2.yaml" };
-    bool             ok = file_YAML_to_GC( fname, gc );
-    if ( !ok ) std::cerr << "Failed to parse: " << fname << '\n';
-    std::cout << "\n\n\n\nGC\n\n";
-    gc.print( std::cout );
-    std::cout << "\n\n\n\nYAML\n\n" << gc.to_yaml() << "\n\n\n\n";
-  }
-  catch ( std::exception & exc )
-  {
-    cout << exc.what() << '\n';
-  }
-  catch ( ... )
-  {
-    cout << "Unknonwn error\n";
+    ifstream stream( file_name.data() );
+    gc.clear();
+    return gc.from_json( stream );
   }
 
-  cout << "ALL DONE!\n\n\n\n";
-}
+  inline bool JSON_to_GC( istream_type & stream, GenericContainer & gc )
+  {
+    gc.clear();
+    return gc.from_json( stream );
+  }
+
+  inline bool JSON_to_GC( string const & data, GenericContainer & gc )
+  {
+    gc.clear();
+    return gc.from_json( data );
+  }
+
+  inline bool JSON_to_GC( vec_string_type const & chunks, GenericContainer & gc )
+  {
+    string_type json;
+    for ( auto const & chunk : chunks ) json += chunk;
+    gc.clear();
+    return gc.from_json( json );
+  }
+
+  inline void GC_to_JSON( GenericContainer const & gc, std::string & res )
+  {
+    res = gc.to_json();
+  }
+
+  inline void GC_to_JSON( GenericContainer const & gc, ostream_type & stream )
+  {
+    gc.to_json( stream );
+  }
+
+  inline void GC_to_JSON( GenericContainer const & gc, vec_string_type & chunks )
+  {
+    chunks.assign( 1, gc.to_json() );
+  }
+
+}  // namespace GC_namespace
+
+#endif

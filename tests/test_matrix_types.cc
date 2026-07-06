@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------------------*\
  |  Characterization tests: matrix types. These pin GC-level behavior       |
- |  (accessors, layout, dimensions) that must survive the Eigen migration;  |
- |  mat_type member API details change in Phase 3.                          |
+ |  (accessors, layout, dimensions) for the current vector-backed matrix    |
+ |  implementation.                                                         |
 \*--------------------------------------------------------------------------*/
 
 #include "gc_test_utils.hh"
@@ -70,8 +70,8 @@ TEST_CASE( "matrix element read/write via get_*_at(i,j)", "[matrix]" )
 
 TEST_CASE( "matrix storage is column-major", "[matrix][layout]" )
 {
-  // The serialization wire format depends on this layout; it must survive
-  // the Eigen migration (Eigen's default is also column-major).
+  // The serialization wire format depends on this layout remaining
+  // column-major.
   GenericContainer gc;
   auto &           m = gc.set_mat_real( 2, 3 );
   fill_ij( m, 2, 3 );
@@ -151,9 +151,8 @@ TEST_CASE( "wrong-type matrix get throws", "[matrix][errors]" )
 
 TEST_CASE( "out-of-range matrix access via checked accessor throws", "[matrix][errors][newbehavior]" )
 {
-  // Bounds-checked get_*_at is guaranteed behavior after the Eigen migration
-  // (Phase 3); the pre-rewrite mat_type::operator() relies on vector::at with
-  // the same observable effect, so this runs unskipped.
+  // Bounds-checked get_*_at is guaranteed behavior and remains distinct from
+  // unchecked linear storage access.
   GenericContainer gc;
   gc.set_mat_real( 2, 2 );
   GenericContainer const & cgc = gc;

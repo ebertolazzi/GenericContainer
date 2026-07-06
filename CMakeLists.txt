@@ -40,19 +40,11 @@ option( GENERIC_CONTAINER_INSTALL "Generate the install target" ${PROJECT_IS_TOP
 
 # Each format backend is its own opt-in library; turn one off to skip
 # fetching/building its (sole) third-party dependency entirely.
+option( GENERIC_CONTAINER_ENABLE_JSON "Build GenericContainer::Json (nlohmann::json-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_YAML "Build GenericContainer::Yaml (fkYAML-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_TOML "Build GenericContainer::Toml (toml++-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_LUA  "Build GenericContainer::Lua (embeds Lua 5.4)"  ON )
-
-# Eigen is header-only. By default, prefer a sibling Eigen checkout at
-# ../eigen when present; otherwise fetch the pinned release below.
-# Override with -DGENERIC_CONTAINER_EIGEN_LOCAL_DIR=/path/to/eigen, or set
-# it to an invalid/empty path to force FetchContent.
-set( GENERIC_CONTAINER_EIGEN_VERSION "5.0.0" CACHE STRING "Eigen version to fetch" )
-set(
-  GENERIC_CONTAINER_EIGEN_LOCAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../eigen"
-  CACHE PATH "Path to a local Eigen checkout to use before FetchContent"
-)
+option( GENERIC_CONTAINER_BUILD_EXAMPLES "Build runnable executables from examples/" ${PROJECT_IS_TOP_LEVEL} )
 
 # The backend subdirectories use FetchContent for their own dependencies.
 # These cache paths let a developer keep sibling checkouts next to this
@@ -75,64 +67,10 @@ include( GNUInstallDirs )
 include( FetchContent )
 
 # Collected during configuration and printed once near the end.
-set( GENERIC_CONTAINER_EIGEN_SOURCE "FetchContent" )
+set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "disabled" )
 set( GENERIC_CONTAINER_FKYAML_SOURCE "disabled" )
 set( GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE "disabled" )
 set( GENERIC_CONTAINER_LUA_SOURCE "disabled" )
-
-#   _____ _
-#  | ____(_) __ _  ___ _ __
-#  |  _| | |/ _` |/ _ \ '_ \
-#  | |___| | (_| |  __/ | | |
-#  |_____|_|\__, |\___|_| |_|
-#           |___/
-#
-# Eigen backs the mat_* types and is a PUBLIC (header-only) dependency of
-# the library. Prefer a sibling/local checkout when it looks like a valid
-# Eigen source tree, and only fetch the pinned release as a fallback. When
-# fetched, SOURCE_SUBDIR points at a directory with no CMakeLists.txt of its
-# own ("cmake/", full of .cmake helper scripts but no project file) so
-# FetchContent_MakeAvailable() populates the sources without configuring
-# Eigen's own heavy, test- and doc-oriented build -- we only need headers.
-#
-# GLOBAL: without it, this IMPORTED target is only visible inside this
-# directory and its subdirectories, not to a parent project that
-# FetchContent's GenericContainer -- such a consumer could then not
-# target_link_libraries(... Eigen3::Eigen) directly (even though the
-# include path still reaches them transitively through GenericContainer's
-# own PUBLIC link to it).
-if ( NOT TARGET Eigen3::Eigen )
-  get_filename_component(
-    GENERIC_CONTAINER_EIGEN_LOCAL_DIR_ABS
-    "${GENERIC_CONTAINER_EIGEN_LOCAL_DIR}"
-    ABSOLUTE
-    BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
-  )
-
-  if ( EXISTS "${GENERIC_CONTAINER_EIGEN_LOCAL_DIR_ABS}/Eigen/Core" )
-    message( STATUS "Using local Eigen checkout: ${GENERIC_CONTAINER_EIGEN_LOCAL_DIR_ABS}" )
-    set( GENERIC_CONTAINER_EIGEN_SOURCE "local: ${GENERIC_CONTAINER_EIGEN_LOCAL_DIR_ABS}" )
-    add_library( Eigen3::Eigen INTERFACE IMPORTED GLOBAL )
-    target_include_directories(
-      Eigen3::Eigen SYSTEM INTERFACE
-      "${GENERIC_CONTAINER_EIGEN_LOCAL_DIR_ABS}"
-    )
-  else()
-    message( STATUS "Fetching Eigen ${GENERIC_CONTAINER_EIGEN_VERSION}" )
-    set( GENERIC_CONTAINER_EIGEN_SOURCE "FetchContent: ${GENERIC_CONTAINER_EIGEN_VERSION}" )
-    FetchContent_Declare(
-      eigen3
-      URL "https://gitlab.com/libeigen/eigen/-/archive/${GENERIC_CONTAINER_EIGEN_VERSION}/eigen-${GENERIC_CONTAINER_EIGEN_VERSION}.tar.gz"
-      SOURCE_SUBDIR cmake
-    )
-    FetchContent_MakeAvailable( eigen3 )
-    add_library( Eigen3::Eigen INTERFACE IMPORTED GLOBAL )
-    target_include_directories( Eigen3::Eigen SYSTEM INTERFACE "${eigen3_SOURCE_DIR}" )
-  endif()
-else()
-  message( STATUS "Using existing Eigen3::Eigen target" )
-  set( GENERIC_CONTAINER_EIGEN_SOURCE "existing target: Eigen3::Eigen" )
-endif()
 
 #   _     _ _
 #  | |   (_) |__  _ __ __ _ _ __ _   _
@@ -155,7 +93,6 @@ add_library(
 add_library( GenericContainer::GenericContainer ALIAS GenericContainer )
 
 target_compile_features( GenericContainer PUBLIC cxx_std_20 )
-target_link_libraries( GenericContainer PUBLIC Eigen3::Eigen )
 target_include_directories(
   GenericContainer PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
@@ -226,6 +163,35 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
   endif()
 endfunction()
 
+function( generic_container_ensure_nlohmann_json )
+  if ( TARGET nlohmann_json::nlohmann_json )
+    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "existing target: nlohmann_json::nlohmann_json" PARENT_SCOPE )
+    return()
+  endif()
+
+  find_package( nlohmann_json 3 QUIET )
+  if ( TARGET nlohmann_json::nlohmann_json )
+    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "find_package" PARENT_SCOPE )
+    return()
+  endif()
+
+  FetchContent_Declare(
+    nlohmann_json
+    URL https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip
+  )
+  FetchContent_MakeAvailable( nlohmann_json )
+  add_library( nlohmann_json INTERFACE )
+  add_library( nlohmann_json::nlohmann_json ALIAS nlohmann_json )
+  target_include_directories(
+    nlohmann_json SYSTEM INTERFACE
+    "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
+  )
+  set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "FetchContent: v3.11.3" PARENT_SCOPE )
+endfunction()
+
+if ( GENERIC_CONTAINER_ENABLE_JSON )
+  generic_container_ensure_nlohmann_json()
+endif()
 if ( GENERIC_CONTAINER_ENABLE_YAML )
   generic_container_prefer_local_fetchcontent( fkYAML "${GENERIC_CONTAINER_FKYAML_LOCAL_DIR}" GENERIC_CONTAINER_FKYAML_SOURCE )
 endif()
@@ -237,6 +203,18 @@ if ( GENERIC_CONTAINER_ENABLE_LUA )
 endif()
 
 set( GENERIC_CONTAINER_BACKEND_TARGETS )
+if ( GENERIC_CONTAINER_ENABLE_JSON )
+  add_library( GenericContainerJson interfaces/json/GenericContainerJson.cc )
+  add_library( GenericContainer::Json ALIAS GenericContainerJson )
+  set_target_properties( GenericContainerJson PROPERTIES EXPORT_NAME Json )
+  target_compile_features( GenericContainerJson PUBLIC cxx_std_20 )
+  target_link_libraries(
+    GenericContainerJson
+    PUBLIC  GenericContainer::GenericContainer
+    PRIVATE $<BUILD_INTERFACE:nlohmann_json::nlohmann_json>
+  )
+  list( APPEND GENERIC_CONTAINER_BACKEND_TARGETS GenericContainerJson )
+endif()
 if ( GENERIC_CONTAINER_ENABLE_YAML )
   add_subdirectory( interfaces/yaml )
   list( APPEND GENERIC_CONTAINER_BACKEND_TARGETS GenericContainerYaml )
@@ -258,7 +236,115 @@ endif()
 #
 include( CTest )
 if ( BUILD_TESTING AND PROJECT_IS_TOP_LEVEL )
-  add_subdirectory( tests )
+  find_package( Catch2 3 QUIET )
+  if ( NOT TARGET Catch2::Catch2WithMain )
+    FetchContent_Declare(
+      Catch2
+      GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+      GIT_TAG        v3.7.1
+    )
+    FetchContent_MakeAvailable( Catch2 )
+
+    foreach( catch2_target Catch2 Catch2WithMain )
+      if ( TARGET ${catch2_target} )
+        target_compile_options( ${catch2_target} PRIVATE $<IF:$<CXX_COMPILER_ID:MSVC>,/w,-w> )
+        target_compile_features( ${catch2_target} PUBLIC cxx_std_20 )
+      endif()
+    endforeach()
+
+    list( APPEND CMAKE_MODULE_PATH "${Catch2_SOURCE_DIR}/extras" )
+  endif()
+
+  generic_container_ensure_nlohmann_json()
+
+  file( GLOB GC_TEST_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_*.cc" )
+  list(
+    REMOVE_ITEM GC_TEST_SOURCES
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_ffi.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_tables.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_support.cc"
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_json_yaml_toml.cc"
+  )
+
+  add_executable( gc_unit_tests ${GC_TEST_SOURCES} )
+  target_link_libraries(
+    gc_unit_tests PRIVATE
+    GenericContainer::GenericContainer
+    nlohmann_json::nlohmann_json
+    Catch2::Catch2WithMain
+  )
+
+  include( Catch )
+  catch_discover_tests(
+    gc_unit_tests
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    PROPERTIES LABELS "unit"
+  )
+endif()
+
+#   _____                           _
+#  | ____|_  ____ _ _ __ ___  _ __ | | ___  ___
+#  |  _| \ \/ / _` | '_ ` _ \| '_ \| |/ _ \/ __|
+#  | |___ >  < (_| | | | | | | |_) | |  __/\__ \
+#  |_____/_/\_\__,_|_| |_| |_| .__/|_|\___||___/
+#                            |_|
+if ( GENERIC_CONTAINER_BUILD_EXAMPLES AND PROJECT_IS_TOP_LEVEL )
+  set( GENERIC_CONTAINER_EXAMPLE_BIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bin" )
+
+  function( generic_container_add_example EXAMPLE_NAME )
+    set( options )
+    set( one_value_args )
+    set( multi_value_args LINK_LIBS )
+    cmake_parse_arguments( ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN} )
+
+    add_executable( ${EXAMPLE_NAME} "examples/${EXAMPLE_NAME}.cc" )
+    target_compile_features( ${EXAMPLE_NAME} PRIVATE cxx_std_20 )
+    if ( ARG_LINK_LIBS )
+      target_link_libraries( ${EXAMPLE_NAME} PRIVATE ${ARG_LINK_LIBS} )
+    else()
+      target_link_libraries( ${EXAMPLE_NAME} PRIVATE GenericContainer::GenericContainer )
+    endif()
+    set_target_properties( ${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${GENERIC_CONTAINER_EXAMPLE_BIN_DIR}" )
+    foreach( cfg Debug Release RelWithDebInfo MinSizeRel )
+      string( TOUPPER "${cfg}" cfg_upper )
+      set_target_properties( ${EXAMPLE_NAME} PROPERTIES "RUNTIME_OUTPUT_DIRECTORY_${cfg_upper}" "${GENERIC_CONTAINER_EXAMPLE_BIN_DIR}" )
+    endforeach()
+
+    if ( BUILD_TESTING )
+      add_test( NAME "example.${EXAMPLE_NAME}" COMMAND "${GENERIC_CONTAINER_EXAMPLE_BIN_DIR}/${EXAMPLE_NAME}" )
+      set_tests_properties(
+        "example.${EXAMPLE_NAME}" PROPERTIES
+        LABELS "examples"
+        WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
+      )
+    endif()
+  endfunction()
+
+  foreach( example_name example01 example02 example03 example04 example05 example07 example08 example09 example10 example17 )
+    generic_container_add_example( ${example_name} )
+  endforeach()
+
+  if ( TARGET GenericContainer::Yaml )
+    foreach( example_name example11 example12 )
+      generic_container_add_example( ${example_name} LINK_LIBS GenericContainer::Yaml )
+    endforeach()
+  endif()
+
+  if ( TARGET GenericContainer::Json )
+    foreach( example_name example14 example15 )
+      generic_container_add_example( ${example_name} LINK_LIBS GenericContainer::Json )
+    endforeach()
+  endif()
+
+  if ( TARGET GenericContainer::Json AND TARGET GenericContainer::Yaml )
+    foreach( example_name example13 example16 )
+      generic_container_add_example( ${example_name} LINK_LIBS GenericContainer::Json GenericContainer::Yaml )
+    endforeach()
+  endif()
+
+  if ( TARGET GenericContainer::Toml )
+    generic_container_add_example( example18 LINK_LIBS GenericContainer::Toml )
+  endif()
 endif()
 
 #   ___           _        _ _
@@ -269,6 +355,18 @@ endif()
 #
 if ( GENERIC_CONTAINER_INSTALL )
   include( CMakePackageConfigHelpers )
+
+  set( GENERIC_CONTAINER_CONFIG_TEMPLATE "${CMAKE_CURRENT_BINARY_DIR}/GenericContainerConfig.cmake.in" )
+  file(
+    WRITE "${GENERIC_CONTAINER_CONFIG_TEMPLATE}"
+    [=[
+@PACKAGE_INIT@
+
+include( "${CMAKE_CURRENT_LIST_DIR}/GenericContainerTargets.cmake" )
+
+check_required_components( GenericContainer )
+]=]
+  )
 
   install(
     TARGETS GenericContainer ${GENERIC_CONTAINER_BACKEND_TARGETS}
@@ -281,6 +379,7 @@ if ( GENERIC_CONTAINER_INSTALL )
   install(
     DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/include/"
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    PATTERN ".DS_Store" EXCLUDE
   )
 
   install(
@@ -291,7 +390,7 @@ if ( GENERIC_CONTAINER_INSTALL )
   )
 
   configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/GenericContainerConfig.cmake.in"
+    "${GENERIC_CONTAINER_CONFIG_TEMPLATE}"
     "${CMAKE_CURRENT_BINARY_DIR}/GenericContainerConfig.cmake"
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/GenericContainer
   )
@@ -326,7 +425,7 @@ endif()
 #
 message( STATUS "" )
 message( STATUS "GenericContainer dependency summary:" )
-message( STATUS "  Eigen        : ${GENERIC_CONTAINER_EIGEN_SOURCE}" )
+message( STATUS "  nlohmann_json: ${GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE}" )
 message( STATUS "  fkYAML       : ${GENERIC_CONTAINER_FKYAML_SOURCE}" )
 message( STATUS "  tomlplusplus : ${GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE}" )
 message( STATUS "  lua          : ${GENERIC_CONTAINER_LUA_SOURCE}" )

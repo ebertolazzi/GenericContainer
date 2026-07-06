@@ -35,6 +35,7 @@
 #endif
 
 #include <iostream>
+#include <algorithm>
 #include <string>
 #include <string_view>
 #include <complex>
@@ -51,8 +52,6 @@
 #include <cmath>
 #include <limits>
 #include <stdexcept>
-
-#include <Eigen/Core>
 
 #include "GenericContainerConfig.hh"
 
@@ -274,61 +273,55 @@ namespace GC_namespace
 
   // ---------------------------------------------------------------------------
   //!
-  //! \brief Dense dynamic matrix type backed by Eigen.
+  //! \brief Dense dynamic matrix type backed by `std::vector`.
   //!
-  //! `mat_type<TYPE>` IS an `Eigen::Matrix<TYPE, Dynamic, Dynamic>` (public
-  //! inheritance is Eigen's sanctioned extension mechanism): a stored matrix
-  //! participates directly in Eigen expressions and can be passed to any API
-  //! taking an `Eigen::MatrixBase`. Storage is column-major (Eigen's default,
-  //! and the layout of the historical hand-rolled matrix), which the binary
-  //! serialization format relies on.
+  //! `mat_type<TYPE>` publicly derives from `std::vector<TYPE>` and stores
+  //! matrix elements in column-major order, matching the historical layout
+  //! used by GenericContainer serialization.
   //!
-  //! On top of Eigen this type preserves the historical GenericContainer
-  //! matrix semantics:
-  //! - the sized constructor and `resize(nr,nc)` zero-fill (Eigen leaves
-  //!   values uninitialized);
+  //! On top of the vector storage this type preserves the historical matrix
+  //! semantics:
+  //! - the sized constructor and `resize(nr,nc)` zero-fill;
   //! - `num_rows()/num_cols()` std::size_t accessors;
   //! - linear `operator[]` indexing in storage order;
   //! - `get_row/get_column` copy-out helpers.
   //!
   //! @tparam TYPE The scalar type of the matrix elements.
   //!
-  template <typename TYPE> class mat_type : public Eigen::Matrix<TYPE, Eigen::Dynamic, Eigen::Dynamic>
+  template <typename TYPE> class mat_type : public std::vector<TYPE>
   {
   public:
-    using Base       = Eigen::Matrix<TYPE, Eigen::Dynamic, Eigen::Dynamic>;
+    using Base       = std::vector<TYPE>;
     using value_type = TYPE;
 
     //! Empty 0 x 0 matrix.
-    mat_type() : Base() {}
+    mat_type() : Base(), m_num_rows( 0 ), m_num_cols( 0 ) {}
 
     //! `nr` x `nc` matrix with all elements zero-initialized.
     mat_type( std::size_t const nr, std::size_t const nc )
-      : Base( Base::Zero( static_cast<Eigen::Index>( nr ), static_cast<Eigen::Index>( nc ) ) )
+      : Base( nr * nc ), m_num_rows( nr ), m_num_cols( nc )
     {
-    }
-
-    //! Construct from any Eigen expression (evaluates it).
-    template <typename Derived> mat_type( Eigen::MatrixBase<Derived> const & other ) : Base( other ) {}
-
-    //! Assign from any Eigen expression.
-    template <typename Derived> mat_type & operator=( Eigen::MatrixBase<Derived> const & other )
-    {
-      Base::operator=( other );
-      return *this;
+      std::fill( Base::begin(), Base::end(), TYPE{} );
     }
 
     //! Resize to `nr` x `nc`, zero-filling all elements (destructive, as before).
     void resize( std::size_t const nr, std::size_t const nc )
     {
-      this->setZero( static_cast<Eigen::Index>( nr ), static_cast<Eigen::Index>( nc ) );
+      m_num_rows = nr;
+      m_num_cols = nc;
+      Base::assign( nr * nc, TYPE{} );
     }
 
     //! Reset to an empty 0 x 0 matrix.
-    void clear() { this->resize( 0, 0 ); }
+    void clear()
+    {
+      m_num_rows = 0;
+      m_num_cols = 0;
+      Base::clear();
+    }
 
     //! True when the matrix holds no elements.
-    [[nodiscard]] bool empty() const noexcept { return this->size() == 0; }
+    [[nodiscard]] bool empty() const noexcept { return Base::empty(); }
 
     template <std::integral T1, std::integral T2> void resize( T1 const nr, T2 const nc )
     {
@@ -336,22 +329,9 @@ namespace GC_namespace
     }
 
     //! Number of rows.
-    [[nodiscard]] std::size_t num_rows() const { return static_cast<std::size_t>( this->rows() ); }
+    [[nodiscard]] std::size_t num_rows() const { return m_num_rows; }
     //! Number of columns.
-    [[nodiscard]] std::size_t num_cols() const { return static_cast<std::size_t>( this->cols() ); }
-
-    //! Linear element access in storage (column-major) order.
-    TYPE const & operator[]( std::size_t const i ) const { return this->data()[i]; }
-    //! Linear element access in storage (column-major) order.
-    TYPE & operator[]( std::size_t const i ) { return this->data()[i]; }
-
-    //! STL iteration over the elements in storage (column-major) order,
-    //! matching the historical vector-backed layout (Eigen itself provides
-    //! begin/end only for 1-D expressions).
-    TYPE *       begin() noexcept { return this->data(); }
-    TYPE *       end() noexcept { return this->data() + this->size(); }
-    TYPE const * begin() const noexcept { return this->data(); }
-    TYPE const * end() const noexcept { return this->data() + this->size(); }
+    [[nodiscard]] std::size_t num_cols() const { return m_num_cols; }
 
     //! Bounds-checked element access (throws on out-of-range indices).
     TYPE const & operator()( std::size_t const i, std::size_t const j ) const
@@ -360,7 +340,7 @@ namespace GC_namespace
         i < num_rows() && j < num_cols(),
         "mat_type::operator() (" << i << ", " << j << ") out of range [0," << num_rows() << ") x [0," << num_cols()
                                  << ")" )
-      return Base::operator()( static_cast<Eigen::Index>( i ), static_cast<Eigen::Index>( j ) );
+      return Base::operator[]( i + j * m_num_rows );
     }
 
     //! Bounds-checked element access (throws on out-of-range indices).
@@ -370,7 +350,7 @@ namespace GC_namespace
         i < num_rows() && j < num_cols(),
         "mat_type::operator() (" << i << ", " << j << ") out of range [0," << num_rows() << ") x [0," << num_cols()
                                  << ")" )
-      return Base::operator()( static_cast<Eigen::Index>( i ), static_cast<Eigen::Index>( j ) );
+      return Base::operator[]( i + j * m_num_rows );
     }
 
     //! Copy column `nc` into vector `C`.
@@ -378,7 +358,8 @@ namespace GC_namespace
     {
       GC_ASSERT(
         nc < num_cols(), "mat_type::get_column(" << nc << ",C) column index out of range max = " << num_cols() - 1 );
-      C.assign( this->col( static_cast<Eigen::Index>( nc ) ).begin(), this->col( static_cast<Eigen::Index>( nc ) ).end() );
+      C.resize( num_rows() );
+      for ( std::size_t i{ 0 }; i < num_rows(); ++i ) C[i] = Base::operator[]( i + nc * m_num_rows );
     }
 
     template <std::integral T> void get_column( T const nc, vector<TYPE> & C ) const
@@ -391,8 +372,8 @@ namespace GC_namespace
     void get_row( std::size_t const nr, vector<TYPE> & R ) const
     {
       GC_ASSERT( nr < num_rows(), "mat_type::get_row(" << nr << ",R) row index out of range max = " << num_rows() - 1 );
-      R.resize( static_cast<std::size_t>( this->cols() ) );
-      for ( std::size_t j{ 0 }; j < num_cols(); ++j ) R[j] = Base::operator()( static_cast<Eigen::Index>( nr ), static_cast<Eigen::Index>( j ) );
+      R.resize( num_cols() );
+      for ( std::size_t j{ 0 }; j < num_cols(); ++j ) R[j] = Base::operator[]( nr + j * m_num_rows );
     }
 
     template <std::integral T> void get_row( T const nr, vector<TYPE> & R ) const
@@ -406,7 +387,7 @@ namespace GC_namespace
     {
       GC_ASSERT(
         nc < num_cols(), "mat_type::get_column(" << nc << ",C) column index out of range max = " << num_cols() - 1 );
-      for ( std::size_t i{ 0 }; i < num_rows(); ++i ) C[i] = Base::operator()( static_cast<Eigen::Index>( i ), static_cast<Eigen::Index>( nc ) );
+      for ( std::size_t i{ 0 }; i < num_rows(); ++i ) C[i] = Base::operator[]( i + nc * m_num_rows );
     }
 
 
@@ -414,7 +395,7 @@ namespace GC_namespace
     void get_row( std::size_t const nr, TYPE * R ) const
     {
       GC_ASSERT( nr < num_rows(), "mat_type::get_row(" << nr << ",R) row index out of range max = " << num_rows() - 1 );
-      for ( std::size_t j{ 0 }; j < num_cols(); ++j ) R[j] = Base::operator()( static_cast<Eigen::Index>( nr ), static_cast<Eigen::Index>( j ) );
+      for ( std::size_t j{ 0 }; j < num_cols(); ++j ) R[j] = Base::operator[]( nr + j * m_num_rows );
     }
 
 
@@ -435,9 +416,13 @@ namespace GC_namespace
     //! Deep element-wise equality (dimensions and values).
     [[nodiscard]] bool operator==( mat_type const & other ) const
     {
-      return this->rows() == other.rows() && this->cols() == other.cols() &&
-             ( this->array() == other.array() ).all();
+      return m_num_rows == other.m_num_rows && m_num_cols == other.m_num_cols &&
+             static_cast<Base const &>( *this ) == static_cast<Base const &>( other );
     }
+
+  private:
+    std::size_t m_num_rows;
+    std::size_t m_num_cols;
   };
 
   using mat_int_type     = mat_type<int_type>;

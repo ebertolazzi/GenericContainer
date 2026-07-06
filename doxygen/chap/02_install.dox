@@ -4,7 +4,7 @@
   ## Compile the Library
 
   To compile the library, you'll need:
-  - A C++17 compiler (e.g., GCC, Clang, or MSVC)
+  - A C++20 compiler (e.g., GCC, Clang, or MSVC)
   - [cmake](https://cmake.org) for the compilation
   - [Rake](https://ruby.github.io/rake/), a build automation tool (optional)
   
@@ -13,21 +13,15 @@
   Open a terminal in the project's root directory and run the following command:
 
   \code{.bash}
-  mkdir build
-  cd build
-  cmake ..
-  make
-  make install
-  cd ..
+  cmake -S . -B build
+  cmake --build build
+  cmake --install build --prefix lib
   \endcode
   
   after that you should find something like this
   
   \code{.bash}
   lib
-    ├── dll
-    │   ├── libGenericContainer_osx.dylib
-    │   └── libLua_osx.dylib
     ├── include
     │   ├── GenericContainer
     │   │   ├── GenericContainer.hh
@@ -40,22 +34,17 @@
     │   │   ├── GenericContainerInterface_yaml.hh
     │   │   └── GenericContainerLibs.hh
     │   ├── GenericContainer.hh
-    │   ├── lauxlib.h
-    │   ├── lua.h
-    │   ├── lua.hpp
-    │   ├── luaconf.h
-    │   └── lualib.h
     └── lib
-        ├── libGenericContainer_osx_static.a
-        └── libLua_osx_static.a
+        ├── libGenericContainer.a
+        └── cmake
   \endcode
   
-  which is the statiuc and dynamic libraries and its headers.
+  which contains the generated libraries and headers.
   
   To test the libray do
   
   \code{.bash}
-  make test
+  ctest --test-dir build --output-on-failure -L unit
   \endcode
   
   ### Using rake + cmake
@@ -66,21 +55,16 @@
   rake
   \endcode
 
-  or if the OS is not detected correctly
-
-  \code{bash}
-  rake build_osx   # compile for OSX
-  rake build_linux # compile for linux
-  rake build_win   # compile for WINDOWS
-  \endcode
+  This configures, builds, copies libraries and headers into `lib/`, and
+  generates the runnable executables from `examples/` into `bin/`.
 
   ## check the library
 
   To run the tests
 
   \code{.bash}
-  rake run       # for linux/OSX
-  rake run_win   # for windows
+  rake tests     # unit tests from tests/
+  rake run       # runnable examples from examples/
   \endcode
 
   ## Integrate into Your Project

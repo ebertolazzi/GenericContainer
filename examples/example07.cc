@@ -40,7 +40,7 @@ int main()
   try
   {
     GC::GenericContainer gc;
-    std::string          fname{ "../examples/example07_data.txt" };
+    std::string          fname{ "examples/example07_data.txt" };
     ifstream             file( fname );
     if ( file.fail() ) throw std::runtime_error( "file to open file: " + fname );
     gc.read_formatted_data( file, "#", "\t " );

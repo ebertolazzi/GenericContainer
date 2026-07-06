@@ -1,119 +1,120 @@
-%w(colorize fileutils rake/clean).each do |gem|
-  begin
-    require gem
-  rescue LoadError
-    warn "Install the #{gem} gem:\n $ (sudo) gem install #{gem}"
-    exit 1
-  end
-end
+# frozen_string_literal: true
 
+require 'fileutils'
 require 'rake/clean'
-# avoid to remove file "core" (in Eigen inclusion)
-CLEAN.clear_exclude.exclude { |fn| fn.pathmap("%f").downcase == "core" }
+require 'rbconfig'
+require 'shellwords'
 
-CLEAN.include   ["./**/*.o", "./**/*.obj", "./bin/**/example*", "./build"]
-CLEAN.clear_exclude.exclude { |fn| fn.pathmap("%f").downcase == "core" }
-CLOBBER.include []
+PROJECT_ROOT = File.expand_path(__dir__)
+BUILD_DIR    = File.join(PROJECT_ROOT, 'build')
+INSTALL_DIR  = File.join(PROJECT_ROOT, 'lib')
+BIN_DIR      = File.join(PROJECT_ROOT, 'bin')
+YELLOW       = "\e[33m"
+RESET        = "\e[0m"
 
-#
-# Check for a configuration file on a upper directory.
-# This permits to use a unique configuration file for
-# large projects.
-# On a local project use the default in this file.
-#
-if File.exist?(File.expand_path('../Rakefile_configure.rb', File.dirname(__FILE__))) then
-  # found in the root of the local project
-  require_relative '../Rakefile_configure.rb'
-elsif File.exist?(File.expand_path('../../Rakefile_configure.rb', File.dirname(__FILE__))) then
-  # found in the upper project
-  require_relative '../../Rakefile_configure.rb'
-elsif File.exist?(File.expand_path('../../cmake_utils/Rakefile_configure.rb', File.dirname(__FILE__))) then
-  # found in the upper project under cmake_utils
-  require_relative '../../cmake_utils/Rakefile_configure.rb'
-else
-  #-------------------------
-  COMPILE_DEBUG      = false
-  COMPILE_DYNAMIC    = false
-  COMPILE_EXECUTABLE = true
-  #-------------------------
+# Build switches. Override from the command line, for example:
+#   rake build BUILD_TYPE=Debug SHARED=1
+BUILD_TYPE = ENV.fetch('BUILD_TYPE', 'Release')
+BUILD_SHARED_LIBS = ENV.fetch('SHARED', '0').match?(/\A(1|on|true|yes)\z/i)
+
+# Backend switches. Set any of these to 0/off/false/no to skip the backend.
+def enabled_env?(name, default: true)
+  value = ENV.fetch(name, default ? 'ON' : 'OFF')
+  value.match?(/\A(1|on|true|yes)\z/i)
 end
 
-#    ___  ____
-#   / _ \/ ___|
-#  | | | \___ \
-#  | |_| |___) |
-#   \___/|____/
-#
-case RUBY_PLATFORM
-when /darwin/
-  OS  = :mac
-  CMD = "build.sh"
-when /linux|cygwin/ # cygwin compile as a linux system
-  OS  = :linux
-  CMD = "build.sh"
-when /msys/
-  # msys2 envirorment to compile with MINGW
-  OS  = :mingw
-  CMD = "build.sh"
-else # assume windows
-  OS  = :win
-  CMD = "build.ps1"
+ENABLE_YAML = enabled_env?('YAML')
+ENABLE_TOML = enabled_env?('TOML')
+ENABLE_LUA  = enabled_env?('LUA')
+
+CLEAN.clear_exclude.exclude { |fn| fn.pathmap('%f').casecmp('core').zero? }
+CLEAN.include('**/*.o', '**/*.obj')
+CLOBBER.include(BUILD_DIR)
+
+abort "Unsupported platform: #{RbConfig::CONFIG['host_os']}" unless RbConfig::CONFIG['host_os'].match?(/darwin|linux|cygwin|mingw|msys|mswin|windows/i)
+
+def cmake_bool(value)
+  value ? 'ON' : 'OFF'
 end
 
-PROJECT_ROOT = File.expand_path(File.dirname(__FILE__))
 
-def build_script_path
-  File.join(PROJECT_ROOT, CMD)
+def command_string(*cmd)
+  cmd.flatten.map { |part| Shellwords.escape(part.to_s) }.join(' ')
 end
 
-def run_build_script(*args)
-  script = build_script_path
 
-  unless File.exist?(script)
-    abort "Build script not found: #{script}"
+def sh_echo(*cmd, chdir: nil)
+  rendered = command_string(*cmd)
+  rendered = "cd #{Shellwords.escape(chdir)} && #{rendered}" if chdir
+  puts "#{YELLOW}#{rendered}#{RESET}"
+  return sh(*cmd) if chdir.nil?
+
+  Dir.chdir(chdir) { sh(*cmd) }
+end
+
+
+def cmake_build_parallel_args
+  processors = begin
+    require 'etc'
+    Etc.respond_to?(:nprocessors) ? Etc.nprocessors : nil
+  rescue LoadError
+    nil
   end
 
-  if OS == :win
-    sh 'powershell', '-ExecutionPolicy', 'Bypass', '-File', script, *args
-  else
-    sh script, *args
-  end
+  processors.to_i.positive? ? ['--parallel', processors.to_s] : ['--parallel']
 end
 
-#   ____  _   _ ___ _     ____
-#  | __ )| | | |_ _| |   |  _ \
-#  |  _ \| | | || || |   | | | |
-#  | |_) | |_| || || |___| |_| |
-#  |____/ \___/|___|_____|____/
-#
-desc "default task --> build"
-task :default => :build
 
-desc 'compile GenericContainer'
-task :build do
-
-  FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
-
-  puts "run CMAKE for GenericContainer".yellow
-
-  if COMPILE_DEBUG then
-    cmd = "#{CMD} build Release"
-  else
-    cmd = "#{CMD} build Debug"
-  end
-  puts cmd.yellow
-  run_build_script 'build', (COMPILE_DEBUG ? 'Release' : 'Debug')
+def configure_args
+  [
+    'cmake',
+    '-S', PROJECT_ROOT,
+    '-B', BUILD_DIR,
+    "-DCMAKE_BUILD_TYPE=#{BUILD_TYPE}",
+    "-DBUILD_SHARED_LIBS=#{cmake_bool(BUILD_SHARED_LIBS)}",
+    '-DBUILD_TESTING=ON',
+    "-DGENERIC_CONTAINER_ENABLE_YAML=#{cmake_bool(ENABLE_YAML)}",
+    "-DGENERIC_CONTAINER_ENABLE_TOML=#{cmake_bool(ENABLE_TOML)}",
+    "-DGENERIC_CONTAINER_ENABLE_LUA=#{cmake_bool(ENABLE_LUA)}"
+  ]
 end
 
-desc 'clean for OSX/LINUX/MINGW'
-task :clean_osx_linux_mingw do
-  FileUtils.rm_rf 'build'
-  FileUtils.rm_rf 'lib'
-  FileUtils.rm_rf 'lib3rd'
+
+desc 'Configure the CMake build tree'
+task :configure do
+  FileUtils.mkdir_p(BUILD_DIR)
+  sh_echo(*configure_args)
 end
 
-desc 'pack for OSX/LINUX/MINGW/WINDOWS'
-task :cpack do
-  run_build_script 'package'
+desc 'Build GenericContainer'
+task build: :configure do
+  sh_echo('cmake', '--build', BUILD_DIR, '--config', BUILD_TYPE, *cmake_build_parallel_args)
+  sh_echo('cmake', '--install', BUILD_DIR, '--config', BUILD_TYPE, '--prefix', INSTALL_DIR)
 end
+
+desc 'Run unit tests from the tests/ directory through CTest'
+task tests: :build do
+  sh_echo('ctest', '--test-dir', BUILD_DIR, '--build-config', BUILD_TYPE, '--output-on-failure', '-L', 'unit')
+end
+
+desc 'Run example executables registered from the examples/ directory'
+task run: :build do
+  sh_echo('ctest', '--test-dir', BUILD_DIR, '--build-config', BUILD_TYPE, '--output-on-failure', '-L', 'examples')
+end
+
+desc 'Alias for tests'
+task test: :tests
+
+desc 'Build source/binary packages with CPack'
+task cpack: :build do
+  sh_echo('cmake', '--build', BUILD_DIR, '--config', BUILD_TYPE, '--target', 'package')
+end
+
+desc 'Remove generated build artifacts'
+task :clean do
+  FileUtils.rm_rf(BUILD_DIR)
+  FileUtils.rm_rf(INSTALL_DIR)
+  FileUtils.rm_rf(BIN_DIR)
+end
+
+task default: :build

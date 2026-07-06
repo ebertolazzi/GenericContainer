@@ -26,6 +26,7 @@
 #include <iostream>
 #include <string>
 #include <chrono>
+#include <fstream>
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
