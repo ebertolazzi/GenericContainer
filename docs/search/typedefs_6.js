@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pointer_5ftype_0',['pointer_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aa929267d08bd73db39bc3809c91f46b4',1,'GC_namespace::GenericContainer']]]
+  ['ostream_5ftype_0',['ostream_type',['../d8/d51/namespace_g_c__namespace.html#aba86b1e2daf9221d49718c3eedd4c4f4',1,'GC_namespace']]]
 ];

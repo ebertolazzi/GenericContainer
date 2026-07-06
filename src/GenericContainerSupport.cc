@@ -69,9 +69,11 @@ namespace GC_namespace
     if ( ends_with( file_name, ".yaml" ) || ends_with( file_name, ".yml" ) || ends_with( file_name, ".toml" ) )
     {
       file.close();
-      throw GenericError(
+      GC_assert(
+        false,
         "GenericContainer::from_file: yaml/toml support is not linked into this library; "
-        "link GenericContainer::Yaml or GenericContainer::Toml and call from_yaml()/from_toml() directly" );
+        "link GenericContainer::Yaml or GenericContainer::Toml and call from_yaml()/from_toml() directly"
+      );
     }
     file.close();
     return false;
@@ -185,8 +187,8 @@ namespace GC_namespace
   // original code by Francesco Biral (francesco.biral@unitn.it)
   GenericContainer const & GenericContainer::write_formatted_data( ostream_type & stream, char const delimiter ) const
   {
-    GC_ASSERT( this->exists( "headers" ), "write_formatted_data, missing field `headers` in container" );
-    GC_ASSERT( this->exists( "data" ), "write_formatted_data, missing field `data` in container" );
+    GC_assert( this->exists( "headers" ), "write_formatted_data, missing field `headers` in container" );
+    GC_assert( this->exists( "data" ), "write_formatted_data, missing field `data` in container" );
     GenericContainer const & data = ( *this )( "data" );
     vec_string_type const &  headers =
       ( *this )( "headers" ).get_vec_string( "write_formatted_data, `header` field must be `vec_string_type`" );
@@ -230,9 +232,11 @@ namespace GC_namespace
       tokenizeString( line, tokens, delimiters );
       if ( tokens.empty() ) break;  // riga vuota!
 
-      GC_ASSERT(
+      GC_assert(
         static_cast<std::size_t>( tokens.size() ) == ncol,
-        "read_formatted_data, in reading line: " << nline << " expected " << ncol << " found: " << tokens.size() );
+        "read_formatted_data, in reading line: {} expected {} found: {}",
+        nline, ncol, tokens.size()
+      );
 
       // store data in row vector
       for ( std::size_t icol = 0; icol < ncol; ++icol ) data[icol].get_vec_real().push_back( atof( tokens[icol].data() ) );
@@ -281,9 +285,11 @@ namespace GC_namespace
       tokenizeString( line, tokens, delimiters );
       if ( tokens.empty() ) break;  // riga vuota!
 
-      GC_ASSERT(
+      GC_assert(
         static_cast<std::size_t>( tokens.size() ) == ncol,
-        "read_formatted_data2, in reading line: " << nline << " expected " << ncol << " found: " << tokens.size() );
+        "read_formatted_data2, in reading line: {} expected {} found: {}",
+        nline, ncol, tokens.size()
+      );
 
       // store data in row vector
       for ( std::size_t icol = 0; icol < ncol; ++icol ) pcolumns[icol]->push_back( atof( tokens[icol].data() ) );
@@ -297,7 +303,7 @@ namespace GC_namespace
     char const delimiters[] )
   {
     std::ifstream file( fname );
-    GC_ASSERT( file.good(), "read_formatted_data, failed to open file: ``" << fname << "''" )
+    GC_assert( file.good(), "read_formatted_data, failed to open file: ``{}''", fname );
     return read_formatted_data( file, commentChars, delimiters );
   }
 
@@ -308,7 +314,7 @@ namespace GC_namespace
     GenericContainer ptr_pars[] )
   {
     std::ifstream file( fname );
-    GC_ASSERT( file.good(), "read_formatted_data2, failed to open file: ``" << fname << "''" )
+    GC_assert( file.good(), "read_formatted_data2, failed to open file: ``{}''", fname );
     return read_formatted_data2( file, commentChars, delimiters, ptr_pars );
   }
 

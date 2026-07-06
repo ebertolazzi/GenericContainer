@@ -96,15 +96,15 @@ namespace GC_namespace
 
   GenericContainer * GenericContainerExplorer::top()
   {
-    GC_ASSERT( !head.empty(), "GenericContainerExplorer::top() empty stack!" )
-    GC_ASSERT( head.back() != nullptr, "GenericContainerExplorer::top() bad top pointer!" )
+    GC_assert( !head.empty(), "GenericContainerExplorer::top() empty stack!" );
+    GC_assert( head.back() != nullptr, "GenericContainerExplorer::top() bad top pointer!" );
     return head.back();
   }
 
   GenericContainer const * GenericContainerExplorer::top() const
   {
-    GC_ASSERT( !head.empty(), "GenericContainerExplorer::top() empty stack!" )
-    GC_ASSERT( head.back() != nullptr, "GenericContainerExplorer::top() bad top pointer!" )
+    GC_assert( !head.empty(), "GenericContainerExplorer::top() empty stack!" );
+    GC_assert( head.back() != nullptr, "GenericContainerExplorer::top() bad top pointer!" );
     return head.back();
   }
 

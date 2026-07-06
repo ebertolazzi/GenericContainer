@@ -37,28 +37,6 @@
 #pragma clang diagnostic ignored "-Wc++11-long-long"
 #endif
 
-#ifndef GC_ASSERT
-#include <sstream>
-#include <stdexcept>
-#define GC_ASSERT( COND, MSG )                        \
-  if ( !( COND ) )                                    \
-  {                                                   \
-    std::ostringstream ost;                           \
-    ost << "in GenericContainer: " << MSG << '\n';    \
-    GenericContainer::exception( ost.str().c_str() ); \
-  }
-#endif
-
-#ifdef DEBUG
-#ifndef GC_ASSERT_DEBUG
-#define GC_ASSERT_DEBUG( COND, MSG ) GC_ASSERT( COND, MSG )
-#endif
-#else
-#ifndef GC_ASSERT_DEBUG
-#define GC_ASSERT_DEBUG( COND, MSG )
-#endif
-#endif
-
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -330,7 +308,7 @@ namespace GC_namespace
   {
     lua_State *& L = *( reinterpret_cast<lua_State **>( &void_L ) );
     L              = luaL_newstate();  // opens Lua
-    GC_ASSERT_DEBUG( L != nullptr, "LuaInterpreter::LuaInterpreter() lua_State invalid!" )
+    GC_assert( L != nullptr, "LuaInterpreter::LuaInterpreter() lua_State invalid!" );
     luaL_openlibs( L );
   }
 
@@ -339,7 +317,7 @@ namespace GC_namespace
   LuaInterpreter::~LuaInterpreter()
   {
     lua_State *& L = *( reinterpret_cast<lua_State **>( &void_L ) );
-    GC_ASSERT_DEBUG( L != nullptr, "LuaInterpreter::~LuaInterpreter() lua_State invalid!" )
+    GC_assert( L != nullptr, "LuaInterpreter::~LuaInterpreter() lua_State invalid!" );
     lua_close( L );
   }
 
@@ -348,10 +326,10 @@ namespace GC_namespace
   void LuaInterpreter::do_file( char const filename[] )
   {
     lua_State *& L = *( reinterpret_cast<lua_State **>( &void_L ) );
-    GC_ASSERT_DEBUG( L != nullptr, "LuaInterpreter::do_file('" << filename << "')\nlua_State invalid!" )
+    GC_assert( L != nullptr, "LuaInterpreter::do_file('{}')\nlua_State invalid!", filename );
     if ( luaL_loadfile( L, filename ) || lua_pcall( L, 0, 0, 0 ) )
     {
-      GC_ASSERT( lua_isnil( L, -1 ), "In LuaInterpreter::do_file('" << filename << "')\n" << lua_tostring( L, -1 ) )
+      GC_assert( lua_isnil( L, -1 ), "In LuaInterpreter::do_file('{}')\n{}", filename, lua_tostring( L, -1 ) );
     }
   }
 
@@ -360,9 +338,12 @@ namespace GC_namespace
   void LuaInterpreter::execute( char const cmd[] )
   {
     lua_State *& L = *( reinterpret_cast<lua_State **>( &void_L ) );
-    GC_ASSERT(
+    GC_assert(
       L != nullptr && !luaL_loadbuffer( L, cmd, strlen( cmd ), "line" ) && !lua_pcall( L, 0, 0, 0 ),
-      "In LuaInterpreter::execute('" << cmd << "')\ncannot run the command or lua_State invalid" )
+      "In LuaInterpreter::execute('{}\n"
+      "cannot run the command or lua_State invalid", 
+      cmd
+    );
   }
 
   // -----------------------------------------------------------------------------
@@ -381,7 +362,7 @@ namespace GC_namespace
     GC_to_lua( L, args );
 
     /* do the call (1 arguments, 1 result) */
-    GC_ASSERT( lua_pcall( L, 1, 1, 0 ) == 0, "GenericContainer: error running function `" << fname << "'\n" )
+    GC_assert( lua_pcall( L, 1, 1, 0 ) == 0, "GenericContainer: error running function `{}'\n", fname );
 
     /* retrieve result */
     lua_to_GC( L, res );
@@ -392,12 +373,12 @@ namespace GC_namespace
   void Lua_global_to_GC( void * void_L, char const * global_var, GenericContainer & gc )
   {
     lua_State *& L = *( reinterpret_cast<lua_State **>( &void_L ) );
-    GC_ASSERT_DEBUG( L != nullptr, "LuaInterpreter::global_to_GC(...) lua_State invalid!" )
+    GC_assert( L != nullptr, "LuaInterpreter::global_to_GC(...) lua_State invalid!" );
 
     lua_getglobal( L, global_var );
-    GC_ASSERT(
+    GC_assert(
       !lua_isnil( L, -1 ),
-      "LuaInterpreter::global_to_GC(...) cannot find global variable: '" << global_var << "'" )
+      "LuaInterpreter::global_to_GC(...) cannot find global variable: '{}'", global_var );
 
     gc.clear();
     switch ( lua_type( L, -1 ) )
@@ -419,7 +400,7 @@ namespace GC_namespace
         lua_settop( L, 0 );
         break;
       default:
-        GC_DO_ERROR( "LuaInterpreter::global_to_GC(...) global variable '" << global_var << "' cannot be converted!" )
+        GC_assert( false, "LuaInterpreter::global_to_GC(...) global variable '{}' cannot be converted!", global_var );
     }
   }
 

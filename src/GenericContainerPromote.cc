@@ -77,68 +77,86 @@ namespace GC_namespace
         case GC_type::INTEGER: val = _i(); break;
         case GC_type::LONG:
           lval = _l();
-          GC_ASSERT(
+          GC_assert(
             std::in_range<int_type>( lval ),
-            where << " copyto_vec_int: v[" << i << "] = " << lval << " cannot be converted to `integer'" );
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, lval
+          );
           val = static_cast<int_type>( lval );
           break;
         case GC_type::REAL:
           rval = _r();
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<int_type>( rval ),
-            where << " copyto_vec_int: v[" << i << "] = " << rval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, rval
+          );
           val = static_cast<int_type>( rval );
           break;
         case GC_type::VEC_BOOL: val = _v_b()[i] ? 1 : 0; break;
         case GC_type::VEC_INTEGER: val = _v_i()[i]; break;
         case GC_type::VEC_LONG:
           lval = _v_l()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<int_type>( lval ),
-            where << " copyto_vec_int: v[" << i << "] = " << lval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, lval
+          );
           val = static_cast<int_type>( lval );
           break;
         case GC_type::VEC_REAL:
           rval = _v_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<int_type>( rval ),
-            where << " copyto_vec_int: v[" << i << "] = " << rval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, rval
+          );
           val = static_cast<int_type>( rval );
           break;
         case GC_type::COMPLEX:
           cval = _c();
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<int_type>( cval.real() ),
-            where << " copyto_vec_int: v[" << i << "] = " << cval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, to_string( cval )
+          );
           val = static_cast<int_type>( cval.real() );
           break;
         case GC_type::VEC_COMPLEX:
           cval = _v_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<int_type>( cval.real() ),
-            where << " copyto_vec_int: v[" << i << "] = " << cval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, to_string( cval )
+          );
           val = static_cast<int_type>( cval.real() );
           break;
         case GC_type::MAT_INTEGER: val = _m_i()[i]; break;
         case GC_type::MAT_LONG:
           lval = _m_l()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<int_type>( lval ),
-            where << " copyto_vec_int: v[" << i << "] = " << lval << " cannot be converted to `integer'" );
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, lval
+          );
           val = static_cast<int_type>( lval );
           break;
         case GC_type::MAT_REAL:
           rval = _m_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<int_type>( rval ),
-            where << " copyto_vec_int: v[" << i << "] = " << rval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, rval
+          );
           val = static_cast<int_type>( rval );
           break;
         case GC_type::MAT_COMPLEX:
           cval = _m_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<int_type>( cval.real() ),
-            where << " copyto_vec_int: v[" << i << "] = " << cval << " cannot be converted to `integer'" )
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `integer'",
+            where, i, to_string( cval )
+          );
           val = static_cast<int_type>( cval.real() );
           break;
         case GC_type::VECTOR: val = ( *this )( i ).get_as_int( "GenericContainer::copyto_vec_int " ); break;
@@ -148,8 +166,7 @@ namespace GC_namespace
         case GC_type::VEC_POINTER:
         case GC_type::VEC_STRING:
         case GC_type::MAP:
-          GC_DO_ERROR(
-            where << " bad data type: `" << to_string( get_type() ) << "' cannot be converted into `vec_int_type'" )
+          GC_assert( false, "{} bad data type: `{}' cannot be converted into `vec_int_type'", where, to_string( get_type() ) );
       }
       v.emplace_back( val );
     }
@@ -175,87 +192,111 @@ namespace GC_namespace
         case GC_type::BOOL: val = _b() ? 1 : 0; break;
         case GC_type::INTEGER:
           ival = _i();
-          GC_ASSERT(
+          GC_assert(
             std::in_range<uint_type>( ival ),
-            where << " copyto_vec_uint: value = " << ival << " cannot be converted to `unsigned integer'" );
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, ival
+          );
           val = static_cast<uint_type>( ival );
           break;
         case GC_type::LONG:
           lval = _l();
-          GC_ASSERT(
+          GC_assert(
             std::in_range<uint_type>( lval ),
-            where << " copyto_vec_uint: v[" << i << "] = " << lval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, lval
+          );
           val = static_cast<uint_type>( lval );
           break;
         case GC_type::REAL:
           rval = _r();
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<uint_type>( rval ),
-            where << " copyto_vec_uint: v[" << i << "] = " << rval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, rval
+          );
           val = static_cast<uint_type>( rval );
           break;
         case GC_type::VEC_BOOL: val = _v_b()[i] ? 1 : 0; break;
         case GC_type::VEC_INTEGER:
           ival = _v_i()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<uint_type>( ival ),
-            where << " copyto_vec_uint: value = " << ival << " cannot be converted to `unsigned integer'" );
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, ival
+          );
           val = static_cast<uint_type>( ival );
           break;
         case GC_type::VEC_LONG:
           lval = _v_l()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<uint_type>( lval ),
-            where << " copyto_vec_uint: v[" << i << "] = " << lval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, lval
+          );
           val = static_cast<uint_type>( lval );
           break;
         case GC_type::VEC_REAL:
           rval = _v_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<uint_type>( rval ),
-            where << " copyto_vec_uint: v[" << i << "] = " << rval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, rval
+          );
           val = static_cast<uint_type>( rval );
           break;
         case GC_type::COMPLEX:
           cval = _c();
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<uint_type>( cval.real() ),
-            where << " copyto_vec_uint: v[" << i << "] = " << cval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, to_string( cval )
+          );
           val = static_cast<uint_type>( cval.real() );
           break;
         case GC_type::VEC_COMPLEX:
           cval = _v_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<uint_type>( cval.real() ),
-            where << " copyto_vec_int: v[" << i << "] = " << cval << " cannot be converted to `unsigned integer'" );
+            "{} copyto_vec_int: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, to_string( cval )
+          );
           val = static_cast<uint_type>( cval.real() );
           break;
         case GC_type::MAT_INTEGER:
           ival = _m_i()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<uint_type>( ival ),
-            where << " copyto_vec_uint: value = " << ival << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, ival
+          );
           val = static_cast<uint_type>( ival );
           break;
         case GC_type::MAT_LONG:
           lval = _m_l()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<uint_type>( lval ),
-            where << " copyto_vec_uint: v[" << i << "] = " << lval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, lval
+          );
           val = static_cast<uint_type>( lval );
           break;
         case GC_type::MAT_REAL:
           rval = _m_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<uint_type>( rval ),
-            where << " copyto_vec_uint: v[" << i << "] = " << rval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, rval
+          );
           val = static_cast<uint_type>( rval );
           break;
         case GC_type::MAT_COMPLEX:
           cval = _m_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<uint_type>( cval.real() ),
-            where << " copyto_vec_uint: v[" << i << "] = " << cval << " cannot be converted to `unsigned integer'" )
+            "{} copyto_vec_uint: v[{}] = {} cannot be converted to `unsigned integer'",
+            where, i, to_string( cval )
+          );
           val = static_cast<uint_type>( cval.real() );
           break;
         case GC_type::VECTOR: val = ( *this )( i ).get_as_uint( "GenericContainer::copyto_vec_uint " ); break;
@@ -265,8 +306,7 @@ namespace GC_namespace
         case GC_type::VEC_POINTER:
         case GC_type::VEC_STRING:
         case GC_type::MAP:
-          GC_DO_ERROR(
-            where << " bad data type: `" << to_string( get_type() ) << "' cannot be converted into `vec_uint_type'" )
+          GC_assert( false, "{} bad data type: `{}' cannot be converted into `vec_uint_type'", where, to_string( get_type() ) );
       }
       v.emplace_back( val );
     }
@@ -292,9 +332,11 @@ namespace GC_namespace
         case GC_type::LONG: val = _l(); break;
         case GC_type::REAL:
           rval = _r();
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<long_type>( rval ),
-            where << " copyto_vec_long: v[" << i << "] = " << rval << " cannot be converted to `long'" )
+            "{} copyto_vec_long: v[{}] = {} cannot be converted to `long'",
+            where, i, rval
+          );
           val = static_cast<long_type>( rval );
           break;
         case GC_type::VEC_BOOL: val = _v_b()[i] ? 1 : 0; break;
@@ -302,39 +344,49 @@ namespace GC_namespace
         case GC_type::VEC_LONG: val = _v_l()[i]; break;
         case GC_type::VEC_REAL:
           rval = _v_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<long_type>( rval ),
-            where << " copyto_vec_long: v[" << i << "] = " << rval << " cannot be converted to `long'" )
+            "{} copyto_vec_long: v[{}] = {} cannot be converted to `long'",
+            where, i, rval
+          );
           val = static_cast<long_type>( rval );
           break;
         case GC_type::COMPLEX:
           cval = _c();
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<long_type>( cval.real() ),
-            where << " copyto_vec_long: v[" << i << "] = " << cval << " cannot be converted to `long'" )
+            "{} copyto_vec_long: v[{}] = {} cannot be converted to `long'",
+            where, i, to_string( cval )
+          );
           val = static_cast<long_type>( cval.real() );
           break;
         case GC_type::VEC_COMPLEX:
           cval = _v_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<long_type>( cval.real() ),
-            where << " copyto_vec_long: v[" << i << "] = " << cval << " cannot be converted to `long'" )
+            "{} copyto_vec_long: v[{}] = {} cannot be converted to `long'",
+            where, i, to_string( cval )
+          );
           val = static_cast<long_type>( cval.real() );
           break;
         case GC_type::MAT_INTEGER: val = static_cast<long_type>( _m_i()[i] ); break;
         case GC_type::MAT_LONG: val = _m_l()[i]; break;
         case GC_type::MAT_REAL:
           rval = _m_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<long_type>( rval ),
-            where << " copyto_vec_long: v[" << i << "] = " << rval << " cannot be converted to `long'" )
+            "{} copyto_vec_long: v[{}] = {} cannot be converted to `long'",
+            where, i, rval
+          );
           val = static_cast<long_type>( rval );
           break;
         case GC_type::MAT_COMPLEX:
           cval = _m_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<long_type>( cval.real() ),
-            where << " copyto_vec_long: v[" << i << "] = " << cval << " cannot be converted to `long'" )
+            "{} copyto_vec_long: v[{}] = {} cannot be converted to `long'",
+            where, i, to_string( cval )
+          );
           val = static_cast<long_type>( cval.real() );
           break;
         case GC_type::VECTOR: val = ( *this )( i ).get_as_long( "copyto_vec_long" ); break;
@@ -344,8 +396,7 @@ namespace GC_namespace
         case GC_type::VEC_POINTER:
         case GC_type::VEC_STRING:
         case GC_type::MAP:
-          GC_DO_ERROR(
-            where << " bad data type: `" << to_string( get_type() ) << "' cannot be converted into `vec_long_type'" )
+          GC_assert( false, "{} bad data type: `{}' cannot be converted into `vec_long_type'", where, to_string( get_type() ) );
       }
       v.emplace_back( val );
     }
@@ -371,87 +422,111 @@ namespace GC_namespace
         case GC_type::BOOL: val = _b() ? 1 : 0; break;
         case GC_type::INTEGER:
           ival = _i();
-          GC_ASSERT(
+          GC_assert(
             std::in_range<ulong_type>( ival ),
-            where << " copyto_vec_ulong: value = " << ival << " cannot be converted to `std::size_t long'" );
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, ival
+          );
           val = static_cast<ulong_type>( ival );
           break;
         case GC_type::LONG:
           lval = _l();
-          GC_ASSERT(
+          GC_assert(
             std::in_range<ulong_type>( lval ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << lval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, lval
+          );
           val = static_cast<ulong_type>( lval );
           break;
         case GC_type::REAL:
           rval = _r();
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<ulong_type>( rval ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << rval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, rval
+          );
           val = static_cast<ulong_type>( rval );
           break;
         case GC_type::VEC_BOOL: val = _v_b()[i] ? 1 : 0; break;
         case GC_type::VEC_INTEGER:
           ival = _v_i()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<ulong_type>( ival ),
-            where << " copyto_vec_ulong: value = " << ival << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, ival
+          );
           val = static_cast<ulong_type>( ival );
           break;
         case GC_type::VEC_LONG:
           lval = _v_l()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<ulong_type>( lval ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << lval << " cannot be converted to `std::size_t long'" );
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, lval
+          );
           val = static_cast<ulong_type>( lval );
           break;
         case GC_type::VEC_REAL:
           rval = _v_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<ulong_type>( rval ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << rval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, rval
+          );
           val = static_cast<ulong_type>( rval );
           break;
         case GC_type::COMPLEX:
           cval = _c();
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<ulong_type>( cval.real() ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << cval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, to_string(cval)
+          );
           val = static_cast<ulong_type>( cval.real() );
           break;
         case GC_type::VEC_COMPLEX:
           cval = _v_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<ulong_type>( cval.real() ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << cval << " cannot be converted to `std::size_t long'" );
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, to_string(cval)
+          );
           val = static_cast<ulong_type>( cval.real() );
           break;
         case GC_type::MAT_INTEGER:
           ival = _m_i()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<ulong_type>( ival ),
-            where << " copyto_vec_ulong: value = " << ival << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, ival
+          );
           val = static_cast<ulong_type>( ival );
           break;
         case GC_type::MAT_LONG:
           lval = _m_l()[i];
-          GC_ASSERT(
+          GC_assert(
             std::in_range<ulong_type>( lval ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << lval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, lval
+          );
           val = static_cast<ulong_type>( lval );
           break;
         case GC_type::MAT_REAL:
           rval = _m_r()[i];
-          GC_ASSERT(
+          GC_assert(
             GC_details::real_fits_integral<ulong_type>( rval ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << rval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, rval
+          );
           val = static_cast<ulong_type>( rval );
           break;
         case GC_type::MAT_COMPLEX:
           cval = _m_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ) && GC_details::real_fits_integral<ulong_type>( cval.real() ),
-            where << " copyto_vec_ulong: v[" << i << "] = " << cval << " cannot be converted to `std::size_t long'" )
+            "{} copyto_vec_ulong: v[{}] = {} cannot be converted to `std::size_t long'",
+            where, i, to_string( cval )
+          );
           val = static_cast<ulong_type>( cval.real() );
           break;
         case GC_type::VECTOR: val = ( *this )( i ).get_as_ulong( "copyto_vec_ulong" ); break;
@@ -461,8 +536,7 @@ namespace GC_namespace
         case GC_type::VEC_POINTER:
         case GC_type::VEC_STRING:
         case GC_type::MAP:
-          GC_DO_ERROR(
-            where << " bad data type: `" << to_string( get_type() ) << "' cannot be converted into `vec_ulong_type'" )
+          GC_assert( false, "{} bad data type: `{}' cannot be converted into `vec_ulong_type'", where, to_string( get_type() ) );
       }
       v.emplace_back( val );
     }
@@ -493,16 +567,20 @@ namespace GC_namespace
         case GC_type::VEC_REAL: val = _v_r()[i]; break;
         case GC_type::COMPLEX:
           cval = _c();
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ),
-            where << " copyto_vec_real: v[" << i << "] = " << cval << " cannot be converted to `real_type'" )
+            "{} copyto_vec_real: v[{}] = {} cannot be converted to `real_type'",
+            where, i, to_string( cval )
+          );
           val = cval.real();
           break;
         case GC_type::VEC_COMPLEX:
           cval = _v_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ),
-            where << " copyto_vec_real: v[" << i << "] = " << cval << " cannot be converted to `real_type'" )
+            "{} copyto_vec_real: v[{}] = {} cannot be converted to `real_type'",
+            where, i, to_string( cval )
+          );
           val = cval.real();
           break;
         case GC_type::MAT_INTEGER: val = static_cast<real_type>( _m_i()[i] ); break;
@@ -510,9 +588,11 @@ namespace GC_namespace
         case GC_type::MAT_REAL: val = _m_r()[i]; break;
         case GC_type::MAT_COMPLEX:
           cval = _m_c()[i];
-          GC_ASSERT(
+          GC_assert(
             isZero0( cval.imag() ),
-            where << " copyto_vec_real: v[" << i << "] = " << cval << " cannot be converted to `real_type'" )
+            "{} copyto_vec_real: v[{}] = {} cannot be converted to `real_type'",
+            where, i, to_string( cval )
+          );
           val = cval.real();
           break;
         case GC_type::VECTOR: val = ( *this )( i ).get_number(); break;
@@ -522,8 +602,11 @@ namespace GC_namespace
         case GC_type::VEC_POINTER:
         case GC_type::VEC_STRING:
         case GC_type::MAP:
-          GC_DO_ERROR(
-            where << " bad data type: `" << to_string( get_type() ) << "' cannot be converted into `vec_real_type'" )
+          GC_assert(
+            false,
+            "{} bad data type: `{}' cannot be converted into `vec_real_type'",
+            where, to_string( get_type() )
+          );
       }
       v.emplace_back( val );
     }
@@ -565,9 +648,11 @@ namespace GC_namespace
         case GC_type::VEC_POINTER:
         case GC_type::VEC_STRING:
         case GC_type::MAP:
-          GC_DO_ERROR(
-            where << " bad data type: `" << to_string( get_type() )
-                  << "' cannot be converted into `vec_complex_type'" )
+          GC_assert(
+            false,
+            "{} bad data type: `{}' cannot be converted into `vec_complex_type'",
+            where, to_string( get_type() )
+          );
       }
       v.emplace_back( val );
     }
@@ -613,8 +698,7 @@ namespace GC_namespace
       case GC_type::POINTER:
       case GC_type::VEC_POINTER:
       case GC_type::MAP:
-        GC_DO_ERROR(
-          where << " bad data type: `" << to_string( get_type() ) << "' cannot be converted into `vec_string_type'" )
+        GC_assert( false, "{} bad data type: `{}' cannot be converted into `vec_string_type'", where, to_string( get_type() ) );
     }
   }
 
@@ -672,10 +756,11 @@ namespace GC_namespace
           auto nr{ v[0].get_num_elements() };
           for ( std::size_t j{ 1 }; j < nc; ++j )
           {
-            GC_ASSERT(
+            GC_assert(
               v[j].get_num_elements() == nr,
-              where << " copyto_mat_int() cannot promote vector of size " << v[j].get_num_elements()
-                    << " to a column of mat_int_type of size " << nr << " x " << nc )
+              "{} copyto_mat_int() cannot promote vector of size {} to a column of mat_int_type of size {} x {}",
+              where, v[j].get_num_elements(), nr, nc
+            );
           }
           m.resize( nr, nc );
           for ( std::size_t j{ 0 }; j < nc; ++j )
@@ -686,7 +771,7 @@ namespace GC_namespace
           }
           break;  // finito esco.
         }
-        GC_DO_ERROR( where << " copyto_mat_int() cannot promote vector of size " << v.size() << " to mat_int_type" )
+        GC_assert( false, "{} copyto_mat_int() cannot promote vector of size {} to mat_int_type", where, v.size() );
       }
       case GC_type::MAT_LONG:
       case GC_type::MAT_REAL:
@@ -702,7 +787,7 @@ namespace GC_namespace
       case GC_type::VEC_STRING:
       case GC_type::MAT_COMPLEX:
       case GC_type::MAP:
-        GC_DO_ERROR( where << " copyto_mat_int() cannot promote " << get_type_name() << " to mat_int_type" )
+        GC_assert( false, "{} copyto_mat_int() cannot promote {} to mat_int_type", where, get_type_name() );
     }
   }
 
@@ -780,10 +865,11 @@ namespace GC_namespace
           std::size_t nr{ v[0].get_num_elements() };
           for ( std::size_t j{ 1 }; j < nc; ++j )
           {
-            GC_ASSERT(
+            GC_assert(
               v[j].get_num_elements() == nr,
-              where << " copyto_mat_long() cannot promote vector of size " << v[j].get_num_elements()
-                    << " to a column of mat_long_type of size " << nr << " x " << nc )
+              "{} copyto_mat_long() cannot promote vector of size {} to a column of mat_long_type of size {} x {}",
+              where, v[j].get_num_elements(), nr, nc
+            );
           }
           m.resize( nr, nc );
           for ( std::size_t j{ 0 }; j < nc; ++j )
@@ -794,7 +880,7 @@ namespace GC_namespace
           }
           break;  // finito esco.
         }
-        GC_DO_ERROR( where << " copyto_mat_long() cannot promote vector of size " << v.size() << " to mat_long_type" )
+        GC_assert( false, "{} copyto_mat_long() cannot promote vector of size {} to mat_long_type", where, v.size() );
       }
       case GC_type::MAT_REAL:
       case GC_type::REAL:
@@ -807,7 +893,7 @@ namespace GC_namespace
       case GC_type::VEC_STRING:
       case GC_type::MAT_COMPLEX:
       case GC_type::MAP:
-        GC_DO_ERROR( where << "copyto_mat_long() cannot promote " << get_type_name() << " to mat_long_type" )
+        GC_assert( false, "{} copyto_mat_long() cannot promote {} to mat_long_type", where, get_type_name() );
     }
   }
 
@@ -905,10 +991,11 @@ namespace GC_namespace
           auto nr{ v[0].get_num_elements() };
           for ( std::size_t j{ 1 }; j < nc; ++j )
           {
-            GC_ASSERT(
+            GC_assert(
               v[j].get_num_elements() == nr,
-              where << " copyto_mat_real() cannot promote vector of size " << v[j].get_num_elements()
-                    << " to a column of mat_real_type of size " << nr << " x " << nc )
+              "{} copyto_mat_real() cannot promote vector of size {} to a column of mat_real_type of size {} x {}",
+              where, v[j].get_num_elements(), nr, nc
+            );
           }
           m.resize( nr, nc );
           for ( std::size_t j{ 0 }; j < nc; ++j )
@@ -919,7 +1006,7 @@ namespace GC_namespace
           }
           break;  // finito esco.
         }
-        GC_DO_ERROR( where << " copyto_mat_real() cannot promote vector of size " << v.size() << " to mat_real_type" )
+        GC_assert( false, "{} copyto_mat_real() cannot promote vector of size {} to mat_real_type", where, v.size() );
       }
       case GC_type::POINTER:
       case GC_type::STRING:
@@ -929,7 +1016,7 @@ namespace GC_namespace
       case GC_type::VEC_STRING:
       case GC_type::MAT_COMPLEX:
       case GC_type::MAP:
-        GC_DO_ERROR( where << " copyto_mat_real() cannot promote " << get_type_name() << " to mat_real_type" )
+        GC_assert( false, "{} copyto_mat_real() cannot promote {} to mat_real_type", where, get_type_name() );
     }
   }
 
@@ -1047,10 +1134,11 @@ namespace GC_namespace
           auto nr{ v[0].get_num_elements() };
           for ( std::size_t j{ 1 }; j < nc; ++j )
           {
-            GC_ASSERT(
+            GC_assert(
               v[j].get_num_elements() == nr,
-              where << " copyto_mat_complex() cannot promote vector of size " << v[j].get_num_elements()
-                    << " to a column of mat_complex_type of size " << nr << " x " << nc )
+              "{} copyto_mat_complex() cannot promote vector of size {} to a column of mat_complex_type of size {} x {}",
+              where, v[j].get_num_elements(), nr, nc
+            );
           }
           m.resize( nr, nc );
           for ( std::size_t j{ 0 }; j < nc; ++j )
@@ -1061,15 +1149,14 @@ namespace GC_namespace
           }
           break;  // finito esco.
         }
-        GC_DO_ERROR(
-          where << " copyto_mat_complex() cannot promote vector of size " << v.size() << " to mat_complex_type" )
+        GC_assert( false, "{} copyto_mat_complex() cannot promote vector of size {} to mat_complex_type", where, v.size() );
       }
       case GC_type::POINTER:
       case GC_type::STRING:
       case GC_type::VEC_POINTER:
       case GC_type::VEC_STRING:
       case GC_type::MAP:
-        GC_DO_ERROR( where << "copyto_mat_complex() cannot promote " << get_type_name() << " to mat_complex_type" )
+        GC_assert( false, "{} copyto_mat_complex() cannot promote {} to mat_complex_type", where, get_type_name() );
     }
   }
 
@@ -1105,7 +1192,7 @@ namespace GC_namespace
       case GC_type::MAT_REAL:
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_int() cannot promote " << get_type_name() << " to int" )
+      case GC_type::MAP: GC_assert( false, "promote_to_int() cannot promote {} to int",  get_type_name() );
     }
     return *this;
   }
@@ -1134,7 +1221,7 @@ namespace GC_namespace
       case GC_type::MAT_REAL:
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_long() cannot promote " << get_type_name() << " to long" )
+      case GC_type::MAP: GC_assert( false, "promote_to_long() cannot promote {} to long", get_type_name() );
     }
     return *this;
   }
@@ -1163,7 +1250,7 @@ namespace GC_namespace
       case GC_type::MAT_REAL:
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_real() cannot promote " << get_type_name() << " to real" )
+      case GC_type::MAP: GC_assert( false, "promote_to_real() cannot promote {} to real", get_type_name() );
     }
     return *this;
   }
@@ -1193,7 +1280,7 @@ namespace GC_namespace
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
       case GC_type::MAP:
-        GC_DO_ERROR( "promote_to_complex_type() cannot promote " << get_type_name() << " to real type" )
+        GC_assert( false, "promote_to_complex_type() cannot promote {} to real type", get_type_name() );
     }
     return *this;
   }
@@ -1245,7 +1332,7 @@ namespace GC_namespace
       case GC_type::MAT_REAL:
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_vec_int() cannot promote " << get_type_name() << " to vec_int_type" )
+      case GC_type::MAP: GC_assert( false, "promote_to_vec_int() cannot promote {} to vec_int_type", get_type_name() );
     }
     return *this;
   }
@@ -1311,7 +1398,7 @@ namespace GC_namespace
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
       case GC_type::MAP:
-        GC_DO_ERROR( "promote_to_vec_long() cannot promote " << get_type_name() << " to vec_long_type" )
+        GC_assert( false, "promote_to_vec_long() cannot promote {} to vec_long_type", get_type_name() );
     }
     return *this;
   }
@@ -1387,7 +1474,7 @@ namespace GC_namespace
       case GC_type::MAT_REAL:
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_vec_real() cannot promote " << get_type_name() << " vec_real_type" )
+      case GC_type::MAP: GC_assert( false, "promote_to_vec_real() cannot promote {} vec_real_type", get_type_name() );
     }
     return *this;
   }
@@ -1478,7 +1565,7 @@ namespace GC_namespace
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
       case GC_type::MAP:
-        GC_DO_ERROR( "promote_to_vec_real() cannot promote " << get_type_name() << " to vec_complex_type" )
+        GC_assert( false, "promote_to_vec_real() cannot promote {} to vec_complex_type", get_type_name() );
     }
     return *this;
   }
@@ -1536,7 +1623,7 @@ namespace GC_namespace
       case GC_type::VEC_STRING:
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_mat_int() cannot promote " << get_type_name() << " to mat_int_type" )
+      case GC_type::MAP: GC_assert( false, "promote_to_mat_int() cannot promote {} to mat_int_type", get_type_name() );
     }
     return *this;
   }
@@ -1607,7 +1694,7 @@ namespace GC_namespace
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
       case GC_type::MAP:
-        GC_DO_ERROR( "promote_to_mat_long() cannot promote " << get_type_name() << " to mat_long_type" )
+        GC_assert( false, "promote_to_mat_long() cannot promote {} to mat_long_type", get_type_name() );
     }
     return *this;
   }
@@ -1696,7 +1783,7 @@ namespace GC_namespace
       case GC_type::MAT_COMPLEX:
       case GC_type::VECTOR:
       case GC_type::MAP:
-        GC_DO_ERROR( "promote_to_mat_real() cannot promote " << get_type_name() << " to mat_real_type" )
+        GC_assert( false, "promote_to_mat_real() cannot promote {} to mat_real_type", get_type_name() );
     }
     return *this;
   }
@@ -1799,7 +1886,7 @@ namespace GC_namespace
       case GC_type::VEC_STRING:
       case GC_type::VECTOR:
       case GC_type::MAP:
-        GC_DO_ERROR( "promote_to_mat_real() cannot promote " << get_type_name() << " to mat_complex_type" )
+        GC_assert( false, "promote_to_mat_real() cannot promote {} to mat_complex_type", get_type_name() );
     }
     return *this;
   }
@@ -1917,7 +2004,7 @@ namespace GC_namespace
       case GC_type::MAT_LONG:
       case GC_type::MAT_REAL:
       case GC_type::MAT_COMPLEX:
-      case GC_type::MAP: GC_DO_ERROR( "promote_to_vector() cannot promote " << get_type_name() << " to vector_type" )
+      case GC_type::MAP: GC_assert( false, "promote_to_vector() cannot promote {} to vector_type", get_type_name() );
     }
     return *this;
   }

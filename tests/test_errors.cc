@@ -14,12 +14,6 @@
 using namespace GC_namespace;
 using Catch::Matchers::ContainsSubstring;
 
-TEST_CASE( "exception() static helper throws runtime_error", "[errors]" )
-{
-  CHECK_THROWS_AS( GenericContainer::exception( "boom" ), std::runtime_error );
-  CHECK_THROWS_WITH( GenericContainer::exception( "boom" ), ContainsSubstring( "boom" ) );
-}
-
 TEST_CASE( "type mismatch message names expected and actual types", "[errors]" )
 {
   GenericContainer gc;

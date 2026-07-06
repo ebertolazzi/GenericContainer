@@ -39,7 +39,8 @@ var NAVTREE =
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
-        [ "Typedefs", "namespacemembers_type.html", null ]
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -58,6 +59,8 @@ var NAVTREE =
       [ "Globals", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
+        [ "Variables", "globals_vars.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
@@ -68,11 +71,13 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#a3d25fa0f0526d422ff0e804f56ca1aaa",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#a93ac708146cd961820ab7486b9f456ef",
-"d9/d35/class_g_c__namespace_1_1_generic_container.html#af7e0cd61280f150e0f6640208623908a"
+"d0/d69/class_generic_container.html#abbf75ebe2b15cc6b125a0118f30b70b7",
+"d8/d51/namespace_g_c__namespace.html#aad3d5c33d82da816678e3d65a224036e",
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#a54ea70bc4bb5e79647c37b2dde9cf78b",
+"d9/d35/class_g_c__namespace_1_1_generic_container.html#ab7b95bb934b3f0cd37af2404abee6b23",
+"db/de3/group___g_c.html#ga8b6733d7a9042172ea688e83f13f0eb0"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronization';
-var SYNCOFFMSG = 'click to enable panel synchronization';
-var LISTOFALLMEMBERS = 'List of all members';
+const SYNCONMSG = 'click to disable panel synchronization';
+const SYNCOFFMSG = 'click to enable panel synchronization';
+const LISTOFALLMEMBERS = 'List of all members';

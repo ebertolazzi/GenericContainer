@@ -1,7 +1,7 @@
 var searchData=
 [
   ['the_20class_20and_20features_0',['Brief description of the class and features',['../d4/d8e/_introduction.html#autotoc_md0',1,'']]],
-  ['the_20genericcontainer_1',['the GenericContainer',['../db/de3/group___g_c.html#autotoc_md70',1,'Accessing Data from the <span class="tt">GenericContainer</span>'],['../db/de3/group___g_c.html#autotoc_md65',1,'Setting Data in the <span class="tt">GenericContainer</span>']]],
+  ['the_20genericcontainer_1',['the GenericContainer',['../db/de3/group___g_c.html#autotoc_md70',1,'Accessing Data from the &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;'],['../db/de3/group___g_c.html#autotoc_md65',1,'Setting Data in the &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;']]],
   ['the_20installation_2',['Verify the Installation',['../df/d70/_install.html#autotoc_md10',1,'']]],
   ['the_20library_3',['Compile the Library',['../df/d70/_install.html#autotoc_md5',1,'']]],
   ['the_20library_4',['check the library',['../df/d70/_install.html#autotoc_md8',1,'']]],
@@ -24,5 +24,5 @@ var searchData=
   ['toml_20from_20an_20input_20stream_21',['Loading TOML from an Input Stream',['../d2/ddf/group___t_o_m_l.html#autotoc_md102',1,'']]],
   ['txt_22',['file &lt;span class=&quot;tt&quot;&gt;example07_data.txt&lt;/span&gt;',['../dc/dbb/_usage.html#autotoc_md25',1,'']]],
   ['types_23',['Supported types',['../d4/d8e/_introduction.html#autotoc_md3',1,'']]],
-  ['types_3a_24',['Supported Data Types:',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#autotoc_md117',1,'']]]
+  ['types_3a_24',['Supported Data Types:',['../d0/d69/class_generic_container.html#autotoc_md117',1,'']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['num_5fcols_0',['num_cols',['../df/def/class_g_c__namespace_1_1mat__type.html#a89a7a394406c6b25ef940370e5a16e15',1,'GC_namespace::mat_type::num_cols()'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#ab1daf3f2fd1cfb1ebca5489145dcf7ab',1,'GC_namespace::GenericContainer::num_cols()']]],
-  ['num_5frows_1',['num_rows',['../df/def/class_g_c__namespace_1_1mat__type.html#af210071c8d5b4482c1db6b78291b11de',1,'GC_namespace::mat_type::num_rows()'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a892a5efad763c4b3cc523fb1d029d968',1,'GC_namespace::GenericContainer::num_rows()']]],
-  ['numcols_2',['numCols',['../df/def/class_g_c__namespace_1_1mat__type.html#af6a476d14f5a4ab06d9e3f7fa2e166c0',1,'GC_namespace::mat_type']]],
-  ['numrows_3',['numRows',['../df/def/class_g_c__namespace_1_1mat__type.html#a06bddd449d06fe56ca2248f036aaf6db',1,'GC_namespace::mat_type']]]
+  ['load_0',['load',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aeeefa327fb55b80c7b8be7895fd49696',1,'GC_namespace::GenericContainer::load()'],['../d0/d69/class_generic_container.html#aeeefa327fb55b80c7b8be7895fd49696',1,'GenericContainer::load()']]],
+  ['lua_5fgc_5fto_5fglobal_1',['Lua_GC_to_global',['../d0/d27/group___l_u_a.html#gace50bbb9d1173c77e0c40a1c5e3fb5db',1,'GC_namespace']]],
+  ['lua_5fglobal_5fto_5fgc_2',['Lua_global_to_GC',['../d0/d27/group___l_u_a.html#ga4d12752607c583a39860c5d23caf68e4',1,'GC_namespace']]],
+  ['luainterpreter_3',['LuaInterpreter',['../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html#a2c67dc333eb7557ae31c0548072d9215',1,'GC_namespace::LuaInterpreter']]]
 ];

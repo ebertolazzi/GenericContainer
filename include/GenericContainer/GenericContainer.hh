@@ -55,59 +55,45 @@
 
 #include "GenericContainerConfig.hh"
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-#ifndef GC_DO_ERROR
-#define GC_DO_ERROR( MSG )                             \
-  {                                                    \
-    std::ostringstream ost;                            \
-    ost << "in GenericContainer: " << MSG << '\n';     \
-    ::GC_namespace::gc_do_error( ost.str() );          \
-  }
-#endif
-
-#ifndef GC_ASSERT
-#define GC_ASSERT( COND, MSG ) \
-  if ( !( COND ) ) [[unlikely]] GC_DO_ERROR( MSG )
-#endif
-
-#ifndef GC_WARNING
-#define GC_WARNING( COND, MSG )                                                                                   \
-  if ( !( COND ) )                                                                                                \
-  {                                                                                                               \
-    cout << "On line: " << __LINE__ << " file: " << __FILE__ << " in GenericContainer\nWARNING: " << MSG << '\n'; \
-  }
-#endif
-
-#ifdef __GNUC__
-#define GC_NO_RETURN __attribute__( ( noreturn ) )
-#else
-#define GC_NO_RETURN
-#endif
-
-#endif
-
 //!
 //! Namespace for the Generic Container
 //!
 namespace GC_namespace
 {
 
-  //!
-  //! \brief Exception type thrown by every GenericContainer error path.
-  //!
-  //! Derives from `std::runtime_error`, so pre-existing handlers keep
-  //! working; new code can catch `GenericError` specifically.
-  //!
-  class GenericError : public std::runtime_error
-  {
-  public:
-    using std::runtime_error::runtime_error;
-  };
+  template <typename... Args> inline void print( std::format_string<Args...> fmt, Args &&... args ) { std::cout << std::format( fmt, std::forward<Args>( args )... ); }
 
-  //! Throw a GenericError carrying `msg`; single funnel for all
-  //! GC_DO_ERROR/GC_ASSERT failures (defined in GenericContainer.cc).
-  [[noreturn]] void gc_do_error( std::string const & msg );
+  template <typename... Args> inline void eprint( std::format_string<Args...> fmt, Args &&... args ) { std::cerr << std::format( fmt, std::forward<Args>( args )... ); }
+
+  template <typename... Args> [[noreturn]] inline void throw_runtime_error( std::format_string<Args...> fmt, Args &&... args )
+  { throw std::runtime_error( std::format( fmt, std::forward<Args>( args )... ) ); }
+
+  [[noreturn]] inline void throw_runtime_error( std::string const & last_error ) { throw std::runtime_error( last_error ); }
+
+  template <typename... Args> inline void GC_assert( bool cond, char const last_error[] )
+  {
+    if ( !cond ) throw_runtime_error( std::string(last_error) );
+  }
+
+  template <typename... Args> inline void GC_assert( bool cond, std::string const & last_error )
+  {
+    if ( !cond ) throw_runtime_error( last_error );
+  }
+
+  template <typename... Args> inline void GC_assert( bool cond, std::format_string<Args...> fmt, Args &&... args )
+  {
+    if ( !cond ) throw_runtime_error( fmt, std::forward<Args>( args )... );
+  }
+
+  template <typename... Args> inline void GC_warning( bool cond, std::string const & warn )
+  {
+    if ( !cond ) std::cout << warn;
+  }
+
+  template <typename... Args> inline void GC_warning( bool cond, std::format_string<Args...> fmt, Args &&... args )
+  {
+    if ( !cond ) print( fmt, std::forward<Args>( args )... );
+  }
 
   using std::cin;
   using std::complex;
@@ -142,8 +128,6 @@ namespace GC_namespace
   //! file input streams.
   //!
   using istream_type = std::basic_istream<char>;
-
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
 
   using std::int32_t;
   using std::int64_t;
@@ -269,8 +253,6 @@ namespace GC_namespace
 
   }  // namespace GC_details
 
-#endif
-
   // ---------------------------------------------------------------------------
   //!
   //! \brief Dense dynamic matrix type backed by `std::vector`.
@@ -336,28 +318,33 @@ namespace GC_namespace
     //! Bounds-checked element access (throws on out-of-range indices).
     TYPE const & operator()( std::size_t const i, std::size_t const j ) const
     {
-      GC_ASSERT(
+      GC_assert(
         i < num_rows() && j < num_cols(),
-        "mat_type::operator() (" << i << ", " << j << ") out of range [0," << num_rows() << ") x [0," << num_cols()
-                                 << ")" )
+        "mat_type::operator() ({},{}) out of range [0,{}) x [0,{})",
+        i, j, num_rows(), num_cols()
+      );
       return Base::operator[]( i + j * m_num_rows );
     }
 
     //! Bounds-checked element access (throws on out-of-range indices).
     TYPE & operator()( std::size_t const i, std::size_t const j )
     {
-      GC_ASSERT(
+      GC_assert(
         i < num_rows() && j < num_cols(),
-        "mat_type::operator() (" << i << ", " << j << ") out of range [0," << num_rows() << ") x [0," << num_cols()
-                                 << ")" )
+        "mat_type::operator() ({},{}) out of range [0,{}) x [0,{})",
+        i, j, num_rows(), num_cols()
+      );
       return Base::operator[]( i + j * m_num_rows );
     }
 
     //! Copy column `nc` into vector `C`.
     void get_column( std::size_t const nc, vector<TYPE> & C ) const
     {
-      GC_ASSERT(
-        nc < num_cols(), "mat_type::get_column(" << nc << ",C) column index out of range max = " << num_cols() - 1 );
+      GC_assert(
+        nc < num_cols(), 
+        "mat_type::get_column({},C) column index out of range max = {}",
+        nc, num_cols() - 1
+      );
       C.resize( num_rows() );
       for ( std::size_t i{ 0 }; i < num_rows(); ++i ) C[i] = Base::operator[]( i + nc * m_num_rows );
     }
@@ -371,7 +358,11 @@ namespace GC_namespace
     //! Copy row `nr` into vector `R`.
     void get_row( std::size_t const nr, vector<TYPE> & R ) const
     {
-      GC_ASSERT( nr < num_rows(), "mat_type::get_row(" << nr << ",R) row index out of range max = " << num_rows() - 1 );
+      GC_assert(
+        nr < num_rows(),
+        "mat_type::get_row({},R) row index out of range max = {}",
+        nr, num_rows() - 1
+      );
       R.resize( num_cols() );
       for ( std::size_t j{ 0 }; j < num_cols(); ++j ) R[j] = Base::operator[]( nr + j * m_num_rows );
     }
@@ -385,8 +376,11 @@ namespace GC_namespace
     //! Copy column `nc` into buffer `C` (must hold `num_rows()` elements).
     void get_column( std::size_t const nc, TYPE * C ) const
     {
-      GC_ASSERT(
-        nc < num_cols(), "mat_type::get_column(" << nc << ",C) column index out of range max = " << num_cols() - 1 );
+      GC_assert(
+        nc < num_cols(), 
+        "mat_type::get_column({},C) column index out of range max = {}",
+        nc, num_cols() - 1
+      );
       for ( std::size_t i{ 0 }; i < num_rows(); ++i ) C[i] = Base::operator[]( i + nc * m_num_rows );
     }
 
@@ -394,7 +388,11 @@ namespace GC_namespace
     //! Copy row `nr` into buffer `R` (must hold `num_cols()` elements).
     void get_row( std::size_t const nr, TYPE * R ) const
     {
-      GC_ASSERT( nr < num_rows(), "mat_type::get_row(" << nr << ",R) row index out of range max = " << num_rows() - 1 );
+      GC_assert(
+        nr < num_rows(),
+        "mat_type::get_row({},R) row index out of range max = {}",
+        nr, num_rows() - 1
+      );
       for ( std::size_t j{ 0 }; j < num_cols(); ++j ) R[j] = Base::operator[]( nr + j * m_num_rows );
     }
 
@@ -4989,7 +4987,7 @@ namespace GC_namespace
     //!
     //! \param[in]  where position added to the error message
     //!
-    static void exception( string_view const where ) GC_NO_RETURN;
+    // static void exception( string_view const where ) GC_NO_RETURN;
   };
 
   // -------------------------------------------------------
@@ -5087,22 +5085,18 @@ namespace GC_namespace
 
 }  // namespace GC_namespace
 
-#ifndef DOXYGEN_SHOULD_SKIP_THIS
-
-// do not define alias GC if use X11
+//! do not define alias GC if use X11
 #ifndef XlibSpecificationRelease
 namespace GC = GC_namespace;
 #endif
 
-// for backward compatibility
+//! for backward compatibility
 namespace GenericContainerNamespace = GC_namespace;
 
 #endif
 
 #ifdef __clang__
 #pragma clang diagnostic pop
-#endif
-
 #endif
 
 //

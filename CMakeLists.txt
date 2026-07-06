@@ -14,9 +14,28 @@
 
 cmake_minimum_required( VERSION 3.25 )
 
+# Estrai la versione da Git tag (se disponibile)
+find_package(Git QUIET)
+if(Git_FOUND)
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} describe --tags --abbrev=0
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE GIT_VERSION
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
+  )
+  if(GIT_VERSION MATCHES "^v")
+    string(SUBSTRING ${GIT_VERSION} 1 -1 GIT_VERSION)
+  endif()
+endif()
+if(NOT GIT_VERSION)
+  set(GIT_VERSION "0.0.0")
+endif()
+
+
 project(
   GenericContainer
-  VERSION 1.1.0
+  VERSION ${GIT_VERSION}
   DESCRIPTION "A C++ class to store heterogeneous, possibly recursive data"
   HOMEPAGE_URL "https://github.com/pbosetti/GenericContainer"
   LANGUAGES CXX
@@ -201,6 +220,10 @@ endfunction()
 
 function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
   set( TARGET_ALIAS_BASE "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
+  set( LEGACY_TARGET_ALIAS_BASE "${TARGET_ALIAS_BASE}" )
+  if ( NOT BUILD_SHARED_LIBS )
+    string( APPEND TARGET_ALIAS_BASE "_static" )
+  endif()
 
   if ( BUILD_SHARED_LIBS AND WIN32 )
     set( TARGET_RUNTIME_FILENAME "lib${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
@@ -261,20 +284,31 @@ function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
     if ( WIN32 )
       set( TARGET_LINK_FILENAME "lib${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
       set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( LEGACY_TARGET_ALIAS_FILENAME "${LEGACY_TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
     else()
       set( TARGET_LINK_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
       set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( LEGACY_TARGET_ALIAS_FILENAME "${LEGACY_TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
     endif()
 
     if ( WIN32 )
       add_custom_command(
         TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E rm -f
+          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${LEGACY_TARGET_ALIAS_FILENAME}"
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
           "$<TARGET_FILE:${TARGET_NAME}>"
           "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
         VERBATIM
       )
 
+      install(
+        CODE
+        "execute_process(
+          COMMAND \"${CMAKE_COMMAND}\" -E rm -f
+            \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${LEGACY_TARGET_ALIAS_FILENAME}\"
+        )"
+      )
       install(
         FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
         DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -284,6 +318,8 @@ function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
 
     add_custom_command(
       TARGET ${TARGET_NAME} POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E rm -f
+        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${LEGACY_TARGET_ALIAS_FILENAME}"
       COMMAND ${CMAKE_COMMAND} -E rm -f
         "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
       COMMAND ${CMAKE_COMMAND} -E create_symlink
@@ -297,6 +333,10 @@ function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
       "file(
         MAKE_DIRECTORY
         \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
+      )
+      execute_process(
+        COMMAND \"${CMAKE_COMMAND}\" -E rm -f
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${LEGACY_TARGET_ALIAS_FILENAME}\"
       )
       execute_process(
         COMMAND \"${CMAKE_COMMAND}\" -E rm -f

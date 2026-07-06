@@ -1,7 +1,7 @@
 var searchData=
 [
   ['a_20file_0',['a File',['../d0/d27/group___l_u_a.html#autotoc_md97',1,'Executing Lua Scripts from a File'],['../d7/d2f/group___j_s_o_n.html#autotoc_md83',1,'Loading JSON from a File'],['../d2/ddf/group___t_o_m_l.html#autotoc_md101',1,'Loading TOML from a File'],['../d8/d2e/group___y_a_m_l.html#autotoc_md109',1,'Loading YAML from a File']]],
-  ['a_20genericcontainer_1',['a GenericContainer',['../db/de3/group___g_c.html#autotoc_md64',1,'Initialization of a <span class="tt">GenericContainer</span>'],['../d7/d2f/group___j_s_o_n.html#autotoc_md82',1,'Loading JSON Data into a GenericContainer'],['../d2/ddf/group___t_o_m_l.html#autotoc_md100',1,'Loading TOML Data into a GenericContainer'],['../d8/d2e/group___y_a_m_l.html#autotoc_md108',1,'Loading YAML Data into a GenericContainer']]],
+  ['a_20genericcontainer_1',['a GenericContainer',['../db/de3/group___g_c.html#autotoc_md64',1,'Initialization of a &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;'],['../d7/d2f/group___j_s_o_n.html#autotoc_md82',1,'Loading JSON Data into a GenericContainer'],['../d2/ddf/group___t_o_m_l.html#autotoc_md100',1,'Loading TOML Data into a GenericContainer'],['../d8/d2e/group___y_a_m_l.html#autotoc_md108',1,'Loading YAML Data into a GenericContainer']]],
   ['a_20genericcontainer_20to_20json_2',['Converting a GenericContainer to JSON',['../d7/d2f/group___j_s_o_n.html#autotoc_md87',1,'']]],
   ['a_20genericcontainer_20to_20toml_3',['Converting a GenericContainer to TOML',['../d2/ddf/group___t_o_m_l.html#autotoc_md105',1,'']]],
   ['a_20genericcontainer_20to_20yaml_4',['Converting a GenericContainer to YAML',['../d8/d2e/group___y_a_m_l.html#autotoc_md113',1,'']]],
@@ -16,14 +16,16 @@ var searchData=
   ['a_20vector_20of_20strings_13',['a Vector of Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md86',1,'Loading JSON from a Vector of Strings'],['../d2/ddf/group___t_o_m_l.html#autotoc_md104',1,'Loading TOML from a Vector of Strings'],['../d8/d2e/group___y_a_m_l.html#autotoc_md112',1,'Loading YAML from a Vector of Strings']]],
   ['a_20yaml_20file_20stream_14',['Converting to a YAML File Stream',['../d8/d2e/group___y_a_m_l.html#autotoc_md114',1,'']]],
   ['accessing_20data_20from_20the_20genericcontainer_15',['Accessing Data from the &lt;span class=&quot;tt&quot;&gt;GenericContainer&lt;/span&gt;',['../db/de3/group___g_c.html#autotoc_md70',1,'']]],
-  ['advanced_20manipulation_3a_20vectors_20and_20maps_16',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md75',1,'']]],
-  ['advanced_20serialization_17',['Example 9: Advanced Serialization',['../dc/dbb/_usage.html#autotoc_md29',1,'']]],
-  ['an_20input_20stream_18',['an Input Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md84',1,'Loading JSON from an Input Stream'],['../d2/ddf/group___t_o_m_l.html#autotoc_md102',1,'Loading TOML from an Input Stream'],['../d8/d2e/group___y_a_m_l.html#autotoc_md110',1,'Loading YAML from an Input Stream']]],
-  ['an_20integer_19',['an Integer',['../db/de3/group___g_c.html#autotoc_md71',1,'Retrieve an Integer'],['../db/de3/group___g_c.html#autotoc_md66',1,'Set an Integer']]],
-  ['and_20commands_20',['Executing Lua Scripts and Commands',['../d0/d27/group___l_u_a.html#autotoc_md96',1,'']]],
-  ['and_20deallocation_21',['Cleanup and Deallocation',['../db/de3/group___g_c.html#autotoc_md78',1,'']]],
-  ['and_20features_22',['Brief description of the class and features',['../d4/d8e/_introduction.html#autotoc_md0',1,'']]],
-  ['and_20genericcontainer_23',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md91',1,'']]],
-  ['and_20maps_24',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md75',1,'']]],
-  ['at_20position_25',['get at position',['../dc/d2e/_quick.html#autotoc_md57',1,'']]]
+  ['adl_5fserializer_3c_20gc_5fnamespace_3a_3agenericcontainer_20_3e_16',['adl_serializer&lt; GC_namespace::GenericContainer &gt;',['../d7/d75/structnlohmann_1_1adl__serializer_3_01_g_c__namespace_1_1_generic_container_01_4.html',1,'nlohmann']]],
+  ['advanced_20manipulation_3a_20vectors_20and_20maps_17',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md75',1,'']]],
+  ['advanced_20serialization_18',['Example 9: Advanced Serialization',['../dc/dbb/_usage.html#autotoc_md29',1,'']]],
+  ['an_20input_20stream_19',['an Input Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md84',1,'Loading JSON from an Input Stream'],['../d2/ddf/group___t_o_m_l.html#autotoc_md102',1,'Loading TOML from an Input Stream'],['../d8/d2e/group___y_a_m_l.html#autotoc_md110',1,'Loading YAML from an Input Stream']]],
+  ['an_20integer_20',['an Integer',['../db/de3/group___g_c.html#autotoc_md71',1,'Retrieve an Integer'],['../db/de3/group___g_c.html#autotoc_md66',1,'Set an Integer']]],
+  ['and_20commands_21',['Executing Lua Scripts and Commands',['../d0/d27/group___l_u_a.html#autotoc_md96',1,'']]],
+  ['and_20deallocation_22',['Cleanup and Deallocation',['../db/de3/group___g_c.html#autotoc_md78',1,'']]],
+  ['and_20features_23',['Brief description of the class and features',['../d4/d8e/_introduction.html#autotoc_md0',1,'']]],
+  ['and_20genericcontainer_24',['Working with Lua Global Variables and GenericContainer',['../d0/d27/group___l_u_a.html#autotoc_md91',1,'']]],
+  ['and_20maps_25',['Advanced Manipulation: Vectors and Maps',['../db/de3/group___g_c.html#autotoc_md75',1,'']]],
+  ['as_5fgc_26',['as_gc',['../de/d60/_generic_container__ffi_8cc.html#ac90f4f3db277c80bc8ded66f55188304',1,'GenericContainer_ffi.cc']]],
+  ['at_20position_27',['get at position',['../dc/d2e/_quick.html#autotoc_md57',1,'']]]
 ];

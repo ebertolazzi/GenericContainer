@@ -9,5 +9,5 @@ var searchData=
   ['json_20from_20an_20input_20stream_6',['Loading JSON from an Input Stream',['../d7/d2f/group___j_s_o_n.html#autotoc_md84',1,'']]],
   ['json_20interface_7',['GenericContainer JSON Interface',['../d7/d2f/group___j_s_o_n.html',1,'']]],
   ['json_20strings_8',['Converting to a Vector of JSON Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md88',1,'']]],
-  ['json_5fto_5fgc_9',['JSON_to_GC',['../d7/d2f/group___j_s_o_n.html#ga960a30ad6ecfdaf7135b39502cdf402c',1,'GC_namespace::JSON_to_GC(istream_type &amp;stream, GenericContainer &amp;gc)'],['../d7/d2f/group___j_s_o_n.html#ga00419b308d6f066c98040e7604d7774a',1,'GC_namespace::JSON_to_GC(string const &amp;DATA, GenericContainer &amp;gc)']]]
+  ['json_5fto_5fgc_9',['JSON_to_GC',['../d8/d51/namespace_g_c__namespace.html#a960a30ad6ecfdaf7135b39502cdf402c',1,'GC_namespace::JSON_to_GC(istream_type &amp;stream, GenericContainer &amp;gc)'],['../d8/d51/namespace_g_c__namespace.html#a45af11769490f2c3456158af5984e9bb',1,'GC_namespace::JSON_to_GC(string const &amp;data, GenericContainer &amp;gc)'],['../d8/d51/namespace_g_c__namespace.html#a85e582ac45b65718006b6aef647b8ac0',1,'GC_namespace::JSON_to_GC(vec_string_type const &amp;chunks, GenericContainer &amp;gc)']]]
 ];

@@ -47,14 +47,14 @@ namespace GC_namespace
 
   static int32_t int8_to_buffer( int8_t in, uint8_t * buffer, int32_t const available )
   {
-    GC_ASSERT( available >= 1, serialize_msg );
+    GC_assert( available >= 1, serialize_msg );
     buffer[0] = static_cast<uint8_t>( in );
     return sizeof( int8_t );
   }
 
   static int32_t uint32_to_buffer( uint32_t in, uint8_t * buffer, int32_t const available )
   {
-    GC_ASSERT( available >= 4, serialize_msg );
+    GC_assert( available >= 4, serialize_msg );
     buffer[0] = static_cast<uint8_t>( in & 0xFF );
     in >>= 8;
     buffer[1] = static_cast<uint8_t>( in & 0xFF );
@@ -74,7 +74,7 @@ namespace GC_namespace
 
   static int32_t uint64_to_buffer( uint64_t in, uint8_t * buffer, int32_t const available )
   {
-    GC_ASSERT( available >= 8, serialize_msg );
+    GC_assert( available >= 8, serialize_msg );
     buffer[0] = static_cast<uint8_t>( in & 0xFF );
     in >>= 8;
     buffer[1] = static_cast<uint8_t>( in & 0xFF );
@@ -112,14 +112,14 @@ namespace GC_namespace
 
   static int32_t buffer_to_uint8( uint8_t const * buffer, int32_t const available, uint8_t * out )
   {
-    GC_ASSERT( available >= 1, deserialize_msg );
+    GC_assert( available >= 1, deserialize_msg );
     *out = buffer[0];
     return sizeof( uint8_t );
   }
 
   static int32_t buffer_to_uint32( uint8_t const * buffer, int32_t const available, uint32_t * out )
   {
-    GC_ASSERT( available >= 4, deserialize_msg );
+    GC_assert( available >= 4, deserialize_msg );
     uint32_t const tmp0{ buffer[0] };
     uint32_t const tmp1{ buffer[1] };
     uint32_t const tmp2{ buffer[2] };
@@ -138,7 +138,7 @@ namespace GC_namespace
 
   static int32_t buffer_to_uint64( uint8_t const * buffer, int32_t const available, uint64_t * out )
   {
-    GC_ASSERT( available >= 8, deserialize_msg );
+    GC_assert( available >= 8, deserialize_msg );
     uint64_t const tmp0{ buffer[0] };
     uint64_t const tmp1{ buffer[1] };
     uint64_t const tmp2{ buffer[2] };
@@ -228,9 +228,11 @@ namespace GC_namespace
   int32_t GenericContainer::mem_size() const
   {
     uint64_t const res{ gc_mem_size( *this ) };
-    GC_ASSERT(
+    GC_assert(
       res <= uint64_t( std::numeric_limits<int32_t>::max() ),
-      "GenericContainer::mem_size() serialized size " << res << " exceeds the int32 wire-format limit" );
+      "GenericContainer::mem_size() serialized size {} exceeds the int32 wire-format limit",
+      res
+    );
     return static_cast<int32_t>( res );
   }
 
@@ -282,7 +284,7 @@ namespace GC_namespace
         nb = int32_to_buffer( sz, buffer, available );
         buffer += nb;
         available -= nb;
-        GC_ASSERT( sz <= available, serialize_msg );
+        GC_assert( sz <= available, serialize_msg );
         memcpy( buffer, _s().c_str(), static_cast<size_t>( sz ) );
         buffer += sz;
         available -= sz;
@@ -433,7 +435,7 @@ namespace GC_namespace
           nb = int32_to_buffer( sz, buffer, available );
           buffer += nb;
           available -= nb;
-          GC_ASSERT( sz <= available, serialize_msg );
+          GC_assert( sz <= available, serialize_msg );
           memcpy( buffer, s.c_str(), static_cast<size_t>( sz ) );
           buffer += sz;
           available -= sz;
@@ -460,7 +462,7 @@ namespace GC_namespace
           nb = int32_to_buffer( sz, buffer, available );
           buffer += nb;
           available -= nb;
-          GC_ASSERT( sz <= available, serialize_msg );
+          GC_assert( sz <= available, serialize_msg );
           memcpy( buffer, fst.c_str(), static_cast<size_t>( sz ) );
           buffer += sz;
           available -= sz;
@@ -491,9 +493,11 @@ namespace GC_namespace
     nbyte = nb = buffer_to_int32( buffer, buffer_dim, &i32 );
     buffer += nb;
 
-    GC_ASSERT(
+    GC_assert(
       i32 >= 0 && i32 <= static_cast<int32_t>( GC_type::MAP ),
-      "GenericContainer::de_serialize, invalid type tag " << i32 );
+      "GenericContainer::de_serialize, invalid type tag {}",
+      i32
+    );
     switch ( static_cast<TypeAllowed>( i32 ) )
     {
       case GC_type::NOTYPE: m_data.emplace<std::monostate>(); break;
@@ -537,8 +541,8 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT( i32 > 0, "GenericContainer::de_serialize, invalid string length" );
-        GC_ASSERT( i32 <= buffer_dim - nbyte, deserialize_msg );
+        GC_assert( i32 > 0, "GenericContainer::de_serialize, invalid string length" );
+        GC_assert( i32 <= buffer_dim - nbyte, deserialize_msg );
         allocate_string();
         _s() = string_type( reinterpret_cast<char const *>( buffer ), static_cast<size_t>( i32 - 1 ) );
         buffer += i32;
@@ -559,7 +563,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * 8u <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_pointer( static_cast<std::size_t>( i32 ) );
@@ -576,7 +580,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * 1u <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_bool( 0 );
@@ -594,7 +598,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * sizeof( int_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_int( static_cast<std::size_t>( i32 ) );
@@ -609,7 +613,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * sizeof( long_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_long( static_cast<std::size_t>( i32 ) );
@@ -624,7 +628,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * sizeof( real_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_real( static_cast<std::size_t>( i32 ) );
@@ -639,7 +643,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * sizeof( complex_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_complex( static_cast<std::size_t>( i32 ) );
@@ -662,7 +666,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &nc );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           nr >= 0 && nc >= 0 && uint64_t( nr ) * uint64_t( nc ) * sizeof( int_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized matrix dimensions" );
         allocate_mat_int( static_cast<std::size_t>( nr ), static_cast<std::size_t>( nc ) );
@@ -680,7 +684,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &nc );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           nr >= 0 && nc >= 0 && uint64_t( nr ) * uint64_t( nc ) * sizeof( long_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized matrix dimensions" );
         allocate_mat_long( static_cast<std::size_t>( nr ), static_cast<std::size_t>( nc ) );
@@ -698,7 +702,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &nc );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           nr >= 0 && nc >= 0 && uint64_t( nr ) * uint64_t( nc ) * sizeof( real_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized matrix dimensions" );
         allocate_mat_real( static_cast<std::size_t>( nr ), static_cast<std::size_t>( nc ) );
@@ -716,7 +720,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &nc );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           nr >= 0 && nc >= 0 && uint64_t( nr ) * uint64_t( nc ) * sizeof( complex_type ) <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized matrix dimensions" );
         allocate_mat_complex( static_cast<std::size_t>( nr ), static_cast<std::size_t>( nc ) );
@@ -736,7 +740,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * 4u <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vec_string( static_cast<std::size_t>( i32 ) );
@@ -745,8 +749,8 @@ namespace GC_namespace
           nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
           buffer += nb;
           nbyte += nb;
-          GC_ASSERT( i32 > 0, "GenericContainer::de_serialize, invalid string length" );
-          GC_ASSERT( i32 <= buffer_dim - nbyte, deserialize_msg );
+          GC_assert( i32 > 0, "GenericContainer::de_serialize, invalid string length" );
+          GC_assert( i32 <= buffer_dim - nbyte, deserialize_msg );
           s = string_type( reinterpret_cast<char const *>( buffer ), static_cast<size_t>( i32 - 1 ) );
           buffer += i32;
           nbyte += i32;
@@ -756,7 +760,7 @@ namespace GC_namespace
         nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT(
+        GC_assert(
           i32 >= 0 && uint64_t( i32 ) * 4u <= uint64_t( buffer_dim - nbyte ),
           "GenericContainer::de_serialize, invalid or oversized vector size" );
         allocate_vector( static_cast<std::size_t>( i32 ) );
@@ -772,15 +776,15 @@ namespace GC_namespace
         nr = i32;
         buffer += nb;
         nbyte += nb;
-        GC_ASSERT( nr >= 0, "GenericContainer::de_serialize, invalid map size" );
+        GC_assert( nr >= 0, "GenericContainer::de_serialize, invalid map size" );
         allocate_map();
         for ( int32_t i = 0; i < nr; ++i )
         {
           nb = buffer_to_int32( buffer, buffer_dim - nbyte, &i32 );
           buffer += nb;
           nbyte += nb;
-          GC_ASSERT( i32 > 0, "GenericContainer::de_serialize, invalid key length" );
-          GC_ASSERT( i32 <= buffer_dim - nbyte, deserialize_msg );
+          GC_assert( i32 > 0, "GenericContainer::de_serialize, invalid key length" );
+          GC_assert( i32 <= buffer_dim - nbyte, deserialize_msg );
           string_type key( reinterpret_cast<char const *>( buffer ), static_cast<size_t>( i32 - 1 ) );
           buffer += i32;
           nbyte += i32;
@@ -791,7 +795,7 @@ namespace GC_namespace
         }
         break;
     }
-    GC_ASSERT( nbyte <= buffer_dim, "GenericContainer::serialize, buffer overflow" );
+    GC_assert( nbyte <= buffer_dim, "GenericContainer::serialize, buffer overflow" );
     return nbyte;
   }
 

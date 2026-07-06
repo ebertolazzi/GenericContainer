@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['load_0',['load',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#aeeefa327fb55b80c7b8be7895fd49696',1,'GC_namespace::GenericContainer']]],
-  ['lua_5fgc_5fto_5fglobal_1',['Lua_GC_to_global',['../d0/d27/group___l_u_a.html#gace50bbb9d1173c77e0c40a1c5e3fb5db',1,'GC_namespace']]],
-  ['lua_5fglobal_5fto_5fgc_2',['Lua_global_to_GC',['../d0/d27/group___l_u_a.html#ga4d12752607c583a39860c5d23caf68e4',1,'GC_namespace']]],
-  ['luainterpreter_3',['LuaInterpreter',['../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html#a2c67dc333eb7557ae31c0548072d9215',1,'GC_namespace::LuaInterpreter']]]
+  ['info_0',['info',['../df/def/class_g_c__namespace_1_1mat__type.html#a712e3e72ee4ecf43374f5ea0cfd1dd43',1,'GC_namespace::mat_type::info(ostream_type &amp;stream) const'],['../df/def/class_g_c__namespace_1_1mat__type.html#ae713c804755b629195e7cf29ad471ebb',1,'GC_namespace::mat_type::info() const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a376568f61e3eaf7312fd37d6fe3142ba',1,'GC_namespace::GenericContainer::info(ostream_type &amp;stream) const'],['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a6e38aa217bef748249719f8eb3f611e0',1,'GC_namespace::GenericContainer::info() const'],['../d0/d69/class_generic_container.html#a376568f61e3eaf7312fd37d6fe3142ba',1,'GenericContainer::info(ostream_type &amp;stream) const'],['../d0/d69/class_generic_container.html#a6e38aa217bef748249719f8eb3f611e0',1,'GenericContainer::info() const']]],
+  ['interactive_1',['interactive',['../dc/dd9/class_g_c__namespace_1_1_lua_interpreter.html#a49a8963a83b5e9f75826007c6eba7b91',1,'GC_namespace::LuaInterpreter']]],
+  ['is_5fintegral_5fvalue_2',['is_integral_value',['../dc/d10/namespace_g_c__namespace_1_1_g_c__details.html#aae78af0f1e3f8ef5336cefd2b81e6184',1,'GC_namespace::GC_details']]],
+  ['is_5fnumber_3',['is_number',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a7bd7fee9140174ef21abad96a71f22fc',1,'GC_namespace::GenericContainer::is_number()'],['../d0/d69/class_generic_container.html#a7bd7fee9140174ef21abad96a71f22fc',1,'GenericContainer::is_number()']]],
+  ['is_5fzero0_4',['is_zero0',['../dc/d10/namespace_g_c__namespace_1_1_g_c__details.html#a51136e04c3b0bf2f4e6c62be8229cf70',1,'GC_namespace::GC_details']]]
 ];

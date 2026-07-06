@@ -15,6 +15,6 @@ var searchData=
   ['string_12',['String',['../d7/d2f/group___j_s_o_n.html#autotoc_md85',1,'Loading JSON from a String'],['../d2/ddf/group___t_o_m_l.html#autotoc_md103',1,'Loading TOML from a String'],['../d8/d2e/group___y_a_m_l.html#autotoc_md111',1,'Loading YAML from a String'],['../db/de3/group___g_c.html#autotoc_md73',1,'Retrieve a String'],['../db/de3/group___g_c.html#autotoc_md68',1,'Set a String']]],
   ['strings_13',['Strings',['../d7/d2f/group___j_s_o_n.html#autotoc_md88',1,'Converting to a Vector of JSON Strings'],['../d7/d2f/group___j_s_o_n.html#autotoc_md86',1,'Loading JSON from a Vector of Strings'],['../d2/ddf/group___t_o_m_l.html#autotoc_md104',1,'Loading TOML from a Vector of Strings'],['../d8/d2e/group___y_a_m_l.html#autotoc_md112',1,'Loading YAML from a Vector of Strings']]],
   ['support_14',['Support',['../d3/d90/_lua.html',1,'Lua Support'],['../d0/d01/_matlab.html',1,'Matlab Support']]],
-  ['supported_20data_20types_3a_15',['Supported Data Types:',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#autotoc_md117',1,'']]],
+  ['supported_20data_20types_3a_15',['Supported Data Types:',['../d0/d69/class_generic_container.html#autotoc_md117',1,'']]],
   ['supported_20types_16',['Supported types',['../d4/d8e/_introduction.html#autotoc_md3',1,'']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['int_5ftype_0',['int_type',['../d9/d35/class_g_c__namespace_1_1_generic_container.html#a905f6a92bebd382dcfe12afd33bb8990',1,'GC_namespace::GenericContainer']]],
-  ['istream_5ftype_1',['istream_type',['../d8/d51/namespace_g_c__namespace.html#afc3dff4f02db495ebc457f02e89bc7de',1,'GC_namespace']]]
+  ['gc_5fhandle_5ft_0',['gc_handle_t',['../db/de3/group___g_c.html#ga40c94cd0d3eb51242dce95bd433f80a5',1,'GenericContainer_ffi.h']]],
+  ['gc_5ftype_1',['GC_type',['../d7/d75/structnlohmann_1_1adl__serializer_3_01_g_c__namespace_1_1_generic_container_01_4.html#a16763de56605c18d8da036b81bff0ab9',1,'nlohmann::adl_serializer&lt; GC_namespace::GenericContainer &gt;']]],
+  ['genericcontainer_2',['GenericContainer',['../d7/d75/structnlohmann_1_1adl__serializer_3_01_g_c__namespace_1_1_generic_container_01_4.html#aaba5e4718cdca2e829cfdf6147df57ea',1,'nlohmann::adl_serializer&lt; GC_namespace::GenericContainer &gt;']]]
 ];

@@ -692,7 +692,7 @@ namespace GC_namespace
   int LuaInterpreter::interactive( int argc, char const ** argv, char const ** messages, char const * prompt )
   {
     lua_State * L = luaL_newstate(); /* create state */
-    GC_ASSERT( L != nullptr, "LuaInterpreter::interactive, cannot create state: not enough memory" );
+    GC_assert( L != nullptr, "LuaInterpreter::interactive, cannot create state: not enough memory" );
     /* call 'pmain' in protected mode */
     lua_pushcfunction( L, &pmain );
     lua_pushinteger( L, argc );           /* 1st argument */
