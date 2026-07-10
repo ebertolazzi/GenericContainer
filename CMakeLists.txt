@@ -531,8 +531,6 @@ if ( BUILD_TESTING AND PROJECT_IS_TOP_LEVEL )
     REMOVE_ITEM GC_TEST_SOURCES
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_ffi.cc"
     "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_tables.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_support.cc"
-    "${CMAKE_CURRENT_SOURCE_DIR}/tests/test_json_yaml_toml.cc"
   )
 
   add_executable( gc_unit_tests ${GC_TEST_SOURCES} )

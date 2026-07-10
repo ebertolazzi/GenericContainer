@@ -772,6 +772,7 @@ namespace GC_namespace
           break;  // finito esco.
         }
         GC_assert( false, "{} copyto_mat_int() cannot promote vector of size {} to mat_int_type", where, v.size() );
+        [[fallthrough]];
       }
       case GC_type::MAT_LONG:
       case GC_type::MAT_REAL:
@@ -881,6 +882,7 @@ namespace GC_namespace
           break;  // finito esco.
         }
         GC_assert( false, "{} copyto_mat_long() cannot promote vector of size {} to mat_long_type", where, v.size() );
+        [[fallthrough]];
       }
       case GC_type::MAT_REAL:
       case GC_type::REAL:
@@ -1007,6 +1009,7 @@ namespace GC_namespace
           break;  // finito esco.
         }
         GC_assert( false, "{} copyto_mat_real() cannot promote vector of size {} to mat_real_type", where, v.size() );
+        [[fallthrough]];
       }
       case GC_type::POINTER:
       case GC_type::STRING:
@@ -1150,6 +1153,7 @@ namespace GC_namespace
           break;  // finito esco.
         }
         GC_assert( false, "{} copyto_mat_complex() cannot promote vector of size {} to mat_complex_type", where, v.size() );
+        [[fallthrough]];
       }
       case GC_type::POINTER:
       case GC_type::STRING:

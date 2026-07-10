@@ -125,11 +125,10 @@ namespace GC_namespace
       case fkyaml::node_type::MAPPING:
       {
         map_type & M{ gc.set_map() };
-        auto const & mapping{ node.as_map() };
-        for ( auto const & it : mapping )
+        for ( auto const it : node.map_items() )
         {
-          GenericContainer & gcm = M[it.first.get_value<string>()];
-          ok                     = YAML_to_GC( it.second, gcm );
+          GenericContainer & gcm = M[it.key().get_value<string>()];
+          ok                     = YAML_to_GC( it.value(), gcm );
           if ( !ok ) break;
         }
         break;

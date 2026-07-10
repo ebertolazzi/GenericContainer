@@ -7,9 +7,20 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+#include <filesystem>
+#include <fstream>
 #include <sstream>
 
 using namespace GC_namespace;
+
+namespace
+{
+  static std::filesystem::path
+  fixture_path( char const * name )
+  {
+    return std::filesystem::path( __FILE__ ).parent_path().parent_path() / "examples" / name;
+  }
+}
 
 TEST_CASE( "from_json / to_json round trip", "[interfaces][json]" )
 {
@@ -45,6 +56,32 @@ TEST_CASE( "from_yaml / to_yaml round trip", "[interfaces][yaml]" )
   CHECK( std::as_const( back )( "c" )( "d" ).get_bool() == true );
 }
 
+TEST_CASE( "from_yaml handles nested mappings through fkYAML map_items", "[interfaces][yaml]" )
+{
+  GenericContainer gc;
+  REQUIRE( gc.from_yaml(
+    std::string(
+      "root:\n"
+      "  nested:\n"
+      "    answer: 42\n"
+      "    enabled: true\n"
+      "  list:\n"
+      "    - name: alpha\n"
+      "      value: 1\n"
+      "    - name: beta\n"
+      "      value: 2\n"
+    )
+  ) );
+
+  auto const & root   = std::as_const( gc )( "root" );
+  auto const & nested = root( "nested" );
+  CHECK( nested( "answer" ).get_int() == 42 );
+  CHECK( nested( "enabled" ).get_bool() == true );
+  CHECK( root( "list" ).get_type() == GC_type::VECTOR );
+  CHECK( root( "list" )[0]( "name" ).get_string() == "alpha" );
+  CHECK( root( "list" )[1]( "value" ).get_int() == 2 );
+}
+
 TEST_CASE( "from_toml / to_toml round trip", "[interfaces][toml]" )
 {
   GenericContainer gc;
@@ -60,18 +97,42 @@ TEST_CASE( "from_toml / to_toml round trip", "[interfaces][toml]" )
   CHECK( std::as_const( back )( "c" )( "d" ).get_bool() == true );
 }
 
+TEST_CASE( "gc_from_json/yaml/toml static helpers populate containers", "[interfaces]" )
+{
+  auto const gj = GenericContainer::gc_from_json( R"({"id": 7, "name": "json"})" );
+  CHECK( gj.get_type() == GC_type::MAP );
+  CHECK( std::as_const( gj )( "id" ).get_int() == 7 );
+  CHECK( std::as_const( gj )( "name" ).get_string() == "json" );
+
+  auto const gy = GenericContainer::gc_from_yaml( "id: 8\nname: yaml\n" );
+  CHECK( gy.get_type() == GC_type::MAP );
+  CHECK( std::as_const( gy )( "id" ).get_int() == 8 );
+  CHECK( std::as_const( gy )( "name" ).get_string() == "yaml" );
+
+  auto const gt = GenericContainer::gc_from_toml( "id = 9\nname = \"toml\"\n" );
+  CHECK( gt.get_type() == GC_type::MAP );
+  CHECK( std::as_const( gt )( "id" ).get_int() == 9 );
+  CHECK( std::as_const( gt )( "name" ).get_string() == "toml" );
+}
+
 TEST_CASE( "fixture files parse through each interface", "[interfaces]" )
 {
+  std::ifstream json( fixture_path( "data.json" ) );
+  REQUIRE( json.good() );
   GenericContainer gj;
-  CHECK( gj.from_file( "examples/data.json" ) );
+  CHECK( gj.from_json( json ) );
   CHECK( gj.get_type() == GC_type::MAP );
 
+  std::ifstream yaml( fixture_path( "test1.yml" ) );
+  REQUIRE( yaml.good() );
   GenericContainer gy;
-  CHECK( gy.from_file( "examples/test1.yml" ) );
+  CHECK( gy.from_yaml( yaml ) );
   CHECK_FALSE( gy.empty() );
 
+  std::ifstream toml( fixture_path( "settings.toml" ) );
+  REQUIRE( toml.good() );
   GenericContainer gt;
-  CHECK( gt.from_file( "examples/settings.toml" ) );
+  CHECK( gt.from_toml( toml ) );
   CHECK( gt.get_type() == GC_type::MAP );
 }
 
