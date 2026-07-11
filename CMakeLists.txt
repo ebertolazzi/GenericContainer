@@ -6,9 +6,9 @@
 #  (tests/), and the optional json/yaml/toml/lua bridges. JSON/YAML/TOML  #
 #  are compiled directly into GenericContainer; Lua stays as its own       #
 #  runtime library, linked by GenericContainer when the Lua bridge is      #
-#  enabled. The real library names stay standard (libGenericContainer.*    #
-#  and libLua.*), and extra alias files such as libGenericContainer_osx.*  #
-#  and libLua_osx.* are generated alongside them.                          #
+#  enabled. The platform-specific names are the real library files        #
+#  (for example libGenericContainer_osx_static.a and libLua_osx_static.a), #
+#  while the generic names are compatibility symlinks/copies.              #
 #                                                                          #
 ############################################################################
 
@@ -219,135 +219,141 @@ function( generic_container_apply_standard_library_name TARGET_NAME BASE_NAME )
 endfunction()
 
 function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
-  set( TARGET_ALIAS_BASE "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
-  set( LEGACY_TARGET_ALIAS_BASE "${TARGET_ALIAS_BASE}" )
-  if ( NOT BUILD_SHARED_LIBS )
-    string( APPEND TARGET_ALIAS_BASE "_static" )
-  endif()
-
-  if ( BUILD_SHARED_LIBS AND WIN32 )
-    set( TARGET_RUNTIME_FILENAME "lib${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-    set( TARGET_IMPORT_FILENAME  "lib${BASE_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
-    set( TARGET_ALIAS_RUNTIME    "${TARGET_ALIAS_BASE}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-    set( TARGET_ALIAS_IMPORT     "${TARGET_ALIAS_BASE}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
-
-    add_custom_command(
-      TARGET ${TARGET_NAME} POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_FILE:${TARGET_NAME}>"
-        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_RUNTIME}"
-      COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "$<TARGET_LINKER_FILE:${TARGET_NAME}>"
-        "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_IMPORT}"
-      VERBATIM
-    )
-
-    install(
-      FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_RUNTIME}"
-      DESTINATION ${CMAKE_INSTALL_BINDIR}
-    )
-    install(
-      FILES "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_IMPORT}"
-      DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    )
-  elseif ( BUILD_SHARED_LIBS )
-    set( TARGET_LINK_FILENAME "${CMAKE_SHARED_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-    set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-
-    add_custom_command(
-      TARGET ${TARGET_NAME} POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E rm -f
-        "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
-      COMMAND ${CMAKE_COMMAND} -E create_symlink
-        "${TARGET_LINK_FILENAME}"
-        "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
-      VERBATIM
-    )
-
-    install(
-      CODE
-      "file(
-        MAKE_DIRECTORY
-        \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
-      )
-      execute_process(
-        COMMAND \"${CMAKE_COMMAND}\" -E rm -f
-          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
-      )
-      execute_process(
-        COMMAND \"${CMAKE_COMMAND}\" -E create_symlink
-          \"${TARGET_LINK_FILENAME}\"
-          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
-      )"
-    )
-  else()
+  if ( BUILD_SHARED_LIBS )
     if ( WIN32 )
-      set( TARGET_LINK_FILENAME "lib${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-      set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-      set( LEGACY_TARGET_ALIAS_FILENAME "${LEGACY_TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( PLATFORM_OUTPUT_NAME "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
+      set( STANDARD_RUNTIME_FILENAME "lib${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+      set( STANDARD_IMPORT_FILENAME  "lib${BASE_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
+      set( PLATFORM_RUNTIME_FILENAME "${PLATFORM_OUTPUT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+      set( PLATFORM_IMPORT_FILENAME  "${PLATFORM_OUTPUT_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
+
+      set_target_properties(
+        ${TARGET_NAME} PROPERTIES
+        OUTPUT_NAME         "${PLATFORM_OUTPUT_NAME}"
+        ARCHIVE_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+        LIBRARY_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+        RUNTIME_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+      )
+
+      add_custom_command(
+        TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "$<TARGET_FILE:${TARGET_NAME}>"
+          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${STANDARD_RUNTIME_FILENAME}"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "$<TARGET_LINKER_FILE:${TARGET_NAME}>"
+          "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${STANDARD_IMPORT_FILENAME}"
+        VERBATIM
+      )
+
+      install(
+        FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${STANDARD_RUNTIME_FILENAME}"
+        DESTINATION ${CMAKE_INSTALL_BINDIR}
+      )
+      install(
+        FILES "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${STANDARD_IMPORT_FILENAME}"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}
+      )
     else()
-      set( TARGET_LINK_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-      set( TARGET_ALIAS_FILENAME "${TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-      set( LEGACY_TARGET_ALIAS_FILENAME "${LEGACY_TARGET_ALIAS_BASE}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-    endif()
+      set( PLATFORM_OUTPUT_NAME "${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
+      set( STANDARD_FILENAME "${CMAKE_SHARED_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+      set( PLATFORM_FILENAME "${CMAKE_SHARED_LIBRARY_PREFIX}${PLATFORM_OUTPUT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
 
-    if ( WIN32 )
+      set_target_properties(
+        ${TARGET_NAME} PROPERTIES
+        OUTPUT_NAME         "${PLATFORM_OUTPUT_NAME}"
+        ARCHIVE_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+        LIBRARY_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+        RUNTIME_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+      )
+
       add_custom_command(
         TARGET ${TARGET_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E rm -f
-          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${LEGACY_TARGET_ALIAS_FILENAME}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-          "$<TARGET_FILE:${TARGET_NAME}>"
-          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
+          "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${STANDARD_FILENAME}"
+        COMMAND ${CMAKE_COMMAND} -E create_symlink
+          "${PLATFORM_FILENAME}"
+          "$<TARGET_LINKER_FILE_DIR:${TARGET_NAME}>/${STANDARD_FILENAME}"
         VERBATIM
       )
 
       install(
         CODE
-        "execute_process(
+        "file(
+          MAKE_DIRECTORY
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
+        )
+        execute_process(
           COMMAND \"${CMAKE_COMMAND}\" -E rm -f
-            \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${LEGACY_TARGET_ALIAS_FILENAME}\"
+            \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${STANDARD_FILENAME}\"
+        )
+        execute_process(
+          COMMAND \"${CMAKE_COMMAND}\" -E create_symlink
+            \"${PLATFORM_FILENAME}\"
+            \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${STANDARD_FILENAME}\"
         )"
       )
-      install(
-        FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}
-      )
-      return()
+    endif()
+  else()
+    if ( WIN32 )
+      set( PLATFORM_OUTPUT_NAME "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}_static" )
+      set( STANDARD_FILENAME "lib${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( PLATFORM_FILENAME "${PLATFORM_OUTPUT_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+    else()
+      set( PLATFORM_OUTPUT_NAME "${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}_static" )
+      set( STANDARD_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( PLATFORM_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${PLATFORM_OUTPUT_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
     endif()
 
-    add_custom_command(
-      TARGET ${TARGET_NAME} POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E rm -f
-        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${LEGACY_TARGET_ALIAS_FILENAME}"
-      COMMAND ${CMAKE_COMMAND} -E rm -f
-        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
-      COMMAND ${CMAKE_COMMAND} -E create_symlink
-        "${TARGET_LINK_FILENAME}"
-        "$<TARGET_FILE_DIR:${TARGET_NAME}>/${TARGET_ALIAS_FILENAME}"
-      VERBATIM
+    set_target_properties(
+      ${TARGET_NAME} PROPERTIES
+      OUTPUT_NAME         "${PLATFORM_OUTPUT_NAME}"
+      ARCHIVE_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+      LIBRARY_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
+      RUNTIME_OUTPUT_NAME "${PLATFORM_OUTPUT_NAME}"
     )
 
-    install(
-      CODE
-      "file(
-        MAKE_DIRECTORY
-        \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
+    if ( WIN32 )
+      add_custom_command(
+        TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          "$<TARGET_FILE:${TARGET_NAME}>"
+          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${STANDARD_FILENAME}"
+        VERBATIM
       )
-      execute_process(
-        COMMAND \"${CMAKE_COMMAND}\" -E rm -f
-          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${LEGACY_TARGET_ALIAS_FILENAME}\"
+
+      install(
+        FILES "$<TARGET_FILE_DIR:${TARGET_NAME}>/${STANDARD_FILENAME}"
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}
       )
-      execute_process(
-        COMMAND \"${CMAKE_COMMAND}\" -E rm -f
-          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
+    else()
+      add_custom_command(
+        TARGET ${TARGET_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E rm -f
+          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${STANDARD_FILENAME}"
+        COMMAND ${CMAKE_COMMAND} -E create_symlink
+          "${PLATFORM_FILENAME}"
+          "$<TARGET_FILE_DIR:${TARGET_NAME}>/${STANDARD_FILENAME}"
+        VERBATIM
       )
-      execute_process(
-        COMMAND \"${CMAKE_COMMAND}\" -E create_symlink
-          \"${TARGET_LINK_FILENAME}\"
-          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${TARGET_ALIAS_FILENAME}\"
-      )"
-    )
+
+      install(
+        CODE
+        "file(
+          MAKE_DIRECTORY
+          \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}\"
+        )
+        execute_process(
+          COMMAND \"${CMAKE_COMMAND}\" -E rm -f
+            \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${STANDARD_FILENAME}\"
+        )
+        execute_process(
+          COMMAND \"${CMAKE_COMMAND}\" -E create_symlink
+            \"${PLATFORM_FILENAME}\"
+            \"\$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${STANDARD_FILENAME}\"
+        )"
+      )
+    endif()
   endif()
 endfunction()
 

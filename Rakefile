@@ -26,6 +26,7 @@ end
 ENABLE_YAML = enabled_env?('YAML')
 ENABLE_TOML = enabled_env?('TOML')
 ENABLE_LUA  = enabled_env?('LUA')
+ENABLE_EXAMPLES = enabled_env?('EXAMPLES', default: false)
 
 CLEAN.clear_exclude.exclude { |fn| fn.pathmap('%f').casecmp('core').zero? }
 CLEAN.include('**/*.o', '**/*.obj')
@@ -65,14 +66,15 @@ def cmake_build_parallel_args
 end
 
 
-def configure_args
+def configure_args(build_testing: false, build_examples: false)
   [
     'cmake',
     '-S', PROJECT_ROOT,
     '-B', BUILD_DIR,
     "-DCMAKE_BUILD_TYPE=#{BUILD_TYPE}",
     "-DBUILD_SHARED_LIBS=#{cmake_bool(BUILD_SHARED_LIBS)}",
-    '-DBUILD_TESTING=ON',
+    "-DBUILD_TESTING=#{cmake_bool(build_testing)}",
+    "-DGENERIC_CONTAINER_BUILD_EXAMPLES=#{cmake_bool(build_examples)}",
     "-DGENERIC_CONTAINER_ENABLE_YAML=#{cmake_bool(ENABLE_YAML)}",
     "-DGENERIC_CONTAINER_ENABLE_TOML=#{cmake_bool(ENABLE_TOML)}",
     "-DGENERIC_CONTAINER_ENABLE_LUA=#{cmake_bool(ENABLE_LUA)}"
@@ -80,10 +82,16 @@ def configure_args
 end
 
 
-desc 'Configure the CMake build tree'
+desc 'Configure the CMake build tree without tests or examples'
 task :configure do
   FileUtils.mkdir_p(BUILD_DIR)
-  sh_echo(*configure_args)
+  sh_echo(*configure_args(build_testing: false, build_examples: false))
+end
+
+desc 'Configure the CMake build tree with unit tests enabled'
+task :configure_tests do
+  FileUtils.mkdir_p(BUILD_DIR)
+  sh_echo(*configure_args(build_testing: true, build_examples: ENABLE_EXAMPLES))
 end
 
 desc 'Build GenericContainer'
@@ -92,15 +100,14 @@ task build: :configure do
   sh_echo('cmake', '--install', BUILD_DIR, '--config', BUILD_TYPE, '--prefix', INSTALL_DIR)
 end
 
-desc 'Run unit tests from the tests/ directory through CTest'
-task tests: :build do
+desc 'Build and run unit tests from the tests/ directory through CTest'
+task tests: :configure_tests do
+  sh_echo('cmake', '--build', BUILD_DIR, '--config', BUILD_TYPE, '--target', 'gc_unit_tests', *cmake_build_parallel_args)
   sh_echo('ctest', '--test-dir', BUILD_DIR, '--build-config', BUILD_TYPE, '--output-on-failure', '-L', 'unit')
 end
 
-desc 'Run example executables registered from the examples/ directory'
-task run: :build do
-  sh_echo('ctest', '--test-dir', BUILD_DIR, '--build-config', BUILD_TYPE, '--output-on-failure', '-L', 'examples')
-end
+desc 'Build and run unit tests'
+task run: :tests
 
 desc 'Alias for tests'
 task test: :tests
