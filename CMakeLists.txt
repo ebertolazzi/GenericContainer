@@ -12,10 +12,83 @@
 #                                                                          #
 ############################################################################
 
+
+# ============================================================================
+# Minimum CMake version
+# ============================================================================
+# This project is written as a target-oriented CMake build: compile features,
+# include directories, link dependencies, install rules and export metadata
+# are attached to targets instead of being stored in global variables.
+# CMake 3.25 is used as the baseline so the script can rely on modern
+# generator expressions, FetchContent behavior, install/export support and
+# package configuration helpers without compatibility workarounds for older
+# releases.
 cmake_minimum_required( VERSION 3.25 )
 
-# Estrai la versione da Git tag (se disponibile)
+
+# --------------------------------------------------------------------------
+# Apple FAT/universal build setup
+# --------------------------------------------------------------------------
+# On Apple platforms a single library can contain slices for several CPU
+# architectures, for example arm64 and x86_64.  This is controlled by
+# CMAKE_OSX_ARCHITECTURES.
+#
+# The variable must be set before project(), otherwise CMake may initialize
+# compilers and targets before the requested architectures are known.
+#
+# Default behavior:
+#   - ON  on Apple hosts or Apple cross-compilation targets.
+#   - OFF on Linux/Windows and other platforms, where there is no equivalent
+#     single-file universal library format.
+#
+# User overrides:
+#   -DUTILS_BUILD_FAT=OFF
+#   -DUTILS_FAT_ARCHITECTURES=arm64
+#   -DCMAKE_OSX_ARCHITECTURES=arm64\;x86_64
+set(UTILS_BUILD_FAT_DEFAULT OFF)
+if(CMAKE_HOST_APPLE OR CMAKE_SYSTEM_NAME MATCHES "Darwin|iOS|tvOS|watchOS|visionOS")
+  set(UTILS_BUILD_FAT_DEFAULT ON)
+endif()
+option(UTILS_BUILD_FAT "Build Apple universal/fat binaries when supported" ${UTILS_BUILD_FAT_DEFAULT})
+set(UTILS_FAT_ARCHITECTURES "arm64;x86_64" CACHE STRING "Apple architectures to build when UTILS_BUILD_FAT is ON")
+
+if(UTILS_BUILD_FAT AND NOT CMAKE_OSX_ARCHITECTURES)
+  set(
+    CMAKE_OSX_ARCHITECTURES
+    "${UTILS_FAT_ARCHITECTURES}"
+    CACHE STRING "Build architectures for Apple platforms"
+    FORCE
+  )
+endif()
+
+
+# Extract the version from a Git tag when available.
+
+# ============================================================================
+# Project version derived from Git tags
+# ============================================================================
+# The build tries to use the latest reachable Git tag as the project version.
+# This avoids keeping the version number duplicated in source files and
+# release metadata.
+# Git is optional. Source archives, shallow checkouts or trees without tags
+# still configure deterministically because the fallback version below is
+# always available.
+
+# ----------------------------------------------------------------------------
+# Locate Git without making it mandatory
+# ----------------------------------------------------------------------------
+# QUIET suppresses diagnostics when Git is absent or when the source tree is
+# not a Git checkout. That is intentional for release archives distributed
+# without a .git directory.
 find_package(Git QUIET)
+
+# ----------------------------------------------------------------------------
+# Read the last reachable tag
+# ----------------------------------------------------------------------------
+# When Git exists, `git describe --tags --abbrev=0` returns only the nearest
+# tag name, for example `v1.2.3` or `1.2.3`. OUTPUT_STRIP_TRAILING_WHITESPACE
+# removes the final newline so the result can be passed directly to
+# project(VERSION ...).
 if(Git_FOUND)
   execute_process(
     COMMAND ${GIT_EXECUTABLE} describe --tags --abbrev=0
@@ -28,11 +101,28 @@ if(Git_FOUND)
     string(SUBSTRING ${GIT_VERSION} 1 -1 GIT_VERSION)
   endif()
 endif()
+
+# ----------------------------------------------------------------------------
+# Fallback version
+# ----------------------------------------------------------------------------
+# If Git did not produce a usable tag, use a stable fallback. The value is
+# deliberately valid CMake version syntax so package-version files and
+# SOVERSION handling still work.
 if(NOT GIT_VERSION)
   set(GIT_VERSION "0.0.0")
 endif()
 
 
+
+# ============================================================================
+# Project declaration
+# ============================================================================
+# project() establishes the public project identity, enables the C++ language,
+# initializes variables such as PROJECT_VERSION and PROJECT_IS_TOP_LEVEL, and
+# defines metadata reused later by install rules and CPack.
+# All toolchain-sensitive settings that must affect compiler detection should
+# appear before this call. Target-level build properties can safely appear
+# after it.
 project(
   GenericContainer
   VERSION ${GIT_VERSION}
@@ -44,6 +134,16 @@ project(
 # Default to a Release build when the generator uses a single configuration
 # and the user hasn't picked one (multi-config generators like Ninja
 # Multi-Config or Visual Studio ignore CMAKE_BUILD_TYPE entirely).
+
+# ============================================================================
+# Default build type for single-configuration generators
+# ============================================================================
+# Unix Makefiles and Ninja build one configuration per build directory, so
+# CMAKE_BUILD_TYPE controls optimization/debug flags. When the user did not
+# choose a type, default to Release.
+# Multi-configuration generators such as Visual Studio, Xcode and Ninja
+# Multi-Config ignore CMAKE_BUILD_TYPE; the condition leaves those generators
+# untouched.
 if ( NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES )
   set( CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE )
   set_property( CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "RelWithDebInfo" "MinSizeRel" )
@@ -51,15 +151,49 @@ endif()
 
 # Standalone vs. consumed-as-a-dependency: tests only make sense standalone,
 # and installing shouldn't be forced on a project that FetchContent's us.
+
+# ============================================================================
+# Top-level user options
+# ============================================================================
+# These options are stored in the CMake cache and can be overridden with
+# -DNAME=ON/OFF from the command line or from a parent project.
+# BUILD_SHARED_LIBS is a standard CMake switch. Because the main
+# add_library(GenericContainer ...) call does not explicitly say STATIC or
+# SHARED, this option controls whether the produced library is static or
+# shared.
+# GENERIC_CONTAINER_INSTALL defaults to ON only when this is the top-level
+# project. That prevents an embedding project from receiving install rules it
+# did not ask for.
 option( BUILD_SHARED_LIBS "Build GenericContainer as a shared library" OFF )
 option( GENERIC_CONTAINER_INSTALL "Generate the install target" ${PROJECT_IS_TOP_LEVEL} )
 
 # Each format bridge is opt-in; turn one off to skip fetching/building its
 # third-party dependency entirely.
+
+# ============================================================================
+# Optional format bridges
+# ============================================================================
+# Each bridge adds implementation sources and one external dependency. Turning
+# a bridge OFF skips both the extra source files and the corresponding
+# dependency lookup/download.
+# JSON, YAML and TOML are compiled into the main GenericContainer binary
+# target. The namespaced bridge targets remain available as
+# interface/compatibility targets for consumers that want to express a
+# specific feature dependency.
+# Lua is different because it also needs the Lua C runtime. When enabled, the
+# build creates a separate Lua library target and links GenericContainer
+# against it.
 option( GENERIC_CONTAINER_ENABLE_JSON "Build GenericContainer::Json (nlohmann::json-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_YAML "Build GenericContainer::Yaml (fkYAML-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_TOML "Build GenericContainer::Toml (toml++-backed)" ON )
 option( GENERIC_CONTAINER_ENABLE_LUA  "Build GenericContainer::Lua (embeds Lua 5.4)"  ON )
+
+# ----------------------------------------------------------------------------
+# Examples option
+# ----------------------------------------------------------------------------
+# Examples are useful for source-tree development but usually undesirable when
+# GenericContainer is embedded as a dependency, so the default follows
+# PROJECT_IS_TOP_LEVEL.
 option( GENERIC_CONTAINER_BUILD_EXAMPLES "Build runnable executables from examples/" ${PROJECT_IS_TOP_LEVEL} )
 
 # The backend subdirectories use FetchContent for their own dependencies.
@@ -67,6 +201,16 @@ option( GENERIC_CONTAINER_BUILD_EXAMPLES "Build runnable executables from exampl
 # project and avoid downloading them again. Set any path to a non-existing
 # directory to force the corresponding FetchContent fallback.
 set(
+
+# ============================================================================
+# Preferred local checkouts for optional dependencies
+# ============================================================================
+# These cache paths let developers keep dependency repositories next to
+# GenericContainer and avoid repeated network downloads. If a path exists, it
+# is used as the source for FetchContent; otherwise the normal FetchContent
+# fallback remains available.
+# Setting a path to a non-existing directory is a simple way to force the
+# download/fallback path during testing.
   GENERIC_CONTAINER_FKYAML_LOCAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../fkYAML"
   CACHE PATH "Path to a local fkYAML checkout to use before FetchContent"
 )
@@ -79,9 +223,27 @@ set(
   CACHE PATH "Path to a local Lua checkout to use before FetchContent"
 )
 
+
+# ============================================================================
+# Standard CMake modules
+# ============================================================================
+# GNUInstallDirs provides portable install directory variables such as
+# CMAKE_INSTALL_INCLUDEDIR, CMAKE_INSTALL_LIBDIR and CMAKE_INSTALL_BINDIR.
+# FetchContent is used for dependencies that are not provided by the parent
+# project or by find_package().
 include( GNUInstallDirs )
 include( FetchContent )
 
+
+# ============================================================================
+# Platform suffix used in real library filenames
+# ============================================================================
+# The project deliberately gives the real binary files platform-specific
+# names, for example libGenericContainer_osx_static.a or
+# libGenericContainer_linux_static.a.
+# A compatibility alias with the traditional unsuffixed name is created later.
+# On Unix-like platforms that alias is a symlink; on Windows it is a copied
+# file.
 if ( APPLE )
   set( GENERIC_CONTAINER_PLATFORM_SUFFIX osx )
 elseif ( WIN32 )
@@ -103,6 +265,14 @@ else()
 endif()
 
 # Collected during configuration and printed once near the end.
+
+# ============================================================================
+# Dependency-summary variables
+# ============================================================================
+# These variables record where each optional dependency came from: disabled,
+# an existing target, find_package(), a local checkout or FetchContent.
+# The final status messages make configuration decisions auditable and help
+# diagnose non-reproducible builds.
 set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "disabled" )
 set( GENERIC_CONTAINER_FKYAML_SOURCE "disabled" )
 set( GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE "disabled" )
@@ -115,6 +285,16 @@ set( GENERIC_CONTAINER_LUA_SOURCE "disabled" )
 #  |_____|_|_.__/|_|  \__,_|_|   \__, |
 #                                |___/
 #
+
+# ============================================================================
+# Main library target
+# ============================================================================
+# GenericContainer is the central binary target. It starts with the core
+# implementation sources from src/. Optional bridge sources are appended later
+# when their feature options are enabled.
+# The library type is intentionally not written as STATIC or SHARED. CMake
+# therefore follows BUILD_SHARED_LIBS, which gives users one standard switch
+# for both this target and the Lua runtime target.
 add_library(
   GenericContainer
   src/GenericContainer.cc
@@ -126,16 +306,50 @@ add_library(
   src/GenericContainerTables.cc
   src/GenericContainer_ffi.cc
 )
+
+# ----------------------------------------------------------------------------
+# Public namespaced alias
+# ----------------------------------------------------------------------------
+# Consumers should link the namespaced target
+# GenericContainer::GenericContainer. It matches the installed package API and
+# decouples users from the physical target name used inside this build.
 add_library( GenericContainer::GenericContainer ALIAS GenericContainer )
+
+# ----------------------------------------------------------------------------
+# Export target accumulator
+# ----------------------------------------------------------------------------
+# This list is extended when optional exported targets are created. The
+# install(EXPORT ...) rule later uses the final list to generate
+# GenericContainerTargets.cmake.
 set( GENERIC_CONTAINER_EXPORTED_TARGETS GenericContainer )
 
+
+# ----------------------------------------------------------------------------
+# C++ language requirement
+# ----------------------------------------------------------------------------
+# The PUBLIC scope means GenericContainer itself is compiled as C++20 and
+# consumers linking it must also use a C++20-capable compilation mode.
 target_compile_features( GenericContainer PUBLIC cxx_std_20 )
+
+# ----------------------------------------------------------------------------
+# Public include directories for GenericContainer
+# ----------------------------------------------------------------------------
+# BUILD_INTERFACE is used while building from the source tree.
+# INSTALL_INTERFACE is used by the installed package and keeps the package
+# relocatable relative to the installation prefix.
 target_include_directories(
   GenericContainer PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>"
 )
 
+
+# ----------------------------------------------------------------------------
+# Version and export metadata for GenericContainer
+# ----------------------------------------------------------------------------
+# VERSION and SOVERSION matter primarily for shared libraries. EXPORT_NAME
+# controls the target name written into the installed
+# GenericContainerTargets.cmake file.
 set_target_properties(
   GenericContainer PROPERTIES
   VERSION   ${PROJECT_VERSION}
@@ -143,6 +357,13 @@ set_target_properties(
   EXPORT_NAME GenericContainer
 )
 
+
+# ----------------------------------------------------------------------------
+# Warnings for GCC/Clang-like compilers
+# ----------------------------------------------------------------------------
+# Enable a basic warning set for the project target. MSVC is not covered by
+# this branch because it uses different flags and third-party diagnostics
+# differ significantly across toolchains.
 if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang|AppleClang|GNU" )
   target_compile_options( GenericContainer PRIVATE -Wall -Wextra )
 endif()
@@ -164,6 +385,26 @@ endif()
 # before entering the backend subdirectories, where fkYAML/toml++/Lua are
 # declared. The names below intentionally match the expected FetchContent
 # dependency names used by the backend CMake files.
+
+# ============================================================================
+# Helper functions for optional backends
+# ============================================================================
+# The next functions centralize repeated CMake operations: preferring local
+# dependency checkouts, maintaining the export list, normalizing output
+# filenames, creating compatibility aliases, and ensuring dependency targets
+# exist.
+
+# ----------------------------------------------------------------------------
+# generic_container_prefer_local_fetchcontent()
+# ----------------------------------------------------------------------------
+# Parameters: DEPENDENCY_NAME is the FetchContent name expected by the
+# backend; LOCAL_DIR is the suggested sibling checkout; SUMMARY_VARIABLE is
+# updated in the parent scope for the final report.
+# If a suitable local checkout exists, the function sets
+# FETCHCONTENT_SOURCE_DIR_<NAME> in the cache.
+# FetchContent_MakeAvailable(<name>) will then use that source tree instead of
+# downloading it. An explicit user-provided FETCHCONTENT_SOURCE_DIR_<NAME>
+# always takes precedence.
 function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR SUMMARY_VARIABLE )
   string( TOUPPER "${DEPENDENCY_NAME}" DEPENDENCY_NAME_UPPER )
   set( SOURCE_DIR_VARIABLE "FETCHCONTENT_SOURCE_DIR_${DEPENDENCY_NAME_UPPER}" )
@@ -195,12 +436,27 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
   endif()
 endfunction()
 
+
+# ----------------------------------------------------------------------------
+# generic_container_append_exported_target()
+# ----------------------------------------------------------------------------
+# Append a target to the list that will be installed/exported. CMake functions
+# have their own scope, so the updated list must be written back to the parent
+# scope.
 function( generic_container_append_exported_target TARGET_NAME )
   set( updated_exported_targets ${GENERIC_CONTAINER_EXPORTED_TARGETS} )
   list( APPEND updated_exported_targets ${TARGET_NAME} )
   set( GENERIC_CONTAINER_EXPORTED_TARGETS "${updated_exported_targets}" PARENT_SCOPE )
 endfunction()
 
+
+# ----------------------------------------------------------------------------
+# generic_container_apply_standard_library_name()
+# ----------------------------------------------------------------------------
+# Set the conventional output name for a library target. On Windows, the build
+# forces a `lib` prefix and disables the automatic prefix properties to
+# preserve the historical artifact naming scheme across static and shared
+# builds.
 function( generic_container_apply_standard_library_name TARGET_NAME BASE_NAME )
   if ( WIN32 )
     set( TARGET_OUTPUT_NAME "lib${BASE_NAME}" )
@@ -218,6 +474,16 @@ function( generic_container_apply_standard_library_name TARGET_NAME BASE_NAME )
   )
 endfunction()
 
+
+# ----------------------------------------------------------------------------
+# generic_container_add_platform_library_alias()
+# ----------------------------------------------------------------------------
+# Create two filesystem-level names for the same library: a real
+# platform-suffixed file and a standard unsuffixed compatibility name.
+# For Unix/macOS builds the compatibility name is a symlink. For Windows
+# builds it is copied, because symlink creation can require privileges or
+# developer-mode settings. Shared-library Windows builds handle both the
+# runtime file (.dll) and the import library (.lib or .dll.a).
 function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
   if ( BUILD_SHARED_LIBS )
     if ( WIN32 )
@@ -357,6 +623,14 @@ function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
   endif()
 endfunction()
 
+
+# ----------------------------------------------------------------------------
+# generic_container_add_backend_alias()
+# ----------------------------------------------------------------------------
+# Create an INTERFACE bridge target such as GenericContainerJson plus a
+# namespaced alias such as GenericContainer::Json. The target does not build
+# its own binary; it links to GenericContainer::GenericContainer and preserves
+# a feature-level CMake API.
 function( generic_container_add_backend_alias TARGET_NAME EXPORT_NAME )
   add_library( ${TARGET_NAME} INTERFACE )
   add_library( GenericContainer::${EXPORT_NAME} ALIAS ${TARGET_NAME} )
@@ -368,6 +642,14 @@ function( generic_container_add_backend_alias TARGET_NAME EXPORT_NAME )
   set( GENERIC_CONTAINER_EXPORTED_TARGETS "${updated_exported_targets}" PARENT_SCOPE )
 endfunction()
 
+
+# ----------------------------------------------------------------------------
+# generic_container_ensure_nlohmann_json()
+# ----------------------------------------------------------------------------
+# Guarantee that nlohmann_json::nlohmann_json exists. The resolution order is:
+# reuse an existing target from a parent project, try
+# find_package(nlohmann_json 3), otherwise fetch the official include.zip and
+# create a minimal INTERFACE target.
 function( generic_container_ensure_nlohmann_json )
   if ( TARGET nlohmann_json::nlohmann_json )
     set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "existing target: nlohmann_json::nlohmann_json" PARENT_SCOPE )
@@ -394,27 +676,74 @@ function( generic_container_ensure_nlohmann_json )
   set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "FetchContent: v3.11.3" PARENT_SCOPE )
 endfunction()
 
+
+# ----------------------------------------------------------------------------
+# Prepare optional dependencies
+# ----------------------------------------------------------------------------
+# Before adding bridge sources, prepare the dependencies they need. JSON
+# ensures its target immediately; YAML, TOML and Lua set up local-checkout
+# overrides before the later FetchContent_MakeAvailable() calls.
 if ( GENERIC_CONTAINER_ENABLE_JSON )
   generic_container_ensure_nlohmann_json()
 endif()
+
+# ----------------------------------------------------------------------------
+# Prepare fkYAML local override
+# ----------------------------------------------------------------------------
+# If YAML support is enabled, prefer a local fkYAML checkout when one is
+# available; otherwise the backend block below will use find_package() or
+# FetchContent.
 if ( GENERIC_CONTAINER_ENABLE_YAML )
   generic_container_prefer_local_fetchcontent( fkYAML "${GENERIC_CONTAINER_FKYAML_LOCAL_DIR}" GENERIC_CONTAINER_FKYAML_SOURCE )
 endif()
+
+# ----------------------------------------------------------------------------
+# Prepare toml++ local override
+# ----------------------------------------------------------------------------
+# If TOML support is enabled, prefer a local toml++ checkout when one is
+# available; otherwise the backend block below resolves it normally.
 if ( GENERIC_CONTAINER_ENABLE_TOML )
   generic_container_prefer_local_fetchcontent( tomlplusplus "${GENERIC_CONTAINER_TOMLPLUSPLUS_LOCAL_DIR}" GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE )
 endif()
+
+# ----------------------------------------------------------------------------
+# Prepare Lua local override
+# ----------------------------------------------------------------------------
+# If Lua support is enabled, prefer a local Lua source tree when one is
+# available. The actual Lua runtime target is created later because it also
+# requires enabling the C language.
 if ( GENERIC_CONTAINER_ENABLE_LUA )
   generic_container_prefer_local_fetchcontent( lua54 "${GENERIC_CONTAINER_LUA_LOCAL_DIR}" GENERIC_CONTAINER_LUA_SOURCE )
 endif()
 
+
+# ----------------------------------------------------------------------------
+# Apply output naming to the main library
+# ----------------------------------------------------------------------------
+# First set the conventional name, then replace the real output with the
+# platform-suffixed name and create the compatibility alias.
 generic_container_apply_standard_library_name( GenericContainer GenericContainer )
 generic_container_add_platform_library_alias( GenericContainer GenericContainer )
 
+
+# ----------------------------------------------------------------------------
+# JSON bridge
+# ----------------------------------------------------------------------------
+# Add the JSON implementation to the main library and link nlohmann_json for
+# the build tree. The GenericContainer::Json alias lets consumers express a
+# dependency on the JSON feature explicitly.
 if ( GENERIC_CONTAINER_ENABLE_JSON )
   target_sources( GenericContainer PRIVATE interfaces/json/GenericContainerJson.cc )
   target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:nlohmann_json::nlohmann_json> )
   generic_container_add_backend_alias( GenericContainerJson Json )
 endif()
+
+# ----------------------------------------------------------------------------
+# YAML bridge
+# ----------------------------------------------------------------------------
+# Look for an installed fkYAML package first. If none is available,
+# FetchContent obtains the requested upstream tag. The YAML conversion sources
+# are compiled into the main library.
 if ( GENERIC_CONTAINER_ENABLE_YAML )
   find_package( fkYAML 0.4 QUIET )
   if ( NOT TARGET fkYAML::fkYAML )
@@ -434,6 +763,13 @@ if ( GENERIC_CONTAINER_ENABLE_YAML )
   target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:fkYAML::fkYAML> )
   generic_container_add_backend_alias( GenericContainerYaml Yaml )
 endif()
+
+# ----------------------------------------------------------------------------
+# TOML bridge
+# ----------------------------------------------------------------------------
+# Resolve toml++ with find_package() first and FetchContent second. The
+# requested package version matches the fallback tag used when no package
+# exists.
 if ( GENERIC_CONTAINER_ENABLE_TOML )
   find_package( tomlplusplus 3.4 QUIET )
   if ( NOT TARGET tomlplusplus::tomlplusplus )
@@ -453,6 +789,13 @@ if ( GENERIC_CONTAINER_ENABLE_TOML )
   target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:tomlplusplus::tomlplusplus> )
   generic_container_add_backend_alias( GenericContainerToml Toml )
 endif()
+
+# ----------------------------------------------------------------------------
+# Lua bridge and Lua 5.4 runtime
+# ----------------------------------------------------------------------------
+# Lua support is the only bridge that builds an additional runtime library.
+# The Lua VM is compiled from C sources, exported as GenericContainer::LuaVM,
+# and linked publicly by GenericContainer when the bridge is enabled.
 if ( GENERIC_CONTAINER_ENABLE_LUA )
   enable_language( C )
 
@@ -482,6 +825,16 @@ if ( GENERIC_CONTAINER_ENABLE_LUA )
     "$<BUILD_INTERFACE:${GENERIC_CONTAINER_LUA_SOURCE_DIR}>"
   )
 
+
+# ============================================================================
+# Platform suffix used in real library filenames
+# ============================================================================
+# The project deliberately gives the real binary files platform-specific
+# names, for example libGenericContainer_osx_static.a or
+# libGenericContainer_linux_static.a.
+# A compatibility alias with the traditional unsuffixed name is created later.
+# On Unix-like platforms that alias is a symlink; on Windows it is a copied
+# file.
   if ( APPLE )
     target_compile_definitions( Lua PRIVATE LUA_USE_MACOSX )
   elseif ( UNIX )
@@ -509,7 +862,21 @@ endif()
 #    | |  __/\__ \ |_\__ \
 #    |_|\___||___/\__|___/
 #
+
+# ============================================================================
+# Unit tests
+# ============================================================================
+# CTest defines the BUILD_TESTING option and provides add_test() integration.
+# Tests are built only when this repository is the top-level project, which
+# prevents a parent project from unexpectedly downloading Catch2 or compiling
+# GenericContainer tests.
 include( CTest )
+
+# ----------------------------------------------------------------------------
+# Top-level test gate
+# ----------------------------------------------------------------------------
+# Only a standalone checkout builds the test battery. This keeps FetchContent
+# users from inheriting test executables or Catch2 downloads.
 if ( BUILD_TESTING AND PROJECT_IS_TOP_LEVEL )
   find_package( Catch2 3 QUIET )
   if ( NOT TARGET Catch2::Catch2WithMain )
@@ -561,6 +928,13 @@ endif()
 #  | |___ >  < (_| | | | | | | |_) | |  __/\__ \
 #  |_____/_/\_\__,_|_| |_| |_| .__/|_|\___||___/
 #                            |_|
+
+# ============================================================================
+# Example executables
+# ============================================================================
+# Examples are built only in a top-level source checkout and only when the
+# examples option is enabled. Executables are written to the source-tree bin/
+# directory to preserve the project’s historical layout.
 if ( GENERIC_CONTAINER_BUILD_EXAMPLES AND PROJECT_IS_TOP_LEVEL )
   set( GENERIC_CONTAINER_EXAMPLE_BIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/bin" )
 
@@ -626,6 +1000,16 @@ endif()
 #   | || | | \__ \ || (_| | | |
 #  |___|_| |_|___/\__\__,_|_|_|
 #
+
+# ============================================================================
+# Install rules and exported CMake package
+# ============================================================================
+# This section creates an installation that can be consumed with
+# find_package(GenericContainer CONFIG REQUIRED). It installs headers, binary
+# targets and generated package metadata under the standard GNUInstallDirs
+# locations.
+# The whole section is gated by GENERIC_CONTAINER_INSTALL so an embedded build
+# can opt out cleanly.
 if ( GENERIC_CONTAINER_INSTALL )
   include( CMakePackageConfigHelpers )
 
@@ -696,10 +1080,24 @@ endif()
 #  |____/ \__,_|_| |_| |_|_| |_| |_|\__,_|_|   \__, |
 #                                                  |___/ 
 #
+
+# ============================================================================
+# Configuration summary
+# ============================================================================
+# The final status messages print the dependency resolution decisions made
+# during configure. This is intentionally at the end, after all optional
+# backends had a chance to update their summary variables.
 message( STATUS "" )
 message( STATUS "GenericContainer dependency summary:" )
 message( STATUS "  nlohmann_json: ${GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE}" )
 message( STATUS "  fkYAML       : ${GENERIC_CONTAINER_FKYAML_SOURCE}" )
 message( STATUS "  tomlplusplus : ${GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE}" )
 message( STATUS "  lua          : ${GENERIC_CONTAINER_LUA_SOURCE}" )
+
+# ============================================================================
+# Configuration summary
+# ============================================================================
+# The final status messages print the dependency resolution decisions made
+# during configure. This is intentionally at the end, after all optional
+# backends had a chance to update their summary variables.
 message( STATUS "" )
