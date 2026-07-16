@@ -38,6 +38,7 @@
 #include <algorithm>
 #include <string>
 #include <string_view>
+#include <cstddef>
 #include <complex>
 #include <concepts>
 #include <map>
@@ -52,6 +53,7 @@
 #include <cmath>
 #include <limits>
 #include <stdexcept>
+#include <type_traits>
 
 #include "GenericContainerConfig.hh"
 
@@ -1908,11 +1910,11 @@ namespace GC_namespace
     //!
     template <typename T> void get_value( T & v, string_view const where = "" ) const;
 
-//!
-//! \brief Get the stored value as a pointer.
-//!
-//! This function retrieves the stored pointer value.
-//!
+    //!
+    //! \brief Get the stored value as a pointer.
+    //!
+    //! This function retrieves the stored pointer value.
+    //!
     template <typename T>
       requires std::is_object_v<T>
     T & get_pointer()
@@ -3729,6 +3731,39 @@ namespace GC_namespace
     GenericContainer & operator=( long_type const & a )
     {
       this->set_long( a );
+      return *this;
+    }
+
+    //!
+    //! Assign a pointer-difference integer to the generic container.
+    //!
+    //! This overload is intended for index-like signed integral types represented
+    //! by `std::ptrdiff_t`. It also covers external libraries, such as Eigen, whose
+    //! index type may be defined as `std::ptrdiff_t`, without requiring those
+    //! libraries to be included in this header.
+    //!
+    //! The overload is enabled only when `std::ptrdiff_t` is not already identical
+    //! to one of the integer types natively handled by the container. This avoids
+    //! duplicate overload definitions on platforms where these aliases coincide.
+    //!
+    //! \tparam T type deduced from the assigned value; enabled only for
+    //!         `std::ptrdiff_t`
+    //! \param[in] a pointer-difference integer to be stored as a long integer
+    //!
+    template <
+      typename T,
+      typename std::enable_if_t<
+        std::is_same_v<T, std::ptrdiff_t> &&
+        !std::is_same_v<std::ptrdiff_t, int_type> &&
+        !std::is_same_v<std::ptrdiff_t, long_type> &&
+        !std::is_same_v<std::ptrdiff_t, uint_type> &&
+        !std::is_same_v<std::ptrdiff_t, ulong_type>,
+        int
+      > = 0
+    >
+    GenericContainer & operator=( T const & a )
+    {
+      this->set_long( static_cast<long_type>( a ) );
       return *this;
     }
 
