@@ -4187,6 +4187,44 @@ namespace GC_namespace
     bool get_if_exists( string_view field, ulong_type & value ) const;
 
     //!
+    //! Check if string `field` is a key of the stored map and extract a
+    //! pointer-difference integer value if it exists.
+    //!
+    //! This overload is intended for index-like signed integral types represented
+    //! by `std::ptrdiff_t`. It also covers external libraries, such as Eigen, whose
+    //! index type may be defined as `std::ptrdiff_t`, without requiring those
+    //! libraries to be included in this header.
+    //!
+    //! The overload is enabled only when `std::ptrdiff_t` is not already identical
+    //! to one of the integer types natively handled by the container. This avoids
+    //! duplicate overload definitions on platforms where these aliases coincide.
+    //!
+    //! \tparam T type deduced from the output value; enabled only for
+    //!         `std::ptrdiff_t`
+    //! \param[in]  field key to be checked
+    //! \param[out] value value to be extracted as a pointer-difference integer
+    //! \return true if the key exists and the value has been extracted
+    //!
+    template <
+      typename T,
+      typename std::enable_if_t<
+        std::is_same_v<T, std::ptrdiff_t> &&
+        !std::is_same_v<std::ptrdiff_t, int_type> &&
+        !std::is_same_v<std::ptrdiff_t, long_type> &&
+        !std::is_same_v<std::ptrdiff_t, uint_type> &&
+        !std::is_same_v<std::ptrdiff_t, ulong_type>,
+        int
+      > = 0
+    >
+    bool get_if_exists( string_view field, T & value ) const
+    {
+      long_type tmp;
+      bool const ok = this->get_if_exists( field, tmp );
+      if ( ok ) value = static_cast<T>( tmp );
+      return ok;
+    }
+
+    //!
     //! Check if string `field` is a key of the stored map and extract value if exists
     //! \param[in] field key to be checked
     //! \param[in] value value to be extracted
