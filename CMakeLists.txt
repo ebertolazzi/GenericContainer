@@ -19,11 +19,11 @@
 # This project is written as a target-oriented CMake build: compile features,
 # include directories, link dependencies, install rules and export metadata
 # are attached to targets instead of being stored in global variables.
-# CMake 3.25 is used as the baseline so the script can rely on modern
+# CMake 3.28 is used as the baseline so the script can rely on modern
 # generator expressions, FetchContent behavior, install/export support and
-# package configuration helpers without compatibility workarounds for older
-# releases.
-cmake_minimum_required( VERSION 3.25 )
+# package configuration helpers, including FetchContent's EXCLUDE_FROM_ALL
+# support, without compatibility workarounds for older releases.
+cmake_minimum_required( VERSION 3.28 )
 
 
 # --------------------------------------------------------------------------
@@ -233,6 +233,33 @@ set(
 # project or by find_package().
 include( GNUInstallDirs )
 include( FetchContent )
+
+# ----------------------------------------------------------------------------
+# Persistent FetchContent cache
+# ----------------------------------------------------------------------------
+# FetchContent normally stores populated dependencies in the current build
+# tree. Use a source-tree cache instead so fresh build directories and
+# different presets can reuse the same downloads. Preserve any custom path
+# explicitly supplied by a parent project or by the user.
+if (
+  PROJECT_IS_TOP_LEVEL
+  AND (
+    NOT FETCHCONTENT_BASE_DIR
+    OR FETCHCONTENT_BASE_DIR STREQUAL "${CMAKE_BINARY_DIR}/_deps"
+  )
+)
+  set(
+    FETCHCONTENT_BASE_DIR "${CMAKE_SOURCE_DIR}/.cache/cmake-deps"
+    CACHE PATH "Shared FetchContent download/extract cache" FORCE
+  )
+endif()
+
+# Once a dependency has been populated, avoid checking its upstream Git
+# repository again on every configure. Initial downloads remain enabled.
+set(
+  FETCHCONTENT_UPDATES_DISCONNECTED ON
+  CACHE BOOL "Skip FetchContent update checks after initial population" FORCE
+)
 
 
 # ============================================================================
@@ -647,12 +674,27 @@ endfunction()
 # generic_container_ensure_nlohmann_json()
 # ----------------------------------------------------------------------------
 # Guarantee that nlohmann_json::nlohmann_json exists. The resolution order is:
-# reuse an existing target from a parent project, try
-# find_package(nlohmann_json 3), otherwise fetch the official include.zip and
-# create a minimal INTERFACE target.
+# reuse an existing target from a parent project, use the vendored single
+# header, try find_package(nlohmann_json 3), otherwise fetch the official
+# include.zip and create a minimal INTERFACE target.
 function( generic_container_ensure_nlohmann_json )
   if ( TARGET nlohmann_json::nlohmann_json )
     set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "existing target: nlohmann_json::nlohmann_json" PARENT_SCOPE )
+    return()
+  endif()
+
+  if ( EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/third_party/nlohmann/json.hpp" )
+    add_library( nlohmann_json INTERFACE )
+    add_library( nlohmann_json::nlohmann_json ALIAS nlohmann_json )
+    target_include_directories(
+      nlohmann_json SYSTEM INTERFACE
+      "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/third_party>"
+    )
+    set(
+      GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE
+      "vendored: third_party/nlohmann/json.hpp"
+      PARENT_SCOPE
+    )
     return()
   endif()
 
@@ -665,6 +707,7 @@ function( generic_container_ensure_nlohmann_json )
   FetchContent_Declare(
     nlohmann_json
     URL https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip
+    EXCLUDE_FROM_ALL
   )
   FetchContent_MakeAvailable( nlohmann_json )
   add_library( nlohmann_json INTERFACE )
@@ -751,6 +794,8 @@ if ( GENERIC_CONTAINER_ENABLE_YAML )
       fkYAML
       GIT_REPOSITORY https://github.com/fktn-k/fkYAML.git
       GIT_TAG        v0.4.2
+      GIT_SHALLOW    TRUE
+      EXCLUDE_FROM_ALL
     )
     FetchContent_MakeAvailable( fkYAML )
   endif()
@@ -777,6 +822,8 @@ if ( GENERIC_CONTAINER_ENABLE_TOML )
       tomlplusplus
       GIT_REPOSITORY https://github.com/marzer/tomlplusplus.git
       GIT_TAG        v3.4.0
+      GIT_SHALLOW    TRUE
+      EXCLUDE_FROM_ALL
     )
     FetchContent_MakeAvailable( tomlplusplus )
   endif()
@@ -803,6 +850,7 @@ if ( GENERIC_CONTAINER_ENABLE_LUA )
     lua54
     URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
     SOURCE_SUBDIR doc
+    EXCLUDE_FROM_ALL
   )
   FetchContent_MakeAvailable( lua54 )
 
@@ -884,6 +932,8 @@ if ( BUILD_TESTING AND PROJECT_IS_TOP_LEVEL )
       Catch2
       GIT_REPOSITORY https://github.com/catchorg/Catch2.git
       GIT_TAG        v3.7.1
+      GIT_SHALLOW    TRUE
+      EXCLUDE_FROM_ALL
     )
     FetchContent_MakeAvailable( Catch2 )
 
