@@ -166,6 +166,7 @@ endif()
 # did not ask for.
 option( BUILD_SHARED_LIBS "Build GenericContainer as a shared library" OFF )
 option( GENERIC_CONTAINER_INSTALL "Generate the install target" ${PROJECT_IS_TOP_LEVEL} )
+option( GENERIC_CONTAINER_ALLOW_NETWORK_FETCH "Allow FetchContent network fallbacks for missing local dependencies" OFF )
 
 # Each format bridge is opt-in; turn one off to skip fetching/building its
 # third-party dependency entirely.
@@ -263,6 +264,10 @@ set(
 # fallback remains available.
 # Setting a path to a non-existing directory is a simple way to force the
 # download/fallback path during testing.
+  GENERIC_CONTAINER_NLOHMANN_JSON_LOCAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../json"
+  CACHE PATH "Path to a local nlohmann/json checkout to use before FetchContent"
+)
+set(
   GENERIC_CONTAINER_FKYAML_LOCAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../fkYAML"
   CACHE PATH "Path to a local fkYAML checkout to use before FetchContent"
 )
@@ -603,7 +608,13 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
     )
     set( ${SUMMARY_VARIABLE} "local: ${LOCAL_DIR_ABS}" PARENT_SCOPE )
   else()
-    set( ${SUMMARY_VARIABLE} "FetchContent" PARENT_SCOPE )
+    if ( NOT GENERIC_CONTAINER_ALLOW_NETWORK_FETCH )
+      message( FATAL_ERROR
+        "Local ${DEPENDENCY_NAME} not found at ${LOCAL_DIR_ABS}. Set the corresponding "
+        "GENERIC_CONTAINER_*_LOCAL_DIR or explicitly enable GENERIC_CONTAINER_ALLOW_NETWORK_FETCH." )
+    endif()
+    message( STATUS "GenericContainer: fetching ${DEPENDENCY_NAME} (explicitly enabled)" )
+    set( ${SUMMARY_VARIABLE} "FetchContent (explicitly enabled)" PARENT_SCOPE )
   endif()
 endfunction()
 
@@ -842,12 +853,34 @@ function( generic_container_ensure_nlohmann_json )
     return()
   endif()
 
+  get_filename_component(
+    _nlohmann_local_abs "${GENERIC_CONTAINER_NLOHMANN_JSON_LOCAL_DIR}"
+    ABSOLUTE BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
+  )
+  if ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" )
+    add_library( nlohmann_json INTERFACE )
+    add_library( nlohmann_json::nlohmann_json ALIAS nlohmann_json )
+    target_include_directories(
+      nlohmann_json SYSTEM INTERFACE
+      "$<BUILD_INTERFACE:${_nlohmann_local_abs}/single_include>"
+    )
+    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "local: ${_nlohmann_local_abs}" PARENT_SCOPE )
+    message( STATUS "Using local nlohmann/json checkout: ${_nlohmann_local_abs}" )
+    return()
+  endif()
+
   find_package( nlohmann_json 3 QUIET )
   if ( TARGET nlohmann_json::nlohmann_json )
     set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "find_package" PARENT_SCOPE )
     return()
   endif()
 
+  if ( NOT GENERIC_CONTAINER_ALLOW_NETWORK_FETCH )
+    message( FATAL_ERROR
+      "nlohmann/json was not found locally. Set GENERIC_CONTAINER_NLOHMANN_JSON_LOCAL_DIR "
+      "or explicitly enable GENERIC_CONTAINER_ALLOW_NETWORK_FETCH." )
+  endif()
+  message( STATUS "GenericContainer: fetching nlohmann/json (explicitly enabled)" )
   FetchContent_Declare(
     nlohmann_json
     URL https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip

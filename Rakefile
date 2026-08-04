@@ -77,7 +77,8 @@ def configure_args(build_testing: false, build_examples: false)
     "-DGENERIC_CONTAINER_BUILD_EXAMPLES=#{cmake_bool(build_examples)}",
     "-DGENERIC_CONTAINER_ENABLE_YAML=#{cmake_bool(ENABLE_YAML)}",
     "-DGENERIC_CONTAINER_ENABLE_TOML=#{cmake_bool(ENABLE_TOML)}",
-    "-DGENERIC_CONTAINER_ENABLE_LUA=#{cmake_bool(ENABLE_LUA)}"
+    "-DGENERIC_CONTAINER_ENABLE_LUA=#{cmake_bool(ENABLE_LUA)}",
+    '-DGENERIC_CONTAINER_ALLOW_NETWORK_FETCH=OFF'
   ]
 end
 
