@@ -196,6 +196,58 @@ option( GENERIC_CONTAINER_ENABLE_LUA  "Build GenericContainer::Lua (embeds Lua 5
 # PROJECT_IS_TOP_LEVEL.
 option( GENERIC_CONTAINER_BUILD_EXAMPLES "Build runnable executables from examples/" ${PROJECT_IS_TOP_LEVEL} )
 
+# CheckIPOSupported is needed by the IPO/LTO probing below.
+include( CheckIPOSupported )
+
+# ============================================================================
+# Compilation and optimization options
+# ============================================================================
+# Native CPU tuning is enabled for ordinary single-architecture builds, but
+# disabled by default for Apple universal binaries: -march=native cannot
+# describe both arm64 and x86_64 slices in the same artifact.
+set(GENERIC_CONTAINER_APPLE_MULTI_ARCH FALSE)
+if(APPLE AND CMAKE_OSX_ARCHITECTURES)
+  list(LENGTH CMAKE_OSX_ARCHITECTURES GENERIC_CONTAINER_OSX_ARCHITECTURE_COUNT)
+  if(GENERIC_CONTAINER_OSX_ARCHITECTURE_COUNT GREATER 1)
+    set(GENERIC_CONTAINER_APPLE_MULTI_ARCH TRUE)
+  endif()
+endif()
+
+set(GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT ON)
+if(GENERIC_CONTAINER_APPLE_MULTI_ARCH)
+  set(GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT OFF)
+endif()
+
+option(
+  GENERIC_CONTAINER_USE_NATIVE_ARCH
+  "Optimize Release builds for the current CPU architecture"
+  ${GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT}
+)
+option(GENERIC_CONTAINER_ENABLE_LTO "Enable interprocedural optimization / LTO" ON)
+option(GENERIC_CONTAINER_UNROLL_LOOPS "Enable explicit loop unrolling in Release builds" OFF)
+option(
+  GENERIC_CONTAINER_ENABLE_FAST_MATH
+  "Enable aggressive floating-point optimizations; may change IEEE-754 semantics"
+  OFF
+)
+
+# Probe IPO/LTO support once and reuse the result for every GenericContainer
+# target.
+set(GENERIC_CONTAINER_IPO_SUPPORTED FALSE)
+set(GENERIC_CONTAINER_IPO_STATUS "disabled")
+if(GENERIC_CONTAINER_ENABLE_LTO)
+  check_ipo_supported(
+    RESULT GENERIC_CONTAINER_IPO_SUPPORTED
+    OUTPUT GENERIC_CONTAINER_IPO_ERROR
+    LANGUAGES CXX
+  )
+  if(GENERIC_CONTAINER_IPO_SUPPORTED)
+    set(GENERIC_CONTAINER_IPO_STATUS "enabled")
+  else()
+    set(GENERIC_CONTAINER_IPO_STATUS "not supported: ${GENERIC_CONTAINER_IPO_ERROR}")
+  endif()
+endif()
+
 # The backend subdirectories use FetchContent for their own dependencies.
 # These cache paths let a developer keep sibling checkouts next to this
 # project and avoid downloading them again. Set any path to a non-existing
@@ -314,6 +366,103 @@ set( GENERIC_CONTAINER_LUA_SOURCE "disabled" )
 #
 
 # ============================================================================
+# Common target configuration
+# ============================================================================
+# Apply the same diagnostics, definitions and optimization policy to each
+# GenericContainer target.  Flags are target-local (PRIVATE) so they do not
+# leak into consumers that link this project.
+function( gc_configure_target TARGET_NAME )
+  target_compile_options(
+    ${TARGET_NAME}
+    PRIVATE
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wall>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wextra>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wpedantic>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wshadow>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wnon-virtual-dtor>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Woverloaded-virtual>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wcast-align>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wunused>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wformat=2>
+      $<$<CXX_COMPILER_ID:GNU,Clang,AppleClang>:-Wimplicit-fallthrough>
+      $<$<CXX_COMPILER_ID:GNU>:-Wduplicated-cond>
+      $<$<CXX_COMPILER_ID:GNU>:-Wduplicated-branches>
+      $<$<CXX_COMPILER_ID:GNU>:-Wlogical-op>
+      $<$<CXX_COMPILER_ID:GNU>:-Wnull-dereference>
+      $<$<CXX_COMPILER_ID:GNU>:-Wmisleading-indentation>
+      $<$<CXX_COMPILER_ID:MSVC>:/W4>
+      $<$<CXX_COMPILER_ID:MSVC>:/permissive->
+      $<$<CXX_COMPILER_ID:MSVC>:/bigobj>
+  )
+
+  target_compile_options(
+    ${TARGET_NAME}
+    PRIVATE
+      $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU,Clang,AppleClang>>:-O3>
+      $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/O2>
+      $<$<AND:$<CONFIG:RelWithDebInfo>,$<CXX_COMPILER_ID:GNU,Clang,AppleClang>>:-O2>
+      $<$<AND:$<CONFIG:RelWithDebInfo>,$<CXX_COMPILER_ID:MSVC>>:/O2>
+  )
+
+  target_compile_definitions(
+    ${TARGET_NAME}
+    PRIVATE
+      $<$<CONFIG:Release>:NDEBUG>
+      $<$<CONFIG:Release>:EIGEN_NO_DEBUG>
+  )
+
+  if( GENERIC_CONTAINER_USE_NATIVE_ARCH )
+    if( GENERIC_CONTAINER_APPLE_MULTI_ARCH )
+      message( STATUS
+        "Skipping native CPU flags for ${TARGET_NAME}: Apple universal build uses "
+        "CMAKE_OSX_ARCHITECTURES=${CMAKE_OSX_ARCHITECTURES}"
+      )
+    else()
+      target_compile_options(
+        ${TARGET_NAME}
+        PRIVATE
+          $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU,Clang,AppleClang>>:-march=native>
+          $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU,Clang,AppleClang>>:-mtune=native>
+          $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:IntelLLVM>>:-xHost>
+          $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/arch:AVX2>
+      )
+    endif()
+  endif()
+
+  if( GENERIC_CONTAINER_UNROLL_LOOPS )
+    target_compile_options(
+      ${TARGET_NAME}
+      PRIVATE
+        $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU,Clang,AppleClang>>:-funroll-loops>
+    )
+  endif()
+
+  # Deliberately OFF by default because it permits reassociation and other
+  # transformations that weaken strict IEEE-754 behavior.
+  if( GENERIC_CONTAINER_ENABLE_FAST_MATH )
+    target_compile_options(
+      ${TARGET_NAME}
+      PRIVATE
+        $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU,Clang,AppleClang>>:-ffast-math>
+        $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:MSVC>>:/fp:fast>
+    )
+  endif()
+
+  if( GENERIC_CONTAINER_IPO_SUPPORTED )
+    set_property( TARGET ${TARGET_NAME} PROPERTY INTERPROCEDURAL_OPTIMIZATION_RELEASE ON )
+    set_property( TARGET ${TARGET_NAME} PROPERTY INTERPROCEDURAL_OPTIMIZATION_RELWITHDEBINFO ON )
+  endif()
+
+  if( APPLE AND UTILS_BUILD_FAT )
+    set_target_properties(
+      ${TARGET_NAME}
+      PROPERTIES
+        OSX_ARCHITECTURES "${CMAKE_OSX_ARCHITECTURES}"
+    )
+  endif()
+endfunction()
+
+# ============================================================================
 # Main library target
 # ============================================================================
 # GenericContainer is the central binary target. It starts with the core
@@ -386,14 +535,9 @@ set_target_properties(
 
 
 # ----------------------------------------------------------------------------
-# Warnings for GCC/Clang-like compilers
+# Diagnostics, definitions and optimization policy for GenericContainer
 # ----------------------------------------------------------------------------
-# Enable a basic warning set for the project target. MSVC is not covered by
-# this branch because it uses different flags and third-party diagnostics
-# differ significantly across toolchains.
-if ( CMAKE_CXX_COMPILER_ID MATCHES "Clang|AppleClang|GNU" )
-  target_compile_options( GenericContainer PRIVATE -Wall -Wextra )
-endif()
+gc_configure_target( GenericContainer )
 
 #   ____             _                  _
 #  | __ )  __ _  ___| | _____ _ __   __| |___
@@ -1143,11 +1287,46 @@ message( STATUS "  nlohmann_json: ${GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE}" )
 message( STATUS "  fkYAML       : ${GENERIC_CONTAINER_FKYAML_SOURCE}" )
 message( STATUS "  tomlplusplus : ${GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE}" )
 message( STATUS "  lua          : ${GENERIC_CONTAINER_LUA_SOURCE}" )
+message( STATUS "  Compiler         : ${CMAKE_CXX_COMPILER_ID}" )
+message( STATUS "  Build shared     : ${BUILD_SHARED_LIBS}" )
+message( STATUS "  Native arch      : ${GENERIC_CONTAINER_USE_NATIVE_ARCH}" )
+message( STATUS "  Apple multi-arch : ${GENERIC_CONTAINER_APPLE_MULTI_ARCH}" )
+message( STATUS "  LTO requested    : ${GENERIC_CONTAINER_ENABLE_LTO}" )
+message( STATUS "  LTO status       : ${GENERIC_CONTAINER_IPO_STATUS}" )
+message( STATUS "  Loop unrolling   : ${GENERIC_CONTAINER_UNROLL_LOOPS}" )
+message( STATUS "  Fast math        : ${GENERIC_CONTAINER_ENABLE_FAST_MATH}" )
 
-# ============================================================================
-# Configuration summary
-# ============================================================================
-# The final status messages print the dependency resolution decisions made
-# during configure. This is intentionally at the end, after all optional
-# backends had a chance to update their summary variables.
+set(GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS)
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+  list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:-O3" "RelWithDebInfo:-O2")
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+  list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:/O2" "RelWithDebInfo:/O2")
+endif()
+if(GENERIC_CONTAINER_USE_NATIVE_ARCH)
+  if(GENERIC_CONTAINER_APPLE_MULTI_ARCH)
+    list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "native-arch:disabled-for-Apple-universal-build")
+  elseif(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:-march=native" "Release:-mtune=native")
+  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "IntelLLVM")
+    list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:-xHost")
+  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:/arch:AVX2")
+  endif()
+endif()
+if(GENERIC_CONTAINER_UNROLL_LOOPS AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+  list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:-funroll-loops")
+endif()
+if(GENERIC_CONTAINER_ENABLE_FAST_MATH)
+  if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:-ffast-math")
+  elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:/fp:fast")
+  endif()
+endif()
+if(GENERIC_CONTAINER_IPO_SUPPORTED)
+  list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release/RelWithDebInfo:IPO/LTO")
+endif()
+list(APPEND GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS "Release:NDEBUG" "Release:EIGEN_NO_DEBUG")
+list(JOIN GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS " " GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS_TEXT)
+message( STATUS "  Optimization flags: ${GENERIC_CONTAINER_EFFECTIVE_OPTIMIZATION_FLAGS_TEXT}" )
 message( STATUS "" )
