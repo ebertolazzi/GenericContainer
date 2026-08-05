@@ -259,9 +259,9 @@ set(
 # Preferred local checkouts for optional dependencies
 # ============================================================================
 # These cache paths let developers keep dependency repositories next to
-# GenericContainer and avoid repeated network downloads. If a path exists, it
-# is used as the source for FetchContent; otherwise the normal FetchContent
-# fallback remains available.
+# GenericContainer and avoid repeated network downloads. A path is used only
+# when its current Git branch matches the configured FetchContent ref;
+# otherwise the normal FetchContent fallback remains available.
 # Setting a path to a non-existing directory is a simple way to force the
 # download/fallback path during testing.
   GENERIC_CONTAINER_NLOHMANN_JSON_LOCAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../json"
@@ -279,6 +279,10 @@ set(
   GENERIC_CONTAINER_LUA_LOCAL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../lua"
   CACHE PATH "Path to a local Lua checkout to use before FetchContent"
 )
+set(GENERIC_CONTAINER_NLOHMANN_JSON_REF "v3.11.3" CACHE STRING "nlohmann/json branch/tag to fetch")
+set(GENERIC_CONTAINER_FKYAML_REF "v0.4.3" CACHE STRING "fkYAML branch/tag to fetch")
+set(GENERIC_CONTAINER_TOMLPLUSPLUS_REF "v3.4.0" CACHE STRING "toml++ branch/tag to fetch")
+set(GENERIC_CONTAINER_LUA_REF "5.4.6" CACHE STRING "Lua branch/version to fetch")
 
 
 # ============================================================================
@@ -579,18 +583,12 @@ gc_configure_target( GenericContainer )
 # If a suitable local checkout exists, the function sets
 # FETCHCONTENT_SOURCE_DIR_<NAME> in the cache.
 # FetchContent_MakeAvailable(<name>) will then use that source tree instead of
-# downloading it. An explicit user-provided FETCHCONTENT_SOURCE_DIR_<NAME>
-# always takes precedence.
-function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR SUMMARY_VARIABLE )
+# downloading it. Stale source overrides are cleared when their Git branch no
+# longer matches the requested FetchContent ref.
+function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR EXPECTED_REF SUMMARY_VARIABLE )
   string( TOUPPER "${DEPENDENCY_NAME}" DEPENDENCY_NAME_UPPER )
   set( SOURCE_DIR_VARIABLE "FETCHCONTENT_SOURCE_DIR_${DEPENDENCY_NAME_UPPER}" )
   set( ${SUMMARY_VARIABLE} "FetchContent" PARENT_SCOPE )
-
-  if ( DEFINED ${SOURCE_DIR_VARIABLE} AND IS_DIRECTORY "${${SOURCE_DIR_VARIABLE}}" )
-    message( STATUS "Using local ${DEPENDENCY_NAME} checkout: ${${SOURCE_DIR_VARIABLE}}" )
-    set( ${SUMMARY_VARIABLE} "local: ${${SOURCE_DIR_VARIABLE}}" PARENT_SCOPE )
-    return()
-  endif()
 
   get_filename_component(
     LOCAL_DIR_ABS
@@ -599,22 +597,40 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
     BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
   )
 
-  if ( IS_DIRECTORY "${LOCAL_DIR_ABS}" )
-    message( STATUS "Using local ${DEPENDENCY_NAME} checkout: ${LOCAL_DIR_ABS}" )
+  set( LOCAL_MATCHES FALSE )
+  set( LOCAL_BRANCH "not available" )
+  if ( IS_DIRECTORY "${LOCAL_DIR_ABS}" AND GIT_EXECUTABLE )
+    execute_process(
+      COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" symbolic-ref --quiet --short HEAD
+      RESULT_VARIABLE BRANCH_RESULT
+      OUTPUT_VARIABLE LOCAL_BRANCH
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+    )
+    if ( NOT BRANCH_RESULT EQUAL 0 )
+      set( LOCAL_BRANCH "detached HEAD or unavailable" )
+    endif()
+    if ( BRANCH_RESULT EQUAL 0 AND LOCAL_BRANCH STREQUAL EXPECTED_REF )
+      set( LOCAL_MATCHES TRUE )
+    endif()
+  endif()
+
+  if ( LOCAL_MATCHES )
+    message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> local ${LOCAL_DIR_ABS} (branch '${LOCAL_BRANCH}', requested '${EXPECTED_REF}')" )
     set(
       ${SOURCE_DIR_VARIABLE} "${LOCAL_DIR_ABS}"
       CACHE PATH "Local source directory for ${DEPENDENCY_NAME}; overrides FetchContent download"
       FORCE
     )
-    set( ${SUMMARY_VARIABLE} "local: ${LOCAL_DIR_ABS}" PARENT_SCOPE )
+    set( ${SUMMARY_VARIABLE} "local: ${LOCAL_DIR_ABS} [branch ${LOCAL_BRANCH}]" PARENT_SCOPE )
   else()
-    if ( NOT GENERIC_CONTAINER_ALLOW_NETWORK_FETCH )
-      message( FATAL_ERROR
-        "Local ${DEPENDENCY_NAME} not found at ${LOCAL_DIR_ABS}. Set the corresponding "
-        "GENERIC_CONTAINER_*_LOCAL_DIR or explicitly enable GENERIC_CONTAINER_ALLOW_NETWORK_FETCH." )
+    unset( ${SOURCE_DIR_VARIABLE} CACHE )
+    if ( IS_DIRECTORY "${LOCAL_DIR_ABS}" )
+      message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> ignoring local ${LOCAL_DIR_ABS} (branch '${LOCAL_BRANCH}', requested '${EXPECTED_REF}')" )
+    else()
+      message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> local checkout not found at ${LOCAL_DIR_ABS}" )
     endif()
-    message( STATUS "GenericContainer: fetching ${DEPENDENCY_NAME} (explicitly enabled)" )
-    set( ${SUMMARY_VARIABLE} "FetchContent (explicitly enabled)" PARENT_SCOPE )
+    set( ${SUMMARY_VARIABLE} "FetchContent: ${EXPECTED_REF}" PARENT_SCOPE )
   endif()
 endfunction()
 
@@ -857,16 +873,35 @@ function( generic_container_ensure_nlohmann_json )
     _nlohmann_local_abs "${GENERIC_CONTAINER_NLOHMANN_JSON_LOCAL_DIR}"
     ABSOLUTE BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
   )
-  if ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" )
+  set( _nlohmann_local_matches FALSE )
+  set( _nlohmann_local_branch "not available" )
+  if ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" AND GIT_EXECUTABLE )
+    execute_process(
+      COMMAND "${GIT_EXECUTABLE}" -C "${_nlohmann_local_abs}" symbolic-ref --quiet --short HEAD
+      RESULT_VARIABLE _nlohmann_branch_result
+      OUTPUT_VARIABLE _nlohmann_local_branch
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+    )
+    if ( NOT _nlohmann_branch_result EQUAL 0 )
+      set( _nlohmann_local_branch "detached HEAD or unavailable" )
+    endif()
+    if ( _nlohmann_branch_result EQUAL 0 AND _nlohmann_local_branch STREQUAL GENERIC_CONTAINER_NLOHMANN_JSON_REF )
+      set( _nlohmann_local_matches TRUE )
+    endif()
+  endif()
+  if ( _nlohmann_local_matches )
     add_library( nlohmann_json INTERFACE )
     add_library( nlohmann_json::nlohmann_json ALIAS nlohmann_json )
     target_include_directories(
       nlohmann_json SYSTEM INTERFACE
       "$<BUILD_INTERFACE:${_nlohmann_local_abs}/single_include>"
     )
-    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "local: ${_nlohmann_local_abs}" PARENT_SCOPE )
-    message( STATUS "Using local nlohmann/json checkout: ${_nlohmann_local_abs}" )
+    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "local: ${_nlohmann_local_abs} [branch ${_nlohmann_local_branch}]" PARENT_SCOPE )
+    message( STATUS "GenericContainer: nlohmann_json -> local ${_nlohmann_local_abs} (branch '${_nlohmann_local_branch}', requested '${GENERIC_CONTAINER_NLOHMANN_JSON_REF}')" )
     return()
+  elseif ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" )
+    message( STATUS "GenericContainer: nlohmann_json -> ignoring local ${_nlohmann_local_abs} (branch '${_nlohmann_local_branch}', requested '${GENERIC_CONTAINER_NLOHMANN_JSON_REF}')" )
   endif()
 
   find_package( nlohmann_json 3 QUIET )
@@ -883,7 +918,7 @@ function( generic_container_ensure_nlohmann_json )
   message( STATUS "GenericContainer: fetching nlohmann/json (explicitly enabled)" )
   FetchContent_Declare(
     nlohmann_json
-    URL https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip
+    URL https://github.com/nlohmann/json/releases/download/${GENERIC_CONTAINER_NLOHMANN_JSON_REF}/include.zip
     EXCLUDE_FROM_ALL
   )
   FetchContent_MakeAvailable( nlohmann_json )
@@ -893,7 +928,7 @@ function( generic_container_ensure_nlohmann_json )
     nlohmann_json SYSTEM INTERFACE
     "$<BUILD_INTERFACE:${nlohmann_json_SOURCE_DIR}/include>"
   )
-  set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "FetchContent: v3.11.3" PARENT_SCOPE )
+  set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "FetchContent: ${GENERIC_CONTAINER_NLOHMANN_JSON_REF}" PARENT_SCOPE )
 endfunction()
 
 
@@ -914,7 +949,7 @@ endif()
 # available; otherwise the backend block below will use find_package() or
 # FetchContent.
 if ( GENERIC_CONTAINER_ENABLE_YAML )
-  generic_container_prefer_local_fetchcontent( fkYAML "${GENERIC_CONTAINER_FKYAML_LOCAL_DIR}" GENERIC_CONTAINER_FKYAML_SOURCE )
+  generic_container_prefer_local_fetchcontent( fkYAML "${GENERIC_CONTAINER_FKYAML_LOCAL_DIR}" "${GENERIC_CONTAINER_FKYAML_REF}" GENERIC_CONTAINER_FKYAML_SOURCE )
 endif()
 
 # ----------------------------------------------------------------------------
@@ -923,7 +958,7 @@ endif()
 # If TOML support is enabled, prefer a local toml++ checkout when one is
 # available; otherwise the backend block below resolves it normally.
 if ( GENERIC_CONTAINER_ENABLE_TOML )
-  generic_container_prefer_local_fetchcontent( tomlplusplus "${GENERIC_CONTAINER_TOMLPLUSPLUS_LOCAL_DIR}" GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE )
+  generic_container_prefer_local_fetchcontent( tomlplusplus "${GENERIC_CONTAINER_TOMLPLUSPLUS_LOCAL_DIR}" "${GENERIC_CONTAINER_TOMLPLUSPLUS_REF}" GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE )
 endif()
 
 # ----------------------------------------------------------------------------
@@ -933,7 +968,7 @@ endif()
 # available. The actual Lua runtime target is created later because it also
 # requires enabling the C language.
 if ( GENERIC_CONTAINER_ENABLE_LUA )
-  generic_container_prefer_local_fetchcontent( lua54 "${GENERIC_CONTAINER_LUA_LOCAL_DIR}" GENERIC_CONTAINER_LUA_SOURCE )
+  generic_container_prefer_local_fetchcontent( lua54 "${GENERIC_CONTAINER_LUA_LOCAL_DIR}" "${GENERIC_CONTAINER_LUA_REF}" GENERIC_CONTAINER_LUA_SOURCE )
 endif()
 
 
@@ -962,16 +997,30 @@ endif()
 # YAML bridge
 # ----------------------------------------------------------------------------
 # Look for an installed fkYAML package first. If none is available,
-# FetchContent obtains the requested upstream tag. The YAML conversion sources
-# are compiled into the main library.
+# FetchContent obtains the requested upstream release archive. An archive is
+# used instead of a mutable Git clone because fkYAML changed the case of its
+# Catch2 directory between releases, which makes Git tag switches unreliable
+# on case-insensitive filesystems such as the default macOS filesystem.
+# The YAML conversion sources are compiled into the main library.
 if ( GENERIC_CONTAINER_ENABLE_YAML )
-  find_package( fkYAML 0.4 QUIET )
+  if ( NOT FETCHCONTENT_SOURCE_DIR_FKYAML )
+    find_package( fkYAML 0.4 QUIET )
+    if ( TARGET fkYAML::fkYAML )
+      set( GENERIC_CONTAINER_FKYAML_SOURCE "find_package" )
+    endif()
+  endif()
   if ( NOT TARGET fkYAML::fkYAML )
+    if ( NOT GENERIC_CONTAINER_ALLOW_NETWORK_FETCH AND NOT FETCHCONTENT_SOURCE_DIR_FKYAML )
+      message( FATAL_ERROR "fkYAML '${GENERIC_CONTAINER_FKYAML_REF}' requires FetchContent because the local branch does not match; enable GENERIC_CONTAINER_ALLOW_NETWORK_FETCH." )
+    endif()
+    if ( NOT FETCHCONTENT_SOURCE_DIR_FKYAML )
+      message( STATUS "GenericContainer: fkYAML -> FetchContent (requested '${GENERIC_CONTAINER_FKYAML_REF}')" )
+    endif()
     FetchContent_Declare(
       fkYAML
-      GIT_REPOSITORY https://github.com/fktn-k/fkYAML.git
-      GIT_TAG        v0.4.2
-      GIT_SHALLOW    TRUE
+      URL "https://github.com/fktn-k/fkYAML/archive/refs/tags/${GENERIC_CONTAINER_FKYAML_REF}.tar.gz"
+      SOURCE_DIR "${FETCHCONTENT_BASE_DIR}/fkyaml-${GENERIC_CONTAINER_FKYAML_REF}-src"
+      DOWNLOAD_EXTRACT_TIMESTAMP TRUE
       EXCLUDE_FROM_ALL
     )
     FetchContent_MakeAvailable( fkYAML )
@@ -993,12 +1042,23 @@ endif()
 # requested package version matches the fallback tag used when no package
 # exists.
 if ( GENERIC_CONTAINER_ENABLE_TOML )
-  find_package( tomlplusplus 3.4 QUIET )
+  if ( NOT FETCHCONTENT_SOURCE_DIR_TOMLPLUSPLUS )
+    find_package( tomlplusplus 3.4 QUIET )
+    if ( TARGET tomlplusplus::tomlplusplus )
+      set( GENERIC_CONTAINER_TOMLPLUSPLUS_SOURCE "find_package" )
+    endif()
+  endif()
   if ( NOT TARGET tomlplusplus::tomlplusplus )
+    if ( NOT GENERIC_CONTAINER_ALLOW_NETWORK_FETCH AND NOT FETCHCONTENT_SOURCE_DIR_TOMLPLUSPLUS )
+      message( FATAL_ERROR "toml++ '${GENERIC_CONTAINER_TOMLPLUSPLUS_REF}' requires FetchContent because the local branch does not match; enable GENERIC_CONTAINER_ALLOW_NETWORK_FETCH." )
+    endif()
+    if ( NOT FETCHCONTENT_SOURCE_DIR_TOMLPLUSPLUS )
+      message( STATUS "GenericContainer: tomlplusplus -> FetchContent (requested '${GENERIC_CONTAINER_TOMLPLUSPLUS_REF}')" )
+    endif()
     FetchContent_Declare(
       tomlplusplus
       GIT_REPOSITORY https://github.com/marzer/tomlplusplus.git
-      GIT_TAG        v3.4.0
+      GIT_TAG        ${GENERIC_CONTAINER_TOMLPLUSPLUS_REF}
       GIT_SHALLOW    TRUE
       EXCLUDE_FROM_ALL
     )
@@ -1023,9 +1083,16 @@ endif()
 if ( GENERIC_CONTAINER_ENABLE_LUA )
   enable_language( C )
 
+  if ( NOT GENERIC_CONTAINER_ALLOW_NETWORK_FETCH AND NOT FETCHCONTENT_SOURCE_DIR_LUA54 )
+    message( FATAL_ERROR "Lua '${GENERIC_CONTAINER_LUA_REF}' requires FetchContent because the local branch does not match; enable GENERIC_CONTAINER_ALLOW_NETWORK_FETCH." )
+  endif()
+  if ( NOT FETCHCONTENT_SOURCE_DIR_LUA54 )
+    message( STATUS "GenericContainer: lua54 -> FetchContent (requested '${GENERIC_CONTAINER_LUA_REF}')" )
+  endif()
+
   FetchContent_Declare(
     lua54
-    URL https://www.lua.org/ftp/lua-5.4.6.tar.gz
+    URL https://www.lua.org/ftp/lua-${GENERIC_CONTAINER_LUA_REF}.tar.gz
     SOURCE_SUBDIR doc
     EXCLUDE_FROM_ALL
   )

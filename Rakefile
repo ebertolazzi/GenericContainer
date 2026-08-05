@@ -18,6 +18,8 @@ BUILD_TYPE = ENV.fetch('BUILD_TYPE', 'Release')
 BUILD_SHARED_LIBS = ENV.fetch('SHARED', '0').match?(/\A(1|on|true|yes)\z/i)
 
 # Backend switches. Set any of these to 0/off/false/no to skip the backend.
+# NETWORK_FETCH defaults to enabled because a backend whose sibling checkout
+# is on a different branch must fall back to its pinned FetchContent version.
 def enabled_env?(name, default: true)
   value = ENV.fetch(name, default ? 'ON' : 'OFF')
   value.match?(/\A(1|on|true|yes)\z/i)
@@ -27,6 +29,7 @@ ENABLE_YAML = enabled_env?('YAML')
 ENABLE_TOML = enabled_env?('TOML')
 ENABLE_LUA  = enabled_env?('LUA')
 ENABLE_EXAMPLES = enabled_env?('EXAMPLES', default: false)
+ALLOW_NETWORK_FETCH = enabled_env?('NETWORK_FETCH')
 
 CLEAN.clear_exclude.exclude { |fn| fn.pathmap('%f').casecmp('core').zero? }
 CLEAN.include('**/*.o', '**/*.obj')
@@ -78,7 +81,7 @@ def configure_args(build_testing: false, build_examples: false)
     "-DGENERIC_CONTAINER_ENABLE_YAML=#{cmake_bool(ENABLE_YAML)}",
     "-DGENERIC_CONTAINER_ENABLE_TOML=#{cmake_bool(ENABLE_TOML)}",
     "-DGENERIC_CONTAINER_ENABLE_LUA=#{cmake_bool(ENABLE_LUA)}",
-    '-DGENERIC_CONTAINER_ALLOW_NETWORK_FETCH=OFF'
+    "-DGENERIC_CONTAINER_ALLOW_NETWORK_FETCH=#{cmake_bool(ALLOW_NETWORK_FETCH)}"
   ]
 end
 
