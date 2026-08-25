@@ -224,7 +224,7 @@ option(
   "Optimize Release builds for the current CPU architecture"
   ${GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT}
 )
-option(GENERIC_CONTAINER_ENABLE_LTO "Enable interprocedural optimization / LTO" ON)
+option(GENERIC_CONTAINER_ENABLE_LTO "Enable interprocedural optimization / LTO" OFF)
 option(GENERIC_CONTAINER_UNROLL_LOOPS "Enable explicit loop unrolling in Release builds" OFF)
 option(
   GENERIC_CONTAINER_ENABLE_FAST_MATH
