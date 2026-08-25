@@ -54,6 +54,7 @@
 #include <limits>
 #include <stdexcept>
 #include <type_traits>
+#include <format>
 
 #include "GenericContainerConfig.hh"
 
