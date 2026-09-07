@@ -49,12 +49,31 @@ namespace GC_namespace
     auto ends_with = []( string_view str, string_view suffix ) -> bool
     { return str.size() >= suffix.size() && str.compare( str.size() - suffix.size(), suffix.size(), suffix ) == 0; };
 
-    // JSON support was dropped from the core library: nlohmann::json (via
-    // include/GenericContainer/GenericContainerInterface_nlohmann.hh) is the
-    // replacement for C++ callers -- j.get<GenericContainer>() / j = gc --
-    // but there's no FFI/file-dispatch equivalent, so a ".json" file is
-    // simply not handled here.
-    //
+    // Unlike the Yaml/Toml bridges (built as separate opt-in libraries,
+    // GenericContainer::Yaml / GenericContainer::Toml, so the core library
+    // stays self-contained and standalone-linkable), the JSON bridge
+    // (interfaces/json/GenericContainerJson.cc, nlohmann::json-backed) is
+    // compiled directly into this same core target whenever
+    // GENERIC_CONTAINER_ENABLE_JSON is ON (the default) -- see CMakeLists.txt.
+    // GENERIC_CONTAINER_HAS_JSON is defined precisely then, so calling
+    // from_json() here is safe: the symbol is guaranteed to be part of this
+    // same translation unit's library, never an external/optional one.
+    if ( ends_with( file_name, ".json" ) )
+    {
+#ifdef GENERIC_CONTAINER_HAS_JSON
+      bool const ok = this->from_json( file );
+      file.close();
+      return ok;
+#else
+      file.close();
+      GC_assert(
+        false,
+        "GenericContainer::from_file: JSON support is not compiled into this library; "
+        "rebuild with GENERIC_CONTAINER_ENABLE_JSON=ON and call from_json() directly"
+      );
+#endif
+    }
+
     // from_yaml/from_toml ARE implemented, but as separate opt-in libraries
     // (src_yaml_interface/, src_toml_interface/, built as GenericContainer::
     // Yaml / GenericContainer::Toml -- see their CMakeLists.txt) rather than

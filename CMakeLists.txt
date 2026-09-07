@@ -599,6 +599,7 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
 
   set( LOCAL_MATCHES FALSE )
   set( LOCAL_BRANCH "not available" )
+  set( LOCAL_STATE "not a compatible Git checkout" )
   if ( IS_DIRECTORY "${LOCAL_DIR_ABS}" AND GIT_EXECUTABLE )
     execute_process(
       COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" symbolic-ref --quiet --short HEAD
@@ -610,19 +611,73 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
     if ( NOT BRANCH_RESULT EQUAL 0 )
       set( LOCAL_BRANCH "detached HEAD or unavailable" )
     endif()
-    if ( BRANCH_RESULT EQUAL 0 AND LOCAL_BRANCH STREQUAL EXPECTED_REF )
+    execute_process(
+      COMMAND "${GIT_EXECUTABLE}" -C "${CMAKE_CURRENT_SOURCE_DIR}" rev-parse --show-toplevel
+      RESULT_VARIABLE PROJECT_ROOT_RESULT
+      OUTPUT_VARIABLE PROJECT_GIT_ROOT
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+    )
+    execute_process(
+      COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" rev-parse --show-toplevel
+      RESULT_VARIABLE LOCAL_ROOT_RESULT
+      OUTPUT_VARIABLE LOCAL_GIT_ROOT
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+    )
+    execute_process(
+      COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" rev-parse HEAD
+      RESULT_VARIABLE HEAD_RESULT
+      OUTPUT_VARIABLE HEAD_COMMIT
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+    )
+    execute_process(
+      COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" rev-parse "${EXPECTED_REF}^{commit}"
+      RESULT_VARIABLE REF_RESULT
+      OUTPUT_VARIABLE REF_COMMIT
+      OUTPUT_STRIP_TRAILING_WHITESPACE
+      ERROR_QUIET
+    )
+
+    if (
+      PROJECT_ROOT_RESULT EQUAL 0 AND
+      LOCAL_ROOT_RESULT EQUAL 0 AND
+      PROJECT_GIT_ROOT STREQUAL LOCAL_GIT_ROOT
+    )
       set( LOCAL_MATCHES TRUE )
+      set( LOCAL_STATE "shared Git worktree, branch '${LOCAL_BRANCH}'" )
+    elseif ( BRANCH_RESULT EQUAL 0 AND LOCAL_BRANCH STREQUAL EXPECTED_REF )
+      set( LOCAL_MATCHES TRUE )
+      set( LOCAL_STATE "branch '${LOCAL_BRANCH}'" )
+    elseif (
+      HEAD_RESULT EQUAL 0 AND
+      REF_RESULT EQUAL 0 AND
+      HEAD_COMMIT STREQUAL REF_COMMIT
+    )
+      set( LOCAL_MATCHES TRUE )
+      set( LOCAL_STATE "HEAD at ref '${EXPECTED_REF}'" )
+    elseif ( HEAD_RESULT EQUAL 0 AND REF_RESULT EQUAL 0 )
+      execute_process(
+        COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" merge-base --is-ancestor "${REF_COMMIT}" "${HEAD_COMMIT}"
+        RESULT_VARIABLE REF_IS_ANCESTOR
+        ERROR_QUIET
+      )
+      if ( REF_IS_ANCESTOR EQUAL 0 )
+        set( LOCAL_MATCHES TRUE )
+        set( LOCAL_STATE "branch '${LOCAL_BRANCH}' contains ref '${EXPECTED_REF}'" )
+      endif()
     endif()
   endif()
 
   if ( LOCAL_MATCHES )
-    message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> local ${LOCAL_DIR_ABS} (branch '${LOCAL_BRANCH}', requested '${EXPECTED_REF}')" )
+    message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> local ${LOCAL_DIR_ABS} (${LOCAL_STATE}, requested '${EXPECTED_REF}')" )
     set(
       ${SOURCE_DIR_VARIABLE} "${LOCAL_DIR_ABS}"
       CACHE PATH "Local source directory for ${DEPENDENCY_NAME}; overrides FetchContent download"
       FORCE
     )
-    set( ${SUMMARY_VARIABLE} "local: ${LOCAL_DIR_ABS} [branch ${LOCAL_BRANCH}]" PARENT_SCOPE )
+    set( ${SUMMARY_VARIABLE} "local: ${LOCAL_DIR_ABS} [${LOCAL_STATE}]" PARENT_SCOPE )
   else()
     unset( ${SOURCE_DIR_VARIABLE} CACHE )
     if ( IS_DIRECTORY "${LOCAL_DIR_ABS}" )
@@ -990,6 +1045,11 @@ generic_container_add_platform_library_alias( GenericContainer GenericContainer 
 if ( GENERIC_CONTAINER_ENABLE_JSON )
   target_sources( GenericContainer PRIVATE interfaces/json/GenericContainerJson.cc )
   target_link_libraries( GenericContainer PRIVATE $<BUILD_INTERFACE:nlohmann_json::nlohmann_json> )
+  # Lets GenericContainerSupport.cc's from_file() dispatch ".json" files to
+  # from_json() -- safe only because, unlike the Yaml/Toml bridges, the JSON
+  # bridge is compiled straight into this same target, so the symbol is
+  # guaranteed to be defined whenever this macro is visible.
+  target_compile_definitions( GenericContainer PRIVATE GENERIC_CONTAINER_HAS_JSON )
   generic_container_add_backend_alias( GenericContainerJson Json )
 endif()
 

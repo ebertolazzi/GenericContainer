@@ -22,9 +22,14 @@ namespace
 
 TEST_CASE( "from_file dispatches on extension", "[support]" )
 {
+  // ".json" is compiled straight into the core library whenever
+  // GENERIC_CONTAINER_ENABLE_JSON is ON (the default -- see CMakeLists.txt),
+  // unlike ".yaml"/".yml"/".toml" which live in separate opt-in libraries
+  // (GenericContainer::Yaml / ::Toml) that this unit-test binary does not
+  // link, so those two still hit the "not linked" GC_assert.
   GenericContainer gc;
-  CHECK_FALSE( gc.from_file( fixture_path( "test.json" ).string() ) );
-  CHECK( gc.empty() );
+  CHECK( gc.from_file( fixture_path( "test.json" ).string() ) );
+  CHECK_FALSE( gc.empty() );
 
   GenericContainer gy;
   CHECK_THROWS_AS( gy.from_file( fixture_path( "test.yml" ).string() ), std::runtime_error );
