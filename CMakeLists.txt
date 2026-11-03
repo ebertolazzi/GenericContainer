@@ -402,6 +402,14 @@ function( gc_configure_target TARGET_NAME )
       $<$<CXX_COMPILER_ID:MSVC>:/W4>
       $<$<CXX_COMPILER_ID:MSVC>:/permissive->
       $<$<CXX_COMPILER_ID:MSVC>:/bigobj>
+      # /utf-8 sets both the source and the execution character set.  The
+      # sources here are UTF-8, and without it MSVC reads them in the machine
+      # ANSI code page: string literals come out mangled and fmt refuses to
+      # compile at all ("Unicode support requires compiling with /utf-8",
+      # fmt/base.h).  /Zc:__cplusplus makes __cplusplus report the real value
+      # instead of 199711L, which feature tests in the vendored headers rely on.
+      $<$<CXX_COMPILER_ID:MSVC>:/utf-8>
+      $<$<CXX_COMPILER_ID:MSVC>:/Zc:__cplusplus>
   )
 
   target_compile_options(
