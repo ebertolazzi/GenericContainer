@@ -141,6 +141,14 @@ if(MSVC)
   endforeach()
 endif()
 
+# CMake only emits /external:I for SYSTEM include directories once it knows
+# which flag carries that meaning on this compiler. The vendored third-party
+# headers reach this project through such directories.
+if(MSVC)
+  set(CMAKE_INCLUDE_SYSTEM_FLAG_C   "/external:I ")
+  set(CMAKE_INCLUDE_SYSTEM_FLAG_CXX "/external:I ")
+endif()
+
 # Default to a Release build when the generator uses a single configuration
 # and the user hasn't picked one (multi-config generators like Ninja
 # Multi-Config or Visual Studio ignore CMAKE_BUILD_TYPE entirely).
