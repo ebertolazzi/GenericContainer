@@ -232,7 +232,25 @@ if(APPLE AND CMAKE_OSX_ARCHITECTURES)
   endif()
 endif()
 
-set(GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT ON)
+# -march=native / /arch:AVX2 SPENTI PER DEFAULT.
+#
+# Non e' una scelta di prestazioni ma di ABI.  Con Eigen l'allineamento (e
+# quindi sizeof e il layout) dei tipi a dimensione fissa dipende dal set di
+# istruzioni abilitato: 16 byte con solo SSE2, 32 con AVX, 64 con AVX-512.
+# Due unita' di compilazione con -march diversi vedono quindi lo stesso tipo
+# con due layout diversi -- violazione della ODR -- e un oggetto costruito
+# da una e distrutto dall'altra corrompe l'heap: 0xC0000374 su Windows,
+# "pointer being freed was not allocated" su macOS, e nessuna diagnosi dai
+# sanitizer perche' ogni unita' presa da sola e' coerente.
+#
+# Nella famiglia PINS la maggior parte dei progetti non usa -march=native:
+# PINS core lo ha tolto apposta su GCC/Clang, Splines e Clothoids lo hanno
+# OFF, Astro, quarticRootsFlocke ed embedFiglet non lo hanno mai avuto, e al
+# codice OCP generato da XOptima non c'e' modo di passarlo.  Accenderlo qui
+# significava solo creare il disallineamento.
+#
+# L'opzione resta, per chi voglia riaccenderla consapevolmente OVUNQUE.
+set(GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT OFF)
 if(GENERIC_CONTAINER_APPLE_MULTI_ARCH)
   set(GENERIC_CONTAINER_USE_NATIVE_ARCH_DEFAULT OFF)
 endif()
