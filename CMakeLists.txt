@@ -1019,6 +1019,36 @@ endfunction()
 
 
 # ----------------------------------------------------------------------------
+# Marcare come SYSTEM gli include di una dipendenza
+# ----------------------------------------------------------------------------
+# Gli header di fkYAML, toml++ e simili arrivano da FetchContent e finiscono
+# nella riga di comando come -I normali: con -Wall -Wextra -Wshadow il
+# compilatore ci applica i nostri warning e la build di from_yaml.cc usciva
+# con decine di -Wshadow che non sono nostri (fkYAML dichiara parametri
+# omonimi dei membri, e un `node` che nasconde `using node = basic_node<>`).
+#
+# Spostando gli include in INTERFACE_SYSTEM_INCLUDE_DIRECTORIES diventano
+# -isystem (e /external:I con MSVC), e GCC/Clang smettono di diagnosticarli.
+# Si fa per target invece che col solo SYSTEM di FetchContent_Declare perche'
+# copre anche il caso find_package e i checkout locali.
+function( generic_container_mark_dependency_system target )
+  if ( NOT TARGET ${target} )
+    return()
+  endif()
+  get_target_property( _gc_aliased ${target} ALIASED_TARGET )
+  if ( _gc_aliased )
+    set( target ${_gc_aliased} )
+  endif()
+  get_target_property( _gc_inc ${target} INTERFACE_INCLUDE_DIRECTORIES )
+  if ( _gc_inc )
+    set_property(
+      TARGET ${target} APPEND
+      PROPERTY INTERFACE_SYSTEM_INCLUDE_DIRECTORIES ${_gc_inc}
+    )
+  endif()
+endfunction()
+
+# ----------------------------------------------------------------------------
 # Prepare optional dependencies
 # ----------------------------------------------------------------------------
 # Before adding bridge sources, prepare the dependencies they need. JSON
@@ -1113,9 +1143,11 @@ if ( GENERIC_CONTAINER_ENABLE_YAML )
       SOURCE_DIR "${FETCHCONTENT_BASE_DIR}/fkyaml-${GENERIC_CONTAINER_FKYAML_REF}-src"
       DOWNLOAD_EXTRACT_TIMESTAMP TRUE
       EXCLUDE_FROM_ALL
+      SYSTEM
     )
     FetchContent_MakeAvailable( fkYAML )
   endif()
+  generic_container_mark_dependency_system( fkYAML::fkYAML )
 
   target_sources(
     GenericContainer PRIVATE
@@ -1152,9 +1184,11 @@ if ( GENERIC_CONTAINER_ENABLE_TOML )
       GIT_TAG        ${GENERIC_CONTAINER_TOMLPLUSPLUS_REF}
       GIT_SHALLOW    TRUE
       EXCLUDE_FROM_ALL
+      SYSTEM
     )
     FetchContent_MakeAvailable( tomlplusplus )
   endif()
+  generic_container_mark_dependency_system( tomlplusplus::tomlplusplus )
 
   target_sources(
     GenericContainer PRIVATE
