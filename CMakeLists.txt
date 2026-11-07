@@ -1337,7 +1337,7 @@ if ( BUILD_TESTING AND PROJECT_IS_TOP_LEVEL )
 
     foreach( catch2_target Catch2 Catch2WithMain )
       if ( TARGET ${catch2_target} )
-        target_compile_options( ${catch2_target} PRIVATE $<IF:$<CXX_COMPILER_ID:MSVC>,/w,-w> )
+        target_compile_options( ${catch2_target} PRIVATE $<IF:$<CXX_COMPILER_ID:MSVC>,/W0,-w> )
         target_compile_features( ${catch2_target} PUBLIC cxx_std_20 )
       endif()
     endforeach()
