@@ -417,7 +417,11 @@ extern "C"
   long GC_get_long()
   {
     if ( gc_active == nullptr ) return 0;
-    return gc_active->top()->get_long();
+    // The C API intentionally exposes `long`, which is 32 bit on Windows,
+    // while GenericContainer stores integer values as int64_t.  Keep the
+    // existing C ABI and conversion semantics, but make the narrowing
+    // explicit so MSVC does not emit C4244 at every consumer build.
+    return static_cast<long>( gc_active->top()->get_long() );
   }
 
   double GC_get_real()
