@@ -808,11 +808,15 @@ endfunction()
 # preserve the historical artifact naming scheme across static and shared
 # builds.
 function( generic_container_apply_standard_library_name TARGET_NAME BASE_NAME )
-  if ( WIN32 )
+  # Il prefisso "lib" va aggiunto A MANO solo dove CMake non lo mette da solo,
+  # cioe' con MSVC (CMAKE_STATIC_LIBRARY_PREFIX vuoto).  Sotto MinGW WIN32 e'
+  # vero ma il prefisso c'e' gia': aggiungerlo produceva
+  # liblibGenericContainer_mingw64_static.a.  Stessa regola di UtilsLite,
+  # Splines, Clothoids e quarticRootsFlocke.
+  set( TARGET_OUTPUT_NAME "${BASE_NAME}" )
+  if ( WIN32 AND NOT CMAKE_STATIC_LIBRARY_PREFIX )
     set( TARGET_OUTPUT_NAME "lib${BASE_NAME}" )
     set_target_properties( ${TARGET_NAME} PROPERTIES PREFIX "" IMPORT_PREFIX "" )
-  else()
-    set( TARGET_OUTPUT_NAME "${BASE_NAME}" )
   endif()
 
   set_target_properties(
@@ -837,11 +841,14 @@ endfunction()
 function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
   if ( BUILD_SHARED_LIBS )
     if ( WIN32 )
-      set( PLATFORM_OUTPUT_NAME "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
-      set( STANDARD_RUNTIME_FILENAME "lib${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-      set( STANDARD_IMPORT_FILENAME  "lib${BASE_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
-      set( PLATFORM_RUNTIME_FILENAME "${PLATFORM_OUTPUT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-      set( PLATFORM_IMPORT_FILENAME  "${PLATFORM_OUTPUT_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
+      set( PLATFORM_OUTPUT_NAME "${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}" )
+      if ( NOT CMAKE_SHARED_LIBRARY_PREFIX )
+        set( PLATFORM_OUTPUT_NAME "lib${PLATFORM_OUTPUT_NAME}" )
+      endif()
+      set( STANDARD_RUNTIME_FILENAME "${CMAKE_SHARED_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+      set( STANDARD_IMPORT_FILENAME  "${CMAKE_IMPORT_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
+      set( PLATFORM_RUNTIME_FILENAME "${CMAKE_SHARED_LIBRARY_PREFIX}${PLATFORM_OUTPUT_NAME}${CMAKE_SHARED_LIBRARY_SUFFIX}" )
+      set( PLATFORM_IMPORT_FILENAME  "${CMAKE_IMPORT_LIBRARY_PREFIX}${PLATFORM_OUTPUT_NAME}${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
 
       set_target_properties(
         ${TARGET_NAME} PROPERTIES
@@ -912,9 +919,12 @@ function( generic_container_add_platform_library_alias TARGET_NAME BASE_NAME )
     endif()
   else()
     if ( WIN32 )
-      set( PLATFORM_OUTPUT_NAME "lib${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}_static" )
-      set( STANDARD_FILENAME "lib${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-      set( PLATFORM_FILENAME "${PLATFORM_OUTPUT_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( PLATFORM_OUTPUT_NAME "${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}_static" )
+      if ( NOT CMAKE_STATIC_LIBRARY_PREFIX )
+        set( PLATFORM_OUTPUT_NAME "lib${PLATFORM_OUTPUT_NAME}" )
+      endif()
+      set( STANDARD_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
+      set( PLATFORM_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${PLATFORM_OUTPUT_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
     else()
       set( PLATFORM_OUTPUT_NAME "${BASE_NAME}_${GENERIC_CONTAINER_PLATFORM_SUFFIX}_static" )
       set( STANDARD_FILENAME "${CMAKE_STATIC_LIBRARY_PREFIX}${BASE_NAME}${CMAKE_STATIC_LIBRARY_SUFFIX}" )
