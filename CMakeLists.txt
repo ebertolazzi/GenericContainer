@@ -1108,6 +1108,13 @@ function( generic_container_mark_dependency_system target )
   if ( NOT TARGET ${target} )
     return()
   endif()
+  # NON su MSVC: li' SYSTEM diventa /external:I, e con cl 19.38 basta questo a
+  # far esplodere il back-end ("fatal error C1001", compiler file p2/main.c)
+  # su header pesanti di Eigen e UtilsLite.  Stessa scelta gia' fatta in
+  # PINSBuild.cmake; su Windows i warning di terze parti si tolgono dai flag.
+  if ( MSVC )
+    return()
+  endif()
   get_target_property( _gc_aliased ${target} ALIASED_TARGET )
   if ( _gc_aliased )
     set( target ${_gc_aliased} )
