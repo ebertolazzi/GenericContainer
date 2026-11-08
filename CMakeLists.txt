@@ -635,28 +635,19 @@ gc_configure_target( GenericContainer )
 # exist.
 
 # ----------------------------------------------------------------------------
-# generic_container_prefer_local_fetchcontent()
+# generic_container_checkout_matches_ref()
 # ----------------------------------------------------------------------------
-# Parameters: DEPENDENCY_NAME is the FetchContent name expected by the
-# backend; LOCAL_DIR is the suggested sibling checkout; SUMMARY_VARIABLE is
-# updated in the parent scope for the final report.
-# If a suitable local checkout exists, the function sets
-# FETCHCONTENT_SOURCE_DIR_<NAME> in the cache.
-# FetchContent_MakeAvailable(<name>) will then use that source tree instead of
-# downloading it. Stale source overrides are cleared when their Git branch no
-# longer matches the requested FetchContent ref.
-function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR EXPECTED_REF SUMMARY_VARIABLE )
-  string( TOUPPER "${DEPENDENCY_NAME}" DEPENDENCY_NAME_UPPER )
-  set( SOURCE_DIR_VARIABLE "FETCHCONTENT_SOURCE_DIR_${DEPENDENCY_NAME_UPPER}" )
-  set( ${SUMMARY_VARIABLE} "FetchContent" PARENT_SCOPE )
-
-  get_filename_component(
-    LOCAL_DIR_ABS
-    "${LOCAL_DIR}"
-    ABSOLUTE
-    BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
-  )
-
+# Decide whether a local source tree can stand in for the requested ref.
+# Accepted cases, in order:
+#   - the directory belongs to the SAME Git work tree as this project (the
+#     usual case for vendored sources: sources/submodules/json has no .git of
+#     its own, so `git -C` reports the enclosing repository and comparing its
+#     branch name with a tag like "v3.11.3" can never succeed);
+#   - its branch name is exactly the requested ref;
+#   - its HEAD is the commit the ref points to;
+#   - its HEAD contains the commit the ref points to.
+# MATCHES_VAR/STATE_VAR are set in the caller scope.
+function( generic_container_checkout_matches_ref LOCAL_DIR_ABS EXPECTED_REF MATCHES_VAR STATE_VAR )
   set( LOCAL_MATCHES FALSE )
   set( LOCAL_BRANCH "not available" )
   set( LOCAL_STATE "not a compatible Git checkout" )
@@ -699,6 +690,18 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
       OUTPUT_STRIP_TRAILING_WHITESPACE
       ERROR_QUIET
     )
+    # Alcune dipendenze sono richieste col numero di versione nudo perche' il
+    # ref serve anche a comporre l'URL del tarball (Lua: lua-5.4.6.tar.gz),
+    # mentre il repository locale etichetta lo stesso commit con 'v5.4.6'.
+    if ( NOT REF_RESULT EQUAL 0 AND NOT EXPECTED_REF MATCHES "^v" )
+      execute_process(
+        COMMAND "${GIT_EXECUTABLE}" -C "${LOCAL_DIR_ABS}" rev-parse "v${EXPECTED_REF}^{commit}"
+        RESULT_VARIABLE REF_RESULT
+        OUTPUT_VARIABLE REF_COMMIT
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        ERROR_QUIET
+      )
+    endif()
 
     if (
       PROJECT_ROOT_RESULT EQUAL 0 AND
@@ -729,6 +732,40 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
       endif()
     endif()
   endif()
+  if ( NOT LOCAL_MATCHES )
+    set( LOCAL_STATE "branch '${LOCAL_BRANCH}'" )
+  endif()
+  set( ${MATCHES_VAR} ${LOCAL_MATCHES} PARENT_SCOPE )
+  set( ${STATE_VAR}   "${LOCAL_STATE}" PARENT_SCOPE )
+endfunction()
+
+
+# ----------------------------------------------------------------------------
+# generic_container_prefer_local_fetchcontent()
+# ----------------------------------------------------------------------------
+# Parameters: DEPENDENCY_NAME is the FetchContent name expected by the
+# backend; LOCAL_DIR is the suggested sibling checkout; SUMMARY_VARIABLE is
+# updated in the parent scope for the final report.
+# If a suitable local checkout exists, the function sets
+# FETCHCONTENT_SOURCE_DIR_<NAME> in the cache.
+# FetchContent_MakeAvailable(<name>) will then use that source tree instead of
+# downloading it. Stale source overrides are cleared when their Git branch no
+# longer matches the requested FetchContent ref.
+function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR EXPECTED_REF SUMMARY_VARIABLE )
+  string( TOUPPER "${DEPENDENCY_NAME}" DEPENDENCY_NAME_UPPER )
+  set( SOURCE_DIR_VARIABLE "FETCHCONTENT_SOURCE_DIR_${DEPENDENCY_NAME_UPPER}" )
+  set( ${SUMMARY_VARIABLE} "FetchContent" PARENT_SCOPE )
+
+  get_filename_component(
+    LOCAL_DIR_ABS
+    "${LOCAL_DIR}"
+    ABSOLUTE
+    BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
+  )
+
+  generic_container_checkout_matches_ref(
+    "${LOCAL_DIR_ABS}" "${EXPECTED_REF}" LOCAL_MATCHES LOCAL_STATE
+  )
 
   if ( LOCAL_MATCHES )
     message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> local ${LOCAL_DIR_ABS} (${LOCAL_STATE}, requested '${EXPECTED_REF}')" )
@@ -741,7 +778,7 @@ function( generic_container_prefer_local_fetchcontent DEPENDENCY_NAME LOCAL_DIR 
   else()
     unset( ${SOURCE_DIR_VARIABLE} CACHE )
     if ( IS_DIRECTORY "${LOCAL_DIR_ABS}" )
-      message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> ignoring local ${LOCAL_DIR_ABS} (branch '${LOCAL_BRANCH}', requested '${EXPECTED_REF}')" )
+      message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> ignoring local ${LOCAL_DIR_ABS} (${LOCAL_STATE}, requested '${EXPECTED_REF}')" )
     else()
       message( STATUS "GenericContainer: ${DEPENDENCY_NAME} -> local checkout not found at ${LOCAL_DIR_ABS}" )
     endif()
@@ -988,22 +1025,19 @@ function( generic_container_ensure_nlohmann_json )
     _nlohmann_local_abs "${GENERIC_CONTAINER_NLOHMANN_JSON_LOCAL_DIR}"
     ABSOLUTE BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}"
   )
+  # Stessa regola delle altre dipendenze (fkYAML, toml++, Lua): qui c'era solo
+  # il confronto fra il nome del branch e il ref richiesto, e per una copia
+  # vendorizzata dentro il repo di PINS quel confronto non puo' mai riuscire
+  # (git riporta il branch del repo che la contiene, p.es. 'WINDOWS', contro
+  # un tag 'v3.11.3'), quindi il checkout locale veniva sempre scartato e si
+  # finiva a scaricare include.zip da GitHub ad ogni bootstrap.
   set( _nlohmann_local_matches FALSE )
-  set( _nlohmann_local_branch "not available" )
-  if ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" AND GIT_EXECUTABLE )
-    execute_process(
-      COMMAND "${GIT_EXECUTABLE}" -C "${_nlohmann_local_abs}" symbolic-ref --quiet --short HEAD
-      RESULT_VARIABLE _nlohmann_branch_result
-      OUTPUT_VARIABLE _nlohmann_local_branch
-      OUTPUT_STRIP_TRAILING_WHITESPACE
-      ERROR_QUIET
+  set( _nlohmann_local_state "local checkout not usable" )
+  if ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" )
+    generic_container_checkout_matches_ref(
+      "${_nlohmann_local_abs}" "${GENERIC_CONTAINER_NLOHMANN_JSON_REF}"
+      _nlohmann_local_matches _nlohmann_local_state
     )
-    if ( NOT _nlohmann_branch_result EQUAL 0 )
-      set( _nlohmann_local_branch "detached HEAD or unavailable" )
-    endif()
-    if ( _nlohmann_branch_result EQUAL 0 AND _nlohmann_local_branch STREQUAL GENERIC_CONTAINER_NLOHMANN_JSON_REF )
-      set( _nlohmann_local_matches TRUE )
-    endif()
   endif()
   if ( _nlohmann_local_matches )
     add_library( nlohmann_json INTERFACE )
@@ -1012,11 +1046,11 @@ function( generic_container_ensure_nlohmann_json )
       nlohmann_json SYSTEM INTERFACE
       "$<BUILD_INTERFACE:${_nlohmann_local_abs}/single_include>"
     )
-    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "local: ${_nlohmann_local_abs} [branch ${_nlohmann_local_branch}]" PARENT_SCOPE )
-    message( STATUS "GenericContainer: nlohmann_json -> local ${_nlohmann_local_abs} (branch '${_nlohmann_local_branch}', requested '${GENERIC_CONTAINER_NLOHMANN_JSON_REF}')" )
+    set( GENERIC_CONTAINER_NLOHMANN_JSON_SOURCE "local: ${_nlohmann_local_abs} [${_nlohmann_local_state}]" PARENT_SCOPE )
+    message( STATUS "GenericContainer: nlohmann_json -> local ${_nlohmann_local_abs} (${_nlohmann_local_state}, requested '${GENERIC_CONTAINER_NLOHMANN_JSON_REF}')" )
     return()
   elseif ( EXISTS "${_nlohmann_local_abs}/single_include/nlohmann/json.hpp" )
-    message( STATUS "GenericContainer: nlohmann_json -> ignoring local ${_nlohmann_local_abs} (branch '${_nlohmann_local_branch}', requested '${GENERIC_CONTAINER_NLOHMANN_JSON_REF}')" )
+    message( STATUS "GenericContainer: nlohmann_json -> ignoring local ${_nlohmann_local_abs} (${_nlohmann_local_state}, requested '${GENERIC_CONTAINER_NLOHMANN_JSON_REF}')" )
   endif()
 
   find_package( nlohmann_json 3 QUIET )
