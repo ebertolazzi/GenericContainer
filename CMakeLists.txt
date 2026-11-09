@@ -24,6 +24,7 @@
 # package configuration helpers, including FetchContent's EXCLUDE_FROM_ALL
 # support, without compatibility workarounds for older releases.
 cmake_minimum_required( VERSION 3.28 )
+include("${CMAKE_CURRENT_LIST_DIR}/CMakeLists_compiler.txt")
 
 
 # --------------------------------------------------------------------------
@@ -130,6 +131,7 @@ project(
   HOMEPAGE_URL "https://github.com/pbosetti/GenericContainer"
   LANGUAGES CXX
 )
+pins_configure_compiler()
 
 # MSVC: CMake seeds CMAKE_C_FLAGS/CMAKE_CXX_FLAGS with /W3, while the targets
 # below ask for /W4.  cl.exe then prints "command line warning D9025:
@@ -452,7 +454,6 @@ function( gc_configure_target TARGET_NAME )
       # so /W4 only reports this project's own code.
       $<$<CXX_COMPILER_ID:MSVC>:/external:anglebrackets>
       $<$<CXX_COMPILER_ID:MSVC>:/external:W0>
-      $<$<CXX_COMPILER_ID:MSVC>:/permissive->
       $<$<CXX_COMPILER_ID:MSVC>:/bigobj>
       # /utf-8 sets both the source and the execution character set.  The
       # sources here are UTF-8, and without it MSVC reads them in the machine
@@ -1320,6 +1321,19 @@ if ( GENERIC_CONTAINER_ENABLE_LUA )
   target_include_directories(
     Lua PUBLIC
     "$<BUILD_INTERFACE:${GENERIC_CONTAINER_LUA_SOURCE_DIR}>"
+  )
+
+  # Lua 5.4.6 is third-party C code. MSVC 19.44 reports intentional narrowing,
+  # constant truncation, alignment padding and control-flow patterns throughout
+  # the upstream VM. Keep GC itself at /W4 and silence only those diagnostics
+  # on the isolated Lua target instead of patching downloaded sources.
+  target_compile_options(
+    Lua PRIVATE
+      $<$<COMPILE_LANG_AND_ID:C,MSVC>:/wd4244>
+      $<$<COMPILE_LANG_AND_ID:C,MSVC>:/wd4310>
+      $<$<COMPILE_LANG_AND_ID:C,MSVC>:/wd4324>
+      $<$<COMPILE_LANG_AND_ID:C,MSVC>:/wd4701>
+      $<$<COMPILE_LANG_AND_ID:C,MSVC>:/wd4702>
   )
 
 
