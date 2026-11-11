@@ -553,6 +553,11 @@ add_library(
   src/GenericContainer_ffi.cc
 )
 
+# The static archive is also linked into shared consumers (for example
+# PINS_Core_linux.so). Compile its objects as position-independent code so
+# thread_local data does not produce local-exec TLS relocations at link time.
+set_target_properties( GenericContainer PROPERTIES POSITION_INDEPENDENT_CODE ON )
+
 # ----------------------------------------------------------------------------
 # Public namespaced alias
 # ----------------------------------------------------------------------------
@@ -1317,7 +1322,11 @@ if ( GENERIC_CONTAINER_ENABLE_LUA )
 
   add_library( Lua ${LUA_SOURCES} )
   add_library( GenericContainer::LuaVM ALIAS Lua )
-  set_target_properties( Lua PROPERTIES EXPORT_NAME LuaVM )
+  set_target_properties(
+    Lua PROPERTIES
+      EXPORT_NAME LuaVM
+      POSITION_INDEPENDENT_CODE ON
+  )
   target_include_directories(
     Lua PUBLIC
     "$<BUILD_INTERFACE:${GENERIC_CONTAINER_LUA_SOURCE_DIR}>"
