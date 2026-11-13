@@ -918,7 +918,19 @@ namespace GC_namespace
      *
      * \param other The container to swap with.
      */
-    void swap( GenericContainer & other ) noexcept { m_data.swap( other.m_data ); }
+    void swap( GenericContainer & other ) noexcept
+    {
+      // Do not call std::variant::swap here. It performs a visitation nested
+      // inside another visitation, so the compiler instantiates an N x N
+      // table of lambdas (N = 21 alternatives, each a heavy template type).
+      // GCC 16.2 on MinGW runs cc1plus out of stack on that and dies with an
+      // "internal compiler error: Segmentation fault". Three moves give the
+      // same result and only need the single-visitation tables that move
+      // assignment instantiates anyway.
+      Data tmp{ std::move( m_data ) };
+      m_data = std::move( other.m_data );
+      other.m_data = std::move( tmp );
+    }
 
     //!
     //! \brief Deep structural equality.

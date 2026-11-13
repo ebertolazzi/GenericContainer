@@ -65,6 +65,12 @@ def cmake_build_parallel_args
     nil
   end
 
+  # Cap the job count: an over-subscribed C++20 build is a classic source of
+  # compiler crashes. PINS_MAX_CORE overrides the default cap of 16.
+  cap = ENV['PINS_MAX_CORE'].to_i
+  cap = 16 if cap <= 0
+  processors = [processors.to_i, cap].min if processors.to_i.positive?
+
   processors.to_i.positive? ? ['--parallel', processors.to_s] : ['--parallel']
 end
 
